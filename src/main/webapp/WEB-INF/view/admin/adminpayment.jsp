@@ -26,7 +26,7 @@
 					</div>
 				</div>
 				<div class="panel-body no-padding">
-					<table class="table table-striped">
+					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
 								<th>상품명</th>

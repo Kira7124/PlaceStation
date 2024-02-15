@@ -28,7 +28,7 @@
 				</div>
 				
 				<div class="panel-body no-padding">
-					<table class="table table-striped">
+					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
 								<th>이름</th>
@@ -77,7 +77,7 @@
 							</c:if>
 
 
-
+					
 							<c:forEach var="i" begin="${pageVO.startPage }"
 								end="${pageVO.endPage }" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
