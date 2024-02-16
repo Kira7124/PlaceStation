@@ -7,6 +7,8 @@ create table member (
   user_hp VARCHAR(20) NOT NULL,
   user_email VARCHAR(30) NOT NULL,
   user_point INT NULL DEFAULT 10,
+  origin_img VARCHAR(100) NULL DEFAULT 'default.jpg',
+  upload_img VARCHAR(100) NULL,
   join_at DATETIME NULL DEFAULT now(),
   user_role VARCHAR(20) NOT NULL,
   grade VARCHAR(20) NULL DEFAULT '브론즈'

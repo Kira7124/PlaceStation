@@ -18,6 +18,7 @@ public class AdminMemberDTO {
 	private String userbirth;
 	private String useremail;
 	private Integer userpoint;
+	private String userimg;
 	private Timestamp joinat;
 	private String role;
 	private String grade;

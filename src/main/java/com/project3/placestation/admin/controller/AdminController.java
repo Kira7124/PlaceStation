@@ -80,6 +80,9 @@ public class AdminController {
 	}
 	
 	
+	
+	
+	
 	//http://localhost:80/admin/admin-notice
 	//관리자 공지사항관리페이지출력
 	@GetMapping("/admin-notice")

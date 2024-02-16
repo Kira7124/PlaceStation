@@ -31,6 +31,7 @@
 					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
+								<th>사진</th>
 								<th>이름</th>
 								<th>아이디</th>
 								<th>주소</th>
@@ -44,6 +45,9 @@
 					<c:forEach var="memberlist" items="${memberlist}">
 						<tbody>
 							<tr>
+								<td>
+								  <img src="${memberlist.setupUserImage()}" style="width:30px; height: 30px; border-radius:50%;">
+								</td>
 								<td>${memberlist.username}</td>
 								<td>${memberlist.userid}</td>
 								<td>${memberlist.useraddress}</td>
