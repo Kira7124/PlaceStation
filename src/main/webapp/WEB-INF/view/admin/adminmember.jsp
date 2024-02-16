@@ -19,7 +19,7 @@
 
 			<div class="panel">
 				<div class="panel-heading">
-					<h3 class="panel-title">회원관리</h3>
+					<h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>회원관리</b></h3>
 					<div class="right">
 						<button type="button" class="btn-toggle-collapse">
 							<i class="lnr lnr-chevron-up"></i>
