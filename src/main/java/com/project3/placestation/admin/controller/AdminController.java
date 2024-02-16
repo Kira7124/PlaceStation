@@ -102,7 +102,21 @@ public class AdminController {
 	}
 	
 	
+	//http://localhost:80/admin/admin-update
+	//admin 회원update페이지출력(모달)
+	@GetMapping("/admin-update")
+	public String adminupdateGET() {
+		log.debug("adminupdate페이지출력");
+		return "admin/adminupdate";
+	}
 	
+	//http://localhost:80/admin/admin-delete
+	//admin 회원delete페이지출력(모달)
+	@GetMapping("/admin-delete")
+	public String admindeleteGET() {
+		log.debug("admindelete페이지출력");
+		return "admin/admindelete";
+	}
 	
 	
 	

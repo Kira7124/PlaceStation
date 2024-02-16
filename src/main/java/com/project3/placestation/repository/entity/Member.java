@@ -33,10 +33,13 @@ public class Member {
 	
 	
 	
+	
+	
 	//포메터(시간)
 	public String formatjoinAt() {
 		return TimeUtils.timestampToString(joinat);
 	}
+	
 	
 	
 	//포메터(전화번호)
@@ -56,6 +59,8 @@ public class Member {
 	}
 	
 	
+	
+	//사진업로드 
 	public String setupUserImage() {
 	    String imagePath = null;
 	    
@@ -71,12 +76,14 @@ public class Member {
 	            return imagePath; // DB에서 가져온 이미지 경로 반환
 	        }
 	    } else {
-	        // originimg가 다른 값인 경우, 해당 이미지 경로를 반환
+	        // originimg가 다른 값(--> 업로드해서 다른 jpg로 바뀐경우) 일 때, 업로드된 이미지 경로를 반환
 	        return uploadimg == null ? originimg : "/images/upload/" + uploadimg;
 	    }
 	}
 
 	
+	
+	//업로드경로 메서드
 	private String getImagePathFromDatabase() {
 
 	    String imagePath = "/assets/img/default.jpg"; 

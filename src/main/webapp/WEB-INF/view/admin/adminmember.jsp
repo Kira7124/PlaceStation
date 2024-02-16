@@ -5,8 +5,11 @@
     <%@ include file ="/WEB-INF/view/admin/adminheader.jsp" %>
 	<!-- adminside.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
-    
-
+    <!-- jquery/ajax 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+	
+		
 		
 		<!-- MAIN -->
 		<div class="main">
@@ -32,6 +35,7 @@
 						<thead>
 							<tr>
 								<th>사진</th>
+								<th>등급</th>
 								<th>이름</th>
 								<th>아이디</th>
 								<th>주소</th>
@@ -48,6 +52,19 @@
 								<td>
 								  <img src="${memberlist.setupUserImage()}" style="width:30px; height: 30px; border-radius:50%;">
 								</td>
+								  <td>	
+									<c:choose>
+										<c:when test="${memberlist.grade == '브론즈'}">
+											<img src="/assets/img/bronze.png" style="width:30px; height: 30px; border-radius:50%;">
+										</c:when>
+										<c:when test="${memberlist.grade =='실버'}">
+											<img src="/assets/img/silver.png" style="width:30px; height: 30px; border-radius:50%;">
+										</c:when>
+										<c:otherwise>
+											<img src="/assets/img/gold.png" style="width:30px; height: 30px; border-radius:50%;">
+										</c:otherwise>
+									</c:choose>
+								  </td>
 								<td>${memberlist.username}</td>
 								<td>${memberlist.userid}</td>
 								<td>${memberlist.useraddress}</td>
@@ -55,12 +72,12 @@
 								<td>${memberlist.formatHp(memberlist.userhp)}</td>
 								<td>${memberlist.formatjoinAt()}</td>
 								<td>
-									<a href="#">
-										<span class="label label-success">수정</span>
-									</a>		
+									<a href="/admin/admin-update">
+        								<span class="label label-success">수정</span>
+    								</a>     	
 								</td>
 								<td>
-									<a href="#">
+									<a href="/admin/admin-delete">
 										<span class="label label-danger">삭제</span>
 									</a>	
 								</td>														
@@ -111,7 +128,15 @@
 	</div>
 	<!-- END WRAPPER -->
 	
-	
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	<!-- Javascript -->
 	<script src="/assets/vendor/jquery/jquery.min.js"></script>
@@ -238,6 +263,15 @@
 
 	});
 	</script>
+	
+	
+	
+
+	
+
+	
+	
+	
 </body>
 
 </html>
