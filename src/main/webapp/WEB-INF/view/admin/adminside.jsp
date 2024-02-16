@@ -9,7 +9,7 @@
 					<ul class="nav">
 						<li><a href="/admin/admin-main" class="active"><i class="lnr lnr-home"></i> <span>관리자페이지</span></a></li>
 						<li><a href="#" class=""><i class="lnr lnr-code"></i> <span>통계</span></a></li>
-						<li><a href="/admin/admin-user" class=""><i class="lnr lnr-chart-bars"></i> <span>유저관리</span></a></li>
+						<li><a href="/admin/admin-member" class=""><i class="lnr lnr-chart-bars"></i> <span>유저관리</span></a></li>
 						<li><a href="/admin/admin-seller" class=""><i class="lnr lnr-cog"></i> <span>사업자관리</span></a></li>
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>게시물관리</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>

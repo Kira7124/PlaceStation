@@ -5,19 +5,19 @@
 
 
 
-	<mapper namespace="com.project3.placestation.repository.interfaces.UserRepository">
+	<mapper namespace="com.project3.placestation.repository.interfaces.MemberRepository">
 		
 		
 		<!-- 일반회원명단출력 -->
-		<select id="listAll" resultType="com.project3.placestation.repository.entity.User">
-			select * from user
+		<select id="listAll" resultType="com.project3.placestation.repository.entity.Member">
+			select * from member
 			limit #{startPage},#{pageSize}
 		</select>
 		
 		
 		<!-- 페이징처리 갯수세팅 -->
-		<select id = "countUser" resultType="int">
-			<![CDATA[ select count(*) from user where user_no > 0 ]]>
+		<select id = "countMember" resultType="int">
+			<![CDATA[ select count(*) from member where user_no > 0 ]]>
 		</select>
 		
 		

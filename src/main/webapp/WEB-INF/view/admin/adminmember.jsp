@@ -41,15 +41,15 @@
 								<th>삭제</th>
 							</tr>
 						</thead>
-					<c:forEach var="userlist" items="${userlist}">
+					<c:forEach var="memberlist" items="${memberlist}">
 						<tbody>
 							<tr>
-								<td>${userlist.username}</td>
-								<td>${userlist.userid}</td>
-								<td>${userlist.useraddress}</td>
-								<td>${userlist.useremail}</td>
-								<td>${userlist.formatHp(userlist.userhp)}</td>
-								<td>${userlist.formatjoinAt()}</td>
+								<td>${memberlist.username}</td>
+								<td>${memberlist.userid}</td>
+								<td>${memberlist.useraddress}</td>
+								<td>${memberlist.useremail}</td>
+								<td>${memberlist.formatHp(memberlist.userhp)}</td>
+								<td>${memberlist.formatjoinAt()}</td>
 								<td>
 									<a href="#">
 										<span class="label label-success">수정</span>
@@ -71,7 +71,7 @@
 						<ul class="pagination">
 							<c:if test="${pageVO.prev }">
 								<li class="page-item">
-								  <a class="page-link" href="/admin/admin-user?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  <a class="page-link" href="/admin/admin-member?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 								  </a>
 								</li>
 							</c:if>
@@ -82,7 +82,7 @@
 								end="${pageVO.endPage }" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
 								<li class="page-item ${isActive ? 'active' : ''}"><a
-									class="page-link" href="/admin/admin-user?page=${i}"
+									class="page-link" href="/admin/admin-member?page=${i}"
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
@@ -91,7 +91,7 @@
 				
 							<c:if test="${pageVO.next }">
 								<li class="page-item"><a class="page-link"
-									href="/admin/admin-user?page=${pageVO.endPage + 1 }"
+									href="/admin/admin-member?page=${pageVO.endPage + 1 }"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
 							</c:if>

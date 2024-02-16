@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Member {
 
 	private Integer userno;
 	private String userid;
@@ -23,11 +23,11 @@ public class User {
 	private String useraddress;
 	private String username;
 	private String userhp;
-	private String userbirth;
 	private String useremail;
 	private Integer userpoint;
 	private Timestamp joinat;
 	private String role;
+	private String grade;
 	
 	
 	
