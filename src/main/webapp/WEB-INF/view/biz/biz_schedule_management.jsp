@@ -30,7 +30,7 @@
 								</button>
 							</div>
 						</div>
-						<div class="panel-body no-padding">
+						<div class="panel-body no-padding container">
 
 							<div id='calendar' style="width : 70%;margin-bottom : 20px"></div>
 

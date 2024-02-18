@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 
 <!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/biz/common/header.jsp"%>
+<%@ include file="/WEB-INF/view/biz/common/biz_header.jsp"%>
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_aside.jsp"%>
 
@@ -14,7 +14,6 @@
 	<div class="main-content">
 		<div class="container-fluid">
 			<!-- OVERVIEW -->
-
 
 			<!-- END OVERVIEW -->
 			<div class="row">
@@ -38,60 +37,58 @@
 							<div class="row">
 								<div class="col-md-3">
 									<div class="metric">
-										<a href="/biz/main"> <span class="icon"><i
+										<a href="/biz/statistics"> <span class="icon"><i
 												class="fa fa-download"></i></span>
 
 											<p>
-												<span class="number">통계</span> <br /> <span><p>사용자의
-														일정관리가 가능합니다.</p></span>
+												<span class="number">통계</span> <br /> <span><p>상품에 관한 통계를 볼 수 있습니다.</p></span>
 											</p>
 										</a>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<a href="/biz/main"> <span class="icon"><i
+										<a href="/biz/schedule-management"> <span class="icon"><i
 												class="fa fa-download"></i></span>
 
 											<p>
-												<span class="number">일정 관리</span> <br /> <span><p>사용자의
-														일정관리가 가능합니다.</p></span>
+												<span class="number">일정 관리</span> <br /> <span><p>이곳에서 일정 관리가 가능합니다.</p></span>
 											</p>
 										</a>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<a href="/biz/main"> <span class="icon"><i
+										<a href="/biz/product-management"> <span class="icon"><i
 												class="fa fa-download"></i></span>
 
 											<p>
-												<span class="number">상품 관리</span> <br /> <span><p>사용자의
-														일정관리가 가능합니다.</p></span>
+												<span class="number">상품 관리</span> <br /> <span><p>이곳에서
+														상품 관리가 가능합니다.</p></span>
 											</p>
 										</a>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<a href="/biz/main"> <span class="icon"><i
+										<a href="/biz/reservation-management"> <span class="icon"><i
 												class="fa fa-download"></i></span>
 
 											<p>
-												<span class="number">결제 / 예약 관리</span> <br /> <span><p>사용자의
-														일정관리가 가능합니다.</p></span>
+												<span class="number">결제 / 예약 관리</span> <br /> <span><p>이용자의
+														결제 / 예약 관리가 가능합니다.</p></span>
 											</p>
 										</a>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<a href="/biz/main"> <span class="icon"><i
+										<a href="/biz/account-management"> <span class="icon"><i
 												class="fa fa-download"></i></span>
 
 											<p>
 												<span class="number">계정 관리</span> <br /> <span><p>사용자의
-														일정관리가 가능합니다.</p></span>
+														계정 관리가 가능합니다.</p></span>
 											</p>
 										</a>
 									</div>
@@ -102,7 +99,7 @@
 												class="fa fa-download"></i></span>
 											<p>
 												<span class="number">문의 내역</span> <br /> <span><p>사용자의
-														일정관리가 가능합니다.</p></span>
+														문의 내역을 볼 수 있습니다.</p></span>
 											</p>
 										</a>
 									</div>

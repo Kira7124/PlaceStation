@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.project3.placestation.biz.repository.ProductRepository">
+
+	<insert id="saveProduct">
+		insert into product (prod_writer_no , prod_title ,
+		prod_start_time ,
+		prod_end_time , prod_space_info ,
+		prod_goods_info ,
+		prod_caution_info , prod_maximum_people,prod_address ,
+		prod_detailed_address,
+		prod_price , file_path , prod_major_category_id
+		, prod_subcategory_id ,
+		prod_full_address ,
+		prod_location_x ,
+		prod_location_y )
+		values (#{prodWriterNo}, #{prodTitle} ,
+		#{prodStartTime} , #{prodEndTime} , #{prodSpaceInfo} ,
+		#{prodGoodsInfo} , #{prodCautionInfo} , #{prodMaximumPeople}
+		,
+		#{prodAddress}
+		, #{prodDetailedAddress} , #{prodPrice} , #{filePath} ,
+		#{prodMajorCategoryId}, #{prodSubcategoryId} , #{prodFullAddress} ,
+		#{prodLocationX} , #{prodLocationY} )
+	</insert>
+
+	<update id="updateProduct">
+
+		update product
+		set
+		prod_writer_no = #{product.prodWriterNo},
+		prod_title =
+		#{product.prodTitle},
+		prod_start_time = #{product.prodStartTime},
+		prod_end_time =
+		#{product.prodEndTime},
+		prod_space_info =
+		#{product.prodSpaceInfo},
+		prod_goods_info =
+		#{product.prodGoodsInfo},
+		prod_caution_info = #{product.prodCautionInfo},
+		prod_maximum_people =
+		#{product.prodMaximumPeople},
+		prod_address =
+		#{product.prodAddress},
+		prod_detailed_address = #{product.prodDetailedAddress},
+		prod_price =
+		#{product.prodPrice},
+		prod_major_category_id =
+		#{product.prodMajorCategoryId},
+		prod_subcategory_id =
+		#{product.prodSubcategoryId},
+		prod_full_address =
+		#{product.prodFullAddress},
+		prod_location_x = #{product.prodLocationX},
+		prod_location_y = #{product.prodLocationY},
+		prod_update_at = NOW()
+		<if test="changeImage == 'Y'.toString()">
+			,
+			file_path = #{product.filePath}
+		</if>
+		where
+		prod_no = #{product.prodNo};
+	</update>
+
+	<update id="deleteProduct">
+		update product
+		set
+		prod_update_at = now(),
+		prod_delete_yn = 'Y',
+		prod_delete_at = now(),
+		prod_delete_reason = #{prodDeleteReason}
+		where
+		prod_no = #{prodNo};
+	</update>
+
+	<select id="findAll"
+		resultType="com.project3.placestation.biz.model.entity.Product">
+		select * from product
+	</select>
+
+	<select id="findById"
+		resultType="com.project3.placestation.biz.model.entity.Product">
+		select * from product
+		where prod_no = #{prod_no}
+		and
+		prod_delete_yn = 'N'
+	</select>
+</mapper>
