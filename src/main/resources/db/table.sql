@@ -1,4 +1,40 @@
+<<<<<<< HEAD
 create table `member` (
+=======
+create table product (
+	prod_no int (5) primary key auto_increment,
+    prod_writer_no int (5) ,
+    prod_title varchar (100) ,
+    prod_start_time int (2) ,
+    prod_end_time int (2),
+    prod_space_info varchar (1000),
+    prod_goods_info varchar (1000),
+    prod_caution_info varchar (1000),
+    prod_maximum_people int (2),
+    prod_address varchar ( 100 ),
+    prod_detailed_address varchar ( 100 ),
+    prod_price int (7),
+    file_path varchar (1000),
+    prod_major_category_id int (2),
+    prod_subcategory_id int (2),
+    prod_full_address varchar (200),
+    prod_location_x double,
+    prod_location_y double,
+	prod_rdate timestamp default now(),
+	prod_update_at timestamp ,
+    prod_delete_at timestamp ,
+	prod_delete_reason varchar (1000),
+    prod_delete_yn varchar (1) default 'N'
+);
+
+create table filedb (
+	uuid varchar (100) primary key,
+    original_file_name varchar(400) ,
+    file_data MEDIUMBLOB -- 16MB
+);
+
+create table member (
+>>>>>>> 02504bee1a1e4774168cb695ec748567731e1a80
   user_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id VARCHAR(100) NOT NULL,
   user_password VARCHAR(100) NOT NULL,
@@ -14,6 +50,7 @@ create table `member` (
   grade VARCHAR(20) NULL DEFAULT '브론즈'
   );
   
+<<<<<<< HEAD
   
   
 create table biz(
@@ -29,4 +66,35 @@ create table biz(
   
   
   
+=======
+create table biz (
+	biz_no int primary key auto_increment,
+    biz_id int ,
+    biz_brand_name varchar(30),
+    biz_balance int,
+    file_path varchar (1000)
+);
+>>>>>>> 02504bee1a1e4774168cb695ec748567731e1a80
 
+
+create table admin_prod_history (
+	admin_his_no varchar(20) primary key,
+	admin_his_prod_no int (5) not null,
+    admin_his_price int (7) not null,
+    admin_his_user_point int (7) default 0,
+    admin_his_save_point int (7) default 0,
+    admin_his_discount int (7) default 0,
+    admin_his_charge int (3) default 0,
+    admin_his_prod_name varchar (100) not null,
+    admin_his_seller_id int not null,
+    admin_his_comfirm boolean default false,
+    admin_his_created_at timestamp default now(),
+    admin_his_buyer_id int not null,
+    bank varchar (100) ,
+    start_time int (2) ,
+    end_time int (2) ,
+    cancel_yn varchar (1) default 'N',
+    cancel_at timestamp ,
+    cancel_amount int (7) ,
+    people_count int (3)
+);
