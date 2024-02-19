@@ -25,6 +25,16 @@
 				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>검색결과</b></h3>
 				        </div>
 				    </div>
+				   <form action="/admin/admin-searchmember" method="get">
+					    <div>
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1140px;">
+					            <input type="text" name="searchKeyword" class="form-control" placeholder="키워드입력">
+					            <span class="input-group-btn">
+					                <button type="submit" class="btn btn-primary">검색</button>
+					            </span>
+					        </div>
+					    </div>
+				    </form> 
 				</div>
 				
 				
