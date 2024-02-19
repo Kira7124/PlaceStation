@@ -31,7 +31,12 @@
 		
 		
 		
-		
+		<!-- 판매자 join 유저 -->
+		<select id = "SelectJoinBiz" resultType="com.project3.placestation.repository.entity.BizJoin">
+			select biz_no, biz_id, biz_brand_name, user_address, user_name, user_point, join_at,
+				   user_grade, user_hp, user_email, biz_tel
+			 from member as m join biz as b on m.user_no = b.#{biz_id}
+		</select>
 		
 		
 		
