@@ -10,9 +10,6 @@ server:
 # JSP, mustache 원하는거 사용
 spring:
   mvc:
-    hiddenmethod:
-      filter:
-        enabled: true  # 히든 메서드 추가 (put , delete)
     view:
       prefix: /WEB-INF/view/
       suffix: .jsp
@@ -33,7 +30,6 @@ spring:
       data-locations:
         - classpath:db/table.sql
         - classpath:db/data.sql
-
 
 #  jpa:
 #    hibernate:

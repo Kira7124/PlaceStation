@@ -4,8 +4,4 @@
 <mapper
 	namespace="com.project3.placestation.filedb.repository.FiledbRepository">
 
-	<select id="findByBizId"
-		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
-		
-	</select>
 </mapper>
