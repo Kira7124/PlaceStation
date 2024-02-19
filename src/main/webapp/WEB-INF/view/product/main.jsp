@@ -506,12 +506,13 @@
 									<div class="shop-item-image">
 										<img src="${product.filePath}" alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
-											<a class="btn btn-round btn-b"><span class="icon-basket">Add
-													To Cart</span></a>
+											<a class="btn btn-round btn-b"
+												href="productDetail?prod_no=${product.prodNo}"><span
+												class="icon-basket">보러가기</span></a>
 										</div>
 									</div>
 									<h4 class="shop-item-title font-alt">
-										<a href="#">${product.prodTitle}</a>
+										<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 									</h4>
 									${product.prodPrice} 원/시간
 								</div>
@@ -544,12 +545,13 @@
 									<div class="shop-item-image">
 										<img src="${product.filePath}" alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
-											<a class="btn btn-round btn-b"><span class="icon-basket">Add
-													To Cart</span></a>
+											<a class="btn btn-round btn-b"
+												href="productDetail?prod_no=${product.prodNo}"><span
+												class="icon-basket">보러가기</span></a>
 										</div>
 									</div>
 									<h4 class="shop-item-title font-alt">
-										<a href="#">${product.prodTitle}</a>
+										<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 									</h4>
 									${product.prodPrice} 원/시간
 								</div>
@@ -582,12 +584,13 @@
 									<div class="shop-item-image">
 										<img src="${product.filePath}" alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
-											<a class="btn btn-round btn-b"><span class="icon-basket">Add
-													To Cart</span></a>
+											<a class="btn btn-round btn-b"
+												href="productDetail?prod_no=${product.prodNo}"><span
+												class="icon-basket">보러가기</span></a>
 										</div>
 									</div>
 									<h4 class="shop-item-title font-alt">
-										<a href="#">${product.prodTitle}</a>
+										<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 									</h4>
 									${product.prodPrice} 원/시간
 								</div>
