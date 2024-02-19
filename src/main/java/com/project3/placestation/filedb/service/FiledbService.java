@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.filedb.model.entity.Filedb;
 import com.project3.placestation.filedb.repository.FiledbRepository;
 
@@ -60,12 +62,13 @@ public class FiledbService {
 				// 저장하기
 				int result = filedbRepository.saveFiledb(filedb);
 				if (result < 1) {
-					// 실패 로칙 짜기
+					throw new CustomRestfulException("이미지 저장시 서버 에러가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 				}
 
 				filePath += fileDownloadUri + ",";
 			} catch (Exception e) {
 				log.debug(e.getMessage());
+				throw new CustomRestfulException("이미지 저장시 서버 에러가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
 

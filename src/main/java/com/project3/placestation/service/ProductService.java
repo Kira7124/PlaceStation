@@ -1,22 +1,26 @@
-package com.project3.placestation.biz.service;
+package com.project3.placestation.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project3.placestation.biz.handler.exception.CustomPageException;
+import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqProductDto;
 import com.project3.placestation.biz.model.dto.ReqUpdateProductDto;
 import com.project3.placestation.biz.model.dto.ResProductDto;
-import com.project3.placestation.biz.model.entity.Product;
-import com.project3.placestation.biz.repository.ProductRepository;
+import com.project3.placestation.model.entity.Product;
+import com.project3.placestation.repository.ProductRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class BizProductService {
+public class ProductService {
 	
 	@Autowired
 	ProductRepository productRepository;
@@ -47,7 +51,7 @@ public class BizProductService {
 
 
 		if(result < 1) {
-			// 실패 로직 반송
+			throw new CustomRestfulException("상품 저장시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
@@ -76,7 +80,7 @@ public class BizProductService {
 		
 		int result = productRepository.updateProduct(product , dto.getChangeImage());
 		if(result < 1) {
-			// 실패 로직 반송
+			throw new CustomRestfulException("상품 업데이트시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
@@ -84,7 +88,7 @@ public class BizProductService {
 	public void deleteProduct(int prodNo , String prodDeleteReason) {
 		int result = productRepository.deleteProduct(prodNo , prodDeleteReason);
 		if(result < 1) {
-			// 실패 로직
+			throw new CustomRestfulException("상품 삭제시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 	}
@@ -94,21 +98,64 @@ public class BizProductService {
 	 * @param userId
 	 * @return
 	 */
-	public List<Product> findAll(int userId) {
-		return productRepository.findAll(userId);
+	public List<ResProductDto> findAll(int userId) {
+		List<Product> listProduct = productRepository.findAll(userId);
+		List<ResProductDto> resProduct = new ArrayList<>();
+		
+		if(listProduct.isEmpty() == false) {
+			for(Product product : listProduct) {
+				
+				String[] filePath = {};
+				if(product.getFilePath().isEmpty() == false) {
+					String receiveFilePath = product.getFilePath();	
+					filePath = receiveFilePath.split(",");
+				}
+				
+				ResProductDto dto = ResProductDto.builder()
+						.prodNo(product.getProdNo())
+						.prodWriterNo(1)
+						.prodTitle(product.getProdTitle())
+						.prodStartTime(product.getProdStartTime())
+						.prodEndTime(product.getProdEndTime())
+						.prodPrice(product.getProdPrice())
+						.prodSpaceInfo(product.getProdSpaceInfo())
+						.prodGoodsInfo(product.getProdGoodsInfo())
+						.prodCautionInfo(product.getProdCautionInfo())
+						.prodMaximumPeople(product.getProdMaximumPeople())
+						.prodAddress(product.getProdAddress())
+						.filePath(filePath)
+						.prodMajorCategoryId(product.getProdMajorCategoryId())
+						.prodSubcategoryId(product.getProdSubcategoryId())
+						.prodFullAddress(product.getProdFullAddress())
+						.prodDetailedAddress(product.getProdDetailedAddress())
+						.prodLocationX(product.getProdLocationX())
+						.prodLocationY(product.getProdLocationY())
+						.prodRdate(product.getProdRdate())
+						.prodUpdateAt(product.getProdUpdateAt())
+						.prodDeleteYn(product.getProdDeleteYn())
+						.prodDeleteAt(product.getProdDeleteAt())
+						.build();
+				resProduct.add(dto);
+			}
+		}
+		return resProduct;
 	}
 	
 	// 상품 상세 조히
 	public ResProductDto findById(int ProdNo) {
 		
 		Product product = productRepository.findById(ProdNo);
-		if (product == null ) {
-			// 실패 로직
+		if (product == null) {
+			throw new CustomRestfulException("해당 상품이 없거나 오류가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		String receiveFilePath = product.getFilePath();
+		String[] filePath = {}; 
 		
-		String[] filePath = receiveFilePath.split(",");
+		if(product.getFilePath().isEmpty() == false) {
+			String receiveFilePath = product.getFilePath();	
+			filePath = receiveFilePath.split(",");
+		}
+
 		
 		ResProductDto dto = ResProductDto.builder()
 				.prodNo(product.getProdNo())

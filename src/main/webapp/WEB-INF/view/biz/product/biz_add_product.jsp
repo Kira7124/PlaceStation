@@ -57,7 +57,7 @@
 									<!-- 게시물의 제목 -->
 									<h4>게시물의 제목을 입력해 주세요</h4>
 									<input type="text" class="form-control"
-										placeholder="게시물의 제목을 입력해 주세요" name="prodTitle"/> <br>
+										placeholder="게시물의 제목을 입력해 주세요" name="prodTitle" value="제목"/> <br>
 									<!-- 게시물의 배너 이미지 -->
 									<div id='image_preview'>
 										<h4>해당 게시물에 들어갈 배너 이미지를 선택해 주세요!</h4>
@@ -67,18 +67,18 @@
 									</div>
 									<br>
 									<h4>영업 시작 시간을 입력해 주세요</h4>
-									<input type="text" class="form-control"
-										placeholder="영업 시작 시간을 입력해 주세요" name="prodStartTime"> <br>
+									<input type="number" class="form-control"
+										placeholder="영업 시작 시간을 입력해 주세요" name="prodStartTime" value="1" max="24" min="1"> <br>
 									<h4>영업 종료 시간을 입력해 주세요</h4>
-									<input type="text" class="form-control"
-										placeholder="영업 종료 시간을 입력해 주세요" name="prodEndTime"/> <br>
+									<input type="number" class="form-control"
+										placeholder="영업 종료 시간을 입력해 주세요" name="prodEndTime" value="24" max="24" min="1"/> <br>
 									<h4>한번 예약시 최대 인원 수를 입력해 주세요</h4>
-									<input type="text" class="form-control"
-										placeholder="한번 예약시 최대 인원 수를 입력해 주세요" name="prodMaximumPeople"/> <br>
+									<input type="number" class="form-control"
+										placeholder="한번 예약시 최대 인원 수를 입력해 주세요" name="prodMaximumPeople" value="1" max="100" min="1"/> <br>
 									<h4>한 시간 당 / 한 사람 당 가격을 책정해 주세요</h4>
 									<div class="input-group">
 										<span class="input-group-addon">₩</span> <input
-											class="form-control" type="text" name="prodPrice"/> <span
+											class="form-control" type="number" name="prodPrice" value="1000" step="1000" min="1000" max="10000000"/> <span
 											class="input-group-addon">원</span>
 									</div>
 									<br>
@@ -136,11 +136,11 @@
 
 									<!-- 위도 -->
 									<input type="text" id="lat" placeholder="위도"
-										class="form-control" name="prodLocationX" readonly /> <br />
+										class="form-control" name="prodLocationY" readonly /> <br />
 
 									<!-- 경도 -->
 									<input type="text" id="lng" placeholder="경도"
-										class="form-control" name="prodLocationY" readonly /> <br />
+										class="form-control" name="prodLocationX" readonly /> <br />
 
 									<h4 style="margin-top: 20px;">지도 상세 위치를 지정해 주세요</h4>
 									<div id="map"
@@ -337,8 +337,8 @@ $textarea3.oninput = (event) => {
 						// 마커를 결과값으로 받은 위치로 옮긴다.
 						marker.setPosition(coords);
 						
-						lat.value = result.x;
-						lng.value = result.y;
+						lat.value = result.y;
+						lng.value = result.x;
 					}
 				});
 			},
@@ -355,10 +355,10 @@ $textarea3.oninput = (event) => {
 		// 마커 위치를 클릭한 위치로 옮깁니다
 		marker.setPosition(latlng);
 
-		var x = latlng.getLat();
-		var y = latlng.getLng();
-		lat.value = x;
-		lng.value = y;
+		var y = latlng.getLat();
+		var x = latlng.getLng();
+		lat.value = result.y;
+		lng.value = result.x;
 
 	});
 	

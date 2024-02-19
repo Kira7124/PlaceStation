@@ -1,4 +1,4 @@
-package com.project3.placestation.biz.model.entity;
+package com.project3.placestation.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

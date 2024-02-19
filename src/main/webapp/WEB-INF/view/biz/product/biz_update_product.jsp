@@ -75,22 +75,22 @@
 									</div>
 									<br>
 									<h4>영업 시작 시간을 입력해 주세요</h4>
-									<input type="text" class="form-control"
+									<input type="number" class="form-control"
 										placeholder="영업 시작 시간을 입력해 주세요" name="prodStartTime"
-										value="${product.prodStartTime}"> <br>
+										value="${product.prodStartTime}" max="24" min="1"> <br>
 									<h4>영업 종료 시간을 입력해 주세요</h4>
-									<input type="text" class="form-control"
+									<input type="number" class="form-control"
 										placeholder="영업 종료 시간을 입력해 주세요" name="prodEndTime"
-										value="${product.prodEndTime}" /> <br>
+										value="${product.prodEndTime}" max="24" min="1"/> <br>
 									<h4>한번 예약시 최대 인원 수를 입력해 주세요</h4>
-									<input type="text" class="form-control"
+									<input type="number" class="form-control"
 										placeholder="한번 예약시 최대 인원 수를 입력해 주세요" name="prodMaximumPeople"
-										value="${product.prodMaximumPeople}" /> <br>
+										value="${product.prodMaximumPeople}" max="100" min="1"/> <br>
 									<h4>한 시간 당 / 한 사람 당 가격을 책정해 주세요</h4>
 									<div class="input-group">
 										<span class="input-group-addon">₩</span> <input
-											class="form-control" type="text" name="prodPrice"
-											value="${product.prodPrice}" /> <span
+											class="form-control" type="number" name="prodPrice"
+											value="${product.prodPrice}" step="1000" min="1000" max="10000000"/> <span
 											class="input-group-addon">원</span>
 									</div>
 									<br>
@@ -155,13 +155,13 @@
 
 									<!-- 위도 -->
 									<input type="text" id="lat" placeholder="위도"
-										class="form-control" name="prodLocationX" readonly
-										value="${product.prodLocationX}" /> <br />
+										class="form-control" name="prodLocationY" readonly
+										value="${product.prodLocationY}" /> <br />
 
 									<!-- 경도 -->
 									<input type="text" id="lng" placeholder="경도"
-										class="form-control" name="prodLocationY" readonly
-										value="${product.prodLocationY}" /> <br />
+										class="form-control" name="prodLocationX" readonly
+										value="${product.prodLocationX}" /> <br />
 
 									<h4 style="margin-top: 20px;">지도 상세 위치를 지정해 주세요</h4>
 									<div id="map" style="height: 300px; margin-top: 10px;"></div>
@@ -325,14 +325,17 @@ $textarea3.oninput = (event) => {
 )('att_zone', 'btnAtt')
 
 
+	var y = ${product.prodLocationY};
+	var x = ${product.prodLocationX};
 	
+	console.log(x , y);
 	// 지도 API 
 	var lat = document.getElementById('lat'); // 위도 
 	var lng = document.getElementById('lng'); // 경도
 
 	var mapContainer = document.getElementById("map"), // 지도를 표시할 div
 	mapOption = {
-		center : new daum.maps.LatLng(${product.prodLocationY}, ${product.prodLocationX}), // 지도의 중심좌표
+		center : new daum.maps.LatLng(y , x), // 지도의 중심좌표
 		level : 5, // 지도의 확대 레벨
 	};
 
@@ -370,8 +373,8 @@ $textarea3.oninput = (event) => {
 						// 마커를 결과값으로 받은 위치로 옮긴다.
 						marker.setPosition(coords);
 						
-						lat.value = result.x;
-						lng.value = result.y;
+						lat.value = result.y;
+						lng.value = result.x;
 					}
 				});
 			},
@@ -388,10 +391,10 @@ $textarea3.oninput = (event) => {
 		// 마커 위치를 클릭한 위치로 옮깁니다
 		marker.setPosition(latlng);
 
-		var x = latlng.getLat();
-		var y = latlng.getLng();
-		lat.value = x;
-		lng.value = y;
+		var y = latlng.getLat();
+		var x = latlng.getLng();
+		lat.value = y;
+		lng.value = x;
 
 	});
 	

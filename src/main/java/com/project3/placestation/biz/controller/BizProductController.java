@@ -1,24 +1,21 @@
 package com.project3.placestation.biz.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqProductDto;
 import com.project3.placestation.biz.model.dto.ReqUpdateProductDto;
-import com.project3.placestation.biz.model.entity.Product;
-import com.project3.placestation.biz.service.BizProductService;
 import com.project3.placestation.filedb.service.FiledbService;
+import com.project3.placestation.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,12 +28,8 @@ public class BizProductController {
 	FiledbService filedbService;
 
 	@Autowired
-	BizProductService bizProductService;
+	ProductService bizProductService;
 
-	
-
-	
-	
 	/**
 	 * 상품 추가하기
 	 * 
@@ -59,35 +52,67 @@ public class BizProductController {
 	 * @return
 	 */
 	@PostMapping("/add-product")
-	public String addProduct(@RequestParam(value = "prodTitle") String prodTitle,
-			@RequestParam(value = "files") List<MultipartFile> files,
-			@RequestParam(value = "prodStartTime") Integer prodStartTime,
-			@RequestParam(value = "prodEndTime") Integer prodEndTime,
-			@RequestParam(value = "prodMaximumPeople") Integer prodMaximumPeople,
-			@RequestParam(value = "prodPrice") Integer prodPrice,
-			@RequestParam(value = "prodSpaceInfo") String prodSpaceInfo,
-			@RequestParam(value = "prodGoodsInfo") String prodGoodsInfo,
-			@RequestParam(value = "prodCautionInfo") String prodCautionInfo,
-			@RequestParam(value = "prodMajorCategoryId") Integer prodMajorCategoryId,
-			@RequestParam(value = "prodSubcategoryId") Integer prodSubcategoryId,
-			@RequestParam(value = "prodAddress") String prodAddress,
-			@RequestParam(value = "prodDetailedAddress") String prodDetailedAddress,
-			@RequestParam(value = "prodFullAddress") String prodFullAddress,
-			@RequestParam(value = "prodLocationX") Double prodLocationX,
-			@RequestParam(value = "prodLocationY") Double prodLocationY) {
-		ReqProductDto dto = ReqProductDto.builder().prodTitle(prodTitle).files(files).prodStartTime(prodStartTime)
-				.prodEndTime(prodEndTime).prodMaximumPeople(prodMaximumPeople).prodPrice(prodPrice)
-				.prodSpaceInfo(prodSpaceInfo).prodGoodsInfo(prodGoodsInfo).prodCautionInfo(prodCautionInfo)
-				.prodMajorCategoryId(prodMajorCategoryId).prodSubcategoryId(prodSubcategoryId).prodAddress(prodAddress)
-				.prodDetailedAddress(prodDetailedAddress).prodFullAddress(prodFullAddress).prodLocationX(prodLocationX)
-				.prodLocationY(prodLocationY).build();
-		log.info(dto.toString());
+	public String addProduct(@ModelAttribute ReqProductDto dto) {
+		
+		// 1. 유효성 검사
+		if(dto.getProdTitle() == null && dto.getProdTitle().isEmpty()) {
+			throw new CustomRestfulException("제목을 적어주세요" , HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdTitle().length() > 20) {
+			throw new CustomRestfulException("제목은 20자 이상을 허용할 수 없습니다.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getFiles() == null && dto.getFiles().isEmpty() && dto.getFiles().size() < 7) {
+			throw new CustomRestfulException("배너 이미지가 없거나 6개 이상을 허용할 수 없습니다.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdStartTime() == null && 0 < dto.getProdStartTime() && dto.getProdStartTime() < 24) {
+			throw new CustomRestfulException("시작 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);	
+		}
+		if(dto.getProdEndTime() == null && 0 < dto.getProdEndTime() && dto.getProdEndTime() < 24) {
+			throw new CustomRestfulException("종료 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);	
+		}
+		if(dto.getProdStartTime() >= dto.getProdEndTime() ) {
+			throw new CustomRestfulException("종료 시간은 시작시간보다 낮아야 합니다.", HttpStatus.BAD_REQUEST);	
+		}
 
-		String filePath = filedbService.saveFiles(files);
+		if(dto.getProdMaximumPeople() == null && 0 < dto.getProdMaximumPeople() && dto.getProdMaximumPeople() < 100) {
+			throw new CustomRestfulException("인원 수가 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);	
+		}
+		if(dto.getProdPrice() == null && 0 < dto.getProdPrice() && dto.getProdPrice() < 1000000) {
+			throw new CustomRestfulException("가격이 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);		
+		}
+		if(dto.getProdSpaceInfo() == null && dto.getProdSpaceInfo().isEmpty()) {
+			throw new CustomRestfulException("공간 소개를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdGoodsInfo() == null && dto.getProdGoodsInfo() .isEmpty()) {
+			throw new CustomRestfulException("대여 물품을 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdCautionInfo() == null && dto.getProdCautionInfo().isEmpty()) {
+			throw new CustomRestfulException("예약 시 주의 사항를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		// 카테고리는 .. 모르겠음 해야하나
+		if(dto.getProdAddress() == null && dto.getProdAddress().isEmpty()) {
+			throw new CustomRestfulException("주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdDetailedAddress() == null && dto.getProdDetailedAddress().isEmpty()) {
+			throw new CustomRestfulException("상세 주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdFullAddress() == null && dto.getProdFullAddress().isEmpty()) {
+			throw new CustomRestfulException("주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdLocationX() == null && dto.getProdLocationY() == null) {
+			throw new CustomRestfulException("지도 상세 위치를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		
+
+		log.info(dto.toString());
+		
+		// 파일 저장
+		String filePath = filedbService.saveFiles(dto.getFiles());
 
 //		 파일 저장 실패시
 		if (filePath.isBlank()) {
 			// 실패 로직
+			throw new CustomRestfulException("이미지 저장시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		bizProductService.saveProduct(filePath, dto);
@@ -96,43 +121,66 @@ public class BizProductController {
 	}
 
 	@PutMapping("/update-product/{prodNo}")
-	public String updateProduct(
-			@PathVariable(value = "prodNo") Integer prodNo,
-			@RequestParam(value = "prodTitle") String prodTitle,
-			@RequestParam(value = "files") List<MultipartFile> files,
-			@RequestParam(value = "changeImage") String changeImage,
-			@RequestParam(value = "prodStartTime") Integer prodStartTime,
-			@RequestParam(value = "prodEndTime") Integer prodEndTime,
-			@RequestParam(value = "prodMaximumPeople") Integer prodMaximumPeople,
-			@RequestParam(value = "prodPrice") Integer prodPrice,
-			@RequestParam(value = "prodSpaceInfo") String prodSpaceInfo,
-			@RequestParam(value = "prodGoodsInfo") String prodGoodsInfo,
-			@RequestParam(value = "prodCautionInfo") String prodCautionInfo,
-			@RequestParam(value = "prodMajorCategoryId") Integer prodMajorCategoryId,
-			@RequestParam(value = "prodSubcategoryId") Integer prodSubcategoryId,
-			@RequestParam(value = "prodAddress") String prodAddress,
-			@RequestParam(value = "prodDetailedAddress") String prodDetailedAddress,
-			@RequestParam(value = "prodFullAddress") String prodFullAddress,
-			@RequestParam(value = "prodLocationX") Double prodLocationX,
-			@RequestParam(value = "prodLocationY") Double prodLocationY) {
+	public String updateProduct(@ModelAttribute ReqUpdateProductDto dto) {
 		
-		ReqUpdateProductDto dto = ReqUpdateProductDto.builder()
-				.prodNo(prodNo)
-				.prodWriterNo(1) // 변경 해야 할 부분
-				.prodTitle(prodTitle).files(files)
-				.changeImage(changeImage).prodStartTime(prodStartTime).prodEndTime(prodEndTime)
-				.prodMaximumPeople(prodMaximumPeople).prodPrice(prodPrice).prodSpaceInfo(prodSpaceInfo)
-				.prodGoodsInfo(prodGoodsInfo).prodCautionInfo(prodCautionInfo).prodMajorCategoryId(prodMajorCategoryId)
-				.prodSubcategoryId(prodSubcategoryId).prodAddress(prodAddress).prodDetailedAddress(prodDetailedAddress)
-				.prodFullAddress(prodFullAddress).prodLocationX(prodLocationX).prodLocationY(prodLocationY).build();
+		// 1. 유효성 검사
+		if(dto.getProdTitle() == null && dto.getProdTitle().isEmpty()) {
+			throw new CustomRestfulException("제목을 적어주세요" , HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdTitle().length() > 20) {
+			throw new CustomRestfulException("제목은 20자 이상을 허용할 수 없습니다.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getFiles() == null && dto.getFiles().isEmpty() && dto.getFiles().size() < 7) {
+			throw new CustomRestfulException("배너 이미지가 없거나 6개 이상을 허용할 수 없습니다.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdStartTime() == null && 0 < dto.getProdStartTime() && dto.getProdStartTime() < 24) {
+			throw new CustomRestfulException("시작 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);	
+		}
+		if(dto.getProdEndTime() == null && 0 < dto.getProdEndTime() && dto.getProdEndTime() < 24) {
+			throw new CustomRestfulException("종료 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);	
+		}
+		if(dto.getProdStartTime() >= dto.getProdEndTime() ) {
+			throw new CustomRestfulException("종료 시간은 시작시간보다 낮아야 합니다.", HttpStatus.BAD_REQUEST);	
+		}
+		if(dto.getChangeImage() == null && dto.getChangeImage().isBlank()) {
+			throw new CustomRestfulException("이미지 선택이 잘못 되었습니다.", HttpStatus.BAD_REQUEST);	
+		}
+		if(dto.getProdMaximumPeople() == null && 0 < dto.getProdMaximumPeople() && dto.getProdMaximumPeople() < 100) {
+			throw new CustomRestfulException("인원 수가 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);	
+		}
+		if(dto.getProdPrice() == null && 0 < dto.getProdPrice() && dto.getProdPrice() < 1000000) {
+			throw new CustomRestfulException("가격이 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);		
+		}
+		if(dto.getProdSpaceInfo() == null && dto.getProdSpaceInfo().isEmpty()) {
+			throw new CustomRestfulException("공간 소개를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdGoodsInfo() == null && dto.getProdGoodsInfo() .isEmpty()) {
+			throw new CustomRestfulException("대여 물품을 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdCautionInfo() == null && dto.getProdCautionInfo().isEmpty()) {
+			throw new CustomRestfulException("예약 시 주의 사항를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		// 카테고리는 .. 모르겠음 해야하나
+		if(dto.getProdAddress() == null && dto.getProdAddress().isEmpty()) {
+			throw new CustomRestfulException("주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdDetailedAddress() == null && dto.getProdDetailedAddress().isEmpty()) {
+			throw new CustomRestfulException("상세 주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdFullAddress() == null && dto.getProdFullAddress().isEmpty()) {
+			throw new CustomRestfulException("주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if(dto.getProdLocationX() == null && dto.getProdLocationY() == null) {
+			throw new CustomRestfulException("지도 상세 위치를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+		}
 		log.info(dto.toString());
 		
 		// 인증 검사를 실시
 
 		String filePath = "";
-		if (changeImage.equals("Y")) {
+		if (dto.getChangeImage().equals("Y")) {
 			log.info("이미지를 바꿨습니다.");
-			filePath = filedbService.saveFiles(files);
+			filePath = filedbService.saveFiles(dto.getFiles());
 		}
 		
 		bizProductService.updateProduct(filePath, dto);

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project3.placestation.biz.model.dto.ResProductDto;
-import com.project3.placestation.biz.model.entity.Product;
-import com.project3.placestation.biz.service.BizProductService;
+import com.project3.placestation.model.entity.Product;
+import com.project3.placestation.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BizController {
 	
 	@Autowired
-	BizProductService bizProductService;
+	ProductService bizProductService;
 
 	// http://localhost/biz/main
 	@GetMapping("/main")
@@ -50,7 +50,7 @@ public class BizController {
 	// http://localhost/biz/product-management
 	@GetMapping("/product-management")
 	public String productManagementForm(Model model) {
-		List<Product> dto  = bizProductService.findAll(1);
+		List<ResProductDto> dto  = bizProductService.findAll(1);
 		model.addAttribute("products" , dto);
 		return "biz/product/biz_product_management";
 	}

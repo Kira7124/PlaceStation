@@ -1,11 +1,11 @@
-package com.project3.placestation.biz.repository;
+package com.project3.placestation.repository;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.project3.placestation.biz.model.entity.Product;
+import com.project3.placestation.model.entity.Product;
 
 @Mapper
 public interface ProductRepository {
