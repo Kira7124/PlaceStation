@@ -1,4 +1,4 @@
-package com.project3.placestation.controller;
+package com.project3.placestation.admin.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +17,14 @@ public class TestController {
 	@GetMapping("/main")
 	public String mainGET() {
 		log.debug("메인페이지실행완!");
-		return "main/test";
+		return "layout/main";
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

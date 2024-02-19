@@ -16,20 +16,21 @@ spring:
   servlet:
     multipart:
       max-file-size: 20MB
-      max-request-size: 20MB
-      
+      max-request-size: 20MB      
   datasource:    
-    url: jdbc:mysql://${endpoint}/placestation?serverTimeZone=Asia/Seoul
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: dev
-    password: 1234
+    url: jdbc:h2:mem:testdb;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: user # 유저 이름
+    password: # 비밀번호 (비워두면 비밀번호 X)
   h2:
     console:
       enabled: true
-#  sql:
-#    init:
-#      data-locations:
-#        - classpath:db/data.sql
+  sql:
+    init:
+      data-locations:
+        - classpath:db/table.sql
+        - classpath:db/data.sql
+
 #  jpa:
 #    hibernate:
 #      ddl-auto: create
