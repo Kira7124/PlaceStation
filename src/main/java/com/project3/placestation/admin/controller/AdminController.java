@@ -30,7 +30,7 @@ public class AdminController {
 	private HttpSession httpSession;
 	
 	
-	
+	//d/dddddddddd
 	//http://localhost:80/admin/admin-main
 	// 관리자 기본메인페이지 출력
 	@GetMapping("/admin-main")
