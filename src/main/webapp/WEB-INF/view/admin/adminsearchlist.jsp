@@ -22,19 +22,9 @@
 				<div style="display: flex;">
 				    <div>
 				        <div class="panel-heading">
-				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>회원관리</b></h3>
+				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>검색결과</b></h3>
 				        </div>
 				    </div>
-				   <form action="/admin/admin-searchmember" method="get">
-					    <div>
-					        <div class="input-group" style="margin-top: 20px; margin-left: 1140px;">
-					            <input type="text" name="searchKeyword" class="form-control" placeholder="키워드입력">
-					            <span class="input-group-btn">
-					                <button type="submit" class="btn btn-primary">검색</button>
-					            </span>
-					        </div>
-					    </div>
-				    </form> 
 				</div>
 				
 				
@@ -100,7 +90,7 @@
 						<ul class="pagination">
 							<c:if test="${pageVO.prev }">
 								<li class="page-item">
-								  <a class="page-link" href="/admin/admin-member?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  <a class="page-link" href="/admin/admin-searchmember?page=${pageVO.startPage - 1 }&searchKeyword=${pageVO.cri.searchKeyword}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 								  </a>
 								</li>
 							</c:if>
@@ -111,7 +101,7 @@
 								end="${pageVO.endPage }" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
 								<li class="page-item ${isActive ? 'active' : ''}"><a
-									class="page-link" href="/admin/admin-member?page=${i}"
+									class="page-link" href="/admin/admin-searchmember?page=${i}&searchKeyword=${pageVO.cri.searchKeyword}"
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
@@ -120,7 +110,7 @@
 				
 							<c:if test="${pageVO.next }">
 								<li class="page-item"><a class="page-link"
-									href="/admin/admin-member?page=${pageVO.endPage + 1 }"
+									href="/admin/admin-searchmember?page=${pageVO.endPage + 1 }&searchKeyword=${pageVO.cri.searchKeyword}"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
 							</c:if>

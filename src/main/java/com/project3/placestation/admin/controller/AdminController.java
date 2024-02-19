@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project3.placestation.admin.dto.AdminMemberDTO;
 import com.project3.placestation.admin.dto.Criteria;
@@ -15,6 +16,7 @@ import com.project3.placestation.admin.dto.PageVO;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.MemberService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,7 +32,6 @@ public class AdminController {
 	private HttpSession httpSession;
 	
 	
-	//d/dddddddddd
 	//http://localhost:80/admin/admin-main
 	// 관리자 기본메인페이지 출력
 	@GetMapping("/admin-main")
@@ -143,17 +144,36 @@ public class AdminController {
 	//admin 회원deletePOST 실행
 	//Modal~...
 	@PostMapping("/admin-delete")
-	public String admindeletePOST() {
-		
-		
-		
+	public String admindeletePOST(AdminMemberDTO dto) {
+		memberService.AdminDeleteMember(dto);
 		log.debug("admindeletePOST 삭제처리완!");
-		return"redirect:/admin/admin-delete";
+		return"redirect:/admin/admin-member";
 	}
 	
 	
 	
-	
+	@GetMapping("/admin-searchmember")
+	public String adminuserGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
+		
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+	    if (searchKeyword != null && !searchKeyword.isEmpty()) {
+	        cri.setSearchKeyword(searchKeyword);
+	    }
+
+	    PageVO pageVO = new PageVO();
+	    pageVO.setCri(cri);
+	    pageVO.setTotalCount(memberService.countSearchMemberlist(cri));
+
+	    model.addAttribute("pageVO", pageVO);
+
+	    List<Member> result = memberService.searchMemberlist(cri);
+
+	    model.addAttribute("memberlist", result);
+
+	    log.debug("admin-user관리 페이지 출력!");
+	    return "admin/adminsearchlist";
+	}
 	
 	
 	

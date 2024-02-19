@@ -18,15 +18,28 @@ public class MemberService {
 	private MemberRepository memberRepository;
 	
 	
-	//회원정보리스트(페이징) 출력
+	//관리자회원정보리스트(페이징) 출력
 	public List<Member> listAll(Criteria cri) throws Exception{
 		List<Member> result = memberRepository.listAll(cri);
 		return result;
 	} 
 	
-	//회원숫자세기(페이징)
+	//관리자회원숫자세기(페이징)
 	public int countMember() throws Exception{
 		return memberRepository.countMember();
+	}
+	
+	
+	//관리자회원검색리스트(페이징) 출력
+	public List<Member> searchMemberlist(Criteria cri) throws Exception{
+		List<Member> result = memberRepository.searchMemberlist(cri);
+		return result;
+		
+	}
+	
+	//관리자회원검색숫자세기(페이징)
+	public int countSearchMemberlist(Criteria cri) throws Exception{
+		return memberRepository.countSearchMemberlist(cri);
 	}
 	
 	
@@ -46,6 +59,23 @@ public class MemberService {
 		Integer result = memberRepository.AdminUpdateMember(member);
 				
 	}
+	
+	
+	//관리자회원삭제
+	@Transactional
+	public void AdminDeleteMember(AdminMemberDTO dto) {
+		
+		Member member = Member.builder()
+				.userno(dto.getUserno())
+				.userpassword(dto.getUserpassword())
+				.build();
+		
+		
+		Integer result = memberRepository.AdminDeleteMember(member);
+		
+	}
+	
+	
 	
 	
 	

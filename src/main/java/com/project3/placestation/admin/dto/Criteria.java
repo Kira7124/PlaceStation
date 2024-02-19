@@ -3,12 +3,23 @@ package com.project3.placestation.admin.dto;
 public class Criteria {
 	private int page;
 	private int pageSize;
+	private String searchKeyword;
 	
 	public Criteria() {
 		this.page = 1;
 		this.pageSize = 10;
 	}
-		
+	
+	
+	 public void setSearchKeyword(String searchKeyword) {
+	        this.searchKeyword = searchKeyword;
+	 }
+
+	 public String getSearchKeyword() {
+	        return searchKeyword;
+	 }
+	
+	
 	// alt shift s + r
 
 	// 페이지를 설정한다
