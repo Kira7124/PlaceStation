@@ -39,8 +39,7 @@ create table member (
   user_hp VARCHAR(20) NOT NULL,
   user_email VARCHAR(30) NOT NULL,
   user_point INT NULL DEFAULT 10,
-  origin_img VARCHAR(100) NULL DEFAULT 'default.jpg',
-  upload_img VARCHAR(100) NULL,
+  file_path VARCHAR(100) NULL DEFAULT 'default.jpg',
   join_at DATETIME NULL DEFAULT now(),
   user_role VARCHAR(20) NOT NULL,
   grade VARCHAR(20) NULL DEFAULT '브론즈'
@@ -59,13 +58,13 @@ create table admin_prod_history (
 	admin_his_no varchar(20) primary key,
 	admin_his_prod_no int (5) not null,
     admin_his_price int (7) not null,
-    admin_his_user_point int (7) default 0,
+    admin_his_use_point int (7) default 0,
     admin_his_save_point int (7) default 0,
     admin_his_discount int (7) default 0,
     admin_his_charge int (3) default 0,
     admin_his_prod_name varchar (100) not null,
     admin_his_seller_id int not null,
-    admin_his_comfirm boolean default false,
+    admin_his_confirm boolean default false,
     admin_his_created_at timestamp default now(),
     admin_his_buyer_id int not null,
     bank varchar (100) ,
@@ -75,4 +74,15 @@ create table admin_prod_history (
     cancel_at timestamp ,
     cancel_amount int (7) ,
     people_count int (3)
+);
+
+create table prod_major_category (
+	category_id int primary key auto_increment ,
+    category_name varchar(40)
+);
+
+create table prod_subcategory (
+	category_id int auto_increment primary key ,
+    main_category_id int ,
+    subcategory_name varchar (40)
 );

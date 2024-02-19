@@ -24,20 +24,7 @@ VALUES
 ('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
 ('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
 ('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드');
-
-
-('test19', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-('test29', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-('test39', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-('test49', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-('test59', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-('test69', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-('test79', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-('test89', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-('test99', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-('test09', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
-
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드'),
 ('test10', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'BIZ','골드');
 
 
@@ -89,16 +76,29 @@ insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
     admin_his_price ,
-    admin_his_user_point ,
+    admin_his_use_point ,
     admin_his_save_point ,
     admin_his_discount ,
     admin_his_charge ,
     admin_his_prod_name ,
     admin_his_seller_id ,
-    admin_his_comfirm ,
+    admin_his_confirm ,
     admin_his_buyer_id ,
     bank ,
     start_time ,
     end_time,
     people_count
 ) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2);
+
+insert into prod_major_category (category_name) values ('스포츠');
+insert into prod_major_category (category_name) values ('캠핑');
+insert into prod_major_category (category_name) values ('스터디');
+
+insert into prod_subcategory (main_category_id , subcategory_name) values (1, '농구');
+insert into prod_subcategory (main_category_id , subcategory_name) values (1, '배구');
+insert into prod_subcategory (main_category_id , subcategory_name) values (1, '야구');
+insert into prod_subcategory (main_category_id , subcategory_name) values (2, '야외');
+insert into prod_subcategory (main_category_id , subcategory_name) values (2, '실내');
+insert into prod_subcategory (main_category_id , subcategory_name) values (3, '카페');
+insert into prod_subcategory (main_category_id , subcategory_name) values (3, '도서관');
+
