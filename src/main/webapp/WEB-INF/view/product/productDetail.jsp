@@ -168,16 +168,14 @@
 							data-toggle="dropdown">Headers</a>
 							<ul class="dropdown-menu">
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Static Image
-										Header</a>
+									data-toggle="dropdown">Static Image Header</a>
 									<ul class="dropdown-menu">
 										<li><a href="index_mp_fullscreen_static.html">Fulscreen</a>
 										</li>
 										<li><a href="index_mp_classic_static.html">Classic</a></li>
 									</ul></li>
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Flexslider
-										Header</a>
+									data-toggle="dropdown">Flexslider Header</a>
 									<ul class="dropdown-menu">
 										<li><a href="index_mp_fullscreen_flexslider.html">Fulscreen</a>
 										</li>
@@ -185,8 +183,7 @@
 										</li>
 									</ul></li>
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Video
-										Background Header</a>
+									data-toggle="dropdown">Video Background Header</a>
 									<ul class="dropdown-menu">
 										<li><a href="index_mp_fullscreen_video_background.html">Fulscreen</a>
 										</li>
@@ -194,8 +191,7 @@
 										</li>
 									</ul></li>
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Text Rotator
-										Header</a>
+									data-toggle="dropdown">Text Rotator Header</a>
 									<ul class="dropdown-menu">
 										<li><a href="index_mp_fullscreen_text_rotator.html">Fulscreen</a>
 										</li>
@@ -203,8 +199,7 @@
 										</li>
 									</ul></li>
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Gradient
-										Overlay Header</a>
+									data-toggle="dropdown">Gradient Overlay Header</a>
 									<ul class="dropdown-menu">
 										<li><a href="index_mp_fullscreen_gradient_overlay.html">Fulscreen</a>
 										</li>
@@ -253,8 +248,7 @@
 										<li><a href="contact3.html">Contact 3</a></li>
 									</ul></li>
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Restaurant
-										menu</a>
+									data-toggle="dropdown">Restaurant menu</a>
 									<ul class="dropdown-menu">
 										<li><a href="restaurant_menu1.html">Menu 2 Columns</a></li>
 										<li><a href="restaurant_menu2.html">Menu 3 Columns</a></li>
@@ -274,8 +268,7 @@
 										<li><a href="portfolio_boxed_col_4.html">4 Columns</a></li>
 									</ul></li>
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Boxed -
-										Gutter</a>
+									data-toggle="dropdown">Boxed - Gutter</a>
 									<ul class="dropdown-menu">
 										<li><a href="portfolio_boxed_gutter_col_2.html">2
 												Columns</a></li>
@@ -295,8 +288,7 @@
 												Columns</a></li>
 									</ul></li>
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Full Width -
-										Gutter</a>
+									data-toggle="dropdown">Full Width - Gutter</a>
 									<ul class="dropdown-menu">
 										<li><a href="portfolio_full_width_gutter_col_2.html">2
 												Columns</a></li>
@@ -319,8 +311,7 @@
 														Columns</a></li>
 											</ul></li>
 										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Full
-												Width</a>
+											data-toggle="dropdown">Full Width</a>
 											<ul class="dropdown-menu">
 												<li><a href="portfolio_masonry_full_width_col_2.html">2
 														Columns</a></li>
@@ -341,8 +332,7 @@
 									data-toggle="dropdown">Single</a>
 									<ul class="dropdown-menu">
 										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Featured
-												Image</a>
+											data-toggle="dropdown">Featured Image</a>
 											<ul class="dropdown-menu">
 												<li><a href="portfolio_single_featured_image1.html">Style
 														1</a></li>
@@ -350,8 +340,7 @@
 														2</a></li>
 											</ul></li>
 										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Featured
-												Slider</a>
+											data-toggle="dropdown">Featured Slider</a>
 											<ul class="dropdown-menu">
 												<li><a href="portfolio_single_featured_slider1.html">Style
 														1</a></li>
@@ -359,8 +348,7 @@
 														2</a></li>
 											</ul></li>
 										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Featured
-												Video</a>
+											data-toggle="dropdown">Featured Video</a>
 											<ul class="dropdown-menu">
 												<li><a href="portfolio_single_featured_video1.html">Style
 														1</a></li>
@@ -411,8 +399,8 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="alerts-and-wells.html"><i
 										class="fa fa-bolt"></i> Alerts and Wells</a></li>
-								<li><a href="buttons.html"><i
-										class="fa fa-link fa-sm"></i> Buttons</a></li>
+								<li><a href="buttons.html"><i class="fa fa-link fa-sm"></i>
+										Buttons</a></li>
 								<li><a href="tabs_and_accordions.html"><i
 										class="fa fa-tasks"></i> Tabs &amp; Accordions</a></li>
 								<li><a href="content_box.html"><i
@@ -423,8 +411,8 @@
 										Icons</a></li>
 								<li><a href="progress-bars.html"><i
 										class="fa fa-server"></i> Progress Bars</a></li>
-								<li><a href="typography.html"><i
-										class="fa fa-font"></i> Typography</a></li>
+								<li><a href="typography.html"><i class="fa fa-font"></i>
+										Typography</a></li>
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">Shop</a>
@@ -464,19 +452,18 @@
 								<div class="post">
 									<div class="post-header font-alt">
 										<h2 class="post-title">
-											<a>${product[0].prodTitle}</a>
+											<a>${product.prodTitle}</a>
 										</h2>
 
 										<div class="post-meta">
-											By&nbsp;<a>${product[0].prodWriter}</a>| ${product[0].prodRdate} | 리뷰 개수
+											${product.prodNo}| ${product.prodRdate} | 리뷰 개수
 										</div>
 									</div>
-									<div class="post-images-slider">
+									<div class="post-images-slider" style="width:800px; height:400px;">
 										<ul class="slides post-thumbnail">
-											<li><img src="${product[0].filePath}"
-												alt="Blog Slider Image" /></li>
-											<li><img src="${product[0].filePath}"
-												alt="Blog Slider Image" /></li>
+											<c:forEach var="file" items="${product.filePath}">
+												<li><img src="${file}" alt="Blog Slider Image" style="width: 750px; height: 400px;" /></li>
+											</c:forEach>
 										</ul>
 									</div>
 									<div class="post-entry"></div>
@@ -489,8 +476,7 @@
 								<div class="col-sm-12">
 									<ul class="nav nav-tabs font-alt" role="tablist">
 										<li class="active"><a href="#description"
-											data-toggle="tab"><span
-												class="icon-tools-2"></span>장소 소개</a></li>
+											data-toggle="tab"><span class="icon-tools-2"></span>장소 소개</a></li>
 										<li><a href="#data-sheet" data-toggle="tab"><span
 												class="icon-tools-2"></span>이용 규칙</a></li>
 										<li><a href="#reviews" data-toggle="tab"><span
@@ -633,8 +619,7 @@
 																separate existence is a myth.</p>
 														</div>
 														<div class="comment-meta font-alt">
-															Today, 14:55 -<span><i
-																class="fa fa-star star"></i></span><span><i
+															Today, 14:55 -<span><i class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star"></i></span><span><i
@@ -656,8 +641,7 @@
 																existence is a myth.</p>
 														</div>
 														<div class="comment-meta font-alt">
-															Today, 14:59 -<span><i
-																class="fa fa-star star"></i></span><span><i
+															Today, 14:59 -<span><i class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star-off"></i></span><span><i
@@ -679,8 +663,8 @@
 														</div>
 														<div class="col-sm-4">
 															<div class="form-group">
-																<label class="sr-only" for="email">Name</label>
-																<input class="form-control" id="email" type="text"
+																<label class="sr-only" for="email">Name</label> <input
+																	class="form-control" id="email" type="text"
 																	name="email" placeholder="E-mail" />
 															</div>
 														</div>
@@ -730,8 +714,7 @@
 																separate existence is a myth.</p>
 														</div>
 														<div class="comment-meta font-alt">
-															Today, 14:55 -<span><i
-																class="fa fa-star star"></i></span><span><i
+															Today, 14:55 -<span><i class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star"></i></span><span><i
@@ -753,8 +736,7 @@
 																existence is a myth.</p>
 														</div>
 														<div class="comment-meta font-alt">
-															Today, 14:59 -<span><i
-																class="fa fa-star star"></i></span><span><i
+															Today, 14:59 -<span><i class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star"></i></span><span><i
 																class="fa fa-star star-off"></i></span><span><i
@@ -776,8 +758,8 @@
 														</div>
 														<div class="col-sm-4">
 															<div class="form-group">
-																<label class="sr-only" for="email">Name</label>
-																<input class="form-control" id="email" type="text"
+																<label class="sr-only" for="email">Name</label> <input
+																	class="form-control" id="email" type="text"
 																	name="email" placeholder="E-mail" />
 															</div>
 														</div>
@@ -872,8 +854,8 @@
 											Clickable inside</button>
 										<!-- input 창은 여기!! -->
 										<input type="hidden" id="form-date" name="date" /> <input
-											type="hidden" id="form-first-time" name="firstTime" />
-										<input type="hidden" id="form-last-time" name="lastTime" />
+											type="hidden" id="form-first-time" name="firstTime" /> <input
+											type="hidden" id="form-last-time" name="lastTime" />
 
 										<div class="row mb-20" id="timeSelector">
 											<div class="col-sm-12">
@@ -965,8 +947,8 @@
 								<ul class="widget-posts">
 									<li class="clearfix">
 										<div class="widget-posts-image">
-											<a href="#"><img
-												src="/assets/images/rp-1.jpg" alt="Post Thumbnail" /></a>
+											<a href="#"><img src="/assets/images/rp-1.jpg"
+												alt="Post Thumbnail" /></a>
 										</div>
 										<div class="widget-posts-body">
 											<div class="widget-posts-title">
@@ -977,8 +959,8 @@
 									</li>
 									<li class="clearfix">
 										<div class="widget-posts-image">
-											<a href="#"><img
-												src="/assets/images/rp-2.jpg" alt="Post Thumbnail" /></a>
+											<a href="#"><img src="/assets/images/rp-2.jpg"
+												alt="Post Thumbnail" /></a>
 										</div>
 										<div class="widget-posts-body">
 											<div class="widget-posts-title">
