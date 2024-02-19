@@ -106,7 +106,7 @@
 						<ul class="pagination">
 							<c:if test="${pageVO.prev }">
 								<li class="page-item">
-								  <a class="page-link" href="/admin/admin-searchmember?page=${pageVO.startPage - 1 }&searchKeyword=${pageVO.cri.searchKeyword}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  <a class="page-link" href="/admin/admin-searchmember?page=${pageVO.startPage - 1 }&searchKeyword=${pageVO.cri.searchKeyword}&searchOption=${pageVO.cri.searchOption}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 								  </a>
 								</li>
 							</c:if>
@@ -117,7 +117,7 @@
 								end="${pageVO.endPage }" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
 								<li class="page-item ${isActive ? 'active' : ''}"><a
-									class="page-link" href="/admin/admin-searchmember?page=${i}&searchKeyword=${pageVO.cri.searchKeyword}"
+									class="page-link" href="/admin/admin-searchmember?page=${i}&searchKeyword=${pageVO.cri.searchKeyword}&searchOption=${pageVO.cri.searchOption}"
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
@@ -126,7 +126,7 @@
 				
 							<c:if test="${pageVO.next }">
 								<li class="page-item"><a class="page-link"
-									href="/admin/admin-searchmember?page=${pageVO.endPage + 1 }&searchKeyword=${pageVO.cri.searchKeyword}"
+									href="/admin/admin-searchmember?page=${pageVO.endPage + 1 }&searchKeyword=${pageVO.cri.searchKeyword}&searchOption=${pageVO.cri.searchOption}"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
 							</c:if>
