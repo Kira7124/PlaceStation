@@ -23,8 +23,8 @@
 						<div class="profile-header">
 							<div class="overlay"></div>
 							<div class="profile-main">
-								<img src="/assets/img/user-medium.png" class="img-circle"
-									alt="Avatar">
+								<img src="${biz.filePath}" class="img-circle"
+									alt="Avatar" style="width : 250px; height: 200px">
 									<h3 class="name">${biz.userName}</h3>
 								
 							</div>
@@ -46,7 +46,6 @@
 									<li>가입 날짜 <span>${biz.joinAt}</span></li>
 									
 								</ul>
-								
 							</div>
 
 							<div class="profile-info">

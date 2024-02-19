@@ -105,7 +105,24 @@ insert into admin_prod_history (
     people_count ,
     purchase_date
 ) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2 , '2024-02-19');
-
+insert into admin_prod_history (
+	admin_his_no , 
+    admin_his_prod_no, 
+    admin_his_price ,
+    admin_his_use_point ,
+    admin_his_save_point ,
+    admin_his_discount ,
+    admin_his_charge ,
+    admin_his_prod_name ,
+    admin_his_seller_id ,
+    admin_his_confirm ,
+    admin_his_buyer_id ,
+    bank ,
+    start_time ,
+    end_time,
+    people_count ,
+    purchase_date
+) values ('OXDS231AD-csacsaxasa' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',5,8,3 , '2024-02-23');
 
 insert into prod_major_category (category_name) values ('스포츠');
 insert into prod_major_category (category_name) values ('캠핑');

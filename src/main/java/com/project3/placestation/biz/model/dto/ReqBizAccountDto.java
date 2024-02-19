@@ -16,6 +16,7 @@ import lombok.ToString;
 public class ReqBizAccountDto {
 	private String userName;
 	private String userId;
+	private String userHp;
 	private String userPassword;
 	private String bizTel;
 	private String userAddress;
@@ -24,4 +25,6 @@ public class ReqBizAccountDto {
 	private String bizBrandName;
 	private MultipartFile bizFile;
 	private String changeBizFile;
+	private String filePath;
+	private String changePassword;
 }

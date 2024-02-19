@@ -1,4 +1,5 @@
 
+<%@page import="com.project3.placestation.biz.model.dto.ScheduleDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -18,7 +19,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<!-- RECENT PURCHASES -->
-					<div class="panel" style="padding : 30px;">
+					<div class="panel" style="padding: 30px;">
 						<div class="panel-heading">
 							<h3 class="panel-title">일정 관리 시스템</h3>
 							<div class="right">
@@ -32,7 +33,7 @@
 						</div>
 						<div class="panel-body no-padding container">
 
-							<div id='calendar' style="width : 70%;margin-bottom : 20px"></div>
+							<div id='calendar' style="width: 70%; margin-bottom: 20px"></div>
 
 
 						</div>
@@ -43,7 +44,8 @@
 										이용자 결제 내역을 보시겠습니까?</span>
 								</div>
 								<div class="col-md-6 text-right">
-									<a href="/biz/reservation-management" class="btn btn-primary">결제 내역 보기</a>
+									<a href="/biz/reservation-management" class="btn btn-primary">결제
+										내역 보기</a>
 								</div>
 							</div>
 						</div>
@@ -61,32 +63,36 @@
 <script
 	src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
 <script src='fullcalendar/dist/index.global.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
-	let date = "";
-	document.addEventListener('DOMContentLoaded', function() {
+
+	//AJAX 요청을 보냅니다.
+	$.ajax({
+		type : "GET",
+		url : "/biz/schedule-management/rest",
+		dataType : "json",
+		success : function(response) {
+			// 성공적으로 응답을 받았을 때 실행되는 함수입니다.
+			console.log("응답 받음:", response);
+			readyCalendar(response);
+		},
+		error : function(xhr, status, error) {
+			console.error("에러 발생:", error);
+		}
+	});
+
+	function readyCalendar(response) {
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			initialView : 'dayGridMonth',
 			selectable : true,
-			events : [ {
-				title : 'event1',
-				start : '2024-02-01'
-			}, {
-				title : 'event2',
-				start : '2024-02-05',
-				end : '2024-02-07'
-			}, {
-				title : 'event3',
-				start : '2024-02-09T12:30:00',
-				allDay : false
-			// will make the time show
-			} ],
+			events : response,
 			dateClick : function(info) {
 				console.log(info.dateStr);
 			}
 		});
 		calendar.render();
-	});
+	};
 </script>
 
 <!-- adminside.jsp -->

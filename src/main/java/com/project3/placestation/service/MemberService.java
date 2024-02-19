@@ -3,11 +3,14 @@ package com.project3.placestation.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project3.placestation.admin.dto.AdminMemberDTO;
 import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.biz.handler.exception.CustomRestfulException;
+import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.member.dto.bizDTO;
 import com.project3.placestation.member.dto.bizJoinDTO;
 import com.project3.placestation.repository.entity.BizJoin;
@@ -52,13 +55,16 @@ public class MemberService {
 	
 	// 사업자 유저 상세 조회
 	public BizJoin SelectJoinBiz(int bizId) {
-//		BizJoin biz = BizJoin.builder()
-//				.biz_id(bizId.getBizId())
-//				.build();
 		BizJoin result = memberRepository.SelectJoinBiz(bizId);
 		return  result;
 	}
 	
-	
+	// 사업자 유저 정보 변경
+	public void BizUpdateMember(ReqBizAccountDto accountDto ,int userNo) {
+		int result = memberRepository.BizUpdateMember(accountDto , userNo);
+		if(result < 1) {
+			throw new CustomRestfulException("유저 정보를 변경하는 도중 서버 에러가 발생하였습니다. ", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 }

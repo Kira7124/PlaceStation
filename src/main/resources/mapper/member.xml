@@ -40,9 +40,11 @@
 		resultType="com.project3.placestation.repository.entity.BizJoin">
 		select biz_no as bizNo,
 		b.biz_id as bizId,
-		b.biz_brand_name as bizBrandName,
+		b.biz_brand_name
+		as bizBrandName,
 		m.user_password as userPassword,
-		m.user_address as userAddress,
+		m.user_address as
+		userAddress,
 		m.user_name as userName,
 		m.user_point as userPoint,
 		m.join_at as joinAt,
@@ -50,14 +52,31 @@
 		m.grade as userGrade,
 		m.user_hp as userHp,
 		m.user_email as userEmail ,
-		m.file_path as filePath,
+		m.file_path as
+		filePath,
 		b.biz_tel as bizTel
 		from member as m
 		join biz as b
-		on m.user_no = b.biz_id
+		on m.user_no
+		= b.biz_id
 		where m.user_no = #{bizId};
 	</select>
 
-
+	<update id="BizUpdateMember">
+		update member set
+		user_name = #{accountDto.userName},
+		user_address =
+		#{accountDto.userAddress},
+		user_hp = #{accountDto.userHp}
+		<if test="accountDto.changeImage == 'Y'.toString()">
+			,
+			file_path = #{accountDto.filePath}
+		</if>
+		<if test="accountDto.changePassword == 'Y'.toString()">
+			,
+			user_password = #{accountDto.userPassword}
+		</if>
+		where user_no = #{userNo};
+	</update>
 
 </mapper>

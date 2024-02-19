@@ -51,8 +51,6 @@
 							</div>
 
 							<!-- 메인 부분 시작 -->
-
-
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">이곳에서 회원 정보를 수정하실 수 있습니다!</h3>
@@ -60,7 +58,7 @@
 								<div class="panel-body">
 
 									<!-- 게시물의 제목 -->
-									<div class="col-md-5">
+									<div class="col-md-5" style="margin-right: 10px">
 										<h4>이름</h4>
 										<input type="text" class="form-control"
 											placeholder="이름을 입력해 주세요" name="userName"
@@ -71,28 +69,39 @@
 											value="${biz.userEmail}" disabled="disabled" /> <br>
 										<h4>비밀번호 변경</h4>
 										<div class="input-group">
-											<input type="text" value="${biz.userPassword}"
-												class="form-control" placeholder="변경하실 비밀번호를 입력해 주세요">
-											<span class="input-group-btn"><button type="button"
-													class="btn btn-primary" id="checkPassword">Go</button></span>
-										</div>
-										<br>
-										<h4>비밀번호를 다시 한번 쳐주세요</h4>
-										<div class="input-group">
-											<input type="text" value="비밀번호" class="form-control"
-												placeholder="변경하실 비밀번호를 다시 한번 더 쳐주세요" name="userPassword">
-											<span class="input-group-btn"><button type="button"
-													class="btn btn-primary">Go</button></span>
-										</div>
-										<br>
-										<h4>휴대폰 번호</h4>
-										<div class="input-group">
-											<input type="text" value="${biz.bizTel}" class="form-control"
-												placeholder="휴대폰 번호를 입력해 주세요" name="bizTel"> <span
+											<input type="password" class="form-control"
+												placeholder="변경하실 비밀번호를 입력해 주세요" id="password1"> <span
 												class="input-group-btn"><button type="button"
-													class="btn btn-primary">Go</button></span>
+													class="btn btn-primary" id="checkPassword"
+													onclick="changePasswordForm()">변경</button></span>
 										</div>
-										<br />
+										<ul class="list-unstyled activity-list regexDescription">
+											<li>아래의 유효성을 검사합니다.</li>
+											<li>1. 숫자가 최소한 1개 포함되어야 합니다. <br /> 2. 소문자가 최소한 1개
+												포함되어야 합니다. <br /> 3. 대문자가 최소한 1개 포함되어야 합니다. <br /> 4. 특수
+												문자(@, #, $, %, ^, &, +, =, ! 중 하나)가 최소한 1개 포함되어야 합니다. <br />
+												5. 공백이 없어야 합니다. <br /> 6. 최소한 8자 이상의 문자열이어야 합니다.
+											</li>
+										</ul>
+										<br>
+										<div class="changePassword" style="display: none">
+											<h4>
+												비밀번호를 다시 한번 쳐주세요 <br />(검사를 하지 않으면 저장이 되지 않습니다.)
+											</h4>
+											<div class="input-group">
+												<input type="password" value="비밀번호"
+													class="form-control password2"
+													placeholder="변경하실 비밀번호를 다시 한번 더 쳐주세요" name="userPassword">
+												<span class="input-group-btn"><button type="button"
+														class="btn btn-primary" onclick="checkPasswordRight()">변경</button></span>
+											</div>
+											<input type="hidden" name="changePassword" value="N" id="" />
+										</div>
+										<br>
+										<h4>휴대폰 번호 (000-0000-0000)</h4>
+										<input type="text" value="${biz.userHp}" class="form-control"
+											placeholder="휴대폰 번호를 입력해 주세요" name="userHp"> <br>
+
 										<h4>주소</h4>
 										<input type="text" class="form-control"
 											placeholder="주소를 입력해 주세요" name="userAddress"
@@ -109,7 +118,7 @@
 											<div id='att_zone'
 												data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하세요'>
 												<img src="${biz.filePath}"
-													style="width: 30%; height: 40%; z-index: none;"
+													style="width: 80%; height: 60%; z-index: none; margin-left: 30px;"
 													class="originalImage" />
 											</div>
 											<input type="hidden" name="changeImage" value="N"
@@ -117,38 +126,41 @@
 												name="profile" />
 										</div>
 										<br> <br />
+
 										<h3>사업자 회원</h3>
 										<h4>사업자 상표명</h4>
 										<input type="text" class="form-control"
 											placeholder="사업자 상표명을 입력해 주세요" name="bizBrandName"
 											value="${biz.bizBrandName}" /> <br>
+										<h4>대표 휴대폰 번호 (000-0000-0000)</h4>
+
+										<input type="text" value="${biz.bizTel}" class="form-control"
+											placeholder="휴대폰 번호를 입력해 주세요" name="bizTel"> <br />
 										<div>
 											<h4>사업자 등록증</h4>
-											<input type='file' id='btnAtt' name="bizFile"
+											<!-- <input type='file' id='btnAtt' name="bizFile"
 												onchange="onChangeBizFile()" /> <input type="hidden"
 												name="changeBizFile" value="N" id="changeBizFile" />
+												 -->
+											<h5>사업자 등록증 변경은 관리자에게 문의하세요.</h5>
 										</div>
 									</div>
 								</div>
-								<!-- 프로필 사진 -->
-								<br>
-
+							</div>
+							<!-- 푸터 부분 -->
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-md-6">
+										<span class="panel-note"><i class="fa fa-clock-o"></i>
+											회원 정보를 수정하시겠습니까?</span>
+									</div>
+									<div class="col-md-6 text-right">
+										<input type="submit" class="btn btn-primary" value="회원 정보 수정" />
+									</div>
+								</div>
 							</div>
 						</div>
 						<!-- END INPUTS -->
-
-						<!-- 푸터 부분 -->
-						<div class="panel-footer">
-							<div class="row">
-								<div class="col-md-6">
-									<span class="panel-note"><i class="fa fa-clock-o"></i>
-										회원 정보를 수정하시겠습니까?</span>
-								</div>
-								<div class="col-md-6 text-right">
-									<input type="submit" class="btn btn-primary" value="회원 정보 수정" />
-								</div>
-							</div>
-						</div>
 					</form>
 				</div>
 				<!-- END 푸터 부분 -->
@@ -193,13 +205,13 @@ let count = 0;
     	var changImage = document.querySelector("#changeImage");
     	var original = document.querySelector(".originalImage");
 
-    	count++;
-    	if(count < 1) {
+ 
+    	if(count == 0) {
         	original.style.display = 'none'; // 스타일 변경 예시
         	changeImage.value="Y"; // changeImage == Y 로 변경
     	}
 
-    	
+       	count++;
       var files = e.target.files;
       
       var fileArr = Array.prototype.slice.call(files)
@@ -270,7 +282,39 @@ let count = 0;
 	changeBizFile.value="Y"; // changeImage == Y 로 변경
 }
 
+	// 비밀번호 유효성 검사
+	function changePasswordForm() {
+		var changePassword = document.querySelector(".changePassword");
+		var regexDescription = document.querySelector(".regexDescription");
+		var password1 = document.querySelector("#password1");
+		// 유효성 검사후 변경
+		const passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\S+$).{8,}$/;
+		if(passwordRegex.test(password1.value)) {
 
+			changePassword.style.display = "block";
+			regexDescription.style.display = "none";
+			password1.readOnly = true;
+		} else {
+			alert("유효하지 않습니다.")
+		}
+	}
+	
+	// 비밀번호 체크
+	function checkPasswordRight() {
+		var password1 = document.querySelector("#password1");
+		var password2 = document.querySelector(".password2");
+		var isChangePassword = document.querySelector("#isChangePassword");
+		
+		console.log(password1.value);
+		console.log(password2.value);
+		if(password1.value == password2.value) {
+			alert("유효합니다.")
+			password2.readOnly=true;
+			isChangePassword.value = 'Y';
+		} else {
+			alert("비밀번호가 틀렸습니다.")
+		}
+	}
 </script>
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_footer.jsp"%>

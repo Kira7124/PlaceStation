@@ -43,8 +43,7 @@
 										<th>이용 날짜 &amp; 시간</th>
 										<th>결제 날짜 &amp; 시간</th>
 										<th>결제 완료</th>
-										<th>예약 시간 수정</th>
-										<th>취소</th>
+										<th>환불하기</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -57,14 +56,13 @@
 											<td>${history.adminHisPrice}</td>
 											<td>${history.peopleCount}명</td>
 											<td>${history.bank}</td>
-											<td>${history.purchaseDate}${history.startTime}:00~
+											<td>${history.purchaseDate} &nbsp ${history.startTime}:00~
 												${history.endTime}:00</td>
 											<td>${history.adminHisCreatedAt}</td>
 											<td><span class="label label-success">${history.adminHisConfirm}</span></td>
-											<td><span class="label label-success">예약 시간 수정</span></td>
 
 											<td><span class="label label-danger" data-toggle="modal"
-												data-target="#exampleModal">취소버튼</span> <!-- Modal -->
+												data-target="#exampleModal">환불버튼</span> <!-- Modal -->
 												<div class="modal fade" id="exampleModal" tabindex="-1"
 													aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
@@ -83,12 +81,11 @@
 															<div class="modal-footer">
 																<button type="button" class="btn btn-secondary"
 																	data-dismiss="modal">닫기</button>
-																<button type="button" class="btn btn-primary">취소하기</button>
+																<button type="button" class="btn btn-primary">환불하기</button>
 															</div>
 														</div>
 													</div>
 												</div></td>
-
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -118,25 +115,20 @@
 									</c:forEach>
 
 
-									<li class="page-item">
-									
-									<c:choose>
-										<c:when test="${currentPage < endPage - 1}">
-										<a class="page-link"
-												href="/biz/reservation-management?page=${currentPage + 1}&size=12"
-												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											</a>
-										
-										</c:when>
-										<c:otherwise>
-										<a class="page-link"
-												href="#"
-												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											</a>
-										</c:otherwise>
-									</c:choose>
-											
-										</li>
+									<li class="page-item"><c:choose>
+											<c:when test="${currentPage < endPage - 1}">
+												<a class="page-link"
+													href="/biz/reservation-management?page=${currentPage + 1}&size=12"
+													aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+												</a>
+
+											</c:when>
+											<c:otherwise>
+												<a class="page-link" href="#" aria-label="Next"> <span
+													aria-hidden="true">&raquo;</span>
+												</a>
+											</c:otherwise>
+										</c:choose></li>
 								</ul>
 							</nav>
 						</div>

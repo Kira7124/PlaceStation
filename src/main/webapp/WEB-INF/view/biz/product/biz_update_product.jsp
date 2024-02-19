@@ -349,7 +349,7 @@ $textarea3.oninput = (event) => {
 	var geocoder = new daum.maps.services.Geocoder();
 	//마커를 미리 생성
 	var marker = new daum.maps.Marker({
-		position : new daum.maps.LatLng(37.537187, 127.005476),
+		position : new daum.maps.LatLng(y, x),
 		map : map,
 	});
 

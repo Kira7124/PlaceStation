@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.project3.placestation.biz.model.dto.BizHistoryDto;
+import com.project3.placestation.biz.model.dto.ResScheduleDto;
 import com.project3.placestation.biz.model.util.PageReq;
 
 @Mapper
@@ -13,5 +14,6 @@ public interface AdminProdHistoryRepository {
 	
 	public List<BizHistoryDto> findAllByBizId(@Param("bizId") int bizId ,@Param("pageReq") PageReq pageReq);
 	public int countFindAllByBizId(int bizId);
+	public List<ResScheduleDto> findScheduleByBizId(int bizId);
 	
 }

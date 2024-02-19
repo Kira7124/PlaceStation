@@ -36,6 +36,8 @@ h2, p, h4 {
 								</button>
 							</div>
 						</div>
+						
+						
 						<c:forEach items="${products}" var="product">
 							<div class="panel-body no-padding">
 								<!-- 카드 시작 -->
