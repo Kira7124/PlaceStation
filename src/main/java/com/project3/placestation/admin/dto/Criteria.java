@@ -4,6 +4,7 @@ public class Criteria {
 	private int page;
 	private int pageSize;
 	private String searchKeyword;
+	private String searchOption;
 	
 	public Criteria() {
 		this.page = 1;
@@ -20,6 +21,17 @@ public class Criteria {
 	 }
 	
 	
+	 
+	 public void setSearchOption(String searchOption) {
+		    this.searchOption = searchOption;
+	 }
+
+	public String getSearchOption() {
+		    return searchOption;
+	 }
+	 
+	 
+	 
 	// alt shift s + r
 
 	// 페이지를 설정한다

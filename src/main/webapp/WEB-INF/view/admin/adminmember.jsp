@@ -7,7 +7,6 @@
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
     <!-- jquery/ajax 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		
 
 
 		
@@ -29,13 +28,14 @@
 					    <div>
 					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
 					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
-								        <option value="option1">주소</option>
-								        <option value="option2">등급</option>
-								        <option value="option3">가입일</option>
+					        			<option value="user_name">이름</option>
+								        <option value="user_address">주소</option>
+								        <option value="grade">등급</option>
+								        <option  value="join_at">가입일</option>
 				   				</select>
 					            <input type="text" name="searchKeyword" class="form-control" placeholder="이름키워드입력">
 					            <span class="input-group-btn">
-					                <button type="submit" class="btn btn-primary">검색</button>
+					                <button type="submit" class="btn btn-primary" >검색</button>
 					            </span>
 					        </div>
 					    </div>

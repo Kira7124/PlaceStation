@@ -155,7 +155,13 @@ public class AdminController {
 	@GetMapping("/admin-searchmember")
 	public String adminuserGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
 		
+		String searchOption = request.getParameter("searchOption");
 		String searchKeyword = request.getParameter("searchKeyword");
+		
+		if (searchOption != null && !searchOption.isEmpty()) {
+	        cri.setSearchOption(searchOption);
+	    }
+		
 		
 	    if (searchKeyword != null && !searchKeyword.isEmpty()) {
 	        cri.setSearchKeyword(searchKeyword);

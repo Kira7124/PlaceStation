@@ -42,10 +42,28 @@
 		    select * from member
 		    <where>
 		        <if test="searchKeyword != null and searchKeyword != ''">
-		            and user_name like concat('%', #{searchKeyword}, '%')
+		            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+		            <choose>
+		            	<when test="searchOption == 'user_name'">
+		                    and user_name like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'user_address'">
+		                    and user_address like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'grade'">
+		                    and grade like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'join_at'">
+		                    and join_at like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <!-- 기본적으로는 user_name으로 검색 -->
+		                <otherwise>
+		                    and user_name like concat('%', #{searchKeyword}, '%')
+		                </otherwise>
+		            </choose>
 		        </if>
 		    </where>
-		    	limit #{startPage}, #{pageSize}
+		    limit #{startPage}, #{pageSize}
 		</select>
 		
 		
@@ -53,12 +71,30 @@
 		
 		<!-- 관리자유저검색카운팅 -->
 		<select id="countSearchMemberlist" resultType="int">
-		    select count(*) from member
-		    <where>
-		        <if test="searchKeyword != null and searchKeyword != ''">
-		            and user_name like concat('%', #{searchKeyword}, '%')
-		        </if>
-		    </where>
+			 select count(*) from member
+			    <where>
+			        <if test="searchKeyword != null and searchKeyword != ''">
+			            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+			            <choose>
+				            <when test="searchOption == 'user_name'">
+			                    and user_name like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'user_address'">
+			                    and user_address like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'grade'">
+			                    and grade like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'join_at'">
+			                    and join_at like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <!-- 기본적으로는 user_name으로 검색 -->
+			                <otherwise>
+			                    and user_name like concat('%', #{searchKeyword}, '%')
+			                </otherwise>
+			            </choose>
+			        </if>
+			    </where>
 		</select>
 		
 		

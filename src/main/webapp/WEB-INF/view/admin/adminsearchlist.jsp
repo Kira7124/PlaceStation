@@ -29,9 +29,10 @@
 					    <div>
 					         <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
 					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
-								        <option value="option1">주소</option>
-								        <option value="option2">등급</option>
-								        <option value="option3">가입일</option>
+					        			<option value="user_name">이름</option>
+								        <option value="user_address">주소</option>
+								        <option value="grade">등급</option>
+								        <option value="join_at">가입일</option>
 				   				</select>
 					            <input type="text" name="searchKeyword" class="form-control" placeholder="이름키워드입력">
 					            <span class="input-group-btn">
