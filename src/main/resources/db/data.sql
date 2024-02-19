@@ -43,10 +43,10 @@ VALUES
 ('test10', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'BIZ','골드');
 
 
-insert into biz (biz_id , biz_brand_name,biz_balance , file_path)
-values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​');
-insert into biz (biz_id , biz_brand_name,biz_balance , file_path)
-values (13 , '상호명' , 20000 , 'https://picsum.photos/200/300​');
+insert into biz (biz_id , biz_brand_name,biz_balance , file_path , biz_tel)
+values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'010-1111-1111');
+insert into biz (biz_id , biz_brand_name,biz_balance , file_path ,biz_tel)
+values (13 , '상호명' , 20000 , 'https://picsum.photos/200/300​','010-1111-1111');
 
 -- product
 insert into product (
@@ -102,8 +102,10 @@ insert into admin_prod_history (
     bank ,
     start_time ,
     end_time,
-    people_count
-) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2);
+    people_count ,
+    purchase_date
+) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2 , '2024-02-19');
+
 
 insert into prod_major_category (category_name) values ('스포츠');
 insert into prod_major_category (category_name) values ('캠핑');

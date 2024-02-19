@@ -50,15 +50,12 @@ public class MemberService {
 	}
 	
 	
-	public BizJoin SelectJoinBiz(bizJoinDTO bizId) {
-		
-		BizJoin biz = BizJoin.builder()
-				.biz_id(bizId.getBizId())
-				.build();
-			
-		BizJoin result = memberRepository.SelectJoinBiz(biz);
-		
-		
+	// 사업자 유저 상세 조회
+	public BizJoin SelectJoinBiz(int bizId) {
+//		BizJoin biz = BizJoin.builder()
+//				.biz_id(bizId.getBizId())
+//				.build();
+		BizJoin result = memberRepository.SelectJoinBiz(bizId);
 		return  result;
 	}
 	

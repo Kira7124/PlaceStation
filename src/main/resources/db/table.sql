@@ -77,7 +77,8 @@ create table biz (
     biz_id int ,
     biz_brand_name varchar(30),
     biz_balance int,
-    file_path varchar (1000)
+    file_path varchar (1000),
+    biz_tel varchar (20)
 );
 
 
@@ -100,7 +101,8 @@ create table admin_prod_history (
     cancel_yn varchar (1) default 'N',
     cancel_at timestamp ,
     cancel_amount int (7) ,
-    people_count int (3)
+    people_count int (3),
+    purchase_date varchar (100)
 );
 
 create table prod_major_category (

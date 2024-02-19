@@ -23,6 +23,6 @@ public interface MemberRepository {
 	public Integer AdminUpdateMember(Member member);
 	
 	//판매자와 유저 테이블 join데이터
-	public BizJoin SelectJoinBiz(BizJoin biz); 	
+	public BizJoin SelectJoinBiz(int bizId); 	
 	
 }
