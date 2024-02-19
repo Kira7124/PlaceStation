@@ -8,7 +8,17 @@
     <!-- jquery/ajax 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	
-	
+	<script>
+        function openUpdateModal(userId) {
+            console.log('모달을 열 때 사용할 userId:', userId);
+
+            var userNumInput = document.getElementById('user_no_input');
+            if (userNumInput) {
+                userNumInput.value = userId;
+            }
+
+        }
+	</script>	
 		
 		
 		<!-- MAIN -->
@@ -36,6 +46,7 @@
 							<tr>
 								<th>사진</th>
 								<th>등급</th>
+								<th>번호</th>
 								<th>이름</th>
 								<th>아이디</th>
 								<th>주소</th>
@@ -65,6 +76,7 @@
 										</c:otherwise>
 									</c:choose>
 								  </td>
+								<td>${memberlist.userno}</td>  
 								<td>${memberlist.username}</td>
 								<td>${memberlist.userid}</td>
 								<td>${memberlist.useraddress}</td>
@@ -72,12 +84,12 @@
 								<td>${memberlist.formatHp(memberlist.userhp)}</td>
 								<td>${memberlist.formatjoinAt()}</td>
 								<td>
-									<a href="/admin/admin-update">
+									<a href="/admin/admin-update" data-toggle="modal" data-target="#updateModal" onclick="openUpdateModal('${memberlist.userno}')">
         								<span class="label label-success">수정</span>
     								</a>     	
 								</td>
 								<td>
-									<a href="/admin/admin-delete">
+									<a href="/admin/admin-delete" data-toggle="modal" data-target="#deleteModal">
 										<span class="label label-danger">삭제</span>
 									</a>	
 								</td>														
@@ -129,15 +141,45 @@
 	<!-- END WRAPPER -->
 	
 		
-		
-		
-		
-		
-		
-		
-		
-		
 	
+	<!-- Modal -->
+	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+
+
+	<!-- Modal 스크립트 -->
+	<script>
+	    $(document).ready(function(){
+	        $(".open-modal").click(function(){
+	            $("#updateModal").modal('show');
+	        });
+	    });
+	</script>
+	
+	<script>
+	    $(document).ready(function(){
+	        $(".open-modal").click(function(){
+	            $("#deleteModal").modal('show');
+	        });
+	    });
+	</script>
+
+
+
+
+
+
+
 	<!-- Javascript -->
 	<script src="/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>

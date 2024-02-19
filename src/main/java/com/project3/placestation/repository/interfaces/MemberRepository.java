@@ -17,5 +17,9 @@ public interface MemberRepository {
 	//회원숫자세기 (페이징처리)
 	public int countMember() throws Exception;
 	
+	//관리자회원정보수정
+	public Integer AdminUpdateMember(Member member);
+	
+	
 	
 }

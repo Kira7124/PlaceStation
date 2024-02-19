@@ -1,6 +1,5 @@
 INSERT INTO member (user_id, user_password, user_address, user_name, user_hp, user_email, user_role,grade) 
 VALUES 
-('Kira1', '1234', '부산광역시', '김진수', '01089237124', 'afc2015@naver.com', 'ADMIN','골드'),
 ('test1', '1234', '서울특별시', '김진수2', '01089237125', 'afc2016@naver.com', 'USER','실버'),
 ('test2', '1234', '대구광역시', '김진수3', '01089237126', 'afc2017@naver.com', 'USER','골드'),
 ('test3', '1234', '광주광역시', '김진수4', '01089237127', 'afc2018@naver.com', 'USER','실버'),

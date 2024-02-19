@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project3.placestation.admin.dto.AdminMemberDTO;
@@ -102,6 +103,7 @@ public class AdminController {
 	}
 	
 	
+	
 	//http://localhost:80/admin/admin-update
 	//admin 회원update페이지출력(모달)
 	@GetMapping("/admin-update")
@@ -109,6 +111,23 @@ public class AdminController {
 		log.debug("adminupdate페이지출력");
 		return "admin/adminupdate";
 	}
+	
+	
+	
+	//Modal 에서 ~
+	//관리자회원정보수정POST (회원번호를 받아서 조회한다음에, 해당하는 회원의 정보를 전달받아서 수정!)
+	@PostMapping("/admin-update")
+	public String adminupdatePOST(AdminMemberDTO dto) {
+		log.debug("adminupdatePOST실행!");
+		memberService.AdminUpdateMember(dto);
+		
+		return "redirect:/admin/admin-member";
+	}
+	
+	
+	
+	
+	
 	
 	//http://localhost:80/admin/admin-delete
 	//admin 회원delete페이지출력(모달)
@@ -118,6 +137,19 @@ public class AdminController {
 		return "admin/admindelete";
 	}
 	
+	
+	
+	
+	//admin 회원deletePOST 실행
+	//Modal~...
+	@PostMapping("/admin-delete")
+	public String admindeletePOST() {
+		
+		
+		
+		log.debug("admindeletePOST 삭제처리완!");
+		return"redirect:/admin/admin-delete";
+	}
 	
 	
 	
