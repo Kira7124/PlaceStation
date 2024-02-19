@@ -47,7 +47,6 @@ public class MemberService {
 				.build();
 		
 		Integer result = memberRepository.AdminUpdateMember(member);
-				
 	}
 	
 	
