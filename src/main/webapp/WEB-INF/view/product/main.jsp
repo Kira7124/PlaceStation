@@ -437,10 +437,8 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-6 col-sm-offset-3">
-							<h2 class="module-title font-alt">Shop Products</h2>
-							<div class="module-subtitle font-serif">A wonderful
-								serenity has taken possession of my entire soul, like these
-								sweet mornings of spring which I enjoy with my whole heart.</div>
+							<h2 class="module-title font-alt">하~이</h2>
+							<div class="module-subtitle font-serif">가나다라마바사</div>
 						</div>
 					</div>
 				</div>
@@ -467,16 +465,17 @@
 							<div class="col-sm-6 col-md-3 col-lg-3">
 								<div class="shop-item">
 									<div class="shop-item-image">
-										<img src="${product.file1}" alt="${product.prodTitle}" />
+										<img src="${product.filePath}" alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
-											<a class="btn btn-round btn-b"><span class="icon-basket">Add
-													To Cart</span></a>
+											<a class="btn btn-round btn-b"
+												href="productDetail?prod_no=${product.prodNo}"><span
+												class="icon-basket">보러가기</span></a>
 										</div>
 									</div>
 									<h4 class="shop-item-title font-alt">
-										<a href="#">${product.prodTitle}</a>
+										<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 									</h4>
-									${product.prodPrice} 원
+									${product.prodPrice} 원/시간
 								</div>
 							</div>
 						</c:forEach>
@@ -497,15 +496,15 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-8 col-sm-offset-2">
-							<h2 class="module-title font-alt">조회수 높은 순</h2>
+							<h2 class="module-title font-alt">리뷰 많음</h2>
 						</div>
 					</div>
 					<div class="row multi-columns-row">
-						<c:forEach var="product" items="${productsHit}">
+						<c:forEach var="product" items="${productsRev}">
 							<div class="col-sm-6 col-md-3 col-lg-3">
 								<div class="shop-item">
 									<div class="shop-item-image">
-										<img src="${product.file1}" alt="${product.prodTitle}" />
+										<img src="${product.filePath}" alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
 											<a class="btn btn-round btn-b"><span class="icon-basket">Add
 													To Cart</span></a>
@@ -514,7 +513,7 @@
 									<h4 class="shop-item-title font-alt">
 										<a href="#">${product.prodTitle}</a>
 									</h4>
-									${product.prodPrice} 원
+									${product.prodPrice} 원/시간
 								</div>
 							</div>
 						</c:forEach>
@@ -535,15 +534,15 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-8 col-sm-offset-2">
-							<h2 class="module-title font-alt">평점 높은 순</h2>
+							<h2 class="module-title font-alt">평점 높음</h2>
 						</div>
 					</div>
 					<div class="row multi-columns-row">
-						<c:forEach var="product" items="${productsRate}">
+						<c:forEach var="product" items="${productsStar}">
 							<div class="col-sm-6 col-md-3 col-lg-3">
 								<div class="shop-item">
 									<div class="shop-item-image">
-										<img src="${product.file1}" alt="${product.prodTitle}" />
+										<img src="${product.filePath}" alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
 											<a class="btn btn-round btn-b"><span class="icon-basket">Add
 													To Cart</span></a>
@@ -552,14 +551,14 @@
 									<h4 class="shop-item-title font-alt">
 										<a href="#">${product.prodTitle}</a>
 									</h4>
-									${product.prodPrice} 원
+									${product.prodPrice} 원/시간
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 				</div>
 			</section>
-			<!-- 4번 상품 리스트 -->
+			<!-- 1번 상품 리스트 -->
 			<section class="module" id="specialities">
 				<div class="container">
 					<div class="row">
@@ -573,15 +572,15 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-8 col-sm-offset-2">
-							<h2 class="module-title font-alt">리뷰 많은 순</h2>
+							<h2 class="module-title font-alt">새로 등록됐어요</h2>
 						</div>
 					</div>
 					<div class="row multi-columns-row">
-						<c:forEach var="product" items="${productsReview}">
+						<c:forEach var="product" items="${productsStart}">
 							<div class="col-sm-6 col-md-3 col-lg-3">
 								<div class="shop-item">
 									<div class="shop-item-image">
-										<img src="${product.file1}" alt="${product.prodTitle}" />
+										<img src="${product.filePath}" alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
 											<a class="btn btn-round btn-b"><span class="icon-basket">Add
 													To Cart</span></a>
@@ -590,13 +589,14 @@
 									<h4 class="shop-item-title font-alt">
 										<a href="#">${product.prodTitle}</a>
 									</h4>
-									${product.prodPrice} 원
+									${product.prodPrice} 원/시간
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 				</div>
 			</section>
+
 			<!-- EXCLUSIVE PRODUCT -->
 			<section class="module">
 				<div class="container">
