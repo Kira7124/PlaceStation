@@ -1,4 +1,4 @@
-create table member (
+create table `member` (
   user_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id VARCHAR(100) NOT NULL,
   user_password VARCHAR(100) NOT NULL,
@@ -16,6 +16,14 @@ create table member (
   
   
   
+create table biz(
+	biz_no int primary key auto_increment,
+    biz_id int NOT NULL,
+    biz_brand_name varchar(30) not null,
+    file_path varchar(255),
+    FOREIGN KEY(biz_id)
+    REFERENCES member(user_id) ON UPDATE CASCADE
+);
   
   
   
