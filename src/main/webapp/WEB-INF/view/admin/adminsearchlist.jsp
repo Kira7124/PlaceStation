@@ -22,13 +22,18 @@
 				<div style="display: flex;">
 				    <div>
 				        <div class="panel-heading">
-				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>검색결과</b></h3>
+				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>회원관리</b></h3>
 				        </div>
 				    </div>
 				   <form action="/admin/admin-searchmember" method="get">
 					    <div>
-					        <div class="input-group" style="margin-top: 20px; margin-left: 1140px;">
-					            <input type="text" name="searchKeyword" class="form-control" placeholder="키워드입력">
+					         <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
+								        <option value="option1">주소</option>
+								        <option value="option2">등급</option>
+								        <option value="option3">가입일</option>
+				   				</select>
+					            <input type="text" name="searchKeyword" class="form-control" placeholder="이름키워드입력">
 					            <span class="input-group-btn">
 					                <button type="submit" class="btn btn-primary">검색</button>
 					            </span>

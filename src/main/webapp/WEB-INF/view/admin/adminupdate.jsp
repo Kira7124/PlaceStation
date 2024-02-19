@@ -78,7 +78,11 @@
 				    </div>
 				    <div class="col-md-4">
 				        <div class="input-box">
-				            <input type="text" class="form-control" name = "grade" id="grade" placeholder="회원등급">
+				            <select class="form-control" name="grade" id="grade" aria-label="Default select example">
+				                <option value="골드">골드</option>
+				                <option value="실버">실버</option>
+				                <option value="브론즈">브론즈</option>
+				            </select>
 				        </div>
 				    </div>
 				</div>
