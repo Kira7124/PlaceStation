@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.member.dto.bizJoinDTO;
+import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
 
 @Mapper
@@ -20,6 +22,7 @@ public interface MemberRepository {
 	//관리자회원정보수정
 	public Integer AdminUpdateMember(Member member);
 	
-	
+	//판매자와 유저 테이블 join데이터
+	public BizJoin SelectJoinBiz(BizJoin biz); 	
 	
 }

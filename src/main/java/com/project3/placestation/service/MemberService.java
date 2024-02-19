@@ -8,6 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project3.placestation.admin.dto.AdminMemberDTO;
 import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.member.dto.bizDTO;
+import com.project3.placestation.member.dto.bizJoinDTO;
+import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.interfaces.MemberRepository;
 
@@ -47,6 +50,17 @@ public class MemberService {
 	}
 	
 	
+	public BizJoin SelectJoinBiz(bizJoinDTO bizId) {
+		
+		BizJoin biz = BizJoin.builder()
+				.biz_id(bizId.getBizId())
+				.build();
+			
+		BizJoin result = memberRepository.SelectJoinBiz(biz);
+		
+		
+		return  result;
+	}
 	
 	
 	
