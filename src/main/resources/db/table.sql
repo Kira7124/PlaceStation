@@ -53,3 +53,26 @@ create table biz (
     biz_balance int,
     file_path varchar (1000)
 );
+
+
+create table admin_prod_history (
+	admin_his_no varchar(20) primary key,
+	admin_his_prod_no int (5) not null,
+    admin_his_price int (7) not null,
+    admin_his_user_point int (7) default 0,
+    admin_his_save_point int (7) default 0,
+    admin_his_discount int (7) default 0,
+    admin_his_charge int (3) default 0,
+    admin_his_prod_name varchar (100) not null,
+    admin_his_seller_id int not null,
+    admin_his_comfirm boolean default false,
+    admin_his_created_at timestamp default now(),
+    admin_his_buyer_id int not null,
+    bank varchar (100) ,
+    start_time int (2) ,
+    end_time int (2) ,
+    cancel_yn varchar (1) default 'N',
+    cancel_at timestamp ,
+    cancel_amount int (7) ,
+    people_count int (3)
+);

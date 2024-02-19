@@ -14,11 +14,7 @@
 	<div class="main-content">
 		<div class="container-fluid">
 			<!-- OVERVIEW -->
-
-
 			<!-- END OVERVIEW -->
-
-
 			<div class="row">
 				<div class="col-md-4">
 					<!-- VISIT CHART -->
@@ -29,7 +25,8 @@
 							<div class="profile-main">
 								<img src="/assets/img/user-medium.png" class="img-circle"
 									alt="Avatar">
-								<h3 class="name">Lee</h3>
+									<!-- <h3 class="name">${biz.userName}</h3> -->
+								
 							</div>
 						</div>
 						<!-- END PROFILE HEADER -->
@@ -38,24 +35,26 @@
 							<div class="profile-info">
 								<h4 class="heading">Basic Info</h4>
 								<br/>
+								<!-- 
 								<ul class="list-unstyled list-justify">
-									<li>사업자 ID <span>24 Aug, 2016</span></li>
-									<li>주소 <span>(124) 823409234</span></li>
-									<li>상표명 <span>samuel@mydomain.com</span></li>
-									<li>폰 번호 <span>samuel@mydomain.com</span></li>
-									<li>이메일 <span>samuel@mydomain.com</span></li>
-									<li>가입 날짜 <span>samuel@mydomain.com</span></li>
+									<li>분류 <span>${biz.role}</span></li>
+									<li>등급 <span>${biz.userGrade}</span></li>
+									<li>주소 <span>${biz.userAddress}</span></li>
+									<li>상표명 <span>${biz.bizBrandName}</span></li>
+									<li>폰 번호 <span>${biz.userHp}</span></li>
+									<li>이메일 <span>${biz.userEmail}</span></li>
+									<li>가입 날짜 <span>${biz.joinAt}</span></li>
 									
 								</ul>
+								 -->
 							</div>
 
 							<div class="profile-info">
 								<h4 class="heading">이용 약관</h4>
-								<p>Interactively fashion excellent information after
-									distinctive outsourcing.</p>
+								<p>넌 못찌나간다</p>
 							</div>
 							<div class="text-center">
-								<a href="#" class="btn btn-primary">Edit Profile</a>
+								<a href="/biz/account/update-form" class="btn btn-primary">Edit Profile</a>
 							</div>
 						</div>
 						<!-- END PROFILE DETAIL -->

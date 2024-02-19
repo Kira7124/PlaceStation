@@ -7,12 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqProductDto;
 import com.project3.placestation.biz.model.dto.ReqUpdateProductDto;
 import com.project3.placestation.biz.model.dto.ResProductDto;
-import com.project3.placestation.repository.ProductRepository;
 import com.project3.placestation.repository.entity.Product;
+import com.project3.placestation.repository.interfaces.ProductRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,7 +44,7 @@ public class ProductService {
 	}
 
 	@Transactional
-	public void updateProduct(String filePath, ReqUpdateProductDto dto , int prodNo , int writerNo) {
+	public void updateProduct(String filePath, ReqUpdateProductDto dto, int prodNo, int writerNo) {
 		Product product = Product.builder().prodNo(prodNo).prodWriterNo(writerNo).prodTitle(dto.getProdTitle())
 				.prodStartTime(dto.getProdStartTime()).prodEndTime(dto.getProdEndTime()).prodPrice(dto.getProdPrice())
 				.prodSpaceInfo(dto.getProdSpaceInfo()).prodGoodsInfo(dto.getProdGoodsInfo())

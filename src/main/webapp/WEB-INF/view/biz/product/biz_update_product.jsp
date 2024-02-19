@@ -282,6 +282,11 @@ $textarea3.oninput = (event) => {
         let img = document.createElement('img')
         img.setAttribute('style', img_style)
         img.src = ee.target.result;
+        // 원래 이미지 제거
+        while (attZone.firstChild) {
+        	attZone.removeChild(attZone.firstChild);
+        }
+        // 현재 이미지 추가
         attZone.appendChild(makeDiv(img, file));
       }
       

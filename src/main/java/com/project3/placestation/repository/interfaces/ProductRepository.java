@@ -1,4 +1,4 @@
-package com.project3.placestation.repository;
+package com.project3.placestation.repository.interfaces;
 
 import java.util.List;
 

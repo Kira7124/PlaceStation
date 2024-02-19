@@ -40,10 +40,10 @@
 							<div class="row">
 								<div class="col-md-6">
 									<span class="panel-note"><i class="fa fa-clock-o"></i>
-										Last 24 hours</span>
+										이용자 결제 내역을 보시겠습니까?</span>
 								</div>
 								<div class="col-md-6 text-right">
-									<a href="#" class="btn btn-primary">View All Purchases</a>
+									<a href="/biz/reservation-management" class="btn btn-primary">결제 내역 보기</a>
 								</div>
 							</div>
 						</div>

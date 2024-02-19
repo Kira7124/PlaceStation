@@ -5,8 +5,21 @@
     <%@ include file ="/WEB-INF/view/admin/adminheader.jsp" %>
 	<!-- adminside.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
-    
+    <!-- jquery/ajax 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+	<script>
+        function openUpdateModal(userId) {
+            console.log('모달을 열 때 사용할 userId:', userId);
 
+            var userNumInput = document.getElementById('user_no_input');
+            if (userNumInput) {
+                userNumInput.value = userId;
+            }
+
+        }
+	</script>	
+		
 		
 		<!-- MAIN -->
 		<div class="main">
@@ -16,7 +29,7 @@
 
 			<div class="panel">
 				<div class="panel-heading">
-					<h3 class="panel-title">회원관리</h3>
+					<h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>회원관리</b></h3>
 					<div class="right">
 						<button type="button" class="btn-toggle-collapse">
 							<i class="lnr lnr-chevron-up"></i>
@@ -31,6 +44,9 @@
 					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
+								<th>사진</th>
+								<th>등급</th>
+								<th>번호</th>
 								<th>이름</th>
 								<th>아이디</th>
 								<th>주소</th>
@@ -41,22 +57,39 @@
 								<th>삭제</th>
 							</tr>
 						</thead>
-					<c:forEach var="userlist" items="${userlist}">
+					<c:forEach var="memberlist" items="${memberlist}">
 						<tbody>
 							<tr>
-								<td>${userlist.username}</td>
-								<td>${userlist.userid}</td>
-								<td>${userlist.useraddress}</td>
-								<td>${userlist.useremail}</td>
-								<td>${userlist.formatHp(userlist.userhp)}</td>
-								<td>${userlist.formatjoinAt()}</td>
 								<td>
-									<a href="#">
-										<span class="label label-success">수정</span>
-									</a>		
+								  <img src="${memberlist.setupUserImage()}" style="width:30px; height: 30px; border-radius:50%;">
+								</td>
+								  <td>	
+									<c:choose>
+										<c:when test="${memberlist.grade == '브론즈'}">
+											<img src="/assets/img/bronze.png" style="width:30px; height: 30px; border-radius:50%;">
+										</c:when>
+										<c:when test="${memberlist.grade =='실버'}">
+											<img src="/assets/img/silver.png" style="width:30px; height: 30px; border-radius:50%;">
+										</c:when>
+										<c:otherwise>
+											<img src="/assets/img/gold.png" style="width:30px; height: 30px; border-radius:50%;">
+										</c:otherwise>
+									</c:choose>
+								  </td>
+								<td>${memberlist.userno}</td>  
+								<td>${memberlist.username}</td>
+								<td>${memberlist.userid}</td>
+								<td>${memberlist.useraddress}</td>
+								<td>${memberlist.useremail}</td>
+								<td>${memberlist.formatHp(memberlist.userhp)}</td>
+								<td>${memberlist.formatjoinAt()}</td>
+								<td>
+									<a href="/admin/admin-update" data-toggle="modal" data-target="#updateModal" onclick="openUpdateModal('${memberlist.userno}')">
+        								<span class="label label-success">수정</span>
+    								</a>     	
 								</td>
 								<td>
-									<a href="#">
+									<a href="/admin/admin-delete" data-toggle="modal" data-target="#deleteModal">
 										<span class="label label-danger">삭제</span>
 									</a>	
 								</td>														
@@ -71,7 +104,7 @@
 						<ul class="pagination">
 							<c:if test="${pageVO.prev }">
 								<li class="page-item">
-								  <a class="page-link" href="/admin/admin-user?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  <a class="page-link" href="/admin/admin-member?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 								  </a>
 								</li>
 							</c:if>
@@ -82,7 +115,7 @@
 								end="${pageVO.endPage }" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
 								<li class="page-item ${isActive ? 'active' : ''}"><a
-									class="page-link" href="/admin/admin-user?page=${i}"
+									class="page-link" href="/admin/admin-member?page=${i}"
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
@@ -91,7 +124,7 @@
 				
 							<c:if test="${pageVO.next }">
 								<li class="page-item"><a class="page-link"
-									href="/admin/admin-user?page=${pageVO.endPage + 1 }"
+									href="/admin/admin-member?page=${pageVO.endPage + 1 }"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
 							</c:if>
@@ -107,8 +140,46 @@
 	</div>
 	<!-- END WRAPPER -->
 	
+		
 	
+	<!-- Modal -->
+	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
 	
+	<!-- Modal -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+
+
+	<!-- Modal 스크립트 -->
+	<script>
+	    $(document).ready(function(){
+	        $(".open-modal").click(function(){
+	            $("#updateModal").modal('show');
+	        });
+	    });
+	</script>
+	
+	<script>
+	    $(document).ready(function(){
+	        $(".open-modal").click(function(){
+	            $("#deleteModal").modal('show');
+	        });
+	    });
+	</script>
+
+
+
+
+
+
+
 	<!-- Javascript -->
 	<script src="/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -234,6 +305,15 @@
 
 	});
 	</script>
+	
+	
+	
+
+	
+
+	
+	
+	
 </body>
 
 </html>

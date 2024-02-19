@@ -32,27 +32,11 @@ public class BizProductController {
 
 	/**
 	 * 상품 추가하기
-	 * 
-	 * @param prodTitle
-	 * @param files
-	 * @param prodStartTime
-	 * @param prodEndTime
-	 * @param prodMaximumPeople
-	 * @param prodPrice
-	 * @param prodSpaceInfo
-	 * @param prodGoodsInfo
-	 * @param prodCautionInfo
-	 * @param prodMajorCategoryId
-	 * @param prodSubcategoryId
-	 * @param prodAddress
-	 * @param prodDetailedAddress
-	 * @param prodFullAddress
-	 * @param prodLocationX
-	 * @param prodLocationY
+	 * @param dto
 	 * @return
 	 */
 	@PostMapping("/add-product")
-	public String addProduct(@ModelAttribute ReqProductDto dto) {
+	public String addProduct(ReqProductDto dto) {
 		
 		// 1. 유효성 검사
 		if(dto.getProdTitle() == null && dto.getProdTitle().isEmpty()) {
@@ -120,6 +104,12 @@ public class BizProductController {
 		return "redirect:/biz/product-management";
 	}
 
+	/**
+	 * 업데이트
+	 * @param dto
+	 * @param prodNo
+	 * @return
+	 */
 	@PutMapping("/update-product")
 	public String updateProduct(ReqUpdateProductDto dto , @RequestParam(value = "prodNo") Integer prodNo) {
 		log.info(dto.toString());
@@ -191,6 +181,12 @@ public class BizProductController {
 		return "redirect:/biz/product-management";
 	}
 	
+	/**
+	 * 상품 삭제하기 (delete_yn = 'Y')
+	 * @param prodNo
+	 * @param prodDeleteReason
+	 * @return
+	 */
 	@DeleteMapping("/delete-product/{prodNo}")
 	public String deleteProduct(@PathVariable(value = "prodNo") Integer prodNo, @RequestParam(value = "prodDeleteReason") String prodDeleteReason) {
 

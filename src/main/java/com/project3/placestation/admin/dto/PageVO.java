@@ -1,4 +1,4 @@
-package com.project3.placestation.dto;
+package com.project3.placestation.admin.dto;
 
 public class PageVO {
 	

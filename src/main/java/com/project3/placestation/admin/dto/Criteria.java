@@ -1,4 +1,4 @@
-package com.project3.placestation.dto;
+package com.project3.placestation.admin.dto;
 
 public class Criteria {
 	private int page;
@@ -6,7 +6,7 @@ public class Criteria {
 	
 	public Criteria() {
 		this.page = 1;
-		this.pageSize = 5;
+		this.pageSize = 10;
 	}
 		
 	// alt shift s + r

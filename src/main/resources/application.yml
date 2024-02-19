@@ -34,8 +34,7 @@ spring:
         - classpath:db/table.sql
         - classpath:db/data.sql
 
-        
-               
+
 #  jpa:
 #    hibernate:
 #      ddl-auto: create
