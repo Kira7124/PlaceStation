@@ -32,9 +32,9 @@ public class ProductController {
 	    log.debug("상품 상세 페이지 - 상품번호: {}", prodNo);
 	    
 	    // 상품 번호로 조회
-	    List<ProductEntity> product = productRepository.findByProdNo(prodNo);
+//	    ProductEntity product = productRepository.findByProdNo(prodNo);
 	    
-	    model.addAttribute("product", product);
+//	    model.addAttribute("product", product);
 	    
 	    return "product/productDetail";
 	}

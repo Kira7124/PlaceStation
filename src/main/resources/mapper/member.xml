@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+
+	<mapper namespace="com.project3.placestation.repository.interfaces.MemberRepository">
+		
+		
+		<!-- 일반회원명단출력 -->
+		<select id="listAll" resultType="com.project3.placestation.repository.entity.Member">
+			select * from member
+			limit #{startPage},#{pageSize}
+		</select>
+		
+		
+		<!-- 페이징처리 갯수세팅 -->
+		<select id = "countMember" resultType="int">
+			<![CDATA[ select count(*) from member where user_no > 0 ]]>
+		</select>
+		
+		
+		
+		<!-- 회원정보 수정(관리자) -->
+		<update id = "AdminUpdateMember">
+			update member set user_name=#{username},user_address=#{useraddress},user_hp=#{userhp},
+			user_email=#{useremail},grade=#{grade},user_id=#{userid}
+			where user_no = #{userno}
+		</update>
+		
+		
+		
+		<!-- 판매자 join 유저 -->
+		<select id = "SelectJoinBiz" resultType="com.project3.placestation.repository.entity.BizJoin">
+			select biz_no, biz_id, biz_brand_name, user_address, user_name, user_point, join_at,
+				   user_grade, user_hp, user_email, biz_tel
+			 from member as m join biz as b on m.user_no = b.#{biz_id}
+		</select>
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</mapper>

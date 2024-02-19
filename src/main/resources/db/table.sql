@@ -1,29 +1,3 @@
-CREATE TABLE product (
-    prod_writer_no INT(5),
-    prod_no INT(5) PRIMARY KEY,
-    prod_title VARCHAR(50),
-    prod_writer VARCHAR(20),
-    prod_rdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    prod_start_time INT,
-    prod_end_time INT,
-    prod_space_info VARCHAR(1000),
-    prod_goods_info VARCHAR(1000),
-    prod_caution_info VARCHAR(1000),
-    prod_maximum_people INT(2),
-    prod_address VARCHAR(50),
-    prod_detailed_address VARCHAR(50),
-    prod_price INT,
-    file_path VARCHAR(255),
-    prod_major_category_id INT,
-    prod_subcategory_id INT,
-    prod_full_address VARCHAR(255),
-    prod_location_x DOUBLE,
-    prod_location_y DOUBLE,
-    prod_update_at TIMESTAMP,
-    prod_delete_at TIMESTAMP,
-    prod_delete_yn VARCHAR(1),
-    prod_delete_reason VARCHAR(1000)
-);
 
 CREATE TABLE prod_Review (
     prod_rev_no INT AUTO_INCREMENT PRIMARY KEY,
@@ -40,17 +14,6 @@ CREATE TABLE prod_Review (
     parent_id INT NOT NULL
 );
 
-CREATE TABLE prod_major_category (
-    category_id INT PRIMARY KEY NOT NULL,
-    category_name VARCHAR(40) NOT NULL
-);
-
-CREATE TABLE prod_subcategory (
-	category_id INT PRIMARY KEY NOT NULL,
-    main_category_id INT NOT NULL,
-    subcategory_name VARCHAR(40) NOT NULL
-);
-
 create table product_views (
 	prod_views INT NOT NULL,
     prod_no INT PRIMARY KEY NOT NULL
@@ -61,3 +24,93 @@ create table wish_list (
     prod_no INT NOT NULL,
     user_no INT NOT NULL
 );
+
+create table product (
+	prod_no int (5) primary key auto_increment,
+    prod_writer_no int (5) ,
+    prod_title varchar (100) ,
+    prod_start_time int (2) ,
+    prod_end_time int (2),
+    prod_space_info varchar (1000),
+    prod_goods_info varchar (1000),
+    prod_caution_info varchar (1000),
+    prod_maximum_people int (2),
+    prod_address varchar ( 100 ),
+    prod_detailed_address varchar ( 100 ),
+    prod_price int (7),
+    file_path varchar (1000),
+    prod_major_category_id int (2),
+    prod_subcategory_id int (2),
+    prod_full_address varchar (200),
+    prod_location_x double,
+    prod_location_y double,
+	prod_rdate timestamp default now(),
+	prod_update_at timestamp ,
+    prod_delete_at timestamp ,
+	prod_delete_reason varchar (1000),
+    prod_delete_yn varchar (1) default 'N'
+);
+
+create table filedb (
+	uuid varchar (100) primary key,
+    original_file_name varchar(400) ,
+    file_data MEDIUMBLOB -- 16MB
+);
+
+create table member (
+  user_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id VARCHAR(100) NOT NULL,
+  user_password VARCHAR(100) NOT NULL,
+  user_address VARCHAR(100) NOT NULL,
+  user_name VARCHAR(30) NOT NULL,
+  user_hp VARCHAR(20) NOT NULL,
+  user_email VARCHAR(30) NOT NULL,
+  user_point INT NULL DEFAULT 10,
+  file_path VARCHAR(100) NULL DEFAULT 'default.jpg',
+  join_at DATETIME NULL DEFAULT now(),
+  user_role VARCHAR(20) NOT NULL,
+  grade VARCHAR(20) NULL DEFAULT '브론즈'
+  );
+  
+create table biz (
+	biz_no int primary key auto_increment,
+    biz_id int ,
+    biz_brand_name varchar(30),
+    biz_balance int,
+    file_path varchar (1000)
+);
+
+
+create table admin_prod_history (
+	admin_his_no varchar(20) primary key,
+	admin_his_prod_no int (5) not null,
+    admin_his_price int (7) not null,
+    admin_his_use_point int (7) default 0,
+    admin_his_save_point int (7) default 0,
+    admin_his_discount int (7) default 0,
+    admin_his_charge int (3) default 0,
+    admin_his_prod_name varchar (100) not null,
+    admin_his_seller_id int not null,
+    admin_his_confirm boolean default false,
+    admin_his_created_at timestamp default now(),
+    admin_his_buyer_id int not null,
+    bank varchar (100) ,
+    start_time int (2) ,
+    end_time int (2) ,
+    cancel_yn varchar (1) default 'N',
+    cancel_at timestamp ,
+    cancel_amount int (7) ,
+    people_count int (3)
+);
+
+create table prod_major_category (
+	category_id int primary key auto_increment ,
+    category_name varchar(40)
+);
+
+create table prod_subcategory (
+	category_id int auto_increment primary key ,
+    main_category_id int ,
+    subcategory_name varchar (40)
+);
+
