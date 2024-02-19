@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project3.placestation.biz.model.dto.ResProductDto;
-import com.project3.placestation.model.entity.Product;
+import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -58,7 +58,7 @@ public class BizController {
 	// http://localhost/biz/account-management
 	@GetMapping("/account-management")
 	public String accountManagementForm() {
-		return "biz/biz_account_management";
+		return "biz/account/biz_account_management";
 	}
 	
 	// http://localhost/biz/add-product
@@ -67,6 +67,7 @@ public class BizController {
 		return "biz/product/biz_add_product";
 	}
 	
+	// http://localhost/biz/update-product-form/{prodNo}
 	@GetMapping("/update-product-form/{prodNo}")
 	public String updateProductForm(@PathVariable(value = "prodNo") int prodNo , Model model) {
 		ResProductDto dto = bizProductService.findById(prodNo);

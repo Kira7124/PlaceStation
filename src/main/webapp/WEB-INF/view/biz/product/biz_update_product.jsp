@@ -45,7 +45,7 @@
 							</div>
 						</div>
 						<!-- 메인 부분 시작 -->
-						<form action="/biz/product/update-product/${product.prodNo}" method="post"
+						<form action="/biz/product/update-product?prodNo=${product.prodNo}" method="post"
 							enctype="multipart/form-data">
 							<input type="hidden" name="_method" value="put"/>
 							<div class="panel">
@@ -153,15 +153,14 @@
 										class="form-control" name="prodFullAddress" readonly
 										value="${product.prodFullAddress}" /> <br />
 
-									<!-- 위도 -->
-									<input type="text" id="lat" placeholder="위도"
-										class="form-control" name="prodLocationY" readonly
-										value="${product.prodLocationY}" /> <br />
-
 									<!-- 경도 -->
-									<input type="text" id="lng" placeholder="경도"
+									<input type="number" id="lng" placeholder="경도"
 										class="form-control" name="prodLocationX" readonly
 										value="${product.prodLocationX}" /> <br />
+									<!-- 위도 -->
+									<input type="number" id="lat" placeholder="위도"
+										class="form-control" name="prodLocationY" readonly
+										value="${product.prodLocationY}" /> <br />
 
 									<h4 style="margin-top: 20px;">지도 상세 위치를 지정해 주세요</h4>
 									<div id="map" style="height: 300px; margin-top: 10px;"></div>

@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.project3.placestation.model.entity.Product;
+import com.project3.placestation.repository.entity.Product;
 
 @Mapper
 public interface ProductRepository {

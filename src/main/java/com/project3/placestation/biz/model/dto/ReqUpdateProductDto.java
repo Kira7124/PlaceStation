@@ -4,17 +4,18 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Builder
 public class ReqUpdateProductDto {
-	private Integer prodNo;	// 게시물 번호
-	private Integer prodWriterNo; // 판매자 id 값
 	private String prodTitle; // 게시물 제목
 	private List<MultipartFile> files; // 파일 url
 	private String changeImage;
@@ -30,6 +31,6 @@ public class ReqUpdateProductDto {
 	private String prodAddress; // 상품 주소
 	private String prodDetailedAddress; // 상세 주소
 	private String prodFullAddress; // 위치 풀 네임
-	private Double prodLocationX; // 위도 값
 	private Double prodLocationY; // 경도 값
+	private Double prodLocationX; // 위도 값
 }

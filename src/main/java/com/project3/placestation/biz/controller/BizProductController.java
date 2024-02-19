@@ -120,9 +120,9 @@ public class BizProductController {
 		return "redirect:/biz/product-management";
 	}
 
-	@PutMapping("/update-product/{prodNo}")
-	public String updateProduct(@ModelAttribute ReqUpdateProductDto dto) {
-		
+	@PutMapping("/update-product")
+	public String updateProduct(ReqUpdateProductDto dto , @RequestParam(value = "prodNo") Integer prodNo) {
+		log.info(dto.toString());
 		// 1. 유효성 검사
 		if(dto.getProdTitle() == null && dto.getProdTitle().isEmpty()) {
 			throw new CustomRestfulException("제목을 적어주세요" , HttpStatus.BAD_REQUEST);
@@ -173,17 +173,19 @@ public class BizProductController {
 		if(dto.getProdLocationX() == null && dto.getProdLocationY() == null) {
 			throw new CustomRestfulException("지도 상세 위치를 입력해 주세요.", HttpStatus.BAD_REQUEST);
 		}
-		log.info(dto.toString());
 		
-		// 인증 검사를 실시
-
+		
+		// 인증 검사가 끝났다면 유저의 아이디값을 가져와야 합니다.
+		int writerNo = 1;
+		
+		
 		String filePath = "";
 		if (dto.getChangeImage().equals("Y")) {
 			log.info("이미지를 바꿨습니다.");
 			filePath = filedbService.saveFiles(dto.getFiles());
 		}
 		
-		bizProductService.updateProduct(filePath, dto);
+		bizProductService.updateProduct(filePath, dto , prodNo , writerNo);
 		
 
 		return "redirect:/biz/product-management";

@@ -76,13 +76,13 @@
 	</update>
 
 	<select id="findAll"
-		resultType="com.project3.placestation.model.entity.Product">
+		resultType="com.project3.placestation.repository.entity.Product">
 		select * from product
 		where prod_delete_yn = 'N';
 	</select>
 
 	<select id="findById"
-		resultType="com.project3.placestation.model.entity.Product">
+		resultType="com.project3.placestation.repository.entity.Product">
 		select * from product
 		where prod_no = #{prod_no}
 		and
