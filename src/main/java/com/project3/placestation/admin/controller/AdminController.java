@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project3.placestation.admin.dto.AdminBizDTO;
 import com.project3.placestation.admin.dto.AdminMemberDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.admin.dto.PageVO;
+import com.project3.placestation.repository.entity.Biz;
 import com.project3.placestation.repository.entity.Member;
+import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.MemberService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +30,8 @@ public class AdminController {
 	
 	@Autowired
 	private MemberService memberService;
-	
+	@Autowired
+	private BizService bizService;
 	@Autowired
 	private HttpSession httpSession;
 	
@@ -62,12 +66,24 @@ public class AdminController {
 	
 	
 	
-	//http://localhost:80/admin/admin-seller
+	//http://localhost:80/admin/admin-biz
 	//관리자 사업자관리페이지 출력
-	@GetMapping("/admin-seller")
-	public String adminsellerGET() {
-		log.debug("admin-seller관리 페이지 출력!");
-		return "admin/adminseller";
+	@GetMapping("/admin-biz")
+	public String adminbizGET(AdminBizDTO dto,Model model,Criteria cri) throws Exception {
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(bizService.countMember());
+		
+		model.addAttribute("pageVO", pageVO);
+		
+		List<Biz> result = bizService.BizAll(cri);
+		
+		model.addAttribute("bizlist", result);
+		
+		
+		log.debug("admin-biz관리 페이지 출력!");
+		return "admin/adminbiz";
 	}
 	
 	
@@ -102,6 +118,11 @@ public class AdminController {
 		log.debug("admin 1:1문의관리페이지출력!");
 		return "admin/adminqna";
 	}
+	
+	
+	
+	
+	
 	
 	
 	

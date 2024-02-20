@@ -33,7 +33,7 @@
 								        <option value="grade">등급</option>
 								        <option  value="join_at">가입일</option>
 				   				</select>
-					            <input type="text" name="searchKeyword" class="form-control" placeholder="이름키워드입력">
+					            <input type="text" name="searchKeyword" class="form-control" placeholder="키워드입력">
 					            <span class="input-group-btn">
 					                <button type="submit" class="btn btn-primary" >검색</button>
 					            </span>

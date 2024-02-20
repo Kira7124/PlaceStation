@@ -14,106 +14,91 @@
 			<div class="main-content">
 				<div class="container-fluid">
 
-					<div class="panel">
+			<div class="panel">
+					
 				<div class="panel-heading">
-					<h3 class="panel-title">사업자관리</h3>
-					<div class="right">
-						<button type="button" class="btn-toggle-collapse">
-							<i class="lnr lnr-chevron-up"></i>
-						</button>
-						<button type="button" class="btn-remove">
-							<i class="lnr lnr-cross"></i>
-						</button>
-					</div>
+					<h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>사업자관리</b></h3>
 				</div>
+				
+				
 				<div class="panel-body no-padding">
 					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
-								<th>이름</th>
+								<th>번호</th>
 								<th>아이디</th>
-								<th>주소</th>
+								<th>브랜드명</th>
+								<th>개인번호</th>
+								<th>업장번호</th>
 								<th>이메일</th>
-								<th>전화번호</th>
 								<th>가입일</th>
-								<th>수정</th>
-								<th>삭제</th>
+								<th>수정/삭제</th>
 							</tr>
 						</thead>
+					  <c:forEach var="bizlist" items="${bizlist}">
 						<tbody>
 							<tr>
-								<td><a href="#">763648</a></td>
-								<td>Steve</td>
-								<td>$122</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763649</a></td>
-								<td>Amber</td>
-								<td>$62</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>								
-							</tr>
-							<tr>
-								<td><a href="#">763650</a></td>
-								<td>Michael</td>
-								<td>$34</td>
-								<td>Oct 18, 2016</td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763651</a></td>
-								<td>Roger</td>
-								<td>$186</td>
-								<td>Oct 17, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763652</a></td>
-								<td>Smith</td>
-								<td>$362</td>
-								<td>Oct 16, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
+								<td>${bizlist.bizno}</td>
+								<td>${bizlist.bizid}</td>
+								<td>${bizlist.bizbrandname}</td>
+								<td>${bizlist.formatHp(bizlist.bizhp)}</td>
+								<td>${bizlist.formatTel(bizlist.biztel)}</td>
+								<td>${bizlist.bizemail}</td>
+								<td>${bizlist.formatjoinAt()}</td>
+								<td>
+									<a href="#">
+										<span class="label label-success">수정</span>
+									</a>
+									<a href="#">
+									   <span class="label label-danger">삭제</span>
+									</a>
+								</td>								
 							</tr>
 						</tbody>
+					  </c:forEach>	
 					</table>
-				</div>
+					
+					
+					<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
+						<ul class="pagination">
+							<c:if test="${pageVO.prev }">
+								<li class="page-item">
+								  <a class="page-link" href="/admin/admin-biz?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  </a>
+								</li>
+							</c:if>
+
+
+					
+							<c:forEach var="i" begin="${pageVO.startPage }"
+								end="${pageVO.endPage }" step="1">
+								<c:set var="isActive" value="${pageVO.cri.page == i}" />
+								<li class="page-item ${isActive ? 'active' : ''}"><a
+									class="page-link" href="/admin/admin-biz?page=${i}"
+									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
+										${i} </a></li>
+							</c:forEach>
+
+
+				
+							<c:if test="${pageVO.next }">
+								<li class="page-item"><a class="page-link"
+									href="/admin/admin-biz?page=${pageVO.endPage + 1 }"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</c:if>
+
+						</ul>
+					</nav>
+	
+	
+			   </div>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		</div>
+		 </div>
 			<!-- END MAIN CONTENT -->
-		</div>
+	 </div>
 		<!-- END MAIN -->	
-	</div>
+  </div>
 	<!-- END WRAPPER -->
 	
 	
