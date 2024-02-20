@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-create table `member` (
-=======
 create table product (
 	prod_no int (5) primary key auto_increment,
     prod_writer_no int (5) ,
@@ -34,7 +31,6 @@ create table filedb (
 );
 
 create table member (
->>>>>>> 02504bee1a1e4774168cb695ec748567731e1a80
   user_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id VARCHAR(100) NOT NULL,
   user_password VARCHAR(100) NOT NULL,
@@ -49,32 +45,20 @@ create table member (
   user_role VARCHAR(20) NOT NULL,
   grade VARCHAR(20) NULL DEFAULT '브론즈'
   );
-  
-<<<<<<< HEAD
-  
-  
+
+
 create table biz(
-	biz_no int primary key auto_increment,
-    biz_id int NOT NULL,
-    biz_brand_name varchar(30) not null,
-    file_path varchar(255),
-    FOREIGN KEY(biz_id)
-    REFERENCES member(user_id) ON UPDATE CASCADE
+  biz_no int primary key auto_increment,
+  biz_id int NOT NULL ,
+  biz_brand_name varchar(30) not null,
+  file_path varchar(1000),
+  biz_tel varchar(20),
+  FOREIGN KEY(biz_id)
+  REFERENCES member(user_no) ON UPDATE CASCADE
 );
   
   
-  
-  
-  
-=======
-create table biz (
-	biz_no int primary key auto_increment,
-    biz_id int ,
-    biz_brand_name varchar(30),
-    biz_balance int,
-    file_path varchar (1000)
-);
->>>>>>> 02504bee1a1e4774168cb695ec748567731e1a80
+
 
 
 create table admin_prod_history (

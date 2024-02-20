@@ -1,6 +1,9 @@
 package com.project3.placestation.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +13,29 @@ import com.project3.placestation.member.dto.bizJoinDTO;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.service.MemberService;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 @RequestMapping("/member")
 @Controller
 public class memberController {
 
 	
 	@GetMapping("/login")
-	public String login() {
+	public String login(Model model) {
+
+		String id = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		Iterator<? extends  GrantedAuthority> iter = authorities.iterator();
+		GrantedAuthority auth = iter.next();
+		String role = auth.getAuthority();
+
+		model.addAttribute("id",id);
+		model.addAttribute("role",role);
+		
 		
 		return "member/login";
 	}
@@ -27,6 +46,55 @@ public class memberController {
 	public String myPageHistory() {
 		
 		return "member/mypage_history";
+	}
+	
+	
+	@GetMapping("/main")
+	public String myPageMain() {
+		
+		return "member/mypage_main";
+	}
+	
+	
+	@GetMapping("/qna")
+	public String myPageQna() {
+		
+		return "member/mypage_qna";
+	}
+	
+	
+	@GetMapping("/sterms")
+	public String sellerTerms() {
+		
+		return "member/terms_seller";
+	}
+	
+	
+	@GetMapping("/uterms")
+	public String userTerms() {
+		
+		return "member/terms_user";
+	}
+	
+	
+	@GetMapping("/sregister")
+	public String sellerRegister() {
+		
+		return "member/seller_register_form";
+	}
+	
+
+	@GetMapping("/uregister")
+	public String userRegister() {
+		
+		return "member/user_register_form";
+	}
+	
+	
+	@GetMapping("/wishlist")
+	public String myPageWishlist() {
+		
+		return "member/mypage_wishlist";
 	}
 	
 	
