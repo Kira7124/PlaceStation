@@ -34,7 +34,7 @@
 				  </div>
 				  <div class="row" style ="margin-top: 10px;">
 				    <div class="col-md-3">
-				        <label for="name" class="form-label">이름</label>
+				        <label for="name" class="form-label">브랜드명</label>
 				    </div>
 				    <div class="col-md-5">
 				        <div class="input-box">
