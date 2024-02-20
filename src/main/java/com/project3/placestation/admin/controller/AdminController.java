@@ -156,6 +156,7 @@ public class AdminController {
 	@PostMapping("/admin-bizupdate")
 	public String adminbizupdatePOST(AdminBizDTO dto) {
 		log.debug("adminbizupdatePOST 실행");
+		bizService.AdminUpdateBiz(dto);
 		return "redirect:/admin/admin-biz";
 	}
 	
@@ -197,7 +198,14 @@ public class AdminController {
 	
 	
 	
-	
+	//admin 사업자deletePOST 실행
+	//Modal~..
+	@PostMapping("/admin-bizdelete")
+	public String adminbizdeletePOST(AdminBizDTO dto) {
+		bizService.AdminDeleteBiz(dto);
+		log.debug("admindeleteBizPOST처리완");
+		return"redirect:/admin/admin-biz";
+	}
 	
 	
 	

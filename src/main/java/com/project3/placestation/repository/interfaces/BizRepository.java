@@ -22,9 +22,12 @@ public interface BizRepository {
 	//사업자명단숫자세기(검색,페이징처리)
 	public int countSearchBizlist(Criteria cri) throws Exception;
 	
+	//사업자정보수정(관리자)
+	public Integer AdminUpdateBiz(Biz biz);
+		
+	//사업자정보삭제(관리자)
+	public Integer AdminDeleteBiz(Biz biz);
 	
-	
-	
-	
+
 	
 }

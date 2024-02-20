@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.project3.placestation.admin.dto.AdminBizDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.repository.entity.Biz;
 import com.project3.placestation.repository.interfaces.BizRepository;
@@ -41,6 +43,38 @@ public class BizService {
 	public int countSearchBizlist(Criteria cri) throws Exception {
 		return bizRepository.countSearchBizlist(cri);
 	}
+	
+	
+	//관리자사업자수정
+	@Transactional
+	public void AdminUpdateBiz(AdminBizDTO dto) {
+		Biz biz = Biz.builder()
+				.bizno(dto.getBizno())
+				.bizid(dto.getBizid())
+				.bizbrandname(dto.getBizbrandname())
+				.bizhp(dto.getBizhp())
+				.biztel(dto.getBiztel())
+				.bizemail(dto.getBizemail())
+				.build();
+		
+		
+		Integer result = bizRepository.AdminUpdateBiz(biz);
+		
+	}
+	
+	
+	
+	//관리자사업자삭제
+	@Transactional
+	public void AdminDeleteBiz(AdminBizDTO dto) {
+		Biz biz = Biz.builder()
+				.bizno(dto.getBizno())
+				.bizid(dto.getBizid())
+				.build();
+		
+		Integer result = bizRepository.AdminDeleteBiz(biz);
+	}
+	
 	
 	
 	

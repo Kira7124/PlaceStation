@@ -4,7 +4,7 @@
 
 
 
-	<form action="/admin/admin-delete" method="post">
+	<form action="/admin/admin-bizdelete" method="post">
 		<div class="card mb-3" style="max-width: 700px;">
 		  <div class="row g-0">
 		    <div class="col-md-4">
@@ -12,7 +12,7 @@
 		    </div>
 		    <div class="col-md-8">
 		      <div class="card-body">
-		        <h3 class="card-title">회원정보삭제처리</h3>
+		        <h3 class="card-title">사업자정보삭제처리</h3>
 		        
 		 		  <div class="row" style ="margin-top: 30px;">
 		        	 <div class="col-md-3">
@@ -20,17 +20,17 @@
 				     </div>
 				    <div class="col-md-5">
 				        <div class="input-box">
-				            <input type="text" class="form-control" name ="userno" id="user_no_input" >
+				            <input type="text" class="form-control" name ="bizno" id="user_no_input" >
 				        </div>
 				    </div>
 				  </div>
 				  <div class="row" style ="margin-top: 10px;">
 				    <div class="col-md-3">
-				        <label for="name" class="form-label">비밀번호</label>
+				        <label for="name" class="form-label">아이디</label>
 				    </div>
 				    <div class="col-md-5">
 				        <div class="input-box">
-				            <input type="text" class="form-control" id="userpassword" name="userpassword" placeholder="비밀번호">
+				            <input type="text" class="form-control" id="bizid" name="bizid" placeholder="아이디">
 				        </div>
 				    </div>
 				</div>
