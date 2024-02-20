@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project3.placestation.biz.model.dto.ResProductDto;
-import com.project3.placestation.repository.entity.ProdReviewEntity;
-import com.project3.placestation.repository.entity.ProductEntity;
+import com.project3.placestation.repository.entity.ProdReview;
+import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
 import com.project3.placestation.service.ProductService;
 
@@ -49,15 +49,15 @@ public class ProductController {
 	public String mainindex(Model model) {
 		log.debug("메인 페이지!");
 		// 상품 전체 리스트 조회
-		List<ProductEntity> products = productRepository.findAll();
+		List<Product> products = productRepository.findAll();
 		// 전체 상품 조회 4개
-		List<ProductEntity> topProducts = products.stream().limit(4).collect(Collectors.toList());
+		List<Product> topProducts = products.stream().limit(4).collect(Collectors.toList());
 		// 리뷰 많은 상품
-		List<ProdReviewEntity> productsRev = productRepository.findAllByRev();
+		List<ProdReview> productsRev = productRepository.findAllByRev();
 		// 평점 높은 상품
-		List<ProductEntity> productsStar = productRepository.findAllByStar();
+		List<Product> productsStar = productRepository.findAllByStar();
 		// 최신 상품
-		List<ProductEntity> productsStart = productRepository.findAllByStart();
+		List<Product> productsStart = productRepository.findAllByStart();
 
 		model.addAttribute("products", topProducts);
 		model.addAttribute("productsRev", productsRev);

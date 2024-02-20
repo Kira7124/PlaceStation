@@ -109,7 +109,7 @@ public class ProductService {
 	}
 	
 	
-	// 상품 상세 조히
+	// 상품 상세 조회
 	public ResProductDto findById(int ProdNo) {
 
 		Product product = productRepository.findById(ProdNo);

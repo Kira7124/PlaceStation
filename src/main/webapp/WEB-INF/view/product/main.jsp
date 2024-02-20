@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
@@ -465,7 +466,7 @@
 							<div class="col-sm-6 col-md-3 col-lg-3">
 								<div class="shop-item">
 									<div class="shop-item-image">
-										<img src="${product.filePath}" alt="${product.prodTitle}" />
+										<img src="${fn:split(product.filePath, ',')[0]}" alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
 											<a class="btn btn-round btn-b"
 												href="productDetail?prod_no=${product.prodNo}"><span
@@ -504,7 +505,7 @@
 							<div class="col-sm-6 col-md-3 col-lg-3">
 								<div class="shop-item">
 									<div class="shop-item-image">
-										<img src="${product.filePath}" alt="${product.prodTitle}" />
+										<img src="${fn:split(product.filePath, ',')[0]}" alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
 											<a class="btn btn-round btn-b"
 												href="productDetail?prod_no=${product.prodNo}"><span
@@ -543,7 +544,7 @@
 							<div class="col-sm-6 col-md-3 col-lg-3">
 								<div class="shop-item">
 									<div class="shop-item-image">
-										<img src="${product.filePath}" alt="${product.prodTitle}" />
+										<img src="${fn:split(product.filePath, ',')[0]}" alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
 											<a class="btn btn-round btn-b"
 												href="productDetail?prod_no=${product.prodNo}"><span
@@ -582,7 +583,8 @@
 							<div class="col-sm-6 col-md-3 col-lg-3">
 								<div class="shop-item">
 									<div class="shop-item-image">
-										<img src="${product.filePath}" alt="${product.prodTitle}" />
+										<img src="${fn:split(product.filePath, ',')[0]}"
+											alt="${product.prodTitle}" />
 										<div class="shop-item-detail">
 											<a class="btn btn-round btn-b"
 												href="productDetail?prod_no=${product.prodNo}"><span
