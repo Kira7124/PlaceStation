@@ -32,11 +32,27 @@
 		
 		
 		<!-- 판매자 join 유저 -->
-		<select id = "SelectJoinBiz" resultType="com.project3.placestation.repository.entity.BizJoin">
-			select biz_no, biz_id, biz_brand_name, user_address, user_name, user_point, join_at,
-				   user_grade, user_hp, user_email, biz_tel
-			 from member as m join biz as b on m.user_no = b.#{biz_id}
-		</select>
+    <select id="SelectJoinBiz"
+        resultType="com.project3.placestation.repository.entity.BizJoin">
+        select biz_no as bizNo,
+        b.biz_id as bizId,
+        b.biz_brand_name as bizBrandName,
+        m.user_password as userPassword,
+        m.user_address as userAddress,
+        m.user_name as userName,
+        m.user_point as userPoint,
+        m.join_at as joinAt,
+        m.user_role as role,
+        m.grade as userGrade,
+        m.user_hp as userHp,
+        m.user_email as userEmail ,
+        m.file_path as filePath,
+        b.biz_tel as bizTel
+        from member as m
+        join biz as b
+        on m.user_no = b.biz_id
+        where m.user_no = #{bizId};
+    </select>
 		
 		
 		
