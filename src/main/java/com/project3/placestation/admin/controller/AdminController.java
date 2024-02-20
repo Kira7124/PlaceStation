@@ -39,7 +39,14 @@ public class AdminController {
 	//http://localhost:80/admin/admin-main
 	// 관리자 기본메인페이지 출력
 	@GetMapping("/admin-main")
-	public String adminpageGET() {
+	public String adminpageGET(HttpSession session) throws Exception {
+		
+		
+		Integer totalMember = memberService.countMember();
+		Integer totalBiz = bizService.countMember();
+		session.setAttribute("totalMember", totalMember);
+		session.setAttribute("totalBiz", totalBiz);
+		
 		log.debug("admin 메인 페이지 출력!");
 		return "admin/adminmain";
 	}
