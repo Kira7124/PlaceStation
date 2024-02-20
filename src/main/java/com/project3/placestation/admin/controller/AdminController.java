@@ -131,6 +131,16 @@ public class AdminController {
 	
 	
 	
+	//admin 사업자update페이지출력(모달)
+	@GetMapping("/admin-bizupdate")
+	public String adminbizupdateGET() {
+		log.debug("adminbizupdate페이지출력");
+		return "admin/adminbizupdate";
+	}
+	
+	
+	
+	
 	//Modal 에서 ~
 	//관리자회원정보수정POST (회원번호를 받아서 조회한다음에, 해당하는 회원의 정보를 전달받아서 수정!)
 	@PostMapping("/admin-update")
@@ -140,6 +150,15 @@ public class AdminController {
 		
 		return "redirect:/admin/admin-member";
 	}
+	
+	
+	//admin 사업자update정보수정POST
+	@PostMapping("/admin-bizupdate")
+	public String adminbizupdatePOST(AdminBizDTO dto) {
+		log.debug("adminbizupdatePOST 실행");
+		return "redirect:/admin/admin-biz";
+	}
+	
 	
 	
 	
@@ -156,6 +175,16 @@ public class AdminController {
 	
 	
 	
+	//admin 사업자delete페이지GET
+	@GetMapping("/admin-bizdelete")
+	public String adminbizdeleteGET() {
+		log.debug("adminbizdelete페이지출력!");
+		return"admin/adminbizdelete";
+	}
+	
+	
+	
+	
 	
 	//admin 회원deletePOST 실행
 	//Modal~...
@@ -165,6 +194,16 @@ public class AdminController {
 		log.debug("admindeletePOST 삭제처리완!");
 		return"redirect:/admin/admin-member";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//http://localhost:80/admin/admin-searchmember
