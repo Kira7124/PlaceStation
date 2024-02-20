@@ -88,7 +88,6 @@ public class AdminController {
 	
 	
 	
-	
 	//http://localhost:80/admin/admin-payment
 	//관리자 결제,예약관리페이지출력
 	@GetMapping("/admin-payment")
@@ -120,11 +119,7 @@ public class AdminController {
 	}
 	
 	
-	
-	
-	
-	
-	
+
 	
 	//http://localhost:80/admin/admin-update
 	//admin 회원update페이지출력(모달)
@@ -172,7 +167,8 @@ public class AdminController {
 	}
 	
 	
-	
+	//http://localhost:80/admin/admin-searchmember
+	//관리자 유저관리페이지(검색) 출력
 	@GetMapping("/admin-searchmember")
 	public String adminuserGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
 		
@@ -203,8 +199,37 @@ public class AdminController {
 	}
 	
 	
-	
-	
+	//http://localhost:80/admin/admin-searchbiz
+	//관리자 사업자관리페이지(검색) 출력
+	@GetMapping("/admin-searchbiz")
+	public String adminsearchbizGET(HttpServletRequest request, Criteria cri, Model model)throws Exception {
+		
+		String searchOption = request.getParameter("searchOption");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		if (searchOption != null && !searchOption.isEmpty()) {
+	        cri.setSearchOption(searchOption);
+	    }
+		
+		
+	    if (searchKeyword != null && !searchKeyword.isEmpty()) {
+	        cri.setSearchKeyword(searchKeyword);
+	    }
+		
+	    PageVO pageVO = new PageVO();
+	    pageVO.setCri(cri);
+	    pageVO.setTotalCount(bizService.countSearchBizlist(cri));
+		
+	    model.addAttribute("pageVO", pageVO);
+	    
+	    List<Biz> result = bizService.searchBizMemberlist(cri);
+	    
+	    model.addAttribute("bizlist", result);
+	    log.debug(" 사업자검색리스트출력(관리자)! ");
+		
+		
+		return "admin/adminbizsearch";
+	}
 	
 	
 	

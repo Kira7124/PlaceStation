@@ -30,6 +30,20 @@ public class BizService {
 	}
 	
 	
+	//사업자검색리스트(페이징)
+	public List<Biz> searchBizMemberlist(Criteria cri) throws Exception{
+		List<Biz> result = bizRepository.searchBizMemberlist(cri);
+		return result;
+	}
+	
+	
+	//사업자검색리스트숫자세기(페이징)
+	public int countSearchBizlist(Criteria cri) throws Exception {
+		return bizRepository.countSearchBizlist(cri);
+	}
+	
+	
+	
 	
 	
 	

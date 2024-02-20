@@ -16,6 +16,13 @@ public interface BizRepository {
 	//사업자숫자세기(페이징처리)
 	public int countBiz() throws Exception;
 	
+	//사업자명단출력(검색 , 페이징처리)
+	public List<Biz> searchBizMemberlist(Criteria cri) throws Exception;
+	
+	//사업자명단숫자세기(검색,페이징처리)
+	public int countSearchBizlist(Criteria cri) throws Exception;
+	
+	
 	
 	
 	
