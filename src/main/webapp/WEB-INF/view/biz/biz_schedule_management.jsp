@@ -63,9 +63,9 @@
 <script
 	src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
 <script src='fullcalendar/dist/index.global.js'></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
-
 	//AJAX 요청을 보냅니다.
 	$.ajax({
 		type : "GET",

@@ -48,7 +48,7 @@
 						</div>
 						<!-- 메인 부분 시작 -->
 						<form action="/biz/product/add-product" method="post"
-							enctype="multipart/form-data" >
+							enctype="multipart/form-data">
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">이곳에서 상품을 추가하실 수 있습니다!</h3>
@@ -57,28 +57,34 @@
 									<!-- 게시물의 제목 -->
 									<h4>게시물의 제목을 입력해 주세요</h4>
 									<input type="text" class="form-control"
-										placeholder="게시물의 제목을 입력해 주세요" name="prodTitle" value="제목"/> <br>
+										placeholder="게시물의 제목을 입력해 주세요" name="prodTitle" value="제목" />
+									<br>
 									<!-- 게시물의 배너 이미지 -->
 									<div id='image_preview'>
 										<h4>해당 게시물에 들어갈 배너 이미지를 선택해 주세요!</h4>
-										<input type='file' id='btnAtt' multiple='multiple' name="files"/>
+										<input type='file' id='btnAtt' multiple='multiple'
+											name="files" />
 										<div id='att_zone'
 											data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
 									</div>
 									<br>
 									<h4>영업 시작 시간을 입력해 주세요</h4>
 									<input type="number" class="form-control"
-										placeholder="영업 시작 시간을 입력해 주세요" name="prodStartTime" value="1" max="24" min="1"> <br>
+										placeholder="영업 시작 시간을 입력해 주세요" name="prodStartTime" value="1"
+										max="24" min="1"> <br>
 									<h4>영업 종료 시간을 입력해 주세요</h4>
 									<input type="number" class="form-control"
-										placeholder="영업 종료 시간을 입력해 주세요" name="prodEndTime" value="24" max="24" min="1"/> <br>
+										placeholder="영업 종료 시간을 입력해 주세요" name="prodEndTime" value="24"
+										max="24" min="1" /> <br>
 									<h4>한번 예약시 최대 인원 수를 입력해 주세요</h4>
 									<input type="number" class="form-control"
-										placeholder="한번 예약시 최대 인원 수를 입력해 주세요" name="prodMaximumPeople" value="1" max="100" min="1"/> <br>
+										placeholder="한번 예약시 최대 인원 수를 입력해 주세요" name="prodMaximumPeople"
+										value="1" max="100" min="1" /> <br>
 									<h4>한 시간 당 / 한 사람 당 가격을 책정해 주세요</h4>
 									<div class="input-group">
 										<span class="input-group-addon">₩</span> <input
-											class="form-control" type="number" name="prodPrice" value="1000" step="1000" min="1000" max="10000000"/> <span
+											class="form-control" type="number" name="prodPrice"
+											value="1000" step="1000" min="1000" max="10000000" /> <span
 											class="input-group-addon">원</span>
 									</div>
 									<br>
@@ -124,15 +130,16 @@
 										style="margin-bottom: 10px;" onclick="findAddress()">주소
 										검색</button>
 									<input type="text" id="adress" placeholder="주소"
-										class="form-control" readonly  name="prodAddress"/> <br />
-										
+										class="form-control" readonly name="prodAddress" /> <br />
+
 									<h4>주소의 상세 정보를 입력해 주세요</h4>
 									<input type="text" id="detailedAddress" placeholder="주소"
-										class="form-control" name="prodDetailedAddress" onchange="changeFullAddress()"/> <br />
-										
+										class="form-control" name="prodDetailedAddress"
+										onchange="changeFullAddress()" /> <br />
+
 									<!-- 주소 종합 -->
 									<input type="text" id="fullAddress" placeholder="주소 종합"
-										class="form-control" name="prodFullAddress" readonly/> <br />
+										class="form-control" name="prodFullAddress" readonly /> <br />
 
 									<!-- 위도 -->
 									<input type="text" id="lat" placeholder="위도"
@@ -159,7 +166,7 @@
 											상품을 등록해 보세요!!</span>
 									</div>
 									<div class="col-md-6 text-right">
-										<input type="submit" class="btn btn-primary" value="제품 등록하기"/>
+										<input type="submit" class="btn btn-primary" value="제품 등록하기" />
 									</div>
 								</div>
 							</div>
@@ -232,6 +239,11 @@ $textarea3.oninput = (event) => {
   
     btnAtt.onchange = function(e){
     
+    	
+        // 원래 이미지 제거
+        while (attZone.firstChild) {
+        	attZone.removeChild(attZone.firstChild);
+        }
       var files = e.target.files;
       
       var fileArr = Array.prototype.slice.call(files)

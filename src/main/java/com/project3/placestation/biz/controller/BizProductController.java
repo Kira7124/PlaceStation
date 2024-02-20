@@ -132,9 +132,6 @@ public class BizProductController {
 		if(dto.getProdStartTime() >= dto.getProdEndTime() ) {
 			throw new CustomRestfulException("종료 시간은 시작시간보다 낮아야 합니다.", HttpStatus.BAD_REQUEST);	
 		}
-		if(dto.getChangeImage() == null || dto.getChangeImage().isBlank()) {
-			throw new CustomRestfulException("이미지 선택이 잘못 되었습니다.", HttpStatus.BAD_REQUEST);	
-		}
 		if(dto.getProdMaximumPeople() == null || 0 > dto.getProdMaximumPeople() || dto.getProdMaximumPeople() > 100) {
 			throw new CustomRestfulException("인원 수가 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);	
 		}

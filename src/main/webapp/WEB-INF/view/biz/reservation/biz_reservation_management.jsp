@@ -96,7 +96,7 @@
 									<li class="page-item"><c:choose>
 											<c:when test="${currentPage > 0}">
 												<a class="page-link"
-													href="/biz/reservation-management?page=${currentPage - 1}&size=12"
+													href="/biz/reservation-management?page=${currentPage - 1}&size=20"
 													aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 												</a>
 
@@ -111,14 +111,14 @@
 
 									<c:forEach begin="${startPage}" end="${endPage}" var="var">
 										<li class="page-item"><a class="page-link"
-											href="/biz/reservation-management?page=${var - 1}&size=12">${var}</a></li>
+											href="/biz/reservation-management?page=${var}&size=20">${var + 1}</a></li>
 									</c:forEach>
 
 
 									<li class="page-item"><c:choose>
 											<c:when test="${currentPage < endPage - 1}">
 												<a class="page-link"
-													href="/biz/reservation-management?page=${currentPage + 1}&size=12"
+													href="/biz/reservation-management?page=${currentPage + 1}&size=20"
 													aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 												</a>
 

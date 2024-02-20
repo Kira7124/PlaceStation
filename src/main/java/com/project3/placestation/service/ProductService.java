@@ -85,7 +85,7 @@ public class ProductService {
 			for (Product product : listProduct) {
 
 				String[] filePath = {};
-				if (product.getFilePath().isEmpty() == false) {
+				if (product.getFilePath() != null && product.getFilePath().isEmpty() == false) {
 					String receiveFilePath = product.getFilePath();
 					filePath = receiveFilePath.split(",");
 				}
@@ -120,7 +120,7 @@ public class ProductService {
 
 		String[] filePath = {};
 
-		if (product.getFilePath().isEmpty() == false) {
+		if (product.getFilePath() != null && product.getFilePath().isEmpty() == false)  {
 			String receiveFilePath = product.getFilePath();
 			filePath = receiveFilePath.split(",");
 		}

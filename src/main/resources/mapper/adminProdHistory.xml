@@ -89,11 +89,93 @@
 		and h.admin_his_seller_id = #{bizId}
 	</select>
 
-	<select id="findScheduleByBizId" resultType="com.project3.placestation.biz.model.dto.ResScheduleDto">
-		select p.prod_title , h.start_time  , h.end_time  ,
-		h.purchase_date 
+	<select id="findScheduleByBizId"
+		resultType="com.project3.placestation.biz.model.dto.ResScheduleDto">
+		select p.prod_title , h.start_time , h.end_time ,
+		h.purchase_date
 		from admin_prod_history h , product p
-		where h.admin_his_prod_no = p.prod_no
+		where
+		h.admin_his_prod_no = p.prod_no
 		and h.admin_his_seller_id = #{bizId}
+	</select>
+
+	<select id="findStatisticSales"
+		resultType="com.project3.placestation.biz.model.dto.StatisticDto">
+		<choose>
+			<when test="kind == 'MONTHLY'.toString()">
+				select sum(admin_his_price - admin_his_discount) as
+				amount ,
+				SUBSTR(admin_his_created_at , 1 ,10) as date from
+				admin_prod_history
+				where admin_his_seller_id = #{bizId}
+				and cancel_yn
+				= 'N'
+				AND admin_his_created_at BETWEEN DATEADD('MONTH', -1,
+				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				group by
+				SUBSTR(admin_his_created_at , 1 ,10);
+			</when>
+			<when test="kind == 'WEEK'.toString()">
+				select sum(admin_his_price - admin_his_discount) as
+				amount ,
+				SUBSTR(admin_his_created_at , 1 ,10) as date from
+				admin_prod_history
+				where admin_his_seller_id = #{bizId}
+				and cancel_yn
+				= 'N'
+				AND admin_his_created_at BETWEEN DATEADD('DAY', -7,
+				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				group by
+				SUBSTR(admin_his_created_at , 1 ,10);
+			</when>
+			<when test="kind == 'ANNUAL'.toString()">
+				SELECT SUM(admin_his_price - admin_his_discount) AS
+				amount,
+				SUBSTRING(admin_his_created_at, 1, 7) AS date
+				FROM
+				admin_prod_history
+				WHERE admin_his_seller_id = #{bizId}
+				AND cancel_yn
+				= 'N'
+				AND admin_his_created_at BETWEEN DATEADD('MONTH', -12,
+				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				GROUP BY
+				SUBSTRING(admin_his_created_at, 1, 7);
+			</when>
+		</choose>
+	</select>
+
+
+
+	<select id="findStatisticSalesVolumes" resultType="int">
+
+		<choose>
+			<when test="kind == 'ANNUAL'.toString()">
+				select count(*) from admin_prod_history
+				where admin_his_seller_id =
+				#{bizId}
+				and cancel_yn = 'N'
+				AND admin_his_created_at BETWEEN DATEADD('MONTH',
+				-12,
+				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+			</when>
+			<when test="kind == 'MONTHLY'.toString()">
+				select count(*) from admin_prod_history
+				where admin_his_seller_id =
+				#{bizId}
+				and cancel_yn = 'N'
+				AND admin_his_created_at BETWEEN DATEADD('MONTH',
+				-1,
+				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+			</when>
+			<when test="kind == 'WEEK'.toString()">
+				select count(*) from admin_prod_history
+				where admin_his_seller_id =
+				#{bizId}
+				and cancel_yn = 'N'
+				AND admin_his_created_at BETWEEN DATEADD('DAY', -7,
+				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+			</when>
+		</choose>
 	</select>
 </mapper>

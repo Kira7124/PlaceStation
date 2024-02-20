@@ -23,17 +23,15 @@ public class ScheduleDto {
 		this.title = title;
 		this.start = purchaseDate + "T";
 		if(start < 10) {
-			this.start += "1";
+			this.start += "0";
 		}
 		this.start += String.valueOf(start) + ":00:00";
 		
-		
 		this.end = purchaseDate + "T";
 		if(end < 10) {
-			this.end += "1";
+			this.end += "0";
 		}
 		this.end += String.valueOf(end) + ":00:00";	
 		this.allDay = false;
 	}
-	
 }

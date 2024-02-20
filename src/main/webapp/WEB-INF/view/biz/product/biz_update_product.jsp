@@ -45,9 +45,10 @@
 							</div>
 						</div>
 						<!-- 메인 부분 시작 -->
-						<form action="/biz/product/update-product?prodNo=${product.prodNo}" method="post"
-							enctype="multipart/form-data">
-							<input type="hidden" name="_method" value="put"/>
+						<form
+							action="/biz/product/update-product?prodNo=${product.prodNo}"
+							method="post" enctype="multipart/form-data">
+							<input type="hidden" name="_method" value="put" />
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">이곳에서 상품을 수정하실 수 있습니다!</h3>
@@ -65,13 +66,16 @@
 											name="files" />
 										<div id='att_zone'
 											data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'>
-											<c:forEach var="file" items="${product.filePath}">
-												<img src="${file}"
-													style="width: 30%; height: 40%; z-index: none;"
-												class="originalImage" />
-											</c:forEach>
-											<input type="hidden" name="changeImage" value="N" id="changeImage"/>
+											<div class="originalImage">
+												<c:forEach var="file" items="${product.filePath}">
+													<img src="${file}"
+														style="width: 30%; height: 40%; z-index: none;" />
+												</c:forEach>
+											</div>
+											
 										</div>
+										<input type="hidden" name="changeImage" value="N"
+											id="changeImage" />
 									</div>
 									<br>
 									<h4>영업 시작 시간을 입력해 주세요</h4>
@@ -81,17 +85,17 @@
 									<h4>영업 종료 시간을 입력해 주세요</h4>
 									<input type="number" class="form-control"
 										placeholder="영업 종료 시간을 입력해 주세요" name="prodEndTime"
-										value="${product.prodEndTime}" max="24" min="1"/> <br>
+										value="${product.prodEndTime}" max="24" min="1" /> <br>
 									<h4>한번 예약시 최대 인원 수를 입력해 주세요</h4>
 									<input type="number" class="form-control"
 										placeholder="한번 예약시 최대 인원 수를 입력해 주세요" name="prodMaximumPeople"
-										value="${product.prodMaximumPeople}" max="100" min="1"/> <br>
+										value="${product.prodMaximumPeople}" max="100" min="1" /> <br>
 									<h4>한 시간 당 / 한 사람 당 가격을 책정해 주세요</h4>
 									<div class="input-group">
 										<span class="input-group-addon">₩</span> <input
 											class="form-control" type="number" name="prodPrice"
-											value="${product.prodPrice}" step="1000" min="1000" max="10000000"/> <span
-											class="input-group-addon">원</span>
+											value="${product.prodPrice}" step="1000" min="1000"
+											max="10000000" /> <span class="input-group-addon">원</span>
 									</div>
 									<br>
 									<h4>공간을 소개해주세요</h4>
@@ -199,13 +203,15 @@
 <script
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66d1a68d1892ba5335686cc3e3bd8537&libraries=services"></script>
 <script>
-
+let count = 0;
 // select Box 먼저 처음 값 넣어 주기
 const prodMajorCategoryId = document.querySelector('#prodMajorCategoryId'); // textarea 1
 const prodSubcategoryId = document.querySelector('#prodSubcategoryId'); // textarea 1
 
 prodMajorCategoryId.value = ${product.prodMajorCategoryId};
 prodSubcategoryId.value = ${product.prodSubcategoryId};
+
+
 
 // Textarea 자동 줄 바꿈
 const DEFAULT_HEIGHT = 100; // textarea 기본 height
@@ -258,13 +264,19 @@ $textarea3.oninput = (event) => {
   
     btnAtt.onchange = function(e){
     
-    	// 원래 이미지 없애기
+    	// 기존 이미지 없애기
     	var changImage = document.querySelector("#changeImage");
-    	var original = document.querySelectorAll(".originalImage");
-    	for (var i = 0; i < original.length; i++) {
-    	    original[i].style.display = 'none'; // 스타일 변경 예시
+    	var original = document.querySelector(".originalImage");
+
+    	if(count == 0) {
+        original.style.display = 'none'; // 스타일 변경 예시
+        changeImage.value="Y"; // changeImage == Y 로 변경
     	}
-    	changeImage.value="Y"; // changeImage == Y 로 변경
+        // 원래 이미지 제거
+        while (attZone.firstChild) {
+        	attZone.removeChild(attZone.firstChild);
+        }
+       	count++;
     	
       var files = e.target.files;
       
@@ -282,10 +294,7 @@ $textarea3.oninput = (event) => {
         let img = document.createElement('img')
         img.setAttribute('style', img_style)
         img.src = ee.target.result;
-        // 원래 이미지 제거
-        while (attZone.firstChild) {
-        	attZone.removeChild(attZone.firstChild);
-        }
+
         // 현재 이미지 추가
         attZone.appendChild(makeDiv(img, file));
       }
