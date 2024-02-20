@@ -13,18 +13,18 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProdReview {
 
-    private int prodRevNo;
-    private int prodNo;
+    private Integer prodRevNo;
+    private Integer prodNo;
     private String prodRevTitle;
     private String prodRevContent;
-    private int prodRevStar;
+    private Integer prodRevStar;
     private Timestamp prodRevCreateAt;
-    private int prodRevId;
+    private Integer prodRevId;
     private Timestamp prodRevUpdateAt;
     private String prodRevDeleteYn;
     private Timestamp prodRevDeleteAt;
-    private int childId;
-    private int parentId;
+    private Integer childId;
+    private Integer parentId;
     private String prodTitle;
     private String prodPrice;
     private String filePath;
