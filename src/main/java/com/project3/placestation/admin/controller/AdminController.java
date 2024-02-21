@@ -85,11 +85,21 @@ public class AdminController {
 	
 	
 	
+	//todo 삭제 get
+	@GetMapping("/admin-tododelete")
+	public String tododeleteGET() {
+		log.debug("todo삭제페이지출력!");
+		return "admin/admintododelete";
+		
+	}
 	
-	
-	
-	
-	
+	//todo 삭제 post
+	@PostMapping("/admin-tododelete")
+	public String tododeletePOST(AdminTodoDTO dto) throws Exception {
+		log.debug("todo삭제완료!");
+		todoService.deleteTodo(dto);
+		return"redirect:/admin/admin-main";
+	}
 	
 	
 	

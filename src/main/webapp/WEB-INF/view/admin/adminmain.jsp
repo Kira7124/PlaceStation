@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     
-    
+         
 		
 		<!-- MAIN -->
 		<div class="main">
@@ -130,9 +130,15 @@
 								<div class="panel-heading" style="display: flex;">
 								    <h3 class="panel-title" style="flex: 1;"><b>투두리스트</b></h3>
 								    <button type="button" class="btn-toggle-collapse" style="margin-right: 10px;"><i class="lnr lnr-chevron-up"></i></button>
-								    <span class="label label-info" style="margin-right: 5px;">등록</span>
-								    <span class="label label-success">수정</span>
-								    <span class="label label-danger" style="margin-left: 5px;">삭제</span>
+								  	 <a href="#">
+								    	<span class="label label-info" style="margin-left: 5px;">등록</span>
+								    </a>
+								    <a href="#">
+								    	<span class="label label-success" style="margin-left: 5px;">수정</span>
+								    </a>
+								    <a href="/admin/admin-tododelete" class="delete-button" data-toggle="modal" data-target="#TododeleteModal">
+								    	<span class="label label-danger" style="margin-left: 5px;">삭제</span>
+								    </a>
 								</div>
 								<div class="panel-body">
 									<ul class="list-unstyled todo-list">
@@ -155,7 +161,7 @@
 								</div>
 							</div>
 						 </div>
-							<!-- END 투두리스트 -->
+								<!-- END 투두리스트 -->
 							
 						    </div>
 						</div>
@@ -170,6 +176,25 @@
 	
 	
 	
+		<!-- Modal -->
+	<div class="modal fade" id="TododeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- Javascript -->
 	<script src="/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -177,131 +202,7 @@
 	<script src="/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="/assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="/assets/scripts/klorofil-common.js"></script>
-	<script>
-	$(function() {
-		var data, options;
 
-		// headline charts
-		data = {
-			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-			series: [
-				[23, 29, 24, 40, 25, 24, 35],
-				[14, 25, 18, 34, 29, 38, 44],
-			]
-		};
-
-		options = {
-			height: 300,
-			showArea: true,
-			showLine: false,
-			showPoint: false,
-			fullWidth: true,
-			axisX: {
-				showGrid: false
-			},
-			lineSmooth: false,
-		};
-
-		new Chartist.Line('#headline-chart', data, options);
-		
-		
-		var labels = [];
-        var currentDate = new Date();
-        for (var i = 6; i >= 0; i--) {
-            var date = new Date(currentDate);
-            date.setDate(date.getDate() - i);
-            labels.push(date.toLocaleDateString());
-        }
-		var total = ${totalMember};
-        
-        
-		// visits trend charts --> 오른쪽 아래 차트그래프
-		data = {
-			labels: labels,
-			series: [{
-				name: 'series-real',
-				data: [total, total, total, total, total, total, total],
-			}]
-		};
-
-		options = {
-			fullWidth: true,
-			lineSmooth: false,
-			height: "270px",
-			low: 0,
-			high: 'auto',
-			series: {
-				'series-projection': {
-					showArea: true,
-					showPoint: false,
-					showLine: false
-				},
-			},
-			axisX: {
-				showGrid: false,
-
-			},
-			axisY: {
-				showGrid: false,
-				onlyInteger: true,
-				offset: 0,
-			},
-			chartPadding: {
-				left: 20,
-				right: 20
-			}
-		};
-
-		new Chartist.Line('#visits-trends-chart', data, options);
-
-
-		// visits chart
-		data = {
-			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-			series: [
-				[6384, 6342, 5437, 2764, 3958, 5068, 7654]
-			]
-		};
-
-		options = {
-			height: 300,
-			axisX: {
-				showGrid: false
-			},
-		};
-
-		new Chartist.Bar('#visits-chart', data, options);
-
-
-		// real-time pie chart
-		var sysLoad = $('#system-load').easyPieChart({
-			size: 130,
-			barColor: function(percent) {
-				return "rgb(" + Math.round(200 * percent / 100) + ", " + Math.round(200 * (1.1 - percent / 100)) + ", 0)";
-			},
-			trackColor: 'rgba(245, 245, 245, 0.8)',
-			scaleColor: false,
-			lineWidth: 5,
-			lineCap: "square",
-			animate: 800
-		});
-
-		var updateInterval = 3000; // in milliseconds
-
-		setInterval(function() {
-			var randomVal;
-			randomVal = getRandomInt(0, 100);
-
-			sysLoad.data('easyPieChart').update(randomVal);
-			sysLoad.find('.percent').text(randomVal);
-		}, updateInterval);
-
-		function getRandomInt(min, max) {
-			return Math.floor(Math.random() * (max - min + 1)) + min;
-		}
-
-	});
-	</script>
 </body>
 
 </html>

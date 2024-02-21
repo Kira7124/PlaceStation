@@ -17,6 +17,10 @@ public interface TodoRepository {
 	//todo 숫자세기(페이징처리)
 	public int countTodo() throws Exception;
 	
+	//todo 삭제
+	public Integer deleteTodo(Todo todo) throws Exception;
+	
+	
 	
 	
 	

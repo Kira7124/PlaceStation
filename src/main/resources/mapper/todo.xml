@@ -18,6 +18,12 @@
 		</select>
 		
 		
+		<!-- todo리스트 삭제 -->
+		<delete id ="deleteTodo">
+			delete from admin_todo where todo_title=#{todotitle}
+		</delete>
+		
+		
 		
 		
 		
