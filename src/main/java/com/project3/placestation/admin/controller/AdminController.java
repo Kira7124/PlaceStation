@@ -229,6 +229,49 @@ public class AdminController {
 	}
 	
 	
+	//공지사항 등록페이지 GET
+	@GetMapping("/admin-noticeinsert")
+	public String adminNoticeInsertGET() {
+		log.debug("관리자공지사항등록페이지출력!");
+		return"admin/adminnoticeinsert";
+	}
+	
+
+	//공지사항 등록페이지 POST
+	@PostMapping("/admin-noticeinsert")
+	public String adminNoticeInsertPOST(AdminNoticeDTO dto) throws Exception {
+		log.debug("공지사항등록완료(관리자)!");
+		noticeBoardService.AdminInsertNotice(dto);
+		return"redirect:/admin/admin-notice";
+	}
+	
+	
+
+	//공지사항 수정페이지 GET
+	
+	
+	//공지사항 수정페이지 POST
+	
+	
+	//공지사항 삭제페이지 GET
+	
+	
+	//공지사항 삭제페이지 POST
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

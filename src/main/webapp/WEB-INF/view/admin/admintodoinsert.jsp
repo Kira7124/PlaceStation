@@ -27,9 +27,9 @@
 				    <div class="col-md-3">
 				        <label for="name" class="form-label">내용</label>
 				    </div>
-				    <div class="col-md-5">
+				    <div class="col-md-10">
 				        <div class="input-box">
-				            <input type="text" class="form-control" name="todocontent" >
+				             <textarea class="form-control" id="userpassword" name="todocontent" placeholder="내용작성" cols="3" rows="3"></textarea>
 				        </div>
 				    </div>
 				</div>

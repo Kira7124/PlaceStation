@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.project3.placestation.admin.dto.AdminNoticeDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.repository.entity.NoticeBoard;
 import com.project3.placestation.repository.interfaces.NoticeBoardRepository;
@@ -33,6 +35,24 @@ public class NoticeBoardService {
 		public int AdmincountNoticeBoard() throws Exception{
 			return noticeBoardRepository.AdmincountNoticeBoard();
 		}
+		
+		
+		
+		//공지사항등록(관리자)
+		@Transactional
+		public void AdminInsertNotice(AdminNoticeDTO dto) throws Exception{
+			
+			NoticeBoard noticeboard = NoticeBoard.builder()
+					.nwriter(dto.getNwriter())
+					.ncontent(dto.getNcontent())
+					.ntitle(dto.getNtitle())
+					.build();
+			
+			Integer result = noticeBoardRepository.AdminInsertNotice(noticeboard);
+			
+		}
+		
+		
 		
 		
 		//공지사항검색리스트출력(페이징)

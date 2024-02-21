@@ -63,7 +63,7 @@
 								<td>${noticelist.formatjoinAt()}</td>
 								<td><span class="badge" style="margin-left: 10px;">${noticelist.nreadcount}</span></td>			
 								<td>
-									<a href="#">
+									<a href="/admin/admin-noticeinsert" data-toggle="modal" data-target="#insertNoticeModal">
 										<span class="label label-info">등록</span>
 									</a>
 									<a href="#">
@@ -118,6 +118,33 @@
 		<!-- END MAIN -->	
 	</div>
 	<!-- END WRAPPER -->
+	
+	
+	
+	
+		<!-- Modal -->
+	<div class="modal fade" id="insertNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

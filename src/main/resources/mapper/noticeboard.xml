@@ -32,6 +32,16 @@
 				update notice_board set n_readcount = n_readcount + 1 where n_bno = #{nbno} 
 			</update>
 						
+						
+			<!-- 글 등록 -->			
+			<insert id="AdminInsertNotice">
+				insert into notice_board(n_writer,n_content,n_title)
+				values(#{nwriter},#{ncontent},#{ntitle})
+			</insert>
+						
+			
+						
+						
 	
 		<!-- 공지사항검색(관리자) -->
 		<select id="AdminsearchNoticeBoardlist" resultType="com.project3.placestation.repository.entity.NoticeBoard">
