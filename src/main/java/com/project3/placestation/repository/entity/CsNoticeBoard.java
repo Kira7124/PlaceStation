@@ -2,6 +2,8 @@ package com.project3.placestation.repository.entity;
 
 import java.sql.Timestamp;
 
+import com.project3.placestation.utils.TimeUtils;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class NoticeBoard {
+public class CsNoticeBoard {
 	
 	private Integer nbno;	// 글번호
 	private Integer nwriterid;	// 글쓴이 기본키
@@ -25,5 +27,9 @@ public class NoticeBoard {
 	private Timestamp ndeleteat;	// 삭제일
 	private Integer nreadcount;		// 조회수
 	
+	//포메터(시간)
+	public String formatjoinAt() {
+		return TimeUtils.timestampToString(nregdate);
+	}
 
 }

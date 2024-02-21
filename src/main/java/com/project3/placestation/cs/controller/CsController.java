@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project3.placestation.cs.dto.CsNoticeDTO;
 import com.project3.placestation.service.CsService;
 
 
@@ -18,7 +19,7 @@ public class CsController {
 //	매핑
 	// http://localhost/cs/notice
 	@GetMapping("/notice")
-	public String noticeList() {
+	public String noticeList(CsNoticeDTO ndto) {
 		return "cs/cs_notice";
 	}
 	
