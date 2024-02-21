@@ -1,6 +1,7 @@
 package com.project3.placestation.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,8 +109,45 @@ public class ProductService {
 		return resProduct;
 	}
 	
+	/**
+	 * 상품 목록 전체 조회
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<ResProductDto> findAll() {
+		List<Product> listProduct = productRepository.findAll();
+		List<ResProductDto> resProduct = new ArrayList<>();
+
+		if (listProduct.isEmpty() == false) {
+			for (Product product : listProduct) {
+
+				String[] filePath = {};
+				if (product.getFilePath() != null && product.getFilePath().isEmpty() == false) {
+					String receiveFilePath = product.getFilePath();
+					filePath = receiveFilePath.split(",");
+				}
+				
+
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
+						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
+						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
+						.prodCautionInfo(product.getProdCautionInfo()).prodMaximumPeople(product.getProdMaximumPeople())
+						.prodAddress(product.getProdAddress()).filePath(filePath)
+						.prodMajorCategoryId(product.getProdMajorCategoryId())
+						.prodSubcategoryId(product.getProdSubcategoryId()).prodFullAddress(product.getProdFullAddress())
+						.prodDetailedAddress(product.getProdDetailedAddress()).prodLocationX(product.getProdLocationX())
+						.prodLocationY(product.getProdLocationY()).prodRdate(product.getProdRdate())
+						.prodUpdateAt(product.getProdUpdateAt()).prodDeleteYn(product.getProdDeleteYn())
+						.prodDeleteAt(product.getProdDeleteAt()).build();
+				resProduct.add(dto);
+			}
+		}
+		return resProduct;
+	}
 	
-	// 상품 상세 조히
+	// 상품 상세 조회
 	public ResProductDto findById(int ProdNo) {
 
 		Product product = productRepository.findById(ProdNo);

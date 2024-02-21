@@ -18,7 +18,7 @@
 		WHERE p.prod_delete_yn = 'N'
 		GROUP BY p.prod_no
 		ORDER BY review_count DESC
-		LIMIT 4
+		LIMIT 8
 	</select>
 
 	<!-- 평점 높은 상품 -->
@@ -29,7 +29,7 @@
 		WHERE p.prod_delete_yn = 'N'
 		GROUP BY p.prod_no
 		ORDER BY average_rating DESC
-		LIMIT 4
+		LIMIT 8
 	</select>
 
 	<!-- 상품 최신 순서 -->
@@ -39,7 +39,7 @@
 		WHERE prod_delete_yn = 'N'
 		ORDER
 		BY prod_update_at DESC
-		LIMIT 4
+		LIMIT 8
 	</select>
 
 

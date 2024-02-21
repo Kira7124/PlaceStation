@@ -127,6 +127,29 @@
 	background-color: rgb(230, 224, 54) !important;
 	color: black;
 }
+
+.refund-em {
+	
+}
+
+.refund-policy {
+	color: black;
+	font-weight: bold;
+}
+
+.usage-period {
+	display: inline-block;
+	width: 120px;
+}
+
+.noRev{
+	font-size:24px; 
+	text-align: center; 
+	height:250px; 
+	display: flex; 
+	justify-content: center; 
+	align-items: center;"
+}
 </style>
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -145,7 +168,7 @@
 							class="icon-bar"></span><span class="icon-bar"></span><span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html">Titan</a>
+					<a class="navbar-brand" href="/product/main">Titan</a>
 				</div>
 				<div class="collapse navbar-collapse" id="custom-collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -455,14 +478,16 @@
 											<a>${product.prodTitle}</a>
 										</h2>
 
-										<div class="post-meta">
-											${product.prodNo}| ${product.prodRdate} | 리뷰 개수
+										<div class="post-meta">${product.prodNo}|
+											<span id="formattedDate"></span>
 										</div>
 									</div>
-									<div class="post-images-slider" style="width:800px; height:400px;">
+									<div class="post-images-slider"
+										style="width: 800px; height: 400px;">
 										<ul class="slides post-thumbnail">
 											<c:forEach var="file" items="${product.filePath}">
-												<li><img src="${file}" alt="Blog Slider Image" style="width: 750px; height: 400px;" /></li>
+												<li><img src="${file}" alt="Blog Slider Image"
+													style="width: 750px; height: 400px;" /></li>
 											</c:forEach>
 										</ul>
 									</div>
@@ -478,11 +503,11 @@
 										<li class="active"><a href="#description"
 											data-toggle="tab"><span class="icon-tools-2"></span>장소 소개</a></li>
 										<li><a href="#data-sheet" data-toggle="tab"><span
-												class="icon-tools-2"></span>이용 규칙</a></li>
+												class="icon-tools-2"></span>이용 안내</a></li>
 										<li><a href="#reviews" data-toggle="tab"><span
 												class="icon-tools-2"></span>리뷰</a></li>
 										<li><a href="#question" data-toggle="tab"><span
-												class="icon-tools-2"></span>질문</a></li>
+												class="icon-tools-2"></span>환불 안내</a></li>
 									</ul>
 									<div class="tab-content">
 										<!-- description , data sheet , reviews nav bar 끝 -->
@@ -492,16 +517,13 @@
 										<div class="tab-pane active" id="description">
 											<p></p>
 
-
-
 											<!-- 본문 1 -->
 											<div class="post #">
 												<div class="post-header font-alt">
 													<h2 class="post-title">
-														<a href="Post with text only">Mark Stone</a>
+														<a>공간 소개</a>
 													</h2>
-													<div class="post-meta">
-														ㅇㄴㅁㅇㄴㅁㅇㄴ뭉나무이ㅏㄴ무ㅏㅣㅜ이ㅟㅏㄴ뮈안뮈ㅏ우ㅏㅣㄴ뮈ㅏ 하하하ㅏ하하하</div>
+													<div class="post-meta">${product.prodSpaceInfo}</div>
 												</div>
 											</div>
 
@@ -509,10 +531,9 @@
 											<div class="post #">
 												<div class="post-header font-alt">
 													<h2 class="post-title">
-														<a href="Post with text only">Mark Stone</a>
+														<a>대여 가능</a>
 													</h2>
-													<div class="post-meta">
-														ㅇㄴㅁㅇㄴㅁㅇㄴ뭉나무이ㅏㄴ무ㅏㅣㅜ이ㅟㅏㄴ뮈안뮈ㅏ우ㅏㅣㄴ뮈ㅏ 하하하ㅏ하하하</div>
+													<div class="post-meta">${product.prodGoodsInfo}</div>
 												</div>
 											</div>
 
@@ -520,21 +541,18 @@
 											<div class="post #">
 												<div class="post-header font-alt">
 													<h2 class="post-title">
-														<a href="Post with text only">Mark Stone</a>
+														<a>예약시 주의사항</a>
 													</h2>
-													<div class="post-meta">
-														ㅇㄴㅁㅇㄴㅁㅇㄴ뭉나무이ㅏㄴ무ㅏㅣㅜ이ㅟㅏㄴ뮈안뮈ㅏ우ㅏㅣㄴ뮈ㅏ 하하하ㅏ하하하</div>
+													<div class="post-meta">${product.prodCautionInfo}</div>
 												</div>
 											</div>
-											<!-- 본문 양식 4 -->
+											<!-- 카카오맵 API -->
 											<div class="post">
-												<div class="post-quote">
+												<div class="post-quote" style="text-align: left;">
 													<blockquote class="font-serif">
-														<p>&quot; The languages only differ in their grammar,
-															their pronunciation and their most common words. Everyone
-															realizes why a new common language would be desirable:
-															one could refuse to pay expensive translators. &quot;</p>
-														<p class="font-inc font-uppercase">- Thomas Anderson</p>
+														<h3>${product.prodTitle}</h3>
+														<p class="font-inc font-uppercase">${product.prodAddress}</p>
+														<div id="map" style="width: 710px; height: 400px;"></div>
 													</blockquote>
 												</div>
 											</div>
@@ -543,26 +561,13 @@
 											<div class="post">
 												<div
 													class="post-video embed-responsive embed-responsive-16by9">
-													<iframe class="embed-responsive-item"
-														src="//www.youtube.com/embed/Jkk0VHiCnKY" frameborder="0"
-														allowfullscreen="allowfullscreen"></iframe>
 												</div>
 												<div class="post-header font-alt">
-													<h2 class="post-title">
-														<a href="#">Post with video</a>
-													</h2>
-													<div class="post-meta">
-														By&nbsp;<a href="#">Mark Stone</a>| 23 November | 3
-														Comments | <a href="#">Marketing, </a><a href="#">Web
-															Design</a>
-													</div>
+													<h2 class="post-title"></h2>
+													<div class="post-meta"></div>
 												</div>
 												<div class="post-entry">
-													<p>A wonderful serenity has taken possession of my
-														entire soul, like these sweet mornings of spring which I
-														enjoy with my whole heart. I am alone, and feel the charm
-														of existence in this spot, which was created for the bliss
-														of souls like mine.</p>
+													<p></p>
 												</div>
 												<div class="post-more">
 													<a class="more-link" href="#">Read more</a>
@@ -571,225 +576,171 @@
 										</div>
 										<!-- 장소 소개  끝 -->
 
-										<!-- 이용규칙 시작 -->
+										<!-- 이용안내 시작 -->
 										<div class="tab-pane" id="data-sheet">
 											<table class="table table-striped ds-table table-responsive">
 												<tbody>
 													<tr>
-														<th>Title</th>
-														<th>Info</th>
+														<th>이름</th>
+														<th>${product.prodTitle}</th>
 													</tr>
 													<tr>
-														<td>Compositions</td>
-														<td>Jeans</td>
+														<td>주소</td>
+														<td>${product.prodAddress}</td>
 													</tr>
 													<tr>
-														<td>Size</td>
-														<td>44, 46, 48</td>
+														<td>최대 인원 수</td>
+														<td>${product.prodMaximumPeople}명</td>
 													</tr>
 													<tr>
-														<td>Color</td>
-														<td>Black</td>
+														<td>영업 시간</td>
+														<td>${product.prodStartTime}시~${product.prodEndTime}
+															시</td>
 													</tr>
 													<tr>
-														<td>Brand</td>
-														<td>Somebrand</td>
+														<td>적당한거 넣기</td>
+														<td>적당한거 넣기</td>
 													</tr>
+
 												</tbody>
 											</table>
 										</div>
 										<!-- 이용규칙 끝 -->
+										<!-- 환불 규정 안내 -->
+										<div class="tab-pane active" id="question">
+											<div class="comment-form mt-30">
+												<div class="row">
+													<div style="margin-left: 15px; margin-top: -40px;">
+														<h2>환불규정 안내</h2>
+														<p style="font-size: 15px;">
+															<em class="refund-em" style="color: red;"> 이용당일(첫 날)
+																이후에 환불 관련 사항은 사업자에게 직접 문의하셔야 합니다.</em><br> 결제 후 2시간 이내에는
+															100% 환불이 가능합니다.(단, 이용시간 전까지만 가능)
+														</p>
+														<ol
+															style="list-style: none; font-size: 15px; margin-left: -35px;">
+															<li style="margin-bottom: 15px;"><span
+																class="usage-period">이용 7일 전</span> <span
+																class="refund-policy">100% 환불 가능</span></li>
+															<li style="margin-bottom: 15px;"><span
+																class="usage-period">이용 6일 전</span> <span
+																class="refund-policy">100% 환불 가능</span></li>
+															<li style="margin-bottom: 15px;"><span
+																class="usage-period">이용 5일 전</span> <span
+																class="refund-policy">100% 환불 가능</span></li>
+															<li style="margin-bottom: 15px;"><span
+																class="usage-period">이용 4일 전</span> <span
+																class="refund-policy">80% 환불 가능</span></li>
+															<li style="margin-bottom: 15px;"><span
+																class="usage-period">이용 3일 전</span> <span
+																class="refund-policy">80% 환불 가능</span></li>
+															<li style="margin-bottom: 15px;"><span
+																class="usage-period">이용 2일 전</span> <span
+																class="refund-policy">환불 불가</span></li>
+															<li style="margin-bottom: 15px;"><span
+																class="usage-period">이용 하루 전</span> <span
+																class="refund-policy">환불 불가</span></li>
+															<li style="margin-bottom: 15px;"><span
+																class="usage-period">이용 당일</span> <span
+																class="refund-policy">환불 불가</span></li>
+														</ol>
 
+
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- 환불 규정 안내 끝 -->
 										<!-- reviews 시작 -->
 										<div class="tab-pane" id="reviews">
-											<div class="comments reviews">
-												<div class="comment clearfix">
-													<div class="comment-avatar">
-														<img src="" alt="avatar" />
-													</div>
-													<div class="comment-content clearfix">
-														<div class="comment-author font-alt">
-															<a href="#">John Doe</a>
-														</div>
-														<div class="comment-body">
-															<p>The European languages are members of the same
-																family. Their separate existence is a myth. For science,
-																music, sport, etc, Europe uses the same vocabulary. The
-																European languages are members of the same family. Their
-																separate existence is a myth.</p>
-														</div>
-														<div class="comment-meta font-alt">
-															Today, 14:55 -<span><i class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star-off"></i></span>
-														</div>
+											<!-- productDetail.jsp -->
+
+											<!-- 리뷰가 있는 경우 -->
+											<c:if test="${not empty reviewProdNo}">
+												<div id="reviews" class="tab-pane">
+													<div class="comments reviews">
+														<h3>이용 후기</h3>
+														<!-- 리뷰 정보를 반복해서 표시 -->
+														<c:forEach items="${reviewProdNo}" var="review">
+															<div class="comment clearfix" style="border-bottom: 1px solid #ccc; 
+														 margin-bottom: 8px;">
+																<div class="comment-avatar">
+																	<img src="" alt="avatar" />
+																</div>
+																<div class="comment-content clearfix">
+																	<div class="comment-author font-alt">
+																		<p>유저 닉네임1234 | <c:forEach begin="1" end="${review.prodRevStar}">
+																				<i class="fa fa-star star"></i>
+																			</c:forEach>
+																			<c:forEach begin="${review.prodRevStar + 1}" end="5">
+																				<i class="fa fa-star star-off"></i>
+																			</c:forEach></p>
+																	</div>
+																	<div class="comment-body">
+																		<p>${review.prodRevContent}</p>
+																	</div>
+																	<div class="comment-meta font-alt">
+																		<!-- 리뷰 작성 날짜 및 별점 표시 -->
+																		<p>${review.prodRevCreateAt}</p>
+																	</div>
+																</div>
+															</div>
+														</c:forEach>
 													</div>
 												</div>
-												<div class="comment clearfix">
-													<div class="comment-avatar">
-														<img src="" alt="avatar" />
-													</div>
-													<div class="comment-content clearfix">
-														<div class="comment-author font-alt">
-															<a href="#">Mark Stone</a>
-														</div>
-														<div class="comment-body">
-															<p>Europe uses the same vocabulary. The European
-																languages are members of the same family. Their separate
-																existence is a myth.</p>
-														</div>
-														<div class="comment-meta font-alt">
-															Today, 14:59 -<span><i class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star-off"></i></span><span><i
-																class="fa fa-star star-off"></i></span>
-														</div>
+											</c:if>
+
+											<!-- 리뷰가 없는 경우 -->
+											<c:if test="${empty reviewProdNo}">
+												<div id="reviews" class="tab-pane">
+													<h3>등록된 후기</h3>
+													<div class="noRev">
+													아직 등록된 후기가 없습니다.
 													</div>
 												</div>
-											</div>
-											<div class="comment-form mt-30">
-												<h4 class="comment-form-title font-alt">Add review</h4>
-												<form method="post">
-													<div class="row">
-														<div class="col-sm-4">
-															<div class="form-group">
-																<label class="sr-only" for="name">Name</label> <input
-																	class="form-control" id="name" type="text" name="name"
-																	placeholder="Name" />
-															</div>
-														</div>
-														<div class="col-sm-4">
-															<div class="form-group">
-																<label class="sr-only" for="email">Name</label> <input
-																	class="form-control" id="email" type="text"
-																	name="email" placeholder="E-mail" />
-															</div>
-														</div>
-														<div class="col-sm-4">
-															<div class="form-group">
-																<select class="form-control">
-																	<option selected="true" disabled="">Rating</option>
-																	<option value="1">1</option>
-																	<option value="2">2</option>
-																	<option value="3">3</option>
-																	<option value="4">4</option>
-																	<option value="5">5</option>
-																</select>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<div class="form-group">
-																<textarea class="form-control" id="" name="" rows="4"
-																	placeholder="Review"></textarea>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<button class="btn btn-round btn-d" type="submit">
-																Submit Review</button>
-														</div>
-													</div>
-												</form>
-											</div>
+											</c:if>
+
+<div class="comment-form mt-30">
+    <h4 class="comment-form-title font-alt">리뷰 작성</h4>
+    <form method="post" action="/product/saveReview">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                <input type="hidden" name="prod_no" value="${product.prodNo}">
+                    <label for="username">제목</label> 
+                    <input class="form-control" type="text" name="title" placeholder="리뷰제목" required />
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="rating">평점</label>
+                    <select class="form-control" id="rating" name="rating" required>
+                        <option selected disabled>평점 선택</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="reviewContent">리뷰 내용</label>
+                    <textarea class="form-control" name="reviewContent" rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <button class="btn btn-round btn-d" type="submit">리뷰 작성</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 										</div>
 										<!-- reviews 끝 -->
-										<!-- 질문 시작 -->
-										<div class="tab-pane active" id="question">
-											<div class="comments reviews">
-												<div class="comment clearfix">
-													<div class="comment-avatar">
-														<img src="" alt="avatar" />
-													</div>
-													<div class="comment-content clearfix">
-														<div class="comment-author font-alt">
-															<a href="#">John Doe</a>
-														</div>
-														<div class="comment-body">
-															<p>The European languages are members of the same
-																family. Their separate existence is a myth. For science,
-																music, sport, etc, Europe uses the same vocabulary. The
-																European languages are members of the same family. Their
-																separate existence is a myth.</p>
-														</div>
-														<div class="comment-meta font-alt">
-															Today, 14:55 -<span><i class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star-off"></i></span>
-														</div>
-													</div>
-												</div>
-												<div class="comment clearfix">
-													<div class="comment-avatar">
-														<img src="" alt="avatar" />
-													</div>
-													<div class="comment-content clearfix">
-														<div class="comment-author font-alt">
-															<a href="#">Mark Stone</a>
-														</div>
-														<div class="comment-body">
-															<p>Europe uses the same vocabulary. The European
-																languages are members of the same family. Their separate
-																existence is a myth.</p>
-														</div>
-														<div class="comment-meta font-alt">
-															Today, 14:59 -<span><i class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star-off"></i></span><span><i
-																class="fa fa-star star-off"></i></span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="comment-form mt-30">
-												<h4 class="comment-form-title font-alt">Add review</h4>
-												<form method="post">
-													<div class="row">
-														<div class="col-sm-4">
-															<div class="form-group">
-																<label class="sr-only" for="name">Name</label> <input
-																	class="form-control" id="name" type="text" name="name"
-																	placeholder="Name" />
-															</div>
-														</div>
-														<div class="col-sm-4">
-															<div class="form-group">
-																<label class="sr-only" for="email">Name</label> <input
-																	class="form-control" id="email" type="text"
-																	name="email" placeholder="E-mail" />
-															</div>
-														</div>
-														<div class="col-sm-4">
-															<div class="form-group">
-																<select class="form-control">
-																	<option selected="true" disabled="">Rating</option>
-																	<option value="1">1</option>
-																	<option value="2">2</option>
-																	<option value="3">3</option>
-																	<option value="4">4</option>
-																	<option value="5">5</option>
-																</select>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<div class="form-group">
-																<textarea class="form-control" id="" name="" rows="4"
-																	placeholder="Review"></textarea>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<button class="btn btn-round btn-d" type="submit">
-																Submit Review</button>
-														</div>
-													</div>
-												</form>
-											</div>
-										</div>
-										<!-- 질문 끝 -->
+
 									</div>
 								</div>
 							</div>
@@ -1004,6 +955,8 @@
     JavaScripts
     =============================================
     -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86c4c40f5a0bbcd706e953e25fdd8538"></script>
 	<script src="/assets/lib/jquery/dist/jquery.js"></script>
 	<script src="/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="/assets/lib/wow/dist/wow.js"></script>
@@ -1165,6 +1118,43 @@
         });
         calendar.render();
       });
-    </script>
+
+      
+      // 카카오 지도 API
+        var container = document.getElementById('map');
+		var prodLocationX = ${product.prodLocationX};
+		var prodLocationY = ${product.prodLocationY};
+
+      var options = {
+          center: new kakao.maps.LatLng(prodLocationY, prodLocationX), // 지도의 중심좌표
+          level: 3 // 지도의 레벨(확대, 축소 정도)
+      };
+
+      var map = new kakao.maps.Map(container, options);
+
+      var markerPosition = new kakao.maps.LatLng(prodLocationY, prodLocationX);
+      var marker = new kakao.maps.Marker({
+          position: markerPosition
+      });
+      marker.setMap(map);
+      
+      
+  	 // 날짜 포메팅 함수
+      function formatDate(dateString, targetElementId) {
+          var date = new Date(dateString);
+          var year = date.getFullYear();
+          var month = ("0" + (date.getMonth() + 1)).slice(-2);
+          var day = ("0" + date.getDate()).slice(-2);
+          var formattedDate = year + "-" + month + "-" + day;
+          document.getElementById(targetElementId).textContent = formattedDate;
+      }
+
+      // 상품 날짜 포메팅
+      formatDate("${product.prodRdate}", "formattedDate");
+
+      // 리뷰 날짜 포메팅
+      formatDate("${review.prodRevCreateAt}", "formattedReviewDate");
+  </script>
+
 </body>
 </html>

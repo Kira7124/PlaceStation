@@ -2,21 +2,31 @@ package com.project3.placestation.product.dto;
 
 import java.sql.Timestamp;
 
+import com.project3.placestation.biz.model.dto.ResProductDto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ProdReviewDto {
-    private int prodRevNo; // 리뷰번호
-    private int prodNo; // 게시물 번호
+    private Integer prodRevNo; // 리뷰번호
+    private Integer prodNo; // 게시물 번호
     private String prodRevTitle; // 리뷰 제목
     private String prodRevContent; // 리뷰 내용
-    private int prodRevStar; // 리뷰 평점
-    private Timestamp prodRevCreateAt; // 리뷰 작성 시간
-    private int prodRevId; // 리뷰 작성 유저ID
-    private Timestamp prodRevUpdateAt; // 리뷰 업데이트 시간
+    private Integer prodRevStar; // 리뷰 평점
+    private String prodRevCreateAt; // 리뷰 작성 시간
+    private Integer prodRevId; // 리뷰 작성 유저ID
+    private String prodRevUpdateAt; // 리뷰 업데이트 시간
     private String prodRevDeleteYn; // 리뷰삭제 'Y','N'
-    private Timestamp prodRevDeleteAt; // 리뷰 삭제 시간
-    private int childId;
-    private int parentId;
+    private String prodRevDeleteAt; // 리뷰 삭제 시간
+    private Integer parentId; // 원 댓글 id값
+    private Integer childId; // 대댓글 id값
 
 }

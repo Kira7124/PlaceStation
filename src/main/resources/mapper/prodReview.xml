@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.ProdReviewRepository">
+
+	<!-- 리뷰 등록 -->
+	<insert id="insertByRev">
+		INSERT INTO prod_review (
+		prod_rev_no, prod_no,
+		prod_rev_title, prod_rev_content,
+		prod_rev_star, prod_rev_create_at,
+		prod_rev_id,
+		prod_rev_delete_yn, child_id, parent_id
+		) VALUES (
+		#{prodRevNo}, #{prodNo}, #{prodRevTitle}, #{prodRevContent},
+		#{prodRevStar}, #{prodRevCreateAt}, #{prodRevId},
+		#{prodRevDeleteYn},
+		#{childId}, #{parentId})
+	</insert>
+	
+	<!-- 리뷰 수정 -->
+	<update id="updateByRev">
+		UPDATE prod_review SET
+		prod_rev_title = #{prodRevTitle},
+		prod_rev_content = #{prodRevContent},
+		prod_rev_star
+		= #{prodRevStar},
+		prod_rev_update_at = NOW()
+		WHERE prod_rev_no =
+		#{prodRevNo}
+	</update>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteByRev">
+		update prod_review SET
+		prod_rev_update_at = NOW(),
+		prod_rev_delete_yn = 'Y',
+		prod_rev_delete_at = NOW()
+		WHERE prod_rev_no =
+		#{prodRevNo}
+	</delete>
+	
+	<!-- 상품 번호로 리뷰 불러오기 -->
+	<select id="findByRevProdNo">
+		select * from prod_review
+		where prod_rev_delete_yn = 'N'
+		and prod_no = #{prod_no}
+	</select>
+
+	<!-- 유저 ID 값으로 리뷰 불러오기 -->
+	<select id="findByRevId">
+		select * from prod_review
+		where prod_rev_delete_yn = 'N'
+		and prod_rev_id = #{prod_rev_id}
+	</select>
+</mapper>
