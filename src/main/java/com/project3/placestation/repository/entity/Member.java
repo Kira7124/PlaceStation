@@ -1,8 +1,6 @@
 package com.project3.placestation.repository.entity;
 
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
-import java.text.Format;
 
 import com.project3.placestation.utils.TimeUtils;
 
@@ -30,18 +28,18 @@ public class Member {
 	private Timestamp joinat;
 	private String role;
 	private String grade;
-	
-	
-	
-	
-	
+
+
+
+
+
 	//포메터(시간)
 	public String formatjoinAt() {
 		return TimeUtils.timestampToString(joinat);
 	}
-	
-	
-	
+
+
+
 	//포메터(전화번호)
 	public String formatHp(String phoneNumber) {
 	    // 전화번호에서 숫자만 남기고 나머지 문자 제거
@@ -57,18 +55,18 @@ public class Member {
 	        return "올바른 전화번호 형식이 아닙니다.";
 	    }
 	}
-	
-	
-	
-	//사진업로드 
+
+
+
+	//사진업로드
 	public String setupUserImage() {
 	    String imagePath = null;
-	    
-	  
+
+
 	    if ("default.jpg".equals(originimg)) {
-	      
-	        imagePath = getImagePathFromDatabase(); 
-	        
+
+	        imagePath = getImagePathFromDatabase();
+
 	        // imagePath가 null이거나 빈 문자열인 경우 기본 이미지 경로를 반환
 	        if (imagePath == null || imagePath.isEmpty()) {
 	            return originimg; // 기본 이미지 경로 반환
@@ -81,20 +79,20 @@ public class Member {
 	    }
 	}
 
-	
-	
+
+
 	//업로드경로 메서드
 	private String getImagePathFromDatabase() {
 
-	    String imagePath = "/assets/img/default.jpg"; 
-	    
+	    String imagePath = "/assets/img/default.jpg";
+
 	    return imagePath;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 }

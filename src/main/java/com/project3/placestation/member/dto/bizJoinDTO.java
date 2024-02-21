@@ -28,6 +28,6 @@ public class bizJoinDTO {
 	private String bizFilePath;
 	private String bizRole;
 	private String bizTel;
-	
-	
+
+
 }

@@ -13,6 +13,12 @@
 			select * from member
 			limit #{startPage},#{pageSize}
 		</select>
+
+		<!-- 일반회원명단출력 -->
+		<select id="selectUser" resultType="com.project3.placestation.member.dto.memberDTO">
+			select * from member
+			where user_id=#{userId}
+		</select>
 		
 		
 		<!-- 페이징처리 갯수세팅 -->
@@ -39,6 +45,13 @@
 		</select>
 		
 		
+		
+		<!-- 일반 회원 가입 처리 -->
+		<insert id="insertUser">
+			insert into member(user_id,user_password,user_address,user_name, user_hp, user_email, user_gender)
+			value(#{dto.userid},#{dto.userpassword},#{dto.useraddress},#{dto.username},#{dto.userhp},#{dto.useremail},#{dto.usergender})
+			
+		</insert>
 		
 		
 		

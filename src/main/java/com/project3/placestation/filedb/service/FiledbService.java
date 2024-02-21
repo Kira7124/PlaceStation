@@ -1,7 +1,6 @@
 package com.project3.placestation.filedb.service;
 
 import java.util.List;
-
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class FiledbService {
 
 	/**
 	 * 저장
-	 * 
+	 *
 	 * @param uuid
 	 * @param files
 	 * @return String filePath
