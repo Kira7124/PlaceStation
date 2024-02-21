@@ -22,12 +22,22 @@ public class NoticeBoardService {
 			return result;
 		}
 		
+		
+		//특정글조회(글번호사용)
+		public NoticeBoard detailNoticeBoard(Integer nbno) throws Exception{
+			return noticeBoardRepository.detailNoticeBoard(nbno);
+		}
+		
+		
 		//페이징처리 갯수세팅(페이징)
 		public int AdmincountNoticeBoard() throws Exception{
 			return noticeBoardRepository.AdmincountNoticeBoard();
 		}
 		
-		
+		//글조회수증가
+		public void updateReadCnt(Integer nbno) throws Exception{
+			noticeBoardRepository.updateReadCnt(nbno);
+		}
 	
 	
 	

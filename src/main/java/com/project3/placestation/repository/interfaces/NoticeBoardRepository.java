@@ -18,6 +18,9 @@ public interface NoticeBoardRepository {
 	//페이징처리 갯수세팅
 	public int AdmincountNoticeBoard() throws Exception;
 	
+	//특정글조회(글번호사용)
+	public NoticeBoard detailNoticeBoard(Integer nbno) throws Exception;
+	
 	//글조회수증가
 	public void updateReadCnt(Integer nbno) throws Exception;
 	

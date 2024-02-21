@@ -46,7 +46,7 @@
 							<tr>
 								<td>${noticelist.nbno}</td>
 								<td>${noticelist.nwriter}</td>
-								<td><a href="/admin/admin-noticedetail">${noticelist.ntitle}</a></td>
+								<td><a href="/admin/admin-noticedetail?nbno=${noticelist.nbno}">${noticelist.ntitle}</a></td>
 								<td>${noticelist.formatjoinAt()}</td>
 								<td>${noticelist.nreadcount}</td>			
 								<td>

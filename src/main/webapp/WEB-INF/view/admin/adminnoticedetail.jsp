@@ -29,7 +29,54 @@
 				</div>
 				
 				<div class="panel-body no-padding">
-					<h1>eeeeeeeee</h1>
+					
+			<div class="container">
+				   <div class="row justify-content-center">
+					   <div class="col-md-8">	
+						
+						<div class="card">
+		 					 <div class="card-body">
+			        			
+							<div class="box-body">
+							
+							<div class="details">
+		        					<h3 style="font-weight: bold;">공지사항</h3>
+		      				</div><br>
+							
+								<div class="form-group w-25">
+									<label for="exampleInputEmail1"><h5>작성자</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1" value ="${detailNotice.nwriter}" readonly="readonly">
+								</div><br>
+								<div class="form-group w-25">
+									<label for="exampleInputEmail1"><h5>제 목</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1" value="${detailNotice.ntitle}" readonly >
+								</div><br>
+								<div class="form-group w-50">
+									<label for="exampleInputEmail1"><h5>내 용</h5></label>
+									<textarea class="form-control" rows="3" readonly="readonly">${detailNotice.ncontent}</textarea>
+								</div><br>	
+							</div>
+					  </div>
+				  </div>		
+				
+				   </div>				
+				</div>			
+			</div>				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					
 
 					

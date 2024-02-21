@@ -115,7 +115,9 @@ public class AdminController {
 	//http://localhost:80/admin/admin-notice
 	//관리자 공지사항관리페이지출력
 	@GetMapping("/admin-notice")
-	public String adminnoticeGET(AdminNoticeDTO ndto,Model model,Criteria cri) throws Exception {
+	public String adminnoticeGET(AdminNoticeDTO ndto,Model model,Criteria cri,HttpSession session) throws Exception {
+		
+		session.setAttribute("viewcntCheck", true);
 		
 		PageVO pageVO = new PageVO();
 		pageVO.setCri(cri);
@@ -136,7 +138,19 @@ public class AdminController {
 	
 	//관리자 공지사항 상세보기페이지출력
 	@GetMapping("/admin-noticedetail")
-	public String adminnoticedetailGET() {
+	public String adminnoticedetailGET(@RequestParam("nbno") Integer nbno, Model model,HttpSession session) throws Exception {
+		
+		
+		if((boolean)session.getAttribute("viewcntCheck") ) {
+			noticeBoardService.updateReadCnt(nbno);
+			session.setAttribute("viewcntCheck", false);
+			
+		}
+		
+		NoticeBoard result = noticeBoardService.detailNoticeBoard(nbno);
+		model.addAttribute("detailNotice", result);
+		
+		
 		log.debug("공지사항(관리자)상세보기실행");
 		return "admin/adminnoticedetail";
 	}
