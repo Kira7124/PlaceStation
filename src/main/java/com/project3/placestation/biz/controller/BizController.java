@@ -65,30 +65,4 @@ public class BizController {
 	}
 
 
-
-	// http://localhost/biz/product-management
-	@GetMapping("/product-management")
-	public String productManagementForm(Model model) {
-
-		int userId = 1;
-
-		List<ResProductDto> dto = bizProductService.findAll(userId);
-		model.addAttribute("products", dto);
-		return "biz/product/biz_product_management";
-	}
-
-	// http://localhost/biz/add-product
-	@GetMapping("/add-product-form")
-	public String addProducttForm() {
-		return "biz/product/biz_add_product";
-	}
-
-	// http://localhost/biz/update-product-form/{prodNo}
-	@GetMapping("/update-product-form/{prodNo}")
-	public String updateProductForm(@PathVariable(value = "prodNo") int prodNo, Model model) {
-		ResProductDto dto = bizProductService.findById(prodNo);
-		log.info(dto.toString());
-		model.addAttribute("product", dto);
-		return "biz/product/biz_update_product";
-	}
 }

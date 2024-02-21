@@ -101,18 +101,17 @@
 										rows="4" id="textarea3" name="prodCautionInfo"></textarea>
 									<br>
 									<h4>대분류 카테고리</h4>
-									<select class="form-control" name="prodMajorCategoryId">
-										<option value="1">캠핑</option>
-										<option value="2">스포츠</option>
-										<option value="3">스터디</option>
+									<select class="form-control" name="prodMajorCategoryId"
+										id="mainCategory" onchange="updateSubcategories()">
+										<c:forEach items="${mainCategory}" var="category">
+											<option value="${category.categoryId}">${category.mainCategoryName}</option>
+										</c:forEach>
 									</select> <br>
 
 									<h4>소분류 카테고리</h4>
-									<select class="form-control" name="prodSubcategoryId">
-										<option value="1">농구</option>
-										<option value="2">축구</option>
-										<option value="3">배구</option>
-										<option value="4">야구</option>
+									<select class="form-control" name="prodSubcategoryId"
+										id="subcategory">
+										<!-- 이 부분은 JavaScript로 동적으로 업데이트됩니다 -->
 									</select> <br>
 								</div>
 							</div>
@@ -239,7 +238,6 @@ $textarea3.oninput = (event) => {
   
     btnAtt.onchange = function(e){
     
-    	
         // 원래 이미지 제거
         while (attZone.firstChild) {
         	attZone.removeChild(attZone.firstChild);
@@ -374,6 +372,7 @@ $textarea3.oninput = (event) => {
 
 	});
 	
+	// 전체 주소 변경
 	function changeFullAddress() {
 		var address = document.querySelector('#adress');
 		var detailedAddress = document.querySelector('#detailedAddress');
@@ -381,6 +380,45 @@ $textarea3.oninput = (event) => {
 		
 		fullAddress.value = address.value + " " + detailedAddress.value;
 	}
+	
+	// 페이지 로드 시 초기 설정
+	document.addEventListener("DOMContentLoaded", function() {
+	    updateSubcategories();
+	});
+	
+	// 비동기 통신 - 메인 카테고리 id 로 서브 카테고리 id 찾기
+	function updateSubcategories() {
+	    var mainCategoryId = document.getElementById("mainCategory").value;
+
+	    $.ajax({
+	        type: "get",
+	        url: "/biz/product/subcategory?main-category=" + mainCategoryId,
+	        headers : {"Content-Type" : "application/json"},
+			dataType : "json",
+		       success: function (res) {
+					console.log(res);
+					updateSubcategoriesForm(res , mainCategoryId);
+		         },
+	        error: function(e) {
+	            console.log(e);
+	        }
+	    });
+	}
+	
+	function updateSubcategoriesForm(subcategories , mainCategoryId) {
+	    var subcategoryDropdown = document.getElementById("subcategory");
+	    subcategoryDropdown.innerHTML = ""; // 이전의 옵션을 모두 지웁니다
+	    for (var i = 0; i < subcategories.length; i++) {
+	        var subcategory = subcategories[i];
+	        if (subcategory.mainCategoryId == mainCategoryId) {
+	            var option = document.createElement("option");
+	            option.value = subcategory.categoryId;
+	            option.textContent = subcategory.subcategoryName;
+	            subcategoryDropdown.appendChild(option);
+	        }
+	    }
+	}
+
 </script>
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_footer.jsp"%>

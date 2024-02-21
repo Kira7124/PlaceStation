@@ -62,6 +62,13 @@
 		where m.user_no = #{bizId};
 	</select>
 
+	<!-- 판매자 join 유저 -->
+	<select id="findPasswordById"
+		resultType="com.project3.placestation.biz.model.dto.ResPassword">
+		select user_password as password from member
+		where user_no = #{userNo}
+	</select>
+
 	<update id="BizUpdateMember">
 		update member set
 		user_name = #{accountDto.userName},

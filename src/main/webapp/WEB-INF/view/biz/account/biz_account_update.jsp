@@ -67,36 +67,49 @@
 										<input type="text" class="form-control"
 											placeholder="아이디를 입력해 주세요" name="userId"
 											value="${biz.userEmail}" disabled="disabled" /> <br>
-										<h4>비밀번호 변경</h4>
+
+										<h4>비밀번호 확인</h4>
 										<div class="input-group">
 											<input type="password" class="form-control"
-												placeholder="변경하실 비밀번호를 입력해 주세요" id="password1"> <span
-												class="input-group-btn"><button type="button"
-													class="btn btn-primary" id="checkPassword"
-													onclick="changePasswordForm()">변경</button></span>
+												placeholder="현재 비밀번호를 입력해 주세요." id="current-password">
+											<span class="input-group-btn"><button type="button"
+													class="btn btn-primary" id="currentPasswordCheck"
+													onclick="isPasswordRight()">확인</button></span>
 										</div>
-										<ul class="list-unstyled activity-list regexDescription">
-											<li>아래의 유효성을 검사합니다.</li>
-											<li>1. 숫자가 최소한 1개 포함되어야 합니다. <br /> 2. 소문자가 최소한 1개
-												포함되어야 합니다. <br /> 3. 대문자가 최소한 1개 포함되어야 합니다. <br /> 4. 특수
-												문자(@, #, $, %, ^, &, +, =, ! 중 하나)가 최소한 1개 포함되어야 합니다. <br />
-												5. 공백이 없어야 합니다. <br /> 6. 최소한 8자 이상의 문자열이어야 합니다.
-											</li>
-										</ul>
-										<br>
-										<div class="changePassword" style="display: none">
-											<h4>
-												비밀번호를 다시 한번 쳐주세요 <br />(검사를 하지 않으면 저장이 되지 않습니다.)
-											</h4>
+										<!-- 비밀번호 변경 -->
+										<div id="change-password-form" style="display: none">
+											<h4>비밀번호 변경</h4>
 											<div class="input-group">
-												<input type="password" value="비밀번호"
-													class="form-control password2"
-													placeholder="변경하실 비밀번호를 다시 한번 더 쳐주세요" name="userPassword">
-												<span class="input-group-btn"><button type="button"
-														class="btn btn-primary" onclick="checkPasswordRight()">변경</button></span>
+												<input type="password" class="form-control"
+													placeholder="변경하실 비밀번호를 입력해 주세요" id="password1"> <span
+													class="input-group-btn"><button type="button"
+														class="btn btn-primary" id="checkPassword"
+														onclick="changePasswordForm()">변경</button></span>
 											</div>
-											<input type="hidden" name="changePassword" value="N" id="" />
+											<ul class="list-unstyled activity-list regexDescription">
+												<li>아래의 유효성을 검사합니다.</li>
+												<li>1. 숫자가 최소한 1개 포함되어야 합니다. <br /> 2. 소문자가 최소한 1개
+													포함되어야 합니다. <br /> 3. 대문자가 최소한 1개 포함되어야 합니다. <br /> 4. 특수
+													문자(@, #, $, %, ^, &, +, =, ! 중 하나)가 최소한 1개 포함되어야 합니다. <br />
+													5. 공백이 없어야 합니다. <br /> 6. 최소한 8자 이상의 문자열이어야 합니다.
+												</li>
+											</ul>
+											<br>
+											<div class="changePassword" style="display: none">
+												<h4>
+													비밀번호를 다시 한번 쳐주세요 <br />(검사를 하지 않으면 저장이 되지 않습니다.)
+												</h4>
+												<div class="input-group">
+													<input type="password" value="비밀번호"
+														class="form-control password2"
+														placeholder="변경하실 비밀번호를 다시 한번 더 쳐주세요" name="userPassword">
+													<span class="input-group-btn"><button type="button"
+															class="btn btn-primary" onclick="checkPasswordRight()">변경</button></span>
+												</div>
+												<input type="hidden" name="changePassword" value="N" id="isChangePassword" />
+											</div>
 										</div>
+										<!-- 비밀번호 변경 완료 -->
 										<br>
 										<h4>휴대폰 번호 (000-0000-0000)</h4>
 										<input type="text" value="${biz.userHp}" class="form-control"
@@ -177,6 +190,9 @@
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66d1a68d1892ba5335686cc3e3bd8537&libraries=services"></script>
+<!-- ajax -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
 
 let count = 0;
@@ -282,6 +298,29 @@ let count = 0;
 	changeBizFile.value="Y"; // changeImage == Y 로 변경
 }
 
+// 현재 패스워드 검사
+function isPasswordRight() {
+    var currentPassword = document.querySelector("#current-password");
+    var passwordForm = document.querySelector("#change-password-form");
+
+    $.ajax({
+        type: "post",
+        url: "/biz/account/password-check",
+        data: JSON.stringify({ "password": currentPassword.value }), // 데이터를 객체로 전달
+        headers : {"Content-Type" : "application/json"},
+		dataType : "json",
+	       success: function (res) {
+	           alert("비밀번호 확인이 되셨습니다.");
+	           passwordForm.style.display = "block";
+	           currentPassword.readOnly = true;
+	         },
+        error: function(e) {
+            alert("비밀번호가 틀렸습니다.");
+        }
+    });
+}
+
+
 	// 비밀번호 유효성 검사
 	function changePasswordForm() {
 		var changePassword = document.querySelector(".changePassword");
@@ -299,14 +338,14 @@ let count = 0;
 		}
 	}
 	
-	// 비밀번호 체크
+
+	
+	// 바꿀 비밀번호 체크
 	function checkPasswordRight() {
 		var password1 = document.querySelector("#password1");
 		var password2 = document.querySelector(".password2");
 		var isChangePassword = document.querySelector("#isChangePassword");
 		
-		console.log(password1.value);
-		console.log(password2.value);
 		if(password1.value == password2.value) {
 			alert("유효합니다.")
 			password2.readOnly=true;

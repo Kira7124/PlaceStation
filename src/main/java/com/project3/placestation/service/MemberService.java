@@ -11,6 +11,7 @@ import com.project3.placestation.admin.dto.AdminMemberDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
+import com.project3.placestation.biz.model.dto.ResPassword;
 import com.project3.placestation.member.dto.bizDTO;
 import com.project3.placestation.member.dto.bizJoinDTO;
 import com.project3.placestation.repository.entity.BizJoin;
@@ -56,6 +57,11 @@ public class MemberService {
 	// 사업자 유저 상세 조회
 	public BizJoin SelectJoinBiz(int bizId) {
 		BizJoin result = memberRepository.SelectJoinBiz(bizId);
+		
+		// 검사
+		if(result == null) {
+			throw new CustomRestfulException("유저 정보가 없거나 서버 에러가 발생하였습니다.. ", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return  result;
 	}
 	
@@ -67,4 +73,12 @@ public class MemberService {
 		}
 	}
 	
+	// 비밀번호 체크
+	public ResPassword BizFindCurrentPassword(int userNo) {
+		ResPassword result = memberRepository.findPasswordById(userNo);
+		if(result.getPassword() == null) {
+			throw new CustomRestfulException("유저 정보를 변경하는 도중 서버 에러가 발생하였습니다. ", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return result;
+	}
 }

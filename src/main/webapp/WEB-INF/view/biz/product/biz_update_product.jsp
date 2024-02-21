@@ -72,7 +72,7 @@
 														style="width: 30%; height: 40%; z-index: none;" />
 												</c:forEach>
 											</div>
-											
+
 										</div>
 										<input type="hidden" name="changeImage" value="N"
 											id="changeImage" />
@@ -112,20 +112,18 @@
 									<br>
 									<h4>대분류 카테고리</h4>
 									<select class="form-control" name="prodMajorCategoryId"
-										value="${product.prodMajorCategoryId}"
-										id="prodMajorCategoryId">
-										<option value="1">캠핑</option>
-										<option value="2">스포츠</option>
-										<option value="3">스터디</option>
+										id="mainCategory" onchange="updateSubcategories()"
+										value="${product.prodMajorCategoryId}">
+										<c:forEach items="${mainCategory}" var="category">
+											<option value="${category.categoryId}"
+												<c:if test="${category.categoryId eq product.prodMajorCategoryId}">selected</c:if>>${category.mainCategoryName}</option>
+										</c:forEach>
 									</select> <br>
 
 									<h4>소분류 카테고리</h4>
 									<select class="form-control" name="prodSubcategoryId"
-										value="${product.prodSubcategoryId}" id="prodSubcategoryId">
-										<option value="1">농구</option>
-										<option value="2">축구</option>
-										<option value="3">배구</option>
-										<option value="4">야구</option>
+										id="subcategory">
+										<!-- 이 부분은 JavaScript로 동적으로 업데이트됩니다 -->
 									</select> <br>
 								</div>
 							</div>
@@ -204,14 +202,6 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66d1a68d1892ba5335686cc3e3bd8537&libraries=services"></script>
 <script>
 let count = 0;
-// select Box 먼저 처음 값 넣어 주기
-const prodMajorCategoryId = document.querySelector('#prodMajorCategoryId'); // textarea 1
-const prodSubcategoryId = document.querySelector('#prodSubcategoryId'); // textarea 1
-
-prodMajorCategoryId.value = ${product.prodMajorCategoryId};
-prodSubcategoryId.value = ${product.prodSubcategoryId};
-
-
 
 // Textarea 자동 줄 바꿈
 const DEFAULT_HEIGHT = 100; // textarea 기본 height
@@ -418,6 +408,49 @@ $textarea3.oninput = (event) => {
 		
 		fullAddress.value = address.value + " " + detailedAddress.value;
 	}
+	
+	
+	// 페이지 로드 시 초기 설정
+	document.addEventListener("DOMContentLoaded", function() {
+		   updateSubcategories();
+	});
+	
+	// 비동기 통신 - 메인 카테고리 id 로 서브 카테고리 id 찾기
+	function updateSubcategories(mainCategoryId) {
+	    var mainCategoryId = document.getElementById("mainCategory").value;
+	    console.log(mainCategoryId);
+	    $.ajax({
+	        type: "get",
+	        url: "/biz/product/subcategory?main-category=" + mainCategoryId,
+	        headers : {"Content-Type" : "application/json"},
+			dataType : "json",
+		       success: function (res) {
+					updateSubcategoriesForm(res , mainCategoryId);
+		         },
+	        error: function(e) {
+	            console.log(e);
+	        }
+	    });
+	}
+	
+	// subcategory 의 form 을 변경
+	function updateSubcategoriesForm(subcategories , mainCategoryId) {
+	    var subcategoryDropdown = document.getElementById("subcategory");
+	    subcategoryDropdown.innerHTML = ""; // 이전의 옵션을 모두 지웁니다
+	    for (var i = 0; i < subcategories.length; i++) {
+	        var subcategory = subcategories[i];
+	        if (subcategory.mainCategoryId == mainCategoryId) {
+	            var option = document.createElement("option");
+	            option.value = subcategory.categoryId;
+	            option.textContent = subcategory.subcategoryName;
+	            if (subcategory.categoryId == ${product.prodSubcategoryId}) {
+	                option.selected = true; // 기본값으로 선택될 옵션에 selected 속성 추가
+	            }
+	            subcategoryDropdown.appendChild(option);
+	        }
+	    }
+	}
+	
 </script>
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_footer.jsp"%>

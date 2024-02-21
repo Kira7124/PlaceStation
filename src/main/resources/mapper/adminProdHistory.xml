@@ -58,8 +58,6 @@
 		ps
 		ON ps.category_id = p.prod_subcategory_id
 		WHERE
-		p.prod_delete_yn = 'N'
-		AND
 		h.admin_his_seller_id = #{bizId}
 		LIMIT
 		#{pageReq.page} *
@@ -152,30 +150,41 @@
 		<choose>
 			<when test="kind == 'ANNUAL'.toString()">
 				select count(*) from admin_prod_history
-				where admin_his_seller_id =
+				where
+				admin_his_seller_id =
 				#{bizId}
 				and cancel_yn = 'N'
-				AND admin_his_created_at BETWEEN DATEADD('MONTH',
+				AND
+				admin_his_created_at BETWEEN DATEADD('MONTH',
 				-12,
-				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
 			</when>
 			<when test="kind == 'MONTHLY'.toString()">
 				select count(*) from admin_prod_history
-				where admin_his_seller_id =
+				where
+				admin_his_seller_id =
 				#{bizId}
 				and cancel_yn = 'N'
-				AND admin_his_created_at BETWEEN DATEADD('MONTH',
+				AND
+				admin_his_created_at BETWEEN DATEADD('MONTH',
 				-1,
-				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
 			</when>
 			<when test="kind == 'WEEK'.toString()">
 				select count(*) from admin_prod_history
-				where admin_his_seller_id =
+				where
+				admin_his_seller_id =
 				#{bizId}
 				and cancel_yn = 'N'
-				AND admin_his_created_at BETWEEN DATEADD('DAY', -7,
-				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				AND
+				admin_his_created_at BETWEEN DATEADD('DAY', -7,
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
 			</when>
 		</choose>
 	</select>
+
+
 </mapper>
