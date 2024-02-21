@@ -2,11 +2,11 @@
 CREATE TABLE prod_Review (
     prod_rev_no INT AUTO_INCREMENT PRIMARY KEY,
     prod_no INT NOT NULL,
+    user_no INT NOT NULL,
     prod_rev_title VARCHAR(50) NOT NULL,
     prod_rev_content VARCHAR(1000),
     prod_rev_star INT NOT NULL,
     prod_rev_create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    prod_rev_id INT NOT NULL,
     prod_rev_update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     prod_rev_delete_yn VARCHAR(1) DEFAULT 'N',
     prod_rev_delete_at TIMESTAMP,

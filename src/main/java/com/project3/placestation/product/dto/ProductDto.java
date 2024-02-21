@@ -2,9 +2,19 @@ package com.project3.placestation.product.dto;
 
 import java.sql.Timestamp;
 
+import com.project3.placestation.biz.model.dto.ResProductDto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ProductDto {
     private int prodWriterNo; // 판매자 id 값
     private int prodNo; // 상품 번호

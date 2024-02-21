@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project3.placestation.biz.model.dto.ResProductDto;
+import com.project3.placestation.product.dto.ProdReviewDto;
 import com.project3.placestation.repository.entity.ProdReview;
 import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
+import com.project3.placestation.service.ProdReviewService;
 import com.project3.placestation.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,18 +35,31 @@ public class ProductController {
 	public ProductController(ProductRepository productRepository) {
 		this.productRepository = productRepository;
 	}
-
+	@Autowired
+	ProdReviewService prodReviewService;
+	
 	@GetMapping("/productDetail")
 	public String productDetail(@RequestParam("prod_no") Integer prodNo, Model model) {
 	    log.debug("상품 상세 페이지 - 상품번호: {}", prodNo);
-	    
+
 	    // 상품 번호로 조회
 	    ResProductDto product = productService.findById(prodNo);
-	    
+	    // 상품 번호로 리뷰 조회
+	    List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNo(prodNo);
+
 	    model.addAttribute("product", product);
-	    
+	    model.addAttribute("reviewProdNo", reviewProdNo);
+
 	    return "product/productDetail";
 	}
+	
+	@PostMapping("/saveReview")
+	public String saveReview(ProdReviewDto dto) {
+
+
+	    return "";
+	}
+
 
 	@GetMapping("/main")
 	public String mainindex(Model model) {

@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
-	namespace="com.project3.placestation.repository.interfaces.ProductReviewRepository">
+	namespace="com.project3.placestation.repository.interfaces.ProdReviewRepository">
 
 	<!-- 리뷰 등록 -->
 	<insert id="insertByRev">

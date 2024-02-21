@@ -141,6 +141,15 @@
 	display: inline-block;
 	width: 120px;
 }
+
+.noRev{
+	font-size:24px; 
+	text-align: center; 
+	height:250px; 
+	display: flex; 
+	justify-content: center; 
+	align-items: center;"
+}
 </style>
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -470,7 +479,7 @@
 										</h2>
 
 										<div class="post-meta">${product.prodNo}|
-											<span id="formattedDate"></span> | 리뷰 개수
+											<span id="formattedDate"></span>
 										</div>
 									</div>
 									<div class="post-images-slider"
@@ -507,8 +516,6 @@
 
 										<div class="tab-pane active" id="description">
 											<p></p>
-
-
 
 											<!-- 본문 1 -->
 											<div class="post #">
@@ -646,97 +653,91 @@
 										<!-- 환불 규정 안내 끝 -->
 										<!-- reviews 시작 -->
 										<div class="tab-pane" id="reviews">
-											<div class="comments reviews">
-												<div class="comment clearfix">
-													<div class="comment-avatar">
-														<img src="" alt="avatar" />
-													</div>
-													<div class="comment-content clearfix">
-														<div class="comment-author font-alt">
-															<a href="#">John Doe</a>
-														</div>
-														<div class="comment-body">
-															<p>The European languages are members of the same
-																family. Their separate existence is a myth. For science,
-																music, sport, etc, Europe uses the same vocabulary. The
-																European languages are members of the same family. Their
-																separate existence is a myth.</p>
-														</div>
-														<div class="comment-meta font-alt">
-															Today, 14:55 -<span><i class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star-off"></i></span>
-														</div>
+											<!-- productDetail.jsp -->
+
+											<!-- 리뷰가 있는 경우 -->
+											<c:if test="${not empty reviewProdNo}">
+												<div id="reviews" class="tab-pane">
+													<div class="comments reviews">
+														<h3>이용 후기</h3>
+														<!-- 리뷰 정보를 반복해서 표시 -->
+														<c:forEach items="${reviewProdNo}" var="review">
+															<div class="comment clearfix" style="border-bottom: 1px solid #ccc; 
+														 margin-bottom: 8px;">
+																<div class="comment-avatar">
+																	<img src="" alt="avatar" />
+																</div>
+																<div class="comment-content clearfix">
+																	<div class="comment-author font-alt">
+																		<p>유저 닉네임1234 | <c:forEach begin="1" end="${review.prodRevStar}">
+																				<i class="fa fa-star star"></i>
+																			</c:forEach>
+																			<c:forEach begin="${review.prodRevStar + 1}" end="5">
+																				<i class="fa fa-star star-off"></i>
+																			</c:forEach></p>
+																	</div>
+																	<div class="comment-body">
+																		<p>${review.prodRevContent}</p>
+																	</div>
+																	<div class="comment-meta font-alt">
+																		<!-- 리뷰 작성 날짜 및 별점 표시 -->
+																		<p>${review.prodRevCreateAt}</p>
+																	</div>
+																</div>
+															</div>
+														</c:forEach>
 													</div>
 												</div>
-												<div class="comment clearfix">
-													<div class="comment-avatar">
-														<img src="" alt="avatar" />
-													</div>
-													<div class="comment-content clearfix">
-														<div class="comment-author font-alt">
-															<a href="#">Mark Stone</a>
-														</div>
-														<div class="comment-body">
-															<p>Europe uses the same vocabulary. The European
-																languages are members of the same family. Their separate
-																existence is a myth.</p>
-														</div>
-														<div class="comment-meta font-alt">
-															Today, 14:59 -<span><i class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star"></i></span><span><i
-																class="fa fa-star star-off"></i></span><span><i
-																class="fa fa-star star-off"></i></span>
-														</div>
+											</c:if>
+
+											<!-- 리뷰가 없는 경우 -->
+											<c:if test="${empty reviewProdNo}">
+												<div id="reviews" class="tab-pane">
+													<h3>등록된 후기</h3>
+													<div class="noRev">
+													아직 등록된 후기가 없습니다.
 													</div>
 												</div>
-											</div>
-											<div class="comment-form mt-30">
-												<h4 class="comment-form-title font-alt">리뷰 작성</h4>
-												<form method="post">
-													<div class="row">
-														<div class="col-sm-4">
-															<div class="form-group">
-																<label class="sr-only" for="name"></label> <input
-																	class="form-control" id="name" type="text" name="name"
-																	placeholder="유저네임" />
-															</div>
-														</div>
-														<div class="col-sm-4">
-															<div class="form-group">
-																<label class="sr-only" for="email"></label> <input
-																	class="form-control" id="email" type="text"
-																	name="email" placeholder="다른거" />
-															</div>
-														</div>
-														<div class="col-sm-4">
-															<div class="form-group">
-																<select class="form-control">
-																	<option selected="true" disabled="">Rating</option>
-																	<option value="1">1</option>
-																	<option value="2">2</option>
-																	<option value="3">3</option>
-																	<option value="4">4</option>
-																	<option value="5">5</option>
-																</select>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<div class="form-group">
-																<textarea class="form-control" id="" name="" rows="4"
-																	placeholder="Review"></textarea>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<button class="btn btn-round btn-d" type="submit">
-																리뷰 작성</button>
-														</div>
-													</div>
-												</form>
-											</div>
+											</c:if>
+
+<div class="comment-form mt-30">
+    <h4 class="comment-form-title font-alt">리뷰 작성</h4>
+    <form method="post" action="/product/saveReview">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                <input type="hidden" name="prod_no" value="${product.prodNo}">
+                    <label for="username">제목</label> 
+                    <input class="form-control" type="text" name="title" placeholder="리뷰제목" required />
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="rating">평점</label>
+                    <select class="form-control" id="rating" name="rating" required>
+                        <option selected disabled>평점 선택</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="reviewContent">리뷰 내용</label>
+                    <textarea class="form-control" name="reviewContent" rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <button class="btn btn-round btn-d" type="submit">리뷰 작성</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 										</div>
 										<!-- reviews 끝 -->
 
@@ -1138,14 +1139,22 @@
       marker.setMap(map);
       
       
-      // 날짜 포메팅(년-월-일)
-      var prodRdate = new Date("${product.prodRdate}");
-      var year = prodRdate.getFullYear();
-      var month = ("0" + (prodRdate.getMonth() + 1)).slice(-2);
-      var day = ("0" + prodRdate.getDate()).slice(-2);
-      var formattedDate = year + "-" + month + "-" + day;
-      document.getElementById("formattedDate").textContent = formattedDate;
-    </script>
+  	 // 날짜 포메팅 함수
+      function formatDate(dateString, targetElementId) {
+          var date = new Date(dateString);
+          var year = date.getFullYear();
+          var month = ("0" + (date.getMonth() + 1)).slice(-2);
+          var day = ("0" + date.getDate()).slice(-2);
+          var formattedDate = year + "-" + month + "-" + day;
+          document.getElementById(targetElementId).textContent = formattedDate;
+      }
+
+      // 상품 날짜 포메팅
+      formatDate("${product.prodRdate}", "formattedDate");
+
+      // 리뷰 날짜 포메팅
+      formatDate("${review.prodRevCreateAt}", "formattedReviewDate");
+  </script>
 
 </body>
 </html>

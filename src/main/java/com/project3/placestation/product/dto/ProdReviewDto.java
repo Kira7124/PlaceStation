@@ -21,12 +21,12 @@ public class ProdReviewDto {
     private String prodRevTitle; // 리뷰 제목
     private String prodRevContent; // 리뷰 내용
     private Integer prodRevStar; // 리뷰 평점
-    private Timestamp prodRevCreateAt; // 리뷰 작성 시간
+    private String prodRevCreateAt; // 리뷰 작성 시간
     private Integer prodRevId; // 리뷰 작성 유저ID
-    private Timestamp prodRevUpdateAt; // 리뷰 업데이트 시간
+    private String prodRevUpdateAt; // 리뷰 업데이트 시간
     private String prodRevDeleteYn; // 리뷰삭제 'Y','N'
-    private Timestamp prodRevDeleteAt; // 리뷰 삭제 시간
-    private Integer childId;
-    private Integer parentId;
+    private String prodRevDeleteAt; // 리뷰 삭제 시간
+    private Integer parentId; // 원 댓글 id값
+    private Integer childId; // 대댓글 id값
 
 }
