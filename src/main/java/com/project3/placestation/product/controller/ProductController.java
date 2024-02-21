@@ -3,15 +3,18 @@ package com.project3.placestation.product.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.repository.entity.ProdReviewEntity;
 import com.project3.placestation.repository.entity.ProductEntity;
 import com.project3.placestation.repository.interfaces.ProductRepository;
+import com.project3.placestation.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 public class ProductController {
 
 	private final ProductRepository productRepository;
+	
+	@Autowired
+	ProductService productService;
 
 	public ProductController(ProductRepository productRepository) {
 		this.productRepository = productRepository;
@@ -32,9 +38,9 @@ public class ProductController {
 	    log.debug("상품 상세 페이지 - 상품번호: {}", prodNo);
 	    
 	    // 상품 번호로 조회
-//	    ProductEntity product = productRepository.findByProdNo(prodNo);
+	    ResProductDto product = productService.findById(prodNo);
 	    
-//	    model.addAttribute("product", product);
+	    model.addAttribute("product", product);
 	    
 	    return "product/productDetail";
 	}
