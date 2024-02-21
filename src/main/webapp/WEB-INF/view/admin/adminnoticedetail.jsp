@@ -17,7 +17,6 @@
 
 			<div class="panel">
 				<div class="panel-heading">
-					<h3 class="panel-title">상세내용보기</h3>
 					<div class="right">
 						<button type="button" class="btn-toggle-collapse">
 							<i class="lnr lnr-chevron-up"></i>

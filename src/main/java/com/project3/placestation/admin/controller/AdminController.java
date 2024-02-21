@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project3.placestation.admin.dto.AdminBizDTO;
 import com.project3.placestation.admin.dto.AdminMemberDTO;
 import com.project3.placestation.admin.dto.AdminNoticeDTO;
+import com.project3.placestation.admin.dto.AdminTodoDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.admin.dto.PageVO;
+import com.project3.placestation.admin.dto.TodoCriteria;
 import com.project3.placestation.repository.entity.Biz;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.entity.NoticeBoard;
+import com.project3.placestation.repository.entity.Todo;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.NoticeBoardService;
+import com.project3.placestation.service.TodoService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -38,23 +42,65 @@ public class AdminController {
 	@Autowired
 	private NoticeBoardService noticeBoardService;
 	@Autowired
+	private TodoService todoService;
+	@Autowired
 	private HttpSession httpSession;
 	
 	
 	//http://localhost:80/admin/admin-main
 	// 관리자 기본메인페이지 출력
 	@GetMapping("/admin-main")
-	public String adminpageGET(HttpSession session) throws Exception {
+	public String adminpageGET(HttpSession session,AdminNoticeDTO ndto,AdminTodoDTO tdto,Model model,Criteria cri,TodoCriteria todocri) throws Exception {
 		
-		
+		Integer totalNotice = noticeBoardService.AdmincountNoticeBoard();
 		Integer totalMember = memberService.countMember();
 		Integer totalBiz = bizService.countMember();
 		session.setAttribute("totalMember", totalMember);
 		session.setAttribute("totalBiz", totalBiz);
+		session.setAttribute("totalNotice", totalNotice);
+		
+		session.setAttribute("viewcntCheck", true);
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(noticeBoardService.AdmincountNoticeBoard());
+	
+		model.addAttribute("pageVO", pageVO);
+		
+		List<NoticeBoard> result = noticeBoardService.AdminNoticeBoardListAll(cri);
+		List<Todo> result2 = todoService.adminTodoList(todocri);
+		
+		
+		model.addAttribute("noticelist", result);
+		model.addAttribute("todolist", result2);
+		
+		
+		
+		
 		
 		log.debug("admin 메인 페이지 출력!");
 		return "admin/adminmain";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//http://localhost:80/admin/admin-member

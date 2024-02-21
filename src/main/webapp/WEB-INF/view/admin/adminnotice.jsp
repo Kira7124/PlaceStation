@@ -18,15 +18,7 @@
 
 			<div class="panel">
 				<div class="panel-heading">
-					<h3 class="panel-title">공지사항관리</h3>
-					<div class="right">
-						<button type="button" class="btn-toggle-collapse">
-							<i class="lnr lnr-chevron-up"></i>
-						</button>
-						<button type="button" class="btn-remove">
-							<i class="lnr lnr-cross"></i>
-						</button>
-					</div>
+					<h3 class="panel-title"><b>공지사항관리</b></h3>
 				</div>
 				
 				<div class="panel-body no-padding">
@@ -48,7 +40,7 @@
 								<td>${noticelist.nwriter}</td>
 								<td><a href="/admin/admin-noticedetail?nbno=${noticelist.nbno}">${noticelist.ntitle}</a></td>
 								<td>${noticelist.formatjoinAt()}</td>
-								<td>${noticelist.nreadcount}</td>			
+								<td><span class="badge" style="margin-left: 10px;">${noticelist.nreadcount}</span></td>			
 								<td>
 									<a href="#">
 										<span class="label label-info">등록</span>

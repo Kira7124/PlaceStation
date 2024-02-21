@@ -46,4 +46,10 @@ CREATE TABLE notice_board (
   PRIMARY KEY (`n_bno`)
   );
   
-
+CREATE TABLE admin_todo (
+  todo_no INT NOT NULL AUTO_INCREMENT,
+  todo_title VARCHAR(45) NOT NULL,
+  todo_content VARCHAR(100) NOT NULL,
+  todo_regdate DATETIME NULL DEFAULT now(),
+  PRIMARY KEY (`todo_no`)
+  );

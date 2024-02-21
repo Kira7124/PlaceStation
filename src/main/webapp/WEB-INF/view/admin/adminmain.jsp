@@ -5,7 +5,8 @@
     <%@ include file ="/WEB-INF/view/admin/adminheader.jsp" %>
 	<!-- adminside.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
-    
+     <!-- jquery/ajax 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     
     
@@ -28,7 +29,7 @@
 											<img src="/assets/icons/professionals.png" style="width:50px; height:50px;">
 										</span>
 										<p>
-											<span class="number">${totalMember}명</span>
+											<span class="number">${totalMember}</span>
 											<span class="title">일반회원수</span>
 										</p>
 									</div>
@@ -39,7 +40,7 @@
 											<img src="/assets/icons/professionals.png" style="width:50px; height:50px;">
 										</span>
 										<p>
-											<span class="number">${totalBiz}명</span>
+											<span class="number">${totalBiz}</span>
 											<span class="title">사업자수</span>
 										</p>
 									</div>
@@ -50,7 +51,7 @@
 											<img src="/assets/icons/notice.png" style="width:50px; height:50px;">
 										</span>
 										<p>
-											<span class="number">203</span>
+											<span class="number">${totalNotice}</span>
 											<span class="title">공지/문의</span>
 										</p>
 									</div>
@@ -90,94 +91,34 @@
 									</div>
 								</div>
 								<div class="panel-body no-padding">
-									<table class="table table-striped">
+									<table class="table table-striped" style="width: 95%; margin: auto;">
 										<thead>
 											<tr>
-												<th>Order No.</th>
-												<th>Name</th>
-												<th>Amount</th>
-												<th>Date &amp; Time</th>
-												<th>Status</th>
+												<th>번호</th>
+												<th>글쓴이</th>
+												<th>제목</th>
+												<th>등록일</th>
+												<th>조회수</th>
 											</tr>
 										</thead>
+									<c:forEach var="noticelist" items="${noticelist}">
 										<tbody>
 											<tr>
-												<td><a href="#">763648</a></td>
-												<td>Steve</td>
-												<td>$122</td>
-												<td>Oct 21, 2016</td>
-												<td><span class="label label-success">COMPLETED</span></td>
+												<td>${noticelist.nbno}</td>
+												<td>${noticelist.nwriter}</td>
+												<td><a href="/admin/admin-noticedetail?nbno=${noticelist.nbno}">${noticelist.ntitle}</a></td>
+												<td>${noticelist.formatjoinAt()}</td>
+												<td><span class="badge" style="margin-left: 10px;">${noticelist.nreadcount}</span></td>
 											</tr>
-											<tr>
-												<td><a href="#">763649</a></td>
-												<td>Amber</td>
-												<td>$62</td>
-												<td>Oct 21, 2016</td>
-												<td><span class="label label-warning">PENDING</span></td>
-											</tr>
-											<tr>
-												<td><a href="#">763650</a></td>
-												<td>Michael</td>
-												<td>$34</td>
-												<td>Oct 18, 2016</td>
-												<td><span class="label label-danger">FAILED</span></td>
-											</tr>
-											<tr>
-												<td><a href="#">763651</a></td>
-												<td>Roger</td>
-												<td>$186</td>
-												<td>Oct 17, 2016</td>
-												<td><span class="label label-success">SUCCESS</span></td>
-											</tr>
-											<tr>
-												<td><a href="#">763652</a></td>
-												<td>Smith</td>
-												<td>$362</td>
-												<td>Oct 16, 2016</td>
-												<td><span class="label label-success">SUCCESS</span></td>
-											</tr>
-											<tr>
-												<td><a href="#">763652</a></td>
-												<td>Smith</td>
-												<td>$362</td>
-												<td>Oct 16, 2016</td>
-												<td><span class="label label-success">SUCCESS</span></td>
-											</tr>
-											<tr>
-												<td><a href="#">763652</a></td>
-												<td>Smith</td>
-												<td>$362</td>
-												<td>Oct 16, 2016</td>
-												<td><span class="label label-success">SUCCESS</span></td>
-											</tr>
-											<tr>
-												<td><a href="#">763652</a></td>
-												<td>Smith</td>
-												<td>$362</td>
-												<td>Oct 16, 2016</td>
-												<td><span class="label label-success">SUCCESS</span></td>
-											</tr>
-											<tr>
-												<td><a href="#">763652</a></td>
-												<td>Smith</td>
-												<td>$362</td>
-												<td>Oct 16, 2016</td>
-												<td><span class="label label-success">SUCCESS</span></td>
-											</tr>
-											<tr>
-												<td><a href="#">763652</a></td>
-												<td>Smith</td>
-												<td>$362</td>
-												<td>Oct 16, 2016</td>
-												<td><span class="label label-success">SUCCESS</span></td>
-											</tr>
+											
 										</tbody>
+									  </c:forEach>	
 									</table>
 								</div>
 								<div class="panel-footer">
 									<div class="row">
-										<div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Last 24 hours</span></div>
-										<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">View All Purchases</a></div>
+										<div class="col-md-6"></div>
+										<div class="col-md-6 text-right"><a href="/admin/admin-notice" class="btn btn-primary">전체목록보기</a></div>
 									</div>
 								</div>
 							</div>
@@ -188,63 +129,28 @@
 							<div class="panel">
 								<div class="panel-heading" style="display: flex;">
 								    <h3 class="panel-title" style="flex: 1;"><b>투두리스트</b></h3>
+								    <button type="button" class="btn-toggle-collapse" style="margin-right: 10px;"><i class="lnr lnr-chevron-up"></i></button>
+								    <span class="label label-info" style="margin-right: 5px;">등록</span>
 								    <span class="label label-success">수정</span>
 								    <span class="label label-danger" style="margin-left: 5px;">삭제</span>
 								</div>
 								<div class="panel-body">
 									<ul class="list-unstyled todo-list">
+									<c:forEach var="todolist" items="${todolist}">
 										<li>
 											<label class="control-inline fancy-checkbox">
 												<input type="checkbox"><span></span>
 											</label>
 											<p>
-												<span class="title">1번할일</span>
-												<span class="short-description">1번할일입니다</span>
-												<span class="date">Oct 9, 2016</span>
+												<span class="title">${todolist.todotitle}</span>
+												<span class="short-description">${todolist.todocontent}</span>
+												<span class="date">${todolist.formatjoinAt()}</span>
 											</p>
 											<div class="controls">
 												<a href="#"><i class="icon-software icon-software-pencil"></i></a> <a href="#"><i class="icon-arrows icon-arrows-circle-remove"></i></a>
 											</div>
 										</li>
-										<li>
-											<label class="control-inline fancy-checkbox">
-												<input type="checkbox"><span></span>
-											</label>
-											<p>
-												<span class="title">Retest Upload Scenario</span>
-												<span class="short-description">Compellingly implement clicks-and-mortar relationships without highly efficient metrics.</span>
-												<span class="date">Oct 23, 2016</span>
-											</p>
-											<div class="controls">
-												<a href="#"><i class="icon-software icon-software-pencil"></i></a> <a href="#"><i class="icon-arrows icon-arrows-circle-remove"></i></a>
-											</div>
-										</li>
-										<li>
-											<label class="control-inline fancy-checkbox">
-												<input type="checkbox"><span></span>
-											</label>
-											<p>
-												<strong>Functional Spec Meeting</strong>
-												<span class="short-description">Monotonectally formulate client-focused core competencies after parallel web-readiness.</span>
-												<span class="date">Oct 11, 2016</span>
-											</p>
-											<div class="controls">
-												<a href="#"><i class="icon-software icon-software-pencil"></i></a> <a href="#"><i class="icon-arrows icon-arrows-circle-remove"></i></a>
-											</div>
-										</li>
-										<li>
-											<label class="control-inline fancy-checkbox">
-												<input type="checkbox"><span></span>
-											</label>
-											<p>
-												<strong>Functional Spec Meeting</strong>
-												<span class="short-description">Monotonectally formulate client-focused core competencies after parallel web-readiness.</span>
-												<span class="date">Oct 11, 2016</span>
-											</p>
-											<div class="controls">
-												<a href="#"><i class="icon-software icon-software-pencil"></i></a> <a href="#"><i class="icon-arrows icon-arrows-circle-remove"></i></a>
-											</div>
-										</li>
+									</c:forEach>
 									</ul>
 								</div>
 							</div>
