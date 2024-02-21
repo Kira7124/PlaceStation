@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.CsBoardRepository">
+	
+	<!--  CRUD -->
+    <insert id="insertNotice"></insert>
+
+    <select id="selectNotice" resultType="com.project3.placestation.member.dto.noticeBoardDTO">
+        SELECT * FROM `notice_board`
+    </select>
+
+    <select id="selectNotices" resultType="com.project3.placestation.member.dto.noticeBoardDTO">
+        SELECT `nBno`, `목록 뷰에 출력할때 보여줄것들` FROM `notice_board`
+        ORDER BY `noticeNo` DESC
+        <!-- LIMIT #{start}, 10; -->
+        <!-- 공지사항 넘버 내림차순  -->
+    </select>
+
+    <update id="updateNotice"></update>
+
+    <delete id="deleteNotice"></delete>
+	
+	
+
+</mapper>

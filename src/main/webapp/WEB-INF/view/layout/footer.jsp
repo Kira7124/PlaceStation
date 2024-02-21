@@ -34,26 +34,23 @@
     <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
 </head>
  <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
-            <main>
-
-           <!-- 하단 작은 푸터 시작 -->
-            <footer class="footer bg-dark">
-                <div class="container">
-                <div class="row">
-                    <h3 id="h3-footer">PlaceStation</h3>
-                    <hr class="divider-d" id="footer">
-                    <div class="col-sm-6">
-                        <p class="p-footer">대표 김진수</p>
-                        <p class="p-footer">주소 부산광역시 부산진구 중앙대로 749, 범향빌딩 4층</p>
-                        <p class="p-footer">전화번호 051-912-1000</p>
-                        <p class="p-footer">© 2024 PlaceStation, All Rights Reserved</p>
-                    </div>
-                </div>
-                </div>
-            </footer>
-            <!-- 하단 작은 푸터 끝-->
-            </div>
-            <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
-        </main>
-    </body>
+  <main>
+    <footer class="footer bg-dark">
+         <div class="container">
+         <div class="row">
+             <h3 id="h3-footer">PlaceStation</h3>
+             <hr class="divider-d" id="footer">
+             <div class="col-sm-6">
+                 <p class="p-footer">대표 김진수</p>
+                 <p class="p-footer">주소 부산광역시 부산진구 중앙대로 749, 범향빌딩 4층</p>
+                 <p class="p-footer">전화번호 051-912-1000</p>
+                 <p class="p-footer">© 2024 PlaceStation, All Rights Reserved</p>
+             </div>
+         </div>
+         </div>
+     </footer>
+     </div>
+     <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+  </main>
+</body>
 </html>
