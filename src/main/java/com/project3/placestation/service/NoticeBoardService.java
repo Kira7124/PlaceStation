@@ -34,6 +34,21 @@ public class NoticeBoardService {
 			return noticeBoardRepository.AdmincountNoticeBoard();
 		}
 		
+		
+		//공지사항검색리스트출력(페이징)
+		public List<NoticeBoard> AdminsearchNoticeBoardlist(Criteria cri) throws Exception{
+			List<NoticeBoard> result = noticeBoardRepository.AdminsearchNoticeBoardlist(cri);
+			return result;
+			
+		}
+		
+		//공지사항검색숫자세기(페이징)
+		public int countAdminSearchNoticelist(Criteria cri) throws Exception{
+			return noticeBoardRepository.countAdminSearchNoticelist(cri);
+		}
+
+		
+		
 		//글조회수증가
 		public void updateReadCnt(Integer nbno) throws Exception{
 			noticeBoardRepository.updateReadCnt(nbno);

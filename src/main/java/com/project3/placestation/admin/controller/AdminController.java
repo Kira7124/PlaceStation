@@ -403,6 +403,32 @@ public class AdminController {
 	
 	
 	
+	@GetMapping("/admin-searchnotice")
+	public String adminSearchNoticeGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
+		String searchOption = request.getParameter("searchOption");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		if (searchOption != null && !searchOption.isEmpty()) {
+	        cri.setSearchOption(searchOption);
+	    }
+		
+		
+	    if (searchKeyword != null && !searchKeyword.isEmpty()) {
+	        cri.setSearchKeyword(searchKeyword);
+	    }
+		
+	    PageVO pageVO = new PageVO();
+	    pageVO.setCri(cri);
+	    pageVO.setTotalCount(noticeBoardService.countAdminSearchNoticelist(cri));
+	    
+	    model.addAttribute("pageVO", pageVO);
+	    
+	    List<NoticeBoard> result = noticeBoardService.AdminsearchNoticeBoardlist(cri);
+	    model.addAttribute("noticelist", result);
+	    return "admin/adminnoticesearch";
+		
+	}
+	
 	
 	
 	

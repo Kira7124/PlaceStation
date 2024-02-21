@@ -25,6 +25,12 @@ public interface NoticeBoardRepository {
 	public void updateReadCnt(Integer nbno) throws Exception;
 	
 	
+	//공지사항리스트출력(검색,페이징처리)
+	public List<NoticeBoard> AdminsearchNoticeBoardlist(Criteria cri) throws Exception;
+	
+	
+	//공지사항숫자세기(검색,페이징처리)
+	public int countAdminSearchNoticelist(Criteria cri) throws Exception;
 	
 	
 	

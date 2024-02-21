@@ -31,10 +31,11 @@
 					
 			<div class="container">
 				   <div class="row justify-content-center">
-					   <div class="col-md-8">	
+					 <div class="col-md-8" style="margin-left: 200px;">	
 						
-						<div class="card">
-		 					 <div class="card-body">
+							<div class="card">
+					
+		 				  <div class="card-body">
 			        			
 							<div class="box-body">
 							
@@ -53,9 +54,11 @@
 								<div class="form-group w-50">
 									<label for="exampleInputEmail1"><h5>내 용</h5></label>
 									<textarea class="form-control" rows="3" readonly="readonly">${detailNotice.ncontent}</textarea>
-								</div><br>	
+								</div><br>
+									
 							</div>
-					  </div>
+							
+					   </div>
 				  </div>		
 				
 				   </div>				

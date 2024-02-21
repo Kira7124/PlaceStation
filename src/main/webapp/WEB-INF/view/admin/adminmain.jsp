@@ -87,7 +87,6 @@
 									<h3 class="panel-title"><b>공지사항</b></h3>
 									<div class="right">
 										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
 									</div>
 								</div>
 								<div class="panel-body no-padding">
@@ -128,7 +127,7 @@
 							<!-- 투두리스트 -->
 							<div class="panel">
 								<div class="panel-heading" style="display: flex;">
-								    <h3 class="panel-title" style="flex: 1;"><b>투두리스트</b></h3>
+								    <h3 class="panel-title" style="flex: 1;"><b>TODO 리스트</b></h3>
 								    <button type="button" class="btn-toggle-collapse" style="margin-right: 10px;"><i class="lnr lnr-chevron-up"></i></button>
 								  	 <a href="/admin/admin-todoinsert" data-toggle="modal" data-target="#TodoinsertModal">
 								    	<span class="label label-info" style="margin-left: 5px;">등록</span>
