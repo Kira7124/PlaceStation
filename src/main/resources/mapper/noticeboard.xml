@@ -40,6 +40,18 @@
 			</insert>
 						
 			
+			<!-- 글 수정 -->
+			<update id ="AdminUpdateNotice">
+				update notice_board set n_writer=#{nwriter},n_content=#{ncontent},n_title=#{ntitle}
+				where n_bno = #{nbno}
+			</update>
+						
+						
+			<!-- 글 삭제 -->			
+			<delete id ="AdminDeleteNotice">
+				delete from notice_board where n_bno=#{nbno} 
+			</delete>			
+						
 						
 						
 	

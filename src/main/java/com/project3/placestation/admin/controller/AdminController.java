@@ -248,17 +248,40 @@ public class AdminController {
 	
 
 	//공지사항 수정페이지 GET
+	@GetMapping("/admin-noticeupdate")
+	public String adminNoticeUpdateGET() {
+		log.debug("관리자공지사항수정페이지출력!");
+		return "admin/adminnoticeupdate";
+		
+	}
 	
 	
 	//공지사항 수정페이지 POST
+	@PostMapping("/admin-noticeupdate")
+	public String adminNoticeUpdatePOST(AdminNoticeDTO dto) throws Exception {
+		log.debug("공지사항수정완료(관리자)!");
+		noticeBoardService.AdminUpdateNotice(dto);
+		return "redirect:/admin/admin-notice";
+	}
+	
 	
 	
 	//공지사항 삭제페이지 GET
+	@GetMapping("/admin-noticedelete")
+	public String adminNoticeDeleteGET() {
+		log.debug("관리자공지사항삭제페이지출력!");
+		return "admin/adminnoticedelete";
+	}
 	
 	
 	//공지사항 삭제페이지 POST
-	
-	
+	@PostMapping("/admin-noticedelete")
+	public String adminNoticeDeletePOST(AdminNoticeDTO dto) throws Exception {
+		log.debug("공지사항삭제완료(관리자)!");
+		noticeBoardService.AdminDeleteNotice(dto);
+		return "redirect:/admin/admin-notice";
+		
+	}
 	
 	
 	

@@ -54,6 +54,37 @@ public class NoticeBoardService {
 		
 		
 		
+		//공지사항수정(관리자)
+		@Transactional
+		public void AdminUpdateNotice(AdminNoticeDTO dto) throws Exception{
+			
+			NoticeBoard noticeboard = NoticeBoard.builder()
+					.nbno(dto.getNbno())
+					.nwriter(dto.getNwriter())
+					.ncontent(dto.getNcontent())
+					.ntitle(dto.getNtitle())
+					.build();
+			
+			Integer result = noticeBoardRepository.AdminUpdateNotice(noticeboard);
+			
+		}
+		
+		
+		
+		//공지사항삭제(관리자)
+		@Transactional
+		public void AdminDeleteNotice(AdminNoticeDTO dto) throws Exception{
+			
+			
+			NoticeBoard noticeboard = NoticeBoard.builder()
+					.nbno(dto.getNbno())
+					.build();
+			
+			Integer result = noticeBoardRepository.AdminDeleteNotice(noticeboard);
+			
+		}
+		
+		
 		
 		//공지사항검색리스트출력(페이징)
 		public List<NoticeBoard> AdminsearchNoticeBoardlist(Criteria cri) throws Exception{

@@ -66,10 +66,10 @@
 									<a href="/admin/admin-noticeinsert" data-toggle="modal" data-target="#insertNoticeModal">
 										<span class="label label-info">등록</span>
 									</a>
-									<a href="#">
+									<a href="/admin/admin-noticeupdate" data-toggle="modal" data-target="#updateNoticeModal">
         								<span class="label label-success">수정</span>
     								</a>     	
-    								<a href="#">
+    								<a href="/admin/admin-noticedelete" data-toggle="modal" data-target="#deleteNoticeModal">
 										<span class="label label-danger">삭제</span>
 									</a>
 								</td>
@@ -129,10 +129,20 @@
 	    </div>
 	</div>
 	
+			<!-- Modal -->
+	<div class="modal fade" id="updateNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
 	
 	
-	
-	
+			<!-- Modal -->
+	<div class="modal fade" id="deleteNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
 	
 	
 	
