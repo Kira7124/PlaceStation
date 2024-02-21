@@ -53,10 +53,18 @@ values
 (1234,'대한항공','01012341234','021231234','dabang@naver.com'),
 (1235,'아시아나','01012341234','021231234','dabang@naver.com');
 
-
-
-
-
+insert into notice_board (n_writer,n_content,n_title)
+values('kira','12121212121','rerere'),
+('kira2','12121212121','rerere'),
+('kira3','12121212121','rerere'),
+('kira4','12121212121','rerere'),
+('kira5','12121212121','rerere'),
+('kira6','12121212121','rerere'),
+('kira7','12121212121','rerere'),
+('kira8','12121212121','rerere'),
+('kira9','12121212121','rerere'),
+('kira10','12121212121','rerere'),
+('kira11','12121212121','rerere');
 
 
 

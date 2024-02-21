@@ -31,8 +31,19 @@ CREATE TABLE biz (
   );
   
   
-  
-  
-  
+CREATE TABLE notice_board (
+  n_bno INT NOT NULL AUTO_INCREMENT,
+  n_writer VARCHAR(45) NOT NULL,
+  n_content VARCHAR(400) NOT NULL,
+  n_title VARCHAR(200) NOT NULL,
+  file_path VARCHAR(400) NULL,
+  n_regdate DATETIME NULL DEFAULT now(),
+  n_updatedate DATETIME,
+  category_id INT NULL,
+  n_delete_yn CHAR NULL,
+  n_delete_at DATETIME NULL,
+  n_readcount INT NULL DEFAULT 0,
+  PRIMARY KEY (`n_bno`)
+  );
   
 

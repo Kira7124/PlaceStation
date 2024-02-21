@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project3.placestation.admin.dto.AdminBizDTO;
 import com.project3.placestation.admin.dto.AdminMemberDTO;
+import com.project3.placestation.admin.dto.AdminNoticeDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.admin.dto.PageVO;
 import com.project3.placestation.repository.entity.Biz;
 import com.project3.placestation.repository.entity.Member;
+import com.project3.placestation.repository.entity.NoticeBoard;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.MemberService;
+import com.project3.placestation.service.NoticeBoardService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -32,6 +35,8 @@ public class AdminController {
 	private MemberService memberService;
 	@Autowired
 	private BizService bizService;
+	@Autowired
+	private NoticeBoardService noticeBoardService;
 	@Autowired
 	private HttpSession httpSession;
 	
@@ -110,10 +115,34 @@ public class AdminController {
 	//http://localhost:80/admin/admin-notice
 	//관리자 공지사항관리페이지출력
 	@GetMapping("/admin-notice")
-	public String adminnoticeGET() {
+	public String adminnoticeGET(AdminNoticeDTO ndto,Model model,Criteria cri) throws Exception {
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(noticeBoardService.AdmincountNoticeBoard());
+		
+		model.addAttribute("pageVO", pageVO);
+		
+		List<NoticeBoard> result = noticeBoardService.AdminNoticeBoardListAll(cri);
+		
+		model.addAttribute("noticelist", result);
+		
+		
 		log.debug("admin 공지사항관리페이지출력!");
 		return "admin/adminnotice";
 	}
+	
+	
+	
+	//관리자 공지사항 상세보기페이지출력
+	@GetMapping("/admin-noticedetail")
+	public String adminnoticedetailGET() {
+		log.debug("공지사항(관리자)상세보기실행");
+		return "admin/adminnoticedetail";
+	}
+	
+	
+	
 	
 	
 	

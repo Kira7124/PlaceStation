@@ -11,7 +11,6 @@
 				<nav>
 					<ul class="nav">
 						<li><a href="/admin/admin-main" class="active"><i class="lnr lnr-home"></i> <span>관리자페이지</span></a></li>
-						<li><a href="#" class=""><i class="lnr lnr-chart-bars"></i><span>통계</span></a></li>
 						<li><a href="/admin/admin-member" class=""><i class="lnr lnr-code"></i><span>유저관리</span></a></li>
 						<li><a href="/admin/admin-biz" class=""><i class="lnr lnr-cog"></i> <span>사업자관리</span></a></li>
 						<li>

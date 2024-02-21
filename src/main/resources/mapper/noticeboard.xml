@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+
+
+	<mapper namespace="com.project3.placestation.repository.interfaces.NoticeBoardRepository">
+			
+			<!-- 공지사항리스트출력(페이징처리) -->
+			<select id ="AdminNoticeBoardListAll" resultType="com.project3.placestation.repository.entity.NoticeBoard">
+				select * from notice_board
+				limit #{startPage},#{pageSize}
+			</select>
+			
+			<!-- 페이징처리 갯수세팅 -->
+			<select id ="AdmincountNoticeBoard" resultType="int">
+				<![CDATA[ select count(*) from notice_board where n_bno > 0 ]]>
+			</select>
+	
+			
+			<!-- 글 조회수 1 증가 -->
+			<update id ="updateReadCnt">
+				update notice_board set n_readcount = n_readcount + 1 where n_bno = #{nbno} 
+			</update>
+				
+	
+	
+	</mapper>

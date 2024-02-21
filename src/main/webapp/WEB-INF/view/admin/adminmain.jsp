@@ -18,7 +18,7 @@
 					<!-- OVERVIEW -->
 					<div class="panel panel-headline">
 						<div class="panel-heading">
-							<h3 class="panel-title">PlaceStation StatusBoard</h3>
+							<h3 class="panel-title"><b>admin 님 환영합니다!</b></h3>
 						</div>
 						<div class="panel-body">
 							<div class="row">

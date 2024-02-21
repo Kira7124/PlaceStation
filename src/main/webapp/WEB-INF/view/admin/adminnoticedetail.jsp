@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-	<!-- adminheader.jsp -->
+    <!-- adminheader.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminheader.jsp" %>
 	<!-- adminside.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
      <!-- jquery/ajax 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
-
-		
-		<!-- MAIN -->
+    
+	<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
@@ -18,7 +17,7 @@
 
 			<div class="panel">
 				<div class="panel-heading">
-					<h3 class="panel-title">공지사항관리</h3>
+					<h3 class="panel-title">상세내용보기</h3>
 					<div class="right">
 						<button type="button" class="btn-toggle-collapse">
 							<i class="lnr lnr-chevron-up"></i>
@@ -30,73 +29,9 @@
 				</div>
 				
 				<div class="panel-body no-padding">
-					<table class="table table-striped" style="width: 95%; margin: auto;">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>글쓴이</th>
-								<th>제목</th>
-								<th>등록일</th>
-								<th>조회수</th>
-								<th>등록/수정/삭제</th>
-							</tr>
-						</thead>
-					<c:forEach var="noticelist" items="${noticelist}">
-						<tbody>
-							<tr>
-								<td>${noticelist.nbno}</td>
-								<td>${noticelist.nwriter}</td>
-								<td><a href="/admin/admin-noticedetail">${noticelist.ntitle}</a></td>
-								<td>${noticelist.formatjoinAt()}</td>
-								<td>${noticelist.nreadcount}</td>			
-								<td>
-									<a href="#">
-										<span class="label label-info">등록</span>
-									</a>
-									<a href="#">
-        								<span class="label label-success">수정</span>
-    								</a>     	
-    								<a href="#">
-										<span class="label label-danger">삭제</span>
-									</a>
-								</td>
-							</tr>
-							
-						</tbody>
-					  </c:forEach>	
-					</table>
+					<h1>eeeeeeeee</h1>
 					
-					<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
-						<ul class="pagination">
-							<c:if test="${pageVO.prev }">
-								<li class="page-item">
-								  <a class="page-link" href="/admin/admin-notice?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-								  </a>
-								</li>
-							</c:if>
 
-
-					
-							<c:forEach var="i" begin="${pageVO.startPage }"
-								end="${pageVO.endPage }" step="1">
-								<c:set var="isActive" value="${pageVO.cri.page == i}" />
-								<li class="page-item ${isActive ? 'active' : ''}"><a
-									class="page-link" href="/admin/admin-notice?page=${i}"
-									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
-										${i} </a></li>
-							</c:forEach>
-
-
-				
-							<c:if test="${pageVO.next }">
-								<li class="page-item"><a class="page-link"
-									href="/admin/admin-notice?page=${pageVO.endPage + 1 }"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-								</a></li>
-							</c:if>
-
-						</ul>
-					</nav>
 					
 				</div>
 			</div>
@@ -236,3 +171,5 @@
 </body>
 
 </html>
+	    
+    

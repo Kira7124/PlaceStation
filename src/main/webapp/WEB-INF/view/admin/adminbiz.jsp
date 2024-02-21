@@ -22,7 +22,7 @@
 				<div style="display: flex;">
 				    <div>
 				        <div class="panel-heading">
-				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>회원관리</b></h3>
+				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>사업자관리</b></h3>
 				        </div>
 				    </div>
 				   <form action="/admin/admin-searchbiz" method="get">
