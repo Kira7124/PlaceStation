@@ -24,6 +24,15 @@
 		</delete>
 		
 		
+		<!-- todo리스트 등록 -->
+		<insert id ="insertTodo">
+			insert into admin_todo(todo_title,todo_content)
+			values(#{todotitle},#{todocontent})
+		</insert>
+		
+		
+		
+		
 		
 		
 		

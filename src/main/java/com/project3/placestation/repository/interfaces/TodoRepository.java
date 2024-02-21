@@ -21,6 +21,9 @@ public interface TodoRepository {
 	public Integer deleteTodo(Todo todo) throws Exception;
 	
 	
+	//todo 등록
+	public Integer insertTodo(Todo todo) throws Exception;
+	
 	
 	
 	

@@ -48,6 +48,30 @@ public class TodoService {
 	
 	
 	
+	//todo 등록
+	@Transactional
+	public void insertTodo(AdminTodoDTO dto) throws Exception{
+		
+		Todo todo = Todo.builder()
+				.todotitle(dto.getTodotitle())
+				.todocontent(dto.getTodocontent())
+				.todono(dto.getTodono())
+				.todoregdate(dto.getTodoregdate())
+				.build();
+		
+		Integer result = todoRepository.insertTodo(todo);
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

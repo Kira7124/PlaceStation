@@ -103,6 +103,23 @@ public class AdminController {
 	
 	
 	
+	//todo 등록 get
+	@GetMapping("/admin-todoinsert")
+	public String todoinsertGET() {
+		log.debug("todo등록페이지출력!");
+		return "admin/admintodoinsert";
+	}
+	
+	//todo 등록 post
+	@PostMapping("/admin-todoinsert")
+	public String todoinsertPOST(AdminTodoDTO dto) throws Exception {
+		log.debug("todo등록완료");
+		todoService.insertTodo(dto);
+		return "redirect:/admin/admin-main";
+		
+	}
+	
+	
 	
 	
 	

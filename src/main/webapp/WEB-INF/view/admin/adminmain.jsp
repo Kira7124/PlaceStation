@@ -130,11 +130,8 @@
 								<div class="panel-heading" style="display: flex;">
 								    <h3 class="panel-title" style="flex: 1;"><b>투두리스트</b></h3>
 								    <button type="button" class="btn-toggle-collapse" style="margin-right: 10px;"><i class="lnr lnr-chevron-up"></i></button>
-								  	 <a href="#">
+								  	 <a href="/admin/admin-todoinsert" data-toggle="modal" data-target="#TodoinsertModal">
 								    	<span class="label label-info" style="margin-left: 5px;">등록</span>
-								    </a>
-								    <a href="#">
-								    	<span class="label label-success" style="margin-left: 5px;">수정</span>
 								    </a>
 								    <a href="/admin/admin-tododelete" class="delete-button" data-toggle="modal" data-target="#TododeleteModal">
 								    	<span class="label label-danger" style="margin-left: 5px;">삭제</span>
@@ -184,7 +181,12 @@
 	</div>
 	
 	
-	
+			<!-- Modal -->
+	<div class="modal fade" id="TodoinsertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
 	
 	
 	
