@@ -19,7 +19,7 @@
 				<div style="display: flex;">
 				    <div>
 				        <div class="panel-heading">
-				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>공지사항</b></h3>
+				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>1:1문의</b></h3>
 				        </div>
 				    </div>
 				   <form action="/admin/admin-searchqna" method="get">

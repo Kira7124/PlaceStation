@@ -60,10 +60,11 @@ public class AdminController {
 		Integer totalNotice = noticeBoardService.AdmincountNoticeBoard();
 		Integer totalMember = memberService.countMember();
 		Integer totalBiz = bizService.countMember();
+		Integer totalQna = qnaBoardService.AdmincountQnaBoard();
 		session.setAttribute("totalMember", totalMember);
 		session.setAttribute("totalBiz", totalBiz);
 		session.setAttribute("totalNotice", totalNotice);
-		
+		session.setAttribute("totalQna", totalQna);
 		session.setAttribute("viewcntCheck", true);
 		
 		
