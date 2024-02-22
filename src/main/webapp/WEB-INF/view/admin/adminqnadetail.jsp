@@ -65,7 +65,8 @@
 								
 								<div class="form-group w-50">
 									<label for="exampleInputEmail1"><h5>답글</h5></label>
-									 <input type="text" class="form-control" id="exampleInputEmail1" name="qreply" value="${detailQna.qreply}">
+<%-- 									 <input type="text" class="form-control" id="exampleInputEmail1" name="qreply" value="${detailQna.qreply}"> --%>
+										 <textarea class="form-control" rows="3" name="qreply">${detailQna.qreply}</textarea>
 								</div><br>
 								<div class="form-group w-50">
 									 <input type="hidden" class="form-control" id="exampleInputEmail1" name="qstatus" value="완료">
