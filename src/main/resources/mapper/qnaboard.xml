@@ -30,8 +30,8 @@
 		
 		<!-- 1:1 답글업데이트하기 -->
 		<update id ="AdminUpdateQna">
-			update qna_board set q_reply = #{qreply}, q_status="완료"
-			where q_bno = #{qbno}
+			update qna_board set q_reply=#{qreply},q_status=#{qstatus},q_writer=#{qwriter},q_content=#{qcontent},q_title=#{qtitle}
+			where q_bno =#{qbno}
 		</update>
 		
 		

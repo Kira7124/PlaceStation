@@ -39,28 +39,38 @@
 			        			
 							<div class="box-body">
 							
-							<form action="#" method="post">		
+						<form action="/admin/admin-qnadetailupdate" method="post">		
 								<div class="details" style="display: inline;">
 								    <h3 style="font-weight: bold; display: inline;">1:1문의</h3>
 								</div>
-								<button type="submit" class="btn btn-info" id="noticeInsertButton" style="display: inline; margin-left: 550px; margin-bottom: 10px; margin-top:10px;">답글달기</button>
-							
+								<div class="form-group w-25">
+									<label for="exampleInputEmail1"><h5>글번호</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1" name="qbno">
+								</div><br>
 								<div class="form-group w-25">
 									<label for="exampleInputEmail1"><h5>작성자</h5></label>
-									 <input type="text" class="form-control" id="exampleInputEmail1" value ="${detailQna.qwriter}" readonly="readonly">
+									 <input type="text" class="form-control" id="exampleInputEmail1" name="qwriter">
 								</div><br>
 								<div class="form-group w-25">
 									<label for="exampleInputEmail1"><h5>제 목</h5></label>
-									 <input type="text" class="form-control" id="exampleInputEmail1" value="${detailQna.qtitle}" readonly >
+									 <input type="text" class="form-control" id="exampleInputEmail1" name="qtitle">
 								</div><br>
 								<div class="form-group w-50">
 									<label for="exampleInputEmail1"><h5>내 용</h5></label>
-									<textarea class="form-control" rows="3" readonly="readonly">${detailQna.qcontent}</textarea>
+									<textarea class="form-control" rows="3" name="qcontent"></textarea>
 								</div><br>
+								
 								<div class="form-group w-50">
 									<label for="exampleInputEmail1"><h5>답글</h5></label>
-									<textarea class="form-control" rows="3" name="qreply">${detailQna.qreply}</textarea>
+									 <input type="text" class="form-control" id="exampleInputEmail1" name="qreply">
 								</div><br>
+								<div class="form-group w-50">
+									<label for="exampleInputEmail1"><h5>상태</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1" name="qstatus">
+								</div><br>
+								
+								<button type="submit" class="btn btn-info" id="noticeInsertButton" style="display: inline; margin-left: 550px; margin-bottom: 10px; margin-top:10px;">답글달기</button>
+								
 							</form>
 							           
 							   </div>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.repository.entity.NoticeBoard;
 import com.project3.placestation.repository.entity.QnaBoard;
 
 @Mapper
@@ -20,6 +21,10 @@ public interface QnaBoardRepository {
 	
 	//특정글조회(글번호사용)
 	public QnaBoard detailQnaBoard(Integer qbno) throws Exception;
+	
+	
+	//1:1문의등록(관리자)
+	public Integer AdminUpdateQna(QnaBoard qnaboard) throws Exception;
 	
 	
 	

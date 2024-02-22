@@ -62,5 +62,7 @@ CREATE TABLE qna_board (
   category_id INT NULL,
   q_delete_yn CHAR(1) NULL DEFAULT 'N',
   q_delete_at DATETIME NULL,
-  q_status VARCHAR(10) NULL DEFAULT '진행'
+  q_status VARCHAR(10) NULL DEFAULT '진행',
+  q_reply VARCHAR(400) NULL
   );
+  

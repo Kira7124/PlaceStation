@@ -272,9 +272,7 @@ public class AdminController {
 		
 	}
 	
-	
-	
-	
+
 	
 	
 	
@@ -313,6 +311,17 @@ public class AdminController {
 		noticeBoardService.AdminUpdateNotice(dto);
 		return "redirect:/admin/admin-notice";
 	}
+	
+	
+	
+	// 관리자 1:1문의 수정출력
+	@PostMapping("/admin-qnadetailupdate")
+	public String adminQnaUpdatePOST(AdminQnaDTO dto) throws Exception {
+		log.debug("1:1답글완료(관리자)");
+		qnaBoardService.AdminUpdateQna(dto);
+		return "redirect:/admin/admin-qna";
+	}
+	
 	
 	
 	
