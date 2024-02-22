@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.product.dto.ProdReviewDto;
 import com.project3.placestation.repository.entity.ProdReview;
@@ -27,16 +28,16 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/product")
 public class ProductController {
 
-	private final ProductRepository productRepository;
-	
-	@Autowired
-	ProductService productService;
+    private final ProductRepository productRepository;
+    private final ProductService productService;
+    private final ProdReviewService prodReviewService;
 
-	public ProductController(ProductRepository productRepository) {
-		this.productRepository = productRepository;
-	}
-	@Autowired
-	ProdReviewService prodReviewService;
+    @Autowired
+    public ProductController(ProductRepository productRepository, ProductService productService, ProdReviewService prodReviewService) {
+        this.productRepository = productRepository;
+        this.productService = productService;
+        this.prodReviewService = prodReviewService;
+    }
 	
 	@GetMapping("/productDetail")
 	public String productDetail(@RequestParam("prod_no") Integer prodNo, Model model) {
@@ -53,13 +54,24 @@ public class ProductController {
 	    return "product/productDetail";
 	}
 	
+	// 답글 작성
 	@PostMapping("/saveReview")
-	public String saveReview(ProdReviewDto dto) {
-
-
-	    return "";
+	public String saveReview(ProdReviewDto dto, @RequestParam("prodNo") Integer prodNo) {
+	    dto.setProdNo(prodNo);
+		
+        prodReviewService.saveReview(dto);
+        
+	    return "redirect:/product/productDetail?prod_no="+ prodNo;
 	}
-
+	// 리뷰 작성
+	@PostMapping("/addReview")
+	public String addReview(ProdReviewDto dto, @RequestParam("prodNo") Integer prodNo) {
+	    dto.setProdNo(prodNo);
+		
+        prodReviewService.addReview(dto);
+        
+	    return "redirect:/product/productDetail?prod_no="+ prodNo;
+	}
 
 	@GetMapping("/main")
 	public String mainindex(Model model) {

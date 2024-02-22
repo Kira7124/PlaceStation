@@ -16,15 +16,13 @@ public class ProdReview {
 
     private Integer prodRevNo;
     private Integer prodNo;
-    private String prodRevTitle;
     private String prodRevContent;
     private Integer prodRevStar;
     private String prodRevCreateAt;
-    private Integer prodRevId;
+    private Integer userNo;
     private String prodRevUpdateAt;
     private String prodRevDeleteYn;
     private String prodRevDeleteAt;
-    private Integer childId;
     private Integer parentId;
     private String prodTitle;
     private String prodPrice;

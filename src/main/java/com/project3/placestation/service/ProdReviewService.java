@@ -32,15 +32,13 @@ public class ProdReviewService {
 	        ProdReviewDto dto = ProdReviewDto.builder()
 	            .prodRevNo(prodRev.getProdRevNo())
 	            .prodNo(prodRev.getProdNo())
-	            .prodRevTitle(prodRev.getProdRevTitle())
 	            .prodRevContent(prodRev.getProdRevContent())
 	            .prodRevStar(prodRev.getProdRevStar())
 	            .prodRevCreateAt(prodRev.getProdRevCreateAt())
-	            .prodRevId(prodRev.getProdRevId())
+	            .userNo(prodRev.getUserNo())
 	            .prodRevUpdateAt(prodRev.getProdRevUpdateAt())
 	            .prodRevDeleteYn(prodRev.getProdRevDeleteYn())
 	            .prodRevDeleteAt(prodRev.getProdRevDeleteAt())
-	            .childId(prodRev.getChildId())
 	            .parentId(prodRev.getParentId())
 	            .build();
 	        dtos.add(dto);
@@ -48,56 +46,40 @@ public class ProdReviewService {
 	    
 	    return dtos;
 	}
-
-    public void saveReview(ProdReviewDto reviewDto) {
-        ProdReview review = convertDtoToEntity(reviewDto);
+	
+	// 리뷰 등록 
+    public void saveReview(ProdReviewDto dto) {
         
-        // 현재 시간 설정
-        review.setProdRevCreateAt(Timestamp.from(Instant.now()));
-        review.setProdRevUpdateAt(null); // 초기 리뷰 등록 시 업데이트 시간은 null
-        review.setProdRevDeleteYn("N");
-        
-        // 리뷰 저장 로직 (Repository 또는 Mapper를 사용)
-        prodReviewRepository.save(review); // 가정: save 메소드가 리뷰 저장을 담당
-    }
-
-    private ProdReview convertDtoToEntity(ProdReviewDto dto) {
-        return ProdReview.builder()
+        ProdReview prodReview = ProdReview.builder()
                 .prodNo(dto.getProdNo())
-                .prodRevTitle(dto.getProdRevTitle())
                 .prodRevContent(dto.getProdRevContent())
                 .prodRevStar(dto.getProdRevStar())
-                .prodRevId(dto.getProdRevId())
-                .childId(dto.getChildId())
+                .userNo(dto.getUserNo())
                 .parentId(dto.getParentId())
                 .build();
+        
+        int result = prodReviewRepository.saveReview(prodReview);
+		// 확인
+		if (result < 1) {
+			throw new CustomRestfulException("답글 등록에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
-	
-	// 유저 별 리뷰 조회
-//	public ProdReviewDto findByRevId(int prodRevId) {
-//
-//		ProdReview prodRev = prodReviewRepository.findByRevProdNo(prodRevId);
-//		
-//		if (prodRev == null) {
-//            return new ProdReviewDto();
-//        }
-//
-//		ProdReviewDto dto = ProdReviewDto.builder()
-//	            .prodRevNo(prodRev.getProdRevNo())
-//	            .prodNo(prodRev.getProdNo())
-//	            .prodRevTitle(prodRev.getProdRevTitle())
-//	            .prodRevContent(prodRev.getProdRevContent())
-//	            .prodRevStar(prodRev.getProdRevStar())
-//	            .prodRevCreateAt(prodRev.getProdRevCreateAt())
-//	            .prodRevId(prodRev.getProdRevId())
-//	            .prodRevUpdateAt(prodRev.getProdRevUpdateAt())
-//	            .prodRevDeleteYn(prodRev.getProdRevDeleteYn())
-//	            .prodRevDeleteAt(prodRev.getProdRevDeleteAt())
-//	            .childId(prodRev.getChildId())
-//	            .parentId(prodRev.getParentId())
-//	            .build();
-//		
-//		return dto;
-//	}
+	// 리뷰 등록 
+    public void addReview(ProdReviewDto dto) {
+        
+        ProdReview prodReview = ProdReview.builder()
+                .prodNo(dto.getProdNo())
+                .prodRevContent(dto.getProdRevContent())
+                .prodRevStar(dto.getProdRevStar())
+                .userNo(dto.getUserNo())
+                .parentId(dto.getParentId())
+                .build();
+        
+        int result = prodReviewRepository.saveReview(prodReview);
+		// 확인
+		if (result < 1) {
+			throw new CustomRestfulException("리뷰 등록에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+    }
 
 }

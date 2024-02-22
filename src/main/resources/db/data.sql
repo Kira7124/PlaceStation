@@ -7,12 +7,12 @@
  -- (3, 3, '더미 3', 'Writer 3', '2024-02-19 12:00:00', 11, 19, 'Space info 3', 'Goods info 3', 'Caution info 3', 15, 'Address 3', 'Detailed address 3', 30000, '/assets/images/product/image3.jpg', 2, 3, 'Full address 3', 37.3456, 127.7890, '2024-02-19 12:00:00', NULL, 'N', NULL),
  -- (4, 4, '더미 4', 'Writer 4', '2024-02-19 13:00:00', 12, 20, 'Space info 4', 'Goods info 4', 'Caution info 4', 20, 'Address 4', 'Detailed address 4', 40000, '/assets/images/product/image4.jpg', 2, 4, 'Full address 4', 37.4567, 127.8901, '2024-02-19 13:00:00', NULL, 'N', NULL);
 
-INSERT INTO prod_Review (prod_no, user_no, prod_rev_title, prod_rev_content, prod_rev_star, prod_rev_delete_yn, child_id, parent_id)
+INSERT INTO prod_Review (prod_no, user_no, prod_rev_content, prod_rev_star, prod_rev_delete_yn, parent_id)
 VALUES 
-(1, 1, '상품 리뷰 1', '리뷰 내용 1', 5, 'N', 1, 1),
-(1, 1, '상품 리뷰 2', '리뷰 내용 2', 3, 'N', 2, 2),
-(1, 1, '상품 리뷰 3', '리뷰 내용 3', 4, 'N', 1, 3),
-(2, 2, '상품 리뷰 4', '리뷰 내용 4', 4, 'N', 4, 4);
+(1, 1, '리뷰 내용 1', 5, 'N', 1),
+(1, 1, '리뷰 내용 2', 1, 'N', 2),
+(1, 1, '리뷰 내용 3', 4, 'N', 1),
+(2, 2, '리뷰 내용 4', 4, 'N', 4);
 
 INSERT INTO member (user_id, user_password, user_address, user_name, user_hp, user_email, user_role,grade,gender) 
 VALUES 
