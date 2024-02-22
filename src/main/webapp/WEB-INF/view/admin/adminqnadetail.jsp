@@ -45,8 +45,7 @@
 								</div>
 								
 								<div class="form-group w-25">
-									<label for="exampleInputEmail1"><h5>글번호</h5></label>
-									 <input type="text" class="form-control" id="exampleInputEmail1" name="qbno">
+									 <input type="hidden" class="form-control" id="exampleInputEmail1" name="qbno" value="${detailQna.qbno}">
 								</div><br>
 								
 								<div class="form-group w-25">
