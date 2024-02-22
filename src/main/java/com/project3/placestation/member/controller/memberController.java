@@ -127,10 +127,15 @@ public class memberController {
 		System.out.println("회원 가입 form데이터 바인딩 테스트1: "+ dto.getUserId());
 		System.out.println("회원 가입 form데이터 바인딩 테스트2: "+ dto.getUserName());
 		System.out.println("회원 가입 form데이터 바인딩 테스트3: "+ dto.getUserPassword());
+		System.out.println("회원 가입 form데이터 바인딩 테스트4: "+ dto.getUserEmail());
+		System.out.println("회원 가입 form데이터 바인딩 테스트5: "+ dto.getUserAddress());
+		System.out.println("회원 가입 form데이터 바인딩 테스트6: "+ dto.getGender());
+		System.out.println("회원 가입 form데이터 바인딩 테스트7: "+ dto.getGender());
+		System.out.println("회원 가입 form데이터 바인딩 테스트8: "+ dto.getUserHp());
 		
 		service.joinProcess(dto);
 		
-		return "redirect:member/login";
+		return "redirect:/member/login";
 	}
 	
 	

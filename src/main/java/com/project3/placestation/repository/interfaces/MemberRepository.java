@@ -30,7 +30,13 @@ public interface MemberRepository {
 	public memberDTO selectUser(String userId);
 
 	//일반 회원 가입(회원 가입 처리)
-	public memberDTO insertUser(RequestJoinDTO dto);
+	public int insertUser(Member member);
 	
+	//회원 단건 정보 검색(로그인 처리)
+	public memberDTO selecByUserId(String username);
+	
+	//회원 단건 정보 검색
+	public Member selectByIsUserId(String uid);
+
 
 }

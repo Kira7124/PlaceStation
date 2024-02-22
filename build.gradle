@@ -34,8 +34,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// 시큐리티 추가
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	// 밸리데이션 추가
-	implementation 'org.hibernate.validator:hibernate-validator:6.1.0.Final'
+	testImplementation 'org.springframework.security:spring-security-test'
+	
+	// validator
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    
+    // 이메일 인증
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+  	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {

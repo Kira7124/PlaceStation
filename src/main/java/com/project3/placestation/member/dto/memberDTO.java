@@ -46,5 +46,6 @@ public class memberDTO {
 	private String filePath;
 	private String userOauth;
 	private String role;
+	private String gender;
 
 }

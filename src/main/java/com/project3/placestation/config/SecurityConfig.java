@@ -1,5 +1,6 @@
 package com.project3.placestation.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,10 +9,16 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.project3.placestation.member.security.CustomUserDetailsService;
+
 @Configuration //configuration 클래스로 등록하기 위한 annotation
 @EnableWebSecurity // spring security 에서도 관리되게 된다.
 public class SecurityConfig {
 
+	@Autowired
+	private CustomUserDetailsService service;
+	
+	
     // 비밀번호 암호화
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -92,6 +99,7 @@ public class SecurityConfig {
                 */
 
 
+        http.userDetailsService(service);
 
 
 

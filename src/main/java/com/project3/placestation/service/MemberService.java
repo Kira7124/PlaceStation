@@ -3,6 +3,7 @@ package com.project3.placestation.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,9 @@ public class MemberService {
 	@Autowired
 	private MemberRepository memberRepository;
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 
 	//회원정보리스트(페이징) 출력
 	public List<Member> listAll(Criteria cri) throws Exception{
@@ -64,7 +68,44 @@ public class MemberService {
 
 	public void joinProcess(RequestJoinDTO dto) {
 		
-		memberRepository.insertUser(dto);
+		Member member = Member.builder()
+				.userid(dto.getUserId())
+				.username(dto.getUserName())
+				.userpassword(bCryptPasswordEncoder.encode(dto.getUserPassword()))
+				.useremail(dto.getUserEmail())
+				.useraddress(dto.getUserAddress())
+				.userhp(dto.getUserHp())
+				.gender(dto.getGender())
+				.userrole("ROLE_USER")
+				.build();
+				
+		
+		
+	/*	member.setUserid(dto.getUserId());
+		member.setUsername(dto.getUserName());
+		member.setUserpassword(bCryptPasswordEncoder.encode(dto.getUserPassword()));
+		member.setUseremail(dto.getUserEmail());
+		member.setUseraddress(dto.getUserAddress());
+		member.setUserhp(dto.getUserHp());
+		member.setGender(dto.getGender());
+		member.setRole("ROLE_USER");
+		member.setUseraddress(dto.getUserAddress());
+		*/
+				
+				
+		System.out.println("회원 가입 form데이터 바인딩 테스트: "+ dto.toString());
+		System.out.println("회원 가입 form데이터 바인딩 테스트1: "+ dto.getUserId());
+		System.out.println("회원 가입 form데이터 바인딩 테스트2: "+ dto.getUserName());
+		System.out.println("회원 가입 form데이터 바인딩 테스트3: "+ dto.getUserPassword());
+		System.out.println("회원 가입 form데이터 바인딩 테스트4: "+ dto.getUserEmail());
+		System.out.println("회원 가입 form데이터 바인딩 테스트5: "+ dto.getUserAddress());
+		System.out.println("회원 가입 form데이터 바인딩 테스트6: "+ dto.getGender());
+		System.out.println("회원 가입 form데이터 바인딩 테스트7: "+ dto.getUserHp());
+		System.out.println("=====================================================");
+		System.out.println("회원 가입 entity tostring: "+ member.toString());
+		
+		
+		memberRepository.insertUser(member);
 		
 	}
 

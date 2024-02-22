@@ -37,7 +37,6 @@ public class RequestJoinDTO {
 	@Pattern(regexp = "([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", message="이메일을 형식에 맞게 입력해 주세요")
 	private String userEmail;
 	@NotNull
-	private String userGender;
 	private String grade;
 	private int userPoin;
 	private Timestamp joinAt;
@@ -46,5 +45,6 @@ public class RequestJoinDTO {
 	private String filePath;
 	private String userOauth;
 	private String role;
+	private String gender;
 
 }

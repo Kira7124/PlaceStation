@@ -128,7 +128,7 @@ h2 {
               </div>
               <div class="register-form">
                   <label for="password">Password</label>
-                  <input type="password" id="password" placeholder="Enter password" name="userOpassword">
+                  <input type="password" id="password" placeholder="Enter password" name="userPassword1">
                   <small>Error message</small>
               </div>
               <div class="register-form">
@@ -152,16 +152,21 @@ h2 {
                   <small>Error message</small>
               </div>
               <div class="register-form">
+                  <label for="hp">address</label>
+                  <input type="text" id="address" placeholder="Enter address" name="userAddress">
+                  <small>Error message</small>
+              </div>
+              <div class="register-form">
                 <div class="mb-3">
                   <label for="userSex" class="form-label">성별</label>
                   <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
                     <div class="form_radio_btn radio_male">
-                      <input id="radio-1" type="radio" name="userGender" value="M" checked>
+                      <input id="radio-1" type="radio" name="gender" value="M" checked>
                       <label for="radio-1">남자</label>
                     </div>
                                    
                     <div class="form_radio_btn">
-                      <input id="radio-2" type="radio" name="userGender" value="F">
+                      <input id="radio-2" type="radio" name="gender" value="F">
                       <label for="radio-2">여자</label>
                     </div>
                   </div>
