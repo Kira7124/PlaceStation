@@ -1,46 +1,57 @@
 @charset "UTF-8";
-/* header css 시작 */
- .navbar-custom {
-      height: 100px;
- } 
- 
- .search-box {
-   display: flex;
-   flex-direction: column;
- }
 
- #header {
-   margin-top: 40px;
-   height: auto;
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: flex-end;
- } 
+.navbar-custom {
+    display: flex;
+    height: 100px;
+    flex-direction: column;
+    justify-content: center;
+} 
+  
+.container-search { 
+  width: 340px;
+  margin-left: 110px;
+}
 
- .login_register a {
-   padding-right: 10px;
-   color: rgba(255, 255, 255, 0.7);
- } 
+#header {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+} 
 
- .navbar-nav>li>.dropdown-menu {
-   margin-top: 10px;
- }
+.login_register a {
+  padding-right: 10px;
+  color: rgba(255, 255, 255, 0.7);
+} 
 
- .nav>li>a {
-   padding: 10px 25px;
- } 
+.navbar-nav>li>.dropdown-menu {
+  margin-top: 8px;
+}
 
- #footer {
+/* css 가로 자름 */
+body > main > nav {
+display : flex;
+flex-direction : row;
+align-items : center;
+}
+
+.nav>li>a {
+  padding: 10px 25px;
+} 
+
+/* footer css 시작 */
+#footer {
     border-top: 1px solid #EAEAEA;
-    margin-bottom: 15px;
- }
+    margin-bottom: 20px;
+}
 
- #h3-footer {
+#h3-footer {
     margin-top: 15px;
- }
+}
 
- .p-footer {
+.p-footer {
     margin: 0 -15px 10px;
- }
+}
+
 /* footer css 끝 */

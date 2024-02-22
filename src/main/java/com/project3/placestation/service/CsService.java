@@ -15,28 +15,28 @@ public class CsService {
 	private CsNoticeBoardRepository csNoticeBoardRepository;
 
 	
-	  // 공지사항리스트출력
+	  // 공지사항 리스트 출력
 		public List<CsNoticeBoard> CsNoticeBoardListAll() throws Exception{
-			List<CsNoticeBoard> result = CsNoticeBoardRepository.CsNoticeBoardListAll();
+			List<CsNoticeBoard> result = csNoticeBoardRepository.CsNoticeBoardListAll();
 			return result;
 		}
 		
 		
-		//특정글조회(글번호사용)
+		//특정 글 조회(글 번호 사용)
 		public CsNoticeBoard detailNoticeBoard(Integer nbno) throws Exception{
-			return CsNoticeBoardRepository.detailNoticeBoard(nbno);
+			return csNoticeBoardRepository.DetailNoticeBoard(nbno);
 		}
 		
 		
-		//페이징처리 갯수세팅(페이징)
-		public int AdmincountNoticeBoard() throws Exception{
-			return noticeBoardRepository.AdmincountNoticeBoard();
-		}
+//		//페이징 처리 갯수 세팅(페이징)
+//		public int AdmincountNoticeBoard() throws Exception{
+//			return csNoticeBoardRepository.CountNoticeBoard();
+//		}
 		
-		//글조회수증가
-		public void updateReadCnt(Integer nbno) throws Exception{
-			noticeBoardRepository.updateReadCnt(nbno);
-		}
+//		//글 조회수 증가
+//		public void updateReadCnt(Integer nbno) throws Exception{
+//			CsNoticeBoardRepository.UpdateReadCnt(nbno);
+//		}
 	 
 	
 }

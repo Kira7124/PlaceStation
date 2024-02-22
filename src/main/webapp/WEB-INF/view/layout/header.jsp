@@ -35,14 +35,14 @@
   <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
     <main>
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <!-- <div class="container-search">
+        <div class="container-search">
           <form role="form">
             <div class="search-box">
               <input class="form-control" type="text" placeholder="Search..."/>
               <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
             </div>
           </form>
-        </div> -->
+        </div> 
         <div class="container" id="header">
           <div class="navbar-header">
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html">PlaceStation</a>
