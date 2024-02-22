@@ -78,6 +78,10 @@ public class QnaBoardService {
 	}
 	
 	
+	//1:1 메인진행숫자세기
+	public int mainQnaBoarCount(Criteria cri) throws Exception{
+		return qnaBoardRepository.mainQnaBoarCount(cri);
+	}
 	
 	
 	

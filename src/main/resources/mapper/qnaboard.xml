@@ -22,6 +22,12 @@
 		</select>
 				
 		
+		<!-- Qna갯수(완료) -->
+		<select id ="mainQnaBoarCount" resultType="int">
+			select count(*) from qna_board where q_bno > 0 and q_status=#{status}
+		</select>
+		
+		
 		<!-- 페이징처리 갯수세팅 -->
 		<select id ="AdmincountQnaBoard" resultType="int">
 			<![CDATA[ select count(*) from qna_board where q_bno > 0 ]]>

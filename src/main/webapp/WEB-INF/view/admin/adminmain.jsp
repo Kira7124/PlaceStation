@@ -51,8 +51,8 @@
 											<img src="/assets/icons/notice.png" style="width:50px; height:50px;">
 										</span>
 										<p>
-											<span class="number">${totalNotice}/${totalQna}</span>
-											<span class="title">공지/1:1문의</span>
+											<span class="number">${totalQna}</span>
+											<span class="title">1:1문의(진행)</span>
 										</p>
 									</div>
 								</div>

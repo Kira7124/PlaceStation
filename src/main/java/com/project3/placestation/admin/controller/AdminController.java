@@ -57,10 +57,12 @@ public class AdminController {
 	@GetMapping("/admin-main")
 	public String adminpageGET(HttpSession session,AdminNoticeDTO ndto,AdminTodoDTO tdto,Model model,Criteria cri,TodoCriteria todocri) throws Exception {
 		
+		cri.setStatus("진행");
+
 		Integer totalNotice = noticeBoardService.AdmincountNoticeBoard();
 		Integer totalMember = memberService.countMember();
 		Integer totalBiz = bizService.countMember();
-		Integer totalQna = qnaBoardService.AdmincountQnaBoard();
+		Integer totalQna = qnaBoardService.mainQnaBoarCount(cri);
 		session.setAttribute("totalMember", totalMember);
 		session.setAttribute("totalBiz", totalBiz);
 		session.setAttribute("totalNotice", totalNotice);
@@ -68,7 +70,6 @@ public class AdminController {
 		session.setAttribute("viewcntCheck", true);
 		
 		
-		cri.setStatus("진행");
 		PageVO pageVO = new PageVO();
 		pageVO.setCri(cri);
 		//pageVO.setTotalCount(noticeBoardService.AdmincountNoticeBoard());

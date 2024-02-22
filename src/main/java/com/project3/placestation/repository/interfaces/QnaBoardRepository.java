@@ -22,6 +22,9 @@ public interface QnaBoardRepository {
 	//페이징처리 갯수세팅
 	public int AdmincountQnaBoard() throws Exception;
 	
+	//메인페이지 갯수세팅
+	public int mainQnaBoarCount(Criteria cri) throws Exception;
+	
 	
 	//특정글조회(글번호사용)
 	public QnaBoard detailQnaBoard(Integer qbno) throws Exception;
