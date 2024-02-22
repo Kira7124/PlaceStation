@@ -1,7 +1,6 @@
 package com.project3.placestation.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,11 @@ public class ProductService {
 	@Autowired
 	ProductRepository productRepository;
 
+	/**
+	 * 상품 저장
+	 * @param filePath
+	 * @param dto
+	 */
 	public void saveProduct(String filePath, ReqProductDto dto) {
 
 		Product product = Product.builder().prodWriterNo(1).prodTitle(dto.getProdTitle())
@@ -44,6 +48,13 @@ public class ProductService {
 		}
 	}
 
+	/**
+	 * 상품 업데이트
+	 * @param filePath
+	 * @param dto
+	 * @param prodNo
+	 * @param writerNo
+	 */
 	@Transactional
 	public void updateProduct(String filePath, ReqUpdateProductDto dto, int prodNo, int writerNo) {
 		Product product = Product.builder().prodNo(prodNo).prodWriterNo(writerNo).prodTitle(dto.getProdTitle())
@@ -63,6 +74,11 @@ public class ProductService {
 		}
 	}
 
+	/**
+	 * 상품 삭제
+	 * @param prodNo
+	 * @param prodDeleteReason
+	 */
 	@Transactional
 	public void deleteProduct(int prodNo, String prodDeleteReason) {
 		int result = productRepository.deleteProduct(prodNo, prodDeleteReason);
@@ -104,6 +120,7 @@ public class ProductService {
 						.prodUpdateAt(product.getProdUpdateAt()).prodDeleteYn(product.getProdDeleteYn())
 						.prodDeleteAt(product.getProdDeleteAt()).build();
 				resProduct.add(dto);
+				
 			}
 		}
 		return resProduct;
@@ -175,9 +192,11 @@ public class ProductService {
 				.prodLocationX(product.getProdLocationX()).prodLocationY(product.getProdLocationY())
 				.prodRdate(product.getProdRdate()).prodUpdateAt(product.getProdUpdateAt())
 				.prodDeleteYn(product.getProdDeleteYn()).prodDeleteAt(product.getProdDeleteAt()).build();
-
+		log.info(dto.toString());
 		return dto;
 	}
+	
+
 
 }
 

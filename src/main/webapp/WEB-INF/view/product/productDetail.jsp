@@ -99,12 +99,13 @@
 }
 
 .swiper-container {
-	height: 100px;
+	height: 150px;
 	width: 350px;
 	overflow: hidden; /* 슬라이드가 넘어가면 숨김 */
 	padding: 10px;
 	border: 1px solid black;
 	display: none;
+	margin-top: 20px;
 }
 
 .swiper-slide {
@@ -150,6 +151,10 @@
 	justify-content: center;
 	align-items: center;
 	"
+}
+
+.disabled-div {
+	background-color: gray;
 }
 </style>
 </head>
@@ -759,7 +764,7 @@
 							<!-- 결제 시작 -->
 							<div class="widget">
 								<!-- 폼 태그 시작 -->
-								<form>
+								<form action="payment" method="get">
 									<h5 class="widget-title font-alt">예약하기</h5>
 									<!-- 가격 선택 -->
 									<div>
@@ -783,6 +788,8 @@
 										</div>
 									</div>
 
+
+
 									<!-- 스케줄 선택 -->
 									<div>
 										<h5 class="font-alt">스케줄 선택</h5>
@@ -790,20 +797,21 @@
 											type="button" id="dropdownMenuClickableInside"
 											data-bs-toggle="dropdown" data-bs-auto-close="outside"
 											aria-expanded="false" onclick="hoverDateTime()">
-											Clickable inside</button>
+											스케쥴 선택 호버</button>
 										<!-- input 창은 여기!! -->
 										<input type="hidden" id="form-date" name="date" /> <input
-											type="hidden" id="form-first-time" name="firstTime" /> <input
-											type="hidden" id="form-last-time" name="lastTime" />
+											type="hidden" id="form-first-time" name="startTime" /> <input
+											type="hidden" id="form-last-time" name="endTime" />
 
 										<div class="row mb-20" id="timeSelector">
 											<div class="col-sm-12">
 												<!-- 캘린더 -->
 												<div id="calendar" style="width: 350px"></div>
 												<!-- 시간 시작 -->
-												<h6>시간을 눌러주세요</h6>
+
 												<!-- Slider main container -->
 												<div class="swiper-container">
+													<h6>시간을 눌러주세요</h6>
 													<div class="swiper-wrapper">
 														<!-- <div class="swiper-slide">1시 ~ 2시</div> -->
 														<!-- 필요한 만큼 카드를 추가 -->
@@ -812,28 +820,28 @@
 											</div>
 										</div>
 									</div>
+
+									<div class="widget" style="margin-top : 30px;">
+										<h4 class="widget-title font-alt">예약 확인</h4>
+
+
+										<h6>날짜 :</h6>
+										<h6 id="final-date"></h6>
+										<h6>시간 :</h6>
+										<h6 id="final-time"></h6>
+										<br />
+									</div>
+									<div class="">
+										<div class="col-sm-12">
+											<input class="btn btn-lg btn-block btn-round btn-b" type="submit">Add
+												To Cart</input>
+											<p id="dateText" style="visibility: hidden"></p>
+											<br />
+											<p id="dayText" style="visibility: hidden"></p>
+										</div>
+									</div>
 								</form>
 								<!-- 폼 태그 끝 -->
-							</div>
-
-							<div class="widget">
-								<h5 class="widget-title font-alt">예약 확인</h5>
-
-								<h6>날짜 :</h6>
-								<h6 id="final-date"></h6>
-								<h6>시간 :</h6>
-								<h6 id="final-time"></h6>
-								<br />
-							</div>
-
-							<div class="">
-								<div class="col-sm-12">
-									<a class="btn btn-lg btn-block btn-round btn-b" href="#">Add
-										To Cart</a>
-									<p id="dateText" style="visibility: hidden"></p>
-									<br />
-									<p id="dayText" style="visibility: hidden"></p>
-								</div>
 							</div>
 						</div>
 						<!-- 사이드 바 끝 -->
@@ -985,9 +993,10 @@
       let clickCount = 0;
       let firstSelectedTime = 0;
       let lastSelectedTime = 0;
-      let startTime = 0;
-      let lastTime = 24;
+      const startTime = ${product.prodStartTime};
+      const lastTime = ${product.prodEndTime};
       let selectDate = "";
+      let arrayTime;
 
       // 날짜 선택 호버 기능
       const hoverDateTime = () => {
@@ -997,17 +1006,50 @@
           timeSelector.style.display = "none";
         }
       };
-
       
+      function funcValidTime(date) {
+    	  // invalidDate 변수가 외부에서 어떻게 전달되는지에 따라서 적절한 처리 필요
+
+  	    $.ajax({
+  	        type: "get",
+  	        url: "/product/valid-time?date=" + date +"&prod-no=" + ${product.prodNo},
+  	        headers : {"Content-Type" : "application/json;"},
+  			dataType : "json",
+  		       success: function (res) {
+					arrayTime = res;
+  					fillTime(res);
+  		         },
+  	        error: function(e) {
+  	        	if(e.status == 400) {
+  	        		fillTime([]);
+  	        		arrayTime = "";
+  	        		console.log("코드 400번");
+  	        	} 
+  	 
+  	        }
+  	    });
+    	  
+      }
+		
       // 시간 영역 추가
-      const fillTime = () => {
+      const fillTime = (res) => {
+    	  console.log(startTime);
+    	  console.log(lastTime);
+    	  
+    	  swiperWrapper.innerHTML = "";
         // 시간 추가 기능 - 처음 시간 ~ 마지막 시간
         for (let i = startTime; i < lastTime; i++) {
-          swiperWrapper.innerHTML += `<div class="swiper-slide font-alt">` + i + `시<div id="time_days" onclick=\"selectTime(` + i  +`)\"></div></div>`;
+        	if(res.includes(i)) {
+        		console.log(i);
+        		 swiperWrapper.innerHTML += `<div class="swiper-slide font-alt disabled-div">` + i + `시<div id="time_days" onclick=""></div></div>`;
+        	} else {
+        		swiperWrapper.innerHTML += `<div class="swiper-slide font-alt">` + i + `시<div id="time_days" onclick=\"selectTime(` + i  +`)\"></div></div>`;
+        	}
+          
         }
       };
 
-      fillTime();
+
       // 시간 리셋
       const resetTime = () => {
         const timeDays = document.querySelectorAll("#time_days"); // 시간`
@@ -1023,8 +1065,9 @@
 
       // 시간을 선택하면 들어오게 되는 함수
       const selectTime = (timeNumber) => {
+    	      	  
+    	  
         clickCount++;
-
         // 클릭 횟수 2회 넘어가면 달력 스타일 초기화
         if (clickCount > 2 || timeNumber < firstSelectedTime) {
           resetTime();
@@ -1039,13 +1082,24 @@
           lastSelectedTime = timeNumber;
         } else {
           lastSelectedTime = timeNumber;
+          
+          // 유효성 검사 1
+          for(var i = firstSelectedTime; i < timeNumber; i++) {
+      		if(arrayTime.includes(i)) {
+      			resetTime();
+      			alert("시간이 중복될 수는 없습니다.")
+      			return null;
+      		}  
+      	  }
         }
 
+        // 유효성 검사 2
         if (timeNumber < firstSelectedTime) {
           resetTime();
           return;
         }
-
+        
+      
         // 선택 일자 사이에 회색 배경 적용
         const timeDays = document.querySelectorAll("#time_days"); // 시간`
         timeDays.forEach((e, index) => {
@@ -1067,8 +1121,6 @@
         // 설정이 완료된 값 input 태그에 넣기
         getAllDate();
       };
-
-
 
       // 설정이 완료된 값 input 태그에 넣기 , date 폼으로 포맷
       const getAllDate = () => {
@@ -1093,23 +1145,37 @@
       });
 
       let date = "";
+      var today = new Date();
+      var validEndDate = new Date(today.getFullYear(), today.getMonth() + 3, 0);
+      
+      // 달력 설정
       document.addEventListener("DOMContentLoaded", function () {
         var calendarEl = document.getElementById("calendar");
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: "dayGridMonth",
           selectable: true,
+          editable: false, // don't allow event dragging
           dateClick: function (info) {
             selectDate = info.dateStr;
             console.log(selectDate);
-            finalDate.innerText = selectDate;
+            
+            finalDate.innerText = selectDate; // 현재 날짜
+            
             // 시간 호버 기능 추가 - 보이기
+            funcValidTime(selectDate);
             swiperContainer.style.display = "block";
+            
             resetTime();
           },
+          height: 450,
+          validRange: {
+              start: today,
+              end: validEndDate
+            }
         });
         calendar.render();
       });
-
+      
       
       // 카카오 지도 API
         var container = document.getElementById('map');

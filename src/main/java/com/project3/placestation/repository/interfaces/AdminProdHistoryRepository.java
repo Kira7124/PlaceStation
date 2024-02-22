@@ -10,6 +10,7 @@ import com.project3.placestation.biz.model.dto.ResScheduleDto;
 import com.project3.placestation.biz.model.dto.StatisticDto;
 import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.StatisticKind;
+import com.project3.placestation.product.dto.ProductInvalidDateDto;
 
 @Mapper
 public interface AdminProdHistoryRepository {
@@ -29,4 +30,6 @@ public interface AdminProdHistoryRepository {
 	// 사업자 통계 - 판매량
 	public int findStatisticSalesVolumes(@Param("bizId") int bizId ,@Param("kind") String kind);
 
+	// 상품 시간 제한
+	public List<ProductInvalidDateDto> findProductInvalidByProdNo(@Param("prodNo")int prodNo , @Param("date") String date);
 }

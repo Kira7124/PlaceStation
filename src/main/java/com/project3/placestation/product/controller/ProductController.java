@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.product.dto.ProdReviewDto;
+import com.project3.placestation.product.dto.ProductInvalidDateDto;
+import com.project3.placestation.product.dto.ProductValidDateTimeDto;
 import com.project3.placestation.repository.entity.ProdReview;
 import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
+import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.ProdReviewService;
 import com.project3.placestation.service.ProductService;
 
@@ -38,6 +41,10 @@ public class ProductController {
 	@Autowired
 	ProdReviewService prodReviewService;
 	
+	@Autowired
+	AdminProdHistoryService adminProdHistoryService;
+
+	
 	@GetMapping("/productDetail")
 	public String productDetail(@RequestParam("prod_no") Integer prodNo, Model model) {
 	    log.debug("상품 상세 페이지 - 상품번호: {}", prodNo);
@@ -46,9 +53,14 @@ public class ProductController {
 	    ResProductDto product = productService.findById(prodNo);
 	    // 상품 번호로 리뷰 조회
 	    List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNo(prodNo);
+	    List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo , "");
 
+	    
+	    log.info(invalidDate.toString());
 	    model.addAttribute("product", product);
 	    model.addAttribute("reviewProdNo", reviewProdNo);
+	    model.addAttribute("invalidDate", invalidDate);
+
 
 	    return "product/productDetail";
 	}

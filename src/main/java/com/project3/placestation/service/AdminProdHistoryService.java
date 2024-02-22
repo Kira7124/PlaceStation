@@ -14,6 +14,7 @@ import com.project3.placestation.biz.model.dto.StatisticDto;
 import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.biz.model.util.StatisticKind;
+import com.project3.placestation.product.dto.ProductInvalidDateDto;
 import com.project3.placestation.repository.interfaces.AdminProdHistoryRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -75,4 +76,13 @@ public class AdminProdHistoryService {
 		return result;
 	}
 	
+	/**
+	 * 상품 유효하지 않은 날짜 확인
+	 * @param prodNo
+	 * @return
+	 */
+	public List<ProductInvalidDateDto> findProductInvalidByProdNo(int prodNo , String date) {
+		List<ProductInvalidDateDto> list = adminProdHistoryRepository.findProductInvalidByProdNo(prodNo , date);
+		return list;
+	}
 }
