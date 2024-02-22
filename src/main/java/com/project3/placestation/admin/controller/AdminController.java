@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project3.placestation.admin.dto.AdminBizDTO;
 import com.project3.placestation.admin.dto.AdminMemberDTO;
 import com.project3.placestation.admin.dto.AdminNoticeDTO;
+import com.project3.placestation.admin.dto.AdminQnaDTO;
 import com.project3.placestation.admin.dto.AdminTodoDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.admin.dto.PageVO;
@@ -20,10 +21,12 @@ import com.project3.placestation.admin.dto.TodoCriteria;
 import com.project3.placestation.repository.entity.Biz;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.entity.NoticeBoard;
+import com.project3.placestation.repository.entity.QnaBoard;
 import com.project3.placestation.repository.entity.Todo;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.NoticeBoardService;
+import com.project3.placestation.service.QnaBoardService;
 import com.project3.placestation.service.TodoService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,6 +46,8 @@ public class AdminController {
 	private NoticeBoardService noticeBoardService;
 	@Autowired
 	private TodoService todoService;
+	@Autowired
+	private QnaBoardService qnaBoardService;
 	@Autowired
 	private HttpSession httpSession;
 	
@@ -209,6 +214,28 @@ public class AdminController {
 	
 	
 	
+	//http://localhost:80/admin/admin-qna
+	//관리자 1:1문의관리페이지출력
+	@GetMapping("/admin-qna")
+	public String adminqnaGET(AdminQnaDTO dto, Model model,Criteria cri,HttpSession session) throws Exception {
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(qnaBoardService.AdmincountQnaBoard());
+		
+		model.addAttribute("pageVO", pageVO);
+		
+		List<QnaBoard> result = qnaBoardService.AdminQnaBoardListAll(cri);
+		
+		model.addAttribute("qnalist", result);
+	
+		log.debug("admin 1:1문의관리페이지출력!");
+		return "admin/adminqna";
+	}
+	
+	
+	
+	
 	//관리자 공지사항 상세보기페이지출력
 	@GetMapping("/admin-noticedetail")
 	public String adminnoticedetailGET(@RequestParam("nbno") Integer nbno, Model model,HttpSession session) throws Exception {
@@ -227,6 +254,29 @@ public class AdminController {
 		log.debug("공지사항(관리자)상세보기실행");
 		return "admin/adminnoticedetail";
 	}
+	
+	
+	
+	
+	//관리자 1:1문의 상세보기페이지출력
+	@GetMapping("/admin-qnadetail")
+	public String adminqnadetailGET(@RequestParam("qbno") Integer qbno, Model model) throws Exception {
+		
+		
+		QnaBoard result = qnaBoardService.detailQnaBoard(qbno);
+		model.addAttribute("detailQna", result);
+		
+		
+		log.debug("qna(관리자) 상세보기실행!");
+		return"admin/adminqnadetail";
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	//공지사항 등록페이지 GET
@@ -285,27 +335,6 @@ public class AdminController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//http://localhost:80/admin/admin-qna
-	//관리자 1:1문의관리페이지출력
-	@GetMapping("/admin-qna")
-	public String adminqnaGET() {
-		log.debug("admin 1:1문의관리페이지출력!");
-		return "admin/adminqna";
-	}
 	
 	
 

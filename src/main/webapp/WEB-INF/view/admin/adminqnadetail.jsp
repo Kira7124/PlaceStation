@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-	<!-- adminheader.jsp -->
+    <!-- adminheader.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminheader.jsp" %>
 	<!-- adminside.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
+     <!-- jquery/ajax 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
-
-		
-		<!-- MAIN -->
+    
+	<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
@@ -16,94 +17,76 @@
 
 			<div class="panel">
 				<div class="panel-heading">
-				   <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>1:1문의</b></h3>
+					<div class="right">
+						<button type="button" class="btn-toggle-collapse">
+							<i class="lnr lnr-chevron-up"></i>
+						</button>
+						<button type="button" class="btn-remove">
+							<i class="lnr lnr-cross"></i>
+						</button>
+					</div>
 				</div>
 				
-				
-				
-				
-				
-				
-				
-				
-				
 				<div class="panel-body no-padding">
-					<table class="table table-striped" style="width: 95%; margin: auto;">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>글쓴이</th>
-								<th>제목</th>
-								<th>등록일</th>
-								<th>답변</th>
-							</tr>
-						</thead>
 					
-						<c:forEach var="qnalist" items="${qnalist}">
-							<tbody>
-								<tr>
-									<td>${qnalist.qbno}</td>
-									<td>${qnalist.qwriter}</td>
-									<td><a href="/admin/admin-qnadetail?qbno=${qnalist.qbno}">${qnalist.qtitle}</a></td>
-									<td>${qnalist.formatjoinAt()}</td>							
-									<td>
-										<c:choose>
-											<c:when test="${qnalist.qstatus == '진행'}">
-												<span class="label label-success">진행</span>
-											</c:when>
-											<c:otherwise>
-												<span class="label label-danger">완료</span>
-											</c:otherwise>
-										</c:choose>
-									</td>
-									<!-- <span class="label label-success">진행</span> -->
-									<!-- <span class="label label-danger">완료</span> -->
-								</tr>
-							</tbody>
-						</c:forEach>
-					</table>
+			<div class="container">
+				   <div class="row justify-content-center">
+					 <div class="col-md-8" style="margin-left: 200px;">	
+						
+							<div class="card">
 					
-					
-					<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
-						<ul class="pagination">
-							<c:if test="${pageVO.prev }">
-								<li class="page-item">
-								  <a class="page-link" href="/admin/admin-qna?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-								  </a>
-								</li>
-							</c:if>
-
-
-					
-						<c:forEach var="i" begin="${pageVO.startPage }"
-								end="${pageVO.endPage }" step="1">
-								<c:set var="isActive" value="${pageVO.cri.page == i}" />
-								<li class="page-item ${isActive ? 'active' : ''}"><a
-									class="page-link" href="/admin/admin-qna?page=${i}"
-									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
-										${i} </a></li>
-							</c:forEach>
-
-
+		 				  <div class="card-body">
+			        			
+							<div class="box-body">
+							
+							<form action="#" method="post">		
+								<div class="details" style="display: inline;">
+								    <h3 style="font-weight: bold; display: inline;">1:1문의</h3>
+								</div>
+								<button type="submit" class="btn btn-info" id="noticeInsertButton" style="display: inline; margin-left: 550px; margin-bottom: 10px; margin-top:10px;">답글달기</button>
+							
+								<div class="form-group w-25">
+									<label for="exampleInputEmail1"><h5>작성자</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1" value ="${detailQna.qwriter}" readonly="readonly">
+								</div><br>
+								<div class="form-group w-25">
+									<label for="exampleInputEmail1"><h5>제 목</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1" value="${detailQna.qtitle}" readonly >
+								</div><br>
+								<div class="form-group w-50">
+									<label for="exampleInputEmail1"><h5>내 용</h5></label>
+									<textarea class="form-control" rows="3" readonly="readonly">${detailQna.qcontent}</textarea>
+								</div><br>
+								<div class="form-group w-50">
+									<label for="exampleInputEmail1"><h5>답글</h5></label>
+									<textarea class="form-control" rows="3" name="qreply">${detailQna.qreply}</textarea>
+								</div><br>
+							</form>
+							           
+							   </div>
+						   </div>
+					  </div>		
 				
-							<c:if test="${pageVO.next }">
-								<li class="page-item"><a class="page-link"
-									href="/admin/admin-qna?page=${pageVO.endPage + 1 }"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-								</a></li>
-							</c:if>
+				   </div>				
+				</div>			
+			</div>				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 
-						</ul>
-					</nav>
-					
-					
-					
-					
-					
-					
-					
-					
-					
 					
 				</div>
 			</div>
@@ -243,3 +226,5 @@
 </body>
 
 </html>
+	    
+    
