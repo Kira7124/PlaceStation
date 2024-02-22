@@ -43,6 +43,63 @@
 		</update>
 		
 		
+		<!-- 1:1검색(관리자) -->
+		<select id="AdminsearchQnaBoardlist" resultType="com.project3.placestation.repository.entity.QnaBoard">
+		    select * from qna_board
+		    <where>
+		        <if test="searchKeyword != null and searchKeyword != ''">
+		            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+		            <choose>
+		            	<when test="searchOption == 'q_title'">
+		                    and q_title like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'q_writer'">
+		                    and q_writer like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'q_bno'">
+		                    and q_bno like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'q_status'">
+		                    and q_status like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <!-- 기본적으로는 user_name으로 검색 -->
+		                <otherwise>
+		                    and q_title like concat('%', #{searchKeyword}, '%')
+		                </otherwise>
+		            </choose>
+		        </if>
+		    </where>
+		    limit #{startPage}, #{pageSize}
+		</select>
+		
+		
+		<!-- 관리자1:1검색카운팅 -->
+		<select id="countAdminSearchQnalist" resultType="int">
+			 select count(*) from qna_board
+			    <where>
+			        <if test="searchKeyword != null and searchKeyword != ''">
+			            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+			            <choose>
+				            <when test="searchOption == 'q_title'">
+			                    and q_title like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'q_writer'">
+			                    and q_writer like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'q_bno'">
+			                    and q_bno like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'q_status'">
+			                    and q_status like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <!-- 기본적으로는 user_name으로 검색 -->
+			                <otherwise>
+			                    and q_title like concat('%', #{searchKeyword}, '%')
+			                </otherwise>
+			            </choose>
+			        </if>
+			    </where>
+		</select>
 		
 		
 	

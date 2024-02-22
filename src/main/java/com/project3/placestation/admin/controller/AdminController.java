@@ -237,12 +237,6 @@ public class AdminController {
 	
 	
 	
-	@GetMapping("/admin-qna2")
-	public String adminqna2GET() {
-		return"admin/adminqna2";
-	}
-	
-	
 	
 	
 	
@@ -542,6 +536,34 @@ public class AdminController {
 	    return "admin/adminnoticesearch";
 		
 	}
+	
+	
+	@GetMapping("/admin-searchqna")
+	public String adminSearchQnaGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
+		String searchOption = request.getParameter("searchOption");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		if (searchOption != null && !searchOption.isEmpty()) {
+	        cri.setSearchOption(searchOption);
+	    }
+		
+		
+	    if (searchKeyword != null && !searchKeyword.isEmpty()) {
+	        cri.setSearchKeyword(searchKeyword);
+	    }
+		
+	    PageVO pageVO = new PageVO();
+	    pageVO.setCri(cri);
+		pageVO.setTotalCount(qnaBoardService.countAdminSearchQnalist(cri));
+		
+		model.addAttribute("pageVO", pageVO);
+	    
+	    List<QnaBoard> result = qnaBoardService.AdminsearchQnaBoardlist(cri);
+	    model.addAttribute("qnalist", result);
+	 
+	    return "admin/adminqnasearch";
+	}
+	
 	
 	
 	

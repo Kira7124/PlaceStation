@@ -65,6 +65,18 @@ public class QnaBoardService {
 	}
 	
 	
+	//1:1 검색리스트출력(페이징)
+	public List<QnaBoard> AdminsearchQnaBoardlist(Criteria cri) throws Exception{
+		List<QnaBoard> result = qnaBoardRepository.AdminsearchQnaBoardlist(cri);
+		return result;
+	}
+
+	
+	//1:1 검색 숫자세기(페이징)
+	public int countAdminSearchQnalist(Criteria cri) throws Exception{
+		return qnaBoardRepository.countAdminSearchQnalist(cri);
+	}
+	
 	
 	
 	

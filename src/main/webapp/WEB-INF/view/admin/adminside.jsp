@@ -19,7 +19,6 @@
 								<ul class="nav">
 									<li><a href="/admin/admin-notice" class="">공지사항</a></li>
 									<li><a href="/admin/admin-qna" class="">1:1문의</a></li>
-									<li><a href="/admin/admin-qna2" class="">1:1문의(조건화)</a></li>
 								</ul>
 							</div>
 						</li>

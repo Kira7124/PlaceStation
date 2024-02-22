@@ -31,6 +31,12 @@ public interface QnaBoardRepository {
 	public Integer AdminUpdateQna(QnaBoard qnaboard) throws Exception;
 	
 	
+	//1:1리스트출력(검색,페이징처리)
+	public List<QnaBoard> AdminsearchQnaBoardlist(Criteria cri) throws Exception;
+	
+	
+	//1:1숫자세기(검색,페이징처리)
+	public int countAdminSearchQnalist(Criteria cri) throws Exception;
 	
 	
 	
