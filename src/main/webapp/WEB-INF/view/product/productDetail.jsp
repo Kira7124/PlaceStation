@@ -151,10 +151,13 @@
 	justify-content: center;
 	align-items: center;
 	"
+<<<<<<< HEAD
 }
 
 .disabled-div {
 	background-color: gray;
+=======
+>>>>>>> origin/product
 }
 </style>
 </head>
@@ -587,7 +590,7 @@
 															시</td>
 													</tr>
 													<tr>
-														<td>적당한거 넣기</td>
+														<td>사업자 명</td>
 														<td>적당한거 넣기</td>
 													</tr>
 
@@ -640,16 +643,14 @@
 											</div>
 										</div>
 										<!-- 환불 규정 안내 끝 -->
-										<!-- reviews 시작 -->
-										<div class="tab-pane" id="reviews">
-											<!-- productDetail.jsp -->
 
+										<!-- 리뷰 시작 -->
+										<div class="tab-pane" id="reviews">
 											<!-- 리뷰가 있는 경우 -->
 											<c:if test="${not empty reviewProdNo}">
 												<div id="reviews" class="tab-pane">
 													<div class="comments reviews">
 														<h3>이용 후기</h3>
-														<!-- 리뷰 정보를 반복해서 표시 -->
 														<c:forEach items="${reviewProdNo}" var="review">
 															<div class="comment clearfix"
 																style="border-bottom: 1px solid #ccc; margin-bottom: 8px;">
@@ -672,14 +673,65 @@
 																		<p>${review.prodRevContent}</p>
 																	</div>
 																	<div class="comment-meta font-alt">
-																		<!-- 리뷰 작성 날짜 및 별점 표시 -->
 																		<p>${review.prodRevCreateAt}</p>
 																	</div>
 																</div>
+																<!-- 대댓글 버튼 추가 -->
+																<div class="comment-reply">
+																	<button class="btn btn-round btn-d"
+																		onclick="showReplyForm(${review.prodRevNo})">답글
+																		달기</button>
+																</div>
+															</div>
+															<!-- 대댓글 작성 폼 -->
+															<div id="replyForm_${review.prodRevNo}"
+																class="comment-form mt-30" style="display: none;">
+																<h4 class="comment-form-title font-alt">답글 작성</h4>
+																<form method="post" action="/product/saveReview">
+																	<div class="row">
+																		<div class="col-sm-4">
+																			<div class="form-group">
+																				<input type="hidden" name="prodNo"
+																					value="${product.prodNo}"> <input
+																					type="hidden" name="parentId"
+																					value="${review.prodRevNo}"> <label
+																					for="userNo">유저번호</label> <input
+																					class="form-control" type="text" name="userNo"
+																					placeholder="유저번호" required />
+																			</div>
+																		</div>
+																		<div class="col-sm-4">
+																			<div class="form-group">
+																				<label for="prodRevStar">평점</label> <select
+																					class="form-control" id="prodRevStar"
+																					name="prodRevStar" required>
+																					<option selected disabled>평점 선택</option>
+																					<option value="1">1</option>
+																					<option value="2">2</option>
+																					<option value="3">3</option>
+																					<option value="4">4</option>
+																					<option value="5">5</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="col-sm-12">
+																			<div class="form-group">
+																				<label for="prodRevContent">리뷰 내용</label>
+																				<textarea class="form-control" name="prodRevContent"
+																					rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
+																			</div>
+																		</div>
+																		<div class="col-sm-12">
+																			<button class="btn btn-round btn-d" type="submit">답글
+																				작성</button>
+																		</div>
+																	</div>
+																</form>
 															</div>
 														</c:forEach>
 													</div>
 												</div>
+
 											</c:if>
 
 											<!-- 리뷰가 없는 경우 -->
@@ -690,6 +742,7 @@
 												</div>
 											</c:if>
 
+<<<<<<< HEAD
 											<div class="comment-form mt-30">
 												<h4 class="comment-form-title font-alt">리뷰 작성</h4>
 												<form method="post" action="/product/saveReview">
@@ -730,9 +783,55 @@
 													</div>
 												</form>
 											</div>
+=======
+											<!-- 리뷰 등록 -->
+											<div class="comment-form mt-30">
+												<h4 class="comment-form-title font-alt">리뷰 작성</h4>
+												<form method="post" action="/product/addReview">
+													<div class="row">
+														<div class="col-sm-4">
+															<div class="form-group">
+																<input type="hidden" name="prodNo" id="prodNo"
+																	value="${product.prodNo}"> <input type="hidden"
+																	name="parentId" id="parentId"
+																	value=""> <label
+																	for="username">유저번호</label> <input class="form-control"
+																	type="text" id="userNo" name="userNo"
+																	placeholder="유저번호" required />
+															</div>
+														</div>
+>>>>>>> origin/product
 
+														<div class="col-sm-4">
+															<div class="form-group">
+																<label for="prodRevStar">평점</label> <select
+																	class="form-control" id="prodRevStar"
+																	name="prodRevStar" required>
+																	<option selected disabled>평점 선택</option>
+																	<option value="1">1</option>
+																	<option value="2">2</option>
+																	<option value="3">3</option>
+																	<option value="4">4</option>
+																	<option value="5">5</option>
+																</select>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label for="prodRevContent">리뷰 내용</label>
+																<textarea class="form-control" name="prodRevContent"
+																	rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<button class="btn btn-round btn-d" type="submit">리뷰
+																작성</button>
+														</div>
+													</div>
+												</form>
+											</div>
 										</div>
-										<!-- reviews 끝 -->
+										<!-- 리뷰 끝 -->
 
 									</div>
 								</div>
@@ -1211,6 +1310,17 @@
 
       // 리뷰 날짜 포메팅
       formatDate("${review.prodRevCreateAt}", "formattedReviewDate");
+      
+      function showReplyForm(parentId) {
+          // parentId를 기반으로 대댓글 작성 폼이 있는지 확인
+          var replyFormId = "replyForm_" + parentId;
+          var replyForm = document.getElementById(replyFormId);
+          if (replyForm.style.display === "none" || replyForm.style.display === "") {
+              replyForm.style.display = "block"; // 대댓글 작성 폼 표시
+          } else {
+              replyForm.style.display = "none"; // 대댓글 작성 폼 숨김
+          }
+      }
   </script>
 
 </body>
