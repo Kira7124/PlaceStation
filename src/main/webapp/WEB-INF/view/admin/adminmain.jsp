@@ -84,7 +84,7 @@
 							<!-- RECENT PURCHASES -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title"><b>공지사항</b></h3>
+									<h3 class="panel-title"><b>1:1문의</b></h3>
 									<div class="right">
 										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
 									</div>
@@ -97,17 +97,26 @@
 												<th>글쓴이</th>
 												<th>제목</th>
 												<th>등록일</th>
-												<th>조회수</th>
+												<th>답변</th>
 											</tr>
 										</thead>
-									<c:forEach var="noticelist" items="${noticelist}">
+									<c:forEach var="qnalist" items="${qnalist}">
 										<tbody>
 											<tr>
-												<td>${noticelist.nbno}</td>
-												<td>${noticelist.nwriter}</td>
-												<td><a href="/admin/admin-noticedetail?nbno=${noticelist.nbno}">${noticelist.ntitle}</a></td>
-												<td>${noticelist.formatjoinAt()}</td>
-												<td><span class="badge" style="margin-left: 10px;">${noticelist.nreadcount}</span></td>
+												<td>${qnalist.qbno}</td>
+												<td>${qnalist.qwriter}</td>
+												<td><a href="/admin/admin-qnadetail?qbno=${qnalist.qbno}">${qnalist.qtitle}</a></td>
+												<td>${qnalist.formatjoinAt()}</td>
+												<td>
+													<c:choose>
+														<c:when test="${qnalist.qstatus == '진행'}">
+															<span class="label label-success">진행</span>
+														</c:when>
+														<c:otherwise>
+															<span class="label label-danger">완료</span>
+														</c:otherwise>
+													</c:choose>
+												</td>
 											</tr>
 											
 										</tbody>
@@ -117,7 +126,7 @@
 								<div class="panel-footer">
 									<div class="row">
 										<div class="col-md-6"></div>
-										<div class="col-md-6 text-right"><a href="/admin/admin-notice" class="btn btn-primary">전체목록보기</a></div>
+										<div class="col-md-6 text-right"><a href="/admin/admin-qna" class="btn btn-primary">전체목록보기</a></div>
 									</div>
 								</div>
 							</div>

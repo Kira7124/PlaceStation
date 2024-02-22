@@ -25,6 +25,15 @@ public class QnaBoardService {
 		
 	}
 	
+	//Qna리스트출력2(조건/페이징처리)
+	public List<QnaBoard> AdminQnaBoardListAll2(Criteria cri) throws Exception{
+		List<QnaBoard> result = qnaBoardRepository.AdminQnaBoardListAll2(cri);
+		return result;
+	}
+	
+	
+	
+	
 	//페이징처리갯수세팅(페이징)
 	public int AdmincountQnaBoard() throws Exception{
 		return qnaBoardRepository.AdmincountQnaBoard();

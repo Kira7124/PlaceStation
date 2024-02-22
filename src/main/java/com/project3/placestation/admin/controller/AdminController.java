@@ -66,21 +66,22 @@ public class AdminController {
 		
 		session.setAttribute("viewcntCheck", true);
 		
+		
+		cri.setStatus("진행");
 		PageVO pageVO = new PageVO();
 		pageVO.setCri(cri);
-		pageVO.setTotalCount(noticeBoardService.AdmincountNoticeBoard());
-	
+		//pageVO.setTotalCount(noticeBoardService.AdmincountNoticeBoard());
+		pageVO.setTotalCount(qnaBoardService.AdmincountQnaBoard());
 		model.addAttribute("pageVO", pageVO);
 		
-		List<NoticeBoard> result = noticeBoardService.AdminNoticeBoardListAll(cri);
+		//List<NoticeBoard> result = noticeBoardService.AdminNoticeBoardListAll(cri);
+		List<QnaBoard> result = qnaBoardService.AdminQnaBoardListAll2(cri);
 		List<Todo> result2 = todoService.adminTodoList(todocri);
 		
 		
-		model.addAttribute("noticelist", result);
+		//model.addAttribute("noticelist", result);
+		model.addAttribute("qnalist", result);
 		model.addAttribute("todolist", result2);
-		
-		
-		
 		
 		
 		log.debug("admin 메인 페이지 출력!");
@@ -236,6 +237,15 @@ public class AdminController {
 	
 	
 	
+	@GetMapping("/admin-qna2")
+	public String adminqna2GET() {
+		return"admin/adminqna2";
+	}
+	
+	
+	
+	
+	
 	//관리자 공지사항 상세보기페이지출력
 	@GetMapping("/admin-noticedetail")
 	public String adminnoticedetailGET(@RequestParam("nbno") Integer nbno, Model model,HttpSession session) throws Exception {
@@ -319,7 +329,7 @@ public class AdminController {
 	public String adminQnaUpdatePOST(AdminQnaDTO dto) throws Exception {
 		log.debug("1:1답글완료(관리자)");
 		qnaBoardService.AdminUpdateQna(dto);
-		return "redirect:/admin/admin-qna";
+		return "redirect:/admin/admin-main";
 	}
 	
 	

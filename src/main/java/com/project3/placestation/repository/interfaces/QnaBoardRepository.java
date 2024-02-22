@@ -14,6 +14,10 @@ public interface QnaBoardRepository {
 	//QNA 리스트출력(페이징처리)
 	public List<QnaBoard> AdminQnaBoardListAll(Criteria cri) throws Exception;
 	
+	//QNA 리스트출력(조건/페이징처리)
+	public List<QnaBoard> AdminQnaBoardListAll2(Criteria cri) throws Exception;
+	
+	
 	
 	//페이징처리 갯수세팅
 	public int AdmincountQnaBoard() throws Exception;

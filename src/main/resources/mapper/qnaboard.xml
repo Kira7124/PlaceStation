@@ -13,6 +13,14 @@
 			limit #{startPage},#{pageSize}
 		</select>
 				
+				
+		<!-- Qna리스트(조건화)출력 -->		
+		<select id="AdminQnaBoardListAll2" resultType="com.project3.placestation.repository.entity.QnaBoard">
+			select * from qna_board
+			where q_status = #{status}
+			limit #{startPage},#{pageSize}
+		</select>
+				
 		
 		<!-- 페이징처리 갯수세팅 -->
 		<select id ="AdmincountQnaBoard" resultType="int">

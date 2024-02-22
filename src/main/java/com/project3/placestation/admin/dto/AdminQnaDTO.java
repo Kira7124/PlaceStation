@@ -27,7 +27,7 @@ public class AdminQnaDTO {
 	private Timestamp qdeleteat;
 	private String qstatus;
 	private String qreply;
-
+	
 	
 	
 }
