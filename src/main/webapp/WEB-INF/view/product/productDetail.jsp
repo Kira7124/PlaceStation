@@ -742,48 +742,6 @@
 												</div>
 											</c:if>
 
-<<<<<<< HEAD
-											<div class="comment-form mt-30">
-												<h4 class="comment-form-title font-alt">리뷰 작성</h4>
-												<form method="post" action="/product/saveReview">
-													<div class="row">
-														<div class="col-sm-4">
-															<div class="form-group">
-																<input type="hidden" name="prod_no"
-																	value="${product.prodNo}"> <label
-																	for="username">제목</label> <input class="form-control"
-																	type="text" name="title" placeholder="리뷰제목" required />
-															</div>
-														</div>
-
-														<div class="col-sm-4">
-															<div class="form-group">
-																<label for="rating">평점</label> <select
-																	class="form-control" id="rating" name="rating" required>
-																	<option selected disabled>평점 선택</option>
-																	<option value="1">1</option>
-																	<option value="2">2</option>
-																	<option value="3">3</option>
-																	<option value="4">4</option>
-																	<option value="5">5</option>
-																</select>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<div class="form-group">
-																<label for="reviewContent">리뷰 내용</label>
-																<textarea class="form-control" name="reviewContent"
-																	rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<button class="btn btn-round btn-d" type="submit">리뷰
-																작성</button>
-														</div>
-													</div>
-												</form>
-											</div>
-=======
 											<!-- 리뷰 등록 -->
 											<div class="comment-form mt-30">
 												<h4 class="comment-form-title font-alt">리뷰 작성</h4>
@@ -800,7 +758,6 @@
 																	placeholder="유저번호" required />
 															</div>
 														</div>
->>>>>>> origin/product
 
 														<div class="col-sm-4">
 															<div class="form-group">
