@@ -4,28 +4,37 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Slf4j
 public class BizHistoryDto {
-	private String adminHisNo;
-	private Integer adminHisProdNo;
-	private Integer adminHisPrice;
-	private Integer adminHisUserPoint;
-	private Integer adminHisSavePoint;
-	private Integer adminHisDiscount;
-	private Integer adminHisCharge;
-	private Integer hisSellerId;
-	private boolean adminHisConfirm;
-	private String adminHisCreatedAt;
-	private Integer adminHisBuyerId;
-	private String bank;
-	private Integer startTime;
-	private Integer endTime;
-	private String cancelYn;
+	private String adminHisNo;	// 기본키 == 포트원 키
+	private Integer adminHisProdNo;	 // 상품번호
+	private Integer adminHisPrice;	// 상품 가격
+	private Integer adminHisUsePoint;	// 사용한 포인트
+	private Integer adminHisSavePoint;	// 구매시 적립된 포인트
+	private Integer adminHisDiscount;	// 적용된 할인된 금액
+	private Integer adminHisCharge;	// 구매 수수료
+	private Integer hisSellerId;	// 판매자
+	private boolean adminHisConfirm;	// 구매 확정 여부
+	private String adminHisCreatedAt;	// 내역 생성 시간
+	private Integer adminHisBuyerId;	// 산 사람
+	private String bank;	// 은행
+	private Integer startTime;	// 시작 시간
+	private Integer endTime;	// 종료 시간
+	private String purchaseDate;	// 상품을 구매한 ('2024-02-09') 처럼
+	private String cancelYn;	
 	private String cancelAt;
 	private Integer cancelAmount;
 	private Integer peopleCount;
+	private String userName;
+	private String userEmail; 
+	private String userGrade;
+	private String prodTitle;
+	private String mainCategory;
+	private String subcategory;
 }

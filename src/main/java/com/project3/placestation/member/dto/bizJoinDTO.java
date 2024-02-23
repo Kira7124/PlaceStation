@@ -29,5 +29,4 @@ public class bizJoinDTO {
 	private String bizRole;
 	private String bizTel;
 	
-	
 }

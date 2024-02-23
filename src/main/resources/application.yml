@@ -9,6 +9,9 @@ server:
 
 # JSP, mustache 원하는거 사용
 spring:
+  devtools:
+    restart:
+      enabled: false
   mvc:
     hiddenmethod:
       filter:
@@ -33,7 +36,6 @@ spring:
       data-locations:
         - classpath:db/table.sql
         - classpath:db/data.sql
-
 
 #  jpa:
 #    hibernate:
