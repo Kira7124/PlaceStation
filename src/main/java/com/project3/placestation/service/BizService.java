@@ -49,12 +49,12 @@ public class BizService {
 	@Transactional
 	public void AdminUpdateBiz(AdminBizDTO dto) {
 		Biz biz = Biz.builder()
-				.bizno(dto.getBizno())
-				.bizid(dto.getBizid())
-				.bizbrandname(dto.getBizbrandname())
-				.bizhp(dto.getBizhp())
-				.biztel(dto.getBiztel())
-				.bizemail(dto.getBizemail())
+				.bizNo(dto.getBizno())
+				.bizId(dto.getBizid())
+				.bizBrandName(dto.getBizbrandname())
+				.bizHp(dto.getBizhp())
+				.bizTel(dto.getBiztel())
+				.bizEmail(dto.getBizemail())
 				.build();
 		
 		
@@ -68,8 +68,8 @@ public class BizService {
 	@Transactional
 	public void AdminDeleteBiz(AdminBizDTO dto) {
 		Biz biz = Biz.builder()
-				.bizno(dto.getBizno())
-				.bizid(dto.getBizid())
+				.bizNo(dto.getBizno())
+				.bizId(dto.getBizid())
 				.build();
 		
 		Integer result = bizRepository.AdminDeleteBiz(biz);

@@ -15,22 +15,20 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Biz {
 		
-	private Integer bizno;
-	private Integer bizid;
-	private String bizbrandname;
-	private String bizhp;
-	private String bizemail;
-	private Integer bizbalance;
-	private String filepath;
-	private Timestamp joinat;
-	private Timestamp outat;
-	private Integer fileno;
-	private String biztel;
+	private Integer bizNo;
+	private Integer bizId;
+	private String bizBrandName;
+	private String bizHp;
+	private String bizEmail;
+	private Integer bizBalance;
+	private String filePath;
+	private Timestamp joinAt;
+	private String bizTel;
 	
 	
 	//포메터(시간)
 	public String formatjoinAt() {
-		return TimeUtils.timestampToString(joinat);
+		return TimeUtils.timestampToString(joinAt);
 	}
 	
 	

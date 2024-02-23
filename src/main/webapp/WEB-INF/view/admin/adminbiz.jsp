@@ -61,12 +61,12 @@
 					  <c:forEach var="bizlist" items="${bizlist}">
 						<tbody>
 							<tr>
-								<td>${bizlist.bizno}</td>
-								<td>${bizlist.bizid}</td>
-								<td>${bizlist.bizbrandname}</td>
-								<td>${bizlist.formatHp(bizlist.bizhp)}</td>
-								<td>${bizlist.formatTel(bizlist.biztel)}</td>
-								<td>${bizlist.bizemail}</td>
+								<td>${bizlist.bizNo}</td>
+								<td>${bizlist.bizId}</td>
+								<td>${bizlist.bizBrandName}</td>
+								<td>${bizlist.formatHp(bizlist.bizHp)}</td>
+								<td>${bizlist.formatTel(bizlist.bizTel)}</td>
+								<td>${bizlist.bizEmail}</td>
 								<td>${bizlist.formatjoinAt()}</td>
 								<td>
 									<a href="/admin/admin-bizupdate" data-toggle="modal" data-target="#updateModal">
