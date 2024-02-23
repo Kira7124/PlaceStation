@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project3.placestation.biz.handler.exception.CustomPageException;
+import com.project3.placestation.payment.handler.exception.CustomPaymentLoginPageException;
 import com.project3.placestation.payment.handler.exception.CustomPaymentPageException;
 
 
@@ -18,11 +19,19 @@ public class PaymentPageExceptionHandler {
 	
 	// CustomPageException <-- 발생하면 이 함수를 동작시켜!
 	@ExceptionHandler(CustomPaymentPageException.class)
-	public ModelAndView handlerRuntimeException(CustomPageException e) {
+	public ModelAndView handlerRuntimeException(CustomPaymentPageException e) {
 		ModelAndView modelAndView = new ModelAndView("errorPage");
 		modelAndView.addObject("statusCode", HttpStatus.NOT_FOUND.value());
 		modelAndView.addObject("message", e.getMessage());
 		return modelAndView; // 페이지 반환 + 데이터 내려줌
 	}
 
+	// CustomPageException <-- 발생하면 이 함수를 동작시켜!
+	@ExceptionHandler(CustomPaymentLoginPageException.class)
+	public ModelAndView handlerRuntimeException(CustomPaymentLoginPageException e) {
+		ModelAndView modelAndView = new ModelAndView("member/login");
+		modelAndView.addObject("statusCode", HttpStatus.NOT_FOUND.value());
+		modelAndView.addObject("message", e.getMessage());
+		return modelAndView; // 페이지 반환 + 데이터 내려줌
+	}
 }

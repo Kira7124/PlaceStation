@@ -66,8 +66,10 @@
 	<select id="findPasswordById"
 		resultType="com.project3.placestation.biz.model.dto.ResPassword">
 		select user_password as password from member
-		where user_no = #{userNo}
+		where user_no =
+		#{userNo}
 	</select>
+
 
 	<update id="BizUpdateMember">
 		update member set
@@ -86,4 +88,12 @@
 		where user_no = #{userNo};
 	</update>
 
+	<!-- 판매자 join 유저 -->
+	<select id="findMemberById" resultType="com.project3.placestation.payment.model.dto.PaymentMemberDto">
+		select user_no as userNo ,
+		user_address as userAddress , user_name as userName , user_hp as
+		userHp , user_email as userEmail , grade as userGrade , user_point as
+		userPoint , join_at as joinAt , user_role as userRole , gender as
+		gender from member where user_no = #{userNo}
+	</select>
 </mapper>

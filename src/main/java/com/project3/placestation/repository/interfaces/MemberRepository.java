@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResPassword;
-import com.project3.placestation.member.dto.bizJoinDTO;
+import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
 
@@ -32,4 +32,7 @@ public interface MemberRepository {
 
 	// 유저의 패스워드 가져오기
 	public ResPassword findPasswordById(int userNo);
+	
+	// payment 유저 정보
+	public  PaymentMemberDto findMemberById(int userNo);
 }

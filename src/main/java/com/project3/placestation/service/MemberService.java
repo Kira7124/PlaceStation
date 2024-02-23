@@ -14,6 +14,8 @@ import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResPassword;
 import com.project3.placestation.member.dto.bizDTO;
 import com.project3.placestation.member.dto.bizJoinDTO;
+import com.project3.placestation.payment.handler.exception.CustomPaymentLoginPageException;
+import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.interfaces.MemberRepository;
@@ -80,5 +82,14 @@ public class MemberService {
 			throw new CustomRestfulException("유저 정보를 변경하는 도중 서버 에러가 발생하였습니다. ", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return result;
+	}
+	
+	// 유저 정보 상세조회
+	public PaymentMemberDto findMemberById(int userNo) {
+		PaymentMemberDto dto = memberRepository.findMemberById(userNo);
+		if(dto == null) {
+			throw new CustomPaymentLoginPageException("유저 정보가 없거나 변경되었습니다.", HttpStatus.INTERNAL_SERVER_ERROR);			
+		}
+		return dto;
 	}
 }
