@@ -25,6 +25,8 @@ public class AdminMemberDTO {
 	private String useremail;
 	private Integer userpoint;
 	private MultipartFile customFile;
+	private String searchKeyword;
+	private String searchOption;
 	private String originimg;
 	private String uploadimg;
 	private Timestamp joinat;

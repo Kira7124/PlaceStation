@@ -14,6 +14,7 @@ VALUES
 (1, 1, '리뷰 내용 3', 4, 'N', 1),
 (2, 2, '리뷰 내용 4', 4, 'N', 4);
 
+
 INSERT INTO member (user_id, user_password, user_address, user_name, user_hp, user_email, user_role,grade,gender) 
 VALUES 
 ('test1', '1234', '서울특별시', '김진수2', '01089237125', 'afc2016@naver.com', 'BIZ','실버','M'),
@@ -43,11 +44,30 @@ VALUES
 ('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','F'),
 ('test10', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'BIZ','골드','F');
 
+insert into notice_board (n_writer,n_content,n_title)
+values('kira','12121212121','rerere'),
+('kira2','12121212121','rerere'),
+('kira3','12121212121','rerere'),
+('kira4','12121212121','rerere'),
+('kira5','12121212121','rerere'),
+('kira6','12121212121','rerere'),
+('kira7','12121212121','rerere'),
+('kira8','12121212121','rerere'),
+('kira9','12121212121','rerere'),
+('kira10','12121212121','rerere'),
+('kira11','12121212121','rerere');
 
 insert into biz (biz_id , biz_brand_name,biz_balance , file_path , biz_tel)
 values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'010-1111-1111');
 insert into biz (biz_id , biz_brand_name,biz_balance , file_path ,biz_tel)
 values (13 , '상호명' , 20000 , 'https://picsum.photos/200/300​','010-1111-1111');
+
+
+insert into admin_todo(todo_title,todo_content)
+values('1번할일','어드민페이지완성'),
+('2번할일','어드민페이지완성2'),
+('3번할일','어드민페이지완성3'),
+('4번할일','어드민페이지완성4');
 
 -- product
 insert into product (
@@ -103,6 +123,7 @@ insert into product (
     '전체 주소' 
     ,35.15165189498 , 125.026156153123
 );
+
 
 
 insert into admin_prod_history (
@@ -294,6 +315,20 @@ insert into admin_prod_history (
     admin_his_created_at
 ) values ('OXDSCAVD-KOBFDM' ,1,31000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',23,24,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 
+insert into qna_board(q_writer,q_content,q_title)
+values('키라1','첫번째내용입니다','0번째qna글1'),
+('키라1','2번째내용입니다','1번째qna글1'),
+('키라1','3번째내용입니다','2번째qna글1'),
+('키라1','4번째내용입니다','3번째qna글1'),
+('키라1','5번째내용입니다','4번째qna글1'),
+('키라1','6번째내용입니다','5번째qna글1'),
+('키라1','7번째내용입니다','6번째qna글1'),
+('키라1','8번째내용입니다','7번째qna글1'),
+('키라1','9번째내용입니다','8번째qna글1'),
+('키라1','10번째내용입니다','9번째qna글1'),
+('키라1','11번째내용입니다','10번째qna글1'),
+('키라1','12번째내용입니다','11번째qna글1');
+
 insert into prod_major_category (category_name) values ('스포츠');
 insert into prod_major_category (category_name) values ('캠핑');
 insert into prod_major_category (category_name) values ('스터디');
@@ -305,5 +340,4 @@ insert into prod_subcategory (main_category_id , subcategory_name) values (2, '�
 insert into prod_subcategory (main_category_id , subcategory_name) values (2, '실내');
 insert into prod_subcategory (main_category_id , subcategory_name) values (3, '카페');
 insert into prod_subcategory (main_category_id , subcategory_name) values (3, '도서관');
-
 
