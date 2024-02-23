@@ -23,8 +23,6 @@ public class Biz {
 	private Integer bizBalance;
 	private String filePath;
 	private Timestamp joinAt;
-	private Timestamp outAt;
-	private Integer fileNo;
 	private String bizTel;
 	
 	
