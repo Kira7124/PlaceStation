@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.project3.placestation.admin.dto.AdminTodoDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.admin.dto.TodoCriteria;
 import com.project3.placestation.repository.entity.Todo;
@@ -27,6 +29,47 @@ public class TodoService {
 		return todoRepository.countTodo();
 		
 	}
+	
+	
+	//todo 삭제
+	@Transactional
+	public void deleteTodo(AdminTodoDTO dto) throws Exception{
+		
+		Todo todo = Todo.builder()
+				.todotitle(dto.getTodotitle())
+				.todocontent(dto.getTodocontent())
+				.todono(dto.getTodono())
+				.todoregdate(dto.getTodoregdate())
+				.build();
+		
+		Integer result = todoRepository.deleteTodo(todo);
+		
+	}
+	
+	
+	
+	//todo 등록
+	@Transactional
+	public void insertTodo(AdminTodoDTO dto) throws Exception{
+		
+		Todo todo = Todo.builder()
+				.todotitle(dto.getTodotitle())
+				.todocontent(dto.getTodocontent())
+				.todono(dto.getTodono())
+				.todoregdate(dto.getTodoregdate())
+				.build();
+		
+		Integer result = todoRepository.insertTodo(todo);
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

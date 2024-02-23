@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project3.placestation.admin.dto.AdminBizDTO;
 import com.project3.placestation.admin.dto.AdminMemberDTO;
 import com.project3.placestation.admin.dto.AdminNoticeDTO;
+import com.project3.placestation.admin.dto.AdminQnaDTO;
 import com.project3.placestation.admin.dto.AdminTodoDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.admin.dto.PageVO;
@@ -20,10 +21,12 @@ import com.project3.placestation.admin.dto.TodoCriteria;
 import com.project3.placestation.repository.entity.Biz;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.entity.NoticeBoard;
+import com.project3.placestation.repository.entity.QnaBoard;
 import com.project3.placestation.repository.entity.Todo;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.NoticeBoardService;
+import com.project3.placestation.service.QnaBoardService;
 import com.project3.placestation.service.TodoService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,6 +47,8 @@ public class AdminController {
 	@Autowired
 	private TodoService todoService;
 	@Autowired
+	private QnaBoardService qnaBoardService;
+	@Autowired
 	private HttpSession httpSession;
 	
 	
@@ -52,30 +57,33 @@ public class AdminController {
 	@GetMapping("/admin-main")
 	public String adminpageGET(HttpSession session,AdminNoticeDTO ndto,AdminTodoDTO tdto,Model model,Criteria cri,TodoCriteria todocri) throws Exception {
 		
+		cri.setStatus("진행");
+
 		Integer totalNotice = noticeBoardService.AdmincountNoticeBoard();
 		Integer totalMember = memberService.countMember();
 		Integer totalBiz = bizService.countMember();
+		Integer totalQna = qnaBoardService.mainQnaBoarCount(cri);
 		session.setAttribute("totalMember", totalMember);
 		session.setAttribute("totalBiz", totalBiz);
 		session.setAttribute("totalNotice", totalNotice);
-		
+		session.setAttribute("totalQna", totalQna);
 		session.setAttribute("viewcntCheck", true);
+		
 		
 		PageVO pageVO = new PageVO();
 		pageVO.setCri(cri);
-		pageVO.setTotalCount(noticeBoardService.AdmincountNoticeBoard());
-	
+		//pageVO.setTotalCount(noticeBoardService.AdmincountNoticeBoard());
+		pageVO.setTotalCount(qnaBoardService.AdmincountQnaBoard());
 		model.addAttribute("pageVO", pageVO);
 		
-		List<NoticeBoard> result = noticeBoardService.AdminNoticeBoardListAll(cri);
+		//List<NoticeBoard> result = noticeBoardService.AdminNoticeBoardListAll(cri);
+		List<QnaBoard> result = qnaBoardService.AdminQnaBoardListAll2(cri);
 		List<Todo> result2 = todoService.adminTodoList(todocri);
 		
 		
-		model.addAttribute("noticelist", result);
+		//model.addAttribute("noticelist", result);
+		model.addAttribute("qnalist", result);
 		model.addAttribute("todolist", result2);
-		
-		
-		
 		
 		
 		log.debug("admin 메인 페이지 출력!");
@@ -85,21 +93,39 @@ public class AdminController {
 	
 	
 	
+	//todo 삭제 get
+	@GetMapping("/admin-tododelete")
+	public String tododeleteGET() {
+		log.debug("todo삭제페이지출력!");
+		return "admin/admintododelete";
+		
+	}
+	
+	//todo 삭제 post
+	@PostMapping("/admin-tododelete")
+	public String tododeletePOST(AdminTodoDTO dto) throws Exception {
+		log.debug("todo삭제완료!");
+		todoService.deleteTodo(dto);
+		return"redirect:/admin/admin-main";
+	}
 	
 	
 	
+	//todo 등록 get
+	@GetMapping("/admin-todoinsert")
+	public String todoinsertGET() {
+		log.debug("todo등록페이지출력!");
+		return "admin/admintodoinsert";
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//todo 등록 post
+	@PostMapping("/admin-todoinsert")
+	public String todoinsertPOST(AdminTodoDTO dto) throws Exception {
+		log.debug("todo등록완료");
+		todoService.insertTodo(dto);
+		return "redirect:/admin/admin-main";
+		
+	}
 	
 	
 	
@@ -155,8 +181,7 @@ public class AdminController {
 	}
 	
 	
-	
-	
+
 	
 	//http://localhost:80/admin/admin-notice
 	//관리자 공지사항관리페이지출력
@@ -182,6 +207,28 @@ public class AdminController {
 	
 	
 	
+	//http://localhost:80/admin/admin-qna
+	//관리자 1:1문의관리페이지출력
+	@GetMapping("/admin-qna")
+	public String adminqnaGET(AdminQnaDTO dto, Model model,Criteria cri,HttpSession session) throws Exception {
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(qnaBoardService.AdmincountQnaBoard());
+		
+		model.addAttribute("pageVO", pageVO);
+		
+		List<QnaBoard> result = qnaBoardService.AdminQnaBoardListAll(cri);
+		
+		model.addAttribute("qnalist", result);
+	
+		log.debug("admin 1:1문의관리페이지출력!");
+		return "admin/adminqna";
+	}
+	
+	
+
+		
 	//관리자 공지사항 상세보기페이지출력
 	@GetMapping("/admin-noticedetail")
 	public String adminnoticedetailGET(@RequestParam("nbno") Integer nbno, Model model,HttpSession session) throws Exception {
@@ -204,20 +251,93 @@ public class AdminController {
 	
 	
 	
+	//관리자 1:1문의 상세보기페이지출력
+	@GetMapping("/admin-qnadetail")
+	public String adminqnadetailGET(@RequestParam("qbno") Integer qbno, Model model) throws Exception {
+		
+		
+		QnaBoard result = qnaBoardService.detailQnaBoard(qbno);
+		model.addAttribute("detailQna", result);
+		
+		
+		log.debug("qna(관리자) 상세보기실행!");
+		return"admin/adminqnadetail";
+		
+	}
 	
 	
-	//http://localhost:80/admin/admin-qna
-	//관리자 1:1문의관리페이지출력
-	@GetMapping("/admin-qna")
-	public String adminqnaGET() {
-		log.debug("admin 1:1문의관리페이지출력!");
-		return "admin/adminqna";
+	
+	
+	
+	
+	//공지사항 등록페이지 GET
+	@GetMapping("/admin-noticeinsert")
+	public String adminNoticeInsertGET() {
+		log.debug("관리자공지사항등록페이지출력!");
+		return"admin/adminnoticeinsert";
+	}
+	
+
+	//공지사항 등록페이지 POST
+	@PostMapping("/admin-noticeinsert")
+	public String adminNoticeInsertPOST(AdminNoticeDTO dto) throws Exception {
+		log.debug("공지사항등록완료(관리자)!");
+		noticeBoardService.AdminInsertNotice(dto);
+		return"redirect:/admin/admin-notice";
+	}
+	
+	
+
+	//공지사항 수정페이지 GET
+	@GetMapping("/admin-noticeupdate")
+	public String adminNoticeUpdateGET() {
+		log.debug("관리자공지사항수정페이지출력!");
+		return "admin/adminnoticeupdate";
+		
+	}
+	
+	
+	//공지사항 수정페이지 POST
+	@PostMapping("/admin-noticeupdate")
+	public String adminNoticeUpdatePOST(AdminNoticeDTO dto) throws Exception {
+		log.debug("공지사항수정완료(관리자)!");
+		noticeBoardService.AdminUpdateNotice(dto);
+		return "redirect:/admin/admin-notice";
+	}
+	
+	
+	
+	// 관리자 1:1문의 수정출력
+	@PostMapping("/admin-qnadetailupdate")
+	public String adminQnaUpdatePOST(AdminQnaDTO dto) throws Exception {
+		log.debug("1:1답글완료(관리자)");
+		qnaBoardService.AdminUpdateQna(dto);
+		return "redirect:/admin/admin-main";
+	}
+	
+	
+	
+	
+	//공지사항 삭제페이지 GET
+	@GetMapping("/admin-noticedelete")
+	public String adminNoticeDeleteGET() {
+		log.debug("관리자공지사항삭제페이지출력!");
+		return "admin/adminnoticedelete";
+	}
+	
+	
+	//공지사항 삭제페이지 POST
+	@PostMapping("/admin-noticedelete")
+	public String adminNoticeDeletePOST(AdminNoticeDTO dto) throws Exception {
+		log.debug("공지사항삭제완료(관리자)!");
+		noticeBoardService.AdminDeleteNotice(dto);
+		return "redirect:/admin/admin-notice";
+		
 	}
 	
 	
 
 	
-	//http://localhost:80/admin/admin-update
 	//admin 회원update페이지출력(모달)
 	@GetMapping("/admin-update")
 	public String adminupdateGET() {
@@ -237,7 +357,6 @@ public class AdminController {
 	
 	
 	
-	//Modal 에서 ~
 	//관리자회원정보수정POST (회원번호를 받아서 조회한다음에, 해당하는 회원의 정보를 전달받아서 수정!)
 	@PostMapping("/admin-update")
 	public String adminupdatePOST(AdminMemberDTO dto) {
@@ -262,7 +381,6 @@ public class AdminController {
 	
 	
 	
-	//http://localhost:80/admin/admin-delete
 	//admin 회원delete페이지출력(모달)
 	@GetMapping("/admin-delete")
 	public String admindeleteGET() {
@@ -284,7 +402,6 @@ public class AdminController {
 	
 	
 	//admin 회원deletePOST 실행
-	//Modal~...
 	@PostMapping("/admin-delete")
 	public String admindeletePOST(AdminMemberDTO dto) {
 		memberService.AdminDeleteMember(dto);
@@ -295,7 +412,6 @@ public class AdminController {
 	
 	
 	//admin 사업자deletePOST 실행
-	//Modal~..
 	@PostMapping("/admin-bizdelete")
 	public String adminbizdeletePOST(AdminBizDTO dto) {
 		bizService.AdminDeleteBiz(dto);
@@ -310,7 +426,6 @@ public class AdminController {
 	
 	
 	
-	//http://localhost:80/admin/admin-searchmember
 	//관리자 유저관리페이지(검색) 출력
 	@GetMapping("/admin-searchmember")
 	public String adminuserGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
@@ -342,7 +457,6 @@ public class AdminController {
 	}
 	
 	
-	//http://localhost:80/admin/admin-searchbiz
 	//관리자 사업자관리페이지(검색) 출력
 	@GetMapping("/admin-searchbiz")
 	public String adminsearchbizGET(HttpServletRequest request, Criteria cri, Model model)throws Exception {
@@ -374,6 +488,61 @@ public class AdminController {
 		return "admin/adminbizsearch";
 	}
 	
+	
+	//관리자 공지사항 검색페이지 출력
+	@GetMapping("/admin-searchnotice")
+	public String adminSearchNoticeGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
+		String searchOption = request.getParameter("searchOption");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		if (searchOption != null && !searchOption.isEmpty()) {
+	        cri.setSearchOption(searchOption);
+	    }
+		
+		
+	    if (searchKeyword != null && !searchKeyword.isEmpty()) {
+	        cri.setSearchKeyword(searchKeyword);
+	    }
+		
+	    PageVO pageVO = new PageVO();
+	    pageVO.setCri(cri);
+	    pageVO.setTotalCount(noticeBoardService.countAdminSearchNoticelist(cri));
+	    
+	    model.addAttribute("pageVO", pageVO);
+	    
+	    List<NoticeBoard> result = noticeBoardService.AdminsearchNoticeBoardlist(cri);
+	    model.addAttribute("noticelist", result);
+	    return "admin/adminnoticesearch";
+		
+	}
+	
+	
+	//관리자 1:1문의 검색페이지출력
+	@GetMapping("/admin-searchqna")
+	public String adminSearchQnaGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
+		String searchOption = request.getParameter("searchOption");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		if (searchOption != null && !searchOption.isEmpty()) {
+	        cri.setSearchOption(searchOption);
+	    }
+		
+		
+	    if (searchKeyword != null && !searchKeyword.isEmpty()) {
+	        cri.setSearchKeyword(searchKeyword);
+	    }
+		
+	    PageVO pageVO = new PageVO();
+	    pageVO.setCri(cri);
+		pageVO.setTotalCount(qnaBoardService.countAdminSearchQnalist(cri));
+		
+		model.addAttribute("pageVO", pageVO);
+	    
+	    List<QnaBoard> result = qnaBoardService.AdminsearchQnaBoardlist(cri);
+	    model.addAttribute("qnalist", result);
+	 
+	    return "admin/adminqnasearch";
+	}
 	
 	
 	

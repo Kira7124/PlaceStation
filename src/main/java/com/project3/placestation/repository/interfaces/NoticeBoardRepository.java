@@ -25,6 +25,21 @@ public interface NoticeBoardRepository {
 	public void updateReadCnt(Integer nbno) throws Exception;
 	
 	
+	//글등록(관리자)
+	public Integer AdminInsertNotice(NoticeBoard noticeboard) throws Exception;
+	
+	//글수정(관리자)
+	public Integer AdminUpdateNotice(NoticeBoard noticeboard) throws Exception;
+	
+	//글삭제(관리자)
+	public Integer AdminDeleteNotice(NoticeBoard noticeboard) throws Exception;
+	
+	//공지사항리스트출력(검색,페이징처리)
+	public List<NoticeBoard> AdminsearchNoticeBoardlist(Criteria cri) throws Exception;
+	
+	
+	//공지사항숫자세기(검색,페이징처리)
+	public int countAdminSearchNoticelist(Criteria cri) throws Exception;
 	
 	
 	

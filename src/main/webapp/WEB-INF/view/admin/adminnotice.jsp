@@ -17,8 +17,29 @@
 				<div class="container-fluid">
 
 			<div class="panel">
-				<div class="panel-heading">
-					<h3 class="panel-title"><b>공지사항관리</b></h3>
+			
+				<div style="display: flex;">
+				    <div>
+				        <div class="panel-heading">
+				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>공지사항</b></h3>
+				        </div>
+				    </div>
+				   <form action="/admin/admin-searchnotice" method="get">
+					    <div>
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
+					        			<option value="n_title">제목</option>
+								        <option value="n_writer">글쓴이</option>
+								        <option value="n_bno">글번호</option>
+								        <option  value="n_regdate">등록일</option>
+				   				</select>
+					            <input type="text" name="searchKeyword" class="form-control" placeholder="키워드입력">
+					            <span class="input-group-btn">
+					                <button type="submit" class="btn btn-primary" >검색</button>
+					            </span>
+					        </div>
+					    </div>
+				    </form> 
 				</div>
 				
 				<div class="panel-body no-padding">
@@ -42,13 +63,13 @@
 								<td>${noticelist.formatjoinAt()}</td>
 								<td><span class="badge" style="margin-left: 10px;">${noticelist.nreadcount}</span></td>			
 								<td>
-									<a href="#">
+									<a href="/admin/admin-noticeinsert" data-toggle="modal" data-target="#insertNoticeModal">
 										<span class="label label-info">등록</span>
 									</a>
-									<a href="#">
+									<a href="/admin/admin-noticeupdate" data-toggle="modal" data-target="#updateNoticeModal">
         								<span class="label label-success">수정</span>
     								</a>     	
-    								<a href="#">
+    								<a href="/admin/admin-noticedelete" data-toggle="modal" data-target="#deleteNoticeModal">
 										<span class="label label-danger">삭제</span>
 									</a>
 								</td>
@@ -97,6 +118,43 @@
 		<!-- END MAIN -->	
 	</div>
 	<!-- END WRAPPER -->
+	
+	
+	
+	
+		<!-- Modal -->
+	<div class="modal fade" id="insertNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
+			<!-- Modal -->
+	<div class="modal fade" id="updateNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
+	
+			<!-- Modal -->
+	<div class="modal fade" id="deleteNoticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

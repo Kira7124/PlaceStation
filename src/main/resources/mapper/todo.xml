@@ -18,6 +18,21 @@
 		</select>
 		
 		
+		<!-- todo리스트 삭제 -->
+		<delete id ="deleteTodo">
+			delete from admin_todo where todo_title=#{todotitle}
+		</delete>
+		
+		
+		<!-- todo리스트 등록 -->
+		<insert id ="insertTodo">
+			insert into admin_todo(todo_title,todo_content)
+			values(#{todotitle},#{todocontent})
+		</insert>
+		
+		
+		
+		
 		
 		
 		

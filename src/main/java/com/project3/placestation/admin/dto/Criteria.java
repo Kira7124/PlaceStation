@@ -5,6 +5,8 @@ public class Criteria {
 	private int pageSize;
 	private String searchKeyword;
 	private String searchOption;
+	private String status;
+	
 	
 	public Criteria() {
 		this.page = 1;
@@ -30,7 +32,15 @@ public class Criteria {
 		    return searchOption;
 	 }
 	 
-	 
+    // status 필드에 대한 Setter 메서드 추가
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    // status 필드에 대한 Getter 메서드 추가
+    public String getStatus() {
+        return status;
+    }
 	 
 	// alt shift s + r
 
