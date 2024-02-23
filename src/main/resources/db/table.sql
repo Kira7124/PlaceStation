@@ -45,15 +45,6 @@ create table member (
   user_role VARCHAR(20) NOT NULL,
   grade VARCHAR(20) NULL DEFAULT '브론즈'
   );
-  
-create table biz (
-	biz_no int primary key auto_increment,
-    biz_id int ,
-    biz_brand_name varchar(30),
-    biz_balance int,
-    file_path varchar (1000)
-);
-
 
 create table admin_prod_history (
 	admin_his_no varchar(20) primary key,

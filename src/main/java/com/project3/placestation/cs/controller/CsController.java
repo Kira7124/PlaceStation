@@ -22,37 +22,28 @@ public class CsController {
 	@Autowired
 	private CsService csService;
 	
-//	매핑
 	// http://localhost/cs/notice
+	// CS 공지사항 페이지
 	@GetMapping("/notice")
-	public String noticeList(Model model) throws Exception {
+	public String noticeList(CsNoticeDTO csndto, Model model) throws Exception {
 
-		List<CsNoticeBoard> noticeList = csService.CsNoticeBoardListAll();
-		System.out.println("----------");
-		model.addAttribute("noticeList", noticeList);
-		System.out.println("----------");
+		List<CsNoticeBoard> result = csService.CsNoticeBoardListAll();
+		model.addAttribute("noticeList", result);
 	
-		
 		return "cs/cs_notice";
 	}
-	
 	// http://localhost/cs/qna
+	// CS 1:1 문의 페이지
 	@GetMapping("qna")
 	public String qnaList() {
 		return "cs/cs_qna";
 	}
 	
 	// http://localhost/cs/faq
+	// CS FAQ 페이지
 	@GetMapping("faq")
 	public String faqList() {
 		return "cs/cs_faq";
 	}
-	
-	// http://localhost/cs/write
-	@GetMapping("/write")
-	public String csWrite() {
-		return "cs/cs_write";
-	}
-	
 
 }

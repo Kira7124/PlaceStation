@@ -9,17 +9,7 @@
 			<div class="container">
 				<div class="row">
 					<!-- aside bar 시작 -->
-					<div class="col-sm-4 col-md-3 sidebar">
-						<div class="widget">
-							<h5 class="widget-title font-alt">고객센터</h5>
-							<ul class="icon-list">
-								<li><a href="#">고객센터 홈</a></li>
-								<li><a href="/cs/notice">공지사항</a></li>
-								<li><a href="/cs/qna">1:1 문의</a></li>
-								<li><a href="/cs/faq">FAQ</a></li>
-							</ul>
-						</div>
-					</div>
+					<%@ include file="/WEB-INF/view/cs/cs_aside.jsp"%>
 					<!-- aside bar 끝 -->
 					<!-- 메인 시작 -->
 					<div class="col-sm-8 col-sm-offset-1">

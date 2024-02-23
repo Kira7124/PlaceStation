@@ -9,17 +9,7 @@
 			<div class="container">
 				<div class="row">
 					<!-- aside bar 시작 -->
-					<div class="col-sm-4 col-md-3 sidebar">
-						<div class="widget">
-							<h5 class="widget-title font-alt">고객센터</h5>
-							<ul class="icon-list">
-								<li><a href="#">고객센터 홈</a></li>
-								<li><a href="/cs/notice">공지사항</a></li>
-								<li><a href="/cs/qna">1:1 문의</a></li>
-								<li><a href="/cs/faq">FAQ</a></li>
-							</ul>
-						</div>
-					</div>
+					<%@ include file="/WEB-INF/view/cs/cs_aside.jsp"%>
 					<!-- aside bar 끝 -->
 					<!-- 메인 시작 -->
 					<div class="col-sm-8 col-sm-offset-1">
@@ -44,14 +34,14 @@
 							<c:forEach var="noticeList" items="${noticeList}">
 								<div class="panel-heading">
 									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#support${nbno}">
-											${ntitle}
+										<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#support${noticeList.nbno}">
+											${noticeList.ntitle}
 										</a>
 									</h4>
 								</div>
-								<div class="panel-collapse collapse" id="support${nbno}">
+								<div class="panel-collapse collapse" id="support${noticeList.nbno}">
 									<div class="panel-body">
-										${ncontent}
+										${noticeList.ncontent}
 									</div>
 								</div>
 							</c:forEach>

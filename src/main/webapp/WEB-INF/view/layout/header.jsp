@@ -4,35 +4,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PlaceStation</title>
 <!--  Favicons -->
-<link rel="manifest" href="/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage"
-	content="assets/images/favicons/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/assets/images/favicons/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
 <!--  Stylesheets -->
 <!-- Default stylesheets-->
-<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- layout stylesheets -->
-<link href="/assets/css/layout.css" rel="stylesheet">
+	<link href="/assets/css/layout.css" rel="stylesheet">
 <!-- Template specific stylesheets-->
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Volkhov:400i"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
-	rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 <!-- Main stylesheet and color file-->
-<link href="/css/style.css" rel="stylesheet">
-<link id="color-scheme" href="/css/colors/default.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+	<link id="color-scheme" href="/css/colors/default.css" rel="stylesheet">
 </head>
-  <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+ <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
     <main>
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container-search">
