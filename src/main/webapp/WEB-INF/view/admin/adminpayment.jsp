@@ -15,15 +15,7 @@
 
 					<div class="panel">
 				<div class="panel-heading">
-					<h3 class="panel-title">결제/예약관리</h3>
-					<div class="right">
-						<button type="button" class="btn-toggle-collapse">
-							<i class="lnr lnr-chevron-up"></i>
-						</button>
-						<button type="button" class="btn-remove">
-							<i class="lnr lnr-cross"></i>
-						</button>
-					</div>
+					<h3 class="panel-title"><b>결제/예약관리</b></h3>
 				</div>
 				<div class="panel-body no-padding">
 					<table class="table table-striped" style="width: 95%; margin: auto;">
@@ -36,7 +28,6 @@
 								<th>은행</th>
 								<th>예약일</th>
 								<th>환불</th>
-								<th>수정</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -45,7 +36,6 @@
 								<td>Steve</td>
 								<td>$122</td>
 								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
 								<td><span class="label label-success">COMPLETED</span></td>
 								<td><span class="label label-success">COMPLETED</span></td>
 								<td><span class="label label-success">COMPLETED</span></td>
@@ -58,14 +48,12 @@
 								<td><span class="label label-warning">PENDING</span></td>
 								<td><span class="label label-warning">PENDING</span></td>
 								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>								
 							</tr>
 							<tr>
 								<td><a href="#">763650</a></td>
 								<td>Michael</td>
 								<td>$34</td>
 								<td>Oct 18, 2016</td>
-								<td><span class="label label-danger">FAILED</span></td>
 								<td><span class="label label-danger">FAILED</span></td>
 								<td><span class="label label-danger">FAILED</span></td>
 								<td><span class="label label-danger">FAILED</span></td>
@@ -78,14 +66,12 @@
 								<td><span class="label label-success">SUCCESS</span></td>
 								<td><span class="label label-success">SUCCESS</span></td>
 								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
 							</tr>
 							<tr>
 								<td><a href="#">763652</a></td>
 								<td>Smith</td>
 								<td>$362</td>
 								<td>Oct 16, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
 								<td><span class="label label-success">SUCCESS</span></td>
 								<td><span class="label label-success">SUCCESS</span></td>
 								<td><span class="label label-success">SUCCESS</span></td>

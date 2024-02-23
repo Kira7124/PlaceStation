@@ -129,15 +129,6 @@ public class AdminController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//http://localhost:80/admin/admin-member
 	//관리자 유저관리페이지 출력
 	@GetMapping("/admin-member")
@@ -190,8 +181,7 @@ public class AdminController {
 	}
 	
 	
-	
-	
+
 	
 	//http://localhost:80/admin/admin-notice
 	//관리자 공지사항관리페이지출력
@@ -237,11 +227,8 @@ public class AdminController {
 	}
 	
 	
-	
-	
-	
-	
-	
+
+		
 	//관리자 공지사항 상세보기페이지출력
 	@GetMapping("/admin-noticedetail")
 	public String adminnoticedetailGET(@RequestParam("nbno") Integer nbno, Model model,HttpSession session) throws Exception {
@@ -278,7 +265,7 @@ public class AdminController {
 		
 	}
 	
-
+	
 	
 	
 	
@@ -349,12 +336,8 @@ public class AdminController {
 	}
 	
 	
-	
-	
-	
 
 	
-	//http://localhost:80/admin/admin-update
 	//admin 회원update페이지출력(모달)
 	@GetMapping("/admin-update")
 	public String adminupdateGET() {
@@ -374,7 +357,6 @@ public class AdminController {
 	
 	
 	
-	//Modal 에서 ~
 	//관리자회원정보수정POST (회원번호를 받아서 조회한다음에, 해당하는 회원의 정보를 전달받아서 수정!)
 	@PostMapping("/admin-update")
 	public String adminupdatePOST(AdminMemberDTO dto) {
@@ -399,7 +381,6 @@ public class AdminController {
 	
 	
 	
-	//http://localhost:80/admin/admin-delete
 	//admin 회원delete페이지출력(모달)
 	@GetMapping("/admin-delete")
 	public String admindeleteGET() {
@@ -421,7 +402,6 @@ public class AdminController {
 	
 	
 	//admin 회원deletePOST 실행
-	//Modal~...
 	@PostMapping("/admin-delete")
 	public String admindeletePOST(AdminMemberDTO dto) {
 		memberService.AdminDeleteMember(dto);
@@ -432,7 +412,6 @@ public class AdminController {
 	
 	
 	//admin 사업자deletePOST 실행
-	//Modal~..
 	@PostMapping("/admin-bizdelete")
 	public String adminbizdeletePOST(AdminBizDTO dto) {
 		bizService.AdminDeleteBiz(dto);
@@ -447,7 +426,6 @@ public class AdminController {
 	
 	
 	
-	//http://localhost:80/admin/admin-searchmember
 	//관리자 유저관리페이지(검색) 출력
 	@GetMapping("/admin-searchmember")
 	public String adminuserGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
@@ -479,7 +457,6 @@ public class AdminController {
 	}
 	
 	
-	//http://localhost:80/admin/admin-searchbiz
 	//관리자 사업자관리페이지(검색) 출력
 	@GetMapping("/admin-searchbiz")
 	public String adminsearchbizGET(HttpServletRequest request, Criteria cri, Model model)throws Exception {
@@ -512,7 +489,7 @@ public class AdminController {
 	}
 	
 	
-	
+	//관리자 공지사항 검색페이지 출력
 	@GetMapping("/admin-searchnotice")
 	public String adminSearchNoticeGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
 		String searchOption = request.getParameter("searchOption");
@@ -540,6 +517,7 @@ public class AdminController {
 	}
 	
 	
+	//관리자 1:1문의 검색페이지출력
 	@GetMapping("/admin-searchqna")
 	public String adminSearchQnaGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {
 		String searchOption = request.getParameter("searchOption");
