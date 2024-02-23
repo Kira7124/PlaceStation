@@ -73,7 +73,7 @@ public class ProductService {
 
 	/**
 	 * 상품 목록 전체 조회
-	 * 
+	 *
 	 * @param userId
 	 * @return
 	 */
@@ -81,11 +81,11 @@ public class ProductService {
 		List<Product> listProduct = productRepository.findAll(userId);
 		List<ResProductDto> resProduct = new ArrayList<>();
 
-		if (listProduct.isEmpty() == false) {
+		if (!listProduct.isEmpty()) {
 			for (Product product : listProduct) {
 
 				String[] filePath = {};
-				if (product.getFilePath().isEmpty() == false) {
+				if (!product.getFilePath().isEmpty()) {
 					String receiveFilePath = product.getFilePath();
 					filePath = receiveFilePath.split(",");
 				}
@@ -120,7 +120,7 @@ public class ProductService {
 
 		String[] filePath = {};
 
-		if (product.getFilePath().isEmpty() == false) {
+		if (!product.getFilePath().isEmpty()) {
 			String receiveFilePath = product.getFilePath();
 			filePath = receiveFilePath.split(",");
 		}

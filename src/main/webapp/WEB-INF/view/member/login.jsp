@@ -11,14 +11,13 @@
                 <hr class="divider-w mb-10">
                 <form class="form" action="/loginProc" method="post">
                   <div class="form-group">
-                    <input class="form-control" id="username" type="text" name="username" placeholder="Username"/>
+                    <input class="form-control" id="username" type="text" name="userId" placeholder="Username"/>
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="password" type="password" name="password" placeholder="Password"/>
+                    <input class="form-control" id="password" type="password" name="userPassword" placeholder="Password"/>
                   </div>
                   <div class="form-group">
-                    <button class="btn-round btn-b login-btn">Login </button>
-                    <p>sfsfsfs {{id}}</p>
+                    <button class="btn-round btn-b login-btn" type="submit">Login </button>
                     <div style="float: right;">
                     <button type="button" class="social_btn" 
                     style="height: 38px !important;

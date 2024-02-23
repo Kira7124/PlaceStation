@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,7 +36,7 @@ public class BizProductController {
 	 */
 	@PostMapping("/add-product")
 	public String addProduct(ReqProductDto dto) {
-		
+
 		// 1. 유효성 검사
 		if(dto.getProdTitle() == null && dto.getProdTitle().isEmpty()) {
 			throw new CustomRestfulException("제목을 적어주세요" , HttpStatus.BAD_REQUEST);
@@ -49,20 +48,20 @@ public class BizProductController {
 			throw new CustomRestfulException("배너 이미지가 없거나 6개 이상을 허용할 수 없습니다.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdStartTime() == null && 0 < dto.getProdStartTime() && dto.getProdStartTime() < 24) {
-			throw new CustomRestfulException("시작 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);	
+			throw new CustomRestfulException("시작 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdEndTime() == null && 0 < dto.getProdEndTime() && dto.getProdEndTime() < 24) {
-			throw new CustomRestfulException("종료 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);	
+			throw new CustomRestfulException("종료 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdStartTime() >= dto.getProdEndTime() ) {
-			throw new CustomRestfulException("종료 시간은 시작시간보다 낮아야 합니다.", HttpStatus.BAD_REQUEST);	
+			throw new CustomRestfulException("종료 시간은 시작시간보다 낮아야 합니다.", HttpStatus.BAD_REQUEST);
 		}
 
 		if(dto.getProdMaximumPeople() == null && 0 < dto.getProdMaximumPeople() && dto.getProdMaximumPeople() < 100) {
-			throw new CustomRestfulException("인원 수가 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);	
+			throw new CustomRestfulException("인원 수가 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdPrice() == null && 0 < dto.getProdPrice() && dto.getProdPrice() < 1000000) {
-			throw new CustomRestfulException("가격이 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);		
+			throw new CustomRestfulException("가격이 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdSpaceInfo() == null && dto.getProdSpaceInfo().isEmpty()) {
 			throw new CustomRestfulException("공간 소개를 입력해 주세요.", HttpStatus.BAD_REQUEST);
@@ -86,10 +85,10 @@ public class BizProductController {
 		if(dto.getProdLocationX() == null && dto.getProdLocationY() == null) {
 			throw new CustomRestfulException("지도 상세 위치를 입력해 주세요.", HttpStatus.BAD_REQUEST);
 		}
-		
+
 
 		log.info(dto.toString());
-		
+
 		// 파일 저장
 		String filePath = filedbService.saveFiles(dto.getFiles());
 
@@ -124,22 +123,22 @@ public class BizProductController {
 			throw new CustomRestfulException("배너 이미지가 없거나 6개 이상을 허용할 수 없습니다.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdStartTime() == null && 0 < dto.getProdStartTime() && dto.getProdStartTime() < 24) {
-			throw new CustomRestfulException("시작 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);	
+			throw new CustomRestfulException("시작 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdEndTime() == null && 0 < dto.getProdEndTime() && dto.getProdEndTime() < 24) {
-			throw new CustomRestfulException("종료 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);	
+			throw new CustomRestfulException("종료 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdStartTime() >= dto.getProdEndTime() ) {
-			throw new CustomRestfulException("종료 시간은 시작시간보다 낮아야 합니다.", HttpStatus.BAD_REQUEST);	
+			throw new CustomRestfulException("종료 시간은 시작시간보다 낮아야 합니다.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getChangeImage() == null && dto.getChangeImage().isBlank()) {
-			throw new CustomRestfulException("이미지 선택이 잘못 되었습니다.", HttpStatus.BAD_REQUEST);	
+			throw new CustomRestfulException("이미지 선택이 잘못 되었습니다.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdMaximumPeople() == null && 0 < dto.getProdMaximumPeople() && dto.getProdMaximumPeople() < 100) {
-			throw new CustomRestfulException("인원 수가 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);	
+			throw new CustomRestfulException("인원 수가 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdPrice() == null && 0 < dto.getProdPrice() && dto.getProdPrice() < 1000000) {
-			throw new CustomRestfulException("가격이 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);		
+			throw new CustomRestfulException("가격이 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdSpaceInfo() == null && dto.getProdSpaceInfo().isEmpty()) {
 			throw new CustomRestfulException("공간 소개를 입력해 주세요.", HttpStatus.BAD_REQUEST);
@@ -163,24 +162,24 @@ public class BizProductController {
 		if(dto.getProdLocationX() == null && dto.getProdLocationY() == null) {
 			throw new CustomRestfulException("지도 상세 위치를 입력해 주세요.", HttpStatus.BAD_REQUEST);
 		}
-		
-		
+
+
 		// 인증 검사가 끝났다면 유저의 아이디값을 가져와야 합니다.
 		int writerNo = 1;
-		
-		
+
+
 		String filePath = "";
 		if (dto.getChangeImage().equals("Y")) {
 			log.info("이미지를 바꿨습니다.");
 			filePath = filedbService.saveFiles(dto.getFiles());
 		}
-		
+
 		bizProductService.updateProduct(filePath, dto , prodNo , writerNo);
-		
+
 
 		return "redirect:/biz/product-management";
 	}
-	
+
 	/**
 	 * 상품 삭제하기 (delete_yn = 'Y')
 	 * @param prodNo

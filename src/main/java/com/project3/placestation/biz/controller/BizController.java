@@ -52,7 +52,7 @@ public class BizController {
 		int userId = 1;
 
 		List<BizHistoryDto> bizHistoryDto = adminProdHistoryService.findByBizId(userId);
-		
+
 		model.addAttribute("historys" , bizHistoryDto);
 		return "biz/reservation/biz_reservation_management";
 	}

@@ -8,7 +8,7 @@ import com.project3.placestation.biz.model.dto.BizHistoryDto;
 
 @Mapper
 public interface AdminProdHistoryRepository {
-	
+
 	public List<BizHistoryDto> findAllByBizId(int bizId);
 
 }

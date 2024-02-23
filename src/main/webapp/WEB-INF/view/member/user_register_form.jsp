@@ -119,36 +119,41 @@ h2 {
         border-radius: 5px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         width: 550px;">
-          <form action="" id="form" class="form">
+          <form action="/member/uJoinProc" id="form" class="form" method="post">
               <h2>Register With Us</h2>
               <div class="register-form" style="margin-bottom: 10px;">
                   <label for="id">id</label>
-                  <input type="text" id="id" placeholder="Enter id">
+                  <input type="text" id="id" placeholder="Enter id" name="userId">
                   <small>Error message</small>
               </div>
               <div class="register-form">
                   <label for="password">Password</label>
-                  <input type="password" id="password" placeholder="Enter password">
+                  <input type="password" id="password" placeholder="Enter password" name="userPassword1">
                   <small>Error message</small>
               </div>
               <div class="register-form">
                   <label for="password">Confirm Password</label>
-                  <input type="password" id="password2" placeholder="Enter password again">
+                  <input type="password" id="password2" placeholder="Enter password again" name="userPassword">
                   <small>Error message</small>
               </div>
               <div class="register-form">
                 <label for="email">Email</label>
-                <input type="text" id="email" placeholder="Enter email">
+                <input type="text" id="email" placeholder="Enter email" name="userEmail">
                 <small>Error message</small>
               </div>
               <div class="register-form">
                   <label for="name">name</label>
-                  <input type="text" id="name" placeholder="Enter name">
+                  <input type="text" id="name" placeholder="Enter name" name="userName">
                   <small>Error message</small>
               </div>
               <div class="register-form">
                   <label for="hp">hp</label>
-                  <input type="text" id="hp" placeholder="Enter hp">
+                  <input type="text" id="hp" placeholder="Enter hp" name="userHp">
+                  <small>Error message</small>
+              </div>
+              <div class="register-form">
+                  <label for="hp">address</label>
+                  <input type="text" id="address" placeholder="Enter address" name="userAddress">
                   <small>Error message</small>
               </div>
               <div class="register-form">
@@ -156,12 +161,12 @@ h2 {
                   <label for="userSex" class="form-label">성별</label>
                   <div class="form_toggle row-vh d-flex flex-row justify-content-between" >
                     <div class="form_radio_btn radio_male">
-                      <input id="radio-1" type="radio" name="userSex" value="male" checked>
+                      <input id="radio-1" type="radio" name="gender" value="M" checked>
                       <label for="radio-1">남자</label>
                     </div>
                                    
                     <div class="form_radio_btn">
-                      <input id="radio-2" type="radio" name="userSex" value="female">
+                      <input id="radio-2" type="radio" name="gender" value="F">
                       <label for="radio-2">여자</label>
                     </div>
                   </div>
@@ -170,7 +175,7 @@ h2 {
               <br>
               <br>
               <br>
-              <button class="terms-btn" style="margin: auto; display: block; color: white;">가입 하기</button>
+              <button type="submit" class="terms-btn" style="margin: auto; display: block; color: white;">가입 하기</button>
           </form>
         </div>
       </section>
