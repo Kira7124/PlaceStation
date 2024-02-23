@@ -45,23 +45,7 @@
 									</div>
 								</div>
 							</c:forEach>
-<!--  
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support2">공지사항 2</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support2">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.
-									</div>
-								</div>
--->
+
 							</div>
 						</div>
 						<!-- 공지사항 목록 전체 div -->

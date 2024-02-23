@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project3.placestation.cs.dto.CsNoticeDTO;
+import com.project3.placestation.repository.entity.CsFaqBoard;
 import com.project3.placestation.repository.entity.CsNoticeBoard;
 import com.project3.placestation.service.CsService;
 
@@ -34,8 +35,12 @@ public class CsController {
 	}
 	// http://localhost/cs/qna
 	// CS 1:1 문의 페이지
-	@GetMapping("qna")
-	public String qnaList() {
+	@GetMapping("/qna")
+	public String qnaList(Model model) {
+		
+		List<CsFaqBoard> result = csService.
+		
+		
 		return "cs/cs_qna";
 	}
 	
