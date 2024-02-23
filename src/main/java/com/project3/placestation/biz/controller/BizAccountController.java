@@ -143,11 +143,6 @@ public class BizAccountController {
 		memberService.BizUpdateMember(accountDto , 1);
 		bizService.updateBizByBizId(accountDto , userId);
 		
-//		// 사업자 등록증을 변경했다면..
-//		if(accountDto.getBizFile().equals('Y')) {
-//			
-//		}
-		
 		
 		return "redirect:/biz/account-management";
 	}

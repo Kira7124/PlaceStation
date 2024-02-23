@@ -1,4 +1,4 @@
-package com.project3.placestation.biz.controller;
+package com.project3.placestation.biz.controller.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

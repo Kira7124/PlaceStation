@@ -789,7 +789,6 @@
 											</div>
 										</div>
 										<!-- 리뷰 끝 -->
-
 									</div>
 								</div>
 							</div>
@@ -820,7 +819,8 @@
 							<!-- 결제 시작 -->
 							<div class="widget">
 								<!-- 폼 태그 시작 -->
-								<form action="payment" method="get">
+								<form action="/payment/main" method="post">
+									<input type="hidden" name="prodNo" value="${product.prodNo}"/>
 									<h5 class="widget-title font-alt">예약하기</h5>
 									<!-- 가격 선택 -->
 									<div>
