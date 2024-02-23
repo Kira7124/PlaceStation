@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.ProductRepository">
+
+	<!-- 상품 리스트 출력 -->
+	<select id="findAll">
+		SELECT * FROM product where prod_delete_yn = 'N';
+	</select>
+
+
+	<!-- 리뷰 수 많은 상품 -->
+	<select id="findAllByRev">
+		SELECT p.*, COUNT(r.prod_rev_no) as review_count
+		FROM
+		product p
+		LEFT JOIN prod_review r ON p.prod_no = r.prod_no
+		WHERE
+		p.prod_delete_yn = 'N'
+		GROUP BY p.prod_no
+		ORDER BY review_count DESC
+		LIMIT 8
+	</select>
+
+	<!-- 평점 높은 상품 -->
+	<select id="findAllByStar">
+		SELECT p.*, AVG(r.prod_rev_star) as average_rating
+		FROM product p
+		LEFT JOIN prod_review r ON p.prod_no = r.prod_no
+		WHERE
+		p.prod_delete_yn = 'N'
+		GROUP BY p.prod_no
+		ORDER BY average_rating DESC
+		LIMIT 8
+	</select>
+
+	<!-- 상품 최신 순서 -->
+	<select id="findAllByStart">
+		SELECT *
+		FROM product
+		WHERE prod_delete_yn = 'N'
+		ORDER
+		BY prod_update_at DESC
+		LIMIT 8
+	</select>
+
+
+	<insert id="saveProduct">
+		insert into product (prod_writer_no , prod_title ,
+		prod_start_time ,
+		prod_end_time , prod_space_info ,
+		prod_goods_info ,
+		prod_caution_info , prod_maximum_people,prod_address ,
+		prod_detailed_address,
+		prod_price , file_path , prod_major_category_id
+		, prod_subcategory_id ,
+		prod_full_address ,
+		prod_location_x ,
+		prod_location_y )
+		values (#{prodWriterNo}, #{prodTitle} ,
+		#{prodStartTime} , #{prodEndTime} , #{prodSpaceInfo} ,
+		#{prodGoodsInfo} , #{prodCautionInfo} , #{prodMaximumPeople}
+		,
+		#{prodAddress}
+		, #{prodDetailedAddress} , #{prodPrice} , #{filePath} ,
+		#{prodMajorCategoryId}, #{prodSubcategoryId} , #{prodFullAddress} ,
+		#{prodLocationX} , #{prodLocationY} )
+	</insert>
+
+	<update id="updateProduct">
+		update product
+		set
+		prod_writer_no = #{product.prodWriterNo},
+		prod_title =
+		#{product.prodTitle},
+		prod_start_time = #{product.prodStartTime},
+		prod_end_time =
+		#{product.prodEndTime},
+		prod_space_info =
+		#{product.prodSpaceInfo},
+		prod_goods_info =
+		#{product.prodGoodsInfo},
+		prod_caution_info = #{product.prodCautionInfo},
+		prod_maximum_people =
+		#{product.prodMaximumPeople},
+		prod_address =
+		#{product.prodAddress},
+		prod_detailed_address = #{product.prodDetailedAddress},
+		prod_price =
+		#{product.prodPrice},
+		prod_major_category_id =
+		#{product.prodMajorCategoryId},
+		prod_subcategory_id =
+		#{product.prodSubcategoryId},
+		prod_full_address =
+		#{product.prodFullAddress},
+		prod_location_x = #{product.prodLocationX},
+		prod_location_y = #{product.prodLocationY},
+		prod_update_at = NOW()
+		<if test="changeImage == 'Y'.toString()">
+			,
+			file_path = #{product.filePath}
+		</if>
+		where
+		prod_no = #{product.prodNo}
+	</update>
+
+	<update id="deleteProduct">
+		update product
+		set
+		prod_update_at = now(),
+		prod_delete_yn = 'Y',
+		prod_delete_at = now(),
+		prod_delete_reason =
+		#{prodDeleteReason}
+		where
+		prod_no = #{prodNo}
+	</update>
+
+	<select id="findAllByUserId"
+		resultType="com.project3.placestation.repository.entity.Product">
+		select * from product
+		where prod_delete_yn = 'N'
+		and
+		prod_writer_no = #{userId}
+	</select>
+
+	<select id="findById"
+		resultType="com.project3.placestation.repository.entity.Product">
+		select * from product
+		where prod_no = #{prod_no}
+		and
+		prod_delete_yn = 'N'
+	</select>
+	
+
+
+</mapper>

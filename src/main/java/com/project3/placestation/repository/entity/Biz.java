@@ -23,6 +23,11 @@ public class Biz {
 	private Integer bizBalance;
 	private String filePath;
 	private Timestamp joinAt;
+<<<<<<< HEAD
+=======
+	private Timestamp outAt;
+	private Integer fileNo;
+>>>>>>> 1b1e5cb3ffa182d7ae6c1cf5e4f46df1d7f42174
 	private String bizTel;
 	
 	
@@ -30,7 +35,6 @@ public class Biz {
 	public String formatjoinAt() {
 		return TimeUtils.timestampToString(joinAt);
 	}
-	
 	
 	//포메터(휴대번호)
 	public String formatHp(String phoneNumber) {
@@ -48,7 +52,6 @@ public class Biz {
 	    }
 	}
 	
-	
 	//포메터(업장번호)
 	public String formatTel(String phoneNumber) {
 	    // 전화번호에서 숫자만 남기고 나머지 문자 제거
@@ -64,12 +67,5 @@ public class Biz {
 	        return "올바른 전화번호 형식이 아닙니다.";
 	    }
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }
