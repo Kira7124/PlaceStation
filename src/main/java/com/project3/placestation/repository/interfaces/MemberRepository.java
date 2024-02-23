@@ -38,5 +38,5 @@ public interface MemberRepository {
 	//회원 단건 정보 검색
 	public Member selectByIsUserId(String uid);
 
-
+	public Member selecyByUserEmail(String email);
 }

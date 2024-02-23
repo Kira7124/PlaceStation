@@ -75,3 +75,8 @@ logging:
   level:
     org.mybatis: DEBUG
     com.project3.placestation: DEBUG
+    
+jwts:
+  secret: djkwqbkjcwedbkjlkjvcklwqfkjldwqblkcbkldjbckjwqkjlwjaofjomzfo13124901824501joamjf2387u10ucbwkl
+jwt:
+  access-token-validity-in-seconds: 86400000

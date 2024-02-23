@@ -18,7 +18,6 @@
                   </div>
                   <div class="form-group">
                     <button class="btn-round btn-b login-btn" type="submit">Login </button>
-                    <p>sfsfsfs {{id}}</p>
                     <div style="float: right;">
                     <button type="button" class="social_btn" 
                     style="height: 38px !important;

@@ -65,7 +65,9 @@
 	</select>
 
 
-
+	<select id="selecyByUserEmail"	resultType="com.project3.placestation.repository.entity.Member">
+		select * from member where user_email = #{email}
+	</select>
 
 
 

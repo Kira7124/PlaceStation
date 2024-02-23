@@ -30,9 +30,4 @@ public class Member {
 	private String grade;
 	private String gender;
 
-
-
-
-
-
 }
