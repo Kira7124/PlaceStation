@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.AdminProdHistoryRepository">
+
+	<select id="findAllByBizId"
+		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+		SELECT
+		h.admin_his_no AS adminHisNo,
+		h.admin_his_prod_no AS
+		adminHisProdNo,
+		h.admin_his_price AS adminHisPrice,
+		h.admin_his_use_point AS adminHisUsePoint,
+		h.admin_his_save_point AS
+		adminHisSavePoint,
+		h.admin_his_discount AS adminHisDiscount,
+		h.admin_his_charge AS adminHisCharge,
+		h.admin_his_prod_name AS
+		adminHisProdName,
+		h.admin_his_seller_id AS adminHisSellerId,
+		h.admin_his_confirm AS adminHisConfirm,
+		h.admin_his_created_at AS
+		adminHisCreatedAt,
+		h.admin_his_buyer_id AS adminHisBuyerId,
+		h.bank AS
+		bank,
+		h.start_time AS startTime,
+		h.end_time AS endTime,
+		h.cancel_yn AS
+		cancelYn,
+		h.cancel_at AS cancelAt,
+		h.cancel_amount AS cancelAmount,
+		h.people_count AS peopleCount,
+		m.user_name AS userName,
+		m.user_email AS
+		userEmail,
+		m.grade AS userGrade,
+		m.file_path AS userProfile,
+		p.prod_title AS prodTitle,
+		pm.category_name AS mainCategory,
+		ps.subcategory_name AS subcategory,
+		h.purchase_date as purchaseDate
+		FROM
+		admin_prod_history h
+		LEFT JOIN biz b
+		ON h.admin_his_seller_id =
+		b.biz_id
+		LEFT JOIN product p
+		ON h.admin_his_prod_no = p.prod_no
+		LEFT JOIN
+		member m
+		ON h.admin_his_buyer_id = m.user_no
+		LEFT JOIN
+		prod_major_category pm
+		ON pm.category_id = p.prod_major_category_id
+		LEFT JOIN prod_subcategory
+		ps
+		ON ps.category_id = p.prod_subcategory_id
+		WHERE
+		h.admin_his_seller_id = #{bizId}
+		LIMIT
+		#{pageReq.page} *
+		#{pageReq.size},#{pageReq.size}
+	</select>
+
+	<select id="countFindAllByBizId" resultType="int">
+		select count(*)
+		from
+		admin_prod_history h
+		left join biz
+		b
+		on
+		h.admin_his_seller_id = b.biz_id
+		left join product p
+		on
+		h.admin_his_prod_no = p.prod_no
+		left join member m
+		on
+		h.admin_his_buyer_id = m.user_no
+		left join prod_major_category pm
+		on
+		pm.category_id = p.prod_major_category_id
+		left join prod_subcategory ps
+		on ps.category_id = p.prod_subcategory_id
+		where p.prod_delete_yn = 'N'
+		and h.admin_his_seller_id = #{bizId}
+	</select>
+
+	<select id="findScheduleByBizId"
+		resultType="com.project3.placestation.biz.model.dto.ResScheduleDto">
+		select p.prod_title , h.start_time , h.end_time ,
+		h.purchase_date
+		from admin_prod_history h , product p
+		where
+		h.admin_his_prod_no = p.prod_no
+		and h.admin_his_seller_id = #{bizId}
+	</select>
+
+	<select id="findStatisticSales"
+		resultType="com.project3.placestation.biz.model.dto.StatisticDto">
+		<choose>
+			<when test="kind == 'MONTHLY'.toString()">
+				select sum(admin_his_price - admin_his_discount) as
+				amount ,
+				SUBSTR(admin_his_created_at , 1 ,10) as date from
+				admin_prod_history
+				where admin_his_seller_id = #{bizId}
+				and cancel_yn
+				= 'N'
+				AND admin_his_created_at BETWEEN DATEADD('MONTH', -1,
+				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				group by
+				SUBSTR(admin_his_created_at , 1 ,10);
+			</when>
+			<when test="kind == 'WEEK'.toString()">
+				select sum(admin_his_price - admin_his_discount) as
+				amount ,
+				SUBSTR(admin_his_created_at , 1 ,10) as date from
+				admin_prod_history
+				where admin_his_seller_id = #{bizId}
+				and cancel_yn
+				= 'N'
+				AND admin_his_created_at BETWEEN DATEADD('DAY', -7,
+				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				group by
+				SUBSTR(admin_his_created_at , 1 ,10);
+			</when>
+			<when test="kind == 'ANNUAL'.toString()">
+				SELECT SUM(admin_his_price - admin_his_discount) AS
+				amount,
+				SUBSTRING(admin_his_created_at, 1, 7) AS date
+				FROM
+				admin_prod_history
+				WHERE admin_his_seller_id = #{bizId}
+				AND cancel_yn
+				= 'N'
+				AND admin_his_created_at BETWEEN DATEADD('MONTH', -12,
+				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				GROUP BY
+				SUBSTRING(admin_his_created_at, 1, 7);
+			</when>
+		</choose>
+	</select>
+
+
+
+	<select id="findStatisticSalesVolumes" resultType="int">
+
+		<choose>
+			<when test="kind == 'ANNUAL'.toString()">
+				select count(*) from admin_prod_history
+				where
+				admin_his_seller_id =
+				#{bizId}
+				and cancel_yn = 'N'
+				AND
+				admin_his_created_at BETWEEN DATEADD('MONTH',
+				-12,
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
+			</when>
+			<when test="kind == 'MONTHLY'.toString()">
+				select count(*) from admin_prod_history
+				where
+				admin_his_seller_id =
+				#{bizId}
+				and cancel_yn = 'N'
+				AND
+				admin_his_created_at BETWEEN DATEADD('MONTH',
+				-1,
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
+			</when>
+			<when test="kind == 'WEEK'.toString()">
+				select count(*) from admin_prod_history
+				where
+				admin_his_seller_id =
+				#{bizId}
+				and cancel_yn = 'N'
+				AND
+				admin_his_created_at BETWEEN DATEADD('DAY', -7,
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
+			</when>
+		</choose>
+	</select>
+
+	<select id="findProductInvalidByProdNo"
+		resultType="com.project3.placestation.product.dto.ProductInvalidDateDto">
+		select start_time , end_time , purchase_date from
+		admin_prod_history
+		where admin_his_prod_no = #{prodNo}
+		and purchase_date like #{date}
+	</select>
+</mapper>

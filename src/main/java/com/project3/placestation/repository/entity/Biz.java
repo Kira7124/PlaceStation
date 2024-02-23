@@ -15,24 +15,23 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Biz {
 		
-	private Integer bizno;
-	private Integer bizid;
-	private String bizbrandname;
-	private String bizhp;
-	private String bizemail;
-	private Integer bizbalance;
-	private String filepath;
-	private Timestamp joinat;
-	private Timestamp outat;
-	private Integer fileno;
-	private String biztel;
+	private Integer bizNo;
+	private Integer bizId;
+	private String bizBrandName;
+	private String bizHp;
+	private String bizEmail;
+	private Integer bizBalance;
+	private String filePath;
+	private Timestamp joinAt;
+	private Timestamp outAt;
+	private Integer fileNo;
+	private String bizTel;
 	
 	
 	//포메터(시간)
 	public String formatjoinAt() {
 		return TimeUtils.timestampToString(joinat);
 	}
-	
 	
 	//포메터(휴대번호)
 	public String formatHp(String phoneNumber) {
@@ -50,7 +49,6 @@ public class Biz {
 	    }
 	}
 	
-	
 	//포메터(업장번호)
 	public String formatTel(String phoneNumber) {
 	    // 전화번호에서 숫자만 남기고 나머지 문자 제거
@@ -66,12 +64,5 @@ public class Biz {
 	        return "올바른 전화번호 형식이 아닙니다.";
 	    }
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }
