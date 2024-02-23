@@ -30,7 +30,7 @@ public class Biz {
 	
 	//포메터(시간)
 	public String formatjoinAt() {
-		return TimeUtils.timestampToString(joinat);
+		return TimeUtils.timestampToString(joinAt);
 	}
 	
 	//포메터(휴대번호)

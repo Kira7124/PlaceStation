@@ -3,11 +3,14 @@ package com.project3.placestation.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project3.placestation.admin.dto.AdminBizDTO;
 import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.biz.handler.exception.CustomRestfulException;
+import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.repository.entity.Biz;
 import com.project3.placestation.repository.interfaces.BizRepository;
 
@@ -53,12 +56,12 @@ public class BizService {
 	@Transactional
 	public void AdminUpdateBiz(AdminBizDTO dto) {
 		Biz biz = Biz.builder()
-				.bizno(dto.getBizno())
-				.bizid(dto.getBizid())
-				.bizbrandname(dto.getBizbrandname())
-				.bizhp(dto.getBizhp())
-				.biztel(dto.getBiztel())
-				.bizemail(dto.getBizemail())
+				.bizNo(dto.getBizno())
+				.bizId(dto.getBizid())
+				.bizBrandName(dto.getBizbrandname())
+				.bizHp(dto.getBizhp())
+				.bizTel(dto.getBiztel())
+				.bizEmail(dto.getBizemail())
 				.build();
 		
 		
@@ -71,8 +74,8 @@ public class BizService {
 	@Transactional
 	public void AdminDeleteBiz(AdminBizDTO dto) {
 		Biz biz = Biz.builder()
-				.bizno(dto.getBizno())
-				.bizid(dto.getBizid())
+				.bizNo(dto.getBizno())
+				.bizId(dto.getBizid())
 				.build();
 		
 		Integer result = bizRepository.AdminDeleteBiz(biz);
