@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-	<!-- adminheader.jsp -->
+    <!-- adminheader.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminheader.jsp" %>
 	<!-- adminside.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
+     <!-- jquery/ajax 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
-
-			
-		<!-- MAIN -->
+    
+	<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
 
-					<div class="panel">
+			<div class="panel">
 				<div class="panel-heading">
-					<h3 class="panel-title">사업자관리</h3>
 					<div class="right">
 						<button type="button" class="btn-toggle-collapse">
 							<i class="lnr lnr-chevron-up"></i>
@@ -26,90 +26,61 @@
 						</button>
 					</div>
 				</div>
+				
 				<div class="panel-body no-padding">
-					<table class="table table-striped" style="width: 95%; margin: auto;">
-						<thead>
-							<tr>
-								<th>이름</th>
-								<th>아이디</th>
-								<th>주소</th>
-								<th>이메일</th>
-								<th>전화번호</th>
-								<th>가입일</th>
-								<th>수정</th>
-								<th>삭제</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><a href="#">763648</a></td>
-								<td>Steve</td>
-								<td>$122</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763649</a></td>
-								<td>Amber</td>
-								<td>$62</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>								
-							</tr>
-							<tr>
-								<td><a href="#">763650</a></td>
-								<td>Michael</td>
-								<td>$34</td>
-								<td>Oct 18, 2016</td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763651</a></td>
-								<td>Roger</td>
-								<td>$186</td>
-								<td>Oct 17, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763652</a></td>
-								<td>Smith</td>
-								<td>$362</td>
-								<td>Oct 16, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-							</tr>
-						</tbody>
-					</table>
+					
+			<div class="container">
+				   <div class="row justify-content-center">
+					   <div class="col-md-8">	
+						
+						<div class="card">
+		 					 <div class="card-body">
+			        			
+							<div class="box-body">
+							
+							<div class="details">
+		        					<h3 style="font-weight: bold;">공지사항</h3>
+		      				</div><br>
+							
+								<div class="form-group w-25">
+									<label for="exampleInputEmail1"><h5>작성자</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1" value ="${detailNotice.nwriter}" readonly="readonly">
+								</div><br>
+								<div class="form-group w-25">
+									<label for="exampleInputEmail1"><h5>제 목</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1" value="${detailNotice.ntitle}" readonly >
+								</div><br>
+								<div class="form-group w-50">
+									<label for="exampleInputEmail1"><h5>내 용</h5></label>
+									<textarea class="form-control" rows="3" readonly="readonly">${detailNotice.ncontent}</textarea>
+								</div><br>	
+							</div>
+					  </div>
+				  </div>		
+				
+				   </div>				
+				</div>			
+			</div>				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+					
 				</div>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		</div>
 			<!-- END MAIN CONTENT -->
 		</div>
 		<!-- END MAIN -->	
@@ -246,3 +217,5 @@
 </body>
 
 </html>
+	    
+    

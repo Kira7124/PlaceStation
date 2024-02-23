@@ -5,11 +5,9 @@
     <%@ include file ="/WEB-INF/view/admin/adminheader.jsp" %>
 	<!-- adminside.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
-     <!-- jquery/ajax 라이브러리 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
 
-		
+			
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -17,52 +15,75 @@
 				<div class="container-fluid">
 
 			<div class="panel">
-				<div class="panel-heading">
-					<h3 class="panel-title"><b>공지사항관리</b></h3>
+					
+				<div style="display: flex;">
+				    <div>
+				        <div class="panel-heading">
+				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>회원관리</b></h3>
+				        </div>
+				    </div>
+				   <form action="/admin/admin-searchbiz" method="get">
+					    <div>
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        	<select name="searchOption" class="form-control" style="width: 110px; margin-right: 2px;">
+					        			<option value="biz_brand_name">브랜드명</option>
+								        <option value="biz_id">아이디</option>
+								        <option value="biz_email">이메일</option>
+								        <option  value="join_at">가입일</option>
+				   				</select>
+					            <input type="text" name="searchKeyword" class="form-control" placeholder="키워드입력">
+					            <span class="input-group-btn">
+					                <button type="submit" class="btn btn-primary" >검색</button>
+					            </span>
+					        </div>
+					    </div>
+				    </form> 
 				</div>
+				
 				
 				<div class="panel-body no-padding">
 					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
 								<th>번호</th>
-								<th>글쓴이</th>
-								<th>제목</th>
-								<th>등록일</th>
-								<th>조회수</th>
-								<th>등록/수정/삭제</th>
+								<th>아이디</th>
+								<th>브랜드명</th>
+								<th>개인번호</th>
+								<th>업장번호</th>
+								<th>이메일</th>
+								<th>가입일</th>
+								<th>수정/삭제</th>
 							</tr>
 						</thead>
-					<c:forEach var="noticelist" items="${noticelist}">
+					  <c:forEach var="bizlist" items="${bizlist}">
 						<tbody>
 							<tr>
-								<td>${noticelist.nbno}</td>
-								<td>${noticelist.nwriter}</td>
-								<td><a href="/admin/admin-noticedetail?nbno=${noticelist.nbno}">${noticelist.ntitle}</a></td>
-								<td>${noticelist.formatjoinAt()}</td>
-								<td><span class="badge" style="margin-left: 10px;">${noticelist.nreadcount}</span></td>			
+								<td>${bizlist.bizno}</td>
+								<td>${bizlist.bizid}</td>
+								<td>${bizlist.bizbrandname}</td>
+								<td>${bizlist.formatHp(bizlist.bizhp)}</td>
+								<td>${bizlist.formatTel(bizlist.biztel)}</td>
+								<td>${bizlist.bizemail}</td>
+								<td>${bizlist.formatjoinAt()}</td>
 								<td>
 									<a href="#">
-										<span class="label label-info">등록</span>
+										<span class="label label-success">수정</span>
 									</a>
 									<a href="#">
-        								<span class="label label-success">수정</span>
-    								</a>     	
-    								<a href="#">
-										<span class="label label-danger">삭제</span>
+									   <span class="label label-danger">삭제</span>
 									</a>
-								</td>
+								</td>								
 							</tr>
-							
 						</tbody>
 					  </c:forEach>	
 					</table>
+					
 					
 					<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
 						<ul class="pagination">
 							<c:if test="${pageVO.prev }">
 								<li class="page-item">
-								  <a class="page-link" href="/admin/admin-notice?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  <a class="page-link" href="/admin/admin-searchbiz?page=${pageVO.startPage - 1 }&searchKeyword=${pageVO.cri.searchKeyword}&searchOption=${pageVO.cri.searchOption}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 								  </a>
 								</li>
 							</c:if>
@@ -73,7 +94,7 @@
 								end="${pageVO.endPage }" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
 								<li class="page-item ${isActive ? 'active' : ''}"><a
-									class="page-link" href="/admin/admin-notice?page=${i}"
+									class="page-link" href="/admin/admin-searchbiz?page=${i}&searchKeyword=${pageVO.cri.searchKeyword}&searchOption=${pageVO.cri.searchOption}"
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
@@ -82,20 +103,22 @@
 				
 							<c:if test="${pageVO.next }">
 								<li class="page-item"><a class="page-link"
-									href="/admin/admin-notice?page=${pageVO.endPage + 1 }"
+									href="/admin/admin-searchbiz?page=${pageVO.endPage + 1 }&searchKeyword=${pageVO.cri.searchKeyword}&searchOption=${pageVO.cri.searchOption}"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
 							</c:if>
 
 						</ul>
 					</nav>
-					
-				</div>
+	
+	
+			   </div>
 			</div>
+		 </div>
 			<!-- END MAIN CONTENT -->
-		</div>
+	 </div>
 		<!-- END MAIN -->	
-	</div>
+  </div>
 	<!-- END WRAPPER -->
 	
 	

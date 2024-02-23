@@ -1,14 +1,14 @@
 package com.project3.placestation.admin.dto;
 
-public class Criteria {
+public class TodoCriteria {
 	private int page;
 	private int pageSize;
 	private String searchKeyword;
 	private String searchOption;
 	
-	public Criteria() {
+	public TodoCriteria() {
 		this.page = 1;
-		this.pageSize = 10;
+		this.pageSize = 4;
 	}
 	
 	

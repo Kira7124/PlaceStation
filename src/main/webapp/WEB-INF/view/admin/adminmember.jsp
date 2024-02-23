@@ -7,38 +7,41 @@
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
     <!-- jquery/ajax 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	
-	<script>
-        function openUpdateModal(userId) {
-            console.log('모달을 열 때 사용할 userId:', userId);
 
-            var userNumInput = document.getElementById('user_no_input');
-            if (userNumInput) {
-                userNumInput.value = userId;
-            }
 
-        }
-	</script>	
-		
 		
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-
+		
 			<div class="panel">
-				<div class="panel-heading">
-					<h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>회원관리</b></h3>
-					<div class="right">
-						<button type="button" class="btn-toggle-collapse">
-							<i class="lnr lnr-chevron-up"></i>
-						</button>
-						<button type="button" class="btn-remove">
-							<i class="lnr lnr-cross"></i>
-						</button>
-					</div>
+				
+				<div style="display: flex;">
+				    <div>
+				        <div class="panel-heading">
+				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>회원관리</b></h3>
+				        </div>
+				    </div>
+				   <form action="/admin/admin-searchmember" method="get">
+					    <div>
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
+					        			<option value="user_name">이름</option>
+								        <option value="user_address">주소</option>
+								        <option value="grade">등급</option>
+								        <option  value="join_at">가입일</option>
+				   				</select>
+					            <input type="text" name="searchKeyword" class="form-control" placeholder="키워드입력">
+					            <span class="input-group-btn">
+					                <button type="submit" class="btn btn-primary" >검색</button>
+					            </span>
+					        </div>
+					    </div>
+				    </form> 
 				</div>
+				
 				
 				<div class="panel-body no-padding">
 					<table class="table table-striped" style="width: 95%; margin: auto;">
@@ -53,8 +56,7 @@
 								<th>이메일</th>
 								<th>전화번호</th>
 								<th>가입일</th>
-								<th>수정</th>
-								<th>삭제</th>
+								<th>수정/삭제</th>
 							</tr>
 						</thead>
 					<c:forEach var="memberlist" items="${memberlist}">
@@ -84,15 +86,14 @@
 								<td>${memberlist.formatHp(memberlist.userhp)}</td>
 								<td>${memberlist.formatjoinAt()}</td>
 								<td>
-									<a href="/admin/admin-update" data-toggle="modal" data-target="#updateModal" onclick="openUpdateModal('${memberlist.userno}')">
+									<a href="/admin/admin-update" data-toggle="modal" data-target="#updateModal">
         								<span class="label label-success">수정</span>
     								</a>     	
-								</td>
-								<td>
-									<a href="/admin/admin-delete" data-toggle="modal" data-target="#deleteModal">
+    								<a href="/admin/admin-delete" data-toggle="modal" data-target="#deleteModal">
 										<span class="label label-danger">삭제</span>
-									</a>	
-								</td>														
+									</a>
+								</td>
+																						
 							</tr>
 						</tbody>
 					  </c:forEach>	
@@ -157,22 +158,6 @@
 	</div>
 
 
-	<!-- Modal 스크립트 -->
-	<script>
-	    $(document).ready(function(){
-	        $(".open-modal").click(function(){
-	            $("#updateModal").modal('show');
-	        });
-	    });
-	</script>
-	
-	<script>
-	    $(document).ready(function(){
-	        $(".open-modal").click(function(){
-	            $("#deleteModal").modal('show');
-	        });
-	    });
-	</script>
 
 
 
@@ -180,13 +165,18 @@
 
 
 
-	<!-- Javascript -->
-<!-- 	<script src="/assets/vendor/jquery/jquery.min.js"></script> -->
+
+
+<!-- Javascript -->
+	<script src="/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!-- 	<script src="/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script> -->
-<!-- 	<script src="/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script> -->
-<!-- 	<script src="/assets/vendor/chartist/js/chartist.min.js"></script> -->
-<!-- 	<script src="/assets/scripts/klorofil-common.js"></script> -->
+	<script src="/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="/assets/vendor/chartist/js/chartist.min.js"></script>
+	<script src="/assets/scripts/klorofil-common.js"></script>
+	
+	
+	
 	<script>
 	$(function() {
 		var data, options;

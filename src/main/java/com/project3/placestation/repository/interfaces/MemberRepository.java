@@ -19,10 +19,20 @@ public interface MemberRepository {
 	//회원숫자세기 (페이징처리)
 	public int countMember() throws Exception;
 	
+	//회원명단출력 (검색,페이징처리)
+	public List<Member> searchMemberlist(Criteria cri) throws Exception;
+	
+	//회원숫자세기 (검색,페이징처리)
+	public int countSearchMemberlist(Criteria cri) throws Exception;
+	
 	//관리자회원정보수정
 	public Integer AdminUpdateMember(Member member);
 	
 	//판매자와 유저 테이블 join데이터
 	public BizJoin SelectJoinBiz(BizJoin biz); 	
+
+	//관리자회원정보삭제처리
+	public Integer AdminDeleteMember(Member member);
+	
 	
 }
