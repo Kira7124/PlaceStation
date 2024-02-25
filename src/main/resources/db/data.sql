@@ -44,8 +44,8 @@ VALUES
 ('test10', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'BIZ','골드','F');
 
 
-insert into biz (biz_id , biz_brand_name,biz_balance , file_path , biz_tel)
-values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'010-1111-1111');
+insert into biz (biz_id , biz_brand_name,biz_balance , file_path , biz_tel , imp_uid , imp_key , imp_secret)
+values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'010-1111-1111', 'imp05516285' , '2076220350658738' , 'UidsW7v862X8nxk9NnjaPvpxYuiwSiG67gLkAYzx0tMxRRbwVOIHBsYZZ7I3rz78gqgA3oroohDtXDlp');
 insert into biz (biz_id , biz_brand_name,biz_balance , file_path ,biz_tel)
 values (13 , '상호명' , 20000 , 'https://picsum.photos/200/300​','010-1111-1111');
 

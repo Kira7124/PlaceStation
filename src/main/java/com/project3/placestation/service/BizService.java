@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
+import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
 import com.project3.placestation.repository.interfaces.BizRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,5 +24,10 @@ public class BizService {
 		if(result < 1) {
 			throw new CustomRestfulException("유저 정보 변경 시 서버 에러가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	// 비즈 기본키 값으로 포트원 키 찾기
+	public PaymentFortOneKeyDto findFortOneKeyByBizNo(int bizNo) {
+		return bizRepository.findFortOneKeyByBizNo(bizNo);
 	}
 }

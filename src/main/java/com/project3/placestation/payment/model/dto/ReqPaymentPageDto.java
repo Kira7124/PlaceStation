@@ -1,5 +1,6 @@
 package com.project3.placestation.payment.model.dto;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
@@ -7,11 +8,14 @@ import lombok.ToString;
 
 @Data
 @ToString
+@Builder
 public class ReqPaymentPageDto {
-
 	private Integer prodNo;
 	private Integer people;
 	private String date;
 	private Integer startTime;
 	private Integer endTime;
+	private Integer amount;
+	private Integer discountAmount;
+	private Integer discountPercent;
 }

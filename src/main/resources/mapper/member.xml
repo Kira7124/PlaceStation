@@ -89,11 +89,34 @@
 	</update>
 
 	<!-- 판매자 join 유저 -->
-	<select id="findMemberById" resultType="com.project3.placestation.payment.model.dto.PaymentMemberDto">
+	<select id="findMemberById"
+		resultType="com.project3.placestation.payment.model.dto.PaymentMemberDto">
 		select user_no as userNo ,
-		user_address as userAddress , user_name as userName , user_hp as
-		userHp , user_email as userEmail , grade as userGrade , user_point as
-		userPoint , join_at as joinAt , user_role as userRole , gender as
-		gender from member where user_no = #{userNo}
+		user_address as userAddress ,
+		user_name as userName , user_hp as
+		userHp , user_email as userEmail ,
+		grade as userGrade , user_point as
+		userPoint , join_at as joinAt ,
+		user_role as userRole , gender as
+		gender from member where user_no =
+		#{userNo}
 	</select>
+
+	<update id="updateMemberPoint">
+		update member set
+		user_point = #{userPoint}
+		<if test="grade == 'BRONZE'.toString()">
+		,
+		grade = '브론즈'
+		</if>
+		<if test="grade == 'SILVER'.toString()">
+		,
+		grade = '실버'
+		</if>
+		<if test="grade == 'GOLD'.toString()">
+		,
+		grade = '골드'
+		</if>
+		where user_no = #{buyerId}
+	</update>
 </mapper>

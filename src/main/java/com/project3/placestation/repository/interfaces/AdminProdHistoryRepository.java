@@ -10,7 +10,9 @@ import com.project3.placestation.biz.model.dto.ResScheduleDto;
 import com.project3.placestation.biz.model.dto.StatisticDto;
 import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.StatisticKind;
+import com.project3.placestation.payment.model.dto.AdminHisPointDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
+import com.project3.placestation.repository.entity.AdminProdHistory;
 
 @Mapper
 public interface AdminProdHistoryRepository {
@@ -32,4 +34,10 @@ public interface AdminProdHistoryRepository {
 
 	// 상품 시간 제한
 	public List<ProductInvalidDateDto> findProductInvalidByProdNo(@Param("prodNo")int prodNo , @Param("date") String date);
+	
+	// 거래 내역 저장
+	public int save(AdminProdHistory adminProdHistory);
+	
+	// 유저의 포인트 내역 확인
+	public AdminHisPointDto findUserPointByBuyerId(int buyerId);
 }

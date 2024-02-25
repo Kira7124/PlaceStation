@@ -10,4 +10,10 @@
 		biz_tel = #{biz.bizTel} 
 		where biz_id = #{bizId}
 	</update>
+	
+	<select id="findFortOneKeyByBizNo" resultType="com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto">
+		select imp_uid as impUid , imp_key as imp_key , imp_secret as impSecret 
+		from biz
+		where biz_no = #{bizNo}
+	</select>
 </mapper>

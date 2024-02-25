@@ -12,15 +12,16 @@ import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResPassword;
-import com.project3.placestation.member.dto.bizDTO;
-import com.project3.placestation.member.dto.bizJoinDTO;
-import com.project3.placestation.payment.handler.exception.CustomPaymentLoginPageException;
+import com.project3.placestation.payment.model.common.MemberGrade;
 import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.interfaces.MemberRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class MemberService {
 	
 	@Autowired
@@ -37,7 +38,6 @@ public class MemberService {
 	public int countMember() throws Exception{
 		return memberRepository.countMember();
 	}
-	
 	
 	//관리자회원수정
 	@Transactional
@@ -84,12 +84,40 @@ public class MemberService {
 		return result;
 	}
 	
-	// 유저 정보 상세조회
+	/**
+	 *  유저 정보 상세조회
+	 *  Exception 로그인 창으로 가게끔 수정 필요
+	 * @param userNo
+	 * @return
+	 */
 	public PaymentMemberDto findMemberById(int userNo) {
 		PaymentMemberDto dto = memberRepository.findMemberById(userNo);
 		if(dto == null) {
-			throw new CustomPaymentLoginPageException("유저 정보가 없거나 변경되었습니다.", HttpStatus.INTERNAL_SERVER_ERROR);			
+			throw new CustomRestfulException("유저 정보가 없거나 변경되었습니다.", HttpStatus.INTERNAL_SERVER_ERROR);			
 		}
 		return dto;
+	}
+	
+	// 포인트 변경 (수정 필요)
+	@Transactional
+	public int updateUserPoint(int userPoint , MemberGrade grade , int buyerId) {
+		log.info("userPoint : " + userPoint);
+		log.info("grade : " + grade);
+		int result = memberRepository.updateMemberPoint(userPoint, grade.toString() , buyerId);
+		if(result == 0) {
+			return 0;
+		}
+		return result;
+	}
+	
+	
+	/**
+	 * 포인트 계산 ( + )
+	 * @param currentUserPoint
+	 * @param sumPoint
+	 * @return
+	 */
+	public int calUserPoint(int currentUserPoint , int sumPoint) {
+		return currentUserPoint + sumPoint;
 	}
 }

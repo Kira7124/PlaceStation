@@ -77,12 +77,16 @@ create table biz (
     biz_brand_name varchar(30),
     biz_balance int,
     file_path varchar (1000),
-    biz_tel varchar (20)
+    biz_tel varchar (20) ,
+    imp_uid varchar ( 100 ) ,
+    imp_key varchar (100),
+    imp_secret varchar (300)
 );
 
 
 create table admin_prod_history (
 	admin_his_no varchar(20) primary key,
+    token varchar(200) ,
 	admin_his_prod_no int (5) not null,
     admin_his_price int (7) not null,
     admin_his_use_point int (7) default 0,

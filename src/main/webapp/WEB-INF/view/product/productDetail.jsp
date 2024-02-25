@@ -819,7 +819,7 @@
 							<!-- 결제 시작 -->
 							<div class="widget">
 								<!-- 폼 태그 시작 -->
-								<form action="/payment/main" method="post">
+								<form action="/payment/main" method="get">
 									<input type="hidden" name="prodNo" value="${product.prodNo}"/>
 									<h5 class="widget-title font-alt">예약하기</h5>
 									<!-- 가격 선택 -->
@@ -1009,6 +1009,7 @@
     -->
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86c4c40f5a0bbcd706e953e25fdd8538"></script>
+		
 	<script src="/assets/lib/jquery/dist/jquery.js"></script>
 	<script src="/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="/assets/lib/wow/dist/wow.js"></script>

@@ -59,6 +59,7 @@
 		ON ps.category_id = p.prod_subcategory_id
 		WHERE
 		h.admin_his_seller_id = #{bizId}
+		order by h.admin_his_created_at
 		LIMIT
 		#{pageReq.page} *
 		#{pageReq.size},#{pageReq.size}
@@ -191,6 +192,46 @@
 		select start_time , end_time , purchase_date from
 		admin_prod_history
 		where admin_his_prod_no = #{prodNo}
-		and purchase_date like #{date}
+		and purchase_date
+		like #{date}
 	</select>
+
+	<select id="findUserPointByBuyerId"
+		resultType="com.project3.placestation.payment.model.dto.AdminHisPointDto">
+		select sum(admin_his_save_point) as userSavePoint, admin_his_buyer_id as adminHisBuyerId
+		from admin_prod_history
+		where admin_his_buyer_id = #{buyerId}
+		group by admin_his_buyer_id
+	</select>
+
+	<insert id="save">
+		insert into admin_prod_history
+		(
+		admin_his_no ,
+		admin_his_prod_no,
+		admin_his_price , admin_his_use_point
+		,
+		admin_his_save_point , admin_his_discount ,
+		admin_his_charge ,
+		admin_his_prod_name,
+		admin_his_seller_id , admin_his_confirm ,
+		admin_his_buyer_id , bank ,
+		start_time , end_time , people_count ,
+		purchase_date,
+		token
+		)
+		values (
+		#{adminHisNo} , #{adminHisProdNo} ,
+		#{adminHisPrice} ,
+		#{adminHisUsePoint} , #{adminHisSavePoint} ,
+		#{adminHisDiscount} ,
+		#{adminHisCharge} , #{adminHisProdName},
+		#{adminHisSellerId} ,
+		#{adminHisConfirm} ,
+		#{adminHisBuyerId} , #{bank}
+		,#{startTime} ,
+		#{endTime} , #{peopleCount} , #{purchaseDate} ,
+		#{token}
+		)
+	</insert>
 </mapper>

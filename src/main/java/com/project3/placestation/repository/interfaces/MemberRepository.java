@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResPassword;
+import com.project3.placestation.payment.model.common.MemberGrade;
 import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
@@ -35,4 +36,7 @@ public interface MemberRepository {
 	
 	// payment 유저 정보
 	public  PaymentMemberDto findMemberById(int userNo);
+	
+	// 유저 포인트 업데이트
+	public  int updateMemberPoint(@Param("userPoint") int userPoint ,@Param("grade") String grade , @Param("buyerId") int buyerId);
 }

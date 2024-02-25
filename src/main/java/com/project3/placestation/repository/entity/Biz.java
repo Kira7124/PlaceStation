@@ -16,4 +16,7 @@ public class Biz {
 	private Integer bizBalance;
 	private String filePath;
 	private String bizTel;
+	private String impUid;
+	private String impKey;
+	private String impSecret;
 }
