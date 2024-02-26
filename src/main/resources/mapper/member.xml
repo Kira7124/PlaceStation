@@ -104,19 +104,8 @@
 
 	<update id="updateMemberPoint">
 		update member set
-		user_point = #{userPoint}
-		<if test="grade == 'BRONZE'.toString()">
-		,
-		grade = '브론즈'
-		</if>
-		<if test="grade == 'SILVER'.toString()">
-		,
-		grade = '실버'
-		</if>
-		<if test="grade == 'GOLD'.toString()">
-		,
-		grade = '골드'
-		</if>
+		user_point = #{userPoint} , 
+		grade = #{grade}
 		where user_no = #{buyerId}
 	</update>
 </mapper>

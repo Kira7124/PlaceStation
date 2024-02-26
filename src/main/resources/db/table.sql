@@ -119,3 +119,25 @@ create table prod_subcategory (
     subcategory_name varchar (40)
 );
 
+create table charge (
+	ch_percent int auto_increment primary key
+);
+
+create table grade (
+	grade_name varchar(30) primary key ,
+    grade_discount int (2),
+    grade_maxprice int,
+    grade_savepoint int(2)
+);
+
+create table company (
+	name varchar (100) ,
+    address varchar (1000) ,
+    tel varchar (30) ,
+    ceo_name varchar (30) ,
+    email varchar(100) ,
+    sell_number varchar (30) ,
+    info varchar (1000) ,
+    time varchar (100) ,
+    balance int
+)

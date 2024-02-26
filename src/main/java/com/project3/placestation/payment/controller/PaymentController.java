@@ -21,8 +21,10 @@ import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
 import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.payment.model.dto.ReqPaymentPageDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
+import com.project3.placestation.repository.entity.Grade;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.BizService;
+import com.project3.placestation.service.GradeService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.ProductService;
 
@@ -44,6 +46,9 @@ public class PaymentController {
 
 	@Autowired
 	BizService bizService;
+	
+	@Autowired
+	GradeService gradeService;
 
 	/**
 	 * payment 메인 폼 넘어가기 (수정 필요)
@@ -100,16 +105,18 @@ public class PaymentController {
 			throw new CustomRestfulException("시작시간 또는 종료 시간이 중복되었습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		// 유저 정보
-		int userNo = 1;
+		// 유저 정보 ( 수정 필요 )
+		int userNo = 7;
 		PaymentMemberDto member = memberService.findMemberById(userNo);
 
 		// 상품 writerNo 값으로 포트원 키 찾기
 		PaymentFortOneKeyDto fortOneKeyDto = bizService.findFortOneKeyByBizNo(product.getProdWriterNo());
 
 		// 유저 등급별 discount (수정 필요)
-		int discountPercent = 3;
-		// 총합 계싼
+		Grade grade = gradeService.findByGradeName(member.getUserGrade());
+		
+		int discountPercent = grade.getGradeDiscount();
+		// 총합 계산
 		int amount = adminProdHistoryService.calAmount(product.getProdPrice(), people, startTime, endTime);
 		// 할인 계산
 		int discountAmount = adminProdHistoryService.calPercentage(amount, discountPercent, 100);

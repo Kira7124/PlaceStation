@@ -19,8 +19,14 @@ import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
 import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.payment.model.dto.PaymentReqDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
+import com.project3.placestation.repository.entity.Charge;
+import com.project3.placestation.repository.entity.Company;
+import com.project3.placestation.repository.entity.Grade;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.BizService;
+import com.project3.placestation.service.ChargeService;
+import com.project3.placestation.service.CompanyService;
+import com.project3.placestation.service.GradeService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.PaymentService;
 
@@ -42,6 +48,15 @@ public class PaymentRestController {
 
 	@Autowired
 	MemberService memberService;
+
+	@Autowired
+	GradeService gradeService;
+
+	@Autowired
+	ChargeService chargeService;
+
+	@Autowired
+	CompanyService companyService;
 
 	/**
 	 * 정보 저장하기 ( 수 정 필 요 ) 1. 포트원 결제 - 사후 처리 2. 서버 저장
@@ -109,9 +124,19 @@ public class PaymentRestController {
 
 			// 서버에 저장 ( 수정 필요 )
 			// 세개의 값을 구해야한다.
-			int discount = paymentDto.getDiscount();
-			int savePoint = 3;
-			int charge = 3;
+
+			// 유저 정보 ( 수정 필요 )
+			int userNo = 1;
+			PaymentMemberDto member = memberService.findMemberById(userNo);
+
+			// 유저 등급별 discount (수정 필요)
+			// grade 별 discount , savePoint 객체 불러오기
+			Grade getGrade = gradeService.findByGradeName(member.getUserGrade());
+			Charge getCharge = chargeService.findChPercent();
+
+			int discount = getGrade.getGradeDiscount();
+			int savePoint = getGrade.getGradeSavepoint();
+			int charge = getCharge.getChPercent();
 
 			// savePoint 계산
 			int dbSavePoint = adminProdHistoryService.calPercentage(paymentDto.getAmount(), savePoint,
@@ -122,10 +147,10 @@ public class PaymentRestController {
 			// 수수료 계산
 			int dbCharge = adminProdHistoryService.calPercentage(paymentDto.getAmount(), charge,
 					paymentDto.getPeopleCount());
-			
+
 			// 최종 금액 : 원래 금액 - (할인 금액 + 수수료 + 포인트)
 			paymentDto.setAfterAmount(paymentDto.getAfterAmount() - dbCharge);
-			
+
 			// 거래 내역 DB 저장
 			int dbResult = adminProdHistoryService.save(paymentDto.getMerchantUid(), paymentDto.getProdNo(),
 					paymentDto.getAmount(), paymentDto.getAfterAmount(), paymentDto.getUsePoint(), dbSavePoint,
@@ -136,6 +161,21 @@ public class PaymentRestController {
 			if (dbResult == 0) {
 				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
 				return new ResponseEntity<>("결제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+
+			// 회사 balance 추가
+			Company company = companyService.findCompany();
+			log.info(company.toString());
+			if (company == null) {
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
+				return new ResponseEntity<>("회사 balance 수정 실패 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+
+			// 회사 balance 수정
+			int resultCompany = companyService.updateSumCompanyBalance(company.getBalance(), dbCharge);
+			if (resultCompany == 0) {
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
+				return new ResponseEntity<>("회사 balance 수정 실패 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
 			// 유저 정보 변경 - 포인트 정보 변경
@@ -149,6 +189,9 @@ public class PaymentRestController {
 			int setPoint = adminHisPointDto.getUserSavePoint() + userPoint;
 			adminHisPointDto.setUserSavePoint(setPoint);
 
+			// 등급 정보 가져오기
+			List<Grade> listGrade = gradeService.findAll();
+
 			log.info(adminHisPointDto.toString());
 			// 없다는 것은 저장이 안됬다는 뜻
 			if (adminHisPointDto == null) {
@@ -160,25 +203,69 @@ public class PaymentRestController {
 				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
 				return new ResponseEntity<>("포인트는 관리자에게 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
 			}
+			if (listGrade == null || listGrade.isEmpty()) {
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
+				return new ResponseEntity<>("포인트는 관리자에게 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
+			}
 
-			// 유저의 포인트에 따라 차등 분류
-			if (adminHisPointDto.getUserSavePoint() >= 0 && adminHisPointDto.getUserSavePoint() <= 999) {
-				// 일반적인 브론즈 등급
-				memberService.updateUserPoint(userPoint, MemberGrade.BRONZE, paymentDto.getBuyerId());
-				// 리턴
-				return new ResponseEntity<>("결제 완료", HttpStatus.OK);
+			// 저장 데이터
+			int resultGrade = 0;
+			// min 값
+			int gradeMinPrice = 0;
+			for (Grade grade : listGrade) {
+				// 유저의 포인트에 따라 차등 분류
+				// 1. 브론즈
+				if (grade.getGradeName().equals(MemberGrade.BRONZE.toString())) {
+					log.info(MemberGrade.BRONZE.toString());
+					log.info("gradeMinPrice" + gradeMinPrice);
+					log.info("gradeMaxPrice" + grade.getGradeMaxprice());
+					log.info("유저 포인트" + adminHisPointDto.getUserSavePoint());
+					if (adminHisPointDto.getUserSavePoint() >= gradeMinPrice
+							&& adminHisPointDto.getUserSavePoint() < grade.getGradeMaxprice()) {
+						// 일반적인 브론즈 등급
+						resultGrade = memberService.updateUserPoint(userPoint, MemberGrade.BRONZE,
+								paymentDto.getBuyerId());
+						// 리턴
+						break;
+					}
+				}
+				// 2. 실버
+				else if (grade.getGradeName().equals(MemberGrade.SILVER.toString())) {
+					log.info(MemberGrade.SILVER.toString());
+					log.info("gradeMinPrice" + gradeMinPrice);
+					log.info("gradeMaxPrice" + grade.getGradeMaxprice());
+					log.info("유저 포인트" + adminHisPointDto.getUserSavePoint());
+					if (adminHisPointDto.getUserSavePoint() >= gradeMinPrice
+							&& adminHisPointDto.getUserSavePoint() < grade.getGradeMaxprice()) {
+						// 일반적인 실버 등급
+						resultGrade = memberService.updateUserPoint(userPoint, MemberGrade.SILVER,
+								paymentDto.getBuyerId());
+						// 리턴
+						break;
+					}
+				}
+				// 3. 골드
+				else if (grade.getGradeName().equals(MemberGrade.GOLD.toString())) {
+					log.info(MemberGrade.GOLD.toString());
+					log.info("gradeMinPrice" + gradeMinPrice);
+					log.info("gradeMaxPrice" + grade.getGradeMaxprice());
+					log.info("유저 포인트" + adminHisPointDto.getUserSavePoint());
+					if (adminHisPointDto.getUserSavePoint() >= gradeMinPrice) {
+						// 일반적인 골드 등급
+						resultGrade = memberService.updateUserPoint(userPoint, MemberGrade.GOLD,
+								paymentDto.getBuyerId());
+						// 리턴
+						break;
+					}
+				}
+				// 이전 GradeMaxPrice 는 다음의 gradeMinPrice 값
+				gradeMinPrice = grade.getGradeMaxprice();
 			}
-			if (adminHisPointDto.getUserSavePoint() >= 1000 && adminHisPointDto.getUserSavePoint() <= 9999) {
-				// 일반적인 브론즈 등급
-				memberService.updateUserPoint(userPoint, MemberGrade.SILVER, paymentDto.getBuyerId());
-				// 리턴
-				return new ResponseEntity<>("결제 완료", HttpStatus.OK);
-			}
-			if (adminHisPointDto.getUserSavePoint() >= 10000) {
-				// 일반적인 브론즈 등급
-				memberService.updateUserPoint(userPoint, MemberGrade.GOLD, paymentDto.getBuyerId());
-				// 리턴
-				return new ResponseEntity<>("결제 완료", HttpStatus.OK);
+
+			if (resultGrade == 0) {
+				// 결제 완료인지 아닌지 판단.. (검증)
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
+				return new ResponseEntity<>("포인트는 관리자에게 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
 			// 결제 완료인지 아닌지 판단.. (검증)
