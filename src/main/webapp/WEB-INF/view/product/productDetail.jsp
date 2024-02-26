@@ -162,6 +162,11 @@
 	origin
 	/product
 }
+
+.comment-star {
+	float: right;
+	margin-right: 10px;
+}
 </style>
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -654,353 +659,384 @@
 												<div id="reviews" class="tab-pane">
 													<div class="comments reviews">
 														<h3>이용 후기</h3>
+														<!-- 원글 출력 -->
 														<c:forEach items="${reviewProdNo}" var="review">
 															<div class="comment clearfix"
-																style="border-bottom: 1px solid #ccc; margin-bottom: 8px;">
+																style="border-bottom: 1px solid #ccc;">
+																<!-- 원글 내용 출력 -->
+																<c:if test="${review.parentId == null}">
+																	<div class="comment-avatar">
+																		<img src="" alt="avatar" />
+																	</div>
+																	<div class="comment-content clearfix">
+																		<div class="comment-author font-alt">
+																			<p>
+																				유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
+																				<span class="comment-star"> 
+																				<c:if test="${review.prodRevStar != 0}">
+																						<c:forEach begin="1" end="${review.prodRevStar}">
+																							<i class="fa fa-star star"></i>
+																						</c:forEach>
+																						<c:forEach begin="${review.prodRevStar + 1}"
+																							end="5">
+																							<i class="fa fa-star star-off"></i>
+																						</c:forEach>
+																					</c:if>
+																				</span>
+																			</p>
+																		</div>
+																		<div class="comment-body">
+																			<p>${review.prodRevContent}</p>
+																		</div>
+																		                                <!-- 수정 버튼 추가 -->
+<div class="comment-edit">
+    <button class="btn btn-round btn-d" onclick="showEditForm(${review.prodRevNo})">수정</button>
+</div>
+																		<!-- 대댓글 버튼 추가 -->
+																		<c:if test="${review.parentId == null}">
+																			<div class="comment-reply">
+																				<button class="btn btn-round btn-d"
+																					onclick="showReplyForm(${review.prodRevNo})">답글
+																					달기</button>
+																			</div>
+																		</c:if>
+																</c:if>
+															</div>
+													</div>
+													<!-- 대댓글 작성 폼 -->
+													<div id="replyForm_${review.prodRevNo}"
+														class="comment-form mt-30 hidden"
+														style="display: block; border-bottom: 1px solid #ccc;">
+														<form method="post" action="/product/saveReview">
+															<div class="row">
+																<div class="col-sm-4">
+																	<div class="form-group">
+																		<input type="hidden" name="prodNo"
+																			value="${product.prodNo}">
+																		<!-- 부모 댓글의 parentId 값을 사용 -->
+																		<input type="hidden" name="parentId"
+																			value="${review.prodRevNo}"> <input
+																			type="hidden" name="userNo" value="12">
+																	</div>
+																</div>
+																<input type="hidden" name="prodRevStar" value="0">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label for="prodRevContent">답글 작성</label>
+																		<textarea class="form-control" name="prodRevContent"
+																			rows="4" placeholder="답글을 작성해주세요" required></textarea>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<button class="btn btn-round btn-d" type="submit">답글
+																		작성</button>
+																</div>
+															</div>
+														</form>
+													</div>
+													<!-- 대댓글 출력 -->
+													<c:forEach items="${reviewProdNo}" var="reply">
+														<c:if test="${reply.parentId == review.prodRevNo}">
+															<div class="comment clearfix"
+																style="border-bottom: 1px solid #ccc; margin-bottom: 8px; margin-left: 20px;">
+																<!-- 대댓글 내용 출력 -->
+																<i class="fa-solid fa-arrow-turn-down-right"></i>
 																<div class="comment-avatar">
 																	<img src="" alt="avatar" />
 																</div>
 																<div class="comment-content clearfix">
 																	<div class="comment-author font-alt">
 																		<p>
-																			유저 닉네임1234 |
-																			<c:forEach begin="1" end="${review.prodRevStar}">
-																				<i class="fa fa-star star"></i>
-																			</c:forEach>
-																			<c:forEach begin="${review.prodRevStar + 1}" end="5">
-																				<i class="fa fa-star star-off"></i>
-																			</c:forEach>
-																		</p>
+																			유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
 																	</div>
 																	<div class="comment-body">
-																		<p>${review.prodRevContent}</p>
+																		<p>${reply.prodRevContent}</p>
 																	</div>
-																	<div class="comment-meta font-alt">
-																		<p>${review.prodRevCreateAt}</p>
-																	</div>
-																</div>
-																<!-- 대댓글 버튼 추가 -->
-																<div class="comment-reply">
-																	<button class="btn btn-round btn-d"
-																		onclick="showReplyForm(${review.prodRevNo})">답글
-																		달기</button>
+
 																</div>
 															</div>
-															<!-- 대댓글 작성 폼 -->
-															<div id="replyForm_${review.prodRevNo}"
-																class="comment-form mt-30" style="display: none;">
-																<h4 class="comment-form-title font-alt">답글 작성</h4>
-																<form method="post" action="/product/saveReview">
-																	<div class="row">
-																		<div class="col-sm-4">
-																			<div class="form-group">
-																				<input type="hidden" name="prodNo"
-																					value="${product.prodNo}"> <input
-																					type="hidden" name="parentId"
-																					value="${review.prodRevNo}"> <label
-																					for="userNo">유저번호</label> <input
-																					class="form-control" type="text" name="userNo"
-																					placeholder="유저번호" required />
-																			</div>
-																		</div>
-																		<div class="col-sm-4">
-																			<div class="form-group">
-																				<label for="prodRevStar">평점</label> <select
-																					class="form-control" id="prodRevStar"
-																					name="prodRevStar" required>
-																					<option selected disabled>평점 선택</option>
-																					<option value="1">1</option>
-																					<option value="2">2</option>
-																					<option value="3">3</option>
-																					<option value="4">4</option>
-																					<option value="5">5</option>
-																				</select>
-																			</div>
-																		</div>
-																		<div class="col-sm-12">
-																			<div class="form-group">
-																				<label for="prodRevContent">리뷰 내용</label>
-																				<textarea class="form-control" name="prodRevContent"
-																					rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
-																			</div>
-																		</div>
-																		<div class="col-sm-12">
-																			<button class="btn btn-round btn-d" type="submit">답글
-																				작성</button>
-																		</div>
-																	</div>
-																</form>
-															</div>
-														</c:forEach>
-													</div>
-												</div>
-
-											</c:if>
-
-											<!-- 리뷰가 없는 경우 -->
-											<c:if test="${empty reviewProdNo}">
-												<div id="reviews" class="tab-pane">
-													<h3>등록된 후기</h3>
-													<div class="noRev">아직 등록된 후기가 없습니다.</div>
-												</div>
-											</c:if>
-
-											<!-- 리뷰 등록 -->
-											<div class="comment-form mt-30">
-												<h4 class="comment-form-title font-alt">리뷰 작성</h4>
-												<form method="post" action="/product/addReview">
-													<div class="row">
-														<div class="col-sm-4">
-															<div class="form-group">
-																<input type="hidden" name="prodNo" id="prodNo"
-																	value="${product.prodNo}"> <input type="hidden"
-																	name="parentId" id="parentId" value=""> <label
-																	for="username">유저번호</label> <input class="form-control"
-																	type="text" id="userNo" name="userNo"
-																	placeholder="유저번호" required />
-															</div>
-														</div>
-
-														<div class="col-sm-4">
-															<div class="form-group">
-																<label for="prodRevStar">평점</label> <select
-																	class="form-control" id="prodRevStar"
-																	name="prodRevStar" required>
-																	<option selected disabled>평점 선택</option>
-																	<option value="1">1</option>
-																	<option value="2">2</option>
-																	<option value="3">3</option>
-																	<option value="4">4</option>
-																	<option value="5">5</option>
-																</select>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<div class="form-group">
-																<label for="prodRevContent">리뷰 내용</label>
-																<textarea class="form-control" name="prodRevContent"
-																	rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
-															</div>
-														</div>
-														<div class="col-sm-12">
-															<button class="btn btn-round btn-d" type="submit">리뷰
-																작성</button>
-														</div>
-													</div>
-												</form>
-											</div>
+														</c:if>
+													</c:forEach>
+<!-- 수정 폼 -->
+<div id="editReviewForm_${review.prodRevNo}" >
+    <h4 class="comment-form-title font-alt">리뷰 수정</h4>
+    <form method="post" action="/product/updateReview">
+        <input type="hidden" id="edit-review-id" name="prodRevNo" value="${review.prodRevNo}" />
+        <div class="form-group">
+            <label for="edit-review-content">리뷰 내용</label>
+            <textarea class="form-control" id="edit-review-content" name="prodRevContent" rows="4" placeholder="${review.prodRevContent}" required></textarea>
+        </div>
+        <button class="btn btn-round btn-d" type="submit">수정 완료</button>
+    </form>
+</div>
+													</c:forEach>
+												</div>												
 										</div>
-										<!-- 리뷰 끝 -->
-
+										</c:if>
 									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 본문 끝 -->
-						<!-- 사이드 바 시작 -->
-						<div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
-							<div class="widget" style="margin-top: 30px">
-								<h5 class="widget-title font-alt">아무거나</h5>
-								적당히 아무 내용 넣어두기@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@
-								@@@@@@@@@@@@@@@@@@@@@@@@
-							</div>
-							<div class="widget">
-								<h5 class="widget-title font-alt">제품</h5>
-								<div class="row">
-									<div class="col-sm-4">
-										<form method="post" action="/addWishlist">
-											<input type="hidden" name="prod_no" value="${product.prodNo}"> <input
-												type="hidden" name="user_no" value="1">
-											<p style="text-align: right">
-												<button class="btn btn-success btn-circle" type="submit">
-													<i class="fa fa-smile-o"></i> 찜하기
-												</button>
-											</p>
+									<!-- 리뷰가 없는 경우 -->
+									<c:if test="${empty reviewProdNo}">
+										<div id="reviews" class="tab-pane">
+											<h3>등록된 후기</h3>
+											<div class="noRev">아직 등록된 후기가 없습니다.</div>
+										</div>
+									</c:if>
+
+									<!-- 리뷰 등록 -->
+									<div class="comment-form mt-30">
+										<h4 class="comment-form-title font-alt">리뷰 작성</h4>
+										<form method="post" action="/product/addReview">
+											<div class="row">
+												<div class="col-sm-4">
+													<div class="form-group">
+														<input type="hidden" name="prodNo" id="prodNo"
+															value="${product.prodNo}"> <input type="hidden"
+															name="parentId" id="${review.prodRevNo}" value="">
+														<label for="username">유저번호</label> <input
+															class="form-control" type="text" id="userNo"
+															name="userNo" placeholder="유저번호" required />
+													</div>
+												</div>
+
+												<div class="col-sm-4">
+													<div class="form-group">
+														<label for="prodRevStar">평점</label> <select
+															class="form-control" id="prodRevStar" name="prodRevStar"
+															required>
+															<option selected disabled>평점 선택</option>
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-sm-12">
+													<div class="form-group">
+														<label for="prodRevContent">리뷰 내용</label>
+														<textarea class="form-control" name="prodRevContent"
+															rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
+													</div>
+												</div>
+												<div class="col-sm-12">
+													<button class="btn btn-round btn-d" type="submit">리뷰
+														작성</button>
+												</div>
+											</div>
 										</form>
 									</div>
 								</div>
-							</div>
+								<!-- 리뷰 수정 폼 -->
 
-							<!-- 결제 시작 -->
-							<div class="widget">
-								<!-- 폼 태그 시작 -->
-								<form action="payment" method="get">
-									<h5 class="widget-title font-alt">예약하기</h5>
-									<!-- 가격 선택 -->
-									<div>
-										<h5 class="font-alt">가격</h5>
-										<div class="row mb-20">
-											<div class="col-sm-12">
-												<input class="form-control input-lg" type="number"
-													name="price" value="50000" required="required" disabled />
-											</div>
-										</div>
-									</div>
+								<!-- 리뷰 끝 -->
 
-									<!-- 총 인수 선택 -->
-									<div>
-										<h5 class="font-alt">총인수</h5>
-										<div class="row mb-20">
-											<div class="col-sm-12">
-												<input class="form-control input-lg" type="number"
-													name="people" max="6" min="1" required="required" />
-											</div>
-										</div>
-									</div>
-
-
-
-									<!-- 스케줄 선택 -->
-									<div>
-										<h5 class="font-alt">스케줄 선택</h5>
-										<button class="btn btn-secondary dropdown-toggle"
-											type="button" id="dropdownMenuClickableInside"
-											data-bs-toggle="dropdown" data-bs-auto-close="outside"
-											aria-expanded="false" onclick="hoverDateTime()">스케쥴
-											선택 호버</button>
-										<!-- input 창은 여기!! -->
-										<input type="hidden" id="form-date" name="date" /> <input
-											type="hidden" id="form-first-time" name="startTime" /> <input
-											type="hidden" id="form-last-time" name="endTime" />
-
-										<div class="row mb-20" id="timeSelector">
-											<div class="col-sm-12">
-												<!-- 캘린더 -->
-												<div id="calendar" style="width: 350px"></div>
-												<!-- 시간 시작 -->
-
-												<!-- Slider main container -->
-												<div class="swiper-container">
-													<h6>시간을 눌러주세요</h6>
-													<div class="swiper-wrapper">
-														<!-- <div class="swiper-slide">1시 ~ 2시</div> -->
-														<!-- 필요한 만큼 카드를 추가 -->
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="widget" style="margin-top: 30px;">
-										<h4 class="widget-title font-alt">예약 확인</h4>
-
-
-										<h6>날짜 :</h6>
-										<h6 id="final-date"></h6>
-										<h6>시간 :</h6>
-										<h6 id="final-time"></h6>
-										<br />
-									</div>
-									<div class="">
-										<div class="col-sm-12">
-											<input class="btn btn-lg btn-block btn-round btn-b"
-												type="submit">Add To Cart</input>
-											<p id="dateText" style="visibility: hidden"></p>
-											<br />
-											<p id="dayText" style="visibility: hidden"></p>
-										</div>
-									</div>
-								</form>
-								<!-- 폼 태그 끝 -->
 							</div>
 						</div>
-						<!-- 사이드 바 끝 -->
 					</div>
 				</div>
-			</section>
-			<div class="module-small bg-dark">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="widget">
-								<h5 class="widget-title font-alt">About Titan</h5>
-								<p>The languages only differ in their grammar, their
-									pronunciation and their most common words.</p>
-								<p>Phone: +1 234 567 89 10</p>
-								Fax: +1 234 567 89 10
-								<p>
-									Email:<a href="#">somecompany@example.com</a>
-								</p>
+				<!-- 본문 끝 -->
+				<!-- 사이드 바 시작 -->
+				<div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
+					<div class="widget" style="margin-top: 30px">
+						<h5 class="widget-title font-alt">아무거나</h5>
+						적당히 아무 내용 넣어두기@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@
+						@@@@@@@@@@@@@@@@@@@@@@@@
+					</div>
+					<div class="widget">
+						<h5 class="widget-title font-alt">제품</h5>
+						<div class="row">
+							<div class="col-sm-4">
+								<form method="post" action="/addWishlist">
+									<input type="hidden" name="prod_no" value="${product.prodNo}">
+									<input type="hidden" name="user_no" value="1">
+									<p style="text-align: right">
+										<button class="btn btn-success btn-circle" type="submit">
+											<i class="fa fa-smile-o"></i> 찜하기
+										</button>
+									</p>
+								</form>
 							</div>
 						</div>
-						<div class="col-sm-3">
-							<div class="widget">
-								<h5 class="widget-title font-alt">Recent Comments</h5>
-								<ul class="icon-list">
-									<li>Maria on <a href="#">Designer Desk Essentials</a></li>
-									<li>John on <a href="#">Realistic Business Card Mockup</a>
-									</li>
-									<li>Andy on <a href="#">Eco bag Mockup</a></li>
-									<li>Jack on <a href="#">Bottle Mockup</a></li>
-									<li>Mark on <a href="#">Our trip to the Alps</a></li>
-								</ul>
+					</div>
+
+					<!-- 결제 시작 -->
+					<div class="widget">
+						<!-- 폼 태그 시작 -->
+						<form action="payment" method="get">
+							<h5 class="widget-title font-alt">예약하기</h5>
+							<!-- 가격 선택 -->
+							<div>
+								<h5 class="font-alt">가격</h5>
+								<div class="row mb-20">
+									<div class="col-sm-12">
+										<input class="form-control input-lg" type="number"
+											name="price" value="50000" required="required" disabled />
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="widget">
-								<h5 class="widget-title font-alt">Blog Categories</h5>
-								<ul class="icon-list">
-									<li><a href="#">Photography - 7</a></li>
-									<li><a href="#">Web Design - 3</a></li>
-									<li><a href="#">Illustration - 12</a></li>
-									<li><a href="#">Marketing - 1</a></li>
-									<li><a href="#">Wordpress - 16</a></li>
-								</ul>
+
+							<!-- 총 인수 선택 -->
+							<div>
+								<h5 class="font-alt">총인수</h5>
+								<div class="row mb-20">
+									<div class="col-sm-12">
+										<input class="form-control input-lg" type="number"
+											name="people" max="6" min="1" required="required" />
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="widget">
-								<h5 class="widget-title font-alt">Popular Posts</h5>
-								<ul class="widget-posts">
-									<li class="clearfix">
-										<div class="widget-posts-image">
-											<a href="#"><img src="/assets/images/rp-1.jpg"
-												alt="Post Thumbnail" /></a>
-										</div>
-										<div class="widget-posts-body">
-											<div class="widget-posts-title">
-												<a href="#">Designer Desk Essentials</a>
+
+							<!-- 스케줄 선택 -->
+							<div>
+								<h5 class="font-alt">스케줄 선택</h5>
+								<button class="btn btn-secondary dropdown-toggle" type="button"
+									id="dropdownMenuClickableInside" data-bs-toggle="dropdown"
+									data-bs-auto-close="outside" aria-expanded="false"
+									onclick="hoverDateTime()">스케쥴 선택 호버</button>
+								<!-- input 창은 여기!! -->
+								<input type="hidden" id="form-date" name="date" /> <input
+									type="hidden" id="form-first-time" name="startTime" /> <input
+									type="hidden" id="form-last-time" name="endTime" />
+
+								<div class="row mb-20" id="timeSelector">
+									<div class="col-sm-12">
+										<!-- 캘린더 -->
+										<div id="calendar" style="width: 350px"></div>
+										<!-- 시간 시작 -->
+
+										<!-- Slider main container -->
+										<div class="swiper-container">
+											<h6>시간을 눌러주세요</h6>
+											<div class="swiper-wrapper">
+												<!-- <div class="swiper-slide">1시 ~ 2시</div> -->
+												<!-- 필요한 만큼 카드를 추가 -->
 											</div>
-											<div class="widget-posts-meta">23 january</div>
 										</div>
-									</li>
-									<li class="clearfix">
-										<div class="widget-posts-image">
-											<a href="#"><img src="/assets/images/rp-2.jpg"
-												alt="Post Thumbnail" /></a>
-										</div>
-										<div class="widget-posts-body">
-											<div class="widget-posts-title">
-												<a href="#">Realistic Business Card Mockup</a>
-											</div>
-											<div class="widget-posts-meta">15 February</div>
-										</div>
-									</li>
-								</ul>
+									</div>
+								</div>
 							</div>
+
+							<div class="widget" style="margin-top: 30px;">
+								<h4 class="widget-title font-alt">예약 확인</h4>
+
+
+								<h6>날짜 :</h6>
+								<h6 id="final-date"></h6>
+								<h6>시간 :</h6>
+								<h6 id="final-time"></h6>
+								<br />
+							</div>
+							<div class="">
+								<div class="col-sm-12">
+									<input class="btn btn-lg btn-block btn-round btn-b"
+										type="submit">Add To Cart</input>
+									<p id="dateText" style="visibility: hidden"></p>
+									<br />
+									<p id="dayText" style="visibility: hidden"></p>
+								</div>
+							</div>
+						</form>
+						<!-- 폼 태그 끝 -->
+					</div>
+				</div>
+				<!-- 사이드 바 끝 -->
+		</div>
+		</div>
+		</section>
+		<div class="module-small bg-dark">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="widget">
+							<h5 class="widget-title font-alt">About Titan</h5>
+							<p>The languages only differ in their grammar, their
+								pronunciation and their most common words.</p>
+							<p>Phone: +1 234 567 89 10</p>
+							Fax: +1 234 567 89 10
+							<p>
+								Email:<a href="#">somecompany@example.com</a>
+							</p>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="widget">
+							<h5 class="widget-title font-alt">Recent Comments</h5>
+							<ul class="icon-list">
+								<li>Maria on <a href="#">Designer Desk Essentials</a></li>
+								<li>John on <a href="#">Realistic Business Card Mockup</a>
+								</li>
+								<li>Andy on <a href="#">Eco bag Mockup</a></li>
+								<li>Jack on <a href="#">Bottle Mockup</a></li>
+								<li>Mark on <a href="#">Our trip to the Alps</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="widget">
+							<h5 class="widget-title font-alt">Blog Categories</h5>
+							<ul class="icon-list">
+								<li><a href="#">Photography - 7</a></li>
+								<li><a href="#">Web Design - 3</a></li>
+								<li><a href="#">Illustration - 12</a></li>
+								<li><a href="#">Marketing - 1</a></li>
+								<li><a href="#">Wordpress - 16</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="widget">
+							<h5 class="widget-title font-alt">Popular Posts</h5>
+							<ul class="widget-posts">
+								<li class="clearfix">
+									<div class="widget-posts-image">
+										<a href="#"><img src="/assets/images/rp-1.jpg"
+											alt="Post Thumbnail" /></a>
+									</div>
+									<div class="widget-posts-body">
+										<div class="widget-posts-title">
+											<a href="#">Designer Desk Essentials</a>
+										</div>
+										<div class="widget-posts-meta">23 january</div>
+									</div>
+								</li>
+								<li class="clearfix">
+									<div class="widget-posts-image">
+										<a href="#"><img src="/assets/images/rp-2.jpg"
+											alt="Post Thumbnail" /></a>
+									</div>
+									<div class="widget-posts-body">
+										<div class="widget-posts-title">
+											<a href="#">Realistic Business Card Mockup</a>
+										</div>
+										<div class="widget-posts-meta">15 February</div>
+									</div>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-			<hr class="divider-d" />
-			<footer class="footer bg-dark">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-6">
-							Shared by <i class="fa fa-love"></i><a
-								href="https://bootstrapthemes.co">BootstrapThemes</a>
-						</div>
-						<div class="col-sm-6">
-							<div class="footer-social-links">
-								<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
-									class="fa fa-twitter"></i></a><a href="#"><i
-									class="fa fa-dribbble"></i></a><a href="#"><i
-									class="fa fa-skype"></i></a>
-							</div>
+		</div>
+		<hr class="divider-d" />
+		<footer class="footer bg-dark">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						Shared by <i class="fa fa-love"></i><a
+							href="https://bootstrapthemes.co">BootstrapThemes</a>
+					</div>
+					<div class="col-sm-6">
+						<div class="footer-social-links">
+							<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
+								class="fa fa-twitter"></i></a><a href="#"><i
+								class="fa fa-dribbble"></i></a><a href="#"><i
+								class="fa fa-skype"></i></a>
 						</div>
 					</div>
 				</div>
-			</footer>
+			</div>
+		</footer>
 		</div>
 		<div class="scroll-up">
 			<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
@@ -1273,15 +1309,15 @@
       formatDate("${review.prodRevCreateAt}", "formattedReviewDate");
       
       function showReplyForm(parentId) {
-          // parentId를 기반으로 대댓글 작성 폼이 있는지 확인
-          var replyFormId = "replyForm_" + parentId;
-          var replyForm = document.getElementById(replyFormId);
-          if (replyForm.style.display === "none" || replyForm.style.display === "") {
-              replyForm.style.display = "block"; // 대댓글 작성 폼 표시
-          } else {
-              replyForm.style.display = "none"; // 대댓글 작성 폼 숨김
-          }
-      }
+    	    // parentId를 기반으로 대댓글 작성 폼이 있는지 확인
+    	    var replyFormId = "replyForm_" + parentId;
+    	    var replyForm = document.getElementById(replyFormId);
+    	    if (replyForm.classList.contains("hidden")) {
+    	        replyForm.classList.remove("hidden"); // 대댓글 작성 폼 표시
+    	    } else {
+    	        replyForm.classList.add("hidden"); // 대댓글 작성 폼 숨김
+    	    }
+    	}
   </script>
 
 </body>

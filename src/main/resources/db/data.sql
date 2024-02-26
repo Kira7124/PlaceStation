@@ -9,10 +9,10 @@
 
 INSERT INTO prod_Review (prod_no, user_no, prod_rev_content, prod_rev_star, prod_rev_delete_yn, parent_id)
 VALUES 
-(1, 1, '리뷰 내용 1', 5, 'N', 1),
-(1, 1, '리뷰 내용 2', 1, 'N', 2),
-(1, 1, '리뷰 내용 3', 4, 'N', 1),
-(2, 2, '리뷰 내용 4', 4, 'N', 4);
+(1, 1, '리뷰 내용 1', 5, 'N', null),
+(1, 1, '리뷰 내용 2', 1, 'N', null),
+(1, 1, '리뷰 내용 3', 0, 'N', 2),
+(2, 2, '리뷰 내용 4', 4, 'N', null);
 
 
 INSERT INTO member (user_id, user_password, user_address, user_name, user_hp, user_email, user_role,grade,gender) 

@@ -47,7 +47,7 @@ public class ProdReviewService {
 	    return dtos;
 	}
 	
-	// 리뷰 등록 
+	// 답글 등록 
     public void saveReview(ProdReviewDto dto) {
         
         ProdReview prodReview = ProdReview.builder()
@@ -75,11 +75,26 @@ public class ProdReviewService {
                 .parentId(dto.getParentId())
                 .build();
         
-        int result = prodReviewRepository.saveReview(prodReview);
+        int result = prodReviewRepository.addReview(prodReview);
 		// 확인
 		if (result < 1) {
 			throw new CustomRestfulException("리뷰 등록에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
     }
+    // 리뷰 수정
+    public void updateReview(ProdReviewDto dto) {
+    	
+    	ProdReview prodReview = ProdReview.builder()
+    			.prodRevContent(dto.getProdRevContent())
+    			.prodRevStar(dto.getProdRevStar())
+    			.prodNo(dto.getProdNo())
+    			.build();
+    	
+        int result = prodReviewRepository.updateReview(prodReview);
+		// 확인
+		if (result < 1) {
+			throw new CustomRestfulException("리뷰 수정에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
+    }
 }

@@ -9,7 +9,7 @@ CREATE TABLE prod_Review (
     prod_rev_update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     prod_rev_delete_yn VARCHAR(1) DEFAULT 'N',
     prod_rev_delete_at TIMESTAMP,
-    parent_id INT NOT NULL AUTO_INCREMENT
+    parent_id INT DEFAULT NULL
 );
 
 create table product_views (

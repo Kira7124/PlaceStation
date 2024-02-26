@@ -84,6 +84,20 @@ public class ProductController {
         
 	    return "redirect:/product/productDetail?prod_no="+ prodNo;
 	}
+	// 리뷰 수정
+	@PostMapping("/updateReview")
+	public String updateReview(ProdReviewDto dto, @RequestParam("prodNo") Integer prodNo) {
+		dto.setProdNo(prodNo);
+		
+		prodReviewService.updateReview(dto);
+		
+		return "redirect:/product/productDetail?prod_no="+ prodNo;
+	}
+	
+	
+	
+	
+	
 	// 찜(상품 좋아요) 하기
 	@PostMapping("/addWishlist")
 	public String addWishlist() {
