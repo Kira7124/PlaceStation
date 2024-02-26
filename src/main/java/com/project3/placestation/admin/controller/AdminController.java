@@ -338,15 +338,21 @@ public class AdminController {
 		return "admin/adminbannerupdate";
 	}
 
+	
 	// 관리자회원정보수정POST (회원번호를 받아서 조회한다음에, 해당하는 회원의 정보를 전달받아서 수정!)
 	@PostMapping("/admin-update")
 	public String adminupdatePOST(AdminMemberDTO dto) {
+		
+		String filePath = filedbService.saveFiles(dto.getFiles());
+		
 		log.debug("adminupdatePOST실행!");
-		memberService.AdminUpdateMember(dto);
-
+		memberService.AdminUpdateMember(dto,filePath);
+		
 		return "redirect:/admin/admin-member";
 	}
 
+	
+	
 	// admin 사업자update정보수정POST
 	@PostMapping("/admin-bizupdate")
 	public String adminbizupdatePOST(AdminBizDTO dto) {

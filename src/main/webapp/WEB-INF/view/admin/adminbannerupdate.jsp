@@ -35,6 +35,7 @@
 				        </div>
 				    </div>
 				  </div>
+				  
 				  <div class="row" style ="margin-top: 10px;">
 				    <div class="col-md-3">
 				        <label for="name" class="form-label">사진업로드</label>
@@ -44,10 +45,9 @@
 						<input type='file' id='btnAtt' multiple='multiple' name="files">				        
 				    </div>
 				</div>
-				
-		
-		 		
 		      </div>
+		      
+		      
 		    </div>
 		  </div>
 		  
