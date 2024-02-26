@@ -29,7 +29,7 @@
 	
 	<!-- 배너삭제(관리자) -->
 	<delete id ="AdminDeleteBanner">
-		delete from banner where ban_no = #{banno}
+		delete from banner where ban_no = #{banNo}
 	</delete>
 	
 	

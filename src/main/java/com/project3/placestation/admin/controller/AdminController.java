@@ -368,7 +368,11 @@ public class AdminController {
 		return "redirect:/admin/admin-banner";
 
 	}
-
+	
+	
+	
+	
+	
 	// admin 회원delete페이지출력(모달)
 	@GetMapping("/admin-delete")
 	public String admindeleteGET() {
@@ -406,6 +410,16 @@ public class AdminController {
 		return "redirect:/admin/admin-biz";
 	}
 
+	
+	// admin 배너deletePOST실행
+	@PostMapping("/admin-bannerdelete")
+	public String adminbannerdeletePOST(AdminBannerDTO dto) {
+		bannerService.AdminDeleteBanner(dto);
+		log.debug("admindeleteBanner POST 처리!");
+		return "redirect:/admin/admin-banner";
+		
+	}
+	
 	// 관리자 유저관리페이지(검색) 출력
 	@GetMapping("/admin-searchmember")
 	public String adminuserGET(HttpServletRequest request, Criteria cri, Model model) throws Exception {

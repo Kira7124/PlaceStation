@@ -47,5 +47,21 @@ public class BannerService {
 	}
 	
 	
+	//배너리스트 삭제
+	@Transactional
+	public void AdminDeleteBanner(AdminBannerDTO dto) {
+		
+		Banner banner = Banner.builder()
+				.banNo(dto.getBanno())
+				.build();
+		
+		int result = bannerRepository.AdminDeleteBanner(banner);
+		
+	}
+
+	
+	
+	
+	
 	
 }

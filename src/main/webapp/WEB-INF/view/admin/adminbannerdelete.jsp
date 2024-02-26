@@ -20,20 +20,11 @@
 				     </div>
 				    <div class="col-md-5">
 				        <div class="input-box">
-				            <input type="text" class="form-control" name ="bizno" id="user_no_input" >
+				            <input type="text" class="form-control" name ="banno" id="user_no_input" >
 				        </div>
 				    </div>
 				  </div>
-				  <div class="row" style ="margin-top: 10px;">
-				    <div class="col-md-3">
-				        <label for="name" class="form-label">배너명</label>
-				    </div>
-				    <div class="col-md-5">
-				        <div class="input-box">
-				            <input type="text" class="form-control" id="banname" name="banname" placeholder="배너명">
-				        </div>
-				    </div>
-				</div>
+				 
 				
 		      </div>
 		    </div>
