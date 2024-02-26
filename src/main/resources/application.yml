@@ -9,6 +9,9 @@ server:
 
 # JSP, mustache 원하는거 사용
 spring:
+  devtools:
+    restart:
+      enabled: false
   mvc:
     view:
       prefix: /WEB-INF/view/

@@ -101,9 +101,12 @@
 			</select>
 		
 
+	<update id="updateBizByBizId">
+		update biz set
+		biz_brand_name = #{biz.bizBrandName} ,
+		biz_tel = #{biz.bizTel} 
+		where biz_id = #{bizId}
+	</update>
 
-
-
-
-
+  
 </mapper>
