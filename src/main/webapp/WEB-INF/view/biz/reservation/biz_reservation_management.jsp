@@ -47,19 +47,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="history" items="${history}">
+									<c:forEach var="historyDto" items="${history}">
 										<tr>
-											<td>${history.adminHisNo}</td>
-											<td>${history.prodTitle}</td>
-											<td>${history.userName}</td>
-											<td>${history.userGrade}</td>
-											<td>${history.adminHisPrice}</td>
-											<td>${history.peopleCount}명</td>
-											<td>${history.bank}</td>
-											<td>${history.purchaseDate} &nbsp ${history.startTime}:00~
-												${history.endTime}:00</td>
-											<td>${history.adminHisCreatedAt}</td>
-											<td><span class="label label-success">${history.adminHisConfirm}</span></td>
+											<td>${historyDto.adminHisNo}</td>
+											<td>${historyDto.prodTitle}</td>
+											<td>${historyDto.userName}</td>
+											<td>${historyDto.userGrade}</td>
+											<td>${historyDto.adminHisPrice}</td>
+											<td>${historyDto.peopleCount}명</td>
+											<td>${historyDto.bank}</td>
+											<td>${historyDto.purchaseDate}&nbsp
+												${historyDto.startTime}:00 ~ ${historyDto.endTime}:00</td>
+											<td>${historyDto.adminHisCreatedAt}</td>
+											<td><span class="label label-success">${historyDto.adminHisConfirm}</span></td>
 
 											<td><span class="label label-danger" data-toggle="modal"
 												data-target="#exampleModal">환불버튼</span> <!-- Modal -->
@@ -75,17 +75,32 @@
 																	<span aria-hidden="true">&times;</span>
 																</button>
 															</div>
-															<div class="modal-body">
-																<textarea name="" style="width: 100%; height: 200px;"></textarea>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-secondary"
-																	data-dismiss="modal">닫기</button>
-																<button type="button" class="btn btn-primary">환불하기</button>
-															</div>
+															<!-- form 태그 시작 -->
+															<form action="/biz/reservation-management/refund"
+																method="post">
+																<div class="modal-body">
+																	<textarea name="reason"
+																		style="width: 100%; height: 200px;"></textarea>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary"
+																		data-dismiss="modal">닫기</button>
+
+																	<input type="hidden" name="merchantUid"
+																		value="${historyDto.adminHisNo}" /> <input
+																		type="hidden" name="adminHisCreatedAt"
+																		value="${historyDto.adminHisCreatedAt}" /> <input
+																		type="hidden" name="purchaseDate"
+																		value="${historyDto.purchaseDate}" /> <input
+																		type="hidden" name="adminHisPrice"
+																		value="${historyDto.adminHisPrice}" /> <input
+																		type="submit" class="btn btn-primary"></input>
+																</div>
+															</form>
 														</div>
 													</div>
-												</div></td>
+												</div>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>

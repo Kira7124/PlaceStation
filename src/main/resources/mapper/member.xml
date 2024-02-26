@@ -42,6 +42,9 @@
 		b.biz_id as bizId,
 		b.biz_brand_name
 		as bizBrandName,
+		b.imp_uid as impUid,
+		b.imp_key as impKey,
+		b.imp_secret as impSecret,
 		m.user_password as userPassword,
 		m.user_address as
 		userAddress,

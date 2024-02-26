@@ -40,26 +40,31 @@
 		p.prod_title AS prodTitle,
 		pm.category_name AS mainCategory,
 		ps.subcategory_name AS subcategory,
-		h.purchase_date as purchaseDate
+		h.purchase_date as purchaseDate,
+		h.token as token
 		FROM
 		admin_prod_history h
 		LEFT JOIN biz b
-		ON h.admin_his_seller_id =
+		ON
+		h.admin_his_seller_id =
 		b.biz_id
 		LEFT JOIN product p
-		ON h.admin_his_prod_no = p.prod_no
+		ON
+		h.admin_his_prod_no = p.prod_no
 		LEFT JOIN
 		member m
-		ON h.admin_his_buyer_id = m.user_no
+		ON
+		h.admin_his_buyer_id = m.user_no
 		LEFT JOIN
 		prod_major_category pm
-		ON pm.category_id = p.prod_major_category_id
+		ON
+		pm.category_id = p.prod_major_category_id
 		LEFT JOIN prod_subcategory
 		ps
 		ON ps.category_id = p.prod_subcategory_id
 		WHERE
-		h.admin_his_seller_id = #{bizId}
-		order by h.admin_his_created_at
+		h.admin_his_seller_id =
+		#{bizId}
 		LIMIT
 		#{pageReq.page} *
 		#{pageReq.size},#{pageReq.size}
@@ -198,9 +203,11 @@
 
 	<select id="findUserPointByBuyerId"
 		resultType="com.project3.placestation.payment.model.dto.AdminHisPointDto">
-		select sum(admin_his_save_point) as userSavePoint, admin_his_buyer_id as adminHisBuyerId
+		select sum(admin_his_save_point) as userSavePoint,
+		admin_his_buyer_id as adminHisBuyerId
 		from admin_prod_history
-		where admin_his_buyer_id = #{buyerId}
+		where
+		admin_his_buyer_id = #{buyerId}
 		group by admin_his_buyer_id
 	</select>
 
@@ -234,4 +241,9 @@
 		#{token}
 		)
 	</insert>
+	
+	<select id="getToken">
+	select token from admin_prod_history
+	where admin_his_no = #{merchantUid}
+	</select>
 </mapper>

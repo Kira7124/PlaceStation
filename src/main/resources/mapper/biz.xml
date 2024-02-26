@@ -7,7 +7,10 @@
 	<update id="updateBizByBizId">
 		update biz set
 		biz_brand_name = #{biz.bizBrandName} ,
-		biz_tel = #{biz.bizTel} 
+		biz_tel = #{biz.bizTel} ,
+		imp_uid = #{biz.impUid},
+		imp_key = #{biz.impKey},
+		imp_secret = #{biz.impSecret}
 		where biz_id = #{bizId}
 	</update>
 	

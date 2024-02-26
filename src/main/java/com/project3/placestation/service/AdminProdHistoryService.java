@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.BizHistoryDto;
+import com.project3.placestation.biz.model.dto.DbToken;
 import com.project3.placestation.biz.model.dto.ResScheduleDto;
 import com.project3.placestation.biz.model.dto.ScheduleDto;
 import com.project3.placestation.biz.model.dto.StatisticDto;
@@ -228,5 +229,14 @@ public class AdminProdHistoryService {
 	 */
 	public AdminHisPointDto findUserPointByBuyerId(int buyrId) {
 		return adminProdHistoryRepository.findUserPointByBuyerId(buyrId);
+	}
+	
+	/**
+	 * 토큰 정보 가져오기
+	 * @param merchantUid
+	 * @return
+	 */
+	public DbToken getToken(String merchantUid) {
+		return adminProdHistoryRepository.getToken(merchantUid);
 	}
 }

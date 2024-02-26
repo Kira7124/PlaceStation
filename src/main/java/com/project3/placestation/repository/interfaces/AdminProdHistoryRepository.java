@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.project3.placestation.biz.model.dto.BizHistoryDto;
+import com.project3.placestation.biz.model.dto.DbToken;
 import com.project3.placestation.biz.model.dto.ResScheduleDto;
 import com.project3.placestation.biz.model.dto.StatisticDto;
 import com.project3.placestation.biz.model.util.PageReq;
@@ -40,4 +41,7 @@ public interface AdminProdHistoryRepository {
 	
 	// 유저의 포인트 내역 확인
 	public AdminHisPointDto findUserPointByBuyerId(int buyerId);
+	
+	// 토큰 정보 빼오기
+	public DbToken getToken(String merchantUid);
 }

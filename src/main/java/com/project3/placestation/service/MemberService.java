@@ -68,11 +68,12 @@ public class MemberService {
 	}
 	
 	// 사업자 유저 정보 변경
-	public void BizUpdateMember(ReqBizAccountDto accountDto ,int userNo) {
+	public int BizUpdateMember(ReqBizAccountDto accountDto ,int userNo) {
 		int result = memberRepository.BizUpdateMember(accountDto , userNo);
 		if(result < 1) {
 			throw new CustomRestfulException("유저 정보를 변경하는 도중 서버 에러가 발생하였습니다. ", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		return result;
 	}
 	
 	// 비밀번호 체크
