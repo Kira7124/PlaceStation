@@ -23,6 +23,7 @@
 						<thead>
 							<tr>
 								<th>배너번호</th>
+								<th>배너명</th>
 								<th>사진</th>
 								<th>수정/삭제</th>
 							</tr>
@@ -31,6 +32,7 @@
 						<tbody>
 							<tr>
 								<td>${bannerlist.banNo}</td>
+								<td>${bannerlist.banName}</td>
 								<td>
 								   <img src="${bannerlist.filePath}" style="width: 500px; height: 100px;">
 								</td>
