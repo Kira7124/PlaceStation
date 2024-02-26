@@ -16,7 +16,9 @@ body {
 
 img {
   max-width: 100%;
+  height: auto;
   height: 300px;
+
 }
 
 iframe {
@@ -163,6 +165,7 @@ a,
 .module,
 .module-small {
   position: relative;
+  padding: 140px 0;
   padding: 70px 0;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -646,6 +649,28 @@ a,
 /*--------------------------------------------------------------
 	Buttons
 --------------------------------------------------------------*/
+.login-btn{
+  border-radius: 0;
+  font-family: "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  padding: 8px 17% !important;
+  border: none;
+  background-color: #111;
+}
+.terms-btn{
+  border-radius: 0;
+  font-family: "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  padding: 8px 13% !important;
+  border: none;
+  background-color: #111;
+}
+
+
 .btn {
   border-radius: 0;
   font-family: "Roboto Condensed", sans-serif;
@@ -655,6 +680,7 @@ a,
   padding: 8px 37px;
 }
 
+
 .btn.active.focus,
 .btn.active:focus,
 .btn.focus,
@@ -663,6 +689,7 @@ a,
 .btn:focus {
   outline: 0;
 }
+
 
 .btn.btn-round {
   border-radius: 2px;
@@ -1063,7 +1090,6 @@ Hero Slider
   display: none;
   -webkit-backface-visibility: hidden;
 }
-
 
 .hero-slider,
 .hero-slider .flex-viewport {

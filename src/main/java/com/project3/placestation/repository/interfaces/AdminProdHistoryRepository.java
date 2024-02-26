@@ -35,7 +35,7 @@ public interface AdminProdHistoryRepository {
 
 	// 상품 시간 제한
 	public List<ProductInvalidDateDto> findProductInvalidByProdNo(@Param("prodNo")int prodNo , @Param("date") String date);
-	
+
 	// 거래 내역 저장
 	public int save(AdminProdHistory adminProdHistory);
 	

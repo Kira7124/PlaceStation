@@ -101,6 +101,7 @@ create table biz (
     biz_balance int,
     file_path varchar (1000),
     biz_tel varchar (20) ,
+    biz_email varchar (50),
     imp_uid varchar ( 100 ) ,
     imp_key varchar (100),
     imp_secret varchar (300)

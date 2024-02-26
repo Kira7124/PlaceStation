@@ -407,4 +407,5 @@ insert into company values ('PlaceStation' , '부산광역시 부산진구 중�
 );
 
 
+insert into prod_subcategory (main_category_id , subcategory_name) values (3, '도서관');
 
