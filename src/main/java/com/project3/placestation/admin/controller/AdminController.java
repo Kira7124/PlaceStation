@@ -100,7 +100,7 @@ public class AdminController {
 	public String tododeleteGET() {
 		log.debug("todo삭제페이지출력!");
 		return "admin/admintododelete";
-
+		
 	}
 
 	// todo 삭제 post
