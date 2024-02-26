@@ -66,8 +66,8 @@ public class CsService {
 			}
 			
 		// FAQ 특정 글 조회(글 번호 사용)
-		public CsQnaBoard detailFaqBoard(Integer qbno) throws Exception{
-			return csQnaBoardRepository.DetailQnaBoard(qbno);
+		public CsFaqBoard detailFaqBoard(Integer qbno) throws Exception{
+			return csFaqBoardRepository.DetailFaqBoard(qbno);
 		}
 			
 	 

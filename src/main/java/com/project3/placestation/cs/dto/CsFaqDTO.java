@@ -12,16 +12,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CsFaqDTO {
-	
-	private Integer fbno;
-	private Integer fwriterid;
-	private String fwritercontent;
-	private String ftitle;
-	private String filepath;
-	private Timestamp fregdate;
-	private Timestamp fupdateat;
-	private Timestamp fdeleteat;
-	private Integer categoryid;
-	private Integer fanswerid;
-	private String fanswercontent;
+	private Integer fBno;
+	private Integer fWriter;
+	private String fContent;
+	private String fTitle;
+	private String filePath;
+	private Timestamp fRegdate;
+	private Timestamp fUpdatedate;
+	private Timestamp fDeleteat;
+	private Integer categoryId;
+
 }

@@ -409,3 +409,5 @@ insert into company values ('PlaceStation' , '부산광역시 부산진구 중�
 
 insert into prod_subcategory (main_category_id , subcategory_name) values (3, '도서관');
 
+INSERT INTO FAQ_BOARD(F_BNO, F_WRITER, F_CONTENT, F_TITLE)VALUES (1, 1, '로그인 하고 싶어요', '로그인이 안 돼요');
+

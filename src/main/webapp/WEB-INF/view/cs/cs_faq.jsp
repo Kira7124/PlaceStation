@@ -24,7 +24,7 @@
 						<div class="comments"></div>
 						<div>
 							<div class="panel panel-default">
-							<c:forEach var="noticeList" items="${faqList}">
+							<c:forEach var="faqList" items="${faqList}">
 								<div class="panel-heading">
 									<h4 class="panel-title font-alt">
 										<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#support${faqList.fbno}">

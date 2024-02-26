@@ -179,8 +179,7 @@ CREATE TABLE qna_board (
   q_status VARCHAR(10) NULL DEFAULT '진행',
   q_reply VARCHAR(400) NULL
   );
-<<<<<<< HEAD
-  
+
 create table faq_board (
 f_bno int not null primary key auto_increment,
 f_writer int not null,
@@ -192,6 +191,4 @@ f_updatedate timestamp  DEFAULT now(),
 f_delete_at timestamp  DEFAULT now(),
 category_id int
 );
-=======
 
->>>>>>> origin/paymentsh

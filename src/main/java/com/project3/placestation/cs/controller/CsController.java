@@ -57,6 +57,7 @@ public class CsController {
 		
 		// FAQ 리스트 출력
 		List<CsFaqBoard> result3 = csService.CsFaqBoardListAll();
+		log.info(result3.toString());
 		model.addAttribute("faqList", result3);
 		
 		return "cs/cs_faq";

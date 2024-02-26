@@ -12,17 +12,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CsFaqBoard {
-
 	private Integer fbno;
-	private Integer fwriterid;
-	private String fwritercontent;
+	private Integer fwriter;
+	private String fcontent;
 	private String ftitle;
 	private String filepath;
 	private Timestamp fregdate;
-	private Timestamp fupdateat;
+	private Timestamp fupdatedate;
 	private Timestamp fdeleteat;
 	private Integer categoryid;
-	private Integer fanswerid;
-	private String fanswercontent;
 
 }
