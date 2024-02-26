@@ -1,10 +1,8 @@
 package com.project3.placestation.config.jwt;
 
 
-import java.security.SignatureException;
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -37,6 +35,7 @@ public String generateJwtToken(Authentication authentication) {
 //    내용 : 데이터(subject(주체(이름))), 토큰발급대상(issuedAt), 만료기간(expiration), 토큰수령자
 //    서명 : Jwts.builder().signWith(암호화알고리즘, 비밀키값)
 //    생성 : Jwts.builder().compact()
+    System.out.println("토큰 발행");
     return Jwts.builder()
         .setSubject((userPrincipal.getEmail()))
         .setIssuedAt(new Date())
@@ -62,6 +61,8 @@ public String getUserNameFromJwtToken(String token) {
   @SuppressWarnings("deprecation")
 public boolean validateJwtToken(String authToken) {
     try {
+    	System.out.println("validateJwtToken");
+    	
       Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
       return true;
     } 

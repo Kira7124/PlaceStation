@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper
 	namespace="com.project3.placestation.repository.interfaces.ProductRepository">
+
+	<!-- 상품 리스트 출력 -->
+	<select id="findAll">
+		SELECT * FROM product where prod_delete_yn = 'N';
+	</select>
+
+
+	<!-- 리뷰 수 많은 상품 -->
+	<select id="findAllByRev">
+		SELECT p.*, COUNT(r.prod_rev_no) as review_count
+		FROM
+		product p
+		LEFT JOIN prod_review r ON p.prod_no = r.prod_no
+		WHERE
+		p.prod_delete_yn = 'N'
+		GROUP BY p.prod_no
+		ORDER BY review_count DESC
+		LIMIT 8
+	</select>
+
+	<!-- 평점 높은 상품 -->
+	<select id="findAllByStar">
+		SELECT p.*, AVG(r.prod_rev_star) as average_rating
+		FROM product p
+		LEFT JOIN prod_review r ON p.prod_no = r.prod_no
+		WHERE
+		p.prod_delete_yn = 'N'
+		GROUP BY p.prod_no
+		ORDER BY average_rating DESC
+		LIMIT 8
+	</select>
+
+	<!-- 상품 최신 순서 -->
+	<select id="findAllByStart">
+		SELECT *
+		FROM product
+		WHERE prod_delete_yn = 'N'
+		ORDER
+		BY prod_update_at DESC
+		LIMIT 8
+	</select>
+
 
 	<insert id="saveProduct">
 		insert into product (prod_writer_no , prod_title ,
@@ -61,7 +104,7 @@
 			file_path = #{product.filePath}
 		</if>
 		where
-		prod_no = #{product.prodNo};
+		prod_no = #{product.prodNo}
 	</update>
 
 	<update id="deleteProduct">
@@ -70,15 +113,18 @@
 		prod_update_at = now(),
 		prod_delete_yn = 'Y',
 		prod_delete_at = now(),
-		prod_delete_reason = #{prodDeleteReason}
+		prod_delete_reason =
+		#{prodDeleteReason}
 		where
-		prod_no = #{prodNo};
+		prod_no = #{prodNo}
 	</update>
 
-	<select id="findAll"
+	<select id="findAllByUserId"
 		resultType="com.project3.placestation.repository.entity.Product">
 		select * from product
-		where prod_delete_yn = 'N';
+		where prod_delete_yn = 'N'
+		and
+		prod_writer_no = #{userId}
 	</select>
 
 	<select id="findById"
@@ -88,4 +134,7 @@
 		and
 		prod_delete_yn = 'N'
 	</select>
+	
+
+
 </mapper>

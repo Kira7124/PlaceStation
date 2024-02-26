@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< HEAD
 	<list key="installedFeatures">
 		<item value="org.eclipse.buildship:3.1.8.v20231117-1658"/>
 		<item value="org.eclipse.egit.gitflow.feature:6.8.0.202311291450-r"/>
@@ -42,6 +43,15 @@
 	</section>
 	<section name="WORKBENCH_SETTINGS">
 		<list key="ENABLED_TRANSFERS">
+=======
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\team\PlaceStation"/>
+>>>>>>> 1581b740287ea876a909c30e036fc398294eeac4
 		</list>
 	</section>
 </section>

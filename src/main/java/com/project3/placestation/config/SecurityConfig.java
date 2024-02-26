@@ -1,12 +1,14 @@
 package com.project3.placestation.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -20,9 +22,7 @@ import com.project3.placestation.config.jwt.UserDetailsServiceImpl;
 
 @Configuration //configuration 클래스로 등록하기 위한 annotation
 @EnableWebSecurity // spring security 에서도 관리되게 된다.
-public class SecurityConfig {
-
-	
+public class SecurityConfig  {	
 	
     @Autowired
     UserDetailsServiceImpl userDetailsService;  // DB 조회 함수 객체
@@ -32,10 +32,10 @@ public class SecurityConfig {
     
     
     //  JWT 토큰 필터 객체 생성
-    @Bean
-    public AuthTokenFilter authenticationJwtTokenFilter() {
-        return new AuthTokenFilter();
-    }
+   @Bean
+   public AuthTokenFilter authenticationJwtTokenFilter() {
+      return new AuthTokenFilter();
+  }
     
     //  DB 에서 가져온 정보와 input 된 정보를 비교하는 함수
     @Bean
@@ -55,31 +55,35 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-
+    /*
+     * 스프링 시큐리티 룰을 무시하게 하는 Url 규칙(여기 등록하면 규칙 적용하지 않음)
+     */
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("assets/**","/js/**", "/images/**", "/css/**");
+    }
+    
     @Bean
     public SecurityFilterChain securityFilter(HttpSecurity http)throws Exception{
         http
         .csrf((auth) -> auth.disable());
-        
 
-        
         
         http
                 // SpringBoot 3.1버전 부터 람다식으로 작성 해야한다.
                 .authorizeHttpRequests((auth) -> auth
 //                        .requestMatchers("/member/main").hasRole("USER")
-                		.requestMatchers("/**").permitAll() // 본인 requsetMapping 하위로 경로 열기/
-                        .anyRequest()
-                        .authenticated()    // anyRequest로 requestMatchers 에서 처리하지 못한 경로들에 대해 한번에 처리 가능.
+                		.requestMatchers("/member/main").authenticated()
+                		 .anyRequest().permitAll() // 본인 requsetMapping 하위로 경로 열기/
                 );
 
-        http.authenticationProvider(authenticationProvider()); // DB와 입력값(id, pwd) 비교
 
         http
              // X-Frame-Options 비활성화 h2를 열기 위해 설정
             .headers(header -> header
                 .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
 
+    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 토큰 필터 적용
         http
                 .formLogin((auth) -> auth.loginPage("/member/login")
                         .loginProcessingUrl("/loginProc")
@@ -96,11 +100,12 @@ public class SecurityConfig {
 	        			.permitAll()
 	        			);
 
+		/*
+		 * http .rememberMe((auth) -> auth.key("userId")
+		 * .rememberMeParameter("rememberMe") .tokenValiditySeconds(3600*24*365) // 토큰
+		 * 유지기간 1년 .userDetailsService(userDetailsService));
+		 */
 
-      
-
-
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 토큰 필터 적용
 
 
         return http.build(); // HttpSecurity를 빌더 타입으로 리턴 해준다.

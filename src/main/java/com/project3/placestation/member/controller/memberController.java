@@ -15,15 +15,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project3.placestation.config.jwt.JwtUtils;
 import com.project3.placestation.config.jwt.UserDetailsImpl;
+import com.project3.placestation.member.dto.MemberLoginDto;
 import com.project3.placestation.member.dto.RequestJoinDTO;
 import com.project3.placestation.member.dto.bizJoinDTO;
 import com.project3.placestation.repository.entity.BizJoin;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/member")
 @Controller
+@Slf4j
 public class memberController {
 
 	@Autowired
@@ -37,19 +41,9 @@ public class memberController {
 
 	@GetMapping("/login")
 	public String login(Model model) {
-		/*
-		 * String id = SecurityContextHolder.getContext().getAuthentication().getName();
-		 * Authentication authentication =
-		 * SecurityContextHolder.getContext().getAuthentication();
-		 * 
-		 * Collection<? extends GrantedAuthority> authorities =
-		 * authentication.getAuthorities(); Iterator<? extends GrantedAuthority> iter =
-		 * authorities.iterator(); GrantedAuthority auth = iter.next(); String role =
-		 * auth.getAuthority();
-		 * 
-		 * model.addAttribute("id", id); model.addAttribute("role", role);
-		 */
-
+		if(httpSession.getAttribute("user") != null) {
+		
+		}
 		return "member/login";
 	}
 
@@ -59,6 +53,12 @@ public class memberController {
 		return "member/mypage_history";
 	}
 
+	
+	/*
+	 * mypage의 메인
+	 * http://localhost/member/main
+	 *  
+	 * */
 	@GetMapping("/main")
 	public String myPageMain(Model model) {
 
@@ -74,8 +74,16 @@ public class memberController {
 		String role = auth.getAuthority();
 
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-		httpSession.setAttribute("user", userDetails);
+		
+		String jwt = jwtUtils.generateJwtToken(authentication);
+		
+		MemberLoginDto member = MemberLoginDto
+				.builder().token(jwt)
+				.userNo(userDetails.getUserNo())
+				.userId(userDetails.getEmail())
+				.build();
+		
+		httpSession.setAttribute("member", member);
 
 		System.out.println("디테일 : " + authentication.getDetails());
 		System.out.println("이름 :" + authentication.getName());
@@ -83,13 +91,6 @@ public class memberController {
 		System.out.println("유저 정보 : " + userDetails.getUsername());
 		System.out.println("유저 이메일(id) : " + userDetails.getEmail());
 		System.out.println("유저 password: " + userDetails.getPassword());
-		String jwt = jwtUtils.generateJwtToken(authentication);
-
-		httpSession.setAttribute("jtw", jwt);
-		String sessionJwt = (String) httpSession.getAttribute("jtw");
-
-		System.out.println("존맛탱 통과 : " + jwt);
-		System.out.println("세션 존맛탱 통과 : " + sessionJwt);
 
 		System.out.println("s회원가입 아이디: " + id);
 		System.out.println("s회원가입 롤: " + role);
@@ -97,8 +98,20 @@ public class memberController {
 		model.addAttribute("role", role);
 		model.addAttribute("id", id);
 
-		return "redirect:member/mypage_main";
+		return "member/mypage_main";
 	}
+	
+	
+	@GetMapping("/member/mypage-main") 
+	public String mypageForm (){
+		log.info("mypage Form");
+		MemberLoginDto dto=  (MemberLoginDto) httpSession.getAttribute("member");
+		if(dto == null ) {
+			return "redirect:/member/login";
+		}
+		return "member/mypage_main";
+	}
+	
 
 	@GetMapping("/qna")
 	public String myPageQna() {
@@ -161,7 +174,7 @@ public class memberController {
 	private MemberService memberService;
 
 	@GetMapping("/management")
-	public String bizList(bizJoinDTO bizId, Model model) {
+	public String bizList(int bizId, Model model) {
 
 		/*
 		 * User principal = (User)session.getAttribute(Define.PRINCIPAL); if(principal

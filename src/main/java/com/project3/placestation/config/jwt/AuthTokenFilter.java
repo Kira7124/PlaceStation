@@ -3,12 +3,16 @@ package com.project3.placestation.config.jwt;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.project3.placestation.member.dto.MemberLoginDto;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -47,10 +51,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 //   3. 조회된 유저를 인증된 유저로 해서 홀더에 넣음
 			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
 //     웹토큰에서 유저 id 꺼냄
-				String email = jwtUtils.getUserNameFromJwtToken(jwt);
-
+				String id = jwtUtils.getUserNameFromJwtToken(jwt);
+				System.out.println("id : " + id);
 //     유저 id로 db 조회해서 userDetails에 넣음
-				UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+				UserDetails userDetails = userDetailsService.loadUserByUsername(id);
 //   인증된 객체로 반환 : new UsernamePasswordAuthenticationToken() 매개변수 3개짜리 생성자 효출하면 강제 인증 성공 authenticated = true 로 설정됨
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 						userDetails, null, userDetails.getAuthorities());
@@ -72,12 +76,22 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 //"Authorization" 다음 문자열이 있으면 7부터 헤더의 길이만큼 잘라서 리턴함
 	private String parseJwt(HttpServletRequest request) {
 // String headerAuth = request.getHeader("Authorization");
-		String sessionJwt = (String) httpSession.getAttribute("jtw");
-
-		if (sessionJwt == null) {
+		System.out.println("토큰 parseJwt 가 작동");
+		MemberLoginDto sessionMemeber = (MemberLoginDto) httpSession.getAttribute("member");
+		
+		if(sessionMemeber == null) {
 			return null;
 		}
-		System.out.println("토큰토큰토늨치ㅏㄴ뮈차누미 : " + sessionJwt);
-		return sessionJwt;
+		
+		if (sessionMemeber.getToken() == null) {
+			return null;
+		}
+		System.out.println("토큰토큰토늨치ㅏㄴ뮈차누미 : " + sessionMemeber.getToken());
+		return sessionMemeber.getToken();
 	}
+	
+    @Override
+    protected boolean shouldNotFilterAsyncDispatch() {
+        return true;
+    }
 }
