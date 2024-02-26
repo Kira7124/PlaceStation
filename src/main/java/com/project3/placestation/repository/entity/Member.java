@@ -23,11 +23,12 @@ public class Member {
 	private String userhp;
 	private String useremail;
 	private Integer userpoint;
-	private String originimg;
-	private String uploadimg;
+	private String filepath;
 	private Timestamp joinat;
 	private String userrole;
 	private String grade;
 	private String gender;
+	private String token;
+	private String oauth;
 
 }
