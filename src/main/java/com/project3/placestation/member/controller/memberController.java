@@ -174,7 +174,7 @@ public class memberController {
 	private MemberService memberService;
 
 	@GetMapping("/management")
-	public String bizList(bizJoinDTO bizId, Model model) {
+	public String bizList(int bizId, Model model) {
 
 		/*
 		 * User principal = (User)session.getAttribute(Define.PRINCIPAL); if(principal

@@ -15,72 +15,117 @@
 				<div class="container-fluid">
 
 			<div class="panel">
-				<div class="panel-heading">
-					<h3 class="panel-title">1:1문의관리</h3>
-					<div class="right">
-						<button type="button" class="btn-toggle-collapse">
-							<i class="lnr lnr-chevron-up"></i>
-						</button>
-						<button type="button" class="btn-remove">
-							<i class="lnr lnr-cross"></i>
-						</button>
-					</div>
+			
+				<div style="display: flex;">
+				    <div>
+				        <div class="panel-heading">
+				            <h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>1:1문의</b></h3>
+				        </div>
+				    </div>
+				   <form action="/admin/admin-searchqna" method="get">
+					    <div>
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
+					        			<option value="q_title">제목</option>
+								        <option value="q_writer">글쓴이</option>
+								        <option value="q_bno">글번호</option>
+								        <option  value="q_status">상태</option>
+				   				</select>
+					            <input type="text" name="searchKeyword" class="form-control" placeholder="키워드입력">
+					            <span class="input-group-btn">
+					                <button type="submit" class="btn btn-primary" >검색</button>
+					            </span>
+					        </div>
+					    </div>
+				    </form> 
 				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				<div class="panel-body no-padding">
 					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
 								<th>번호</th>
-								<th>제목</th>
 								<th>글쓴이</th>
+								<th>제목</th>
 								<th>등록일</th>
-								<th>수정</th>
-								<th>삭제</th>
+								<th>답변</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td><a href="#">763648</a></td>
-								<td>Steve</td>
-								<td>$122</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763648</a></td>
-								<td>Steve</td>
-								<td>$122</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>							
-							</tr>
-							<tr>
-								<td><a href="#">763648</a></td>
-								<td>Steve</td>
-								<td>$122</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763648</a></td>
-								<td>Steve</td>
-								<td>$122</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763648</a></td>
-								<td>Steve</td>
-								<td>$122</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-							</tr>
-						</tbody>
+					
+						<c:forEach var="qnalist" items="${qnalist}">
+							<tbody>
+								<tr>
+									<td>${qnalist.qbno}</td>
+									<td>${qnalist.qwriter}</td>
+									<td><a href="/admin/admin-qnadetail?qbno=${qnalist.qbno}">${qnalist.qtitle}</a></td>
+									<td>${qnalist.formatjoinAt()}</td>							
+									<td>
+										<c:choose>
+											<c:when test="${qnalist.qstatus == '진행'}">
+												<span class="label label-success">진행</span>
+											</c:when>
+											<c:otherwise>
+												<span class="label label-danger">완료</span>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<!-- <span class="label label-success">진행</span> -->
+									<!-- <span class="label label-danger">완료</span> -->
+								</tr>
+							</tbody>
+						</c:forEach>
 					</table>
+					
+					
+					<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
+						<ul class="pagination">
+							<c:if test="${pageVO.prev }">
+								<li class="page-item">
+								  <a class="page-link" href="/admin/admin-qna?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  </a>
+								</li>
+							</c:if>
+
+
+					
+						<c:forEach var="i" begin="${pageVO.startPage }"
+								end="${pageVO.endPage }" step="1">
+								<c:set var="isActive" value="${pageVO.cri.page == i}" />
+								<li class="page-item ${isActive ? 'active' : ''}"><a
+									class="page-link" href="/admin/admin-qna?page=${i}"
+									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
+										${i} </a></li>
+							</c:forEach>
+
+
+				
+							<c:if test="${pageVO.next }">
+								<li class="page-item"><a class="page-link"
+									href="/admin/admin-qna?page=${pageVO.endPage + 1 }"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</c:if>
+
+						</ul>
+					</nav>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->

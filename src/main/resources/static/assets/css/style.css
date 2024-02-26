@@ -17,6 +17,8 @@ body {
 img {
   max-width: 100%;
   height: auto;
+  height: 300px;
+
 }
 
 iframe {
@@ -164,6 +166,7 @@ a,
 .module-small {
   position: relative;
   padding: 140px 0;
+  padding: 70px 0;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
@@ -646,7 +649,6 @@ a,
 /*--------------------------------------------------------------
 	Buttons
 --------------------------------------------------------------*/
-
 .login-btn{
   border-radius: 0;
   font-family: "Roboto Condensed", sans-serif;
@@ -668,6 +670,7 @@ a,
   background-color: #111;
 }
 
+
 .btn {
   border-radius: 0;
   font-family: "Roboto Condensed", sans-serif;
@@ -676,7 +679,6 @@ a,
   font-size: 11px;
   padding: 8px 37px;
 }
-
 
 
 .btn.active.focus,
@@ -688,8 +690,9 @@ a,
   outline: 0;
 }
 
+
 .btn.btn-round {
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 .btn.btn-circle {
@@ -1393,12 +1396,12 @@ General Styles - Owlcarousel
 	Header
 --------------------------------------------------------------*/
 .home-section {
-  position: relative;
+  /* position: relative; */
   background-color: #fff;
   background-repeat: no-repeat;
-  background-position: center center;
-  width: 100%;
-  z-index: 0;
+  /* background-position: center center; */
+  width: 30%;
+  height: 100px;
   background-size: cover;
 }
 

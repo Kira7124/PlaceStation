@@ -16,7 +16,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 public class AdminMemberDTO {
-
 	private Integer userno;
 	private String userid;
 	private String userpassword;
@@ -26,12 +25,11 @@ public class AdminMemberDTO {
 	private String useremail;
 	private Integer userpoint;
 	private MultipartFile customFile;
+	private String searchKeyword;
+	private String searchOption;
 	private String originimg;
 	private String uploadimg;
 	private Timestamp joinat;
 	private String role;
 	private String grade;
-
-
-
 }
