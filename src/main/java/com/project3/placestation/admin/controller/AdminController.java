@@ -18,6 +18,7 @@ import com.project3.placestation.admin.dto.AdminTodoDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.admin.dto.PageVO;
 import com.project3.placestation.admin.dto.TodoCriteria;
+import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.repository.entity.Biz;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.entity.NoticeBoard;
@@ -38,6 +39,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/admin")
 public class AdminController {
 	
+	@Autowired
+	private FiledbService filedbService;
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -160,6 +163,8 @@ public class AdminController {
 		pageVO.setTotalCount(bizService.countMember());
 		
 		model.addAttribute("pageVO", pageVO);
+		
+			
 		
 		List<Biz> result = bizService.BizAll(cri);
 		

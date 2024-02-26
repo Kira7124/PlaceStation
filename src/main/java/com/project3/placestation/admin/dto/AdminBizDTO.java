@@ -1,6 +1,7 @@
 package com.project3.placestation.admin.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,6 +29,6 @@ public class AdminBizDTO {
 	private Timestamp outat;
 	private Integer fileno;
 	private String biztel;
-	
+	private List<MultipartFile> files; // 파일 url
 	
 }
