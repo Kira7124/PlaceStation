@@ -22,13 +22,9 @@
 					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
-								<th>상품명</th>
-								<th>아이디</th>
-								<th>금액</th>
-								<th>이메일</th>
-								<th>은행</th>
-								<th>예약일</th>
-								<th>환불</th>
+								<th>배너번호</th>
+								<th>사진</th>
+								<th>수정/삭제</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -36,46 +32,6 @@
 								<td><a href="#">763648</a></td>
 								<td>Steve</td>
 								<td>$122</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763649</a></td>
-								<td>Amber</td>
-								<td>$62</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763650</a></td>
-								<td>Michael</td>
-								<td>$34</td>
-								<td>Oct 18, 2016</td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763651</a></td>
-								<td>Roger</td>
-								<td>$186</td>
-								<td>Oct 17, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763652</a></td>
-								<td>Smith</td>
-								<td>$362</td>
-								<td>Oct 16, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
 							</tr>
 						</tbody>
 					</table>
