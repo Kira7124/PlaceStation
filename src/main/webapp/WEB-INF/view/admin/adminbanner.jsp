@@ -34,7 +34,14 @@
 								<td>${bannerlist.banNo}</td>
 								<td>${bannerlist.banName}</td>
 								<td>
-								   <img src="${bannerlist.filePath}" style="width: 500px; height: 100px;">
+								    <c:choose>
+								        <c:when test="${bannerlist.filePath eq 'defaultbanner.jpg'}">
+								            <img src="/assets/img/defaultbanner.jpg" style="width: 500px; height: 100px;">
+								        </c:when>
+								        <c:otherwise>
+								            <img src="${bannerlist.filePath}" style="width: 500px; height: 100px;">
+								        </c:otherwise>
+								    </c:choose>
 								</td>
 								<td>
 									<a href="/admin/admin-bannerupdate" data-toggle="modal" data-target="#bannerupdateModal">

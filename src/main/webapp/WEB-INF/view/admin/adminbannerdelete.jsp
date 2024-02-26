@@ -12,7 +12,7 @@
 		    </div>
 		    <div class="col-md-8">
 		      <div class="card-body">
-		        <h3 class="card-title">사업자정보삭제처리</h3>
+		        <h3 class="card-title">배너삭제처리</h3>
 		        
 		 		  <div class="row" style ="margin-top: 30px;">
 		        	 <div class="col-md-3">
