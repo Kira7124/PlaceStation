@@ -14,7 +14,7 @@
 			<div class="main-content">
 				<div class="container-fluid">
 
-					<div class="panel">
+			<div class="panel">
 				<div class="panel-heading">
 					<h3 class="panel-title"><b>광고관리</b></h3>
 				</div>
@@ -27,14 +27,72 @@
 								<th>수정/삭제</th>
 							</tr>
 						</thead>
+					<c:forEach var="bannerlist" items="${bannerlist}">
 						<tbody>
 							<tr>
-								<td><a href="#">763648</a></td>
-								<td>Steve</td>
-								<td>$122</td>
+								<td>${bannerlist.banNo}</td>
+								<td>
+								   <img src="${bannerlist.filePath}" style="width: 500px; height: 100px;">
+								</td>
+								<td>
+									<a href="/admin/admin-bannerupdate" data-toggle="modal" data-target="#bannerupdateModal">
+        								<span class="label label-success">수정</span>
+    								</a>     	
+    								<a href="/admin/admin-bannerdelete" data-toggle="modal" data-target="#bannerdeleteModal">
+										<span class="label label-danger">삭제</span>
+									</a>
+								</td>
 							</tr>
 						</tbody>
+					 </c:forEach>	
 					</table>
+					
+					<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
+						<ul class="pagination">
+							<c:if test="${pageVO.prev }">
+								<li class="page-item">
+								  <a class="page-link" href="/admin/admin-banner?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  </a>
+								</li>
+							</c:if>
+
+
+					
+							<c:forEach var="i" begin="${pageVO.startPage }"
+								end="${pageVO.endPage }" step="1">
+								<c:set var="isActive" value="${pageVO.cri.page == i}" />
+								<li class="page-item ${isActive ? 'active' : ''}"><a
+									class="page-link" href="/admin/admin-banner?page=${i}"
+									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
+										${i} </a></li>
+							</c:forEach>
+
+
+				
+							<c:if test="${pageVO.next }">
+								<li class="page-item"><a class="page-link"
+									href="/admin/admin-banner?page=${pageVO.endPage + 1 }"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</c:if>
+
+						</ul>
+					</nav>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				</div>
 			</div>
 
@@ -44,6 +102,30 @@
 		<!-- END MAIN -->	
 	</div>
 	<!-- END WRAPPER -->
+	
+	
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" id="bannerupdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="bannerdeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

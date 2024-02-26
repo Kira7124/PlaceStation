@@ -352,3 +352,6 @@ insert into prod_subcategory (main_category_id , subcategory_name) values (2, '�
 insert into prod_subcategory (main_category_id , subcategory_name) values (3, '카페');
 insert into prod_subcategory (main_category_id , subcategory_name) values (3, '도서관');
 
+insert into banner (ban_name)
+values('1번배너'),('2번배너'),('3번배너'),('4번배너'),('5번배너'),('6번배너'),('7번배너'),('8번배너'),('9번배너'),('10번배너');
+

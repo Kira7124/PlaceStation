@@ -153,4 +153,13 @@ CREATE TABLE qna_board (
   q_status VARCHAR(10) NULL DEFAULT '진행',
   q_reply VARCHAR(400) NULL
   );
-  
+
+
+CREATE TABLE banner (
+  ban_no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ban_name varchar(50),
+  file_path varchar(100) DEFAULT 'defaultbanner.jpg'
+);
+
+
+
