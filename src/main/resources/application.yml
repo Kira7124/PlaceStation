@@ -13,9 +13,6 @@ spring:
     restart:
       enabled: false
   mvc:
-    hiddenmethod:
-      filter:
-        enabled: true  # 히든 메서드 추가 (put , delete)
     view:
       prefix: /WEB-INF/view/
       suffix: .jsp

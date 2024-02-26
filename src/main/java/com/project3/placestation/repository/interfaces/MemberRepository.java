@@ -2,13 +2,13 @@ package com.project3.placestation.repository.interfaces;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResPassword;
-import com.project3.placestation.payment.model.common.MemberGrade;
 import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
@@ -31,6 +31,15 @@ public interface MemberRepository {
 	//관리자회원정보수정
 	public Integer AdminUpdateMember(Member member);
 	
+
+	//판매자와 유저 테이블 join데이터
+	public BizJoin SelectJoinBiz(BizJoin biz); 	
+
+	//관리자회원정보삭제처리
+	//public Integer AdminDeleteMember(Member member);
+	
+	
+
 	//관리자회원정보삭제처리
 	public Integer AdminDeleteMember(Member member);
 

@@ -71,6 +71,7 @@ create table member (
   gender varchar (1)
   );
 
+
 CREATE TABLE notice_board (
   n_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   n_writer VARCHAR(45) NOT NULL,
@@ -96,6 +97,7 @@ create table biz (
 	biz_no int primary key auto_increment,
     biz_id int ,
     biz_brand_name varchar(30),
+    biz_hp varchar(30),
     biz_balance int,
     file_path varchar (1000),
     biz_tel varchar (20) ,
@@ -103,7 +105,6 @@ create table biz (
     imp_key varchar (100),
     imp_secret varchar (300)
 );
-
 
 create table admin_prod_history (
 	admin_his_no varchar(20) primary key,
