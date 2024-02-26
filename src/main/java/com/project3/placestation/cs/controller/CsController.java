@@ -38,7 +38,8 @@ public class CsController {
 	@GetMapping("/qna")
 	public String qnaList(Model model) {
 		
-		List<CsFaqBoard> result = csService.
+//		List<CsFaqBoard> result = csService.CsQnaBoardListAll();
+//		model.addAttribute("",)
 		
 		
 		return "cs/cs_qna";
