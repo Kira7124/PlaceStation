@@ -70,7 +70,28 @@ create table member (
   grade VARCHAR(20) NULL DEFAULT '브론즈',
   gender varchar (1)
   );
+
+CREATE TABLE notice_board (
+  n_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  n_writer VARCHAR(45) NOT NULL,
+  n_content VARCHAR(400) NOT NULL,
+  n_title VARCHAR(200) NOT NULL,
+  file_path VARCHAR(400) NULL,
+  n_regdate DATETIME NULL DEFAULT now(),
+  n_updatedate DATETIME,
+  category_id INT NULL,
+  n_delete_yn CHAR NULL,
+  n_delete_at DATETIME NULL,
+  n_readcount INT NULL DEFAULT 0
+  );
   
+CREATE TABLE admin_todo (
+  todo_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  todo_title VARCHAR(45) NOT NULL,
+  todo_content VARCHAR(100) NOT NULL,
+  todo_regdate DATETIME NULL DEFAULT now()
+  );
+
 create table biz (
 	biz_no int primary key auto_increment,
     biz_id int ,
@@ -140,4 +161,20 @@ create table company (
     info varchar (1000) ,
     time varchar (100) ,
     balance int
-)
+);
+
+CREATE TABLE qna_board (
+  q_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  q_writer VARCHAR(45) NOT NULL,
+  q_content VARCHAR(400) NOT NULL,
+  q_title VARCHAR(200) NOT NULL,
+  file_path VARCHAR(400) NULL,
+  q_regdate DATETIME NULL DEFAULT now(),
+  q_updatedate DATETIME NULL DEFAULT now(),
+  category_id INT NULL,
+  q_delete_yn CHAR(1) NULL DEFAULT 'N',
+  q_delete_at DATETIME NULL,
+  q_status VARCHAR(10) NULL DEFAULT '진행',
+  q_reply VARCHAR(400) NULL
+  );
+

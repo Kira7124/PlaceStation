@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+	<mapper namespace="com.project3.placestation.repository.interfaces.TodoRepository">
+		
+		
+		<!-- 관리자 Todo 리스트출력 -->
+		<select id ="adminTodoList" resultType="com.project3.placestation.repository.entity.Todo">
+			select * from admin_todo
+			limit #{startPage},#{pageSize}
+		</select>
+		
+		<!-- 페이징처리 갯수셋팅 -->
+		<select id = "countTodo" resultType="int">
+			<![CDATA[ select count(*) from admin_todo where todo_no > 0 ]]>
+		</select>
+		
+		
+		<!-- todo리스트 삭제 -->
+		<delete id ="deleteTodo">
+			delete from admin_todo where todo_title=#{todotitle}
+		</delete>
+		
+		
+		<!-- todo리스트 등록 -->
+		<insert id ="insertTodo">
+			insert into admin_todo(todo_title,todo_content)
+			values(#{todotitle},#{todocontent})
+		</insert>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</mapper>

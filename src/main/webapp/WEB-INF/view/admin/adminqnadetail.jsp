@@ -1,87 +1,108 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-	<!-- adminheader.jsp -->
+    <!-- adminheader.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminheader.jsp" %>
 	<!-- adminside.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
+     <!-- jquery/ajax 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
-			
-		<!-- MAIN -->
+    
+	<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
 
-					<div class="panel">
+			<div class="panel">
 				<div class="panel-heading">
-					<h3 class="panel-title"><b>결제/예약관리</b></h3>
+					<div class="right">
+						<button type="button" class="btn-toggle-collapse">
+							<i class="lnr lnr-chevron-up"></i>
+						</button>
+						<button type="button" class="btn-remove">
+							<i class="lnr lnr-cross"></i>
+						</button>
+					</div>
 				</div>
+				
 				<div class="panel-body no-padding">
-					<table class="table table-striped" style="width: 95%; margin: auto;">
-						<thead>
-							<tr>
-								<th>상품명</th>
-								<th>아이디</th>
-								<th>금액</th>
-								<th>이메일</th>
-								<th>은행</th>
-								<th>예약일</th>
-								<th>환불</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><a href="#">763648</a></td>
-								<td>Steve</td>
-								<td>$122</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763649</a></td>
-								<td>Amber</td>
-								<td>$62</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763650</a></td>
-								<td>Michael</td>
-								<td>$34</td>
-								<td>Oct 18, 2016</td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763651</a></td>
-								<td>Roger</td>
-								<td>$186</td>
-								<td>Oct 17, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763652</a></td>
-								<td>Smith</td>
-								<td>$362</td>
-								<td>Oct 16, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-							</tr>
-						</tbody>
-					</table>
+					
+			<div class="container">
+				   <div class="row justify-content-center">
+					 <div class="col-md-8" style="margin-left: 200px;">	
+						
+							<div class="card">
+					
+		 				  <div class="card-body">
+			        			
+							<div class="box-body">
+							
+						<form action="/admin/admin-qnadetailupdate" method="post">		
+								<div class="details" style="display: inline;">
+								    <h3 style="font-weight: bold; display: inline;">1:1문의</h3>
+								</div>
+								
+								<div class="form-group w-25">
+									 <input type="hidden" class="form-control" id="exampleInputEmail1" name="qbno" value="${detailQna.qbno}">
+								</div><br>
+								
+								<div class="form-group w-25">
+									<label for="exampleInputEmail1"><h5>작성자</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1" value ="${detailQna.qwriter}" readonly="readonly">
+								</div><br>
+								<div class="form-group w-25">
+									<label for="exampleInputEmail1"><h5>제 목</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1" value="${detailQna.qtitle}" readonly >
+								</div><br>
+								<div class="form-group w-50">
+									<label for="exampleInputEmail1"><h5>내 용</h5></label>
+									<textarea class="form-control" rows="3" readonly="readonly">${detailQna.qcontent}</textarea>
+								</div><br>
+								
+							
+								
+								<div class="form-group w-50">
+									<label for="exampleInputEmail1"><h5>답글</h5></label>
+<%-- 									 <input type="text" class="form-control" id="exampleInputEmail1" name="qreply" value="${detailQna.qreply}"> --%>
+										 <textarea class="form-control" rows="3" name="qreply">${detailQna.qreply}</textarea>
+								</div><br>
+								<div class="form-group w-50">
+									 <input type="hidden" class="form-control" id="exampleInputEmail1" name="qstatus" value="완료">
+								</div><br>
+								
+								<button type="submit" class="btn btn-info" id="noticeInsertButton" style="display: inline; margin-left: 550px; margin-bottom: 10px; margin-top:10px;">답글달기</button>
+								
+							</form>
+							           
+							   </div>
+						   </div>
+					  </div>		
+				
+				   </div>				
+				</div>			
+			</div>				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+					
 				</div>
 			</div>
-
-		</div>
 			<!-- END MAIN CONTENT -->
 		</div>
 		<!-- END MAIN -->	
@@ -218,3 +239,5 @@
 </body>
 
 </html>
+	    
+    

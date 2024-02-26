@@ -1,22 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <mapper
 	namespace="com.project3.placestation.repository.interfaces.BizRepository">
+
+
+
+	<!-- 관리자사업자명단출력 -->
+
+	<select id="BizAll"
+		resultType="com.project3.placestation.repository.entity.Biz">
+		select * from biz
+		limit #{startPage},#{pageSize}
+	</select>
+
+
+
+	<!-- 페이징처리 갯수셋팅 -->
+	<select id="countBiz" resultType="int">
+		<![CDATA[ select count(*) from biz where biz_no > 0 ]]>
+	</select>
+
+
+	<!-- 사업자정보수정(관리자) -->
+	<update id="AdminUpdateBiz">
+		update biz set
+		biz_brand_name=#{bizbrandname},biz_hp=#{bizhp},
+		biz_email=#{bizemail},biz_id=#{bizid},biz_tel=#{biztel}
+		where biz_no =
+		#{bizno}
+	</update>
+
+
+	<!-- 사업자정보삭제(관리자) -->
+	<delete id="AdminDeleteBiz">
+		delete from biz where biz_no=#{bizno} and
+		biz_id=#{bizid}
+	</delete>
+
+
+
+
+
+	<!-- 사업자검색(관리자) -->
+	<select id="searchBizMemberlist"
+		resultType="com.project3.placestation.repository.entity.Biz">
+		select * from biz
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+				<choose>
+					<when test="searchOption == 'biz_brand_name'">
+						and biz_brand_name like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'biz_id'">
+						and biz_id like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'biz_email'">
+						and biz_email like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'join_at'">
+						and join_at like concat('%', #{searchKeyword}, '%')
+					</when>
+					<!-- 기본적으로는 user_name으로 검색 -->
+					<otherwise>
+						and biz_brand_name like concat('%', #{searchKeyword}, '%')
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+		limit #{startPage}, #{pageSize}
+	</select>
+
+
+
+
+
+	<!-- 관리자사업자검색카운팅 -->
+	<select id="countSearchBizlist">
+		select count(*) from biz
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+				<choose>
+					<when test="searchOption == 'biz_brand_name'">
+						and biz_brand_name like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'biz_id'">
+						and biz_id like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'biz_email'">
+						and biz_email like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'join_at'">
+						and join_at like concat('%', #{searchKeyword}, '%')
+					</when>
+					<!-- 기본적으로는 user_name으로 검색 -->
+					<otherwise>
+						and biz_brand_name like concat('%', #{searchKeyword}, '%')
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</select>
+
 
 	<update id="updateBizByBizId">
 		update biz set
 		biz_brand_name = #{biz.bizBrandName} ,
 		biz_tel = #{biz.bizTel} ,
 		imp_uid = #{biz.impUid},
-		imp_key = #{biz.impKey},
+		imp_key =
+		#{biz.impKey},
 		imp_secret = #{biz.impSecret}
 		where biz_id = #{bizId}
 	</update>
-	
-	<select id="findFortOneKeyByBizNo" resultType="com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto">
-		select imp_uid as impUid , imp_key as imp_key , imp_secret as impSecret 
+
+	<select id="findFortOneKeyByBizNo"
+		resultType="com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto">
+		select imp_uid as impUid , imp_key as imp_key , imp_secret
+		as impSecret
 		from biz
 		where biz_no = #{bizNo}
 	</select>
+
 </mapper>

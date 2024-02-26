@@ -1,16 +1,14 @@
 package com.project3.placestation.admin.dto;
 
-public class Criteria {
+public class TodoCriteria {
 	private int page;
 	private int pageSize;
 	private String searchKeyword;
 	private String searchOption;
-	private String status;
 	
-	
-	public Criteria() {
+	public TodoCriteria() {
 		this.page = 1;
-		this.pageSize = 10;
+		this.pageSize = 4;
 	}
 	
 	
@@ -32,15 +30,7 @@ public class Criteria {
 		    return searchOption;
 	 }
 	 
-    // status 필드에 대한 Setter 메서드 추가
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    // status 필드에 대한 Getter 메서드 추가
-    public String getStatus() {
-        return status;
-    }
+	 
 	 
 	// alt shift s + r
 
