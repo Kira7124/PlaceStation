@@ -3,7 +3,6 @@ package com.project3.placestation.repository.entity;
 import java.sql.Timestamp;
 
 import com.project3.placestation.utils.TimeUtils;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -45,9 +45,10 @@
 							</div>
 						</div>
 						<!-- 메인 부분 시작 -->
-						<form action="/biz/product/update-product?prodNo=${product.prodNo}" method="post"
-							enctype="multipart/form-data">
-							<input type="hidden" name="_method" value="put"/>
+						<form
+							action="/biz/product/update-product?prodNo=${product.prodNo}"
+							method="post" enctype="multipart/form-data">
+							<input type="hidden" name="_method" value="put" />
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">이곳에서 상품을 수정하실 수 있습니다!</h3>
@@ -65,13 +66,16 @@
 											name="files" />
 										<div id='att_zone'
 											data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'>
-											<c:forEach var="file" items="${product.filePath}">
-												<img src="${file}"
-													style="width: 30%; height: 40%; z-index: none;"
-												class="originalImage" />
-											</c:forEach>
-											<input type="hidden" name="changeImage" value="N" id="changeImage"/>
+											<div class="originalImage">
+												<c:forEach var="file" items="${product.filePath}">
+													<img src="${file}"
+														style="width: 30%; height: 40%; z-index: none;" />
+												</c:forEach>
+											</div>
+
 										</div>
+										<input type="hidden" name="changeImage" value="N"
+											id="changeImage" />
 									</div>
 									<br>
 									<h4>영업 시작 시간을 입력해 주세요</h4>
@@ -81,17 +85,17 @@
 									<h4>영업 종료 시간을 입력해 주세요</h4>
 									<input type="number" class="form-control"
 										placeholder="영업 종료 시간을 입력해 주세요" name="prodEndTime"
-										value="${product.prodEndTime}" max="24" min="1"/> <br>
+										value="${product.prodEndTime}" max="24" min="1" /> <br>
 									<h4>한번 예약시 최대 인원 수를 입력해 주세요</h4>
 									<input type="number" class="form-control"
 										placeholder="한번 예약시 최대 인원 수를 입력해 주세요" name="prodMaximumPeople"
-										value="${product.prodMaximumPeople}" max="100" min="1"/> <br>
+										value="${product.prodMaximumPeople}" max="100" min="1" /> <br>
 									<h4>한 시간 당 / 한 사람 당 가격을 책정해 주세요</h4>
 									<div class="input-group">
 										<span class="input-group-addon">₩</span> <input
 											class="form-control" type="number" name="prodPrice"
-											value="${product.prodPrice}" step="1000" min="1000" max="10000000"/> <span
-											class="input-group-addon">원</span>
+											value="${product.prodPrice}" step="1000" min="1000"
+											max="10000000" /> <span class="input-group-addon">원</span>
 									</div>
 									<br>
 									<h4>공간을 소개해주세요</h4>
@@ -108,20 +112,18 @@
 									<br>
 									<h4>대분류 카테고리</h4>
 									<select class="form-control" name="prodMajorCategoryId"
-										value="${product.prodMajorCategoryId}"
-										id="prodMajorCategoryId">
-										<option value="1">캠핑</option>
-										<option value="2">스포츠</option>
-										<option value="3">스터디</option>
+										id="mainCategory" onchange="updateSubcategories()"
+										value="${product.prodMajorCategoryId}">
+										<c:forEach items="${mainCategory}" var="category">
+											<option value="${category.categoryId}"
+												<c:if test="${category.categoryId eq product.prodMajorCategoryId}">selected</c:if>>${category.mainCategoryName}</option>
+										</c:forEach>
 									</select> <br>
 
 									<h4>소분류 카테고리</h4>
 									<select class="form-control" name="prodSubcategoryId"
-										value="${product.prodSubcategoryId}" id="prodSubcategoryId">
-										<option value="1">농구</option>
-										<option value="2">축구</option>
-										<option value="3">배구</option>
-										<option value="4">야구</option>
+										id="subcategory">
+										<!-- 이 부분은 JavaScript로 동적으로 업데이트됩니다 -->
 									</select> <br>
 								</div>
 							</div>
@@ -199,13 +201,7 @@
 <script
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66d1a68d1892ba5335686cc3e3bd8537&libraries=services"></script>
 <script>
-
-// select Box 먼저 처음 값 넣어 주기
-const prodMajorCategoryId = document.querySelector('#prodMajorCategoryId'); // textarea 1
-const prodSubcategoryId = document.querySelector('#prodSubcategoryId'); // textarea 1
-
-prodMajorCategoryId.value = ${product.prodMajorCategoryId};
-prodSubcategoryId.value = ${product.prodSubcategoryId};
+let count = 0;
 
 // Textarea 자동 줄 바꿈
 const DEFAULT_HEIGHT = 100; // textarea 기본 height
@@ -258,13 +254,19 @@ $textarea3.oninput = (event) => {
   
     btnAtt.onchange = function(e){
     
-    	// 원래 이미지 없애기
+    	// 기존 이미지 없애기
     	var changImage = document.querySelector("#changeImage");
-    	var original = document.querySelectorAll(".originalImage");
-    	for (var i = 0; i < original.length; i++) {
-    	    original[i].style.display = 'none'; // 스타일 변경 예시
+    	var original = document.querySelector(".originalImage");
+
+    	if(count == 0) {
+        original.style.display = 'none'; // 스타일 변경 예시
+        changeImage.value="Y"; // changeImage == Y 로 변경
     	}
-    	changeImage.value="Y"; // changeImage == Y 로 변경
+        // 원래 이미지 제거
+        while (attZone.firstChild) {
+        	attZone.removeChild(attZone.firstChild);
+        }
+       	count++;
     	
       var files = e.target.files;
       
@@ -282,10 +284,7 @@ $textarea3.oninput = (event) => {
         let img = document.createElement('img')
         img.setAttribute('style', img_style)
         img.src = ee.target.result;
-        // 원래 이미지 제거
-        while (attZone.firstChild) {
-        	attZone.removeChild(attZone.firstChild);
-        }
+
         // 현재 이미지 추가
         attZone.appendChild(makeDiv(img, file));
       }
@@ -349,7 +348,7 @@ $textarea3.oninput = (event) => {
 	var geocoder = new daum.maps.services.Geocoder();
 	//마커를 미리 생성
 	var marker = new daum.maps.Marker({
-		position : new daum.maps.LatLng(37.537187, 127.005476),
+		position : new daum.maps.LatLng(y, x),
 		map : map,
 	});
 
@@ -409,6 +408,49 @@ $textarea3.oninput = (event) => {
 		
 		fullAddress.value = address.value + " " + detailedAddress.value;
 	}
+	
+	
+	// 페이지 로드 시 초기 설정
+	document.addEventListener("DOMContentLoaded", function() {
+		   updateSubcategories();
+	});
+	
+	// 비동기 통신 - 메인 카테고리 id 로 서브 카테고리 id 찾기
+	function updateSubcategories(mainCategoryId) {
+	    var mainCategoryId = document.getElementById("mainCategory").value;
+	    console.log(mainCategoryId);
+	    $.ajax({
+	        type: "get",
+	        url: "/biz/product/subcategory?main-category=" + mainCategoryId,
+	        headers : {"Content-Type" : "application/json"},
+			dataType : "json",
+		       success: function (res) {
+					updateSubcategoriesForm(res , mainCategoryId);
+		         },
+	        error: function(e) {
+	            console.log(e);
+	        }
+	    });
+	}
+	
+	// subcategory 의 form 을 변경
+	function updateSubcategoriesForm(subcategories , mainCategoryId) {
+	    var subcategoryDropdown = document.getElementById("subcategory");
+	    subcategoryDropdown.innerHTML = ""; // 이전의 옵션을 모두 지웁니다
+	    for (var i = 0; i < subcategories.length; i++) {
+	        var subcategory = subcategories[i];
+	        if (subcategory.mainCategoryId == mainCategoryId) {
+	            var option = document.createElement("option");
+	            option.value = subcategory.categoryId;
+	            option.textContent = subcategory.subcategoryName;
+	            if (subcategory.categoryId == ${product.prodSubcategoryId}) {
+	                option.selected = true; // 기본값으로 선택될 옵션에 selected 속성 추가
+	            }
+	            subcategoryDropdown.appendChild(option);
+	        }
+	    }
+	}
+	
 </script>
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_footer.jsp"%>

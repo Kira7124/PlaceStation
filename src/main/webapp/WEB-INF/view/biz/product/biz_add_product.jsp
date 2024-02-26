@@ -48,7 +48,7 @@
 						</div>
 						<!-- 메인 부분 시작 -->
 						<form action="/biz/product/add-product" method="post"
-							enctype="multipart/form-data" >
+							enctype="multipart/form-data">
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">이곳에서 상품을 추가하실 수 있습니다!</h3>
@@ -57,28 +57,34 @@
 									<!-- 게시물의 제목 -->
 									<h4>게시물의 제목을 입력해 주세요</h4>
 									<input type="text" class="form-control"
-										placeholder="게시물의 제목을 입력해 주세요" name="prodTitle" value="제목"/> <br>
+										placeholder="게시물의 제목을 입력해 주세요" name="prodTitle" value="제목" />
+									<br>
 									<!-- 게시물의 배너 이미지 -->
 									<div id='image_preview'>
 										<h4>해당 게시물에 들어갈 배너 이미지를 선택해 주세요!</h4>
-										<input type='file' id='btnAtt' multiple='multiple' name="files"/>
+										<input type='file' id='btnAtt' multiple='multiple'
+											name="files" />
 										<div id='att_zone'
 											data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
 									</div>
 									<br>
 									<h4>영업 시작 시간을 입력해 주세요</h4>
 									<input type="number" class="form-control"
-										placeholder="영업 시작 시간을 입력해 주세요" name="prodStartTime" value="1" max="24" min="1"> <br>
+										placeholder="영업 시작 시간을 입력해 주세요" name="prodStartTime" value="1"
+										max="24" min="1"> <br>
 									<h4>영업 종료 시간을 입력해 주세요</h4>
 									<input type="number" class="form-control"
-										placeholder="영업 종료 시간을 입력해 주세요" name="prodEndTime" value="24" max="24" min="1"/> <br>
+										placeholder="영업 종료 시간을 입력해 주세요" name="prodEndTime" value="24"
+										max="24" min="1" /> <br>
 									<h4>한번 예약시 최대 인원 수를 입력해 주세요</h4>
 									<input type="number" class="form-control"
-										placeholder="한번 예약시 최대 인원 수를 입력해 주세요" name="prodMaximumPeople" value="1" max="100" min="1"/> <br>
+										placeholder="한번 예약시 최대 인원 수를 입력해 주세요" name="prodMaximumPeople"
+										value="1" max="100" min="1" /> <br>
 									<h4>한 시간 당 / 한 사람 당 가격을 책정해 주세요</h4>
 									<div class="input-group">
 										<span class="input-group-addon">₩</span> <input
-											class="form-control" type="number" name="prodPrice" value="1000" step="1000" min="1000" max="10000000"/> <span
+											class="form-control" type="number" name="prodPrice"
+											value="1000" step="1000" min="1000" max="10000000" /> <span
 											class="input-group-addon">원</span>
 									</div>
 									<br>
@@ -95,18 +101,17 @@
 										rows="4" id="textarea3" name="prodCautionInfo"></textarea>
 									<br>
 									<h4>대분류 카테고리</h4>
-									<select class="form-control" name="prodMajorCategoryId">
-										<option value="1">캠핑</option>
-										<option value="2">스포츠</option>
-										<option value="3">스터디</option>
+									<select class="form-control" name="prodMajorCategoryId"
+										id="mainCategory" onchange="updateSubcategories()">
+										<c:forEach items="${mainCategory}" var="category">
+											<option value="${category.categoryId}">${category.mainCategoryName}</option>
+										</c:forEach>
 									</select> <br>
 
 									<h4>소분류 카테고리</h4>
-									<select class="form-control" name="prodSubcategoryId">
-										<option value="1">농구</option>
-										<option value="2">축구</option>
-										<option value="3">배구</option>
-										<option value="4">야구</option>
+									<select class="form-control" name="prodSubcategoryId"
+										id="subcategory">
+										<!-- 이 부분은 JavaScript로 동적으로 업데이트됩니다 -->
 									</select> <br>
 								</div>
 							</div>
@@ -124,15 +129,16 @@
 										style="margin-bottom: 10px;" onclick="findAddress()">주소
 										검색</button>
 									<input type="text" id="adress" placeholder="주소"
-										class="form-control" readonly  name="prodAddress"/> <br />
-										
+										class="form-control" readonly name="prodAddress" /> <br />
+
 									<h4>주소의 상세 정보를 입력해 주세요</h4>
 									<input type="text" id="detailedAddress" placeholder="주소"
-										class="form-control" name="prodDetailedAddress" onchange="changeFullAddress()"/> <br />
-										
+										class="form-control" name="prodDetailedAddress"
+										onchange="changeFullAddress()" /> <br />
+
 									<!-- 주소 종합 -->
 									<input type="text" id="fullAddress" placeholder="주소 종합"
-										class="form-control" name="prodFullAddress" readonly/> <br />
+										class="form-control" name="prodFullAddress" readonly /> <br />
 
 									<!-- 위도 -->
 									<input type="text" id="lat" placeholder="위도"
@@ -159,7 +165,7 @@
 											상품을 등록해 보세요!!</span>
 									</div>
 									<div class="col-md-6 text-right">
-										<input type="submit" class="btn btn-primary" value="제품 등록하기"/>
+										<input type="submit" class="btn btn-primary" value="제품 등록하기" />
 									</div>
 								</div>
 							</div>
@@ -232,6 +238,10 @@ $textarea3.oninput = (event) => {
   
     btnAtt.onchange = function(e){
     
+        // 원래 이미지 제거
+        while (attZone.firstChild) {
+        	attZone.removeChild(attZone.firstChild);
+        }
       var files = e.target.files;
       
       var fileArr = Array.prototype.slice.call(files)
@@ -362,6 +372,7 @@ $textarea3.oninput = (event) => {
 
 	});
 	
+	// 전체 주소 변경
 	function changeFullAddress() {
 		var address = document.querySelector('#adress');
 		var detailedAddress = document.querySelector('#detailedAddress');
@@ -369,6 +380,45 @@ $textarea3.oninput = (event) => {
 		
 		fullAddress.value = address.value + " " + detailedAddress.value;
 	}
+	
+	// 페이지 로드 시 초기 설정
+	document.addEventListener("DOMContentLoaded", function() {
+	    updateSubcategories();
+	});
+	
+	// 비동기 통신 - 메인 카테고리 id 로 서브 카테고리 id 찾기
+	function updateSubcategories() {
+	    var mainCategoryId = document.getElementById("mainCategory").value;
+
+	    $.ajax({
+	        type: "get",
+	        url: "/biz/product/subcategory?main-category=" + mainCategoryId,
+	        headers : {"Content-Type" : "application/json"},
+			dataType : "json",
+		       success: function (res) {
+					console.log(res);
+					updateSubcategoriesForm(res , mainCategoryId);
+		         },
+	        error: function(e) {
+	            console.log(e);
+	        }
+	    });
+	}
+	
+	function updateSubcategoriesForm(subcategories , mainCategoryId) {
+	    var subcategoryDropdown = document.getElementById("subcategory");
+	    subcategoryDropdown.innerHTML = ""; // 이전의 옵션을 모두 지웁니다
+	    for (var i = 0; i < subcategories.length; i++) {
+	        var subcategory = subcategories[i];
+	        if (subcategory.mainCategoryId == mainCategoryId) {
+	            var option = document.createElement("option");
+	            option.value = subcategory.categoryId;
+	            option.textContent = subcategory.subcategoryName;
+	            subcategoryDropdown.appendChild(option);
+	        }
+	    }
+	}
+
 </script>
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_footer.jsp"%>

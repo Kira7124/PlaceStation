@@ -36,6 +36,8 @@ h2, p, h4 {
 								</button>
 							</div>
 						</div>
+
+
 						<c:forEach items="${products}" var="product">
 							<div class="panel-body no-padding">
 								<!-- 카드 시작 -->
@@ -70,7 +72,9 @@ h2, p, h4 {
 													aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
 														<div class="modal-content">
-															<form action="/biz/product/delete-product/${product.prodNo}" method="post">
+															<form
+																action="/biz/product/delete-product/${product.prodNo}"
+																method="post">
 																<input type="hidden" name="_method" value="delete" />
 																<div class="modal-header">
 																	<h5 class="modal-title" id="exampleModalLabel">취소
@@ -104,7 +108,7 @@ h2, p, h4 {
 						</c:forEach>
 						<!-- 페이지네이션 시작 -->
 
-						<nav aria-label="Page navigation example" style="margin: auto;">
+						<!-- <nav aria-label="Page navigation example" style="margin: auto;">
 							<ul class="pagination">
 								<li class="page-item"><a class="page-link" href="#"
 									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
@@ -117,6 +121,7 @@ h2, p, h4 {
 								</a></li>
 							</ul>
 						</nav>
+						 -->
 						<!-- 페이지네이션 끝 -->
 					</div>
 

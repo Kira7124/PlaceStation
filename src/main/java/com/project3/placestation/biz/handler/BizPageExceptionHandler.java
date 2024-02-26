@@ -14,7 +14,7 @@ import com.project3.placestation.biz.handler.exception.CustomPageException;
  */
 @ControllerAdvice
 public class BizPageExceptionHandler {
-	
+
 	// CustomPageException <-- 발생하면 이 함수를 동작시켜!
 	@ExceptionHandler(CustomPageException.class)
 	public ModelAndView handlerRuntimeException(CustomPageException e) {

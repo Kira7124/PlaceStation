@@ -1,3 +1,28 @@
+
+CREATE TABLE prod_Review (
+    prod_rev_no INT AUTO_INCREMENT PRIMARY KEY,
+    prod_no INT NOT NULL,
+    user_no INT NOT NULL,
+    prod_rev_content VARCHAR(1000),
+    prod_rev_star INT NOT NULL,
+    prod_rev_create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    prod_rev_update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    prod_rev_delete_yn VARCHAR(1) DEFAULT 'N',
+    prod_rev_delete_at TIMESTAMP,
+    parent_id INT NOT NULL AUTO_INCREMENT
+);
+
+create table product_views (
+	prod_views INT NOT NULL,
+    prod_no INT PRIMARY KEY NOT NULL
+);
+
+create table wish_list (
+	w_no INT PRIMARY KEY NOT NULL,
+    prod_no INT NOT NULL,
+    user_no INT NOT NULL
+);
+
 create table product (
 	prod_no int (5) primary key auto_increment,
     prod_writer_no int (5) ,
@@ -39,51 +64,14 @@ create table member (
   user_hp VARCHAR(20) NOT NULL,
   user_email VARCHAR(30) NOT NULL,
   user_point INT NULL DEFAULT 10,
-  origin_img VARCHAR(100) NULL DEFAULT 'default.jpg',
-  upload_img VARCHAR(100) NULL,
+  file_path VARCHAR(100) NULL DEFAULT 'default.jpg',
   join_at DATETIME NULL DEFAULT now(),
   user_role VARCHAR(20) NOT NULL,
-  grade VARCHAR(20) NULL DEFAULT '브론즈'
+  grade VARCHAR(20) NULL DEFAULT '브론즈',
+  gender varchar (1)
   );
 
-create table admin_prod_history (
-	admin_his_no varchar(20) primary key,
-	admin_his_prod_no int (5) not null,
-    admin_his_price int (7) not null,
-    admin_his_user_point int (7) default 0,
-    admin_his_save_point int (7) default 0,
-    admin_his_discount int (7) default 0,
-    admin_his_charge int (3) default 0,
-    admin_his_prod_name varchar (100) not null,
-    admin_his_seller_id int not null,
-    admin_his_comfirm boolean default false,
-    admin_his_created_at timestamp default now(),
-    admin_his_buyer_id int not null,
-    bank varchar (100) ,
-    start_time int (2) ,
-    end_time int (2) ,
-    cancel_yn varchar (1) default 'N',
-    cancel_at timestamp ,
-    cancel_amount int (7) ,
-    people_count int (3)
-);
 
-
-CREATE TABLE biz (
-  biz_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  biz_id INT NOT NULL,
-  biz_brand_name VARCHAR(30) NOT NULL,
-  biz_hp VARCHAR(20) NULL,
-  biz_email VARCHAR(45) NULL,
-  biz_balance INT NULL,
-  file_path VARCHAR(100) NULL,
-  join_at DATETIME NULL DEFAULT now(),
-  out_at DATETIME NULL,
-  file_no INT NULL,
-  biz_tel VARCHAR(20) NULL
-  );
-  
-  
 CREATE TABLE notice_board (
   n_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   n_writer VARCHAR(45) NOT NULL,
@@ -105,6 +93,78 @@ CREATE TABLE admin_todo (
   todo_regdate DATETIME NULL DEFAULT now()
   );
 
+create table biz (
+	biz_no int primary key auto_increment,
+    biz_id int ,
+    biz_brand_name varchar(30),
+    biz_hp varchar(30),
+    biz_balance int,
+    file_path varchar (1000),
+    biz_tel varchar (20) ,
+    biz_email varchar (50),
+    imp_uid varchar ( 100 ) ,
+    imp_key varchar (100),
+    imp_secret varchar (300)
+);
+
+create table admin_prod_history (
+	admin_his_no varchar(20) primary key,
+    token varchar(200) ,
+	admin_his_prod_no int (5) not null,
+    admin_his_price int (7) not null,
+    admin_his_use_point int (7) default 0,
+    admin_his_save_point int (7) default 0,
+    admin_his_discount int (7) default 0,
+    admin_his_charge int (3) default 0,
+    admin_his_prod_name varchar (100) not null,
+    admin_his_seller_id int not null,
+    admin_his_confirm boolean default false,
+    admin_his_created_at timestamp default now(),
+    admin_his_buyer_id int not null,
+    bank varchar (100) ,
+    start_time int (2) ,
+    end_time int (2) ,
+    cancel_yn varchar (1) default 'N',
+    cancel_at timestamp ,
+    cancel_amount int (7) ,
+    people_count int (3),
+    purchase_date varchar (100)
+);
+
+create table prod_major_category (
+	category_id int primary key auto_increment ,
+    category_name varchar(40)
+);
+
+create table prod_subcategory (
+	category_id int auto_increment primary key ,
+    main_category_id int ,
+    subcategory_name varchar (40)
+);
+
+create table charge (
+	ch_percent int auto_increment primary key
+);
+
+create table grade (
+	grade_name varchar(30) primary key ,
+    grade_discount int (2),
+    grade_maxprice int,
+    grade_savepoint int(2)
+);
+
+create table company (
+	name varchar (100) ,
+    address varchar (1000) ,
+    tel varchar (30) ,
+    ceo_name varchar (30) ,
+    email varchar(100) ,
+    sell_number varchar (30) ,
+    info varchar (1000) ,
+    time varchar (100) ,
+    balance int
+);
+
 CREATE TABLE qna_board (
   q_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   q_writer VARCHAR(45) NOT NULL,
@@ -119,4 +179,19 @@ CREATE TABLE qna_board (
   q_status VARCHAR(10) NULL DEFAULT '진행',
   q_reply VARCHAR(400) NULL
   );
+<<<<<<< HEAD
   
+create table faq_board (
+f_bno int not null primary key auto_increment,
+f_writer int not null,
+f_content varchar(400) not null,
+f_title varchar(200) not null,
+file_path varchar(400),
+f_regdate timestamp  DEFAULT now(),
+f_updatedate timestamp  DEFAULT now(),
+f_delete_at timestamp  DEFAULT now(),
+category_id int
+);
+=======
+
+>>>>>>> origin/paymentsh

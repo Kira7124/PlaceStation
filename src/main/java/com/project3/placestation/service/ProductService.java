@@ -24,6 +24,11 @@ public class ProductService {
 	@Autowired
 	ProductRepository productRepository;
 
+	/**
+	 * 상품 저장
+	 * @param filePath
+	 * @param dto
+	 */
 	public void saveProduct(String filePath, ReqProductDto dto) {
 
 		Product product = Product.builder().prodWriterNo(1).prodTitle(dto.getProdTitle())
@@ -43,6 +48,13 @@ public class ProductService {
 		}
 	}
 
+	/**
+	 * 상품 업데이트
+	 * @param filePath
+	 * @param dto
+	 * @param prodNo
+	 * @param writerNo
+	 */
 	@Transactional
 	public void updateProduct(String filePath, ReqUpdateProductDto dto, int prodNo, int writerNo) {
 		Product product = Product.builder().prodNo(prodNo).prodWriterNo(writerNo).prodTitle(dto.getProdTitle())
@@ -62,6 +74,11 @@ public class ProductService {
 		}
 	}
 
+	/**
+	 * 상품 삭제
+	 * @param prodNo
+	 * @param prodDeleteReason
+	 */
 	@Transactional
 	public void deleteProduct(int prodNo, String prodDeleteReason) {
 		int result = productRepository.deleteProduct(prodNo, prodDeleteReason);
@@ -78,17 +95,56 @@ public class ProductService {
 	 * @return
 	 */
 	public List<ResProductDto> findAll(int userId) {
-		List<Product> listProduct = productRepository.findAll(userId);
+		List<Product> listProduct = productRepository.findAllByUserId(userId);
 		List<ResProductDto> resProduct = new ArrayList<>();
 
 		if (listProduct.isEmpty() == false) {
 			for (Product product : listProduct) {
 
 				String[] filePath = {};
-				if (product.getFilePath().isEmpty() == false) {
+				if (product.getFilePath() != null && product.getFilePath().isEmpty() == false) {
 					String receiveFilePath = product.getFilePath();
 					filePath = receiveFilePath.split(",");
 				}
+
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
+						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
+						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
+						.prodCautionInfo(product.getProdCautionInfo()).prodMaximumPeople(product.getProdMaximumPeople())
+						.prodAddress(product.getProdAddress()).filePath(filePath)
+						.prodMajorCategoryId(product.getProdMajorCategoryId())
+						.prodSubcategoryId(product.getProdSubcategoryId()).prodFullAddress(product.getProdFullAddress())
+						.prodDetailedAddress(product.getProdDetailedAddress()).prodLocationX(product.getProdLocationX())
+						.prodLocationY(product.getProdLocationY()).prodRdate(product.getProdRdate())
+						.prodUpdateAt(product.getProdUpdateAt()).prodDeleteYn(product.getProdDeleteYn())
+						.prodDeleteAt(product.getProdDeleteAt()).build();
+				resProduct.add(dto);
+				
+			}
+		}
+		return resProduct;
+	}
+	
+	/**
+	 * 상품 목록 전체 조회
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<ResProductDto> findAll() {
+		List<Product> listProduct = productRepository.findAll();
+		List<ResProductDto> resProduct = new ArrayList<>();
+
+		if (listProduct.isEmpty() == false) {
+			for (Product product : listProduct) {
+
+				String[] filePath = {};
+				if (product.getFilePath() != null && product.getFilePath().isEmpty() == false) {
+					String receiveFilePath = product.getFilePath();
+					filePath = receiveFilePath.split(",");
+				}
+				
 
 				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
 						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
@@ -107,8 +163,8 @@ public class ProductService {
 		}
 		return resProduct;
 	}
-
-	// 상품 상세 조히
+	
+	// 상품 상세 조회
 	public ResProductDto findById(int ProdNo) {
 
 		Product product = productRepository.findById(ProdNo);
@@ -120,7 +176,7 @@ public class ProductService {
 
 		String[] filePath = {};
 
-		if (product.getFilePath().isEmpty() == false) {
+		if (product.getFilePath() != null && product.getFilePath().isEmpty() == false)  {
 			String receiveFilePath = product.getFilePath();
 			filePath = receiveFilePath.split(",");
 		}
@@ -136,8 +192,10 @@ public class ProductService {
 				.prodLocationX(product.getProdLocationX()).prodLocationY(product.getProdLocationY())
 				.prodRdate(product.getProdRdate()).prodUpdateAt(product.getProdUpdateAt())
 				.prodDeleteYn(product.getProdDeleteYn()).prodDeleteAt(product.getProdDeleteAt()).build();
-
+		log.info(dto.toString());
 		return dto;
 	}
+	
+
 
 }

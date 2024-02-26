@@ -24,17 +24,17 @@
 						<div class="comments"></div>
 						<div>
 							<div class="panel panel-default">
-							<c:forEach var="noticeList" items="${noticeList}">
+							<c:forEach var="noticeList" items="${faqList}">
 								<div class="panel-heading">
 									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#support${noticeList.nbno}">
-											${noticeList.ntitle}
+										<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#support${faqList.fbno}">
+											${faqList.ftitle}
 										</a>
 									</h4>
 								</div>
-								<div class="panel-collapse collapse" id="support${noticeList.nbno}">
+								<div class="panel-collapse collapse" id="support${faqList.fbno}">
 									<div class="panel-body">
-										${noticeList.ncontent}
+										${faqList.fcontent}
 									</div>
 								</div>
 								</c:forEach>

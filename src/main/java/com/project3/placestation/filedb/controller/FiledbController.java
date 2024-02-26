@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/filedb")
 public class FiledbController {
-	
+
 	@Autowired
 	FiledbService filedbService;
 

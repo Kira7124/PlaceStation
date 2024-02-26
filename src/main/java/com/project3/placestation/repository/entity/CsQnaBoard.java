@@ -1,7 +1,15 @@
 package com.project3.placestation.repository.entity;
 
 import java.sql.Timestamp;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class CsQnaBoard {
 	
 	private Integer qbno;	// 글번호

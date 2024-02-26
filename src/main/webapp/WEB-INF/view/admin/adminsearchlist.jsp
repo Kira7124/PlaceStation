@@ -64,7 +64,7 @@
 						<tbody>
 							<tr>
 								<td>
-								  <img src="${memberlist.setupUserImage()}" style="width:30px; height: 30px; border-radius:50%;">
+								  <img src="/assets/img/${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
 								</td>
 								  <td>	
 									<c:choose>

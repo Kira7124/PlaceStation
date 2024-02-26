@@ -12,14 +12,16 @@ import lombok.ToString;
 @ToString
 @Builder
 public class AdminProdHistory {
-	private String adminHisNo;
+	private String adminHisNo; // 포트원 merchant_uid
+	private String token;	// 포트원 token
 	private Integer adminHisProdNo;
+	private String adminHisProdName;
 	private Integer adminHisPrice;
-	private Integer adminHisUserPoint;
+	private Integer adminHisUsePoint;
 	private Integer adminHisSavePoint;
 	private Integer adminHisDiscount;
 	private Integer adminHisCharge;
-	private Integer hisSellerId;
+	private Integer adminHisSellerId;
 	private boolean adminHisConfirm;
 	private String adminHisCreatedAt;
 	private Integer adminHisBuyerId;
@@ -30,4 +32,5 @@ public class AdminProdHistory {
 	private String cancelAt;
 	private Integer cancelAmount;
 	private Integer peopleCount;
+	private String purchaseDate;
 }

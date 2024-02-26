@@ -24,155 +24,20 @@
 						<div class="comments"></div>
 						<div>
 							<div class="panel panel-default">
+							<c:forEach var="qnaList" items="${qnaList}">
 								<div class="panel-heading">
 									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support1">문의사항 1</a>
+										<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#support${qnaList.qbno}">
+											${qnaList.qtitle}
+										</a>
 									</h4>
 								</div>
-								<div class="panel-collapse collapse" id="support1">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
+								<div class="panel-collapse collapse" id="support${qnaList.qbno}">
+									<div class="panel-body">
+										${qnaList.qcontent}
+									</div>
 								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support2">문의사항 2</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support2">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support3">문의사항 3</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support3">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support4">문의사항 4</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support4">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support5">문의사항 5</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support5">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support6">문의사항 6</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support6">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support7">문의사항 7</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support7">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support8">문의사항 8</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support8">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support9">문의사항 9</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support9">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support10">문의사항 10</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support10">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
+							</c:forEach>
 							</div>
 						</div>
 						<div class="pagination font-alt">

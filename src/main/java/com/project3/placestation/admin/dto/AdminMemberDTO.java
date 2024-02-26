@@ -16,7 +16,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 public class AdminMemberDTO {
-	
 	private Integer userno;
 	private String userid;
 	private String userpassword;
@@ -33,7 +32,4 @@ public class AdminMemberDTO {
 	private Timestamp joinat;
 	private String role;
 	private String grade;
-	
-	
-	
 }

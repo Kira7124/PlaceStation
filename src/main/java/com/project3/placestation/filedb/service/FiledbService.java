@@ -25,8 +25,7 @@ public class FiledbService {
 	FiledbRepository filedbRepository;
 
 	/**
-	 * 저장
-	 * 
+	 * 여러 파일 저장
 	 * @param uuid
 	 * @param files
 	 * @return String filePath
@@ -34,7 +33,7 @@ public class FiledbService {
 	@Transactional
 	public String saveFiles(List<MultipartFile> files) {
 		if (files.isEmpty()) {
-			// 안되 돌아가 시전
+			throw new CustomRestfulException("파일이 정상적이지 않습니다.", HttpStatus.BAD_REQUEST);
 		}
 
 		String filePath = ""; // filePath 에 넣을 String 값
@@ -73,6 +72,50 @@ public class FiledbService {
 		}
 
 		filePath = filePath.substring(0, filePath.length() - 1); // 마지막 , 제거
+		return filePath;
+	}
+
+	/**
+	 * 단일 파일 
+	 * @param file
+	 * @return
+	 */
+	@Transactional
+	public String saveFiles(MultipartFile file) {
+		if (file.isEmpty()) {
+			throw new CustomRestfulException("파일이 정상적이지 않습니다.", HttpStatus.BAD_REQUEST);
+		}
+
+		String filePath = ""; // filePath 에 넣을 String 값
+		// 저장 실행
+		// 1) DB에 이미지 저장
+		// 2) DB에 이미지를 다운로드 할 수 있는 url 저장 (다운로드 URL 만들기 필요)
+		// 3) 파일명(중복이 안되는) : uuid(기본키) 사용(유일값)
+
+		try {
+			// TODO : 1) uuid 만들기
+			String tmpUuid = UUID.randomUUID().toString().replace("-", "");
+
+			// TODO : 2) 다운로드 url 만들기
+			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/filedb/get-file/")
+					.path(tmpUuid).toUriString();
+			// 최종 url 예 : localhost/filedb/get-file/xxxxiiiii
+
+			// TODO : 3) 위의 정보를 파일 객체에 저장 후 DB save 함수 실행
+			Filedb filedb = Filedb.builder().uuid(tmpUuid).originalFileName(file.getOriginalFilename())
+					.fileData(file.getBytes()).build();
+
+			// 저장하기
+			int result = filedbRepository.saveFiledb(filedb);
+			if (result < 1) {
+				throw new CustomRestfulException("이미지 저장시 서버 에러가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+
+			filePath = fileDownloadUri;
+		} catch (Exception e) {
+			log.debug(e.getMessage());
+			throw new CustomRestfulException("이미지 저장시 서버 에러가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return filePath;
 	}
 

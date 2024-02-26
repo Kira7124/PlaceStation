@@ -23,9 +23,9 @@
 						<div class="profile-header">
 							<div class="overlay"></div>
 							<div class="profile-main">
-								<img src="/assets/img/user-medium.png" class="img-circle"
-									alt="Avatar">
-									<!-- <h3 class="name">${biz.userName}</h3> -->
+								<img src="${biz.filePath}" class="img-circle"
+									alt="Avatar" style="width : 250px; height: 200px">
+									<h3 class="name">${biz.userName}</h3>
 								
 							</div>
 						</div>
@@ -35,7 +35,7 @@
 							<div class="profile-info">
 								<h4 class="heading">Basic Info</h4>
 								<br/>
-								<!-- 
+								
 								<ul class="list-unstyled list-justify">
 									<li>분류 <span>${biz.role}</span></li>
 									<li>등급 <span>${biz.userGrade}</span></li>
@@ -46,7 +46,6 @@
 									<li>가입 날짜 <span>${biz.joinAt}</span></li>
 									
 								</ul>
-								 -->
 							</div>
 
 							<div class="profile-info">
