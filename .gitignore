@@ -13,15 +13,13 @@ build/
 .settings
 .springBeans
 .sts4-cache
-settings.gradle
-*.yml
 *.sql
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-
-
-
+settings.gradle
+src/main/resources/db
+src/main/resources/applicatino.yml
 ### IntelliJ IDEA ###
 .idea
 *.iws
