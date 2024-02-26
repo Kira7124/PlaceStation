@@ -151,13 +151,16 @@
 	justify-content: center;
 	align-items: center;
 	"
-<<<<<<< HEAD
+	<<<<<<<
+	HEAD
 }
 
 .disabled-div {
 	background-color: gray;
-=======
->>>>>>> origin/product
+	=======
+	>>>>>>>
+	origin
+	/product
 }
 </style>
 </head>
@@ -751,8 +754,7 @@
 															<div class="form-group">
 																<input type="hidden" name="prodNo" id="prodNo"
 																	value="${product.prodNo}"> <input type="hidden"
-																	name="parentId" id="parentId"
-																	value=""> <label
+																	name="parentId" id="parentId" value=""> <label
 																	for="username">유저번호</label> <input class="form-control"
 																	type="text" id="userNo" name="userNo"
 																	placeholder="유저번호" required />
@@ -797,21 +799,23 @@
 						<!-- 사이드 바 시작 -->
 						<div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
 							<div class="widget" style="margin-top: 30px">
-								<h5 class="widget-title font-alt">Text</h5>
-								The languages only differ in their grammar, their pronunciation
-								and their most common words. Everyone realizes why a new common
-								language would be desirable: one could refuse to pay expensive
-								translators.
+								<h5 class="widget-title font-alt">아무거나</h5>
+								적당히 아무 내용 넣어두기@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@
+								@@@@@@@@@@@@@@@@@@@@@@@@
 							</div>
 							<div class="widget">
 								<h5 class="widget-title font-alt">제품</h5>
 								<div class="row">
 									<div class="col-sm-4">
-										<p style="text-align: right">
-											<button class="btn btn-success btn-circle" type="button">
-												<i class="fa fa-smile-o"></i> 찜하기
-											</button>
-										</p>
+										<form method="post" action="/addWishlist">
+											<input type="hidden" name="prod_no" value="${product.prodNo}"> <input
+												type="hidden" name="user_no" value="1">
+											<p style="text-align: right">
+												<button class="btn btn-success btn-circle" type="submit">
+													<i class="fa fa-smile-o"></i> 찜하기
+												</button>
+											</p>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -852,8 +856,8 @@
 										<button class="btn btn-secondary dropdown-toggle"
 											type="button" id="dropdownMenuClickableInside"
 											data-bs-toggle="dropdown" data-bs-auto-close="outside"
-											aria-expanded="false" onclick="hoverDateTime()">
-											스케쥴 선택 호버</button>
+											aria-expanded="false" onclick="hoverDateTime()">스케쥴
+											선택 호버</button>
 										<!-- input 창은 여기!! -->
 										<input type="hidden" id="form-date" name="date" /> <input
 											type="hidden" id="form-first-time" name="startTime" /> <input
@@ -877,7 +881,7 @@
 										</div>
 									</div>
 
-									<div class="widget" style="margin-top : 30px;">
+									<div class="widget" style="margin-top: 30px;">
 										<h4 class="widget-title font-alt">예약 확인</h4>
 
 
@@ -889,8 +893,8 @@
 									</div>
 									<div class="">
 										<div class="col-sm-12">
-											<input class="btn btn-lg btn-block btn-round btn-b" type="submit">Add
-												To Cart</input>
+											<input class="btn btn-lg btn-block btn-round btn-b"
+												type="submit">Add To Cart</input>
 											<p id="dateText" style="visibility: hidden"></p>
 											<br />
 											<p id="dayText" style="visibility: hidden"></p>
