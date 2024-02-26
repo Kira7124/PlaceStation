@@ -13,11 +13,12 @@ build/
 .settings
 .springBeans
 .sts4-cache
-.sql
+*.sql
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-
+settings.gradle
+*.yml
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -36,6 +37,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-### jwt ###
-application-secret.yml
