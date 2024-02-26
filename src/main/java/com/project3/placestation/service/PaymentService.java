@@ -150,14 +150,17 @@ public class PaymentService {
 		return true;
 	}
 
+	/**
+	 * 환불 몇일이 지났는지 확인
+	 * @param dateString
+	 * @return
+	 */
 	public int validRefundDate(String dateString) {
-		LocalDate targetDate = LocalDate.parse(dateString, DateTimeFormatter.ISO_LOCAL_DATE);
-		LocalDate today = LocalDate.now();
-
-		int daysSince = (int) ChronoUnit.DAYS.between(targetDate, today);
-
-		System.out.println("Days since " + dateString + ": " + daysSince);
-		return daysSince; 
+        // 주어진 문자열을 LocalDate로 파싱
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate givenDate = LocalDate.parse(dateString.substring(0, 10), formatter);
+        LocalDate currentDate = LocalDate.now();
+        return (int) ChronoUnit.DAYS.between(givenDate, currentDate);
 	}
 	
 	/**

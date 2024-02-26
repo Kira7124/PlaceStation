@@ -10,4 +10,5 @@ public class ReqBizHistoryRefundDto {
 	private String adminHisCreatedAt;
 	private String purchaseDate;
 	private Integer adminHisPrice;
+	private Integer adminHisCharge;
 }

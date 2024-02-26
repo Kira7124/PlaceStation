@@ -10,5 +10,7 @@ public interface CompanyRepository {
 	// 회사 정보 전체 찾기
 	public Company findCompany();
 	
-	public int updateSumCompanyBalance(int balance);
+	// 회사 잔고 플러스
+	public int updateCompanyBalance(int balance);
+	
 }

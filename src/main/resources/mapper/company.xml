@@ -10,7 +10,7 @@
 		from company
 	</select>
 
-	<update id="updateSumCompanyBalance">
+	<update id="updateCompanyBalance">
 	update company 
 	set balance = #{balance}
 	</update>

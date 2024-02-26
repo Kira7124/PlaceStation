@@ -41,12 +41,12 @@ public class BizController {
 	@GetMapping("/statistics")
 	public String statisticsForm(Model model, 
 			@RequestParam(value="page" , defaultValue = "0") int page,
-			@RequestParam(value="size" , defaultValue = "10") int size) {
+			@RequestParam(value="size" , defaultValue = "10") int size , @RequestParam(value = "text" , defaultValue = "") String text) {
 
 		int userId = 1;
 
 		PageReq pageReq = new PageReq(page,size);
-		PageRes<BizHistoryDto> pageRes = adminProdHistoryService.findByBizId(userId, pageReq);
+		PageRes<BizHistoryDto> pageRes = adminProdHistoryService.findByBizId(userId, pageReq , text);
 
         model.addAttribute("history",pageRes.getContent()); // 컨텐츠 배열
         model.addAttribute("currentPage",pageRes.getNumber()); // 현재페이지 번호

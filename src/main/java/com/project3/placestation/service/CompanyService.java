@@ -23,9 +23,28 @@ public class CompanyService {
 		return companyRepository.findCompany();
 	}
 	
+	/**
+	 * 회사 잔고 플러스
+	 * @param comBalance
+	 * @param sumBalance
+	 * @return
+	 */
 	public int updateSumCompanyBalance(int comBalance , int sumBalance) {
 		int balance = comBalance + sumBalance;
-		int result = companyRepository.updateSumCompanyBalance(balance);
+		int result = companyRepository.updateCompanyBalance(balance);
+		return result;
+	}
+	
+
+	/**
+	 * 회사 잔고 마이너스
+	 * @param comBalance
+	 * @param sumBalance
+	 * @return
+	 */
+	public int updateMinCompanyBalance(int comBalance , int sumBalance) {
+		int balance = comBalance - sumBalance;
+		int result = companyRepository.updateCompanyBalance(balance);
 		return result;
 	}
 }

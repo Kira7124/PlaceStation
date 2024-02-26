@@ -65,6 +65,9 @@
 		WHERE
 		h.admin_his_seller_id =
 		#{bizId}
+		and h.admin_his_no Like '%' || #{text} || '%'
+		order by
+		h.admin_his_created_at desc
 		LIMIT
 		#{pageReq.page} *
 		#{pageReq.size},#{pageReq.size}
@@ -91,6 +94,7 @@
 		on ps.category_id = p.prod_subcategory_id
 		where p.prod_delete_yn = 'N'
 		and h.admin_his_seller_id = #{bizId}
+		and h.admin_his_no Like '%' || #{text} || '%'
 	</select>
 
 	<select id="findScheduleByBizId"
@@ -241,9 +245,19 @@
 		#{token}
 		)
 	</insert>
-	
+
 	<select id="getToken">
-	select token from admin_prod_history
-	where admin_his_no = #{merchantUid}
+		select token from admin_prod_history
+		where
+		admin_his_no = #{merchantUid}
 	</select>
+
+	<update id="updateCancel">
+		update admin_prod_history
+		set CANCEL_YN = 'Y' ,
+		CANCEL_AT = now() ,
+		CANCEL_AMOUNT = #{cancelAmount}
+		where admin_his_no =
+		#{merchantUid}
+	</update>
 </mapper>

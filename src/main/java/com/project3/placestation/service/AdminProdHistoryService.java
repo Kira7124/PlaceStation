@@ -40,8 +40,8 @@ public class AdminProdHistoryService {
 	 * @param bizId
 	 * @return BizHistoryDto
 	 */
-	public PageRes<BizHistoryDto> findByBizId(int bizId, PageReq pageReq) {
-		List<BizHistoryDto> list = adminProdHistoryRepository.findAllByBizId(bizId, pageReq);
+	public PageRes<BizHistoryDto> findByBizId(int bizId, PageReq pageReq , String text) {
+		List<BizHistoryDto> list = adminProdHistoryRepository.findAllByBizId(bizId, pageReq , text);
 		int totalCount = adminProdHistoryRepository.countFindAllByBizId(bizId);
 
 		PageRes<BizHistoryDto> pageRes = new PageRes<>(list, pageReq.getPage(), totalCount, pageReq.getSize());
@@ -238,5 +238,14 @@ public class AdminProdHistoryService {
 	 */
 	public DbToken getToken(String merchantUid) {
 		return adminProdHistoryRepository.getToken(merchantUid);
+	}
+	
+	/**
+	 * 환불 내역 업데이트
+	 * @param merchantUid
+	 * @return
+	 */
+	public int updateCancel(String merchantUid , double cancelAmount) {
+		return adminProdHistoryRepository.updateCancel(merchantUid , cancelAmount);
 	}
 }

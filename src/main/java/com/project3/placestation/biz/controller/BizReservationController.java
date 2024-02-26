@@ -17,8 +17,10 @@ import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.payment.model.common.PaymentDaySince;
 import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
+import com.project3.placestation.repository.entity.Company;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.BizService;
+import com.project3.placestation.service.CompanyService;
 import com.project3.placestation.service.PaymentService;
 import com.project3.placestation.service.ProductService;
 
@@ -41,19 +43,40 @@ public class BizReservationController {
 	@Autowired
 	PaymentService paymentService;
 	
+	@Autowired
+	CompanyService companyService;
+	
 	// http://localhost/biz/reservation-management
 	@GetMapping("/reservation-management")
 	public String reservationManagementForm(Model model, 
 			@RequestParam(value="page" , defaultValue = "0") int page,
-			@RequestParam(value="size" , defaultValue = "20") int size) {
+			@RequestParam(value="size" , defaultValue = "20") int size ,
+			@RequestParam(value = "text" ,defaultValue = "") String text
+			) {
 
+		log.info("page = " + page);
+		log.info("size = " + size);
+		log.info("text = " + text);
+		
 		int userId = 1;
 
 		PageReq pageReq = new PageReq(page,size);
-		PageRes<BizHistoryDto> pageRes = adminProdHistoryService.findByBizId(userId, pageReq);
+		PageRes<BizHistoryDto> pageRes = adminProdHistoryService.findByBizId(userId, pageReq , text);
 
+		
+//		console.log(${currentPage});
+//		console.log(${totalItems});
+//		console.log(${totalPages});
+//		console.log(${startPage});
+//		console.log(${endPage});
 		log.info(pageRes.getContent().toString());
         model.addAttribute("history",pageRes.getContent()); // 컨텐츠 배열
+        model.addAttribute("currentPage",pageRes.getNumber()); // 컨텐츠 배열
+        model.addAttribute("totalPages",pageRes.getTotalElements()); // 컨텐츠 배열
+        model.addAttribute("totalItems",pageRes.getSize()); // 컨텐츠 배열
+        model.addAttribute("startPage",pageRes.getStartPage()); // 컨텐츠 배열
+        model.addAttribute("endPage",pageRes.getEndPage()); // 컨텐츠 배열
+        model.addAttribute("text",text); // 컨텐츠 배열
 
 		return "biz/reservation/biz_reservation_management";
 	}
@@ -112,42 +135,70 @@ public class BizReservationController {
 		// 환불 전에 몇일 지났는지 확인
 		int since = paymentService.validRefundDate(bizHistoryRefundDto.getAdminHisCreatedAt());
 		
+		log.info("몇일이 지났나요 ? : " + since);
+		
+		double cancelAmount = 0;
 		switch (since) {
 		case 7 : {
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.ONE);
+			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ONE);
 			break;
 		}
 		case 6 : {
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.TWO);
+			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.TWO);
 			break;
 		}
 		
 		case 5 : {
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.THREE);
+			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.THREE);
 			break;
 		}
 		
 		case 4 : {
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.FOUR);
+			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.FOUR);
 			break;
 		}
 		
 		case 3 : {
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.FIVE);
+			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.FIVE);
 			break;
 		}
 		
 		case 2 : {
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SIX);
+			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SIX);
 			break;
 		}
 		
 		case 1 : {
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SEVEN);
+			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SEVEN);
+			break;
+		}
+		case 0 : {
+			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SEVEN);
+			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SEVEN);
 			break;
 		}
 		default:
 			throw new CustomRestfulException("환불할 수 없는 날짜이거나 서버 에러가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		// 거래내역 환불로 바꾸기
+		int result = adminProdHistoryService.updateCancel(merchantUid , cancelAmount);
+		if(result == 0) {
+			throw new CustomRestfulException("환불에 실패하셨습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		// 회사 
+		Company company = companyService.findCompany();
+		int res = companyService.updateMinCompanyBalance(bizHistoryRefundDto.getAdminHisCharge(), company.getBalance());
+		if(res == 0) {
+			throw new CustomRestfulException("회사 돈 안빠져나감.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return "redirect:/biz/reservation-management";
 	}
