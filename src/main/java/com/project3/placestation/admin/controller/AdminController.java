@@ -267,6 +267,17 @@ public class AdminController {
 	
 	
 	
+	//관리자 배너관리페이지 출력
+	@GetMapping("/admin-banner")
+	public String adminbannerGET() {
+		log.debug("adminbanner.jsp 실행");
+		return "admin/adminbanner";
+		
+	}
+	
+	
+	
+	
 	
 	
 	

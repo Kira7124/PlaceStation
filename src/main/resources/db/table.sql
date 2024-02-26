@@ -98,7 +98,10 @@ create table biz (
     biz_brand_name varchar(30),
     biz_balance int,
     file_path varchar (1000),
-    biz_tel varchar (20)
+    biz_tel varchar (20),
+    biz_hp varchar(20),
+    biz_email varchar(20),
+    joinat datetime default now()
 );
 
 
