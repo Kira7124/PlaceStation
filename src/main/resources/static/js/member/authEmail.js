@@ -111,10 +111,11 @@ console.log("프리벤트 아래!!!!!22222")
 		console.log("email : " + email);
 		const code = $('input[name=auth]').val();
 		$.ajax({
-			url: '/LotteON/member/email/confirmEmail/' + code,
+			url: '/member/email/confirmEmail/' + code,
 			type: 'POST',
 			dataType: 'json',
 			success: function(data) {
+				console.log('ㅇㅇ 이메일 검사 성공');
 				if (data > 0) {
 					console.log("result : " + data);
 					$('.msgEmail').css('color', 'green').text('이메일 인증이 완료 되었습니다.');

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,7 +64,7 @@ public class mailController {
     	//String auth = random.generateVerificationCode();
         String to = dto.getEmail(); 				
         String subject = "PlaceStation 회원가입 이메일 인증 입니다.";
-        String text = "난수 6자리 출력해서 보내기 !!!!" + auth + "6자리 숫자를 입력해 주세요";
+        String text = "인증번호 < " + auth + " > 해당 6자리 숫자를 입력해 주세요";
 
         System.out.println("이메일 인증 호출 랜덤킴 생성: " + auth);
         try {
@@ -81,4 +82,19 @@ public class mailController {
 		
 
     }
+    
+    @PostMapping("/confirmEmail/{code}")
+    public int confirmEmail(@PathVariable("code") String code) {
+    	
+    	System.out.println("이메일 컨트롤러 code: "+ code);
+    	int result = service.confirmCodeByMail(code);
+    	
+    	System.out.println("result 이메일 컨트롤러: "+result);
+    	
+    	return result;
+    }
+    
+    
+    
+    
 }

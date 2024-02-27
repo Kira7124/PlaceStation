@@ -184,6 +184,18 @@ h2 {
 				</div>
 			</div>
 			<div class="register-form">
+				<label for="name">name</label> 
+				<input type="text" name="zip" id="zip" placeholder="Enter Adress" onclick="zipcode()" readonly /> <span class="msgName"></span>
+				<div>
+					<input type="text" name="addr1" id="addr1" size="50"
+						placeholder="Search Address" readonly />
+				</div>
+				<div>
+					<input type="text" name="addr2" id="addr2" size="50"
+						placeholder="Address Detail" />
+				</div>
+			</div>
+			<div class="register-form">
 				<label for="name">name</label> <input type="text" name="name"
 					id="name" placeholder="Enter name"> <span class="msgName"></span>
 			</div>

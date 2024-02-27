@@ -82,6 +82,8 @@
     -->
     <!-- member 추가  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="./my-page.js"></script>
     <script src="/js/member/terms.js"></script>
     <script src="/js/member/zipcode.js"></script>
     <script src="/js/member/authEmail.js"></script>

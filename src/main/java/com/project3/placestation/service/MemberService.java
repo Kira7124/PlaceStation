@@ -257,6 +257,16 @@ public class MemberService {
 		
 		return isEmail;
 	}
+
+	public int confirmCodeByMail(String code) {
+
+		 if(code.equals(code)) {
+	            return 1;
+	        }else {
+	            return 0;
+	        }
+		
+	}
 	
 	
 	

@@ -14,8 +14,6 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class oauthController {
 	
-	
-	
 	/* @RequestMapping("/user") 때문에 /user 가 달려있다.
 	 * 카카오 디벨로퍼에서 redirect key 를 줄바꿈으로 10개까지 등록 가능하다. 해서
 	 *  http://localhost:80/user/kakao-callback?code="xxxxxxxxxx" 처럼 만들어준다. 즉 /user대문을 달아도 요청 가능하게 해주자. 
