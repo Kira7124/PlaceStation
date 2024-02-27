@@ -135,8 +135,9 @@ public class BizReservationController {
 		// 환불 전에 몇일 지났는지 확인
 		int since = paymentService.validRefundDate(bizHistoryRefundDto.getAdminHisCreatedAt());
 		
-		log.info("몇일이 지났나요 ? : " + since);
+		log.info("지난 일수 : " + since);
 		
+		// 환불 금액
 		double cancelAmount = 0;
 		
 		// 시간 일자 별로 환불 신청

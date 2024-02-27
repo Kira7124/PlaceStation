@@ -60,8 +60,6 @@
 								<thead>
 									<tr>
 										<th>내역 번호</th>
-										<th>이용자 이름</th>
-										<th>이용자 등급</th>
 										<th>가격</th>
 										<th>인원 수</th>
 										<th>은행</th>
@@ -75,8 +73,6 @@
 									<c:forEach var="history" items="${history}">
 										<tr>
 											<td>${history.adminHisNo}</td>
-											<td>${history.userName}</td>
-											<td>${history.userGrade}</td>
 											<td>${history.adminHisPrice}</td>
 											<td>${history.peopleCount}명</td>
 											<td>${history.bank}</td>
