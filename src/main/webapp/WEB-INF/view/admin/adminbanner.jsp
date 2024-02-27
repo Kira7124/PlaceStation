@@ -16,16 +16,28 @@
 
 			<div class="panel">
 				<div class="panel-heading">
-					<h3 class="panel-title"><b>광고관리</b></h3>
+					<h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>광고관리</b></h3>
 				</div>
+				
+			 	<div style="position: absolute; right: 100px;">
+						<a href="/admin/admin-bannerupdate" data-toggle="modal" data-target="#bannerupdateModal">
+        					<span class="label label-success">수정</span>
+    					</a>     	
+    					<a href="/admin/admin-bannerdelete" data-toggle="modal" data-target="#bannerdeleteModal">
+							<span class="label label-danger">삭제</span>
+						</a>
+				</div>	
+			 
+			 
+			 
+												
 				<div class="panel-body no-padding">
 					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
-								<th>배너번호</th>
-								<th>배너명</th>
-								<th>사진</th>
-								<th>수정/삭제</th>
+								<th style="width: 33.33%;">배너번호</th>
+								<th style="width: 33.33%;">배너명</th>
+								<th style="width: 33.33%;">사진</th>
 							</tr>
 						</thead>
 					<c:forEach var="bannerlist" items="${bannerlist}">
@@ -42,14 +54,6 @@
 								            <img src="${bannerlist.filePath}" style="width: 400px; height: 100px;">
 								        </c:otherwise>
 								    </c:choose>
-								</td>
-								<td>
-									<a href="/admin/admin-bannerupdate" data-toggle="modal" data-target="#bannerupdateModal">
-        								<span class="label label-success">수정</span>
-    								</a>     	
-    								<a href="/admin/admin-bannerdelete" data-toggle="modal" data-target="#bannerdeleteModal">
-										<span class="label label-danger">삭제</span>
-									</a>
 								</td>
 							</tr>
 						</tbody>
