@@ -26,26 +26,15 @@
 		)
 	</insert>
 
-	<!-- 리뷰 수정 -->
-	<update id="updateByRev">
-		UPDATE prod_review SET
-		prod_rev_content =
-		#{prodRevContent},
-		prod_rev_star = #{prodRevStar},
-		prod_rev_update_at =
-		NOW()
-		WHERE prod_rev_no = #{prodRevNo}
-	</update>
-
 	<!-- 리뷰 삭제 -->
-	<delete id="deleteByRev">
+	<update id="deleteReview">
 		update prod_review SET
 		prod_rev_update_at = NOW(),
 		prod_rev_delete_yn = 'Y',
 		prod_rev_delete_at = NOW()
 		WHERE prod_rev_no =
 		#{prodRevNo}
-	</delete>
+	</update>
 
 	<!-- 상품 번호로 리뷰 불러오기 -->
 	<select id="findByRevProdNo">
