@@ -125,7 +125,8 @@ create table admin_prod_history (
     cancel_at timestamp ,
     cancel_amount int (7) ,
     people_count int (3),
-    purchase_date varchar (100)
+    purchase_date varchar (100),
+    token varchar(200)
 );
 
 create table prod_major_category (

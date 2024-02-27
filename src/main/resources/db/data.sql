@@ -57,21 +57,21 @@ values('kira','12121212121','rerere'),
 ('kira10','12121212121','rerere'),
 ('kira11','12121212121','rerere');
 
-insert into biz (biz_id , biz_brand_name,biz_balance , file_path , biz_tel,biz_email,biz_hp)
-values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'021111111','abcd@naver.com','01012345678'),
-(13 , '상호명' , 20000 , 'https://picsum.photos/200/300​','021111111','abcd@naver.com','01012345678');
+insert into biz (biz_id , biz_brand_name,biz_balance ,biz_tel,biz_email,biz_hp)
+values (1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 , '021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 , '021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(1 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678'),
+(13 , '상호명' , 20000 ,'021111111','abcd@naver.com','01012345678');
 
 
 insert into admin_todo(todo_title,todo_content)

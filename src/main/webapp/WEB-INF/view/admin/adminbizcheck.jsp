@@ -11,7 +11,7 @@
 
 
 
-	<!-- MAIN -->
+<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
@@ -29,36 +29,43 @@
 					</div>
 				</div>
 				
-	 <div class="panel-body no-padding">
+				<div class="panel-body no-padding">
 					
-				     <div class="container">
-					   <div class="row justify-content-center">
-						 <div class="col-md-8" style="margin-left: 200px;">	
-							
-							<div class="card">
-			 				  <div class="card-body">
-								<div class="box-body">
-								
-							
-							
-									<div class="details" style="margin: 0 auto; text-align: center;">
-									    <h3 style="font-weight: bold; display: inline;">등록증확인</h3>
-									</div><br>
-									
-									
-									<div class="form-group w-50" style="margin: 0 auto; text-align: center;">
-	    								<img src="${detailBizFile.filePath}" style="margin-top: 10px; margin-bottom:20px; width: 600px; height: 300px;">
-									</div>
-									
-									
+			<div class="container">
+				   <div class="row justify-content-center">
+					 <div class="col-md-8" style="margin-left: 200px;">	
 						
-								   </div>
-							   </div>
-						  </div>		
+						<div class="card">
+		 				  <div class="card-body">
+							<div class="box-body">
+							
+						
+						
+								<div class="details" style="margin: 0 auto; text-align: center;">
+								    <h3 style="font-weight: bold; display: inline;">등록증확인</h3>
+								</div><br>
+								
+								
+								 <div class="form-group w-50" style="margin: 0 auto; text-align: center;">
+									<c:choose>
+									   <c:when test="${empty detailBizFile.filePath}">
+									     <img src="/assets/img/nofile.jpg" style="margin-top: 10px; margin-bottom:20px; width: 600px; height: 300px;">
+									  </c:when>
+									  <c:otherwise>
+	    								<img src="${detailBizFile.filePath}" style="margin-top: 10px; margin-bottom:20px; width: 600px; height: 300px;">
+	    							  </c:otherwise>	
+	    						    </c:choose>		
+								  </div>
+								
+								
 					
-					   </div>				
-					</div>			
-				</div>				
+							   </div>
+						   </div>
+					  </div>		
+				
+				   </div>				
+				</div>			
+			</div>				
 					
 					
 					
