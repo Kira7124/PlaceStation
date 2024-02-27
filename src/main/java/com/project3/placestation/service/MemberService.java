@@ -232,6 +232,33 @@ public class MemberService {
 		
 	}	
 	
+	// (회원가입)아이디 중복검사
+	public int validUid(String uid) {
+		
+		return memberRepository.selectByValidUserId(uid);
+	}
+
+	// (회원가입)전화번호 중복검사
+	public int validHp(String hp) {
+
+		return memberRepository.selectByValidHp(hp);
+	}
+
+	// (회원가입)사업자 전화번호 중복검사
+	public int validManagerHp(String managerHp) {
+
+		return memberRepository.selectByValidManageHp(managerHp);	
+	}
+	
+	// (회원가입)이메일 중복체크
+	public int validEmail(String email) {
+		
+		int isEmail = memberRepository.selectByValidEmail(email);
+		
+		return isEmail;
+	}
+	
+	
 	
 	
 }

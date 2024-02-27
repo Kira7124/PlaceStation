@@ -80,8 +80,14 @@
     JavaScripts
     =============================================
     -->
+    <!-- member 추가  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/js/member/terms.js"></script>
+    <script src="/js/member/zipcode.js"></script>
+    <script src="/js/member/authEmail.js"></script>
+    <script src="/js/member/checkUser.js"></script>
+      <!-- member 추가  -->
+    
     <script src="/assets/lib/jquery/dist/jquery.js"></script>
     <script src="/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/assets/lib/wow/dist/wow.js"></script>
