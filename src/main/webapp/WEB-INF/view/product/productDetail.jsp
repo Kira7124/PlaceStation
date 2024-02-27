@@ -231,30 +231,30 @@
 											<!-- 본문 1 -->
 											<div class="post #">
 												<div class="post-header font-alt">
-													<h2 class="post-title">
+													<h1 class="post-title">
 														<a>공간 소개</a>
-													</h2>
-													<div class="post-meta">${product.prodSpaceInfo}</div>
+													</h1>
+													<div class="post-meta" style="white-space: pre-line;"><h5>${product.prodSpaceInfo}</h5></div>
 												</div>
 											</div>
 
 											<!-- 본문 2 -->
 											<div class="post #">
 												<div class="post-header font-alt">
-													<h2 class="post-title">
+													<h1 class="post-title">
 														<a>대여 가능</a>
-													</h2>
-													<div class="post-meta">${product.prodGoodsInfo}</div>
+													</h1>
+													<div class="post-meta" style="white-space: pre-line;"><h5>${product.prodGoodsInfo}</h5></div>
 												</div>
 											</div>
 
 											<!-- 본문 3 -->
 											<div class="post #">
 												<div class="post-header font-alt">
-													<h2 class="post-title">
+													<h1 class="post-title">
 														<a>예약시 주의사항</a>
-													</h2>
-													<div class="post-meta">${product.prodCautionInfo}</div>
+													</h1>
+													<div class="post-meta" style="white-space: pre-line;"><h5>${product.prodCautionInfo}</h5></div>
 												</div>
 											</div>
 											<!-- 카카오맵 API -->
