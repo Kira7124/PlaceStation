@@ -1,5 +1,3 @@
-
-
  -- INSERT INTO product (prod_writer_no, prod_no, prod_title, prod_writer, prod_rdate, prod_start_time, prod_end_time, prod_space_info, prod_goods_info, prod_caution_info, prod_maximum_people, prod_address, prod_detailed_address, prod_price, file_path, prod_major_category_id, prod_subcategory_id, prod_full_address, prod_location_x, prod_location_y, prod_update_at, prod_delete_at, prod_delete_yn, prod_delete_reason)
  -- VALUES
  -- (1, 1, '더미 1', 'Writer 1', '2024-02-19 10:00:00', 9, 17, 'Space info 1', 'Goods info 1', 'Caution info 1', 10, 'Address 1', 'Detailed address 1', 10000, '/assets/images/product/image1.jpg', 1, 1, 'Full address 1', 37.1234, 127.5678, '2024-02-19 10:00:00', NULL, 'N', NULL),
@@ -17,32 +15,32 @@ VALUES
 
 INSERT INTO member (user_id, user_password, user_address, user_name, user_hp, user_email, user_role,grade,gender) 
 VALUES 
-('test1', '1234', '서울특별시', '김진수2', '01089237125', 'afc2016@naver.com', 'BIZ','실버','M'),
-('test2', '1234', '대구광역시', '김진수3', '01089237126', 'afc2017@naver.com', 'USER','골드','F'),
-('test3', '1234', '광주광역시', '김진수4', '01089237127', 'afc2018@naver.com', 'USER','실버','F'),
-('test4', '1234', '울산광역시', '김진수5', '01089237128', 'afc2019@naver.com', 'USER','골드','F'),
-('test5', '1234', '울산광역시', '김진수6', '01089237128', 'afc2020@naver.com', 'USER','브론즈','F'),
-('test6', '1234', '울산광역시', '김진수7', '01089237128', 'afc2021@naver.com', 'USER','골드','F'),
-('test7', '1234', '울산광역시', '김진수8', '01089237128', 'afc2022@naver.com', 'USER','실버','F'),
-('test8', '1234', '울산광역시', '김진수9', '01089237128', 'afc2023@naver.com', 'USER','골드','F'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','F'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','실버','F'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','F'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','M'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','실버','M'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','실버','M'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','실버','M'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','M'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','M'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','M'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','F'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','F'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','F'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','F'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','F'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','F'),
-('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','골드','F'),
-('test10', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'BIZ','골드','F');
+('test1', '1234', '서울특별시', '김진수2', '01089237125', 'afc2016@naver.com', 'BIZ','BRONZE','M'),
+('test2', '1234', '대구광역시', '김진수3', '01089237126', 'afc2017@naver.com', 'USER','GOLD','F'),
+('test3', '1234', '광주광역시', '김진수4', '01089237127', 'afc2018@naver.com', 'USER','SILVER','F'),
+('test4', '1234', '울산광역시', '김진수5', '01089237128', 'afc2019@naver.com', 'USER','GOLD','F'),
+('test5', '1234', '울산광역시', '김진수6', '01089237128', 'afc2020@naver.com', 'USER','BRONZE','F'),
+('test6', '1234', '울산광역시', '김진수7', '01089237128', 'afc2021@naver.com', 'USER','GOLD','F'),
+('test7', '1234', '울산광역시', '김진수8', '01089237128', 'afc2022@naver.com', 'USER','SILVER','F'),
+('test8', '1234', '울산광역시', '김진수9', '01089237128', 'afc2023@naver.com', 'USER','GOLD','F'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','SILVER','F'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','M'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','SILVER','M'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','SILVER','M'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','SILVER','M'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','M'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','M'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','M'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
+('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
+('test10', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'BIZ','GOLD','F');
 
 insert into notice_board (n_writer,n_content,n_title)
 values('kira','12121212121','rerere'),
@@ -57,8 +55,8 @@ values('kira','12121212121','rerere'),
 ('kira10','12121212121','rerere'),
 ('kira11','12121212121','rerere');
 
-insert into biz (biz_id , biz_brand_name,biz_balance , file_path , biz_tel)
-values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'010-1111-1111');
+insert into biz (biz_id , biz_brand_name,biz_balance , file_path , biz_tel , imp_uid , imp_key , imp_secret)
+values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'010-1111-1111', 'imp05516285' , '2076220350658738' , 'UidsW7v862X8nxk9NnjaPvpxYuiwSiG67gLkAYzx0tMxRRbwVOIHBsYZZ7I3rz78gqgA3oroohDtXDlp');
 insert into biz (biz_id , biz_brand_name,biz_balance , file_path ,biz_tel)
 values (13 , '상호명' , 20000 , 'https://picsum.photos/200/300​','010-1111-1111');
 
@@ -68,6 +66,7 @@ values('1번할일','어드민페이지완성'),
 ('2번할일','어드민페이지완성2'),
 ('3번할일','어드민페이지완성3'),
 ('4번할일','어드민페이지완성4');
+
 
 -- product
 insert into product (
@@ -124,8 +123,6 @@ insert into product (
     ,35.15165189498 , 125.026156153123
 );
 
-
-
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -141,9 +138,60 @@ insert into admin_prod_history (
     bank ,
     start_time ,
     end_time,
-    people_count ,
-    purchase_date
-) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2 , '2024-02-19');
+    people_count
+) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2);
+
+
+
+insert into biz (biz_id,biz_brand_name,biz_hp,biz_tel,biz_email)
+values
+(1111,'직방','01012341234','021231234','dabang@naver.com'),
+(2222,'다방','01012341234','021231234','dabang@naver.com'),
+(3333,'올리브영','01012341234','021231234','dabang@naver.com'),
+(4444,'삼성','01012341234','021231234','dabang@naver.com'),
+(5555,'현대','01012341234','021231234','dabang@naver.com'),
+(6666,'요기어때','01012341234','021231234','dabang@naver.com'),
+(7777,'하나투어','01012341234','021231234','dabang@naver.com'),
+(8888,'모두투어','01012341234','021231234','dabang@naver.com'),
+(9999,'노랑풍선','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1234,'대한항공','01012341234','021231234','dabang@naver.com'),
+(1235,'아시아나','01012341234','021231234','dabang@naver.com');
+
+insert into notice_board (n_writer,n_content,n_title)
+values('kira','12121212121','rerere'),
+('kira2','12121212121','rerere'),
+('kira3','12121212121','rerere'),
+('kira4','12121212121','rerere'),
+('kira5','12121212121','rerere'),
+('kira6','12121212121','rerere'),
+('kira7','12121212121','rerere'),
+('kira8','12121212121','rerere'),
+('kira9','12121212121','rerere'),
+('kira10','12121212121','rerere'),
+('kira11','12121212121','rerere');
+
+
+insert into admin_todo(todo_title,todo_content)
+values('1번할일','어드민페이지완성'),
+('2번할일','어드민페이지완성2'),
+('3번할일','어드민페이지완성3'),
+('4번할일','어드민페이지완성4'),
+('5번할일','어드민페이지완성5'),
+('6번할일','어드민페이지완성6'),
+('7번할일','어드민페이지완성7'),
+('8번할일','어드민페이지완성8');
+
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -329,6 +377,7 @@ values('키라1','첫번째내용입니다','0번째qna글1'),
 ('키라1','11번째내용입니다','10번째qna글1'),
 ('키라1','12번째내용입니다','11번째qna글1');
 
+
 insert into prod_major_category (category_name) values ('스포츠');
 insert into prod_major_category (category_name) values ('캠핑');
 insert into prod_major_category (category_name) values ('스터디');
@@ -339,5 +388,24 @@ insert into prod_subcategory (main_category_id , subcategory_name) values (1, '�
 insert into prod_subcategory (main_category_id , subcategory_name) values (2, '야외');
 insert into prod_subcategory (main_category_id , subcategory_name) values (2, '실내');
 insert into prod_subcategory (main_category_id , subcategory_name) values (3, '카페');
+insert into prod_subcategory (main_category_id , subcategory_name) values (3, '도서관');
+
+insert into charge values (10);
+insert into grade values ('BRONZE' , 3 , 999 , 1);
+insert into grade values ('SILVER' , 5 , 10000 , 2);
+insert into grade values ('GOLD' , 7 , 100000 , 3);
+
+
+insert into company values ('PlaceStation' , '부산광역시 부산진구 중앙대로 688, 한준빌딩 2층',
+'010-1111-1111' ,
+'김진수' ,
+'greenAcademi@naver.com',
+'2024-PlaceStation-0056호' ,
+'사업 소개',
+'오전 9시 ~ 오후 6시' ,
+0
+);
+
+
 insert into prod_subcategory (main_category_id , subcategory_name) values (3, '도서관');
 

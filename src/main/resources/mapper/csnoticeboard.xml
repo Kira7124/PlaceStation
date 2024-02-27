@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.CsNoticeBoardRepository">
+		
+	<!-- 공지사항 리스트 출력 -->
+	 <select id="CsNoticeBoardListAll" resultType="com.project3.placestation.cs.dto.CsNoticeDTO">
+	 		select * from notice_board
+    </select>
+    
+	<!-- 페이징 처리 갯수 세팅 -->
+	<!--  <select id="selectNotices" resultType="com.project3.placestation.member.dto.noticeBoardDTO">
+    </select> -->
+    
+	<!-- 특정 글 조회(글 번호 사용) -->
+	<select id="DetailNoticeBoard" resultType="com.project3.placestation.cs.dto.CsNoticeDTO">
+			select * from notice_board where n_bno = #{nbno}
+	</select>
+	
+	<!-- 글 조회수 1 증가 -->
+	<!-- <update id="UpdateReadCnt">
+			update notice_board set n_readcount = n_readcount + 1 where n_bno = #{nbno} 
+	</update> -->
+
+
+	
+
+</mapper>

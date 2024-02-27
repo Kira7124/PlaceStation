@@ -130,5 +130,5 @@ public class ProductController {
 		log.debug("카페고리별 상품 확인");
 		return "product/productCate";
 	}
-
+	
 }

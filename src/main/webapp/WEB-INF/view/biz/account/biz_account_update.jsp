@@ -106,7 +106,8 @@
 													<span class="input-group-btn"><button type="button"
 															class="btn btn-primary" onclick="checkPasswordRight()">변경</button></span>
 												</div>
-												<input type="hidden" name="changePassword" value="N" id="isChangePassword" />
+												<input type="hidden" name="changePassword" value="N"
+													id="isChangePassword" />
 											</div>
 										</div>
 										<!-- 비밀번호 변경 완료 -->
@@ -118,8 +119,19 @@
 										<h4>주소</h4>
 										<input type="text" class="form-control"
 											placeholder="주소를 입력해 주세요" name="userAddress"
-											value="${biz.userAddress}" />
-
+											value="${biz.userAddress}" /> <br />
+										<h4>포트원 uid (imp_uid)</h4>
+										<input type="text" class="form-control"
+											placeholder="주소를 입력해 주세요" name="impUid"
+											value="${biz.impUid}" /> <br />
+										<h4>포트원 key (imp_key)</h4>
+										<input type="password" class="form-control"
+											placeholder="주소를 입력해 주세요" name="impKey"
+											value="${biz.impKey}" /> <br />
+										<h4>포트원 secret (imp_secret)</h4>
+										<input type="password" class="form-control"
+											placeholder="주소를 입력해 주세요" name="impSecret"
+											value="${biz.impSecret}" />
 									</div>
 
 									<!-- 게시물의 배너 이미지 -->

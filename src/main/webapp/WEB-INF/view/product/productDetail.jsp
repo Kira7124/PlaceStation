@@ -151,16 +151,12 @@
 	justify-content: center;
 	align-items: center;
 	"
-	<<<<<<<
-	HEAD
+
 }
 
 .disabled-div {
 	background-color: gray;
-	=======
-	>>>>>>>
-	origin
-	/product
+
 }
 
 .comment-star {
