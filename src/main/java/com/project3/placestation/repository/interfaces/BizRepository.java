@@ -34,5 +34,9 @@ public interface BizRepository {
 	
 
 	public int updateBizByBizId(@Param("biz")ReqBizAccountDto biz ,@Param("bizId")int bizId);
+	
+	
+	//사업자등록증(관리자조회)
+	public Biz detailBizFile(Integer bizNo) throws Exception;
 
 }

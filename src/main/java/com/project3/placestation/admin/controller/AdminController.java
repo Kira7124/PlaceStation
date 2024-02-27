@@ -261,6 +261,24 @@ public class AdminController {
 		return "admin/adminqnadetail";
 
 	}
+	
+	
+	
+	
+	// 관리자 사업자등록증 확인페이지출력
+	@GetMapping("/admin-bizcheck")
+	public String adminfileCheckGET(@RequestParam("bizNo") Integer bizNo, Model model) throws Exception{
+		
+		Biz result = bizService.detailBizFile(bizNo);
+		model.addAttribute("detailBizFile", result);
+		
+		log.debug("사업자등록증확인 GET 실행!");
+		return "admin/adminbizcheck";
+	}
+	
+	
+	
+	
 
 	// 공지사항 등록페이지 GET
 	@GetMapping("/admin-noticeinsert")
@@ -356,11 +374,16 @@ public class AdminController {
 	// admin 사업자update정보수정POST
 	@PostMapping("/admin-bizupdate")
 	public String adminbizupdatePOST(AdminBizDTO dto) {
+		
+		String filePath = filedbService.saveFiles(dto.getFiles());
+		
 		log.debug("adminbizupdatePOST 실행");
-		bizService.AdminUpdateBiz(dto);
+		bizService.AdminUpdateBiz(dto,filePath);
 		return "redirect:/admin/admin-biz";
 	}
 
+	
+	
 	// admin 사업자배너 update 정보수정 POST
 	@PostMapping("/admin-bannerupdate")
 	public String adminbannerupdatePOST(AdminBannerDTO dto) {

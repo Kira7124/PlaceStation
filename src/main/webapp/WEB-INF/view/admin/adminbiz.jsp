@@ -52,11 +52,11 @@
 								<th>아이디</th>
 								<th>브랜드명</th>
 								<th>잔액</th>
-								<th>사진</th>
 								<th>개인번호</th>
 								<th>업장번호</th>
 								<th>이메일</th>
 								<th>가입일</th>
+								<th>등록증</th>
 								<th>수정/삭제</th>
 							</tr>
 						</thead>
@@ -67,13 +67,15 @@
 								<td>${bizlist.bizId}</td>
 								<td>${bizlist.bizBrandName}</td>
 								<td>${bizlist.bizBalance}</td>
-								<td>
-									<img src="${bizlist.filePath}" style="width:30px; height: 30px; border-radius:50%;">							
-								</td>
 								<td>${bizlist.formatHp(bizlist.bizHp)}</td>
 								<td>${bizlist.formatTel(bizlist.bizTel)}</td>
 								<td>${bizlist.bizEmail}</td>
 								<td>${bizlist.formatjoinAt()}</td>
+								<td>
+								   <a href="/admin/admin-bizcheck?bizNo=${bizlist.bizNo}">
+									<span class="label label-info">확인</span>
+								   </a>  	
+								</td>
 								<td>
 									<a href="/admin/admin-bizupdate" data-toggle="modal" data-target="#updateModal">
 										<span class="label label-success">수정</span>

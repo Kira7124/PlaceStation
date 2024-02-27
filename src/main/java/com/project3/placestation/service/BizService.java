@@ -52,9 +52,15 @@ public class BizService {
 	}
 	
 	
+	//사업자등록증확인(관리자)
+	public Biz detailBizFile(Integer bizNo) throws Exception{
+		return bizRepository.detailBizFile(bizNo);
+	}
+	
+	
 	//관리자사업자수정
 	@Transactional
-	public void AdminUpdateBiz(AdminBizDTO dto) {
+	public void AdminUpdateBiz(AdminBizDTO dto,String filePath) {
 		Biz biz = Biz.builder()
 				.bizNo(dto.getBizno())
 				.bizId(dto.getBizid())
@@ -62,8 +68,9 @@ public class BizService {
 				.bizHp(dto.getBizhp())
 				.bizTel(dto.getBiztel())
 				.bizEmail(dto.getBizemail())
+				.filePath(filePath)
 				.build();
-		
+			
 		
 		Integer result = bizRepository.AdminUpdateBiz(biz);
 		

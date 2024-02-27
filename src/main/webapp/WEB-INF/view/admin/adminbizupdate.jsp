@@ -72,7 +72,21 @@
 				        </div>
 				    </div>
 				 </div>
-		
+				
+			   <div class="row" style ="margin-top: 10px;">
+				    <div class="col-md-3">
+				        <label for="name" class="form-label">등록증수정</label>
+				    </div>
+				    <div class="col-md-5">
+				        <div class="input-box">
+						<input type='file' id='btnAtt' multiple='multiple' name="files">				        
+				    </div>
+				</div>
+		      </div> 	
+				
+				
+				
+				
 		 		
 		      </div>
 		    </div>
