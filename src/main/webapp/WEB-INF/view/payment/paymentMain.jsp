@@ -453,12 +453,19 @@
           if (response.ok) {
         	console.log(response);
             console.log("포트원 결제 완료");
+            alert("결제가 완료되었습니다.");
+            location.href = "/product/main";
+            
             // 저장 완료시 로직
           } else {
             console.error("실패", response.statusText);
+            alert("결제에 실패하셨습니다. 자동으로 환불처리 됩니다.");
+            location.href = "/product/main";
           }
         } catch (e) {
           console.error("실패", e.message);
+          alert("결제에 실패하셨습니다. 자동으로 환불처리 됩니다.");
+          location.href = "/product/main";
         }
       }
     </script>

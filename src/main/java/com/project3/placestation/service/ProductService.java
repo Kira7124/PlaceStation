@@ -126,6 +126,46 @@ public class ProductService {
 		return resProduct;
 	}
 	
+	
+	/**
+	 * 상품 목록 전체 조회
+	 * 1. 삭제된 상품도 조회 가능
+	 * @param userId
+	 * @return
+	 */
+	public List<ResProductDto> findProductAllByUserId(int userId) {
+		List<Product> listProduct = productRepository.findProductAllByUserId(userId);
+		List<ResProductDto> resProduct = new ArrayList<>();
+
+		if (listProduct.isEmpty() == false) {
+			for (Product product : listProduct) {
+
+				String[] filePath = {};
+				if (product.getFilePath() != null && product.getFilePath().isEmpty() == false) {
+					String receiveFilePath = product.getFilePath();
+					filePath = receiveFilePath.split(",");
+				}
+
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
+						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
+						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
+						.prodCautionInfo(product.getProdCautionInfo()).prodMaximumPeople(product.getProdMaximumPeople())
+						.prodAddress(product.getProdAddress()).filePath(filePath)
+						.prodMajorCategoryId(product.getProdMajorCategoryId())
+						.prodSubcategoryId(product.getProdSubcategoryId()).prodFullAddress(product.getProdFullAddress())
+						.prodDetailedAddress(product.getProdDetailedAddress()).prodLocationX(product.getProdLocationX())
+						.prodLocationY(product.getProdLocationY()).prodRdate(product.getProdRdate())
+						.prodUpdateAt(product.getProdUpdateAt()).prodDeleteYn(product.getProdDeleteYn())
+						.prodDeleteAt(product.getProdDeleteAt()).build();
+				resProduct.add(dto);
+				
+			}
+		}
+		return resProduct;
+	}
+	
+	
 	/**
 	 * 상품 목록 전체 조회
 	 * 

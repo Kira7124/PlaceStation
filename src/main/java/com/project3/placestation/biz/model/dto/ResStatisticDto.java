@@ -18,6 +18,8 @@ public class ResStatisticDto {
 	private List<StatisticDto> annualList;
 	private List<StatisticDto> monthlyList;
 	private	List<StatisticDto> weekList;
+	private List<Integer> monthlyFeeCharge;
+	private List<String> monthlyFeeDate;
 	private int annualCount;
 	private int monthlyCount;
 	private int weekCount;

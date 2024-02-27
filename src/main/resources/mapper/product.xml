@@ -126,6 +126,13 @@
 		and
 		prod_writer_no = #{userId}
 	</select>
+	
+	<select id="findProductAllByUserId"
+		resultType="com.project3.placestation.repository.entity.Product">
+		select * from product
+		where
+		prod_writer_no = #{userId}
+	</select>
 
 	<select id="findById"
 		resultType="com.project3.placestation.repository.entity.Product">

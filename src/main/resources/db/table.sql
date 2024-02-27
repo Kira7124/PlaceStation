@@ -64,7 +64,7 @@ create table member (
   user_hp VARCHAR(20) NOT NULL,
   user_email VARCHAR(30) NOT NULL,
   user_point INT NULL DEFAULT 10,
-  file_path VARCHAR(100) NULL DEFAULT 'default.jpg',
+  file_path VARCHAR(100) DEFAULT 'https://localhost/file-path/dsanlk',
   join_at DATETIME NULL DEFAULT now(),
   user_role VARCHAR(20) NOT NULL,
   grade VARCHAR(20) NULL DEFAULT '브론즈',
