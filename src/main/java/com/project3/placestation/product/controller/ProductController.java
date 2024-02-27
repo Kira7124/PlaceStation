@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,7 +58,6 @@ public class ProductController {
 	    List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNo(prodNo);
 	    List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo , "");
 
-	    
 	    log.info(invalidDate.toString());
 	    model.addAttribute("product", product);
 	    model.addAttribute("reviewProdNo", reviewProdNo);
@@ -75,6 +76,7 @@ public class ProductController {
         
 	    return "redirect:/product/productDetail?prod_no="+ prodNo;
 	}
+	
 	// 리뷰 작성
 	@PostMapping("/addReview")
 	public String addReview(ProdReviewDto dto, @RequestParam("prodNo") Integer prodNo) {
@@ -84,20 +86,16 @@ public class ProductController {
         
 	    return "redirect:/product/productDetail?prod_no="+ prodNo;
 	}
-	// 리뷰 수정
-	@PostMapping("/updateReview")
-	public String updateReview(ProdReviewDto dto, @RequestParam("prodNo") Integer prodNo) {
-		dto.setProdNo(prodNo);
-		
-		prodReviewService.updateReview(dto);
-		
-		return "redirect:/product/productDetail?prod_no="+ prodNo;
+
+	// 리뷰 삭제
+	@DeleteMapping("/deleteReview/{prodRevNo}")
+	public String deleteReview(@PathVariable Integer prodRevNo, @RequestParam Integer prodNo) {
+
+		prodReviewService.deleteReview(prodRevNo);
+	    
+		return "redirect:/product/productDetail?prod_no=" + prodNo;
 	}
-	
-	
-	
-	
-	
+
 	// 찜(상품 좋아요) 하기
 	@PostMapping("/addWishlist")
 	public String addWishlist() {
@@ -105,13 +103,12 @@ public class ProductController {
 		return "";
 	}
 	
-	
 	@GetMapping("/main")
 	public String mainindex(Model model) {
 		log.debug("메인 페이지!");
 		// 상품 전체 리스트 조회
 		List<ResProductDto> products = productService.findAll();
-//		// 전체 상품 조회 4개
+		// 전체 상품 조회 4개
 		List<ResProductDto> topProducts = products.stream().limit(8).collect(Collectors.toList());
 		// 리뷰 많은 상품
 		List<ProdReview> productsRev = productRepository.findAllByRev();

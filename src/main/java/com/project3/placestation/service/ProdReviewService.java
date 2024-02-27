@@ -81,20 +81,14 @@ public class ProdReviewService {
 			throw new CustomRestfulException("리뷰 등록에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
     }
-    // 리뷰 수정
-    public void updateReview(ProdReviewDto dto) {
+
+    // 리뷰 삭제
+    public void deleteReview(int prodRevNo) {
     	
-    	ProdReview prodReview = ProdReview.builder()
-    			.prodRevContent(dto.getProdRevContent())
-    			.prodRevStar(dto.getProdRevStar())
-    			.prodNo(dto.getProdNo())
-    			.build();
-    	
-        int result = prodReviewRepository.updateReview(prodReview);
-		// 확인
+    	int result = prodReviewRepository.deleteReview(prodRevNo);
 		if (result < 1) {
-			throw new CustomRestfulException("리뷰 수정에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException("리뷰 삭제에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-    }
+	}
 }

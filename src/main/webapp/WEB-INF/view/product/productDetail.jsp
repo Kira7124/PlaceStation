@@ -167,6 +167,10 @@
 	float: right;
 	margin-right: 10px;
 }
+
+.btn.btn-sm {
+	float: none;
+}
 </style>
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -175,312 +179,6 @@
 		<div class="page-loader">
 			<div class="loader">Loading...</div>
 		</div>
-		<!-- nav bar 시작 -->
-		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button class="navbar-toggle" type="button" data-toggle="collapse"
-						data-target="#custom-collapse">
-						<span class="sr-only">Toggle navigation</span><span
-							class="icon-bar"></span><span class="icon-bar"></span><span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/product/main">Titan</a>
-				</div>
-				<div class="collapse navbar-collapse" id="custom-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Home</a>
-							<ul class="dropdown-menu">
-								<li><a href="index_mp_fullscreen_video_background.html">Default</a>
-								</li>
-								<li><a href="index_op_fullscreen_gradient_overlay.html">One
-										Page</a></li>
-								<li><a href="index_agency.html">Agency</a></li>
-								<li><a href="index_portfolio.html">Portfolio</a></li>
-								<li><a href="index_restaurant.html">Restaurant</a></li>
-								<li><a href="index_finance.html">Finance</a></li>
-								<li><a href="index_landing.html">Landing Page</a></li>
-								<li><a href="index_photography.html">Photography</a></li>
-								<li><a href="index_shop.html">Shop</a></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Headers</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Static Image Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_static.html">Fulscreen</a>
-										</li>
-										<li><a href="index_mp_classic_static.html">Classic</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Flexslider Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_flexslider.html">Fulscreen</a>
-										</li>
-										<li><a href="index_mp_classic_flexslider.html">Classic</a>
-										</li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Video Background Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_video_background.html">Fulscreen</a>
-										</li>
-										<li><a href="index_mp_classic_video_background.html">Classic</a>
-										</li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Text Rotator Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_text_rotator.html">Fulscreen</a>
-										</li>
-										<li><a href="index_mp_classic_text_rotator.html">Classic</a>
-										</li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Gradient Overlay Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_gradient_overlay.html">Fulscreen</a>
-										</li>
-										<li><a href="index_mp_classic_gradient_overlay.html">Classic</a>
-										</li>
-									</ul></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Pages</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">About</a>
-									<ul class="dropdown-menu">
-										<li><a href="about1.html">About 1</a></li>
-										<li><a href="about2.html">About 2</a></li>
-										<li><a href="about3.html">About 3</a></li>
-										<li><a href="about4.html">About 4</a></li>
-										<li><a href="about5.html">About 5</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Services</a>
-									<ul class="dropdown-menu">
-										<li><a href="service1.html">Service 1</a></li>
-										<li><a href="service2.html">Service 2</a></li>
-										<li><a href="service3.html">Service 3</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Pricing</a>
-									<ul class="dropdown-menu">
-										<li><a href="pricing1.html">Pricing 1</a></li>
-										<li><a href="pricing2.html">Pricing 2</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Gallery</a>
-									<ul class="dropdown-menu">
-										<li><a href="gallery_col_2.html">2 Columns</a></li>
-										<li><a href="gallery_col_3.html">3 Columns</a></li>
-										<li><a href="gallery_col_4.html">4 Columns</a></li>
-										<li><a href="gallery_col_6.html">6 Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Contact</a>
-									<ul class="dropdown-menu">
-										<li><a href="contact1.html">Contact 1</a></li>
-										<li><a href="contact2.html">Contact 2</a></li>
-										<li><a href="contact3.html">Contact 3</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Restaurant menu</a>
-									<ul class="dropdown-menu">
-										<li><a href="restaurant_menu1.html">Menu 2 Columns</a></li>
-										<li><a href="restaurant_menu2.html">Menu 3 Columns</a></li>
-									</ul></li>
-								<li><a href="login_register.html">Login / Register</a></li>
-								<li><a href="faq.html">FAQ</a></li>
-								<li><a href="404.html">Page 404</a></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Portfolio</a>
-							<ul class="dropdown-menu" role="menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Boxed</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio_boxed_col_2.html">2 Columns</a></li>
-										<li><a href="portfolio_boxed_col_3.html">3 Columns</a></li>
-										<li><a href="portfolio_boxed_col_4.html">4 Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Boxed - Gutter</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio_boxed_gutter_col_2.html">2
-												Columns</a></li>
-										<li><a href="portfolio_boxed_gutter_col_3.html">3
-												Columns</a></li>
-										<li><a href="portfolio_boxed_gutter_col_4.html">4
-												Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Full Width</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio_full_width_col_2.html">2
-												Columns</a></li>
-										<li><a href="portfolio_full_width_col_3.html">3
-												Columns</a></li>
-										<li><a href="portfolio_full_width_col_4.html">4
-												Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Full Width - Gutter</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio_full_width_gutter_col_2.html">2
-												Columns</a></li>
-										<li><a href="portfolio_full_width_gutter_col_3.html">3
-												Columns</a></li>
-										<li><a href="portfolio_full_width_gutter_col_4.html">4
-												Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Masonry</a>
-									<ul class="dropdown-menu">
-										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Boxed</a>
-											<ul class="dropdown-menu">
-												<li><a href="portfolio_masonry_boxed_col_2.html">2
-														Columns</a></li>
-												<li><a href="portfolio_masonry_boxed_col_3.html">3
-														Columns</a></li>
-												<li><a href="portfolio_masonry_boxed_col_4.html">4
-														Columns</a></li>
-											</ul></li>
-										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Full Width</a>
-											<ul class="dropdown-menu">
-												<li><a href="portfolio_masonry_full_width_col_2.html">2
-														Columns</a></li>
-												<li><a href="portfolio_masonry_full_width_col_3.html">3
-														Columns</a></li>
-												<li><a href="portfolio_masonry_full_width_col_4.html">4
-														Columns</a></li>
-											</ul></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Hover Style</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio_hover_black.html">Black</a></li>
-										<li><a href="portfolio_hover_gradient.html">Gradient</a>
-										</li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Single</a>
-									<ul class="dropdown-menu">
-										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Featured Image</a>
-											<ul class="dropdown-menu">
-												<li><a href="portfolio_single_featured_image1.html">Style
-														1</a></li>
-												<li><a href="portfolio_single_featured_image2.html">Style
-														2</a></li>
-											</ul></li>
-										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Featured Slider</a>
-											<ul class="dropdown-menu">
-												<li><a href="portfolio_single_featured_slider1.html">Style
-														1</a></li>
-												<li><a href="portfolio_single_featured_slider2.html">Style
-														2</a></li>
-											</ul></li>
-										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Featured Video</a>
-											<ul class="dropdown-menu">
-												<li><a href="portfolio_single_featured_video1.html">Style
-														1</a></li>
-												<li><a href="portfolio_single_featured_video2.html">Style
-														2</a></li>
-											</ul></li>
-									</ul></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Blog</a>
-							<ul class="dropdown-menu" role="menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Standard</a>
-									<ul class="dropdown-menu">
-										<li><a href="blog_standard_left_sidebar.html">Left
-												Sidebar</a></li>
-										<li><a href="blog_standard_right_sidebar.html">Right
-												Sidebar</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Grid</a>
-									<ul class="dropdown-menu">
-										<li><a href="blog_grid_col_2.html">2 Columns</a></li>
-										<li><a href="blog_grid_col_3.html">3 Columns</a></li>
-										<li><a href="blog_grid_col_4.html">4 Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Masonry</a>
-									<ul class="dropdown-menu">
-										<li><a href="blog_grid_masonry_col_2.html">2 Columns</a>
-										</li>
-										<li><a href="blog_grid_masonry_col_3.html">3 Columns</a>
-										</li>
-										<li><a href="blog_grid_masonry_col_4.html">4 Columns</a>
-										</li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Single</a>
-									<ul class="dropdown-menu">
-										<li><a href="blog_single_left_sidebar.html">Left
-												Sidebar</a></li>
-										<li><a href="blog_single_right_sidebar.html">Right
-												Sidebar</a></li>
-									</ul></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Features</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="alerts-and-wells.html"><i
-										class="fa fa-bolt"></i> Alerts and Wells</a></li>
-								<li><a href="buttons.html"><i class="fa fa-link fa-sm"></i>
-										Buttons</a></li>
-								<li><a href="tabs_and_accordions.html"><i
-										class="fa fa-tasks"></i> Tabs &amp; Accordions</a></li>
-								<li><a href="content_box.html"><i
-										class="fa fa-list-alt"></i> Contents Box</a></li>
-								<li><a href="forms.html"><i
-										class="fa fa-check-square-o"></i> Forms</a></li>
-								<li><a href="icons.html"><i class="fa fa-star"></i>
-										Icons</a></li>
-								<li><a href="progress-bars.html"><i
-										class="fa fa-server"></i> Progress Bars</a></li>
-								<li><a href="typography.html"><i class="fa fa-font"></i>
-										Typography</a></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Shop</a>
-							<ul class="dropdown-menu" role="menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Product</a>
-									<ul class="dropdown-menu">
-										<li><a href="shop_product_col_3.html">3 columns</a></li>
-										<li><a href="shop_product_col_4.html">4 columns</a></li>
-									</ul></li>
-								<li><a href="shop_single_product.html">Single Product</a></li>
-								<li><a href="shop_checkout.html">Checkout</a></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle"
-							href="documentation.html" data-toggle="dropdown">Documentation</a>
-							<ul class="dropdown-menu">
-								<li><a href="documentation.html#contact">Contact Form</a></li>
-								<li><a href="documentation.html#reservation">Reservation
-										Form</a></li>
-								<li><a href="documentation.html#mailchimp">Mailchimp</a></li>
-								<li><a href="documentation.html#gmap">Google Map</a></li>
-								<li><a href="documentation.html#plugin">Plugins</a></li>
-								<li><a href="documentation.html#changelog">Changelog</a></li>
-							</ul></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
 		<!-- nav bar 끝 -->
 		<div class="main" style="margin: 0px">
 			<section class="module">
@@ -500,7 +198,7 @@
 										</div>
 									</div>
 									<div class="post-images-slider"
-										style="width: 800px; height: 400px;">
+										style="width: 750px; height: 400px;">
 										<ul class="slides post-thumbnail">
 											<c:forEach var="file" items="${product.filePath}">
 												<li><img src="${file}" alt="Blog Slider Image"
@@ -672,8 +370,11 @@
 																		<div class="comment-author font-alt">
 																			<p>
 																				유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
-																				<span class="comment-star"> 
-																				<c:if test="${review.prodRevStar != 0}">
+																				<button class="btn btn-danger btn-sm"
+																					onclick="deleteReview(${review.prodRevNo})">리뷰
+																					삭제</button>
+																				<span class="comment-star"> <c:if
+																						test="${review.prodRevStar != 0}">
 																						<c:forEach begin="1" end="${review.prodRevStar}">
 																							<i class="fa fa-star star"></i>
 																						</c:forEach>
@@ -685,24 +386,22 @@
 																				</span>
 																			</p>
 																		</div>
-																		<div class="comment-body">
-																			<p>${review.prodRevContent}</p>
+																	</div>
+																	<div class="comment-body" style="margin-left: 75px">
+																		<p>${review.prodRevContent}</p>
+																	</div>
+																	<!-- 대댓글 버튼 추가 -->
+																	<c:if test="${review.parentId == null}">
+																		<div class="comment-reply">
+																			<button class="btn btn-round btn-d"
+																				onclick="showReplyForm(${review.prodRevNo})">답글
+																				달기</button>
 																		</div>
-																		                                <!-- 수정 버튼 추가 -->
-<div class="comment-edit">
-    <button class="btn btn-round btn-d" onclick="showEditForm(${review.prodRevNo})">수정</button>
-</div>
-																		<!-- 대댓글 버튼 추가 -->
-																		<c:if test="${review.parentId == null}">
-																			<div class="comment-reply">
-																				<button class="btn btn-round btn-d"
-																					onclick="showReplyForm(${review.prodRevNo})">답글
-																					달기</button>
-																			</div>
-																		</c:if>
+																	</c:if>
 																</c:if>
 															</div>
-													</div>
+															
+												
 													<!-- 대댓글 작성 폼 -->
 													<div id="replyForm_${review.prodRevNo}"
 														class="comment-form mt-30 hidden"
@@ -748,6 +447,9 @@
 																	<div class="comment-author font-alt">
 																		<p>
 																			유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
+																			<button class="btn btn-danger btn-sm"
+																					onclick="deleteReview(${review.prodRevNo})">리뷰
+																					삭제</button>
 																	</div>
 																	<div class="comment-body">
 																		<p>${reply.prodRevContent}</p>
@@ -757,20 +459,9 @@
 															</div>
 														</c:if>
 													</c:forEach>
-<!-- 수정 폼 -->
-<div id="editReviewForm_${review.prodRevNo}" >
-    <h4 class="comment-form-title font-alt">리뷰 수정</h4>
-    <form method="post" action="/product/updateReview">
-        <input type="hidden" id="edit-review-id" name="prodRevNo" value="${review.prodRevNo}" />
-        <div class="form-group">
-            <label for="edit-review-content">리뷰 내용</label>
-            <textarea class="form-control" id="edit-review-content" name="prodRevContent" rows="4" placeholder="${review.prodRevContent}" required></textarea>
-        </div>
-        <button class="btn btn-round btn-d" type="submit">수정 완료</button>
-    </form>
-</div>
-													</c:forEach>
-												</div>												
+												</c:forEach>
+														</div>
+												</div>
 										</div>
 										</c:if>
 									</div>
@@ -783,7 +474,7 @@
 									</c:if>
 
 									<!-- 리뷰 등록 -->
-									<div class="comment-form mt-30">
+									<div class="comment-form col-sm-12">
 										<h4 class="comment-form-title font-alt">리뷰 작성</h4>
 										<form method="post" action="/product/addReview">
 											<div class="row">
@@ -827,17 +518,10 @@
 										</form>
 									</div>
 								</div>
-								<!-- 리뷰 수정 폼 -->
-
-								<!-- 리뷰 끝 -->
-
 							</div>
 						</div>
-					</div>
-				</div>
-				<!-- 본문 끝 -->
-				<!-- 사이드 바 시작 -->
-				<div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
+                        				<!-- 사이드 바 시작 -->
+				<div class="col-sm-3 col-sm-offset-1 sidebar">
 					<div class="widget" style="margin-top: 30px">
 						<h5 class="widget-title font-alt">아무거나</h5>
 						적당히 아무 내용 넣어두기@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@
@@ -941,9 +625,17 @@
 					</div>
 				</div>
 				<!-- 사이드 바 끝 -->
+					</div>
+				</div>
+				<!-- 리뷰 끝 -->
+
 		</div>
 		</div>
+		<!--  사이드바  -->
 		</section>
+		</div>
+		<!-- 본문 끝 -->
+
 		<div class="module-small bg-dark">
 			<div class="container">
 				<div class="row">
@@ -1037,7 +729,6 @@
 				</div>
 			</div>
 		</footer>
-		</div>
 		<div class="scroll-up">
 			<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
 		</div>
@@ -1318,6 +1009,14 @@
     	        replyForm.classList.add("hidden"); // 대댓글 작성 폼 숨김
     	    }
     	}
+
+      function deleteReview(prodRevNo) {
+          if (confirm("리뷰를 삭제하시겠습니까?")) {
+
+              window.location.href = "/deleteReview/" + prodRevNo;
+          }
+      }
+
   </script>
 
 </body>
