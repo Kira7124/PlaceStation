@@ -111,4 +111,17 @@ public class MemberService {
 		}
 		return result;
 	}
+	
+	
+	
+	
+	//관리자 유저id중복체크
+	public Integer AdminCheckID(String userid) {		
+		Integer checkID = memberRepository.AdminCheckID(userid);
+		return checkID;
+
+	} 
+	
+	
+	
 }

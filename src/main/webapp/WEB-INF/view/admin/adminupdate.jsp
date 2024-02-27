@@ -1,6 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+
+
+	<script>
+		function checkId(){
+			const userid = document.getElementById("join-id").value;
+			
+			   if (userid.trim() === "") {
+				   Swal.fire({
+				        title: '빈칸입니다!',
+				        icon: 'error',
+				        text: '빈칸입니다! 입력해주세요.',
+				    });	            
+				   return;
+		        }
+			
+			$.ajax({
+				url:"/admin/checkID",
+				type: "GET",
+				data:{
+					userid : userid
+				},
+				success: function(data){
+					
+					if(data === "duplicate"){
+						 Swal.fire({
+						        title: '아이디존재!',
+						        icon: 'error',
+						        text: '중복된아이디입니다! 다른 아이디를 입력해주세요.',
+						    });	     
+					}
+					
+					if(data === "not-duplicate"){
+						 Swal.fire({
+						        title: '사용사능한아이디!',
+						        icon: 'success',
+						        text: '사용가능한아이디입니다!',
+						    });	     
+					}
+					
+					
+					
+				},
+				error: function(data){
+					alert('에러가발생했습니다!');
+				}
+				
+				
+			});
+			
+		}
+	</script>
+
+
+
 
 
 	<form action="/admin/admin-update" method="post" enctype="multipart/form-data">
@@ -27,10 +84,13 @@
 				        <label for="name" class="form-label">아이디</label>
 				    </div>
 				    <div class="col-md-5">
-				        <div class="input-box">
-				            <input type="text" class="form-control" name = "userid" id="userid" placeholder="아이디입력">
-				        </div>
-				    </div>
+					    <div class="input-group">
+					        <input type="text" class="form-control" name="userid" id="join-id" placeholder="아이디입력">
+					    </div>
+					    <button type="button" class="btn btn-success" id="check-id" onclick="checkId()">중복확인</button>
+					</div>
+									    
+   
 				  </div>
 				  <div class="row" style ="margin-top: 10px;">
 				    <div class="col-md-3">

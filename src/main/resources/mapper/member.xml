@@ -151,5 +151,17 @@
 		where user_no = #{userNo};
 	</update>
 
+
+
+	<!-- 중복id 체크용(관리자)  -->
+	<select id ="AdminCheckID" resultType="Integer">
+		select count(*) from member where user_id = #{userid}
+	</select>
+
+
+	
+
+
+
 </mapper>
 

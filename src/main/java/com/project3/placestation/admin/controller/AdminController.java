@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project3.placestation.admin.dto.AdminBannerDTO;
 import com.project3.placestation.admin.dto.AdminBizDTO;
@@ -240,12 +241,12 @@ public class AdminController {
 		if ((boolean) session.getAttribute("viewcntCheck")) {
 			noticeBoardService.updateReadCnt(nbno);
 			session.setAttribute("viewcntCheck", false);
-
+			
 		}
 
 		NoticeBoard result = noticeBoardService.detailNoticeBoard(nbno);
 		model.addAttribute("detailNotice", result);
-
+		
 		log.debug("공지사항(관리자)상세보기실행");
 		return "admin/adminnoticedetail";
 	}
@@ -558,5 +559,34 @@ public class AdminController {
 
 		return "admin/adminqnasearch";
 	}
+	
+	
+	
+	// 회원중복체크 ( ajax 비동기 )
+	@GetMapping("/checkID")
+	@ResponseBody
+	public String checkIDGet(@RequestParam("userid") String userid) {
+		log.debug("중복체크실행!");
+		Integer result = memberService.AdminCheckID(userid);
+		
+		if(result == 1) {
+			return "duplicate";
+		}else {
+			return "not-duplicate";
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
