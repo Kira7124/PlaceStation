@@ -41,9 +41,8 @@ public class memberController {
 
 	@GetMapping("/login")
 	public String login(Model model) {
-		if(httpSession.getAttribute("user") != null) {
+
 		
-		}
 		return "member/login";
 	}
 

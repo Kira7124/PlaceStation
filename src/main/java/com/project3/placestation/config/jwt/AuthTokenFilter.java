@@ -45,10 +45,14 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		try {
 //   웹토큰 받아서 문자열로 변환
+			System.out.println("토큰 필터 request: " + request);
 			String jwt = parseJwt(request);
 //   1. 웹토큰 유효성 체크해서
 //   2. 유효하면 DB에서 유저 있는 지 조회
 //   3. 조회된 유저를 인증된 유저로 해서 홀더에 넣음
+			
+			System.out.println("토큰 필터 jwt 파스: " + jwt);
+		
 			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
 //     웹토큰에서 유저 id 꺼냄
 				String id = jwtUtils.getUserNameFromJwtToken(jwt);

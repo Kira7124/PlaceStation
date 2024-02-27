@@ -28,7 +28,8 @@ public UserDetails loadUserByUsername(String id) throws UsernameNotFoundExceptio
 	// id == 이메일 값으로 넘어옴 -- id == 아이디 값을 넘겨주어야 함
  Member user = userRepository.selectByIsUserId(id);
  
- log.info(user.toString());
+ log.info("디테일즈 서비스: " + user.toString());
+ 
  // 이메일로 유저 정보가 없을 때 처리되는 에러 처리
 //     .orElseThrow(() -> new UsernameNotFoundException("User Not Found with email: " + email));
  //  DB에 있는 지 확인해서 있으면 UserDetailsImpl 로 User 객체 생성

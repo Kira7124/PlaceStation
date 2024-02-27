@@ -40,14 +40,14 @@
                   <h5 class="widget-title font-alt">Popular Posts</h5>
                   <ul class="widget-posts">
                     <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="/assets/img/rp-1.jpg" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-image"><a href="#"><img src="/img/titan_back/rp-1.jpg" alt="Post Thumbnail" style="max-height: 35px"/></a></div>
                       <div class="widget-posts-body">
                         <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
                         <div class="widget-posts-meta">23 january</div>
                       </div>
                     </li>
                     <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="/assets/img/rp-2.jpg" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-image"><a href="#"><img src="/img/titan_back/rp-2.jpg" alt="Post Thumbnail" style="max-height: 35px"/></a></div>
                       <div class="widget-posts-body">
                         <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
                         <div class="widget-posts-meta">15 February</div>
@@ -87,7 +87,6 @@
     <script src="/assets/lib/wow/dist/wow.js"></script>
     <script src="/assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
     <script src="/assets/lib/isotope/dist/isotope.pkgd.js"></script>
-    <script src="/assets/lib/imgloaded/imgloaded.pkgd.js"></script>
     <script src="/assets/lib/flexslider/jquery.flexslider.js"></script>
     <script src="/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
     <script src="/assets/lib/smoothscroll.js"></script>

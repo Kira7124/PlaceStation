@@ -24,21 +24,21 @@
                     width: 47px !important;
                     background-color: white !important; 
                     border: none !important;">
-                      <img src="/assets/img/social_login/btnG_icon_square.png" class="social_btn">
+                      <img src="/assets/img/social_login/btnG_icon_square.png" class="social_btn" style="max-height: 39px">
                     </button>
                     <button type="button" class="social_btn"
                     style="height: 38px !important;
                     width: 47px !important;
                     background-color: white !important; 
                     border: none !important;">
-                      <img src="/assets/img/social_login/Asset 1.png" class="social_btn">
+                      <img src="/assets/img/social_login/Asset 1.png" class="social_btn" style="max-height: 39px">
                     </button>
                     <button type="button" class="social_btn"
                     style="height: 38px !important;
                     width: 47px !important;
                     background-color: white !important; 
                     border: none !important;">
-                      <img src="/assets/img/social_login/web_light_sq_na@2x.png" class="social_btn">
+                      <img src="/assets/img/social_login/web_light_sq_na@2x.png" class="social_btn" style="max-height: 39px">
                     </button>
                   </div>
                   </div>

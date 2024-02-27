@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +16,11 @@ import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResPassword;
 import com.project3.placestation.member.dto.RequestJoinDTO;
-import com.project3.placestation.member.dto.bizDTO;
-import com.project3.placestation.member.dto.bizJoinDTO;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.interfaces.MemberRepository;
+
+import jakarta.mail.MessagingException;
 
 @Service
 public class MemberService {
@@ -29,7 +31,8 @@ public class MemberService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	//관리자회원정보리스트(페이징) 출력
 	public List<Member> listAll(Criteria cri) throws Exception{
@@ -164,6 +167,28 @@ public class MemberService {
 	}
 
 	
+	
+	// email 샌더
+	public void sendEmail(String to, String subject, String text) throws MessagingException {
+
+		SimpleMailMessage message = new SimpleMailMessage();
+		
+		message.setSubject(subject);
+		message.setText(text);
+		message.setTo(to);
+
+		mailSender.send(message);
+		
+		/*	MimeMessage message = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+		
+		helper.setTo(to); 				// 보낼 대상의 이메일 입력
+		helper.setSubject(subject);		// 제목
+		helper.setText(text, true);			// 내용
+		
+		mailSender.send(message);*/
+		
+	}	
 	
 	
 	
