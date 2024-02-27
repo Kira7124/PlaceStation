@@ -71,6 +71,7 @@ create table member (
   gender varchar (1)
   );
 
+
 CREATE TABLE notice_board (
   n_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   n_writer VARCHAR(45) NOT NULL,
@@ -96,14 +97,19 @@ create table biz (
 	biz_no int primary key auto_increment,
     biz_id int ,
     biz_brand_name varchar(30),
+    biz_hp varchar(30),
     biz_balance int,
     file_path varchar (1000),
-    biz_tel varchar (20)
+    biz_tel varchar (20) ,
+    biz_email varchar (50),
+    imp_uid varchar ( 100 ) ,
+    imp_key varchar (100),
+    imp_secret varchar (300)
 );
-
 
 create table admin_prod_history (
 	admin_his_no varchar(20) primary key,
+    token varchar(200) ,
 	admin_his_prod_no int (5) not null,
     admin_his_price int (7) not null,
     admin_his_use_point int (7) default 0,
@@ -120,7 +126,7 @@ create table admin_prod_history (
     end_time int (2) ,
     cancel_yn varchar (1) default 'N',
     cancel_at timestamp ,
-    cancel_amount int (7) ,
+    cancel_amount double,
     people_count int (3),
     purchase_date varchar (100)
 );
@@ -134,6 +140,29 @@ create table prod_subcategory (
 	category_id int auto_increment primary key ,
     main_category_id int ,
     subcategory_name varchar (40)
+);
+
+create table charge (
+	ch_percent int auto_increment primary key
+);
+
+create table grade (
+	grade_name varchar(30) primary key ,
+    grade_discount int (2),
+    grade_maxprice int,
+    grade_savepoint int(2)
+);
+
+create table company (
+	name varchar (100) ,
+    address varchar (1000) ,
+    tel varchar (30) ,
+    ceo_name varchar (30) ,
+    email varchar(100) ,
+    sell_number varchar (30) ,
+    info varchar (1000) ,
+    time varchar (100) ,
+    balance int
 );
 
 CREATE TABLE qna_board (
@@ -150,4 +179,4 @@ CREATE TABLE qna_board (
   q_status VARCHAR(10) NULL DEFAULT '진행',
   q_reply VARCHAR(400) NULL
   );
-  
+

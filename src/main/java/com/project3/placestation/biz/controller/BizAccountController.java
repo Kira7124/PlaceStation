@@ -126,8 +126,15 @@ public class BizAccountController {
 //		if(accountDto.getProfile() == null || accountDto.getProfile().isEmpty()) {
 //			throw new CustomRestfulException("프로필 사진이 없습니다. 프로필 사진을 등록해주세요", HttpStatus.BAD_REQUEST);
 //		}
-		
-		
+		if(accountDto.getImpUid() == null || accountDto.getImpUid().isEmpty()) {
+			throw new CustomRestfulException("포트원 uid 를 적어주세요", HttpStatus.BAD_REQUEST);
+		}
+		if(accountDto.getImpKey() == null || accountDto.getImpKey().isEmpty()) {
+			throw new CustomRestfulException("포트원 key 를 적어주세요", HttpStatus.BAD_REQUEST);
+		}
+		if(accountDto.getImpSecret() == null || accountDto.getImpSecret().isEmpty()) {
+			throw new CustomRestfulException("포트원 secret 를 적어주세요", HttpStatus.BAD_REQUEST);
+		}
 		
 		String filePath = "";
 		// 프로필 사진을 변경했다면
@@ -142,11 +149,6 @@ public class BizAccountController {
 		accountDto.setFilePath(filePath);
 		memberService.BizUpdateMember(accountDto , 1);
 		bizService.updateBizByBizId(accountDto , userId);
-		
-//		// 사업자 등록증을 변경했다면..
-//		if(accountDto.getBizFile().equals('Y')) {
-//			
-//		}
 		
 		
 		return "redirect:/biz/account-management";

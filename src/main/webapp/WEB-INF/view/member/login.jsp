@@ -44,8 +44,8 @@
                   </div>
                   <div class="form-group" style="position: absolute; width: 93%;">
                     <a href="" style="font-weight: 600;">Forgot Password?</a> 
-                    <a href="/member/terms_user.jsp" style="float: right; font-weight: 600; position: relative; padding-left: 5%;">User Register</a>
-                    <a href="/member/terms_seller.jsp" style="float: right; font-weight: 600; position: relative;">Seller Regist</a>
+                    <a href="/member/sregister" style="float: right; font-weight: 600; position: relative; padding-left: 5%;">User Register</a>
+                    <a href="/member/uregister" style="float: right; font-weight: 600; position: relative;">Seller Regist</a>
                     </div>
                   <div class="form-group"></div>
                 </form>

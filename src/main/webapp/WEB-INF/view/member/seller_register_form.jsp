@@ -134,7 +134,6 @@
         width: 550px;">
           <form action="" id="form" class="form">
               <h2>Register With Us</h2>
-                  <h4><c:out value= "${id}"/>sss</h4>
               <div class="register-form" style="margin-bottom: 10px;">
                   <label for="id">id</label>
                   <input type="text" id="id" placeholder="Enter id">

@@ -91,8 +91,6 @@
 												${history.endTime}:00</td>
 											<td>${history.adminHisCreatedAt}</td>
 											<td><span class="label label-success">${history.adminHisConfirm}</span></td>
-
-											
 										</tr>
 									</c:forEach>
 								</tbody>

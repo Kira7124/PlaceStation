@@ -133,6 +133,10 @@ public class memberController {
 	@GetMapping("/sregister")
 	public String sellerRegister(Model model) {
 
+		System.out.println("ssssssssssssssssssssssssssssssssssssssss");
+		
+		
+		
 		return "member/seller_register_form";
 	}
 

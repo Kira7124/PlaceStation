@@ -1,7 +1,7 @@
 package com.project3.placestation.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -10,9 +10,10 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
-import org.springframework.security.config.annotation.web.servlet.configuration.WebMvcSecurityConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
@@ -37,6 +38,18 @@ public class SecurityConfig {
 		return new AuthTokenFilter();
 	}
 
+	@Bean
+	public FilterRegistrationBean<AuthTokenFilter> authMethodFilter() {
+		FilterRegistrationBean<AuthTokenFilter> bean = new FilterRegistrationBean<>();
+		bean.setFilter(authenticationJwtTokenFilter());
+		bean.setEnabled(false);
+		return bean;
+	}
+
+	@Bean
+	public AuthenticationEntryPoint authenticationEntryPoint() {
+	        return new AuthEntryPointJwt();
+	}
 	// DB 에서 가져온 정보와 input 된 정보를 비교하는 함수
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
@@ -67,13 +80,11 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilter(HttpSecurity http) throws Exception {
 		http.csrf((auth) -> auth.disable());
 
-		
-		
 		http
 				// SpringBoot 3.1버전 부터 람다식으로 작성 해야한다.
 				.authorizeHttpRequests((auth) -> auth
-//                        .requestMatchers("/member/main").hasRole("USER")
-						.requestMatchers("/member/main").authenticated().anyRequest().permitAll() // 본인 requsetMapping
+                        .requestMatchers("/member/main").hasRole("USER")
+						.anyRequest().permitAll() // 본인 requsetMapping
 																									// 하위로 경로 열기/
 				);
 
@@ -81,29 +92,35 @@ public class SecurityConfig {
 				// X-Frame-Options 비활성화 h2를 열기 위해 설정
 				.headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
 
-		
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 토큰 필터
-												
+
 		// 적용
 		http.formLogin((auth) -> auth.loginPage("/member/login").loginProcessingUrl("/loginProc")
 				.defaultSuccessUrl("/member/main", true).failureUrl("/member/sregister").usernameParameter("userId")
 				.passwordParameter("userPassword").permitAll());
 
-		
-		http.logout((auth) -> auth.logoutUrl("/member/logout")
-				.invalidateHttpSession(true)
-                .clearAuthentication(true)
+		http.logout((auth) -> auth.logoutUrl("/member/logout").invalidateHttpSession(true).clearAuthentication(true)
 				.logoutSuccessUrl("/member/login").permitAll());
+		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 토큰 필터
+																											// 적용
+		http.formLogin((auth) -> auth.loginPage("/member/login").loginProcessingUrl("/loginProc")
+				.defaultSuccessUrl("/member/main", true).failureUrl("/member/sregister").usernameParameter("userId")
+				.passwordParameter("userPassword").permitAll());
 
 		/*
 		 * http .rememberMe((auth) -> auth.key("userId")
 		 * .rememberMeParameter("rememberMe") .tokenValiditySeconds(3600*24*365) // 토큰
 		 * 유지기간 1년 .userDetailsService(userDetailsService));
 		 */
+		http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());
 
+		
+		
+		
 		return http.build(); // HttpSecurity를 빌더 타입으로 리턴 해준다.
 	}
 
+	
 	// HttpFirewall 적용
 	public void configure(WebSecurity web) throws Exception {
 		web.httpFirewall(defaultHttpFirewall());

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.CompanyRepository">
+
+	<select id="findCompany" resultType="com.project3.placestation.repository.entity.Company">
+		select name as name , address ,tel , ceo_name as
+		ceoName , email , sell_number as sellNumber , info , time , balance
+		from company
+	</select>
+
+	<update id="updateCompanyBalance">
+	update company 
+	set balance = #{balance}
+	</update>
+</mapper>

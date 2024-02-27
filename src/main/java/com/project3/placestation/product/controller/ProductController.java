@@ -84,7 +84,14 @@ public class ProductController {
         
 	    return "redirect:/product/productDetail?prod_no="+ prodNo;
 	}
-
+	// 찜(상품 좋아요) 하기
+	@PostMapping("/addWishlist")
+	public String addWishlist() {
+		
+		return "";
+	}
+	
+	
 	@GetMapping("/main")
 	public String mainindex(Model model) {
 		log.debug("메인 페이지!");
@@ -112,5 +119,5 @@ public class ProductController {
 		log.debug("카페고리별 상품 확인");
 		return "product/productCate";
 	}
-
+	
 }

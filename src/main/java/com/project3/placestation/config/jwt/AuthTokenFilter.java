@@ -66,14 +66,15 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
 //     인증된 authentication 객체를 홀더에 넣어둠
 				SecurityContextHolder.getContext().setAuthentication(authentication);
+
 			}
 		} catch (Exception e) {
 			logger.error("Cannot set user authentication: {}", e);
 		}
-
-// 필터체인으로 연결하여 줍니다.
-// 체인에 필터를 실행하고 체인의 가장 마지막에는 클라이언트가 요청한 최종 자원이 위치
+		// 필터체인으로 연결하여 줍니다.
+		// 체인에 필터를 실행하고 체인의 가장 마지막에는 클라이언트가 요청한 최종 자원이 위치
 		filterChain.doFilter(request, response); // 필터 실행
+		
 	}
 
 //네트웍으로 전송된 헤더 데이터에 "Bearer" 있고
