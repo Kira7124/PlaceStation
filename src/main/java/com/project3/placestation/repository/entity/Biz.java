@@ -24,6 +24,9 @@ public class Biz {
 	private String filePath;
 	private Timestamp joinAt;
 	private String bizTel;
+	private String impUid;
+	private String impKey;
+	private String impSecret;
 	
 	
 	//포메터(시간)
@@ -62,5 +65,5 @@ public class Biz {
 	        return "올바른 전화번호 형식이 아닙니다.";
 	    }
 	}
-	
+
 }

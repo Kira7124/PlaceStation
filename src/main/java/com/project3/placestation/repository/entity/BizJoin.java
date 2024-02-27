@@ -21,6 +21,9 @@ public class BizJoin {
 	private Integer bizNo;
 	private Integer bizId;
 	private String bizBrandName;
+	private String impUid;
+	private String impKey;
+	private String impSecret;
 	private String userPassword;
 	private String userAddress;
 	private String userName;

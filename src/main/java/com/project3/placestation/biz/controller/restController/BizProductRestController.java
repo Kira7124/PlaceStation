@@ -1,4 +1,4 @@
-package com.project3.placestation.biz.controller;
+package com.project3.placestation.biz.controller.restController;
 
 import java.util.List;
 
