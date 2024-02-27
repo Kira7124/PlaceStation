@@ -19,6 +19,14 @@
 
 							</div>
 							<div class="post-header font-alt"></div>
+							<div class="search">
+					          <form role="form">
+					            <div class="search-box">
+					              <input class="form-control" type="text" placeholder="Search..."/>
+					              <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+					            </div>
+					          </form>
+					        </div> 
 							<div></div>
 						</div>
 						<div class="comments"></div>

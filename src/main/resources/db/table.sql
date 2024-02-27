@@ -182,7 +182,7 @@ CREATE TABLE qna_board (
 
 create table faq_board (
 f_bno int not null primary key auto_increment,
-f_writer int not null,
+f_writer VARCHAR(45) not null,
 f_content varchar(400) not null,
 f_title varchar(200) not null,
 file_path varchar(400),
