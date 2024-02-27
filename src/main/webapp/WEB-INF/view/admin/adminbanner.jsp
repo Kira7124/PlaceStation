@@ -36,10 +36,10 @@
 								<td>
 								    <c:choose>
 								        <c:when test="${bannerlist.filePath eq 'defaultbanner.jpg'}">
-								            <img src="/assets/img/defaultbanner.jpg" style="width: 500px; height: 100px;">
+								            <img src="/assets/img/defaultbanner.jpg" style="width: 400px; height: 100px;">
 								        </c:when>
 								        <c:otherwise>
-								            <img src="${bannerlist.filePath}" style="width: 500px; height: 100px;">
+								            <img src="${bannerlist.filePath}" style="width: 400px; height: 100px;">
 								        </c:otherwise>
 								    </c:choose>
 								</td>
