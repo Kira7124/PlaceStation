@@ -34,7 +34,7 @@
 							<div class="input-group" style="margin-bottom: 30px;">
 							<form action="/biz/reservation-management">
 								<input type="hidden" name="page" value="${currentPage}"/>
-								<input type="hidden" name="size" value="20" />
+								<input type="hidden" name="size" value="${size}" />
 								<input class="form-control" type="text" name="text" style="width: 350px"/> <span
 									class="input-group-btn" >
 									<button class="btn btn-primary"
@@ -136,7 +136,7 @@
 									<li class="page-item"><c:choose>
 											<c:when test="${currentPage > 0}">
 												<a class="page-link"
-													href="/biz/reservation-management?page=${currentPage - 1}&size=20&text=${text}"
+													href="/biz/reservation-management?page=${currentPage - 1}&size=${size}&text=${text}"
 													aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 												</a>
 
@@ -151,14 +151,14 @@
 
 									<c:forEach begin="${startPage}" end="${endPage}" var="var">
 										<li class="page-item"><a class="page-link"
-											href="/biz/reservation-management?page=${var - 1}&size=20&text=${text}">${var}</a></li>
+											href="/biz/reservation-management?page=${var - 1}&size=${size}&text=${text}">${var}</a></li>
 									</c:forEach>
 
 
 									<li class="page-item"><c:choose>
 											<c:when test="${currentPage < endPage - 1}">
 												<a class="page-link"
-													href="/biz/reservation-management?page=${currentPage + 1}&size=20&text=${text}"
+													href="/biz/reservation-management?page=${currentPage + 1}&size=${size}&text=${text}"
 													aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 												</a>
 
@@ -176,10 +176,10 @@
 							<div class="row">
 								<div class="col-md-6">
 									<span class="panel-note"><i class="fa fa-clock-o"></i>
-										Last 24 hours</span>
+										일정 관리로 가시겠습니까?</span>
 								</div>
 								<div class="col-md-6 text-right">
-									<a href="#" class="btn btn-primary">View All Purchases</a>
+									<a href="/biz/schedule-management" class="btn btn-primary">일정 관리 보기</a>
 								</div>
 							</div>
 						</div>
@@ -195,6 +195,9 @@
 </div>
 <!-- END WRAPPER -->
 
-
+<script>
+console.log(${startPage})
+console.log(${endPage})
+</script>
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_footer.jsp"%>

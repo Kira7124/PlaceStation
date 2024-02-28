@@ -83,7 +83,7 @@
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<a href="/biz/account/account-management"> <span class="icon"><i
+										<a href="/biz/account-management"> <span class="icon"><i
 												class="fa fa-download"></i></span>
 
 											<p>

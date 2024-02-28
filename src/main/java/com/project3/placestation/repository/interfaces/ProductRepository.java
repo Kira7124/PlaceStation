@@ -24,6 +24,7 @@ public interface ProductRepository {
 	
 	public int saveProduct(Product product); // 상품 저장
 	public List<Product> findAllByUserId(int userId); // 상품 전체 조회
+	public List<Product> findProductAllByUserId(int userId); // 상품 전체 조회
 	public List<Product> findAllLimitEight(); // 상품 전체 조회
 	public Product findById(int prodNo);
 	public int updateProduct(@Param(value = "product")Product product , @Param(value = "changeImage") String changeImage);
