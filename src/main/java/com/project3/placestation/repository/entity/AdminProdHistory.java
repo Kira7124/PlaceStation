@@ -19,6 +19,7 @@ public class AdminProdHistory {
 	private Integer adminHisSavePoint;
 	private Integer adminHisDiscount;
 	private Integer adminHisCharge;
+	private String adminHisProdName;
 	private Integer hisSellerId;
 	private boolean adminHisConfirm;
 	private String adminHisCreatedAt;

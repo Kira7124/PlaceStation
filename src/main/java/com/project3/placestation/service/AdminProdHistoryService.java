@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.model.dto.BizHistoryDto;
 import com.project3.placestation.biz.model.dto.ResScheduleDto;
 import com.project3.placestation.biz.model.dto.ScheduleDto;
@@ -25,6 +26,48 @@ public class AdminProdHistoryService {
 
 	@Autowired
 	AdminProdHistoryRepository adminProdHistoryRepository;
+	
+	
+	/**
+	 * 관리자 결제내역 전체조회
+	 */
+	
+	public List<BizHistoryDto> paymentlistAll(Criteria cri) throws Exception{
+		List<BizHistoryDto> result = adminProdHistoryRepository.paymentlistAll(cri);
+		return result;
+	}
+	
+	
+	/**
+	 * 관리자 결제내역 전체조회 카운팅
+	 */
+	
+	public int countPayment() throws Exception{
+		return adminProdHistoryRepository.countPayment();
+	}
+	
+	
+	
+	/**
+	 * 결제내역 검색리스트
+	 */
+	public List<BizHistoryDto> searchPaymentlist(Criteria cri) throws Exception{
+		List<BizHistoryDto> result = adminProdHistoryRepository.searchPaymentlist(cri);
+		return result;
+	}
+	
+	/**
+	 * 결제내역 검색카운팅
+	 */
+	
+	public int countSearchPaymentlist(Criteria cri) throws Exception{
+		return adminProdHistoryRepository.countSearchPaymentlist(cri);
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * 사업자의 거래 내역 전체 조회

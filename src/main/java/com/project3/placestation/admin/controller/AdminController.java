@@ -20,6 +20,7 @@ import com.project3.placestation.admin.dto.AdminTodoDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.admin.dto.PageVO;
 import com.project3.placestation.admin.dto.TodoCriteria;
+import com.project3.placestation.biz.model.dto.BizHistoryDto;
 import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.repository.entity.Banner;
 import com.project3.placestation.repository.entity.Biz;
@@ -27,6 +28,7 @@ import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.entity.NoticeBoard;
 import com.project3.placestation.repository.entity.QnaBoard;
 import com.project3.placestation.repository.entity.Todo;
+import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.BannerService;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.MemberService;
@@ -57,6 +59,8 @@ public class AdminController {
 	private QnaBoardService qnaBoardService;
 	@Autowired
 	private BannerService bannerService;
+	@Autowired
+	private AdminProdHistoryService adminProdHistoryService;
 	@Autowired
 	private HttpSession httpSession;
 
@@ -166,14 +170,55 @@ public class AdminController {
 		return "admin/adminbiz";
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// http://localhost:80/admin/admin-payment
 	// 관리자 결제,예약관리페이지출력
 	@GetMapping("/admin-payment")
-	public String adminpaymentGET() {
-		log.debug("admin 결제,예약관리 페이지출력!");
+	public String adminpaymentGET(BizHistoryDto dto, Model model, Criteria cri) throws Exception {
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(adminProdHistoryService.countPayment());
+		
+		model.addAttribute("pageVO", pageVO);
+		
+		List<BizHistoryDto> result = adminProdHistoryService.paymentlistAll(cri);
+		
+		model.addAttribute("paymentlist", result);
+		
 		return "admin/adminpayment";
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// http://localhost:80/admin/admin-notice
 	// 관리자 공지사항관리페이지출력
 	@GetMapping("/admin-notice")
@@ -559,6 +604,41 @@ public class AdminController {
 
 		return "admin/adminqnasearch";
 	}
+	
+	
+	//결제내역 검색페이지출력
+	@GetMapping("/admin-searchpayment")
+	public String adminSearchPayment(HttpServletRequest request, Criteria cri, Model model) throws Exception{
+		
+		String searchOption = request.getParameter("searchOption");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		if (searchOption != null && !searchOption.isEmpty()) {
+			cri.setSearchOption(searchOption);
+		}
+
+		if (searchKeyword != null && !searchKeyword.isEmpty()) {
+			cri.setSearchKeyword(searchKeyword);
+		}
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(adminProdHistoryService.countSearchPaymentlist(cri));
+		
+		model.addAttribute("pageVO", pageVO);
+		
+		List<BizHistoryDto> result = adminProdHistoryService.searchPaymentlist(cri);
+		model.addAttribute("searchpaymentlist", result);
+		
+		return "admin/adminpaymentsearch";
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 	
 	

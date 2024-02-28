@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.model.dto.BizHistoryDto;
 import com.project3.placestation.biz.model.dto.ResScheduleDto;
 import com.project3.placestation.biz.model.dto.StatisticDto;
@@ -14,6 +15,21 @@ import com.project3.placestation.product.dto.ProductInvalidDateDto;
 
 @Mapper
 public interface AdminProdHistoryRepository {
+	
+	//관리자 결제내역 관리
+	public List<BizHistoryDto> paymentlistAll(Criteria cri) throws Exception;
+	
+	//관리자 결제내역 관리 카운팅(페이징용)
+	public int countPayment() throws Exception;
+	
+	//결제내역(검색,페이징)
+	public List<BizHistoryDto> searchPaymentlist(Criteria cri) throws Exception;
+	
+	//결제내역숫자세기(검색,페이징)
+	public int countSearchPaymentlist(Criteria cri) throws Exception;
+
+	
+	
 	
 	// 사업자 거내 내역 관리
 	public List<BizHistoryDto> findAllByBizId(@Param("bizId") int bizId ,@Param("pageReq") PageReq pageReq);

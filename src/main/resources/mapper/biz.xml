@@ -16,6 +16,7 @@
 	
 	
 	
+	
 	<!-- 페이징처리 갯수셋팅 -->
 	<select id = "countBiz" resultType="int">
 		<![CDATA[ select count(*) from biz where biz_no > 0 ]]>

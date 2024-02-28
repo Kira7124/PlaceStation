@@ -3,7 +3,75 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.project3.placestation.repository.interfaces.AdminProdHistoryRepository">
-
+	
+	
+	
+	<!-- 관리자 결제내역명단 총 출력 -->
+	<select id="paymentlistAll" resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+		select * from admin_prod_history
+		limit #{startPage},#{pageSize}
+	</select>
+	
+	
+	<!-- 관리자 총출력 카운팅(페이징용) -->
+	<select id ="countPayment" resultType="int">
+		<![CDATA[ select count(*) from admin_prod_history where admin_his_seller_id > 0 ]]>
+	</select>
+	
+	
+	
+	<!-- 관리자 결제내역검색 -->
+	<select id ="searchPaymentlist" resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+		 select * from admin_prod_history
+		    <where>
+		        <if test="searchKeyword != null and searchKeyword != ''">
+		            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+		            <choose>
+		            	<when test="searchOption == 'bank'">
+		                    and bank like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'admin_his_prod_name'">
+		                    and admin_his_prod_name like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <!-- 기본적으로는 user_name으로 검색 -->
+		                <otherwise>
+		                    and admin_his_prod_name like concat('%', #{searchKeyword}, '%')
+		                </otherwise>
+		            </choose>
+		        </if>
+		    </where>
+		    limit #{startPage}, #{pageSize}
+		</select>
+	
+	
+	
+		<!-- 결제내역검색 카운팅 -->
+		<select id="countSearchPaymentlist">
+			select count(*) from admin_prod_history
+				<where>
+			        <if test="searchKeyword != null and searchKeyword != ''">
+			            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+			            <choose>
+				            <when test="searchOption == 'bank'">
+			                    and bank like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'admin_his_prod_name'">
+			                    and admin_his_prod_name like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <!-- 기본적으로는 user_name으로 검색 -->
+			                <otherwise>
+			                    and admin_his_prod_name like concat('%', #{searchKeyword}, '%')
+			                </otherwise>
+			            </choose>
+			        </if>
+			    </where>
+			</select>
+	
+	
+	
+	
+	
+	
 	<select id="findAllByBizId"
 		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
 		SELECT
@@ -193,4 +261,12 @@
 		where admin_his_prod_no = #{prodNo}
 		and purchase_date like #{date}
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
