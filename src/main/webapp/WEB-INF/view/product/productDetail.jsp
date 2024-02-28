@@ -44,6 +44,8 @@
 <link rel="icon" type="image/png" sizes="16x16"
 	href="/assets/images/favicons/favicon-16x16.png" />
 <link rel="manifest" href="/manifest.json" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage"
@@ -166,6 +168,24 @@
 .btn.btn-sm {
 	float: none;
 }
+
+.btn.btn-d {
+	float: right;
+}
+
+.post-title {
+	position: relative;
+}
+
+.post-title::after {
+	content: "";
+	position: absolute;
+	bottom: -8px;
+	left: 0;
+	height: 4px;
+	width: 20px;
+	background-color: #ffd014;
+}
 </style>
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
@@ -175,7 +195,7 @@
 			<div class="loader">Loading...</div>
 		</div>
 		<!-- nav bar 끝 -->
-		<div class="main" style="margin: 0px">
+		<div class="main" style="margin-top: 120px">
 			<section class="module">
 				<div class="container">
 					<div class="row">
@@ -184,7 +204,7 @@
 							<div class="post">
 								<div class="post">
 									<div class="post-header font-alt">
-										<h2 class="post-title">
+										<h2 style="font-size: 42px">
 											<a>${product.prodTitle}</a>
 										</h2>
 
@@ -201,7 +221,24 @@
 											</c:forEach>
 										</ul>
 									</div>
-									<div class="post-entry"></div>
+									<div class="post-entry" style="font-size: 20px;">
+										<i class="fas fa-solid fa-heart" style="margin: 10px"></i>${wishlistCount}
+										<i class="fas fa-regular fa-comment" style="margin: 10px"></i>${reviewCount}
+										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>조회수
+										<c:if test="${avgStar != 0}">
+											<div style="float: right; margin-right: 5px;">
+												<span class="comment-star"> <c:forEach begin="1"
+														end="${avgStar}">
+														<i class="fa fa-star star"></i>
+													</c:forEach> <c:forEach begin="${avgStar + 1}" end="5">
+														<i class="fa fa-star star-off"></i>
+													</c:forEach>
+												</span>
+											</div>
+											<div style="float: right; clear: both;">
+												평균 ${avgStar} 점</div>
+										</c:if>
+									</div>
 								</div>
 							</div>
 
@@ -230,30 +267,36 @@
 											<!-- 본문 1 -->
 											<div class="post #">
 												<div class="post-header font-alt">
-													<h1 class="post-title">
+													<h1 class="post-title" style="font-weight: bold">
 														<a>공간 소개</a>
 													</h1>
-													<div class="post-meta" style="white-space: pre-line;"><h5>${product.prodSpaceInfo}</h5></div>
+													<div class="post-meta" style="white-space: pre-line;">
+														<h5>${product.prodSpaceInfo}</h5>
+													</div>
 												</div>
 											</div>
 
 											<!-- 본문 2 -->
 											<div class="post #">
 												<div class="post-header font-alt">
-													<h1 class="post-title">
+													<h1 class="post-title" style="font-weight: bold">
 														<a>대여 가능</a>
 													</h1>
-													<div class="post-meta" style="white-space: pre-line;"><h5>${product.prodGoodsInfo}</h5></div>
+													<div class="post-meta" style="white-space: pre-line;">
+														<h5>${product.prodGoodsInfo}</h5>
+													</div>
 												</div>
 											</div>
 
 											<!-- 본문 3 -->
 											<div class="post #">
 												<div class="post-header font-alt">
-													<h1 class="post-title">
+													<h1 class="post-title" style="font-weight: bold">
 														<a>예약시 주의사항</a>
 													</h1>
-													<div class="post-meta" style="white-space: pre-line;"><h5>${product.prodCautionInfo}</h5></div>
+													<div class="post-meta" style="white-space: pre-line;">
+														<h5>${product.prodCautionInfo}</h5>
+													</div>
 												</div>
 											</div>
 											<!-- 카카오맵 API -->
@@ -512,21 +555,33 @@
 						</div>
 						<!-- 사이드 바 시작 -->
 						<div class="col-sm-3 col-sm-offset-1 sidebar">
-							<div class="widget" style="margin-top: 30px">
-								<h5 class="widget-title font-alt">아무거나</h5>
-								적당히 아무 내용 넣어두기@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@
-								@@@@@@@@@@@@@@@@@@@@@@@@
+							<div class="widget" style="margin-top: 30px; text-align: center">
+								<h2 class="widget-title font-alt" style="font-weight: bold">결제
+									후 바로 예약 확정</h2>
+								<p>
+									빠르고 확실한 예약을 위해 'PlaceStation'에서 <br /> 온라인 결제를 진행하세요.
+								</p>
 							</div>
 							<div class="widget">
 								<h5 class="widget-title font-alt">제품</h5>
 								<div class="row">
 									<div class="col-sm-4">
-										<form method="post" action="/addWishlist">
-											<input type="hidden" name="prod_no" value="${product.prodNo}">
-											<input type="hidden" name="user_no" value="1">
+										<form method="post" action="/product/addWishlist">
+											<input type="hidden" name="prodNo" value="${product.prodNo}">
+											<input type="hidden" name="userNo" value="1">
 											<p style="text-align: right">
 												<button class="btn btn-success btn-circle" type="submit">
 													<i class="fa fa-smile-o"></i> 찜하기
+												</button>
+											</p>
+										</form>
+										<!-- 찜 삭제 버튼 폼 -->
+										<form method="post" action="/product/deleteWishlist">
+											<input type="hidden" name="prodNo" value="${product.prodNo}">
+											<input type="hidden" name="userNo" value="1">
+											<p style="text-align: right">
+												<button class="btn btn-danger btn-circle" type="submit">
+													<i class="fa fa-frown-o"></i> 찜 삭제
 												</button>
 											</p>
 										</form>
@@ -539,27 +594,7 @@
 								<!-- 폼 태그 시작 -->
 								<form action="payment" method="get">
 									<h5 class="widget-title font-alt">예약하기</h5>
-									<!-- 가격 선택 -->
-									<div>
-										<h5 class="font-alt">가격</h5>
-										<div class="row mb-20">
-											<div class="col-sm-12">
-												<input class="form-control input-lg" type="number"
-													name="price" value="50000" required="required" disabled />
-											</div>
-										</div>
-									</div>
 
-									<!-- 총 인수 선택 -->
-									<div>
-										<h5 class="font-alt">총인수</h5>
-										<div class="row mb-20">
-											<div class="col-sm-12">
-												<input class="form-control input-lg" type="number"
-													name="people" max="6" min="1" required="required" />
-											</div>
-										</div>
-									</div>
 
 									<!-- 스케줄 선택 -->
 									<div>
@@ -591,7 +626,27 @@
 											</div>
 										</div>
 									</div>
+									<!-- 가격 선택 -->
+									<div>
+										<h5 class="font-alt">가격</h5>
+										<div class="row mb-20">
+											<div class="col-sm-12">
+												<input class="form-control input-lg" type="number"
+													name="price" value="50000" required="required" disabled />
+											</div>
+										</div>
+									</div>
 
+									<!-- 총 인수 선택 -->
+									<div>
+										<h5 class="font-alt">총인수</h5>
+										<div class="row mb-20">
+											<div class="col-sm-12">
+												<input class="form-control input-lg" type="number"
+													name="people" max="6" min="1" required="required" />
+											</div>
+										</div>
+									</div>
 									<div class="widget" style="margin-top: 30px;">
 										<h4 class="widget-title font-alt">예약 확인</h4>
 
@@ -907,7 +962,7 @@
       function deleteReview(prodRevNo) {
           if (confirm("리뷰를 삭제하시겠습니까?")) {
 
-              window.location.href = "/deleteReview/" + prodRevNo;
+              window.location.href = "/product/deleteReview/" + prodRevNo;
           }
       }
 

@@ -92,9 +92,12 @@ public class ProdReviewService {
 
 	}
     
-//    // 리뷰 페이징
-//    public List<ProdReviewDto> findByReviewPage(Integer prodNo, int page, int size) {
-//
-//	}
+    // 리뷰 개수 count
+    public int getCountReview(int prodNo) {
+    	return prodReviewRepository.countReview(prodNo);
+    }
     
+    public int getAvgStar(int prodNo) {
+    	return prodReviewRepository.avgStar(prodNo);
+    }
 }
