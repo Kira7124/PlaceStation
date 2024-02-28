@@ -40,5 +40,4 @@ public class ProductDto {
     private Timestamp prodDeleteAt; // 상품 삭제 시간
     private String prodDeleteYn; // 상품 삭제 'Y','N'
     private String prodDeleteReason; // 상품 삭제 이유
-
 }

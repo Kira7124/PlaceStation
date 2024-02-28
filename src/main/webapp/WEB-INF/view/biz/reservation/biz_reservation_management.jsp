@@ -139,7 +139,6 @@
 													href="/biz/reservation-management?page=${currentPage - 1}&size=${size}&text=${text}"
 													aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 												</a>
-
 											</c:when>
 
 											<c:otherwise>

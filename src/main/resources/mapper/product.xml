@@ -126,7 +126,7 @@
 		and
 		prod_writer_no = #{userId}
 	</select>
-	
+
 	<select id="findProductAllByUserId"
 		resultType="com.project3.placestation.repository.entity.Product">
 		select * from product
@@ -141,7 +141,97 @@
 		and
 		prod_delete_yn = 'N'
 	</select>
-	
 
 
+	<select id="findMainAllBysearchAndPriceAndstar"
+		resultType="com.project3.placestation.product.dto.ProdFilterDto">
+		select p.prod_no as prodNo
+		, p.prod_writer_no as
+		prodWriterNo ,
+		p.prod_title
+		as prodTitle ,
+		p.prod_start_time as
+		prodStartTime ,
+		p.prod_end_time as prodEndTime,
+		p.prod_space_info as prodSpaceInfo ,
+		p.prod_maximum_people as
+		prodMaximumPeople,
+		p.prod_full_address as
+		prodFullAddress,
+		p.prod_price
+		as prodPrice,
+		p.file_path as
+		filePath,
+		p.prod_major_category_id as
+		prodMajorCategoryId ,
+		p.prod_subcategory_id
+		as prodSubcategoryId,
+		p.prod_location_x as
+		prodLocationX ,
+		p.prod_location_y
+		as prodLocationY,
+		p.prod_rdate as prodRdate,
+		avg(r.prod_rev_star) as
+		star ,
+		mc.category_name as mainCategoryName
+		from
+		product p
+		left join
+		prod_review r
+		on p.prod_no = r.prod_no
+		left join
+		prod_major_category mc
+		on mc.category_id = p.prod_major_category_id
+		where
+		p.prod_title like
+		CONCAT('%', #{search}, '%')
+		and p.prod_price
+		between #{min} and
+		#{max}
+		<if test="majorCategory != 0">
+			and
+			p.prod_major_category_id = #{majorCategory}
+		</if>
+		<if test="subcategory != 0">
+			and
+			p.prod_subcategory_id = #{subcategory}
+		</if>
+		and
+		p.prod_delete_yn = 'N'
+		group by p.prod_no
+		<if test="star != 0">
+			having
+			star >= #{star}
+		</if>
+		order by p.prod_rdate desc
+		LIMIT
+		#{pageReq.page} *
+		#{pageReq.size},#{pageReq.size}
+	</select>
+
+	<select id="countFindMainAllBysearchAndPriceAndstar"
+		resultType="int">
+		SELECT COUNT(*) AS product_count
+		FROM (
+		SELECT p.prod_no
+		FROM product p
+		LEFT JOIN prod_review r ON p.prod_no = r.prod_no
+		LEFT JOIN prod_major_category mc ON mc.category_id =
+		p.prod_major_category_id
+		WHERE p.prod_title LIKE CONCAT('%', #{search}, '%')
+		AND p.prod_price BETWEEN #{min} AND #{max}
+		<if test="majorCategory != 0">
+			AND p.prod_major_category_id = #{majorCategory}
+		</if>
+		<if test="subcategory != 0">
+			AND p.prod_subcategory_id = #{subcategory}
+		</if>
+		AND p.prod_delete_yn = 'N'
+		GROUP BY p.prod_no
+		<if test="star != 0">
+			HAVING AVG(r.prod_rev_star) >= #{star}
+		</if>
+		) AS subquery;
+
+	</select>
 </mapper>

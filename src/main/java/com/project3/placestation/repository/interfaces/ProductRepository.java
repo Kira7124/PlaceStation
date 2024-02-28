@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import com.project3.placestation.biz.model.util.PageReq;
+import com.project3.placestation.product.dto.ProdFilterDto;
 import com.project3.placestation.repository.entity.ProdReview;
 import com.project3.placestation.repository.entity.Product;
 
@@ -30,4 +32,8 @@ public interface ProductRepository {
 	public int updateProduct(@Param(value = "product")Product product , @Param(value = "changeImage") String changeImage);
 	public int deleteProduct(@Param(value = "prodNo")int prodNo ,@Param(value = "prodDeleteReason") String prodDeleteReason);
 
+	// 상품 메인
+	public List<ProdFilterDto> findMainAllBysearchAndPriceAndstar(@Param("search")String search , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory ,@Param("pageReq") PageReq pageReq);
+	public int countFindMainAllBysearchAndPriceAndstar(@Param("search")String search , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory);
+	
 }
