@@ -23,7 +23,7 @@ $(function() {
 
 	// 아이디 검사
 	$('input[name=uid]').keydown(function() {
-		$('.msgId').text('ㄴㄴㄴ');
+		$('.msgId').text('');
 		isUidOk = false;
 	});
 
@@ -90,17 +90,6 @@ $(function() {
 			isNameOk = false;
 		}
 	});
-	// 담당자 이름 검사
-	$('input[name=manager]').focusout(function() {
-		const manager = $(this).val();
-		if (manager.match(reName)) {
-			$('.msgManager').text('');
-			isNameOk = true;
-		} else {
-			$('.msgManager').css('color', 'red').text('유효한 이름이 아닙니다.');
-			isNameOk = false;
-		}
-	});
 
 	// 이메일 검사
 	$('input[name=email]').keydown(function() {
@@ -112,12 +101,6 @@ $(function() {
 	$('input[name=hp]').keydown(function() {
 
 		$('.msgHp').text('');
-		isHpOk = false; // 공백은 유효하지 않은 별명임
-	});
-	// 담당자 휴대폰 검사
-	$('input[name=managerHp]').keydown(function() {
-
-		$('.msgManagerHp').text('');
 		isHpOk = false; // 공백은 유효하지 않은 별명임
 	});
 
@@ -138,8 +121,9 @@ $(function() {
 
 
 	// 최종 확인
-	$('#terms-btn').submit(function() {
+	$('#registerBtnCheck').submit(function() {
 
+		console.log('버튼 클릭으로 인한 콘솔로그 출력!!!!!')
 		// true면 전송, false면 전송 취소
 		if (!isUidOk) {
 			alert('아이디를 확인하십시오.');

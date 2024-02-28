@@ -213,6 +213,8 @@ public class MemberService {
 	// email 샌더
 	public void sendEmail(String to, String subject, String text) throws MessagingException {
 
+		
+		System.out.println("sendEmail 서비스 호출=============================================");
 		SimpleMailMessage message = new SimpleMailMessage();
 		
 		message.setSubject(subject);

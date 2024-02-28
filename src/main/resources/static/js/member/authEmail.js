@@ -60,6 +60,8 @@ console.log("프리벤트 아래!!!!!22222")
 						console.log("result : " + data.result);
 						console.log("data : " + data);
 						console.log("status : " + data.status);
+						console.log("status : " + data.email);
+						// status 만 1 이 떠야 이메일 확인후 코드를 입력하세요가 뜸 그래야 코드 입력하지 ㅡㅡ
 						if (data.result > 0) {
 							$('.msgEmail').css('color', 'red').text('이미 사용중인 이메일입니다.');
 							isEmaileOk = false;
@@ -112,11 +114,13 @@ console.log("프리벤트 아래!!!!!22222")
 		const code = $('input[name=auth]').val();
 		console.log("code : " + code);
 		$.ajax({
-			url: '/member/email/confirmEmail/' + code,
-			type: 'POST',
+			url: '/member/email/emailCheck?code='+code,
+			type: 'post',
 			dataType: 'json',
 			success: function(data) {
 				console.log('ㅇㅇ 이메일 검사 성공');
+				console.log('ㅇㅇ 이메일 검사 성공123213213 '+data.count());
+				console.log('ㅇㅇ 이메일 검사 성공789878979 '+data.tostring());
 				if (data > 0) {
 					console.log("result : " + data);
 					$('.msgEmail').css('color', 'green').text('이메일 인증이 완료 되었습니다.');

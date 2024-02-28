@@ -20,7 +20,7 @@ const reHp = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
 $(function() {
 
 	// 아이디 검사
-	$('input[name=uid]').keydown(function() {
+	$('input[name=userId]').keydown(function() {
 		$('.msgId').text('');
 		isUidOk = false;
 	});
@@ -30,7 +30,7 @@ $(function() {
 	$('input[name=pass1]').focusout(function() {
 		const pass1 = $('input[name=pass1]').val();
 		console.log(pass1);
-		const pass2 = $('input[name=pass2]').val();
+		const pass2 = $('input[name=userPassword]').val();
 		console.log(pass2);
 		if (pass1.match(rePass)) {
 			$('.msgPass1').css('color', 'green').text('사용할 수 있는 비밀번호입니다.');
@@ -48,10 +48,10 @@ $(function() {
 		console.log(isPassOk2);
 	});
 
-	$('input[name=pass2]').focusout(function() {
+	$('input[name=userPassword]').focusout(function() {
 		const pass1 = $('input[name=pass1]').val();
 		console.log(pass1);
-		const pass2 = $('input[name=pass2]').val();
+		const pass2 = $('input[name=userPassword]').val();
 		console.log(pass2);
 		if (pass1 == pass2) {
 			$('.msgPass1').text('');
@@ -72,7 +72,7 @@ $(function() {
 		$('.msgPass2').text('');
 		isPassOk1 = false; // 공백은 유효하지 않은 별명임
 	});
-	$('input[name=pass2]').keydown(function() {
+	$('input[name=userPassword]').keydown(function() {
 		$('.msgPass2').text('');
 		isPassOk2 = false; // 공백은 유효하지 않은 별명임
 	});
@@ -123,7 +123,7 @@ $(function() {
 
 
 	// 최종 확인
-	$('#terms-btn').submit(function() {
+	$('button[name=register]').click(function() {
 
 		// true면 전송, false면 전송 취소
 		if (!isUidOk) {
@@ -161,7 +161,7 @@ $(function() {
  */
 window.onload = function() {
 	// 아이디 중복체크
-	const inputUid = document.getElementsByName('uid')[0];
+	const inputUid = document.getElementsByName('userId')[0];
 	const msgId = document.getElementsByClassName('msgId')[0];
 
 
@@ -171,7 +171,7 @@ window.onload = function() {
 
 			// 아이디 유효성 검증(중복 버튼을 눌렀을 때 서버로 보냄으로써 생기는 부하를 줄이기 위해 위치를 위로 올려준다.)
 			if (!uid.match(reUid)) {
-				msgId.innerText = '유효한 아이디가 아닙니다.sss';
+				msgId.innerText = '유효한 아이디가 아닙니다.';
 				msgId.style.color = 'red';
 				isUidOk = false;
 				return;
@@ -269,7 +269,6 @@ window.onload = function() {
 				$('.msgFile').css('color', 'red').text('사업자 등록증 첨부 완료');
 			}
 		});
-	
 
 
 

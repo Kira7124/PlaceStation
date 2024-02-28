@@ -11,7 +11,8 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResponseEmailDTO {
+public class ResoponseEmailDto {
+	
 	private int result;
 	private int status;
 	private String code;

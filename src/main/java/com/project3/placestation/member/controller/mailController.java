@@ -3,28 +3,30 @@ package com.project3.placestation.member.controller;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project3.placestation.member.dto.RequestEmailDTO;
-import com.project3.placestation.member.dto.ResponseEmailDTO;
+import com.project3.placestation.member.dto.ResoponseEmailDto;
 import com.project3.placestation.service.MemberService;
 
 import jakarta.mail.MessagingException;
+import lombok.extern.log4j.Log4j2;
 
 
+@Log4j2
 @RequestMapping("/member/email")
 @RestController
 public class mailController {
-    @Autowired
-    private MemberService service;
 
-    @Autowired
-    private ResponseEmailDTO resDTO;
+	@Autowired
+	private MemberService service;
+
+
     
 	// 이메일 인증 코드 생성 메서드
 	public String generateVerificationCode() {
@@ -43,15 +45,22 @@ public class mailController {
     
     
     @PostMapping("/authEmail")
-    public ResponseEmailDTO sendEamil(@RequestBody RequestEmailDTO dto, Model model){
+    public ResoponseEmailDto sendEamil(@RequestBody RequestEmailDTO dto){
 
+    	System.out.println("컨트롤러 난수 요청 이메일 디티오 투스트링: "+dto.toString());
+    	System.out.println("컨트롤러 난수 요청 이메일 디티오 투스트링: "+dto.getEmail());
+    	
+    	ResoponseEmailDto resEDto = new ResoponseEmailDto();
+    	
+    	
     	int result = service.validEmail(dto.getEmail());
     	
-    			
+    	System.out.println("컨트롤러 난수 요청 이메일 리절트값!!!!!: "+result);
+    		
     	
-    	resDTO.setResult(result);
+    	resEDto.setResult(result);
     	
-    	
+    	System.out.println("컨트롤러 난수 요청 이메일 DTO 리절트값!!!!!: "+resEDto.getResult());
     	
     	
     	String auth = generateVerificationCode();
@@ -67,28 +76,40 @@ public class mailController {
             
         	try {
 				
+        		log.info("트라이 탔음 좋아연 !!!!!!!!!!!!!!!!!!!!!!!!!!");
+        		System.out.println("트라이 탔음 좋아연 !!!");
+        		resEDto.setStatus(1);
+        		log.info("트라이타고 셋 스테이터스 확인이요: " + resEDto.getStatus());
         		service.sendEmail(to, subject, text);
         		
-        		resDTO.setStatus(0);
-        		
 			} catch (MessagingException e) {
-
+				
+				log.info("캣치 탔음 이게 뭐누?");
+				System.out.println("캣치 탔음 이게 뭐누?");
+				resEDto.setStatus(0);
 				e.printStackTrace();
-				resDTO.setStatus(0);
 			}
 
-        	resDTO.setCode(auth);
+        	
+        	
+        	log.info("대체왜 이메일 전송 서비스만 만나면 status 값이 0으로 초기화 되는거임?: " + resEDto.getStatus());
+        	
+        	
+        	System.out.println("메일 컨트롤러 이거 그대로 셋 되면 1일듯: " + resEDto.getStatus());
+        	resEDto.setCode(auth);
           
-            System.out.println("이메일 컨트롤러 리스폰스 디티오 투스트링: " +  resDTO.toString());
+            System.out.println("이메일 컨트롤러 리스폰스 디티오 투스트링: " +  resEDto.toString());
      
 		
-        return resDTO;
+        return resEDto;
 
     }
     
-    @PostMapping("/confirmEmail/{code}")
-    public int confirmEmail(@PathVariable("code") String code) {
+    @PostMapping("/emailCheck")
+    @ResponseBody
+    public int confirmEmail(@RequestParam("code") String code) {
     	
+    	System.out.println("이메일 컨트롤러 code148io21u4902174829104092184902184");
     	System.out.println("이메일 컨트롤러 code: "+ code);
     	int result = service.confirmCodeByMail(code);
     	

@@ -25,6 +25,7 @@ public class RequestJoinDTO {
 	@NotBlank(message = "비밀번호를 입력해 주세요")
 	@Pattern(regexp = "^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message="비밀 번호는 영어,숫자,특수 문자를 포함한 8~20자리로 작성해 주세요")
 	private String userPassword;
+	// address합쳐서 디비에 넣기 위한 변수 일단 여기까지 02/28 6시40분에 여기까지 설정함 레지스터 셀러에서 여기부터 바꾸면됨
 	private String userAddress;
 	@NotBlank(message = "이름을 입력해 주세요")
 	@Pattern(regexp = "^[가-힣]*$", message="이름은 한글로 작성해 주세요")
@@ -47,4 +48,6 @@ public class RequestJoinDTO {
 	private String role;
 	private String gender;
 
+	// 주소 1,2,3을 받기 위한 address
+	
 }
