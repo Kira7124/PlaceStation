@@ -110,6 +110,7 @@ console.log("프리벤트 아래!!!!!22222")
 		const email = $('#lo_email1').val() + "@" + $('#lo_email2').val();
 		console.log("email : " + email);
 		const code = $('input[name=auth]').val();
+		console.log("code : " + code);
 		$.ajax({
 			url: '/member/email/confirmEmail/' + code,
 			type: 'POST',

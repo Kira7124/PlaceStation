@@ -260,9 +260,13 @@ public class MemberService {
 
 	public int confirmCodeByMail(String code) {
 
+		System.out.println("이메일 컨펌 서비스 호출=======================");
 		 if(code.equals(code)) {
+			 System.out.println("이메일 컨펌 서비스 호출======================= 석세스탐!!!!");
+			 
 	            return 1;
 	        }else {
+	        	 System.out.println("이메일 컨펌 서비스 호출======================= 실패!#################!!!!");
 	            return 0;
 	        }
 		

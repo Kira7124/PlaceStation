@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project3.placestation.member.dto.RequestEmailDTO;
+import com.project3.placestation.member.dto.ResponseEmailDTO;
 import com.project3.placestation.service.MemberService;
+
+import jakarta.mail.MessagingException;
 
 
 @RequestMapping("/member/email")
@@ -20,6 +23,8 @@ public class mailController {
     @Autowired
     private MemberService service;
 
+    @Autowired
+    private ResponseEmailDTO resDTO;
     
 	// 이메일 인증 코드 생성 메서드
 	public String generateVerificationCode() {
@@ -38,23 +43,14 @@ public class mailController {
     
     
     @PostMapping("/authEmail")
-    public String sendEamil(@RequestBody RequestEmailDTO dto, Model model){
+    public ResponseEmailDTO sendEamil(@RequestBody RequestEmailDTO dto, Model model){
 
-    	if(dto.getEmail() == null) {
-    		
-    		dto.setError("이메일을 입력해주세요");
-    		
-    		return dto.getError();
-    	}
+    	int result = service.validEmail(dto.getEmail());
     	
-    	int isEmail = service.validEmail(dto.getEmail());
+    			
     	
-    	if(isEmail >= 1) {
-    		
-    		dto.setError("이미 존재하는 이메일 입니다. 새로운 이메일을 입력해 주세요");
-    		
-    		return dto.getEmail();
-    	}
+    	resDTO.setResult(result);
+    	
     	
     	
     	
@@ -67,19 +63,26 @@ public class mailController {
         String text = "인증번호 < " + auth + " > 해당 6자리 숫자를 입력해 주세요";
 
         System.out.println("이메일 인증 호출 랜덤킴 생성: " + auth);
-        try {
+        
             
-        	service.sendEmail(to, subject, text);
-            model.addAttribute("random", auth);
-            
-            return auth;
-            
-        } catch (Exception e) {
-            
-        	return "Error sending email: " + e.getMessage();
-        	
-        }
+        	try {
+				
+        		service.sendEmail(to, subject, text);
+        		
+        		resDTO.setStatus(0);
+        		
+			} catch (MessagingException e) {
+
+				e.printStackTrace();
+				resDTO.setStatus(0);
+			}
+
+        	resDTO.setCode(auth);
+          
+            System.out.println("이메일 컨트롤러 리스폰스 디티오 투스트링: " +  resDTO.toString());
+     
 		
+        return resDTO;
 
     }
     

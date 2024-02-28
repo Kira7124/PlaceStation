@@ -11,11 +11,9 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RequestEmailDTO {
-
-	//private String division;
-	private String email;
-	
-
+public class ResponseEmailDTO {
+	private int result;
+	private int status;
+	private String code;
 	
 }
