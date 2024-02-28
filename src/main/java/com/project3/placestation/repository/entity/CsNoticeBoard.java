@@ -1,7 +1,6 @@
 package com.project3.placestation.repository.entity;
 
 import java.sql.Timestamp;
-
 import com.project3.placestation.utils.TimeUtils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class CsNoticeBoard {
 	
 	private Integer nbno;	// 글번호
-	private Integer nwriterid;	// 글쓴이 기본키
+	private String nwriter;	// 글쓴이 기본키
 	private String ncontent;	// 내용
 	private String ntitle;	// 글제목
 	private String filepath; // 첨부사진 URL

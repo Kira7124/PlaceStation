@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CsFaqBoard {
 	private Integer fbno;
-	private Integer fwriter;
+	private String fwriter;
 	private String fcontent;
 	private String ftitle;
 	private String filepath;

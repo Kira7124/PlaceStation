@@ -7,7 +7,13 @@
 	<!-- 공지사항 리스트 출력 -->
 	<select id="CsQnaBoardListAll" resultType="com.project3.placestation.cs.dto.CsQnaDTO">
  			select * from qna_board
+			limit #{startPage},#{pageSize}
    	</select>
+
+	<!-- 페이징 처리 갯수 세팅 -->
+	<select id="CsQnaBoardCount" resultType="int">
+		<![CDATA[ select count(*) from qna_board where q_bno > 0 ]]>
+	</select> 
    
 	<!-- 특정 글 조회(글 번호 사용) -->
 	<select id="DetailQnaBoard" resultType="com.project3.placestation.cs.dto.CsQnaDTO">

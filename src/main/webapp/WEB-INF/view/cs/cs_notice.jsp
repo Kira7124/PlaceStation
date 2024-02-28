@@ -50,41 +50,18 @@
 						</div>
 						<!-- 공지사항 목록 전체 div -->
 						<div class="pagination font-alt">
-
 							<c:if test="${pageVO.prev}">
-								<!-- <c:url var="prev" value="#">
-									<c:param name="page" value="${CspageVO.startPage - 1}"/>
-								</c:url> -->
-						    	<a href="/cs/notice?page=${pageVO.startPage - 1}"><i class="fa fa-angle-left"></i></a>
+								<a href="/cs/notice?page=${pageVO.startPage - 1}"><i class="fa fa-angle-left"></i></a>
 							</c:if>
 						
-						    <c:forEach var="i" begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1">
-
-<!-- 
-						        <c:url var="pageUrl" value="#">
-						            <c:param name="page" value="${i}"/>
-						        </c:url>
-						        <c:choose>
-						            <c:when test="${i == pageVO.cri.page}">
-						                <a class="active" href="${pageUrl}">${i}</a>
-						            </c:when>
-
-
-						            <c:otherwise>
-						                <a href="/cs/notice?page=${pageVO.cri.page}">${i}</a>
-						            </c:otherwise>
-						        </c:choose> -->
+							<c:forEach var="i" begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
-								<li class="page-item ${isActive ? 'active' : ''}"><a
-									class="page-link" href="/cs/notice?page=${i}">
-										${i} </a></li>
-
-						    </c:forEach>
+								<li class="page-item ${isActive ? 'active' : ''}">
+									<a class="page-link" href="/cs/notice?page=${i}">${i}</a>
+								</li>
+							</c:forEach>
 						
 							<c:if test="${pageVO.next}">
-								<!-- <c:url var="next" value="#">
-									<c:param name="page" value="${pageVO.currentPage + 1}"/>
-								</c:url> -->
 								<a href="/cs/notice?page=${pageVO.endPage + 1}"><i class="fa fa-angle-right"></i></a>
 							</c:if>
 						</div>

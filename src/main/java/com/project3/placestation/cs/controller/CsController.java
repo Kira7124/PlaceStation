@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.admin.dto.PageVO;
 import com.project3.placestation.cs.dto.CsFaqDTO;
 import com.project3.placestation.cs.dto.CsNoticeDTO;
 import com.project3.placestation.cs.dto.CsQnaDTO;
@@ -29,10 +31,17 @@ public class CsController {
 	// http://localhost/cs/notice
 	// CS 공지사항 페이지
 	@GetMapping("/notice")
-	public String noticeList(CsNoticeDTO csndto, Model model) throws Exception {
+	public String noticeList(CsNoticeDTO csndto, Model model, Criteria cri) throws Exception {
 	
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+
+		pageVO.setTotalCount(csService.CsNoticeBoardCount());
+		model.addAttribute("pageVO", pageVO);
+		log.info("pageVO1: " + pageVO);
+
 		// 공지사항 리스트 출력
-		List<CsNoticeBoard> result1 = csService.CsNoticeBoardListAll();
+		List<CsNoticeBoard> result1 = csService.CsNoticeBoardListAll(cri);
 		model.addAttribute("noticeList", result1);
 	
 		return "cs/cs_notice";
@@ -41,10 +50,17 @@ public class CsController {
 	// http://localhost/cs/qna
 	// CS 1:1 문의 페이지
 	@GetMapping("/qna")
-	public String qnaList(CsQnaDTO csqdto, Model model) throws Exception {
+	public String qnaList(CsQnaDTO csqdto, Model model, Criteria cri) throws Exception {
+
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+
+		pageVO.setTotalCount(csService.CsQnaBoardCount());
+		model.addAttribute("pageVO", pageVO);
+		log.info("pageVO2: " + pageVO);
 
 		// 1:1 문의 리스트 출력
-		List<CsQnaBoard> result2 = csService.CsQnaBoardListAll();
+		List<CsQnaBoard> result2 = csService.CsQnaBoardListAll(cri);
 		model.addAttribute("qnaList", result2);
 		
 		return "cs/cs_qna";
@@ -53,10 +69,17 @@ public class CsController {
 	// http://localhost/cs/faq
 	// CS FAQ 페이지
 	@GetMapping("faq")
-	public String faqList(CsFaqDTO csfdto, Model model) throws Exception {
+	public String faqList(CsFaqDTO csfdto, Model model, Criteria cri) throws Exception {
+
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+
+		pageVO.setTotalCount(csService.CsFaqBoardCount());
+		model.addAttribute("pageVO", pageVO);
+		log.info("pageVO3: " + pageVO);
 		
 		// FAQ 리스트 출력
-		List<CsFaqBoard> result3 = csService.CsFaqBoardListAll();
+		List<CsFaqBoard> result3 = csService.CsFaqBoardListAll(cri);
 		log.info(result3.toString());
 		model.addAttribute("faqList", result3);
 		

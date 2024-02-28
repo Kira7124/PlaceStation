@@ -20,13 +20,13 @@
 							</div>
 							<div class="post-header font-alt"></div>
 							<div class="search">
-					          <form role="form">
-					            <div class="search-box">
-					              <input class="form-control" type="text" placeholder="Search..."/>
-					              <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
-					            </div>
-					          </form>
-					        </div> 
+								<form role="form">
+								  <div class="search-box">
+									<input class="form-control" type="text" placeholder="Search..."/>
+									<button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+								  </div>
+								</form>
+							  </div> 
 							<div></div>
 						</div>
 						<div class="comments"></div>
@@ -49,9 +49,20 @@
 							</div>
 						</div>
 						<div class="pagination font-alt">
-							<a href="#"><i class="fa fa-angle-left"></i></a><a class="active"
-								href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a
-								href="#"><i class="fa fa-angle-right"></i></a>
+							<c:if test="${pageVO.prev}">
+								<a href="/cs/qna?page=${pageVO.startPage - 1}"><i class="fa fa-angle-left"></i></a>
+							</c:if>
+						
+							<c:forEach var="i" begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1">
+								<c:set var="isActive" value="${pageVO.cri.page == i}" />
+								<li class="page-item ${isActive ? 'active' : ''}">
+									<a class="page-link" href="/cs/qna?page=${i}">${i}</a>
+								</li>
+							</c:forEach>
+						
+							<c:if test="${pageVO.next}">
+								<a href="/cs/qna?page=${pageVO.endPage + 1}"><i class="fa fa-angle-right"></i></a>
+							</c:if>
 						</div>
 					</div>
 					<!-- 메인 끝 -->
