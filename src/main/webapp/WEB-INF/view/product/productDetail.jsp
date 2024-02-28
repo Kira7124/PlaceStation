@@ -235,7 +235,7 @@
 													</c:forEach>
 												</span>
 											</div>
-											<div style="float: right; clear: both;">
+											<div style="float: right; clear: both; margin-right:15px;">
 												평균 ${avgStar} 점</div>
 										</c:if>
 									</div>
@@ -658,9 +658,9 @@
 										<br />
 									</div>
 									<div class="">
-										<div class="col-sm-12">
+										<div class="col-sm-12" style="margin-top:-50px;">
 											<input class="btn btn-lg btn-block btn-round btn-b"
-												type="submit">Add To Cart</input>
+												type="submit"></input>
 											<p id="dateText" style="visibility: hidden"></p>
 											<br />
 											<p id="dayText" style="visibility: hidden"></p>
