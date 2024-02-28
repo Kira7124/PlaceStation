@@ -28,7 +28,8 @@ public interface AdminProdHistoryRepository {
 	//결제내역숫자세기(검색,페이징)
 	public int countSearchPaymentlist(Criteria cri) throws Exception;
 
-	
+	//결제총액
+	public Integer countAdminpaymentCount() throws Exception;
 	
 	
 	// 사업자 거내 내역 관리

@@ -67,6 +67,15 @@ public class AdminProdHistoryService {
 	
 	
 	
+	/**
+	 * 결제총액 카운팅
+	 */
+	
+	public Integer countAdminpaymentCount() throws Exception{
+		return adminProdHistoryRepository.countAdminpaymentCount();
+	}
+	
+	
 	
 	
 	/**

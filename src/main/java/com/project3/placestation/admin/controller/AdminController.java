@@ -71,11 +71,14 @@ public class AdminController {
 			TodoCriteria todocri) throws Exception {
 
 		cri.setStatus("진행");
-
+		
+		
+		Integer totalPrice = adminProdHistoryService.countAdminpaymentCount();
 		Integer totalNotice = noticeBoardService.AdmincountNoticeBoard();
 		Integer totalMember = memberService.countMember();
 		Integer totalBiz = bizService.countMember();
 		Integer totalQna = qnaBoardService.mainQnaBoarCount(cri);
+		session.setAttribute("totalPrice", totalPrice);
 		session.setAttribute("totalMember", totalMember);
 		session.setAttribute("totalBiz", totalBiz);
 		session.setAttribute("totalNotice", totalNotice);
