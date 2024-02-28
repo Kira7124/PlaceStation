@@ -222,7 +222,8 @@ h2 {
 					</div>
 				</div>
 			</div>
-			<br> <br>
+			<br> 
+			<br>
 			<div class="input-group mb-3">
 				<label for="name">사업자 등록증</label> <input type="file" name="file"
 					class="form-control" id="inputGroupFile02" style="width: 123%;">
