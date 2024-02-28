@@ -91,4 +91,10 @@ public class ProdReviewService {
 		}
 
 	}
+    
+    // 리뷰 페이징
+    public List<ProdReviewDto> findByReviewPage(Integer prodNo, int page, int size) {
+
+	}
+    
 }

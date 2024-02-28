@@ -63,7 +63,6 @@ public class ProductController {
 	    model.addAttribute("reviewProdNo", reviewProdNo);
 	    model.addAttribute("invalidDate", invalidDate);
 
-
 	    return "product/productDetail";
 	}
 	

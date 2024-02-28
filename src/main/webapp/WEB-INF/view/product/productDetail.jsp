@@ -151,12 +151,10 @@
 	justify-content: center;
 	align-items: center;
 	"
-
 }
 
 .disabled-div {
 	background-color: gray;
-
 }
 
 .comment-star {
@@ -338,8 +336,6 @@
 																class="usage-period">이용 당일</span> <span
 																class="refund-policy">환불 불가</span></li>
 														</ol>
-
-
 													</div>
 												</div>
 											</div>
@@ -378,8 +374,7 @@
 																							end="5">
 																							<i class="fa fa-star star-off"></i>
 																						</c:forEach>
-																					</c:if>
-																				</span>
+																					</c:if></span>
 																			</p>
 																		</div>
 																	</div>
@@ -396,70 +391,68 @@
 																	</c:if>
 																</c:if>
 															</div>
-															
-												
-													<!-- 대댓글 작성 폼 -->
-													<div id="replyForm_${review.prodRevNo}"
-														class="comment-form mt-30 hidden"
-														style="display: block; border-bottom: 1px solid #ccc;">
-														<form method="post" action="/product/saveReview">
-															<div class="row">
-																<div class="col-sm-4">
-																	<div class="form-group">
-																		<input type="hidden" name="prodNo"
-																			value="${product.prodNo}">
-																		<!-- 부모 댓글의 parentId 값을 사용 -->
-																		<input type="hidden" name="parentId"
-																			value="${review.prodRevNo}"> <input
-																			type="hidden" name="userNo" value="12">
-																	</div>
-																</div>
-																<input type="hidden" name="prodRevStar" value="0">
-																<div class="col-sm-12">
-																	<div class="form-group">
-																		<label for="prodRevContent">답글 작성</label>
-																		<textarea class="form-control" name="prodRevContent"
-																			rows="4" placeholder="답글을 작성해주세요" required></textarea>
-																	</div>
-																</div>
-																<div class="col-sm-12">
-																	<button class="btn btn-round btn-d" type="submit">답글
-																		작성</button>
-																</div>
-															</div>
-														</form>
-													</div>
-													<!-- 대댓글 출력 -->
-													<c:forEach items="${reviewProdNo}" var="reply">
-														<c:if test="${reply.parentId == review.prodRevNo}">
-															<div class="comment clearfix"
-																style="border-bottom: 1px solid #ccc; margin-bottom: 8px; margin-left: 20px;">
-																<!-- 대댓글 내용 출력 -->
-																<i class="fa-solid fa-arrow-turn-down-right"></i>
-																<div class="comment-avatar">
-																	<img src="" alt="avatar" />
-																</div>
-																<div class="comment-content clearfix">
-																	<div class="comment-author font-alt">
-																		<p>
-																			유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
-																			<button class="btn btn-danger btn-sm"
-																					onclick="deleteReview(${review.prodRevNo})">리뷰
-																					삭제</button>
-																	</div>
-																	<div class="comment-body">
-																		<p>${reply.prodRevContent}</p>
-																	</div>
 
-																</div>
+															<!-- 대댓글 작성 폼 -->
+															<div id="replyForm_${review.prodRevNo}"
+																class="comment-form mt-30 hidden"
+																style="display: block; border-bottom: 1px solid #ccc;">
+																<form method="post" action="/product/saveReview">
+																	<div class="row">
+																		<div class="col-sm-4">
+																			<div class="form-group">
+																				<input type="hidden" name="prodNo"
+																					value="${product.prodNo}">
+																				<!-- 부모 댓글의 parentId 값을 사용 -->
+																				<input type="hidden" name="parentId"
+																					value="${review.prodRevNo}"> <input
+																					type="hidden" name="userNo" value="12">
+																			</div>
+																		</div>
+																		<input type="hidden" name="prodRevStar" value="0">
+																		<div class="col-sm-12">
+																			<div class="form-group">
+																				<label for="prodRevContent">답글 작성</label>
+																				<textarea class="form-control" name="prodRevContent"
+																					rows="4" placeholder="답글을 작성해주세요" required></textarea>
+																			</div>
+																		</div>
+																		<div class="col-sm-12">
+																			<button class="btn btn-round btn-d" type="submit">답글
+																				작성</button>
+																		</div>
+																	</div>
+																</form>
 															</div>
-														</c:if>
-													</c:forEach>
-												</c:forEach>
-														</div>
+															<!-- 대댓글 출력 -->
+															<c:forEach items="${reviewProdNo}" var="reply">
+																<c:if test="${reply.parentId == review.prodRevNo}">
+																	<div class="comment clearfix"
+																		style="margin-left: 30px;">
+																		<!-- 대댓글 내용 출력 -->
+																		<i class="fa-solid fa-arrow-turn-down-right"></i>
+																		<div class="comment-avatar">
+																			<img src="" alt="avatar" />
+																		</div>
+																		<div class="comment-content clearfix">
+																			<div class="comment-author font-alt">
+																				<p>
+																					유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
+																					<button class="btn btn-danger btn-sm"
+																						onclick="deleteReview(${review.prodRevNo})">리뷰
+																						삭제</button>
+																			</div>
+																			<div class="comment-body">
+																				<p>${reply.prodRevContent}</p>
+																			</div>
+																		</div>
+																	</div>
+																</c:if>
+															</c:forEach>
+														</c:forEach>
+													</div>
 												</div>
+											</c:if>
 										</div>
-										</c:if>
 									</div>
 									<!-- 리뷰가 없는 경우 -->
 									<c:if test="${empty reviewProdNo}">
@@ -516,115 +509,115 @@
 								</div>
 							</div>
 						</div>
-                        				<!-- 사이드 바 시작 -->
-				<div class="col-sm-3 col-sm-offset-1 sidebar">
-					<div class="widget" style="margin-top: 30px">
-						<h5 class="widget-title font-alt">아무거나</h5>
-						적당히 아무 내용 넣어두기@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@
-						@@@@@@@@@@@@@@@@@@@@@@@@
-					</div>
-					<div class="widget">
-						<h5 class="widget-title font-alt">제품</h5>
-						<div class="row">
-							<div class="col-sm-4">
-								<form method="post" action="/addWishlist">
-									<input type="hidden" name="prod_no" value="${product.prodNo}">
-									<input type="hidden" name="user_no" value="1">
-									<p style="text-align: right">
-										<button class="btn btn-success btn-circle" type="submit">
-											<i class="fa fa-smile-o"></i> 찜하기
-										</button>
-									</p>
-								</form>
+						<!-- 사이드 바 시작 -->
+						<div class="col-sm-3 col-sm-offset-1 sidebar">
+							<div class="widget" style="margin-top: 30px">
+								<h5 class="widget-title font-alt">아무거나</h5>
+								적당히 아무 내용 넣어두기@@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@
+								@@@@@@@@@@@@@@@@@@@@@@@@
 							</div>
-						</div>
-					</div>
-
-					<!-- 결제 시작 -->
-					<div class="widget">
-						<!-- 폼 태그 시작 -->
-						<form action="payment" method="get">
-							<h5 class="widget-title font-alt">예약하기</h5>
-							<!-- 가격 선택 -->
-							<div>
-								<h5 class="font-alt">가격</h5>
-								<div class="row mb-20">
-									<div class="col-sm-12">
-										<input class="form-control input-lg" type="number"
-											name="price" value="50000" required="required" disabled />
+							<div class="widget">
+								<h5 class="widget-title font-alt">제품</h5>
+								<div class="row">
+									<div class="col-sm-4">
+										<form method="post" action="/addWishlist">
+											<input type="hidden" name="prod_no" value="${product.prodNo}">
+											<input type="hidden" name="user_no" value="1">
+											<p style="text-align: right">
+												<button class="btn btn-success btn-circle" type="submit">
+													<i class="fa fa-smile-o"></i> 찜하기
+												</button>
+											</p>
+										</form>
 									</div>
 								</div>
 							</div>
 
-							<!-- 총 인수 선택 -->
-							<div>
-								<h5 class="font-alt">총인수</h5>
-								<div class="row mb-20">
-									<div class="col-sm-12">
-										<input class="form-control input-lg" type="number"
-											name="people" max="6" min="1" required="required" />
-									</div>
-								</div>
-							</div>
-
-							<!-- 스케줄 선택 -->
-							<div>
-								<h5 class="font-alt">스케줄 선택</h5>
-								<button class="btn btn-secondary dropdown-toggle" type="button"
-									id="dropdownMenuClickableInside" data-bs-toggle="dropdown"
-									data-bs-auto-close="outside" aria-expanded="false"
-									onclick="hoverDateTime()">스케쥴 선택 호버</button>
-								<!-- input 창은 여기!! -->
-								<input type="hidden" id="form-date" name="date" /> <input
-									type="hidden" id="form-first-time" name="startTime" /> <input
-									type="hidden" id="form-last-time" name="endTime" />
-
-								<div class="row mb-20" id="timeSelector">
-									<div class="col-sm-12">
-										<!-- 캘린더 -->
-										<div id="calendar" style="width: 350px"></div>
-										<!-- 시간 시작 -->
-
-										<!-- Slider main container -->
-										<div class="swiper-container">
-											<h6>시간을 눌러주세요</h6>
-											<div class="swiper-wrapper">
-												<!-- <div class="swiper-slide">1시 ~ 2시</div> -->
-												<!-- 필요한 만큼 카드를 추가 -->
+							<!-- 결제 시작 -->
+							<div class="widget">
+								<!-- 폼 태그 시작 -->
+								<form action="payment" method="get">
+									<h5 class="widget-title font-alt">예약하기</h5>
+									<!-- 가격 선택 -->
+									<div>
+										<h5 class="font-alt">가격</h5>
+										<div class="row mb-20">
+											<div class="col-sm-12">
+												<input class="form-control input-lg" type="number"
+													name="price" value="50000" required="required" disabled />
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
 
-							<div class="widget" style="margin-top: 30px;">
-								<h4 class="widget-title font-alt">예약 확인</h4>
+									<!-- 총 인수 선택 -->
+									<div>
+										<h5 class="font-alt">총인수</h5>
+										<div class="row mb-20">
+											<div class="col-sm-12">
+												<input class="form-control input-lg" type="number"
+													name="people" max="6" min="1" required="required" />
+											</div>
+										</div>
+									</div>
+
+									<!-- 스케줄 선택 -->
+									<div>
+										<h5 class="font-alt">스케줄 선택</h5>
+										<button class="btn btn-secondary dropdown-toggle"
+											type="button" id="dropdownMenuClickableInside"
+											data-bs-toggle="dropdown" data-bs-auto-close="outside"
+											aria-expanded="false" onclick="hoverDateTime()">스케쥴
+											선택 호버</button>
+										<!-- input 창은 여기!! -->
+										<input type="hidden" id="form-date" name="date" /> <input
+											type="hidden" id="form-first-time" name="startTime" /> <input
+											type="hidden" id="form-last-time" name="endTime" />
+
+										<div class="row mb-20" id="timeSelector">
+											<div class="col-sm-12">
+												<!-- 캘린더 -->
+												<div id="calendar" style="width: 350px"></div>
+												<!-- 시간 시작 -->
+
+												<!-- Slider main container -->
+												<div class="swiper-container">
+													<h6>시간을 눌러주세요</h6>
+													<div class="swiper-wrapper">
+														<!-- <div class="swiper-slide">1시 ~ 2시</div> -->
+														<!-- 필요한 만큼 카드를 추가 -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="widget" style="margin-top: 30px;">
+										<h4 class="widget-title font-alt">예약 확인</h4>
 
 
-								<h6>날짜 :</h6>
-								<h6 id="final-date"></h6>
-								<h6>시간 :</h6>
-								<h6 id="final-time"></h6>
-								<br />
+										<h6>날짜 :</h6>
+										<h6 id="final-date"></h6>
+										<h6>시간 :</h6>
+										<h6 id="final-time"></h6>
+										<br />
+									</div>
+									<div class="">
+										<div class="col-sm-12">
+											<input class="btn btn-lg btn-block btn-round btn-b"
+												type="submit">Add To Cart</input>
+											<p id="dateText" style="visibility: hidden"></p>
+											<br />
+											<p id="dayText" style="visibility: hidden"></p>
+										</div>
+									</div>
+								</form>
+								<!-- 폼 태그 끝 -->
 							</div>
-							<div class="">
-								<div class="col-sm-12">
-									<input class="btn btn-lg btn-block btn-round btn-b"
-										type="submit">Add To Cart</input>
-									<p id="dateText" style="visibility: hidden"></p>
-									<br />
-									<p id="dayText" style="visibility: hidden"></p>
-								</div>
-							</div>
-						</form>
-						<!-- 폼 태그 끝 -->
-					</div>
-				</div>
-				<!-- 사이드 바 끝 -->
+						</div>
+						<!-- 사이드 바 끝 -->
 					</div>
 				</div>
 				<!-- 리뷰 끝 -->
-
 		</div>
 		</div>
 		<!--  사이드바  -->
