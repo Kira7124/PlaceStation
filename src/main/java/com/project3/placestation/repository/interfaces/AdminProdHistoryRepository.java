@@ -31,6 +31,8 @@ public interface AdminProdHistoryRepository {
 	//결제총액
 	public Integer countAdminpaymentCount() throws Exception;
 	
+	//관리자 환불처리
+	public Integer AdminPaymentCancel(BizHistoryDto dto);
 	
 	// 사업자 거내 내역 관리
 	public List<BizHistoryDto> findAllByBizId(@Param("bizId") int bizId ,@Param("pageReq") PageReq pageReq);

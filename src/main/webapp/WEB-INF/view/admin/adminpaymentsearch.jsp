@@ -69,7 +69,9 @@
 								  <span class="label label-danger">취소</span>
 								</td>
 								<td>
-								  <span class="label label-info">환불</span>
+									<a href ="/admin/admin-paymentcancel">
+									  <span class="label label-info">환불</span>
+									</a>		  
 								  <span class="label label-info">환불완료</span>
 								</td>								
 							</tr>

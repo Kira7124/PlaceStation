@@ -122,7 +122,7 @@ create table admin_prod_history (
     start_time int (2) ,
     end_time int (2) ,
     cancel_yn varchar (1) default 'N',
-    cancel_at timestamp ,
+    cancel_at timestamp default now() ,
     cancel_amount int (7) ,
     people_count int (3),
     purchase_date varchar (100),
