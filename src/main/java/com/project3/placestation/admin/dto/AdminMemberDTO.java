@@ -1,6 +1,7 @@
 package com.project3.placestation.admin.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,4 +33,9 @@ public class AdminMemberDTO {
 	private Timestamp joinat;
 	private String role;
 	private String grade;
+	private String filepath;
+	private List<MultipartFile> files; // 파일 url
+	
+	
 }
+

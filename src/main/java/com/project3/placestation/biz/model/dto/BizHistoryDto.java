@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @ToString
 public class BizHistoryDto {
 	private String adminHisNo;	// 기본키 == 포트원 키
+	private String adminHisProdName; // 상품명
 	private Integer adminHisProdNo;	 // 상품번호
 	private Integer adminHisPrice;	// 상품 가격
 	private Integer adminHisUsePoint;	// 사용한 포인트
@@ -36,5 +37,6 @@ public class BizHistoryDto {
 	private String prodTitle;
 	private String mainCategory;
 	private String subcategory;
+	private Integer bizId;
 	private String token; // 토큰
 }

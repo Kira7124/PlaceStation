@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+    
 	<!-- adminheader.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminheader.jsp" %>
 	<!-- adminside.jsp -->
@@ -13,84 +14,57 @@
 			<div class="main-content">
 				<div class="container-fluid">
 
-		<div class="panel">
-		
-		
-		
-		
-		
-			<div style="display: flex;">
-				    <div>
-				        <div class="panel-heading">
-				            <h3 class="panel-title" style="margin-left: 5px; margin-top: 10px;"><b>결제/예약관리</b></h3>
-				        </div>
-				    </div>
-				   <form action="/admin/admin-searchpayment" method="get">
-					    <div>
-					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
-					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
-					        			<option value="bank">은행</option>
-								        <option value="admin_his_prod_name">상품명</option>
-				   				</select>
-					            <input type="text" name="searchKeyword" class="form-control" placeholder="키워드입력">
-					            <span class="input-group-btn">
-					                <button type="submit" class="btn btn-primary" >검색</button>
-					            </span>
-					        </div>
-					    </div>
-				    </form> 
+			<div class="panel">
+				<div class="panel-heading">
+					<h3 class="panel-title" style="margin-left: 20px; margin-top: 10px;"><b>광고관리</b></h3>
 				</div>
 				
-				
-				
-				
-				
+			 	<div style="position: absolute; right: 100px;">
+						<a href="/admin/admin-bannerupdate" data-toggle="modal" data-target="#bannerupdateModal">
+        					<span class="label label-success">수정</span>
+    					</a>     	
+    					<a href="/admin/admin-bannerdelete" data-toggle="modal" data-target="#bannerdeleteModal">
+							<span class="label label-danger">삭제</span>
+						</a>
+				</div>	
+			 
+			 
+			 
+												
 				<div class="panel-body no-padding">
 					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
-								<th>상품번호</th>
-								<th>결제금액</th>
-								<th>상품명</th>
-								<th>은행</th>
-								<th>구매확정</th>
-								<th>환불</th>
+								<th style="width: 33.33%;">배너번호</th>
+								<th style="width: 33.33%;">배너명</th>
+								<th style="width: 33.33%;">사진</th>
 							</tr>
 						</thead>
-					<c:forEach var="paymentlist" items="${paymentlist}">
+					<c:forEach var="bannerlist" items="${bannerlist}">
 						<tbody>
 							<tr>
-								<td>${paymentlist.adminHisProdNo}</td>
-								<td>${paymentlist.adminHisPrice}</td>
-								<td>${paymentlist.adminHisProdName}</td>
-								<td>${paymentlist.bank}</td>
-								<td>
-								  <span class="label label-success">확정</span>
-								  <span class="label label-danger">취소</span>
-								</td>
+								<td>${bannerlist.banNo}</td>
+								<td>${bannerlist.banName}</td>
 								<td>
 								    <c:choose>
-								        <c:when test="${paymentlist.cancelYn eq 'N'}">
-								          <a href ="/admin/admin-paymentcancel" data-toggle="modal" data-target="#cancelModal">
-								            <span class="label label-info">환불</span>
-								          </a>
+								        <c:when test="${bannerlist.filePath eq 'defaultbanner.jpg'}">
+								            <img src="/assets/img/defaultbanner.jpg" style="width: 400px; height: 100px;">
 								        </c:when>
-								        <c:when test="${paymentlist.cancelYn eq 'Y'}">
-								            <span class="label label-info">환불완료</span>
-								        </c:when>
+								        <c:otherwise>
+								            <img src="${bannerlist.filePath}" style="width: 400px; height: 100px;">
+								        </c:otherwise>
 								    </c:choose>
-								</td>									
-								</td>								
+								</td>
 							</tr>
 						</tbody>
-					  </c:forEach>
+					 </c:forEach>	
 					</table>
 					
 					<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
 						<ul class="pagination">
 							<c:if test="${pageVO.prev }">
 								<li class="page-item">
-								  <a class="page-link" href="/admin/admin-payment?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  <a class="page-link" href="/admin/admin-banner?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 								  </a>
 								</li>
 							</c:if>
@@ -101,7 +75,7 @@
 								end="${pageVO.endPage }" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
 								<li class="page-item ${isActive ? 'active' : ''}"><a
-									class="page-link" href="/admin/admin-payment?page=${i}"
+									class="page-link" href="/admin/admin-banner?page=${i}"
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
@@ -110,13 +84,17 @@
 				
 							<c:if test="${pageVO.next }">
 								<li class="page-item"><a class="page-link"
-									href="/admin/admin-payment?page=${pageVO.endPage + 1 }"
+									href="/admin/admin-banner?page=${pageVO.endPage + 1 }"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
 							</c:if>
 
 						</ul>
-					 </nav>
+					</nav>
+					
+					
+					
+					
 					
 					
 					
@@ -138,20 +116,22 @@
 	</div>
 	<!-- END WRAPPER -->
 	
-				
 	
 	
 	
 	<!-- Modal -->
-	<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal fade" id="bannerupdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	    <div class="modal-dialog" role="document">
 	        <div class="modal-content"></div>
 	    </div>
 	</div>
 	
-	
-	
-	
+	<!-- Modal -->
+	<div class="modal fade" id="bannerdeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
 	
 	
 	
@@ -290,3 +270,4 @@
 </body>
 
 </html>
+    

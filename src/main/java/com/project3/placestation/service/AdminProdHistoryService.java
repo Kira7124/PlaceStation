@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.model.dto.BizHistoryDto;
 import com.project3.placestation.biz.model.dto.BizMonthlyFeeDto;
 import com.project3.placestation.biz.model.dto.DbToken;
@@ -32,6 +33,77 @@ public class AdminProdHistoryService {
 
 	@Autowired
 	AdminProdHistoryRepository adminProdHistoryRepository;
+	
+	
+	/**
+	 * 관리자 결제내역 전체조회
+	 */
+	
+	public List<BizHistoryDto> paymentlistAll(Criteria cri) throws Exception{
+		List<BizHistoryDto> result = adminProdHistoryRepository.paymentlistAll(cri);
+		return result;
+	}
+	
+	
+	/**
+	 * 관리자 결제내역 전체조회 카운팅
+	 */
+	
+	public int countPayment() throws Exception{
+		return adminProdHistoryRepository.countPayment();
+	}
+	
+	
+	
+	/**
+	 * 결제내역 검색리스트
+	 */
+	public List<BizHistoryDto> searchPaymentlist(Criteria cri) throws Exception{
+		List<BizHistoryDto> result = adminProdHistoryRepository.searchPaymentlist(cri);
+		return result;
+	}
+	
+	/**
+	 * 결제내역 검색카운팅
+	 */
+	
+	public int countSearchPaymentlist(Criteria cri) throws Exception{
+		return adminProdHistoryRepository.countSearchPaymentlist(cri);
+	}
+	
+	
+	
+	
+	/**
+	 * 결제총액 카운팅
+	 */
+	
+	public Integer countAdminpaymentCount() throws Exception{
+		return adminProdHistoryRepository.countAdminpaymentCount();
+	}
+	
+	
+	/**
+	 * 환불업데이트
+	 */
+	@Transactional
+	public void AdminPaymentCancel(BizHistoryDto dto) {
+		Integer result = adminProdHistoryRepository.AdminPaymentCancel(dto);
+	}
+	
+	/**
+	 * 환불업데이트2
+	 */
+	@Transactional
+	public void AdminPaymentCancel2(BizHistoryDto dto) {
+		Integer result = adminProdHistoryRepository.AdminPaymentCancel2(dto);
+	}
+	
+	
+	
+
+	
+	
 
 	/**
 	 * 사업자의 거래 내역 전체 조회

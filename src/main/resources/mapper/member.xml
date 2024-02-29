@@ -26,7 +26,7 @@
 		
 		<!-- 회원정보 수정(관리자) -->
 		<update id = "AdminUpdateMember">
-			update member set user_name=#{username},user_address=#{useraddress},user_hp=#{userhp},
+			update member set user_name=#{username},user_address=#{useraddress},user_hp=#{userhp},file_path=#{filepath},
 			user_email=#{useremail},grade=#{grade},user_id=#{userid}
 			where user_no = #{userno}
 		</update>
@@ -183,6 +183,18 @@
 		gender from member where user_no =
 		#{userNo}
 	</select>
+
+
+
+	<!-- 중복id 체크용(관리자)  -->
+	<select id ="AdminCheckID" resultType="Integer">
+		select count(*) from member where user_id = #{userid}
+	</select>
+
+
+	
+
+
 
 	<update id="updateMemberPoint">
 		update member set

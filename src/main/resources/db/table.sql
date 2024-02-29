@@ -101,6 +101,7 @@ create table biz (
     biz_hp varchar(30),
     biz_balance int,
     file_path varchar (1000),
+    joinat datetime default now()
     biz_tel varchar (20) ,
     biz_email varchar (50),
     imp_uid varchar ( 100 ) ,
@@ -129,7 +130,8 @@ create table admin_prod_history (
     cancel_at timestamp ,
     cancel_amount double,
     people_count int (3),
-    purchase_date varchar (100)
+    purchase_date varchar (100),
+    token varchar(200)
 );
 
 create table prod_major_category (
@@ -180,6 +182,15 @@ CREATE TABLE qna_board (
   q_status VARCHAR(10) NULL DEFAULT '진행',
   q_reply VARCHAR(400) NULL
   );
+
+
+CREATE TABLE banner (
+  ban_no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ban_name varchar(50),
+  file_path varchar(100) DEFAULT 'defaultbanner.jpg'
+);
+
+
 
 create table faq_board (
 f_bno int not null primary key auto_increment,

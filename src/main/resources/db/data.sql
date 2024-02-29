@@ -55,6 +55,7 @@ values('kira','12121212121','rerere'),
 ('kira10','12121212121','rerere'),
 ('kira11','12121212121','rerere');
 
+
 insert into biz (biz_id , biz_brand_name,biz_balance , file_path , biz_tel , imp_uid , imp_key , imp_secret)
 values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'010-1111-1111', 'imp05516285' , '2076220350658738' , 'UidsW7v862X8nxk9NnjaPvpxYuiwSiG67gLkAYzx0tMxRRbwVOIHBsYZZ7I3rz78gqgA3oroohDtXDlp');
 insert into biz (biz_id , biz_brand_name,biz_balance , file_path ,biz_tel)
@@ -226,7 +227,7 @@ insert into admin_prod_history (
     end_time,
     people_count ,
     purchase_date
-) values ('OXDS231AD-csacsaxasa' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',1,2,3 , '2024-02-23');
+) values ('OXDS231AD-csacsaxasa' ,2,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',1,2,3 , '2024-02-23');
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -264,7 +265,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-FSACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-FSACSA' ,4,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -378,7 +379,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDSCAVD-KOBFDM' ,1,31000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',23,24,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDSCAVD-KOBFDM' ,10,31000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',23,24,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 
 insert into qna_board(q_writer,q_content,q_title)
 values(1,'첫번째내용입니다','0번째qna글1'),
@@ -428,6 +429,9 @@ insert into company values ('PlaceStation' , '부산광역시 부산진구 중�
 
 
 INSERT INTO FAQ_BOARD(F_BNO, F_WRITER, F_CONTENT, F_TITLE)VALUES (1, 1, '로그인 하고 싶어요', '로그인이 안 돼요');
+
+insert into banner (ban_name)
+values('1번배너'),('2번배너'),('3번배너'),('4번배너'),('5번배너'),('6번배너'),('7번배너'),('8번배너'),('9번배너'),('10번배너');
 
 INSERT INTO QNA_BOARD_CATEGORY(category_name , category_description , file_path) values ('계정' ,'계정에 필요한 문의가 가능합니다.' , '/assets/images/qna/icon1.png');
 INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('예약' , '예약 확인 , 취소에 대한 문의가 가능합니다.' ,'/assets/images/qna/icon4.png');

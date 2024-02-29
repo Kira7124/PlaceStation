@@ -57,29 +57,22 @@
 								<th>환불</th>
 							</tr>
 						</thead>
-					<c:forEach var="paymentlist" items="${paymentlist}">
+					<c:forEach var="searchpaymentlist" items="${searchpaymentlist}">
 						<tbody>
 							<tr>
-								<td>${paymentlist.adminHisProdNo}</td>
-								<td>${paymentlist.adminHisPrice}</td>
-								<td>${paymentlist.adminHisProdName}</td>
-								<td>${paymentlist.bank}</td>
+								<td>${searchpaymentlist.adminHisProdNo}</td>
+								<td>${searchpaymentlist.adminHisPrice}</td>
+								<td>${searchpaymentlist.adminHisProdName}</td>
+								<td>${searchpaymentlist.bank}</td>
 								<td>
 								  <span class="label label-success">확정</span>
 								  <span class="label label-danger">취소</span>
 								</td>
 								<td>
-								    <c:choose>
-								        <c:when test="${paymentlist.cancelYn eq 'N'}">
-								          <a href ="/admin/admin-paymentcancel" data-toggle="modal" data-target="#cancelModal">
-								            <span class="label label-info">환불</span>
-								          </a>
-								        </c:when>
-								        <c:when test="${paymentlist.cancelYn eq 'Y'}">
-								            <span class="label label-info">환불완료</span>
-								        </c:when>
-								    </c:choose>
-								</td>									
+									<a href ="/admin/admin-paymentcancel">
+									  <span class="label label-info">환불</span>
+									</a>		  
+								  <span class="label label-info">환불완료</span>
 								</td>								
 							</tr>
 						</tbody>
@@ -90,7 +83,7 @@
 						<ul class="pagination">
 							<c:if test="${pageVO.prev }">
 								<li class="page-item">
-								  <a class="page-link" href="/admin/admin-payment?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  <a class="page-link" href="/admin/admin-searchpayment?page=${pageVO.startPage - 1 }&searchKeyword=${pageVO.cri.searchKeyword}&searchOption=${pageVO.cri.searchOption}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 								  </a>
 								</li>
 							</c:if>
@@ -101,7 +94,7 @@
 								end="${pageVO.endPage }" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
 								<li class="page-item ${isActive ? 'active' : ''}"><a
-									class="page-link" href="/admin/admin-payment?page=${i}"
+									class="page-link" href="/admin/admin-searchpayment?page=${i}&searchKeyword=${pageVO.cri.searchKeyword}&searchOption=${pageVO.cri.searchOption}"
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
@@ -110,23 +103,13 @@
 				
 							<c:if test="${pageVO.next }">
 								<li class="page-item"><a class="page-link"
-									href="/admin/admin-payment?page=${pageVO.endPage + 1 }"
+									href="/admin/admin-searchpayment?page=${pageVO.endPage + 1 }&searchKeyword=${pageVO.cri.searchKeyword}&searchOption=${pageVO.cri.searchOption}"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
 							</c:if>
 
 						</ul>
 					 </nav>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 					
 				</div>
 			</div>
@@ -142,12 +125,6 @@
 	
 	
 	
-	<!-- Modal -->
-	<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	    <div class="modal-dialog" role="document">
-	        <div class="modal-content"></div>
-	    </div>
-	</div>
 	
 	
 	
@@ -290,3 +267,6 @@
 </body>
 
 </html>
+
+    
+    
