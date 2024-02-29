@@ -12,11 +12,8 @@
 		    <div class="col-md-8">
 		      <div class="card-body">
 		        <h3 class="card-title">환불처리</h3>
-<<<<<<< HEAD
 
-=======
 		        
->>>>>>> 9731b0d47c507707ee87f9b9ea4ba0fea4bc6500
 		        <div class="row" style ="margin-top: 30px;">
 		        	 <div class="col-md-3">
 				        <label for="name" class="form-label">상품번호</label>
@@ -27,7 +24,6 @@
 				        </div>
 				    </div>
 				  </div>
-<<<<<<< HEAD
 					
 					
 					
@@ -44,9 +40,7 @@
 					
 					
 					
-=======
 				  
->>>>>>> 9731b0d47c507707ee87f9b9ea4ba0fea4bc6500
 		 		  <div class="row" style ="margin-top: 30px;">
 				    <div class="col-md-3">
 				        <label for="name" class="form-label">환불금액</label>
@@ -57,11 +51,8 @@
 				        </div>
 				    </div>
 				  </div>
-<<<<<<< HEAD
 
-=======
 				  
->>>>>>> 9731b0d47c507707ee87f9b9ea4ba0fea4bc6500
 				  <div class="row" style ="margin-top: 30px;">
 				    <div class="col-md-3">
 				        <label for="name" class="form-label">환불상태</label>
@@ -71,7 +62,6 @@
 				            <input type="text" class="form-control" name = "cancelYn" >
 				        </div>
 				    </div>
-<<<<<<< HEAD
 				  </div>
 				  
 					
@@ -83,44 +73,27 @@
 		      </div>
 		    </div>
 		  </div>
-
-=======
-				  </div>	
+	 </div>	
 				
 				
-				
-				
-		 		
-		      </div>
-		    </div>
-		  </div>
 		  
->>>>>>> 9731b0d47c507707ee87f9b9ea4ba0fea4bc6500
 		  <div class="row">
             <div class="col-md-12">
                 <button type="submit" class="btn btn-success" id="cancelButton" style="margin-left:450px; margin-bottom: 10px; margin-top:10px;">환불하기</button>
             </div>
           </div>
-<<<<<<< HEAD
 
-
-
-		</div>
+		
 
 	</form>	
 
-=======
 		  
 		  
 		   
-		</div>
-		
-	</form>	
-	
+
 
 
     
     
     
     
->>>>>>> 9731b0d47c507707ee87f9b9ea4ba0fea4bc6500

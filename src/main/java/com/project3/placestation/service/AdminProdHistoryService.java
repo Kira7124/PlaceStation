@@ -94,14 +94,7 @@ public class AdminProdHistoryService {
 	
 	
 	
-	/**
-	 * 환불업데이트
-	 */
-	@Transactional
-	public void AdminPaymentCancel(BizHistoryDto dto) {
-		Integer result = adminProdHistoryRepository.AdminPaymentCancel(dto);
-	}
-	
+
 	
 	
 	/**

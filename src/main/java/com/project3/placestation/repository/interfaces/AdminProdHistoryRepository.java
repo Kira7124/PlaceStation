@@ -33,14 +33,9 @@ public interface AdminProdHistoryRepository {
 	
 	//관리자 환불처리
 	public Integer AdminPaymentCancel(BizHistoryDto dto);
-<<<<<<< HEAD
 	
 	//관리자 환불처리2
 	public Integer AdminPaymentCancel2(BizHistoryDto dto);
-	
-	
-=======
->>>>>>> 9731b0d47c507707ee87f9b9ea4ba0fea4bc6500
 	
 	// 사업자 거내 내역 관리
 	public List<BizHistoryDto> findAllByBizId(@Param("bizId") int bizId ,@Param("pageReq") PageReq pageReq);

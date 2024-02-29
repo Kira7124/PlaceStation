@@ -79,11 +79,8 @@
 								            <span class="label label-info">환불완료</span>
 								        </c:when>
 								    </c:choose>
-<<<<<<< HEAD
 								</td>									
-=======
 								</td>								
->>>>>>> 9731b0d47c507707ee87f9b9ea4ba0fea4bc6500
 							</tr>
 						</tbody>
 					  </c:forEach>
@@ -144,20 +141,14 @@
 				
 	
 	
-<<<<<<< HEAD
 	
-=======
->>>>>>> 9731b0d47c507707ee87f9b9ea4ba0fea4bc6500
 	<!-- Modal -->
 	<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	    <div class="modal-dialog" role="document">
 	        <div class="modal-content"></div>
 	    </div>
 	</div>
-<<<<<<< HEAD
-=======
 	
->>>>>>> 9731b0d47c507707ee87f9b9ea4ba0fea4bc6500
 	
 	
 	
