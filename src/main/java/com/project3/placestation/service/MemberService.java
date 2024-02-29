@@ -64,7 +64,7 @@ public class MemberService {
 
 	//관리자회원수정
 	@Transactional
-	public void AdminUpdateMember(AdminMemberDTO dto) {
+	public void AdminUpdateMember(AdminMemberDTO dto,String filePath) {
 		Member member = Member.builder()
 				.userno(dto.getUserno())
 				.userid(dto.getUserid())
@@ -73,6 +73,7 @@ public class MemberService {
 				.userhp(dto.getUserhp())
 				.useremail(dto.getUseremail())
 				.grade(dto.getGrade())
+				.filepath(filePath)
 				.build();
 		
 		Integer result = memberRepository.AdminUpdateMember(member);
@@ -124,6 +125,16 @@ public class MemberService {
 		return result;
 	}
 	
+
+	
+	
+	
+	//관리자 유저id중복체크
+	public Integer AdminCheckID(String userid) {		
+		Integer checkID = memberRepository.AdminCheckID(userid);
+		return checkID;
+
+	} 
 
 	/**
 	 *  유저 정보 상세조회

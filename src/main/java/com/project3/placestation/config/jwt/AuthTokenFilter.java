@@ -64,6 +64,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 //     인증된 authentication 객체를 홀더에 넣어둠
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 
+
 			}
 		} catch (Exception e) {
 			logger.error("Cannot set user authentication: {}", e);

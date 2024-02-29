@@ -29,8 +29,6 @@ public class BizScheduleRestController {
 		int userId = 1;
 		List<ScheduleDto> dto = adminProdHistoryService.findScheduleByBizId(userId);
 		ScheduleDto[] arr = dto.toArray(ScheduleDto[]::new);
-	
-		
 		return new ResponseEntity<>(dto , HttpStatus.OK);
 	}
 }

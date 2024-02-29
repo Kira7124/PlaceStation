@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.project3.placestation.biz.handler.exception.CustomRestfulException;
+import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.model.dto.BizHistoryDto;
+import com.project3.placestation.biz.model.dto.BizMonthlyFeeDto;
 import com.project3.placestation.biz.model.dto.DbToken;
+import com.project3.placestation.biz.model.dto.MemberToptenDto;
 import com.project3.placestation.biz.model.dto.ResScheduleDto;
 import com.project3.placestation.biz.model.dto.ScheduleDto;
 import com.project3.placestation.biz.model.dto.StatisticDto;
@@ -20,7 +21,6 @@ import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.biz.model.util.StatisticKind;
 import com.project3.placestation.payment.model.dto.AdminHisPointDto;
-import com.project3.placestation.payment.model.dto.PaymentDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
 import com.project3.placestation.repository.entity.AdminProdHistory;
 import com.project3.placestation.repository.interfaces.AdminProdHistoryRepository;
@@ -33,6 +33,77 @@ public class AdminProdHistoryService {
 
 	@Autowired
 	AdminProdHistoryRepository adminProdHistoryRepository;
+	
+	
+	/**
+	 * 관리자 결제내역 전체조회
+	 */
+	
+	public List<BizHistoryDto> paymentlistAll(Criteria cri) throws Exception{
+		List<BizHistoryDto> result = adminProdHistoryRepository.paymentlistAll(cri);
+		return result;
+	}
+	
+	
+	/**
+	 * 관리자 결제내역 전체조회 카운팅
+	 */
+	
+	public int countPayment() throws Exception{
+		return adminProdHistoryRepository.countPayment();
+	}
+	
+	
+	
+	/**
+	 * 결제내역 검색리스트
+	 */
+	public List<BizHistoryDto> searchPaymentlist(Criteria cri) throws Exception{
+		List<BizHistoryDto> result = adminProdHistoryRepository.searchPaymentlist(cri);
+		return result;
+	}
+	
+	/**
+	 * 결제내역 검색카운팅
+	 */
+	
+	public int countSearchPaymentlist(Criteria cri) throws Exception{
+		return adminProdHistoryRepository.countSearchPaymentlist(cri);
+	}
+	
+	
+	
+	
+	/**
+	 * 결제총액 카운팅
+	 */
+	
+	public Integer countAdminpaymentCount() throws Exception{
+		return adminProdHistoryRepository.countAdminpaymentCount();
+	}
+	
+	
+	/**
+	 * 환불업데이트
+	 */
+	@Transactional
+	public void AdminPaymentCancel(BizHistoryDto dto) {
+		Integer result = adminProdHistoryRepository.AdminPaymentCancel(dto);
+	}
+	
+	/**
+	 * 환불업데이트2
+	 */
+	@Transactional
+	public void AdminPaymentCancel2(BizHistoryDto dto) {
+		Integer result = adminProdHistoryRepository.AdminPaymentCancel2(dto);
+	}
+	
+	
+	
+
+	
+	
 
 	/**
 	 * 사업자의 거래 내역 전체 조회
@@ -42,7 +113,8 @@ public class AdminProdHistoryService {
 	 */
 	public PageRes<BizHistoryDto> findByBizId(int bizId, PageReq pageReq , String text) {
 		List<BizHistoryDto> list = adminProdHistoryRepository.findAllByBizId(bizId, pageReq , text);
-		int totalCount = adminProdHistoryRepository.countFindAllByBizId(bizId);
+		int totalCount = adminProdHistoryRepository.countFindAllByBizId(bizId , text);
+
 
 		PageRes<BizHistoryDto> pageRes = new PageRes<>(list, pageReq.getPage(), totalCount, pageReq.getSize());
 		return pageRes;
@@ -61,7 +133,10 @@ public class AdminProdHistoryService {
 		List<ScheduleDto> scheduleDtos = new ArrayList<>();
 		for (ResScheduleDto dto : dtos) {
 			scheduleDtos.add(
-					new ScheduleDto(dto.getProdTitle(), dto.getStartTime(), dto.getEndTime(), dto.getPurchaseDate()));
+					new ScheduleDto(dto.getProdTitle(), dto.getStartTime(), dto.getEndTime(), dto.getPurchaseDate(),
+					dto.getAdminHisNo() , dto.getAdminHisProdNo() , dto.getAdminHisCreatedAt() , dto.getAdminHisBuyerId() , dto.getCancelYn(),
+					dto.getCancelAt() , dto.getCancelAmount()));
+
 		}
 		log.info(scheduleDtos.toString());
 		return scheduleDtos;
@@ -247,5 +322,24 @@ public class AdminProdHistoryService {
 	 */
 	public int updateCancel(String merchantUid , double cancelAmount) {
 		return adminProdHistoryRepository.updateCancel(merchantUid , cancelAmount);
+	}
+	
+	/**
+	 *  해당 사업자의 상품을 가장 많이 산 유저 탑 5
+	 * @param bizId
+	 * @return
+	 */
+	public List<MemberToptenDto> findMemberTopFive(int bizId) {
+		return adminProdHistoryRepository.findMemberTopFive(bizId);
+	}
+	
+	/**
+	 *  월 수수료 통계
+	 * @param bizId
+	 * @return
+	 */
+	public List<BizMonthlyFeeDto> findMonthlyFee(int bizId) {
+		return adminProdHistoryRepository.findMonthlyFee(bizId);
+
 	}
 }

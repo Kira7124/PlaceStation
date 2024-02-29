@@ -62,8 +62,8 @@
 											<img src="/assets/icons/payment.png" style="width:50px; height:50px;">
 										</span>
 										<p>
-											<span class="number">203</span>
-											<span class="title">결제/예약</span>
+											<span class="number">${totalPrice}</span>
+											<span class="title">매출액(월간)</span>
 										</p>
 									</div>
 								</div>

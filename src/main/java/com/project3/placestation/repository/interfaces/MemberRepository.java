@@ -51,6 +51,12 @@ public interface MemberRepository {
 
 	// 유저의 패스워드 가져오기
 	public ResPassword findPasswordById(int userNo);
+	
+	
+	//관리자 유저ID 중복체크
+	public Integer AdminCheckID(String userid);
+	
+	
 
 
 	// payment 유저 정보

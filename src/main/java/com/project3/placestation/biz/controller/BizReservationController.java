@@ -43,14 +43,16 @@ public class BizReservationController {
 	@Autowired
 	PaymentService paymentService;
 	
+
 	@Autowired
 	CompanyService companyService;
 	
+
 	// http://localhost/biz/reservation-management
 	@GetMapping("/reservation-management")
 	public String reservationManagementForm(Model model, 
 			@RequestParam(value="page" , defaultValue = "0") int page,
-			@RequestParam(value="size" , defaultValue = "20") int size ,
+			@RequestParam(value="size" , defaultValue = "16") int size ,
 			@RequestParam(value = "text" ,defaultValue = "") String text
 			) {
 
@@ -63,12 +65,9 @@ public class BizReservationController {
 		PageReq pageReq = new PageReq(page,size);
 		PageRes<BizHistoryDto> pageRes = adminProdHistoryService.findByBizId(userId, pageReq , text);
 
+		log.info(pageRes.toString());
 		
-//		console.log(${currentPage});
-//		console.log(${totalItems});
-//		console.log(${totalPages});
-//		console.log(${startPage});
-//		console.log(${endPage});
+
 		log.info(pageRes.getContent().toString());
         model.addAttribute("history",pageRes.getContent()); // 컨텐츠 배열
         model.addAttribute("currentPage",pageRes.getNumber()); // 컨텐츠 배열
@@ -77,6 +76,7 @@ public class BizReservationController {
         model.addAttribute("startPage",pageRes.getStartPage()); // 컨텐츠 배열
         model.addAttribute("endPage",pageRes.getEndPage()); // 컨텐츠 배열
         model.addAttribute("text",text); // 컨텐츠 배열
+        model.addAttribute("size",size); // 컨텐츠 배열
 
 		return "biz/reservation/biz_reservation_management";
 	}
@@ -109,7 +109,6 @@ public class BizReservationController {
 			throw new CustomRestfulException("거래 가격 날짜 누락", HttpStatus.BAD_REQUEST);
 		}
 		
-		
 		// 사업자 No 값으로 상세 조회 - impUid 값 필요 ( 수 정 필 요 )
 		int userNo = 1;
 		PaymentFortOneKeyDto fortOne = bizService.findFortOneKeyByBizNo(userNo);
@@ -127,6 +126,7 @@ public class BizReservationController {
 		int amount = bizHistoryRefundDto.getAdminHisPrice();
 		
 		// merchantUid 값으로 정보 - token 조회
+
 		DbToken token = adminProdHistoryService.getToken(merchantUid);
 		if(token.getToken() == null || token.getToken().isEmpty()) {
 			throw new CustomRestfulException("토큰 누락", HttpStatus.BAD_REQUEST);
@@ -135,9 +135,13 @@ public class BizReservationController {
 		// 환불 전에 몇일 지났는지 확인
 		int since = paymentService.validRefundDate(bizHistoryRefundDto.getAdminHisCreatedAt());
 		
-		log.info("몇일이 지났나요 ? : " + since);
+
+		log.info("지난 일수 : " + since);
 		
+		// 환불 금액
 		double cancelAmount = 0;
+		
+		// 시간 일자 별로 환불 신청
 		switch (since) {
 		case 7 : {
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.ONE);
@@ -163,18 +167,22 @@ public class BizReservationController {
 		}
 		
 		case 3 : {
+
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.FIVE);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.FIVE);
 			break;
 		}
 		
 		case 2 : {
+
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SIX);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SIX);
+
 			break;
 		}
 		
 		case 1 : {
+
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SEVEN);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SEVEN);
 			break;
@@ -182,6 +190,7 @@ public class BizReservationController {
 		case 0 : {
 			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SEVEN);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SEVEN);
+
 			break;
 		}
 		default:

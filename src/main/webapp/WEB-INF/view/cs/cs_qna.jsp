@@ -2,191 +2,82 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-	</div>
-	</nav>
-	<div class="main">
-		<section class="module-small">
-			<div class="container">
-				<div class="row">
-					<!-- aside bar 시작 -->
-					<%@ include file="/WEB-INF/view/cs/cs_aside.jsp"%>
-					<!-- aside bar 끝 -->
-					<!-- 메인 시작 -->
-					<div class="col-sm-8 col-sm-offset-1">
-						<div class="post">
-							<div class="comment-form">
-								<h4 class="comment-form-title font-alt">1:1 문의</h4>
+</div>
+</nav>
+<div class="main">
+	<section class="module-small">
+		<div class="container">
+			<div class="row">
+				<!-- aside bar 시작 -->
+				<%@ include file="/WEB-INF/view/cs/cs_aside.jsp"%>
+				<!-- aside bar 끝 -->
+				<!-- 메인 시작 -->
+				<div class="col-sm-8 col-sm-offset-1">
+					<div class="post">
+						<div class="comment-form">
+							<h4 class="comment-form-title font-alt">1:1 문의</h4>
 
-							</div>
-							<div class="post-header font-alt"></div>
-							<div></div>
 						</div>
-						<div class="comments"></div>
-						<div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support1">문의사항 1</a>
-									</h4>
+						<div class="post-header font-alt"></div>
+						<div class="search">
+							<form role="form" action="/cs/qna">
+								<div class="search-box">
+									<input class="form-control" type="text" placeholder="Search..." name="search" />
+									<button class="search-btn" type="submit">
+										<i class="fa fa-search"></i>
+									</button>
 								</div>
-								<div class="panel-collapse collapse" id="support1">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support2">문의사항 2</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support2">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support3">문의사항 3</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support3">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support4">문의사항 4</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support4">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support5">문의사항 5</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support5">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support6">문의사항 6</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support6">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support7">문의사항 7</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support7">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support8">문의사항 8</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support8">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support9">문의사항 9</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support9">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-
-								<div class="panel-heading">
-									<h4 class="panel-title font-alt">
-										<a class="collapsed" data-toggle="collapse"
-											data-parent="#accordion" href="#support10">문의사항 10</a>
-									</h4>
-								</div>
-								<div class="panel-collapse collapse" id="support10">
-									<div class="panel-body">Anim pariatur cliche
-										reprehenderit, enim eiusmod high life accusamus terry
-										richardson ad squid. 3 wolf moon officia aute, non cupidatat
-										skateboard dolor brunch. Food truck quinoa nesciunt laborum
-										eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-										it squid single-origin coffee nulla assumenda shoreditch et.</div>
-								</div>
-							</div>
+							</form>
 						</div>
-						<div class="pagination font-alt">
-							<a href="#"><i class="fa fa-angle-left"></i></a><a class="active"
-								href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a
-								href="#"><i class="fa fa-angle-right"></i></a>
+						<div></div>
+					</div>
+					<div class="comments" style="text-align: right;">
+						<h5>
+							<a href="/cs/qna/qna-tag" class="btn btn-default btn-round" type="button">글 쓰기</a>
+						</h5>
+					</div>
+
+					<div>
+						<div class="panel panel-default">
+							<c:forEach var="qnaList" items="${qnaList}">
+								<div class="panel-heading">
+									<h4 class="panel-title font-alt">
+										<a class="collapsed" data-toggle="collapse"
+											data-parent="#accordion" href="#support${qnaList.qbno}">
+											${qnaList.qtitle} </a>
+									</h4>
+								</div>
+								<div class="panel-collapse collapse" id="support${qnaList.qbno}">
+									<div class="panel-body">${qnaList.qcontent}</div>
+								</div>
+							</c:forEach>
 						</div>
 					</div>
-					<!-- 메인 끝 -->
-				</div>
-			</div>
-		</section>
+					<div class="pagination font-alt">
+						<c:if test="${pageVO.prev}">
+							<a href="/cs/qna?page=${pageVO.startPage - 1}"><i
+								class="fa fa-angle-left"></i></a>
+						</c:if>
 
-<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+						<c:forEach var="i" begin="${pageVO.startPage}"
+							end="${pageVO.endPage}" step="1">
+							<c:set var="isActive" value="${pageVO.cri.page == i}" />
+							<li class="page-item ${isActive ? 'active' : ''}"><a
+								class="page-link" href="/cs/qna?page=${i}">${i}</a></li>
+						</c:forEach>
+
+						<c:if test="${pageVO.next}">
+							<a href="/cs/qna?page=${pageVO.endPage + 1}"><i
+								class="fa fa-angle-right"></i></a>
+						</c:if>
+					</div>
+				</div>
+				<!-- 메인 끝 -->
+			</div>
+		</div>
+	</section>
+
+	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 	</main>
 	<!--  
     JavaScripts
@@ -202,8 +93,9 @@
 	<script src="/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
 	<script src="/assets/lib/smoothscroll.js"></script>
 	<script src="/assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
-	<script src="/assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
+	<script
+		src="/assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
 	<script src="/assets/js/plugins.js"></script>
 	<script src="/assets/js/main.js"></script>
-</body>
-</html>
+	</body>
+	</html>

@@ -9,7 +9,8 @@ CREATE TABLE prod_Review (
     prod_rev_update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     prod_rev_delete_yn VARCHAR(1) DEFAULT 'N',
     prod_rev_delete_at TIMESTAMP,
-    parent_id INT NOT NULL AUTO_INCREMENT
+    parent_id INT DEFAULT NULL
+
 );
 
 create table product_views (
@@ -18,7 +19,7 @@ create table product_views (
 );
 
 create table wish_list (
-	w_no INT PRIMARY KEY NOT NULL,
+	w_no INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     prod_no INT NOT NULL,
     user_no INT NOT NULL
 );
@@ -64,7 +65,7 @@ create table member (
   user_hp VARCHAR(20) NOT NULL,
   user_email VARCHAR(30) NOT NULL,
   user_point INT NULL DEFAULT 10,
-  file_path VARCHAR(100) NULL DEFAULT 'default.jpg',
+  file_path VARCHAR(100) DEFAULT 'https://localhost/file-path/dsanlk',
   join_at DATETIME NULL DEFAULT now(),
   user_role VARCHAR(20) NOT NULL,
   grade VARCHAR(20) NULL DEFAULT '브론즈',
@@ -100,6 +101,7 @@ create table biz (
     biz_hp varchar(30),
     biz_balance int,
     file_path varchar (1000),
+    joinat datetime default now()
     biz_tel varchar (20) ,
     biz_email varchar (50),
     imp_uid varchar ( 100 ) ,
@@ -128,7 +130,8 @@ create table admin_prod_history (
     cancel_at timestamp ,
     cancel_amount double,
     people_count int (3),
-    purchase_date varchar (100)
+    purchase_date varchar (100),
+    token varchar(200)
 );
 
 create table prod_major_category (
@@ -167,7 +170,7 @@ create table company (
 
 CREATE TABLE qna_board (
   q_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  q_writer VARCHAR(45) NOT NULL,
+  q_writer INT NOT NULL,
   q_content VARCHAR(400) NOT NULL,
   q_title VARCHAR(200) NOT NULL,
   file_path VARCHAR(400) NULL,
@@ -180,3 +183,31 @@ CREATE TABLE qna_board (
   q_reply VARCHAR(400) NULL
   );
 
+
+CREATE TABLE banner (
+  ban_no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ban_name varchar(50),
+  file_path varchar(100) DEFAULT 'defaultbanner.jpg'
+);
+
+
+
+create table faq_board (
+f_bno int not null primary key auto_increment,
+f_writer INT not null,
+f_content varchar(400) not null,
+f_title varchar(200) not null,
+file_path varchar(400),
+f_regdate timestamp  DEFAULT now(),
+f_updatedate timestamp  DEFAULT now(),
+f_delete_at timestamp  DEFAULT now(),
+category_id int
+);
+
+create table qna_board_category (
+	category_id int auto_increment ,
+    category_name varchar (40),
+    category_description varchar (400),
+    use_yn varchar(1) default 'Y',
+    file_path varchar (400)
+);

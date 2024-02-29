@@ -7,10 +7,10 @@
 
 INSERT INTO prod_Review (prod_no, user_no, prod_rev_content, prod_rev_star, prod_rev_delete_yn, parent_id)
 VALUES 
-(1, 1, '리뷰 내용 1', 5, 'N', 1),
-(1, 1, '리뷰 내용 2', 1, 'N', 2),
-(1, 1, '리뷰 내용 3', 4, 'N', 1),
-(2, 2, '리뷰 내용 4', 4, 'N', 4);
+(1, 1, '리뷰 내용 1', 5, 'N', null),
+(1, 1, '리뷰 내용 2', 1, 'N', null),
+(1, 1, '리뷰 내용 3', 0, 'N', 2),
+(2, 2, '리뷰 내용 4', 4, 'N', null);
 
 
 INSERT INTO member (user_id, user_password, user_address, user_name, user_hp, user_email, user_role,grade,gender) 
@@ -54,6 +54,7 @@ values('kira','12121212121','rerere'),
 ('kira9','12121212121','rerere'),
 ('kira10','12121212121','rerere'),
 ('kira11','12121212121','rerere');
+
 
 insert into biz (biz_id , biz_brand_name,biz_balance , file_path , biz_tel , imp_uid , imp_key , imp_secret)
 values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'010-1111-1111', 'imp05516285' , '2076220350658738' , 'UidsW7v862X8nxk9NnjaPvpxYuiwSiG67gLkAYzx0tMxRRbwVOIHBsYZZ7I3rz78gqgA3oroohDtXDlp');
@@ -106,21 +107,21 @@ insert into product (
     125.026156153123,35.15165189498
 ),(
 	1, 
-    '타이틀' ,
+    '[부산] 스포츠 센터 축구 농구' ,
 	1 ,
     24 ,
-    '공간 소개',
-    '물품 대여 소개' ,
-    '예약시 주의 사항' ,
-    6 ,
-    '주소' ,
+    '우리의 공간은 편안하고 모던한 분위기로 디자인되어 있습니다. 넓은 창문을 통해 햇살이 잘 들어오며, 아늑한 분위기가 특징입니다. 공간 내에는 편안한 소파와 의자, 작업 공간이 구비되어 있어 다양한 용도로 활용 가능합니다. 또한 무료 와이파이와 음료 서비스가 제공되어 있어 편안한 시간을 보내실 수 있습니다.',
+    '우리는 다양한 물품을 대여해 드리고 있습니다. 회의용 의자와 테이블, 프로젝터 등이 준비되어 있어 비즈니스 모임이나 행사를 개최하기에 최적입니다. 또한 음향기기와 라이트 등의 장비도 대여 가능하며, 필요한 경우 특별한 요청에도 최대한 협조해 드립니다.' ,
+    '예약을 하실 때 몇 가지 주의 사항이 있습니다. 먼저, 예약 시간을 정확히 지켜주셔야 합니다. 예약 시간을 지키지 않을 경우 추가 비용이 발생할 수 있습니다. 또한 공간 내에서는 흡연이 엄격히 금지되며, 반려동물의 출입이 허용되지 않습니다. 예약 전에 이러한 사항들을 반드시 확인해 주시기 바랍니다.' ,
+    10 ,
+    '부산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    'file_path' ,
+    null ,
     1,
     2,
-    '전체 주소' 
-    ,35.15165189498 , 125.026156153123
+    '부산 서구 망양로213번길 2-1	상세주소' 
+    ,129.02526756 , 35.1112677103576
 );
 
 insert into admin_prod_history (
@@ -139,7 +140,24 @@ insert into admin_prod_history (
     start_time ,
     end_time,
     people_count
-) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2);
+) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2) ,
+('OXDSAD-Dvdska' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-Djpwdqjpo' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-Dewqjdq' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-DNSKAdsds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAdsaD-DNSdsaKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-DNSKdss1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSdsaAD-DNSdKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-DNvSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('aOXDdsaSAD-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-DNSxzKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSdAD-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSdsaAD-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAdasD-DNSKds1dsa' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSADdsa-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OasXDSAD-cDNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-qweniqo' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2);
+
 
 
 
@@ -209,7 +227,7 @@ insert into admin_prod_history (
     end_time,
     people_count ,
     purchase_date
-) values ('OXDS231AD-csacsaxasa' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',1,2,3 , '2024-02-23');
+) values ('OXDS231AD-csacsaxasa' ,2,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',1,2,3 , '2024-02-23');
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -228,7 +246,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-SAACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',5,6,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-SAACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',5,6,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -247,7 +265,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-FSACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-FSACSA' ,4,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -266,7 +284,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-VDACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',7,8,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-VDACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',7,8,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -285,7 +303,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-DSANKLN' ,1,3000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',9,10,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-DSANKLN' ,1,3000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',9,10,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -304,7 +322,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-KOPKP' ,1,30000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',11,12,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-KOPKP' ,1,30000 ,0,0,0,0,'타이틀' , 1,true ,3 ,'한화은행',11,12,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -323,7 +341,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-KOBFDM' ,1,30000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',13,14,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-KOBFDM' ,1,30000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',13,14,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -342,7 +360,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-KODSAM' ,1,31000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',20,21,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-KODSAM' ,1,31000 ,0,0,0,0,'타이틀' , 1,true ,3 ,'한화은행',20,21,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -361,21 +379,21 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDSCAVD-KOBFDM' ,1,31000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',23,24,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDSCAVD-KOBFDM' ,10,31000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',23,24,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 
 insert into qna_board(q_writer,q_content,q_title)
-values('키라1','첫번째내용입니다','0번째qna글1'),
-('키라1','2번째내용입니다','1번째qna글1'),
-('키라1','3번째내용입니다','2번째qna글1'),
-('키라1','4번째내용입니다','3번째qna글1'),
-('키라1','5번째내용입니다','4번째qna글1'),
-('키라1','6번째내용입니다','5번째qna글1'),
-('키라1','7번째내용입니다','6번째qna글1'),
-('키라1','8번째내용입니다','7번째qna글1'),
-('키라1','9번째내용입니다','8번째qna글1'),
-('키라1','10번째내용입니다','9번째qna글1'),
-('키라1','11번째내용입니다','10번째qna글1'),
-('키라1','12번째내용입니다','11번째qna글1');
+values(1,'첫번째내용입니다','0번째qna글1'),
+(1,'2번째내용입니다','1번째qna글1'),
+(1,'3번째내용입니다','2번째qna글1'),
+(1,'4번째내용입니다','3번째qna글1'),
+(1,'5번째내용입니다','4번째qna글1'),
+(1,'6번째내용입니다','5번째qna글1'),
+(1,'7번째내용입니다','6번째qna글1'),
+(1,'8번째내용입니다','7번째qna글1'),
+(1,'9번째내용입니다','8번째qna글1'),
+(1,'10번째내용입니다','9번째qna글1'),
+(1,'11번째내용입니다','10번째qna글1'),
+(1,'12번째내용입니다','11번째qna글1');
 
 
 insert into prod_major_category (category_name) values ('스포츠');
@@ -389,6 +407,7 @@ insert into prod_subcategory (main_category_id , subcategory_name) values (2, '�
 insert into prod_subcategory (main_category_id , subcategory_name) values (2, '실내');
 insert into prod_subcategory (main_category_id , subcategory_name) values (3, '카페');
 insert into prod_subcategory (main_category_id , subcategory_name) values (3, '도서관');
+insert into prod_subcategory (main_category_id , subcategory_name) values (3, '북카페');
 
 insert into charge values (10);
 insert into grade values ('BRONZE' , 3 , 999 , 1);
@@ -407,5 +426,15 @@ insert into company values ('PlaceStation' , '부산광역시 부산진구 중�
 );
 
 
-insert into prod_subcategory (main_category_id , subcategory_name) values (3, '도서관');
 
+
+INSERT INTO FAQ_BOARD(F_BNO, F_WRITER, F_CONTENT, F_TITLE)VALUES (1, 1, '로그인 하고 싶어요', '로그인이 안 돼요');
+
+insert into banner (ban_name)
+values('1번배너'),('2번배너'),('3번배너'),('4번배너'),('5번배너'),('6번배너'),('7번배너'),('8번배너'),('9번배너'),('10번배너');
+
+INSERT INTO QNA_BOARD_CATEGORY(category_name , category_description , file_path) values ('계정' ,'계정에 필요한 문의가 가능합니다.' , '/assets/images/qna/icon1.png');
+INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('예약' , '예약 확인 , 취소에 대한 문의가 가능합니다.' ,'/assets/images/qna/icon4.png');
+INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('상품' , '상품에 대한 문의가 가능합니다.' , '/assets/images/qna/icon3.png');
+INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('포인트' , '자신의 포인트에 대한 문의가 가능합니다.' , '/assets/images/qna/icon2.png');
+INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('결제' ,'결제에 실패하였거나 환불이 필요한 경우 문의가 가능합니다.'  , '/assets/images/qna/icon7.png');
