@@ -88,15 +88,6 @@
 	
 	
 	
-	<!-- 관리자 환불처리 -->
-	<update id="AdminPaymentCancel">
-		update admin_prod_history
-		set cancel_at=#{cancelAt},
-		cancel_yn=#{cancelYn},
-		cancel_amount=#{cancelAmount}
-		where admin_his_prod_no=#{adminHisProdNo}
-	</update>
-	
 		
 	<!-- 관리자 환불처리2 -->
 	<update id ="AdminPaymentCancel2">
