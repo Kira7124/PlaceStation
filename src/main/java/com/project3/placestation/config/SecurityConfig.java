@@ -98,17 +98,12 @@ public class SecurityConfig {
 		http.formLogin((auth) -> auth.loginPage("/member/login").loginProcessingUrl("/loginProc")
 				.defaultSuccessUrl("/member/main", true).failureUrl("/member/sregister").usernameParameter("userId")
 				.passwordParameter("userPassword").permitAll());
-		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 토큰 필터 적용
 
 
 
 		http.logout((auth) -> auth.logoutUrl("/member/logout").invalidateHttpSession(true).clearAuthentication(true)
 				.logoutSuccessUrl("/member/login").permitAll());
-		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 토큰 필터
 																											// 적용
-		http.formLogin((auth) -> auth.loginPage("/member/login").loginProcessingUrl("/loginProc")
-				.defaultSuccessUrl("/member/main", true).failureUrl("/member/sregister").usernameParameter("userId")
-				.passwordParameter("userPassword").permitAll());
 
 		/*
 		 * http .rememberMe((auth) -> auth.key("userId")

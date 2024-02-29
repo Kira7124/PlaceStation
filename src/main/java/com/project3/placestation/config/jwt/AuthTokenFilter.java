@@ -89,7 +89,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 		if (sessionMemeber.getToken() == null) {
 			return null;
 		}
-		System.out.println("토큰토큰토늨치ㅏㄴ뮈차누미 : " + sessionMemeber.getToken());
+		System.out.println("토큰 오스 토큰필터에서 토큰: " + sessionMemeber.getToken());
 		return sessionMemeber.getToken();
 	}
 	
