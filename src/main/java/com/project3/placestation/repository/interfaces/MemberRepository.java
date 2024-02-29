@@ -2,18 +2,14 @@ package com.project3.placestation.repository.interfaces;
 
 import java.util.List;
 
-
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResPassword;
-
-import com.project3.placestation.payment.model.dto.PaymentMemberDto;
-import com.project3.placestation.member.dto.bizJoinDTO;
 import com.project3.placestation.member.dto.memberDTO;
+import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
 
@@ -93,7 +89,9 @@ public interface MemberRepository {
 	//(회원가입) 판매자 가입시 user_id, filePath insert
 	public int insertBiz(Member member);
 	
+	//(회원가입) 판매자 selectkey 사용하여 userNo받기 -- 안쓰는중
 	public Member insertUserAndSelectUserNo(Member member);
 
+	//(회원가입) 판매자 bizId용 select
 	public Member selectByUserId(Member member);
 }

@@ -65,6 +65,9 @@ public class memberController {
 	@GetMapping("/main")
 	public String myPageMain(Model model) {
 
+		// TODO 해당 구문은 메인페이지로 넘어가야함
+		
+		
 		// 유저 네임 정보
 		String id = SecurityContextHolder.getContext().getAuthentication().getName();
 		Object details = SecurityContextHolder.getContext().getAuthentication().getDetails();
@@ -88,17 +91,28 @@ public class memberController {
 		Member member = Member
 				.builder().token(jwt)
 				.userno(userDetails.getUserNo())
-				.userid(userDetails.getEmail())
-				.useraddress(userDetails.getEmail())
+				.userid(userDetails.getUserId())
+				.useraddress(userDetails.getUserAddress())
 				.useremail(userDetails.getEmail())
-				.userhp(userDetails.getEmail())
+				.userhp(userDetails.getUserHp())
 				.username(id)
 				.userpoint(userDetails.getUserPoin())
 				.userrole(role)
+				.grade(userDetails.getGrade())
+				.joinat(userDetails.getJoinAt())
+				.gender(userDetails.getGender())
 				.build();
 		
+		
+		// 세션에 저장
 		httpSession.setAttribute("member", member);
 
+		
+		System.out.println("멤버 투스트링 ^^&^&^&^&^&&&&&&&&&&&&&&&&&&&&&&&&&&& " + member.toString());
+		System.out.println("멤버 투스트링 ^^&^&^&^&^&&&&&&&&&&&&&&&&&&&&&&&&&&& 포인트 " + member.getUserpoint());
+		System.out.println("멤버 투스트링 ^^&^&^&^&^&&&&&&&&&&&&&&&&&&&&&&&&&&& 포인트 " + member.getGender());
+		System.out.println("멤버 투스트링 ^^&^&^&^&^&&&&&&&&&&&&&&&&&&&&&&&&&&& 포인트 " + member.getGrade());
+		
 		
 		System.out.println("유저테이더 출력 디테일스@@@@@@@@@@: " + details);
 		System.out.println("유저테이더 출력 디테일스@@@@@@@@@@: " + details.toString());
@@ -163,10 +177,6 @@ public class memberController {
 	@GetMapping("/sregister")
 	public String sellerRegister(Model model) {
 
-		System.out.println("ssssssssssssssssssssssssssssssssssssssss");
-		
-		
-		
 		return "member/seller_register_form";
 	}
 
@@ -186,88 +196,48 @@ public class memberController {
 	@PostMapping("/uJoinProc")
 	public String uJoinProcess(RequestJoinDTO dto) {
 
-		System.out.println("u회원 가입 form데이터 바인딩 테스트: " + dto.toString());
-		System.out.println("u회원 가입 form데이터 바인딩 테스트1: " + dto.getUserId());
-		System.out.println("u회원 가입 form데이터 바인딩 테스트2: " + dto.getUserName());
-		System.out.println("u회원 가입 form데이터 바인딩 테스트3: " + dto.getUserPassword());
-		System.out.println("u회원 가입 form데이터 바인딩 테스트4: " + dto.getUserEmail());
-		System.out.println("u회원 가입 form데이터 바인딩 테스트5: " + dto.getUserAddress());
-		System.out.println("u회원 가입 form데이터 바인딩 테스트6: " + dto.getGender());
-		System.out.println("u회원 가입 form데이터 바인딩 테스트7: " + dto.getGender());
-		System.out.println("u회원 가입 form데이터 바인딩 테스트8: " + dto.getUserHp());
 
 		String address = dto.getZip() + dto.getAddr1() + dto.getAddr2();
-		
-		System.out.println("회원가입 주소 합친 데이터 확인: " + address);
 		
 		// 합친 주소
 		dto.setUserAddress(address);
 		
-		System.out.println("회원가입 주소 합친 데이터 확인 dto버전: " + dto.getUserAddress());
-		
 		// 합친 이메일
 		String userEmail = dto.getEmail() + "@" + dto.getEmail2();
-		
-		System.out.println("회원가입 Email 합친 데이터 확인: " + userEmail);
-		
 		dto.setUserEmail(userEmail);
 		
-		System.out.println("회원가입 Email 합친 데이터 확인 dto버전: " + dto.getUserEmail());
 		
 		service.uJoinProcess(dto);
 
 		return "redirect:/member/login";
 	}
 	
+	
+	
 	// 판매자 회원가입 처리
 	@PostMapping("/sJoinProc")
 	public String joinProcess(RequestJoinDTO dto) {
 		
-		System.out.println("s회원 가입 form데이터 바인딩 테스트: " + dto.toString());
-		System.out.println("s회원 가입 form데이터 바인딩 테스트1: " + dto.getUserId());
-		System.out.println("s회원 가입 form데이터 바인딩 테스트2: " + dto.getUserName());
-		System.out.println("s회원 가입 form데이터 바인딩 테스트3: " + dto.getUserPassword());
-		System.out.println("s회원 가입 form데이터 바인딩 테스트4: " + dto.getUserEmail());
-		System.out.println("s회원 가입 form데이터 바인딩 테스트5: " + dto.getUserAddress());
-		System.out.println("s회원 가입 form데이터 바인딩 테스트6: " + dto.getGender());
-		System.out.println("s회원 가입 form데이터 바인딩 테스트7: " + dto.getGender());
-		System.out.println("s회원 가입 form데이터 바인딩 테스트8: " + dto.getUserHp());
-		
-		
-		
-		System.out.println("$@#$#$#$#$#$#$#$#$#$##$#$#$##$");
-		
-		System.out.println("s회원 가입 form데이터 바인딩 테스트8: " + dto.getFilePath());
-		
-		// 파일 저장 메서드
 
+		// 파일 저장
 		String filepath = fileService.saveFiles(dto.getFilePath());
 		
-		System.out.println("파일 업로드 확인!!!!!!!!!!!!!!!!!!!!"+ filepath);
 	
 
-		// 합친 주소
+		// 주소 수정
 		String address = dto.getZip() + dto.getAddr1() + dto.getAddr2();
-		
-		System.out.println("회원가입 주소 합친 데이터 확인: " + address);
-		
 		dto.setUserAddress(address);
 		
-		System.out.println("회원가입 주소 합친 데이터 확인 dto버전: " + dto.getUserAddress());
 		
-		// 합친 이메일
+		// 이메일값 수정 
 		String userEmail = dto.getEmail() + "@" + dto.getEmail2();
-		
-		System.out.println("회원가입 Email 합친 데이터 확인: " + userEmail);
-		
 		dto.setUserEmail(userEmail);
 		
-		System.out.println("회원가입 Email 합친 데이터 확인 dto버전: " + dto.getUserEmail());
 		
-		
-		System.out.println("회원가입 Email 합친 데이터 확인 dto버전: " + dto.getUserEmail());
-		
+		// 판매자 회원 가입 서비스 호출
 		service.sJoinProcess(dto, filepath);
+		
+		
 		
 		return "redirect:/member/login";
 	}

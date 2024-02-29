@@ -240,7 +240,7 @@
 	</select>
 
 
-	<!-- 판매자 회원 가입용 selectKey userNo를 반환 -->
+	<!-- 판매자 회원 가입용 selectKey userNo를 반환  [현재 사용하지 않는중] -->
 	<insert id="insertUserAndSelectUserNo">
 		<selectKey keyProperty="userNo" order="AFTER"
 			resultType="com.project3.placestation.repository.entity.Member">
@@ -252,7 +252,7 @@
 		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender})
 	</insert>
 
-	<!-- 판매자 회원가입 -->
+	<!-- (판매자 회원가입) biz테이블 insert -->
 	<insert id="insertBiz">
 		insert into biz
 		(biz_id, file_path)
@@ -261,10 +261,9 @@
 	</insert>
 
 
-   <!-- 트랜잭션 회원 userNo로 검색 -->
+   <!-- (판매자 회원가입) userNo값 bizid 셋팅용 -->
  	<select id="selectByUserId" resultType="com.project3.placestation.repository.entity.Member">
  		select user_no from member where user_id = #{userid}
- 		
 	</select>
 
 
