@@ -53,6 +53,7 @@ public class ProductController {
 	@Autowired
 	AdminProdHistoryService adminProdHistoryService;
 
+	//http://localhost:80/productDetail?prod_no=
 	@GetMapping("/productDetail")
 	public String productDetail(@RequestParam("prod_no") Integer prodNo, Model model) {
 		log.debug("상품 상세 페이지 - 상품번호: {}", prodNo);
@@ -122,7 +123,7 @@ public class ProductController {
         prodWishListService.deleteWishList(dto);
         return "redirect:/product/productDetail?prod_no=" + prodNo;
     }
-
+    //http://localhost:80/product/main
 	@GetMapping("/main")
 	public String mainindex(Model model) {
 		log.debug("메인 페이지!");
