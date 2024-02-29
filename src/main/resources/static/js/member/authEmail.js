@@ -119,8 +119,6 @@ console.log("프리벤트 아래!!!!!22222")
 			dataType: 'json',
 			success: function(data) {
 				console.log('ㅇㅇ 이메일 검사 성공');
-				console.log('ㅇㅇ 이메일 검사 성공123213213 '+data.count());
-				console.log('ㅇㅇ 이메일 검사 성공789878979 '+data.tostring());
 				if (data > 0) {
 					console.log("result : " + data);
 					$('.msgEmail').css('color', 'green').text('이메일 인증이 완료 되었습니다.');

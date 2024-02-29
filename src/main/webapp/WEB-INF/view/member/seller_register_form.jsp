@@ -126,7 +126,7 @@ h2 {
 <section class="module">
 	<div class="container"
 		style="background: #fff; border-radius: 5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); width: 550px;">
-		<form action="/member/uJoinProc" id="form" class="form" method="post"
+		<form action="sJoinProc" id="form" class="form" method="post"
 			enctype="multipart/form-data">
 			<h2>Register With Us</h2>
 			<div class="register-form" style="margin-bottom: 10px;">
@@ -179,6 +179,7 @@ h2 {
 							받기</button>
 						<div class="auth">
 							<input type="text" name="auth" placeholder="인증번호 입력" required />
+							<span class="resultEmailForId"></span>
 							<button class="terms-btn" type="button" id="btnEmailAuth"
 								style="float: right; max-width: 28%; color: white; max-height: 10%; padding: 10px 10px !important;">확인</button>
 						</div>
@@ -199,7 +200,7 @@ h2 {
 				</div>
 			</div>
 			<div class="register-form">
-				<label for="name">name</label> <input type="text" name="name"
+				<label for="name">name</label> <input type="text" name="userName"
 					id="name" placeholder="Enter name"> <span class="msgName"></span>
 			</div>
 			<div class="register-form">
@@ -214,12 +215,12 @@ h2 {
 					<div
 						class="form_toggle row-vh d-flex flex-row justify-content-between">
 						<div class="form_radio_btn radio_male">
-							<input id="radio-1" type="radio" name="userSex" value="male"
+							<input id="radio-1" type="radio" name="gender" value="male"
 								checked> <label for="radio-1">남자</label>
 						</div>
 
 						<div class="form_radio_btn">
-							<input id="radio-2" type="radio" name="userSex" value="female">
+							<input id="radio-2" type="radio" name="gender" value="female">
 							<label for="radio-2">여자</label>
 						</div>
 					</div>
@@ -227,7 +228,7 @@ h2 {
 			</div>
 			<br> <br>
 			<div class="input-group mb-3">
-				<label for="name">사업자 등록증</label> <input type="file" name="file"
+				<label for="name">사업자 등록증</label> <input type="file" name="filePath"
 					class="form-control" id="inputGroupFile02" style="width: 123%;">
 				<label class="input-group-text" for="inputGroupFile02"></label> <span
 					class="msgFile">사업자 등록증을 등록해 주세요</span>

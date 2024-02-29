@@ -165,7 +165,8 @@ public class MemberService {
 
 
 
-	public void joinProcess(RequestJoinDTO dto) {
+	// 일반 유저 회원가입 처리
+	public void uJoinProcess(RequestJoinDTO dto) {
 		
 		Member member = Member.builder()
 				.userid(dto.getUserId())
@@ -205,6 +206,58 @@ public class MemberService {
 		
 		
 		memberRepository.insertUser(member);
+		
+	}
+	
+	// 판매자 유저 회원가입 처리
+	@Transactional
+	public void sJoinProcess(RequestJoinDTO dto) {
+		
+		Member member = Member.builder()
+				.userid(dto.getUserId())
+				.username(dto.getUserName())
+				.userpassword(bCryptPasswordEncoder.encode(dto.getUserPassword()))
+				.useremail(dto.getUserEmail())
+				.useraddress(dto.getUserAddress())
+				.userhp(dto.getUserHp())
+				.gender(dto.getGender())
+				.userrole("ROLE_SELLER")
+				.filepath(dto.getFilePath())
+				.bizid(dto.getUserId())
+				.build();
+		
+		
+		
+		/*	member.setUserid(dto.getUserId());
+		member.setUsername(dto.getUserName());
+		member.setUserpassword(bCryptPasswordEncoder.encode(dto.getUserPassword()));
+		member.setUseremail(dto.getUserEmail());
+		member.setUseraddress(dto.getUserAddress());
+		member.setUserhp(dto.getUserHp());
+		member.setGender(dto.getGender());
+		member.setRole("ROLE_USER");
+		member.setUseraddress(dto.getUserAddress());
+		 */
+		
+		
+		System.out.println("회원 가입 form데이터 바인딩 테스트: "+ dto.toString());
+		System.out.println("회원 가입 form데이터 바인딩 테스트1: "+ dto.getUserId());
+		System.out.println("회원 가입 form데이터 바인딩 테스트2: "+ dto.getUserName());
+		System.out.println("회원 가입 form데이터 바인딩 테스트3: "+ dto.getUserPassword());
+		System.out.println("회원 가입 form데이터 바인딩 테스트4: "+ dto.getUserEmail());
+		System.out.println("회원 가입 form데이터 바인딩 테스트5: "+ dto.getUserAddress());
+		System.out.println("회원 가입 form데이터 바인딩 테스트6: "+ dto.getGender());
+		System.out.println("회원 가입 form데이터 바인딩 테스트7: "+ dto.getUserHp());
+		System.out.println("=====================================================");
+		System.out.println("회원 가입 entity tostring: "+ member.toString());
+		
+		
+		memberRepository.insertUser(member);
+		
+		
+		
+		memberRepository.insertBiz(member);
+		
 		
 	}
 

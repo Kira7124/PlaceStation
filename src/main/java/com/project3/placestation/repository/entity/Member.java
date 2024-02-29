@@ -27,13 +27,16 @@ public class Member {
 	private String userhp;
 	private String useremail;
 	private Integer userpoint;
-	private String filepath;
 	private Timestamp joinat;
 	private String userrole;
 	private String grade;
 	private String gender;
 	private String token;
 	private String oauth;
+	
+	// 판매자 회원가입
+	private String bizid;
+	private String filepath;
 	
 	
 	

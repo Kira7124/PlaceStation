@@ -19,10 +19,14 @@ public class memberDTO {
 
 	// groups가 해당 검증에서 에러가 나면 다음 검증을 실행하지 않게 해주는데 이걸 안풀면 검증 자체가 안됨 수정 요망
 
+	
+	// DTO  =  DB
+	// userNo = user_no
 	private int userNo;
 	@NotBlank(message = "아이디를 입력해 주세요")
 	@Pattern(regexp = "^[A-Za-z0-9]$", message="아이디는 영어와 숫자로 작성해 주세요")
 	@Size(min = 5, max =15, message = "아이디는 최소 5자 최대 15자 까지 작성 가능합니다.")
+	
 	private String userId;
 	@NotBlank(message = "비밀번호를 입력해 주세요")
 	@Pattern(regexp = "^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message="비밀 번호는 영어,숫자,특수 문자를 포함한 8~20자리로 작성해 주세요")

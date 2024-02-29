@@ -78,7 +78,7 @@ $(function() {
 	});
 
 	// 이름 검사
-	$('input[name=name]').focusout(function() {
+	$('input[name=userName]').focusout(function() {
 		const name = $(this).val();
 		if (name.match(reName)) {
 			$('.msgName').text('');
@@ -259,7 +259,7 @@ window.onload = function() {
 		// 사업자 등록증 유무
 	
 		// 파일 input 요소가 변경될 때마다 호출되는 함수
-		$('input[name=file]').change(function() {
+		$('input[name=filePath]').change(function() {
 			// 파일이 선택되었는지 여부 확인
 			if ($(this).prop('files').length === 0) {      //property값 가져오고 
 				console.log('파일이 선택되지 않았습니다.');

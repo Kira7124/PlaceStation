@@ -198,7 +198,7 @@
 	</update>
 
 
-	<select id="selectByIsUserId">
+	<select id="selectByIsUserId" resultType="com.project3.placestation.repository.entity.Member">
 		select * from member where user_id
 		= #{uid}
 	</select>
@@ -227,6 +227,14 @@
 		select count(user_email) from member where
 		user_email = #{email}
 	</select>
+
+	<!-- 판매자 회원가입 -->
+	<insert id="insertBiz">
+		insert into biz 
+		set (biz_id, file_path)
+		values(#{bizid}, #{filepath}) 
+		
+	</insert>
 
 
 

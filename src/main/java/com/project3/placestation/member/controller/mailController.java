@@ -31,7 +31,7 @@ public class mailController {
 	// 이메일 인증 코드 생성 메서드
 	public String generateVerificationCode() {
 		// 6자리의 인증 코드 생성
-		int codeLength = 5;
+		int codeLength = 6;
 		StringBuilder sb = new StringBuilder();
 		Random random = new Random();
 		for (int i = 0; i < codeLength; i++) {

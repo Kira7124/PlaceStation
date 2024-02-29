@@ -26,6 +26,8 @@ public class MemberDefine {
 	public static final String D_BALANCE_VALUE = "입금 금액이 0원 이하 일 수 없습니다.";
 	public static final String W_BALANCE_VALUE = "출금 금액이 0원 이하 일 수 없습니다.";
 
+	public static final String M_NO_CREATE_CODE= "코드를 생성하는데 실패 했습니다.";
+
 	public static final String FAIL_TO_CREATE_USER = "회원가입 실패.";
 
 	public static final String NOT_AN_AUTHENTICATED_USER = "인증된 사용자가 아닙니다.";
