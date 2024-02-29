@@ -168,6 +168,7 @@ public class MemberService {
 	// 일반 유저 회원가입 처리
 	public void uJoinProcess(RequestJoinDTO dto) {
 		
+		
 		Member member = Member.builder()
 				.userid(dto.getUserId())
 				.username(dto.getUserName())
@@ -211,7 +212,9 @@ public class MemberService {
 	
 	// 판매자 유저 회원가입 처리
 	@Transactional
-	public void sJoinProcess(RequestJoinDTO dto) {
+	public void sJoinProcess(RequestJoinDTO dto, String filepath) {
+		
+		System.out.println("판매자 가입 프로세스++++++++++++++++++++++: " + dto.getUserHp());
 		
 		Member member = Member.builder()
 				.userid(dto.getUserId())
@@ -222,8 +225,7 @@ public class MemberService {
 				.userhp(dto.getUserHp())
 				.gender(dto.getGender())
 				.userrole("ROLE_SELLER")
-				.filepath(dto.getFilePath())
-				.bizid(dto.getUserId())
+				.filepath(filepath)
 				.build();
 		
 		
@@ -252,10 +254,20 @@ public class MemberService {
 		System.out.println("회원 가입 entity tostring: "+ member.toString());
 		
 		
+		// bizUser insert
 		memberRepository.insertUser(member);
 		
+		// member.setBizid(userNo.getUserno());
+		Member userNo = memberRepository.selectByUserId(member);
+		
+		System.out.println("++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@" + userNo.getUserno());
 		
 		
+		member.setUserno(userNo.getUserno());
+		
+		System.out.println("++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@11111111111111111111" + member.getUserno());
+		
+		// biz insert
 		memberRepository.insertBiz(member);
 		
 		

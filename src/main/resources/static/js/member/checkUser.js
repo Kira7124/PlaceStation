@@ -107,7 +107,7 @@ $(function() {
 	});
 
 	// 휴대폰 검사
-	$('input[name=hp]').keydown(function() {
+	$('input[name=userHp]').keydown(function() {
 
 		$('.msgHp').text('');
 		isHpOk = false; // 공백은 유효하지 않은 별명임
@@ -122,8 +122,8 @@ $(function() {
 
 
 
-	// 최종 확인
-	$('button[name=register]').click(function() {
+	// 판매자 최종 확인
+	$('button[name=sRegister]').click(function() {
 
 		// true면 전송, false면 전송 취소
 		if (!isUidOk) {
@@ -149,6 +149,34 @@ $(function() {
 		if (!isFileOk) {
 			alert('사업자 등록증을 첨부 하십시오.')
 			return false // 폼 전송 취소
+		}
+		
+		return true; // 폼 전송 시작
+	});
+	
+	// 일반유저 최종 확인
+	$('button[name=uRegister]').click(function() {
+
+		// true면 전송, false면 전송 취소
+		if (!isUidOk) {
+			alert('아이디를 확인하십시오.');
+			return false; // 폼 전송 취소
+		}
+		if (!isPassOk1 || !isPassOk2) {
+			alert('비밀번호를 확인하십시오.');
+			return false;// 폼 전송 취소
+		}
+		if (!isNameOk) {
+			alert('이름을 확인하십시오.');
+			return false;// 폼 전송 취소
+		}
+		if (!isEmailOk) {
+			alert('이메일을 확인하십시오.');
+			return false;// 폼 전송 취소
+		}
+		if (!isHpOk) {
+			alert('휴대폰 번호를 확인하십시오.');
+			return false;// 폼 전송 취소
 		}
 		
 		return true; // 폼 전송 시작
@@ -206,7 +234,7 @@ window.onload = function() {
 	}
 
 	// 휴대폰 중복체크
-	$('input[name=hp]').focusout(function() {
+	$('input[name=userHp]').focusout(function() {
 		const hp = $(this).val();
 		console.log(hp);
 		if (!hp.match(reHp)) {

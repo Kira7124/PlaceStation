@@ -37,7 +37,7 @@ public String generateJwtToken(Authentication authentication) {
 //    생성 : Jwts.builder().compact()
     System.out.println("토큰 발행");
     return Jwts.builder()
-        .setSubject((userPrincipal.getEmail()))
+        .setSubject((userPrincipal.getUserId()))
         .setIssuedAt(new Date())
 //            만료일자 적용
         .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))

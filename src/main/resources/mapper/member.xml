@@ -30,13 +30,15 @@
 		update member set
 		user_name=#{username},user_address=#{useraddress},user_hp=#{userhp},
 		user_email=#{useremail},grade=#{grade},user_id=#{userid}
-		where user_no = #{userno}
+		where user_no
+		= #{userno}
 	</update>
 
 
 	<!-- 회원정보 삭제(관리자) -->
 	<delete id="AdminDeleteMember">
-		delete from member where user_no=#{userno} and user_password=#{userpassword}
+		delete from member where user_no=#{userno} and
+		user_password=#{userpassword}
 	</delete>
 
 
@@ -50,10 +52,12 @@
 				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
 				<choose>
 					<when test="searchOption == 'user_name'">
-						and user_name like concat('%', #{searchKeyword}, '%')
+						and user_name like concat('%', #{searchKeyword},
+						'%')
 					</when>
 					<when test="searchOption == 'user_address'">
-						and user_address like concat('%', #{searchKeyword}, '%')
+						and user_address like concat('%', #{searchKeyword},
+						'%')
 					</when>
 					<when test="searchOption == 'grade'">
 						and grade like concat('%', #{searchKeyword}, '%')
@@ -82,10 +86,12 @@
 				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
 				<choose>
 					<when test="searchOption == 'user_name'">
-						and user_name like concat('%', #{searchKeyword}, '%')
+						and user_name like concat('%', #{searchKeyword},
+						'%')
 					</when>
 					<when test="searchOption == 'user_address'">
-						and user_address like concat('%', #{searchKeyword}, '%')
+						and user_address like concat('%', #{searchKeyword},
+						'%')
 					</when>
 					<when test="searchOption == 'grade'">
 						and grade like concat('%', #{searchKeyword}, '%')
@@ -193,12 +199,14 @@
 	<update id="updateMemberPoint">
 		update member set
 		user_point = #{userPoint} ,
-		grade = #{grade}
+		grade =
+		#{grade}
 		where user_no = #{buyerId}
 	</update>
 
 
-	<select id="selectByIsUserId" resultType="com.project3.placestation.repository.entity.Member">
+	<select id="selectByIsUserId"
+		resultType="com.project3.placestation.repository.entity.Member">
 		select * from member where user_id
 		= #{uid}
 	</select>
@@ -206,13 +214,15 @@
 
 	<!-- (회원가입)유저 아이디 중복 검사 -->
 	<select id="selectByValidUserId" resultType="Integer">
-		select count(*) from member where
+		select count(*) from
+		member where
 		user_id = #{uid}
 	</select>
 
 	<!-- (회원가입)전화번호 중복검사 -->
 	<select id="selectByValidHp" resultType="Integer">
-		select count(*) from member where
+		select count(*) from
+		member where
 		user_hp = #{hp}
 	</select>
 
@@ -225,19 +235,37 @@
 	<!-- (회원가입)이메일 중복검사 -->
 	<select id="selectByValidEmail">
 		select count(user_email) from member where
-		user_email = #{email}
+		user_email
+		= #{email}
 	</select>
+
+
+	<!-- 판매자 회원 가입용 selectKey userNo를 반환 -->
+	<insert id="insertUserAndSelectUserNo">
+		<selectKey keyProperty="userNo" order="AFTER"
+			resultType="com.project3.placestation.repository.entity.Member">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		member(user_id,user_password,user_address,user_name, user_hp,
+		user_email,join_at,user_role,gender)
+		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender})
+	</insert>
 
 	<!-- 판매자 회원가입 -->
 	<insert id="insertBiz">
-		insert into biz 
-		set (biz_id, file_path)
-		values(#{bizid}, #{filepath}) 
-		
+		insert into biz
+		(biz_id, file_path)
+		values(#{userno},#{filepath})
+
 	</insert>
 
 
-
+   <!-- 트랜잭션 회원 userNo로 검색 -->
+ 	<select id="selectByUserId" resultType="com.project3.placestation.repository.entity.Member">
+ 		select user_no from member where user_id = #{userid}
+ 		
+	</select>
 
 
 

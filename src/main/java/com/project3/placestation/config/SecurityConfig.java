@@ -117,7 +117,6 @@ public class SecurityConfig {
 
 		
 		
-		
 		return http.build(); // HttpSecurity를 빌더 타입으로 리턴 해준다.
 	}
 

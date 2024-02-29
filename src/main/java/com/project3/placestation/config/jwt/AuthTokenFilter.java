@@ -3,16 +3,13 @@ package com.project3.placestation.config.jwt;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.project3.placestation.member.dto.MemberLoginDto;
+import com.project3.placestation.repository.entity.Member;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -82,7 +79,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	private String parseJwt(HttpServletRequest request) {
 // String headerAuth = request.getHeader("Authorization");
 		System.out.println("토큰 parseJwt 가 작동");
-		MemberLoginDto sessionMemeber = (MemberLoginDto) httpSession.getAttribute("member");
+		Member sessionMemeber = (Member) httpSession.getAttribute("member");
 		
 		if(sessionMemeber == null) {
 			return null;

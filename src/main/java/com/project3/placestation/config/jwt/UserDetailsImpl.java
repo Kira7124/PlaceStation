@@ -199,7 +199,18 @@ public class UserDetailsImpl implements UserDetails {
 		return userNo;
 	}
 
+	
 	// ===============
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 
 	// 계정이 만료되지 않았는지를 리턴( true 이면 만료되지 않았음을 의미 )
 //아래는 만료 체크가 필요없어서 항상 true 를 리턴하게 되어 있음

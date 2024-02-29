@@ -204,7 +204,7 @@ h2 {
 					id="name" placeholder="Enter name"> <span class="msgName"></span>
 			</div>
 			<div class="register-form">
-				<label for="hp">hp</label> <input type="text" name="hp" id="hp"
+				<label for="hp">hp</label> <input type="text" name="userHp" id="hp"
 					placeholder="Enter hp"> <span class="msgHp"> - 포함
 					13자리를 입력하세요.</span>
 				</td>
@@ -215,12 +215,12 @@ h2 {
 					<div
 						class="form_toggle row-vh d-flex flex-row justify-content-between">
 						<div class="form_radio_btn radio_male">
-							<input id="radio-1" type="radio" name="gender" value="male"
+							<input id="radio-1" type="radio" name="gender" value="M"
 								checked> <label for="radio-1">남자</label>
 						</div>
 
 						<div class="form_radio_btn">
-							<input id="radio-2" type="radio" name="gender" value="female">
+							<input id="radio-2" type="radio" name="gender" value="F">
 							<label for="radio-2">여자</label>
 						</div>
 					</div>
@@ -236,7 +236,7 @@ h2 {
 			<br> 
 			<br>
 			<button type="submit" class="terms-btn" id="registerBtnCheck"
-				name="register" style="margin: auto; display: block; color: white;">가입
+				name="sRegister" style="margin: auto; display: block; color: white;">가입
 				하기</button>
 		</form>
 	</div>

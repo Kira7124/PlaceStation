@@ -1,11 +1,10 @@
 package com.project3.placestation.member.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,7 +44,7 @@ public class RequestJoinDTO {
 	private Timestamp joinAt;
 	private Timestamp outAt;
 	private String outYn;
-	private String filePath;
+	private List<MultipartFile> filePath;
 	private String userOauth;
 	private String role;
 	private String gender;

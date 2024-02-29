@@ -93,5 +93,7 @@ public interface MemberRepository {
 	//(회원가입) 판매자 가입시 user_id, filePath insert
 	public int insertBiz(Member member);
 	
-	
+	public Member insertUserAndSelectUserNo(Member member);
+
+	public Member selectByUserId(Member member);
 }

@@ -1,10 +1,9 @@
 package com.project3.placestation.repository.entity;
 
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
-import java.text.Format;
+import java.util.List;
 
-import com.project3.placestation.utils.TimeUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +18,7 @@ import lombok.ToString;
 @Builder
 public class Member {
 
-	private Integer userno;
+	private int userno;
 	private String userid;
 	private String userpassword;
 	private String useraddress;
@@ -35,7 +34,7 @@ public class Member {
 	private String oauth;
 	
 	// 판매자 회원가입
-	private String bizid;
+	private int bizid;
 	private String filepath;
 	
 	

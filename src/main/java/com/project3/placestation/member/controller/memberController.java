@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project3.placestation.config.jwt.JwtUtils;
 import com.project3.placestation.config.jwt.UserDetailsImpl;
+import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.member.dto.MemberLoginDto;
 import com.project3.placestation.member.dto.RequestJoinDTO;
 import com.project3.placestation.repository.entity.BizJoin;
@@ -38,6 +39,10 @@ public class memberController {
 	@Autowired
 	HttpSession httpSession;
 
+	@Autowired
+	FiledbService fileService;
+	
+	
 	@GetMapping("/login")
 	public String login(Model model) {
 
@@ -228,6 +233,18 @@ public class memberController {
 		System.out.println("s회원 가입 form데이터 바인딩 테스트7: " + dto.getGender());
 		System.out.println("s회원 가입 form데이터 바인딩 테스트8: " + dto.getUserHp());
 		
+		
+		
+		System.out.println("$@#$#$#$#$#$#$#$#$#$##$#$#$##$");
+		
+		System.out.println("s회원 가입 form데이터 바인딩 테스트8: " + dto.getFilePath());
+		
+		// 파일 저장 메서드
+
+		String filepath = fileService.saveFiles(dto.getFilePath());
+		
+		System.out.println("파일 업로드 확인!!!!!!!!!!!!!!!!!!!!"+ filepath);
+	
 
 		// 합친 주소
 		String address = dto.getZip() + dto.getAddr1() + dto.getAddr2();
@@ -248,7 +265,9 @@ public class memberController {
 		System.out.println("회원가입 Email 합친 데이터 확인 dto버전: " + dto.getUserEmail());
 		
 		
-		service.sJoinProcess(dto);
+		System.out.println("회원가입 Email 합친 데이터 확인 dto버전: " + dto.getUserEmail());
+		
+		service.sJoinProcess(dto, filepath);
 		
 		return "redirect:/member/login";
 	}

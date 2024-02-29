@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ include file ="/WEB-INF/view/member/layout/header.jsp" %>
+ <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
      <!-- login content 시작 -->
       <!--로그인 섹션 시작-->
         <section class="module">
@@ -8,6 +9,9 @@
             <div class="row">
               <div class="col-sm-5 col-sm-offset-1 mb-sm-40" id="login" style="margin-left: 33%;">
                 <h4 class="font-alt">Login</h4>
+                 <p>principal : <sec:authentication property="principal" /></p>
+         <%--         <p>principal : <sec:authentication property="principal.userName" /></p>
+                 <p>principal : <sec:authentication property="principal.authority" /></p> --%>
                 <hr class="divider-w mb-10">
                 <form class="form" action="/loginProc" method="post">
                   <div class="form-group">
