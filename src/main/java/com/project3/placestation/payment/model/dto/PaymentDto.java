@@ -1,8 +1,10 @@
 package com.project3.placestation.payment.model.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class PaymentDto {
 	private String merchantUid;
 	private Integer prodNo;

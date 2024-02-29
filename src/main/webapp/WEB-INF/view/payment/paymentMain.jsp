@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/payment/common/header.jsp"%>
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 <style>
 #img {
@@ -14,11 +14,11 @@
 }
 </style>
 
-<section class="module">
+<section class="module" >
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-2 col-sm-offset-5">
-				<div class="alt-module-subtitle" style="margin-bottom: 10px;">
+				<div class="alt-module-subtitle" style="margin-bottom: 10px; margin-top: 100px;">
 					<span class="holder-w"></span>
 					<h5 class="font-serif">payment</h5>
 					<span class="holder-w"></span>
@@ -170,25 +170,25 @@
 
 					<div style="margin: 20px; float: inline-start">
 						<button onclick="kakaoPay()">
-							<img src="/assets/images/kakaoPay.png"
+							<img src="/assets/images/payment/kakaopay.png"
 								style="width: 200px; height: 180px;" />
 						</button>
 					</div>
 					<div style="margin: 20px; float: inline-start">
 						<button onclick="tosspay()">
-							<img src="/assets/images/tosspay.png"
+							<img src="/assets/images/payment/tosspay.png"
 								style="width: 200px; height: 180px;" />
 						</button>
 					</div>
 					<div style="margin: 20px; float: inline-start">
 						<button onclick="payco()">
-							<img src="/assets/images/paypal.webp"
+							<img src="/assets/images/payment/payco.jpg"
 								style="width: 200px; height: 180px;" />
 						</button>
 					</div>
 					<div style="margin: 20px; float: inline-start">
 						<button onclick="kgPay()">
-							<img src="/assets/images/kginisis.jpg"
+							<img src="/assets/images/payment/kgpay.png"
 								style="width: 200px; height: 180px;" />
 						</button>
 					</div>
@@ -314,7 +314,7 @@
           {
             pg: "kakaopay.TC0ONETIME",
             pay_method: "card", // 생략 가능
-           // merchant_uid: merchantUid, // 주문번호
+            // merchant_uid: merchantUid, // 주문번호
             name: "${product.prodTitle}",
             amount: checkoutAmount, // 숫자 타입
             buyer_email: "${member.userEmail}",
@@ -470,4 +470,5 @@
       }
     </script>
 <!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/payment/common/footer.jsp"%>
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

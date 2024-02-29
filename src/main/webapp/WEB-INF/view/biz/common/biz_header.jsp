@@ -33,7 +33,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<b><a href="/admin/admin-main" style="color:black;">PlaceStation</a></b>
+				<b><a href="/product/main" style="color:black;">PlaceStation</a></b>
 			</div>
 			<div class="container-fluid">
 				

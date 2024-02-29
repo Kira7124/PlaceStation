@@ -185,18 +185,20 @@ public class PaymentService {
 		HttpHeaders headers3 = new HttpHeaders();
 		headers3.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		headers3.add("Authorization", token);
+		
+		log.info("merchantUid : " + merchantUid);
+		log.info("impUid : " + impUid);
 
 		// Request Body 설정
 		MultiValueMap<String, String> params3 = new LinkedMultiValueMap();
 		params3.add("imp_uid", impUid); // 내 키 (주의) (필수)
 		params3.add("merchant_uid", merchantUid); // 상품 넘버 (필수) -- 객체에서 가져오기
 		params3.add("reason", reason); // 환불 사유 (선택)
-		params3.add("amount", String.valueOf(resAmount)); // 환불 계좌 예금주 (선택)
 		params3.add("refund_holder", ""); // 환불 계좌 예금주 (선택)
 		params3.add("refund_bank", ""); // 환불 계좌 은행 코드 (부산은행) (선택)
 		params3.add("refund_account", ""); // 환불 계좌 번호 (선택)
 		params3.add("refund_tel", ""); // 환불 계좌 예금주 연락처 (선택)
-//        params3.add("extra","");       // 네이버 페이 사용시 사용   (네이버페이 사용시 필수)
+
 
 // 헤더 + 바디 결합
 		HttpEntity<MultiValueMap<String, String>> entity3 = new HttpEntity<>(params3, headers3);

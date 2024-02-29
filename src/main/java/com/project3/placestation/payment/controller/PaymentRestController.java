@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -82,6 +81,7 @@ public class PaymentRestController {
 
 			// 포트원 결제 - 1. 토큰 정보 가져오기
 			String token = paymentService.paymentGetToken(paymentDto, fortOne);
+			log.info(token);
 			// 포트원 결제 토큰 정보가 없다면
 			if (token == null) {
 				// 환불
@@ -162,6 +162,7 @@ public class PaymentRestController {
 				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
 				return new ResponseEntity<>("결제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 			}
+			log.info("1번 clear");
 
 			// 회사 balance 추가
 			Company company = companyService.findCompany();
@@ -177,6 +178,8 @@ public class PaymentRestController {
 				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
 				return new ResponseEntity<>("회사 balance 수정 실패 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
 			}
+			
+			log.info("2번 clear");
 
 			// 유저 정보 변경 - 포인트 정보 변경
 			PaymentMemberDto memberDto = memberService.findMemberById(paymentDto.getBuyerId());
