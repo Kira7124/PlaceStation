@@ -18,7 +18,7 @@ import lombok.ToString;
 public class QnaBoard {
 	
 	private Integer qbno;
-	private String qwriter;
+	private Integer qwriter;
 	private String qcontent;
 	private String qtitle;
 	private String filepath;

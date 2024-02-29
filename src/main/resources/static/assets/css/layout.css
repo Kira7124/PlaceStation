@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+.navbar-custom {
+    display: flex;
+    height: 100px;
+    flex-direction: column;
+    justify-content: center;
+} 
+  
+.container-search { 
+  width: 250px;
+
+}
+
+#header {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+} 
+
+.login_register a {
+  padding-right: 10px;
+  color: rgba(255, 255, 255, 0.7);
+} 
+
+.navbar-nav>li>.dropdown-menu {
+  margin-top: 8px;
+}
+
+/* css 가로 자름 */
+body > main > nav {
+display : flex;
+flex-direction : row;
+align-items : center;
+}
+
+.nav>li>a {
+  padding: 10px 25px;
+} 
+
+/* footer css 시작 */
+#footer {
+    border-top: 1px solid #EAEAEA;
+    margin-bottom: 20px;
+}
+
+#h3-footer {
+    margin-top: 15px;
+}
+
+.p-footer {
+    margin: 0 -15px 10px;
+}
+
+/* footer css 끝 */

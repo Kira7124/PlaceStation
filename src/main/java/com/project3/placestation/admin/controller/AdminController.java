@@ -653,7 +653,7 @@ public class AdminController {
 	
 	
 	
-	
+
 	
 	// 회원중복체크 ( ajax 비동기 )
 	@GetMapping("/checkID")
@@ -683,3 +683,4 @@ public class AdminController {
 	
 
 }
+

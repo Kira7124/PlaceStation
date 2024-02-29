@@ -1,7 +1,5 @@
 package com.project3.placestation.service;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +45,8 @@ public class ProdReviewService {
 	    return dtos;
 	}
 	
-	// 리뷰 등록 
+	// 답글 등록 
+
     public void saveReview(ProdReviewDto dto) {
         
         ProdReview prodReview = ProdReview.builder()
@@ -75,11 +74,33 @@ public class ProdReviewService {
                 .parentId(dto.getParentId())
                 .build();
         
-        int result = prodReviewRepository.saveReview(prodReview);
+
+        int result = prodReviewRepository.addReview(prodReview);
+
 		// 확인
 		if (result < 1) {
 			throw new CustomRestfulException("리뷰 등록에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
     }
 
+
+    // 리뷰 삭제
+    public void deleteReview(Integer prodRevNo) {
+    	
+    	int result = prodReviewRepository.deleteReview(prodRevNo);
+		if (result < 1) {
+			throw new CustomRestfulException("리뷰 삭제에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+    
+    // 리뷰 개수 count
+    public Integer getCountReview(Integer prodNo) {
+    	return prodReviewRepository.countReview(prodNo);
+    }
+    
+    public Double getAvgStar(Integer prodNo) {
+    	Double avgStar = prodReviewRepository.avgStar(prodNo);
+        return avgStar != null ? avgStar : 0;
+    }
 }

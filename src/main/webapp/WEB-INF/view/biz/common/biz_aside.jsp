@@ -23,8 +23,8 @@
 						<i class="icon-submenu lnr lnr-chevron-left"></i></a>
 					<div id="subPages" class="collapse ">
 						<ul class="nav">
-							<li><a href="/biz/biz-notice" class="">공지사항</a></li>
-							<li><a href="/biz/biz-qna" class="">1:1문의</a></li>
+							<li><a href="/cs/notice" class="">공지사항</a></li>
+							<li><a href="/cs/qna" class="">1:1문의</a></li>
 						</ul>
 					</div></li>
 			</ul>

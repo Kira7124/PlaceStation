@@ -9,7 +9,8 @@ CREATE TABLE prod_Review (
     prod_rev_update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     prod_rev_delete_yn VARCHAR(1) DEFAULT 'N',
     prod_rev_delete_at TIMESTAMP,
-    parent_id INT NOT NULL AUTO_INCREMENT
+    parent_id INT DEFAULT NULL
+
 );
 
 create table product_views (
@@ -18,7 +19,7 @@ create table product_views (
 );
 
 create table wish_list (
-	w_no INT PRIMARY KEY NOT NULL,
+	w_no INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     prod_no INT NOT NULL,
     user_no INT NOT NULL
 );
@@ -64,12 +65,13 @@ create table member (
   user_hp VARCHAR(20) NOT NULL,
   user_email VARCHAR(30) NOT NULL,
   user_point INT NULL DEFAULT 10,
-  file_path VARCHAR(100) NULL DEFAULT 'default.jpg',
+  file_path VARCHAR(100) DEFAULT 'https://localhost/file-path/dsanlk',
   join_at DATETIME NULL DEFAULT now(),
   user_role VARCHAR(20) NOT NULL,
   grade VARCHAR(20) NULL DEFAULT '브론즈',
   gender varchar (1)
   );
+
 
 CREATE TABLE notice_board (
   n_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -96,17 +98,20 @@ create table biz (
 	biz_no int primary key auto_increment,
     biz_id int ,
     biz_brand_name varchar(30),
+    biz_hp varchar(30),
     biz_balance int,
     file_path varchar (1000),
-    biz_tel varchar (20),
-    biz_hp varchar(20),
-    biz_email varchar(20),
     joinat datetime default now()
+    biz_tel varchar (20) ,
+    biz_email varchar (50),
+    imp_uid varchar ( 100 ) ,
+    imp_key varchar (100),
+    imp_secret varchar (300)
 );
-
 
 create table admin_prod_history (
 	admin_his_no varchar(20) primary key,
+    token varchar(200) ,
 	admin_his_prod_no int (5) not null,
     admin_his_price int (7) not null,
     admin_his_use_point int (7) default 0,
@@ -122,8 +127,8 @@ create table admin_prod_history (
     start_time int (2) ,
     end_time int (2) ,
     cancel_yn varchar (1) default 'N',
-    cancel_at timestamp default now() ,
-    cancel_amount int (7) ,
+    cancel_at timestamp ,
+    cancel_amount double,
     people_count int (3),
     purchase_date varchar (100),
     token varchar(200)
@@ -140,9 +145,32 @@ create table prod_subcategory (
     subcategory_name varchar (40)
 );
 
+create table charge (
+	ch_percent int auto_increment primary key
+);
+
+create table grade (
+	grade_name varchar(30) primary key ,
+    grade_discount int (2),
+    grade_maxprice int,
+    grade_savepoint int(2)
+);
+
+create table company (
+	name varchar (100) ,
+    address varchar (1000) ,
+    tel varchar (30) ,
+    ceo_name varchar (30) ,
+    email varchar(100) ,
+    sell_number varchar (30) ,
+    info varchar (1000) ,
+    time varchar (100) ,
+    balance int
+);
+
 CREATE TABLE qna_board (
   q_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  q_writer VARCHAR(45) NOT NULL,
+  q_writer INT NOT NULL,
   q_content VARCHAR(400) NOT NULL,
   q_title VARCHAR(200) NOT NULL,
   file_path VARCHAR(400) NULL,
@@ -164,3 +192,22 @@ CREATE TABLE banner (
 
 
 
+create table faq_board (
+f_bno int not null primary key auto_increment,
+f_writer INT not null,
+f_content varchar(400) not null,
+f_title varchar(200) not null,
+file_path varchar(400),
+f_regdate timestamp  DEFAULT now(),
+f_updatedate timestamp  DEFAULT now(),
+f_delete_at timestamp  DEFAULT now(),
+category_id int
+);
+
+create table qna_board_category (
+	category_id int auto_increment ,
+    category_name varchar (40),
+    category_description varchar (400),
+    use_yn varchar(1) default 'Y',
+    file_path varchar (400)
+);

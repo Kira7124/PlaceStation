@@ -71,6 +71,7 @@
 								            <img src="${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
 								        </c:otherwise>
 								    </c:choose>
+								  <img src="/assets/img/${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
 								</td>
 								  <td>	
 									<c:choose>

@@ -6,7 +6,8 @@
 	<script src="/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="/assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="/assets/scripts/klorofil-common.js"></script>
-	
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 
 </html>

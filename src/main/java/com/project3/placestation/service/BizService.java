@@ -11,6 +11,7 @@ import com.project3.placestation.admin.dto.AdminBizDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
+import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
 import com.project3.placestation.repository.entity.Biz;
 import com.project3.placestation.repository.interfaces.BizRepository;
 
@@ -97,8 +98,9 @@ public class BizService {
 		}
 	}
 	
-	
-	
-	
-	
+	// 비즈 기본키 값으로 포트원 키 찾기
+	public PaymentFortOneKeyDto findFortOneKeyByBizNo(int bizNo) {
+		return bizRepository.findFortOneKeyByBizNo(bizNo);
+	}
+
 }
