@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/product/common/header.jsp"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 <style>
 img {
@@ -312,5 +312,5 @@ img {
 	</section>
 
 
-	<!-- adminheader.jsp -->
-	<%@ include file="/WEB-INF/view/product/common/footer.jsp"%>
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

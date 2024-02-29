@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/product/common/header.jsp"%>
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
 img {
 	border-radius: 10px;
@@ -417,5 +417,6 @@ console.log("헬로" +${totalItems})
 		location.href= "/product/search-page";
 	}
 </script>
-<!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/product/common/footer.jsp"%>
+
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

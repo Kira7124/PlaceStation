@@ -3,108 +3,119 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-	<mapper namespace="com.project3.placestation.repository.interfaces.QnaBoardRepository">
-		
-		
-		
-		<!-- Qna리스트출력확인 -->
-		<select id ="AdminQnaBoardListAll" resultType="com.project3.placestation.repository.entity.QnaBoard">
-			select * from qna_board
-			limit #{startPage},#{pageSize}
-		</select>
-				
-				
-		<!-- Qna리스트(조건화)출력 -->		
-		<select id="AdminQnaBoardListAll2" resultType="com.project3.placestation.repository.entity.QnaBoard">
-			select * from qna_board
-			where q_status = #{status}
-			limit #{startPage},#{pageSize}
-		</select>
-				
-		
-		<!-- Qna갯수(완료) -->
-		<select id ="mainQnaBoarCount" resultType="int">
-			select count(*) from qna_board where q_bno > 0 and q_status=#{status}
-		</select>
-		
-		
-		<!-- 페이징처리 갯수세팅 -->
-		<select id ="AdmincountQnaBoard" resultType="int">
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.QnaBoardRepository">
+
+
+
+	<!-- Qna리스트출력확인 -->
+	<select id="AdminQnaBoardListAll"
+		resultType="com.project3.placestation.repository.entity.QnaBoard">
+		select * from qna_board
+		limit #{startPage},#{pageSize}
+	</select>
+
+
+	<!-- Qna리스트(조건화)출력 -->
+	<select id="AdminQnaBoardListAll2"
+		resultType="com.project3.placestation.repository.entity.QnaBoard">
+		select * from qna_board
+		where q_status = #{status}
+		limit #{startPage},#{pageSize}
+	</select>
+
+
+	<!-- Qna갯수(완료) -->
+	<select id="mainQnaBoarCount" resultType="int">
+		select count(*) from qna_board where q_bno > 0 and q_status=#{status}
+	</select>
+
+
+	<!-- 페이징처리 갯수세팅 -->
+	<select id="AdmincountQnaBoard" resultType="int">
 			<![CDATA[ select count(*) from qna_board where q_bno > 0 ]]>
-		</select>
-		
-		
-		
-		<!-- 특정 글 조회(글 번호사용) -->
-		<select id ="detailQnaBoard" resultType="com.project3.placestation.repository.entity.QnaBoard">
-			select * from qna_board where q_bno = #{qbno}
-		</select>
-				
-		
-		
-		<!-- 1:1 답글업데이트하기 -->
-		<update id ="AdminUpdateQna">
-			update qna_board set q_reply=#{qreply},q_status=#{qstatus}
-			where q_bno =#{qbno}
-		</update>
-		
-		
-		<!-- 1:1검색(관리자) -->
-		<select id="AdminsearchQnaBoardlist" resultType="com.project3.placestation.repository.entity.QnaBoard">
-		    select * from qna_board
-		    <where>
-		        <if test="searchKeyword != null and searchKeyword != ''">
-		            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
-		            <choose>
-		            	<when test="searchOption == 'q_title'">
-		                    and q_title like concat('%', #{searchKeyword}, '%')
-		                </when>
-		                <when test="searchOption == 'q_writer'">
-		                    and q_writer like concat('%', #{searchKeyword}, '%')
-		                </when>
-		                <when test="searchOption == 'q_bno'">
-		                    and q_bno like concat('%', #{searchKeyword}, '%')
-		                </when>
-		                <when test="searchOption == 'q_status'">
-		                    and q_status like concat('%', #{searchKeyword}, '%')
-		                </when>
-		                <!-- 기본적으로는 user_name으로 검색 -->
-		                <otherwise>
-		                    and q_title like concat('%', #{searchKeyword}, '%')
-		                </otherwise>
-		            </choose>
-		        </if>
-		    </where>
-		    limit #{startPage}, #{pageSize}
-		</select>
-		
-		
-		<!-- 관리자1:1검색카운팅 -->
-		<select id="countAdminSearchQnalist" resultType="int">
-			 select count(*) from qna_board
-			    <where>
-			        <if test="searchKeyword != null and searchKeyword != ''">
-			            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
-			            <choose>
-				            <when test="searchOption == 'q_title'">
-			                    and q_title like concat('%', #{searchKeyword}, '%')
-			                </when>
-			                <when test="searchOption == 'q_writer'">
-			                    and q_writer like concat('%', #{searchKeyword}, '%')
-			                </when>
-			                <when test="searchOption == 'q_bno'">
-			                    and q_bno like concat('%', #{searchKeyword}, '%')
-			                </when>
-			                <when test="searchOption == 'q_status'">
-			                    and q_status like concat('%', #{searchKeyword}, '%')
-			                </when>
-			                <!-- 기본적으로는 user_name으로 검색 -->
-			                <otherwise>
-			                    and q_title like concat('%', #{searchKeyword}, '%')
-			                </otherwise>
-			            </choose>
-			        </if>
-			    </where>
-		</select>
-		
-	</mapper>
+	</select>
+
+
+
+	<!-- 특정 글 조회(글 번호사용) -->
+	<select id="detailQnaBoard"
+		resultType="com.project3.placestation.repository.entity.QnaBoard">
+		select * from qna_board where q_bno = #{qbno}
+	</select>
+
+
+
+	<!-- 1:1 답글업데이트하기 -->
+	<update id="AdminUpdateQna">
+		update qna_board set q_reply=#{qreply},q_status=#{qstatus}
+		where q_bno =#{qbno}
+	</update>
+
+
+	<!-- 1:1검색(관리자) -->
+	<select id="AdminsearchQnaBoardlist"
+		resultType="com.project3.placestation.repository.entity.QnaBoard">
+		select * from qna_board
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+				<choose>
+					<when test="searchOption == 'q_title'">
+						and q_title like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'q_writer'">
+						and q_writer like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'q_bno'">
+						and q_bno like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'q_status'">
+						and q_status like concat('%', #{searchKeyword}, '%')
+					</when>
+					<!-- 기본적으로는 user_name으로 검색 -->
+					<otherwise>
+						and q_title like concat('%', #{searchKeyword}, '%')
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+		limit #{startPage}, #{pageSize}
+	</select>
+
+
+	<!-- 관리자1:1검색카운팅 -->
+	<select id="countAdminSearchQnalist" resultType="int">
+		select count(*) from qna_board
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+				<choose>
+					<when test="searchOption == 'q_title'">
+						and q_title like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'q_writer'">
+						and q_writer like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'q_bno'">
+						and q_bno like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'q_status'">
+						and q_status like concat('%', #{searchKeyword}, '%')
+					</when>
+					<!-- 기본적으로는 user_name으로 검색 -->
+					<otherwise>
+						and q_title like concat('%', #{searchKeyword}, '%')
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</select>
+
+	<insert id="saveQna">
+		insert into qna_board(q_writer , q_content , q_title , file_path ,
+		category_id)
+		values (#{qwriter}, #{qcontent}, #{qtitle} , #{filepath} , #{categoryid});
+	</insert>
+
+</mapper>

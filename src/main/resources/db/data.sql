@@ -381,18 +381,18 @@ insert into admin_prod_history (
 ) values ('OXDSCAVD-KOBFDM' ,1,31000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',23,24,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 
 insert into qna_board(q_writer,q_content,q_title)
-values('키라1','첫번째내용입니다','0번째qna글1'),
-('키라1','2번째내용입니다','1번째qna글1'),
-('키라1','3번째내용입니다','2번째qna글1'),
-('키라1','4번째내용입니다','3번째qna글1'),
-('키라1','5번째내용입니다','4번째qna글1'),
-('키라1','6번째내용입니다','5번째qna글1'),
-('키라1','7번째내용입니다','6번째qna글1'),
-('키라1','8번째내용입니다','7번째qna글1'),
-('키라1','9번째내용입니다','8번째qna글1'),
-('키라1','10번째내용입니다','9번째qna글1'),
-('키라1','11번째내용입니다','10번째qna글1'),
-('키라1','12번째내용입니다','11번째qna글1');
+values(1,'첫번째내용입니다','0번째qna글1'),
+(1,'2번째내용입니다','1번째qna글1'),
+(1,'3번째내용입니다','2번째qna글1'),
+(1,'4번째내용입니다','3번째qna글1'),
+(1,'5번째내용입니다','4번째qna글1'),
+(1,'6번째내용입니다','5번째qna글1'),
+(1,'7번째내용입니다','6번째qna글1'),
+(1,'8번째내용입니다','7번째qna글1'),
+(1,'9번째내용입니다','8번째qna글1'),
+(1,'10번째내용입니다','9번째qna글1'),
+(1,'11번째내용입니다','10번째qna글1'),
+(1,'12번째내용입니다','11번째qna글1');
 
 
 insert into prod_major_category (category_name) values ('스포츠');
@@ -428,3 +428,9 @@ insert into company values ('PlaceStation' , '부산광역시 부산진구 중�
 
 
 INSERT INTO FAQ_BOARD(F_BNO, F_WRITER, F_CONTENT, F_TITLE)VALUES (1, 1, '로그인 하고 싶어요', '로그인이 안 돼요');
+
+INSERT INTO QNA_BOARD_CATEGORY(category_name , category_description , file_path) values ('계정' ,'계정에 필요한 문의가 가능합니다.' , '/assets/images/qna/icon1.png');
+INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('예약' , '예약 확인 , 취소에 대한 문의가 가능합니다.' ,'/assets/images/qna/icon4.png');
+INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('상품' , '상품에 대한 문의가 가능합니다.' , '/assets/images/qna/icon3.png');
+INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('포인트' , '자신의 포인트에 대한 문의가 가능합니다.' , '/assets/images/qna/icon2.png');
+INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('결제' ,'결제에 실패하였거나 환불이 필요한 경우 문의가 가능합니다.'  , '/assets/images/qna/icon7.png');

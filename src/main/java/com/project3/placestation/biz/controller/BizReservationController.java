@@ -52,7 +52,7 @@ public class BizReservationController {
 	@GetMapping("/reservation-management")
 	public String reservationManagementForm(Model model, 
 			@RequestParam(value="page" , defaultValue = "0") int page,
-			@RequestParam(value="size" , defaultValue = "8") int size ,
+			@RequestParam(value="size" , defaultValue = "16") int size ,
 			@RequestParam(value = "text" ,defaultValue = "") String text
 			) {
 
