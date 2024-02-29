@@ -2,6 +2,7 @@ package com.project3.placestation.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project3.placestation.repository.entity.Company;
 import com.project3.placestation.repository.interfaces.CompanyRepository;
@@ -30,6 +31,7 @@ public class CompanyService {
 	 * @param sumBalance
 	 * @return
 	 */
+	@Transactional
 	public int updateSumCompanyBalance(int comBalance , int sumBalance) {
 		int balance = comBalance + sumBalance;
 		int result = companyRepository.updateCompanyBalance(balance);
@@ -43,6 +45,7 @@ public class CompanyService {
 	 * @param sumBalance
 	 * @return
 	 */
+	@Transactional
 	public int updateMinCompanyBalance(int comBalance , int sumBalance) {
 		int balance = comBalance - sumBalance;
 		int result = companyRepository.updateCompanyBalance(balance);

@@ -165,7 +165,7 @@
           </form>
         </div> 
         <div class="login_register" style="display: inline-block">
-            <a href="#">로그인</a>
+            <a href="/member/login">로그인</a>
             <a href="#">회원가입</a>
           </div>
         </div>

@@ -16,6 +16,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.payment.model.common.PaymentDaySince;
 import com.project3.placestation.payment.model.dto.PaymentDto;
 import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
@@ -64,7 +65,7 @@ public class PaymentService {
 		String token = reqToken.getBody().getResponse().accessToken;
 
 		if (token == null) {
-			refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 중 서버 에러");
+			refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), BizDefine.SERVER_ERROR);
 			return null;
 		}
 
@@ -97,7 +98,7 @@ public class PaymentService {
 
 		// 사후 검증시 잘못됬다면 환불
 		if (reqData.getBody() == null) {
-			refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 중 서버 에러");
+			refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), BizDefine.SERVER_ERROR);
 		}
 
 		return reqData.getBody();
@@ -126,7 +127,7 @@ public class PaymentService {
 
 		// Request Body 설정
 		MultiValueMap<String, String> params3 = new LinkedMultiValueMap();
-		params3.add("imp_uid", impUid); // 내 키 (주의) (필수)
+//		params3.add("imp_uid", impUid); // 내 키 (주의) (필수) <- 수정 imp_uid 또는 merchant_uid 둘 중 하나만 있어야함
 		params3.add("merchant_uid", merchantUid); // 상품 넘버 (필수) -- 객체에서 가져오기
 		params3.add("reason", reason); // 환불 사유 (선택)
 		params3.add("refund_holder", ""); // 환불 계좌 예금주 (선택)
@@ -172,14 +173,13 @@ public class PaymentService {
 	 * @param reason
 	 * @return
 	 */
-	public boolean refund(String token, String merchantUid, String impUid, String reason , int amount , int percent) {
+	public boolean refund(String token, String merchantUid, String impUid, String reason , double amount) {
 //      3. 검증 했다 치고 만약 검증이 잘못 됫다면 환불(취소)
 //      네이버 페이 시 param 에 extra 넣어야 함 (나중에 추가할 수도)
 //      파라미터 타입은 FormData
 //      토큰이 필요한듯?
 
 		// 시간 차이에 amount 값 확인
-		double resAmount = calRefundAmount(amount, percent);
 		// 포트원에 결제 정보 조회 == 결제 정보 사후 검증하기
 		// Request Header 설정
 		HttpHeaders headers3 = new HttpHeaders();
@@ -188,10 +188,10 @@ public class PaymentService {
 
 		// Request Body 설정
 		MultiValueMap<String, String> params3 = new LinkedMultiValueMap();
-		// params3.add("imp_uid", impUid); // 내 키 (주의) (필수)
+		// params3.add("imp_uid", impUid); // 내 키 (주의) (필수) <- 수정 imp_uid 또는 merchant_uid 둘 중 하나만 있어야함
 		params3.add("merchant_uid", merchantUid); // 상품 넘버 (필수) -- 객체에서 가져오기
 		params3.add("reason", reason); // 환불 사유 (선택)
-		params3.add("amount", String.valueOf(resAmount)); // 환불 계좌 예금주 (선택)
+		params3.add("amount", String.valueOf(amount)); // 환불 계좌 예금주 (선택)
 		params3.add("refund_holder", ""); // 환불 계좌 예금주 (선택)
 		params3.add("refund_bank", ""); // 환불 계좌 은행 코드 (부산은행) (선택)
 		params3.add("refund_account", ""); // 환불 계좌 번호 (선택)
@@ -202,6 +202,7 @@ public class PaymentService {
 		HttpEntity<MultiValueMap<String, String>> entity3 = new HttpEntity<>(params3, headers3);
 
 // API 호출
+		// code = 0 이 환불 완료 / 나머지 환불 취소 오류
 		ResponseEntity<String> refund = restTemplate.exchange("https://api.iamport.kr/payments/cancel", HttpMethod.POST,
 				entity3, String.class);
 		log.info("환불 신청 : " + refund);
@@ -213,6 +214,12 @@ public class PaymentService {
 		return true;
 	}
 	
+	/**
+	 * 시간 일자별로 환불 처리
+	 * @param amount
+	 * @param percent
+	 * @return
+	 */
 	public double calRefundAmount(int amount , int percent) {
 		double result = amount * ((double) (100 - percent) / 100);
 		return result;

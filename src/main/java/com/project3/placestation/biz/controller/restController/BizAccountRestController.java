@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project3.placestation.biz.model.dto.ReqPassword;
 import com.project3.placestation.biz.model.dto.ResPassword;
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,7 @@ public class BizAccountRestController {
 			// 우효성 검사
 			log.info(currentPassword.toString());
 			if(currentPassword.getPassword() == null || currentPassword.getPassword().isEmpty()) {
-				return new ResponseEntity<>("데이터가 오지 않았습니다." ,HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>(BizDefine.DATA_IS_NOTHING ,HttpStatus.BAD_REQUEST);
 			}
 			
 			// 서버에서 정보 받기

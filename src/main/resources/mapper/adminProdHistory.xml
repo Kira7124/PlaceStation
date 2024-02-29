@@ -3,110 +3,122 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.project3.placestation.repository.interfaces.AdminProdHistoryRepository">
-	
-	
+
+
 
 	<!-- 관리자 결제내역명단 총 출력 -->
-	<select id="paymentlistAll" resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+	<select id="paymentlistAll"
+		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
 		select * from admin_prod_history
-		limit #{startPage},#{pageSize}
+		limit
+		#{startPage},#{pageSize}
 	</select>
-	
-	
+
+
 	<!-- 관리자 총출력 카운팅(페이징용) -->
-	<select id ="countPayment" resultType="int">
+	<select id="countPayment" resultType="int">
 		<![CDATA[ select count(*) from admin_prod_history where admin_his_seller_id > 0 ]]>
 	</select>
-	
-	
-	
+
+
+
 	<!-- 관리자 결제내역검색 -->
-	<select id ="searchPaymentlist" resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
-		 select * from admin_prod_history
-		    <where>
-		        <if test="searchKeyword != null and searchKeyword != ''">
-		            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
-		            <choose>
-		            	<when test="searchOption == 'bank'">
-		                    and bank like concat('%', #{searchKeyword}, '%')
-		                </when>
-		                <when test="searchOption == 'admin_his_prod_name'">
-		                    and admin_his_prod_name like concat('%', #{searchKeyword}, '%')
-		                </when>
-		                <!-- 기본적으로는 user_name으로 검색 -->
-		                <otherwise>
-		                    and admin_his_prod_name like concat('%', #{searchKeyword}, '%')
-		                </otherwise>
-		            </choose>
-		        </if>
-		    </where>
-		    limit #{startPage}, #{pageSize}
-		</select>
-	
-	
-	
-		<!-- 결제내역검색 카운팅 -->
-		<select id="countSearchPaymentlist">
-			select count(*) from admin_prod_history
-				<where>
-			        <if test="searchKeyword != null and searchKeyword != ''">
-			            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
-			            <choose>
-				            <when test="searchOption == 'bank'">
-			                    and bank like concat('%', #{searchKeyword}, '%')
-			                </when>
-			                <when test="searchOption == 'admin_his_prod_name'">
-			                    and admin_his_prod_name like concat('%', #{searchKeyword}, '%')
-			                </when>
-			                <!-- 기본적으로는 user_name으로 검색 -->
-			                <otherwise>
-			                    and admin_his_prod_name like concat('%', #{searchKeyword}, '%')
-			                </otherwise>
-			            </choose>
-			        </if>
-			    </where>
-			</select>
-	
+	<select id="searchPaymentlist"
+		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+		select * from admin_prod_history
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+				<choose>
+					<when test="searchOption == 'bank'">
+						and bank like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'admin_his_prod_name'">
+						and admin_his_prod_name like concat('%',
+						#{searchKeyword}, '%')
+					</when>
+					<!-- 기본적으로는 user_name으로 검색 -->
+					<otherwise>
+						and admin_his_prod_name like concat('%',
+						#{searchKeyword}, '%')
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+		limit #{startPage}, #{pageSize}
+	</select>
+
+
+
+	<!-- 결제내역검색 카운팅 -->
+	<select id="countSearchPaymentlist">
+		select count(*) from admin_prod_history
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+				<choose>
+					<when test="searchOption == 'bank'">
+						and bank like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'admin_his_prod_name'">
+						and admin_his_prod_name like concat('%',
+						#{searchKeyword}, '%')
+					</when>
+					<!-- 기본적으로는 user_name으로 검색 -->
+					<otherwise>
+						and admin_his_prod_name like concat('%',
+						#{searchKeyword}, '%')
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</select>
+
 
 	<!-- 관리자 메인 1달간 결제매출총액 -->
 	<select id="countAdminpaymentCount" resultType="Integer">
-		SELECT SUM(admin_his_price) AS total_amount
+		SELECT
+		SUM(admin_his_price) AS total_amount
 		FROM admin_prod_history
-		WHERE ADMIN_HIS_CREATED_AT >= CURRENT_DATE() - INTERVAL '1' MONTH 
-  		AND ADMIN_HIS_CREATED_AT &lt; CURRENT_DATE() + INTERVAL '1' DAY;
+		WHERE
+		ADMIN_HIS_CREATED_AT >= CURRENT_DATE() - INTERVAL '1' MONTH
+		AND
+		ADMIN_HIS_CREATED_AT &lt; CURRENT_DATE() + INTERVAL '1' DAY;
 	</select>
-	
-	
+
+
 	<!-- 관리자 환불처리 -->
 	<update id="AdminPaymentCancel">
 		update admin_prod_history
 		set cancel_at=#{cancelAt},
 		cancel_yn=#{cancelYn},
 		cancel_amount=#{cancelAmount}
-		where admin_his_prod_no=#{adminHisProdNo}
+		where
+		admin_his_prod_no=#{adminHisProdNo}
 	</update>
-	
-	
-	
-	
-		
+
+
+
+
+
 	<!-- 관리자 환불처리2 -->
-	<update id ="AdminPaymentCancel2">
-		  update biz set biz_balance = biz_balance + #{cancelAmount}
-		  where biz_id =#{bizId}
-    </update>
-	
-	
-	
-	
-	
+	<update id="AdminPaymentCancel2">
+		update biz set biz_balance = biz_balance +
+		#{cancelAmount}
+		where biz_id =#{bizId}
+	</update>
+
+
+
+
+
 	<select id="findAllByBizId"
 		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
 		SELECT
 		h.admin_his_no AS adminHisNo,
 		h.admin_his_prod_no AS
 		adminHisProdNo,
-		h.admin_his_price AS adminHisPrice,
+		h.admin_his_price + h.ADMIN_HIS_CHARGE AS adminHisPrice,
 		h.admin_his_use_point AS adminHisUsePoint,
 		h.admin_his_save_point AS
 		adminHisSavePoint,
@@ -190,7 +202,8 @@
 		on ps.category_id = p.prod_subcategory_id
 		where p.prod_delete_yn = 'N'
 		and h.admin_his_seller_id = #{bizId}
-		and h.admin_his_no Like '%'||#{text}|| '%'
+		and h.admin_his_no Like
+		'%'||#{text}|| '%'
 
 	</select>
 
@@ -212,43 +225,49 @@
 		resultType="com.project3.placestation.biz.model.dto.StatisticDto">
 		<choose>
 			<when test="kind == 'MONTHLY'.toString()">
-				select sum(admin_his_price - admin_his_discount) as
+				select sum(admin_his_price + ADMIN_HIS_CHARGE ) as
 				amount ,
+				sum(ifnull(cancel_amount , 0)) as cancelAmount,
 				SUBSTR(admin_his_created_at , 1 ,10) as date from
 				admin_prod_history
 				where admin_his_seller_id = #{bizId}
-				and cancel_yn
-				= 'N'
-				AND admin_his_created_at BETWEEN DATEADD('MONTH', -1,
-				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				AND
+				admin_his_created_at BETWEEN
+				DATEADD('MONTH', -1,
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
 				group by
 				SUBSTR(admin_his_created_at , 1 ,10);
 			</when>
 			<when test="kind == 'WEEK'.toString()">
-				select sum(admin_his_price - admin_his_discount) as
+				select sum(admin_his_price + ADMIN_HIS_CHARGE ) as
 				amount ,
+				sum(ifnull(cancel_amount , 0)) as cancelAmount,
 				SUBSTR(admin_his_created_at , 1 ,10) as date from
 				admin_prod_history
 				where admin_his_seller_id = #{bizId}
-				and cancel_yn
-				= 'N'
-				AND admin_his_created_at BETWEEN DATEADD('DAY', -7,
-				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				AND
+				admin_his_created_at BETWEEN
+				DATEADD('DAY', -7,
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
 				group by
 				SUBSTR(admin_his_created_at , 1 ,10);
 			</when>
 			<when test="kind == 'ANNUAL'.toString()">
-				SELECT SUM(admin_his_price - admin_his_discount) AS
-				amount,
+				SELECT SUM(admin_his_price + ADMIN_HIS_CHARGE ) AS
+				amount ,
+				sum(ifnull(cancel_amount , 0)) as cancelAmount,
 				SUBSTRING(admin_his_created_at, 1, 7) AS date
 				FROM
 				admin_prod_history
 				WHERE admin_his_seller_id = #{bizId}
-				AND cancel_yn
-				= 'N'
-				AND admin_his_created_at BETWEEN DATEADD('MONTH', -12,
+				AND
+				admin_his_created_at BETWEEN
+				DATEADD('MONTH', -12,
 				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
-				GROUP BY
+				GROUP
+				BY
 				SUBSTRING(admin_his_created_at, 1, 7);
 			</when>
 		</choose>
@@ -290,9 +309,11 @@
 				#{bizId}
 				and cancel_yn = 'N'
 				AND
-				admin_his_created_at BETWEEN DATEADD('DAY', -7,
+				admin_his_created_at BETWEEN
+				DATEADD('DAY', -7,
 				CURRENT_TIMESTAMP)
-				AND CURRENT_TIMESTAMP
+				AND
+				CURRENT_TIMESTAMP
 			</when>
 		</choose>
 	</select>
@@ -391,12 +412,5 @@
 		group by
 		FORMATDATETIME(admin_his_created_at ,'yyyy-MM')
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
+
 </mapper>

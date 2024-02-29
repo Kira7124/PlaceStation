@@ -48,7 +48,7 @@
 										<th>상품명</th>
 										<th>이용자 이름</th>
 										<th>이용자 등급</th>
-										<th>가격</th>
+										<th>결제 금액</th>
 										<th>인원 수</th>
 										<th>은행</th>
 										<th>이용 날짜 &amp; 시간</th>
@@ -116,7 +116,18 @@
 																		type="hidden" name="adminHisPrice"
 																		value="${historyDto.adminHisPrice}" /> <input
 																		type="hidden" name="adminHisCharge"
-																		value="${historyDto.adminHisCharge}" /> <input
+																		value="${historyDto.adminHisCharge}" /> 
+																		<input
+																		type="hidden" name="adminHisSavePoint"
+																		value="${historyDto.adminHisSavePoint}" /> 
+																		
+																		<input
+																		type="hidden" name="adminHisUsePoint"
+																		value="${historyDto.adminHisUsePoint}" /> 
+																		<input
+																		type="hidden" name="adminHisDiscount"
+																		value="${historyDto.adminHisDiscount}" /> 
+																		<input
 
 																		type="submit" class="btn btn-primary"></input>
 																</div>

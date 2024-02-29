@@ -13,6 +13,7 @@ import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqProductDto;
 import com.project3.placestation.biz.model.dto.ReqUpdateProductDto;
 import com.project3.placestation.biz.model.dto.ResProductDto;
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.product.dto.ProdFilterDto;
@@ -34,6 +35,7 @@ public class ProductService {
 	 * @param filePath
 	 * @param dto
 	 */
+	@Transactional
 	public void saveProduct(String filePath, ReqProductDto dto) {
 
 		Product product = Product.builder().prodWriterNo(1).prodTitle(dto.getProdTitle())
@@ -49,7 +51,7 @@ public class ProductService {
 
 		// 확인
 		if (result < 1) {
-			throw new CustomRestfulException("상품 저장시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException(BizDefine.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -75,7 +77,7 @@ public class ProductService {
 
 		// 확인
 		if (result < 1) {
-			throw new CustomRestfulException("상품 업데이트시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException(BizDefine.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -88,7 +90,7 @@ public class ProductService {
 	public void deleteProduct(int prodNo, String prodDeleteReason) {
 		int result = productRepository.deleteProduct(prodNo, prodDeleteReason);
 		if (result < 1) {
-			throw new CustomRestfulException("상품 삭제시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException(BizDefine.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 	}

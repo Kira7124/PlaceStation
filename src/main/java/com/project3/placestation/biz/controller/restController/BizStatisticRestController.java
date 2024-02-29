@@ -37,9 +37,13 @@ public class BizStatisticRestController {
 		try {
 
 			int bizId = 1; 
-			List<StatisticDto> annualList = adminProdHistoryService.findStatisticSales(bizId, StatisticKind.ANNUAL); // 년간 매출
-			List<StatisticDto> monthlyList = adminProdHistoryService.findStatisticSales(bizId, StatisticKind.MONTHLY); // 월간 매출
-			List<StatisticDto> weekList = adminProdHistoryService.findStatisticSales(bizId, StatisticKind.WEEK); // 주간 매출 
+			List<StatisticDto> annualList = exchangeList(adminProdHistoryService.findStatisticSales(bizId, StatisticKind.ANNUAL)); // 년간 매출
+			
+			
+			List<StatisticDto> monthlyList = exchangeList(adminProdHistoryService.findStatisticSales(bizId, StatisticKind.MONTHLY)); // 월간 매출
+			
+			log.info(monthlyList.toString());
+			List<StatisticDto> weekList = exchangeList(adminProdHistoryService.findStatisticSales(bizId, StatisticKind.WEEK)); // 주간 매출 
 
 			int annualCount = adminProdHistoryService.findStatisticSalesVolumes(bizId, StatisticKind.ANNUAL); // 년간 판매량
 			int monthlyCount = adminProdHistoryService.findStatisticSalesVolumes(bizId, StatisticKind.MONTHLY); // 월간 판매량
@@ -74,4 +78,19 @@ public class BizStatisticRestController {
 		}
 	}
 
+	/**
+	 * 
+	 * @param list
+	 * @return
+	 */
+	public List<StatisticDto> exchangeList(List<StatisticDto> list) {
+		List<StatisticDto> sList = new ArrayList<>();
+		for(StatisticDto dto : list) {
+			if(dto.getCancelAmount() > 0) {
+				dto.setAmount(dto.getAmount() - dto.getCancelAmount());
+			}
+			sList.add(dto);
+		}
+		return sList;
+	}
 }

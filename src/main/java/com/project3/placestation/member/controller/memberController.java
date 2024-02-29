@@ -66,8 +66,7 @@ public class memberController {
 	public String myPageMain(Model model) {
 
 		// TODO 해당 구문은 메인페이지로 넘어가야함
-		
-		
+
 		// 유저 네임 정보
 		String id = SecurityContextHolder.getContext().getAuthentication().getName();
 		Object details = SecurityContextHolder.getContext().getAuthentication().getDetails();

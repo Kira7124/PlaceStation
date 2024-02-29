@@ -90,6 +90,7 @@ public class QnaBoardService {
 	
 	
 	// 1 : 1 문의 저장
+	@Transactional
 	public int saveQna(int writer, String content, String title, String filePath, int categoryId) {
 
 		QnaBoard board = QnaBoard.builder().qwriter(writer).qcontent(content).qtitle(title).filepath(filePath)

@@ -20,6 +20,7 @@ import com.project3.placestation.biz.model.dto.ReqProdSubcategoryDto;
 import com.project3.placestation.biz.model.dto.ReqProductDto;
 import com.project3.placestation.biz.model.dto.ReqUpdateProductDto;
 import com.project3.placestation.biz.model.dto.ResProductDto;
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.service.ProdMajorCategoryService;
 import com.project3.placestation.service.ProdSubcategoryService;
@@ -98,59 +99,59 @@ public class BizProductController {
 		log.info(dto.toString());
 		// 1. 유효성 검사
 		if (dto.getProdTitle() == null || dto.getProdTitle().isEmpty()) {
-			throw new CustomRestfulException("제목을 적어주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_TITLE, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdTitle().length() > 20) {
-			throw new CustomRestfulException("제목은 20자 이상을 허용할 수 없습니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_TITLE_MORE_THAN_TWENTY, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getFiles() == null || dto.getFiles().isEmpty()) {
-			throw new CustomRestfulException("배너 이미지가 없거나 6개 이상을 허용할 수 없습니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_BANNER_IMAGE_OR_LESS_THAN_SIX, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdStartTime() == null || 0 > dto.getProdStartTime() || dto.getProdStartTime() > 24) {
-			throw new CustomRestfulException("시작 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_START_TIME, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdEndTime() == null || 0 > dto.getProdEndTime() || dto.getProdEndTime() > 24) {
-			throw new CustomRestfulException("종료 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_END_TIME, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdStartTime() >= dto.getProdEndTime()) {
-			throw new CustomRestfulException("종료 시간은 시작시간보다 낮아야 합니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_END_TIME_LESS_THAN_START_TIME, HttpStatus.BAD_REQUEST);
 		}
 
 		if(dto.getIsFile() == null || dto.getIsFile().equals("N")) {
-			throw new CustomRestfulException("배너 이미지를 넣어 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_BANNER_IMAGE_OR_LESS_THAN_SIX, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdMaximumPeople() == null || 0 > dto.getProdMaximumPeople() || dto.getProdMaximumPeople() > 100) {
-			throw new CustomRestfulException("인원 수가 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_PEOPLE, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdPrice() == null || 0 > dto.getProdPrice() || dto.getProdPrice() > 1000000) {
-			throw new CustomRestfulException("가격이 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_AMOUNT, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdSpaceInfo() == null || dto.getProdSpaceInfo().isEmpty()) {
-			throw new CustomRestfulException("공간 소개를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_SPACE_INFO, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdGoodsInfo() == null || dto.getProdGoodsInfo().isEmpty()) {
-			throw new CustomRestfulException("대여 물품을 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_GOODS_INFO, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdCautionInfo() == null || dto.getProdCautionInfo().isEmpty()) {
-			throw new CustomRestfulException("예약 시 주의 사항를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_CAUTION_INFO, HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdMajorCategoryId() == null || dto.getProdMajorCategoryId() < 1) {
-			throw new CustomRestfulException("메인 카테고리를 지정해 주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_MAIN_CATEGORY, HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdSubcategoryId() == null || dto.getProdSubcategoryId() < 1) {
-			throw new CustomRestfulException("서브 카테고리를 지정해 주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_SUB_CATEGORY, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdAddress() == null || dto.getProdAddress().isEmpty()) {
-			throw new CustomRestfulException("주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_ADDRESS, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdDetailedAddress() == null || dto.getProdDetailedAddress().isEmpty()) {
-			throw new CustomRestfulException("상세 주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_DETAILED_ADDRESS, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdFullAddress() == null || dto.getProdFullAddress().isEmpty()) {
-			throw new CustomRestfulException("주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_ADDRESS, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdLocationX() == null || dto.getProdLocationY() == null) {
-			throw new CustomRestfulException("지도 상세 위치를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_MAP, HttpStatus.BAD_REQUEST);
 		}
 
 		log.info(dto.toString());
@@ -181,55 +182,55 @@ public class BizProductController {
 		log.info(dto.toString());
 		// 1. 유효성 검사
 		if (dto.getProdTitle() == null || dto.getProdTitle().isEmpty()) {
-			throw new CustomRestfulException("제목을 적어주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_TITLE, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdTitle().length() > 20) {
-			throw new CustomRestfulException("제목은 20자 이상을 허용할 수 없습니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_TITLE_MORE_THAN_TWENTY, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getFiles() == null || dto.getFiles().isEmpty()) {
-			throw new CustomRestfulException("배너 이미지가 없거나 6개 이상을 허용할 수 없습니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_BANNER_IMAGE_OR_LESS_THAN_SIX, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdStartTime() == null || 0 > dto.getProdStartTime() || dto.getProdStartTime() > 24) {
-			throw new CustomRestfulException("시작 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_START_TIME, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdEndTime() == null || 0 > dto.getProdEndTime() || dto.getProdEndTime() > 24) {
-			throw new CustomRestfulException("종료 시간은 0 ~ 23시 안으로 적어주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_END_TIME, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdStartTime() >= dto.getProdEndTime()) {
-			throw new CustomRestfulException("종료 시간은 시작시간보다 낮아야 합니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_END_TIME_LESS_THAN_START_TIME, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdMaximumPeople() == null || 0 > dto.getProdMaximumPeople() || dto.getProdMaximumPeople() > 100) {
-			throw new CustomRestfulException("인원 수가 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_PEOPLE, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdPrice() == null || 0 > dto.getProdPrice() || dto.getProdPrice() > 1000000) {
-			throw new CustomRestfulException("가격이 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_AMOUNT, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdSpaceInfo() == null || dto.getProdSpaceInfo().isEmpty()) {
-			throw new CustomRestfulException("공간 소개를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_SPACE_INFO, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdGoodsInfo() == null || dto.getProdGoodsInfo().isEmpty()) {
-			throw new CustomRestfulException("대여 물품을 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_GOODS_INFO, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdCautionInfo() == null || dto.getProdCautionInfo().isEmpty()) {
-			throw new CustomRestfulException("예약 시 주의 사항를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_CAUTION_INFO, HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdMajorCategoryId() == null || dto.getProdMajorCategoryId() < 1) {
-			throw new CustomRestfulException("메인 카테고리를 지정해 주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_MAIN_CATEGORY, HttpStatus.BAD_REQUEST);
 		}
 		if(dto.getProdSubcategoryId() == null || dto.getProdSubcategoryId() < 1) {
-			throw new CustomRestfulException("서브 카테고리를 지정해 주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_SUB_CATEGORY, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdAddress() == null || dto.getProdAddress().isEmpty()) {
-			throw new CustomRestfulException("주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_ADDRESS, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdDetailedAddress() == null || dto.getProdDetailedAddress().isEmpty()) {
-			throw new CustomRestfulException("상세 주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_DETAILED_ADDRESS, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdFullAddress() == null || dto.getProdFullAddress().isEmpty()) {
-			throw new CustomRestfulException("주소를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_ADDRESS, HttpStatus.BAD_REQUEST);
 		}
 		if (dto.getProdLocationX() == null || dto.getProdLocationY() == null) {
-			throw new CustomRestfulException("지도 상세 위치를 입력해 주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_MAP, HttpStatus.BAD_REQUEST);
 		}
 
 		// 인증 검사가 끝났다면 유저의 아이디값을 가져와야 합니다.
@@ -237,7 +238,6 @@ public class BizProductController {
 
 		String filePath = "";
 		if (dto.getChangeImage().equals("Y")) {
-			log.info("이미지를 바꿨습니다.");
 			filePath = filedbService.saveFiles(dto.getFiles());
 		}
 
@@ -257,12 +257,11 @@ public class BizProductController {
 	public String deleteProduct(@PathVariable(value = "prodNo") Integer prodNo,
 			@RequestParam(value = "prodDeleteReason") String prodDeleteReason) {
 
-		log.info("확인 : " + prodDeleteReason);
 		if(prodDeleteReason == null || prodDeleteReason.isEmpty()) {
-			throw new CustomRestfulException("상세 이유를 적어주세요.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_REASON, HttpStatus.BAD_REQUEST);
 		}
 		if(prodDeleteReason.length() > 400 ||prodDeleteReason.length() < 0) {
-			throw new CustomRestfulException("상세 이유 길이는 400자 이하입니다.", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_REASON_LESS_THAN_FOUR_HUNDRED , HttpStatus.BAD_REQUEST);
 		}
 		
 		bizProductService.deleteProduct(prodNo, prodDeleteReason);
