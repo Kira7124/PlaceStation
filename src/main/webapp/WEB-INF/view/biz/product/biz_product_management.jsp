@@ -147,6 +147,8 @@ h2, p, h4 {
 								</button>
 							</div>
 						</div>
+
+
 						<c:forEach items="${products}" var="product">
 
 							<div class="container" style="margin-bottom: 20px;">
@@ -159,7 +161,7 @@ h2, p, h4 {
 											</div>
 											<div class="textBox">
 												<p class="textBox__name">${product.prodTitle}</p>
-												<p class="textBox__price">${product.prodPrice}</p>
+												<p class="textBox__price">${product.prodPrice} 원</p>
 											</div>
 										</a>
 									</div>

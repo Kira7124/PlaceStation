@@ -25,8 +25,6 @@ spring:
     driver-class-name: org.h2.Driver
     username: user # 유저 이름
     password: # 비밀번호 (비워두면 비밀번호 X)
-    additional-properties:
-      allow-null: true
   h2:
     console:
       enabled: true
@@ -79,6 +77,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+   
    
 logging:
   level:

@@ -94,8 +94,8 @@
 		on ps.category_id = p.prod_subcategory_id
 		where p.prod_delete_yn = 'N'
 		and h.admin_his_seller_id = #{bizId}
-		and h.admin_his_no Like '%' ||
-		#{text} || '%'
+		and h.admin_his_no Like '%'||#{text}|| '%'
+
 	</select>
 
 	<select id="findScheduleByBizId"

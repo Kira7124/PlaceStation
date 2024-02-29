@@ -2,12 +2,14 @@
 	pageEncoding="UTF-8"%>
 
 <!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/product/common/header.jsp"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+
 <style>
 img {
 	border-radius: 10px;
 }
 </style>
+
 
 <div class="main">
 	<!-- 배너 이미지 -->
@@ -171,6 +173,7 @@ img {
 		</div>
 	</section>
 
+
 	<!-- 3번 상품 리스트 (새로 등록된 순) -->
 	<section class="module" id="specialities">
 		<div class="container">
@@ -191,6 +194,7 @@ img {
 			<a class="btn btn-b btn-round" href="/product/search-page"
 				style="float: right; margin-bottom: 10px;">전체 조회</a>
 			<div class="row multi-columns-row" style="clear: both;">
+
 				<c:forEach var="product" items="${productsStart}">
 					<div class="col-sm-6 col-md-3 col-lg-3">
 						<div class="shop-item">
@@ -313,89 +317,6 @@ img {
 		</div>
 	</section>
 
-	<hr class="divider-w">
-	<section class="module-small">
-		<div class="container">
-			<div class="row client">
-				<div class="owl-carousel text-center" data-items="6"
-					data-pagination="false" data-navigation="false">
-					<div class="owl-item">
-						<div class="col-sm-12">
-							<div class="client-logo">
-								<img src="/assets/images/client-logo-dark-1.png"
-									alt="Client Logo" />
-							</div>
-						</div>
-					</div>
-					<div class="owl-item">
-						<div class="col-sm-12">
-							<div class="client-logo">
-								<img src="/assets/images/client-logo-dark-2.png"
-									alt="Client Logo" />
-							</div>
-						</div>
-					</div>
-					<div class="owl-item">
-						<div class="col-sm-12">
-							<div class="client-logo">
-								<img src="/assets/images/client-logo-dark-3.png"
-									alt="Client Logo" />
-							</div>
-						</div>
-					</div>
-					<div class="owl-item">
-						<div class="col-sm-12">
-							<div class="client-logo">
-								<img src="/assets/images/client-logo-dark-4.png"
-									alt="Client Logo" />
-							</div>
-						</div>
-					</div>
-					<div class="owl-item">
-						<div class="col-sm-12">
-							<div class="client-logo">
-								<img src="/assets/images/client-logo-dark-5.png"
-									alt="Client Logo" />
-							</div>
-						</div>
-					</div>
-					<div class="owl-item">
-						<div class="col-sm-12">
-							<div class="client-logo">
-								<img src="/assets/images/client-logo-dark-1.png"
-									alt="Client Logo" />
-							</div>
-						</div>
-					</div>
-					<div class="owl-item">
-						<div class="col-sm-12">
-							<div class="client-logo">
-								<img src="/assets/images/client-logo-dark-2.png"
-									alt="Client Logo" />
-							</div>
-						</div>
-					</div>
-					<div class="owl-item">
-						<div class="col-sm-12">
-							<div class="client-logo">
-								<img src="/assets/images/client-logo-dark-3.png"
-									alt="Client Logo" />
-							</div>
-						</div>
-					</div>
-					<div class="owl-item">
-						<div class="col-sm-12">
-							<div class="client-logo">
-								<img src="/assets/images/client-logo-dark-4.png"
-									alt="Client Logo" />
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
-
-	<!-- adminheader.jsp -->
-	<%@ include file="/WEB-INF/view/product/common/footer.jsp"%>
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

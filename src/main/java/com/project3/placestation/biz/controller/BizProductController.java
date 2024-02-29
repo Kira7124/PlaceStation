@@ -95,7 +95,7 @@ public class BizProductController {
 	 */
 	@PostMapping("/product/add-product")
 	public String addProduct(ReqProductDto dto) {
-
+		log.info(dto.toString());
 		// 1. 유효성 검사
 		if (dto.getProdTitle() == null || dto.getProdTitle().isEmpty()) {
 			throw new CustomRestfulException("제목을 적어주세요", HttpStatus.BAD_REQUEST);
@@ -116,6 +116,9 @@ public class BizProductController {
 			throw new CustomRestfulException("종료 시간은 시작시간보다 낮아야 합니다.", HttpStatus.BAD_REQUEST);
 		}
 
+		if(dto.getIsFile() == null || dto.getIsFile().equals("N")) {
+			throw new CustomRestfulException("배너 이미지를 넣어 주세요.", HttpStatus.BAD_REQUEST);
+		}
 		if (dto.getProdMaximumPeople() == null || 0 > dto.getProdMaximumPeople() || dto.getProdMaximumPeople() > 100) {
 			throw new CustomRestfulException("인원 수가 너무 작거나 큽니다.", HttpStatus.BAD_REQUEST);
 		}

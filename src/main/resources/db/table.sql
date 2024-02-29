@@ -10,6 +10,7 @@ CREATE TABLE prod_Review (
     prod_rev_delete_yn VARCHAR(1) DEFAULT 'N',
     prod_rev_delete_at TIMESTAMP,
     parent_id INT DEFAULT NULL
+
 );
 
 create table product_views (
@@ -167,7 +168,7 @@ create table company (
 
 CREATE TABLE qna_board (
   q_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  q_writer VARCHAR(45) NOT NULL,
+  q_writer INT NOT NULL,
   q_content VARCHAR(400) NOT NULL,
   q_title VARCHAR(200) NOT NULL,
   file_path VARCHAR(400) NULL,
@@ -180,3 +181,22 @@ CREATE TABLE qna_board (
   q_reply VARCHAR(400) NULL
   );
 
+create table faq_board (
+f_bno int not null primary key auto_increment,
+f_writer INT not null,
+f_content varchar(400) not null,
+f_title varchar(200) not null,
+file_path varchar(400),
+f_regdate timestamp  DEFAULT now(),
+f_updatedate timestamp  DEFAULT now(),
+f_delete_at timestamp  DEFAULT now(),
+category_id int
+);
+
+create table qna_board_category (
+	category_id int auto_increment ,
+    category_name varchar (40),
+    category_description varchar (400),
+    use_yn varchar(1) default 'Y',
+    file_path varchar (400)
+);

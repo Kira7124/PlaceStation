@@ -2,8 +2,6 @@ package com.project3.placestation.product.dto;
 
 import java.sql.Timestamp;
 
-import com.project3.placestation.biz.model.dto.ResProductDto;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

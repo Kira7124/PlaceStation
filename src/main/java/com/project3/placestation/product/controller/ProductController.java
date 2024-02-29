@@ -6,21 +6,16 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project3.placestation.admin.dto.Criteria;
-import com.project3.placestation.admin.dto.PageVO;
-import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.product.dto.ProdReviewDto;
 import com.project3.placestation.product.dto.ProdWishListDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
-import com.project3.placestation.product.dto.ProductValidDateTimeDto;
 import com.project3.placestation.repository.entity.ProdReview;
 import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
@@ -99,6 +94,7 @@ public class ProductController {
 		return "redirect:/product/productDetail?prod_no=" + prodNo;
 	}
 
+
 	// 리뷰 삭제
 	@PostMapping("/deleteReview/{prodRevNo}")
 	public String deleteReview(ProdReviewDto dto, @PathVariable Integer prodRevNo, @RequestParam Integer prodNo) {
@@ -107,6 +103,7 @@ public class ProductController {
 
 		return "redirect:/product/productDetail?prod_no=" + prodNo;
 	}
+
 
 	// 찜(상품 좋아요) 하기
 	@PostMapping("/addWishlist")
@@ -123,13 +120,16 @@ public class ProductController {
         prodWishListService.deleteWishList(dto);
         return "redirect:/product/productDetail?prod_no=" + prodNo;
     }
+    
     //http://localhost:80/product/main
 	@GetMapping("/main")
 	public String mainindex(Model model) {
 		log.debug("메인 페이지!");
 		// 상품 전체 리스트 조회
 		List<ResProductDto> products = productService.findAll();
+
 		// 전체 상품 조회 4개
+
 		List<ResProductDto> topProducts = products.stream().limit(8).collect(Collectors.toList());
 		// 리뷰 많은 상품
 		List<ProdReview> productsRev = productRepository.findAllByRev();

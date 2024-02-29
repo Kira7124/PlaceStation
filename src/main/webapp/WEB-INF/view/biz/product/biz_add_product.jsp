@@ -67,7 +67,7 @@
 										<div id='att_zone'
 											data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
 									</div>
-									<br>
+									<input type="hidden" value="N" name="isFile" id="isFile"/> <br>
 									<h4>영업 시작 시간을 입력해 주세요</h4>
 									<input type="number" class="form-control"
 										placeholder="영업 시작 시간을 입력해 주세요" name="prodStartTime" value="1"
@@ -196,10 +196,11 @@ const $textarea3 = document.querySelector('#textarea3'); // textarea 3
 
 // textarea 1
 $textarea1.oninput = (event) => {
-  const $target = event.target;
 
-  $target.style.height = 0;
-  $target.style.height = DEFAULT_HEIGHT + $target.scrollHeight + 'px';
+	 if(oninput.scrollHeight > oninput.clientHeight) //textarea height 확장
+		 oninput.style.height= oninput.scrollHeight + "px";
+	 else //textarea height 축소
+		 oninput.style.height= (oninput.scrollHeight-18) + "px";
 };
 
 // textarea 2
@@ -261,6 +262,10 @@ $textarea3.oninput = (event) => {
         attZone.appendChild(makeDiv(img, file));
       }
       
+      // 파일 들어간것 확인
+      var isFile = document.querySelector("#isFile");
+      isFile.value = "Y";
+      
       reader.readAsDataURL(file);
     }
     
@@ -291,6 +296,7 @@ $textarea3.oninput = (event) => {
         btnAtt.files = dt.files;
         var p = ele.parentNode;
         attZone.removeChild(p)
+       
       }
       div.appendChild(img)
       div.appendChild(btn)

@@ -89,6 +89,7 @@
 			console.log("응답 받음:", response);
 			readyCalendar(response);
 			readyCalendar2(response);
+
 		},
 		error : function(xhr, status, error) {
 			console.error("에러 발생:", error);

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/product/common/header.jsp"%>
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
 img {
 	border-radius: 10px;
@@ -73,6 +73,77 @@ img {
 	text-align: center;
 	background: bisque;
 }
+
+:root {
+	--btn-width: 30vw;
+	--btn-min-width: 10px;
+	--btn-height: 15vh;
+	--btn-min-height: 5px;
+	--menu-height: calc(var(--btn-height)* 4);
+	--menu-min-height: calc(var(--btn-min-height)* 2);
+	--border-rad: 5px;
+	--font-size: 2vw;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+}
+
+body {
+	min-height: 100vh;
+	background-color: rgb(238, 238, 238);
+	justify-content: center;
+}
+
+#nav {
+	font-family: 'arial';
+}
+
+#nav ul {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#nav ul.menu li {
+	position: relative;
+	float: left;
+	width: 100%;
+	list-style-type: none;
+	font-size: 40px;
+}
+
+#nav ul.menu li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 100px;
+	text-indent: 30px;
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#nav ul.menu li a:hover {
+	background: #eee;
+}
+
+#nav ul.menu li .sub a {
+	position: relative;
+	float: left;
+	display: block;
+	width: 100%;
+	z-index: 999;
+	background: #ccc;
+}
+
+#nav ul.menu li .sub a:hover {
+	background: #444;
+	color: #fff;
+}
 </style>
 
 <div class="main">
@@ -91,160 +162,201 @@ img {
 	<!-- 배너 섹션 종료 -->
 
 
-
 	<!-- 메인 섹션 시작 -->
 	<section class="module">
-		<div class="container">
-			<div class="row">
-				<!-- 사이드 바 시작 -->
-				<div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
-					<div class="widget">
-					<button class="btn btn-info btn-round" type="button" style="width : 100%" onclick="onClickReset()">초기화</button>
-						&nbsp;
-						<div class="search-box">
-							<input class="form-control" type="text" placeholder="Search..."
-								id="search-text" />
-							<button class="search-btn" onclick="onClickSideBar()">
-								<i class="fa fa-search"></i>
-							</button>
-						</div>
-						
-					</div>
-
-
-
-					<!-- 위젯 1번 - 카테고리 별 시작 -->
-					<div class="widget">
-						<h5 class="widget-title font-alt">카테고리 별</h5>
-						<ul class="icon-list">
-							<c:forEach items="${majorCategoryList}" var="major">
-								<li><a href="#"
-									onclick="onClickMajorCategory(${major.categoryId})">${major.mainCategoryName}</a>
-									<ul class="icon-list">
-										<c:forEach items="${subcategoryList}" var="sub">
-											<c:if test="${major.categoryId == sub.mainCategoryId}">
-												<li style="margin-left: 20px;"><a href="#"
-													onclick="onClickSubcategory(${major.categoryId} , ${sub.categoryId})">${sub.subcategoryName}</a></li>
-											</c:if>
-										</c:forEach>
-									</ul></li>
-							</c:forEach>
-						</ul>
-					</div>
-					<!-- 위젯 1번 - 카테고리 별 종료 -->
-
-
-					<!-- 위젯 2번 - 별점 별 시작 -->
-					<div class="widget">
-						<h5 class="widget-title font-alt">별점 별</h5>
-						<div class="star_rating">
-							<span class="star on" value="1"> </span> <span class="star"
-								value="2"> </span> <span class="star" value="3"> </span> <span
-								class="star" value="4"> </span> <span class="star" value="5">
-							</span>
-						</div>
-					</div>
-					<!-- 위젯 2번 - 별점 별 종료 -->
-
-					<!-- 위젯 3번 - 가격 별 시작 -->
-					<div class="widget">
-						<h5 class="widget-title font-alt">가격 별</h5>
-						<div class="search-box">
-							<input class="form-control" type="number"
-								placeholder="가장 낮은 가격대를 입력해주세요.." id="search-min" step="1000" />
-							<input class="form-control" type="number"
-								placeholder="가장 높은 가격대를 입력해주세요.." id="search-max" step="1000" max="999999"/>
-							<button class="search-btn" onclick="onClickSideBar()">
-								<i class="fa fa-search"></i>
-							</button>
-						</div>
-					</div>
-					<!-- 위젯 3번 - 가격 별 종료 -->
-				</div>
-				<!-- 사이드 바 종료 -->
-
-				<!-- 메인 상품 시작 -->
-				<div class="col-sm-8">
-					<!-- 상품 시작 -->
-					<section>
-						<div class="row multi-columns-row post-columns">
-							<div class="col-md-6 col-lg-6">
-								<div class="post">
-									<div class="post-thumbnail">
-										<a href="#"><img src="assets/images/post-1.jpg"
-											alt="Blog-post Thumbnail" /></a>
-									</div>
-									<div class="post-header font-alt">
-										<h2 class="post-title">
-											<a href="#">Our trip to the Alps</a>
-										</h2>
-										<div class="post-meta">
-											By&nbsp;<a href="#">Mark Stone</a>&nbsp;| 23 November | 3
-											Comments
-										</div>
-									</div>
-									<div class="post-entry">
-										<p>A wonderful serenity has taken possession of my entire
-											soul, like these sweet mornings of spring which I enjoy with
-											my whole heart.</p>
-									</div>
-									<div class="post-more">
-										<a class="more-link" href="#">Read more</a>
-									</div>
-								</div>
+		<form action="/product/search-page" method="get">
+			<div class="">
+				<div class="row">
+					<!-- 사이드 바 시작 -->
+					<div class="col-sm-3 col-md-2 col-md-offset-1 sidebar">
+						<div class="widget">
+							&nbsp;
+							<div class="search-box">
+								<input class="form-control" type="text" placeholder="Search..."
+									id="search-text" name="search" id="search-form" />
+								<button class="search-btn" type="submit">
+									<i class="fa fa-search"></i>
+								</button>
 							</div>
-							<div class="col-md-6 col-lg-6">
-								<div class="post">
-									<div class="post-thumbnail">
-										<a href="#"><img src="assets/images/post-2.jpg"
-											alt="Blog-post Thumbnail" /></a>
-									</div>
-									<div class="post-header font-alt">
-										<h2 class="post-title">
-											<a href="#">Shore after the tide</a>
-										</h2>
-										<div class="post-meta">
-											By&nbsp;<a href="#">Andy River</a>&nbsp;| 11 November | 4
-											Comments
-										</div>
-									</div>
-									<div class="post-entry">
-										<p>A wonderful serenity has taken possession of my entire
-											soul, like these sweet mornings of spring which I enjoy with
-											my whole heart.</p>
-									</div>
-									<div class="post-more">
-										<a class="more-link" href="#">Read more</a>
-									</div>
-								</div>
+
+						</div>
+
+						<!-- 위젯 1번 - 카테고리 별 시작 -->
+						<div class="widget">
+							<h5 class="widget-title font-alt" id="nav">카테고리 별</h5>
+							<ul class="icon-list">
+								<li class="menu"><a href="#"
+									onclick="onClickMajorCategory('전체' , 0 , '카테고리' ,0)">전체
+										카테고리</a> <c:forEach items="${majorCategoryList}" var="major">
+										<li class="sub dropdown"><a href="#"
+											onclick="onClickMajorCategory('${major.mainCategoryName}' , ${major.categoryId})"
+											class="dropdown-toggle" href="#" data-toggle="dropdown">${major.mainCategoryName}</a>
+
+											<ul class="icon-list dropdown-menu">
+												<c:forEach items="${subcategoryList}" var="sub">
+													<c:if test="${major.categoryId == sub.mainCategoryId}">
+														<li><a href="#"
+															onclick="onClickSubcategory('${major.mainCategoryName}' , ${major.categoryId} ,'${sub.subcategoryName}', ${sub.categoryId})">${sub.subcategoryName}</a></li>
+													</c:if>
+												</c:forEach>
+											</ul></li>
+									</c:forEach>
+							</ul>
+
+							<input type="hidden" name="subcategory" id="subcategory-form" />
+							<input type="hidden" name="major-category"
+								id="majorCategory-form" />
+							<div style="padding-top: 30px; padding-bottom: 0px;">
+								<span>- 태그 : </span><span id="category-text-form">전체 카테고리</span>
 							</div>
 						</div>
-						<div class="pagination font-alt">
-							<a href="#"><i class="fa fa-angle-left"></i></a> <a
-								class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a>
-							<a href="#">4</a> <a href="#"><i class="fa fa-angle-right"></i></a>
+						<!-- 위젯 1번 - 카테고리 별 종료 -->
+
+
+						<!-- 위젯 2번 - 별점 별 시작 -->
+						<div class="widget">
+							<h5 class="widget-title font-alt">별점 별</h5>
+							<div class="star_rating">
+								<span class="star" value="1"> </span> <span class="star"
+									value="2"> </span> <span class="star" value="3"> </span> <span
+									class="star" value="4"> </span> <span class="star" value="5">
+								</span>
+							</div>
+							<input type="hidden" name="star" id="star-form" />
 						</div>
-					</section>
-					<!-- 상품 종료 -->
+						<!-- 위젯 2번 - 별점 별 종료 -->
+
+						<!-- 위젯 3번 - 가격 별 시작 -->
+						<div class="widget">
+							<h5 class="widget-title font-alt">가격 별</h5>
+							<div class="search-box">
+								<input class="form-control" type="number"
+									placeholder="가장 낮은 가격대를 입력해주세요.." id="search-min" step="1000"
+									max="99999999" name="min" /> <input class="form-control"
+									type="number" placeholder="가장 높은 가격대를 입력해주세요.." id="search-max"
+									step="1000" max="99999999" name="max" />
+							</div>
+						</div>
+						<!-- 위젯 3번 - 가격 별 종료 -->
+
+						<div class="widget">
+							<button class="btn btn-default btn-round" type="submit"
+								style="width: 100%; margin-bottom: 10px;">
+								검색 <i class="fa fa-search"></i>
+							</button>
+							<button class="btn btn-info btn-round" type="button"
+								style="width: 100%" onclick="onClickReset()">초기화</button>
+						</div>
+					</div>
+					<!-- 사이드 바 종료 -->
+
+					<!-- 메인 상품 시작 -->
+					<div class="col-sm-8">
+						<!-- 상품 시작 -->
+						<section class="module">
+							<div class="container">
+								<div class="row multi-columns-row post-columns">
+									<c:forEach items="${products}" var="product">
+										<div class="col-sm-6 col-md-4 col-lg-4">
+											<div class="post">
+												<div class="post-thumbnail">
+													<a href="/product/productDetail?prod_no=${product.prodNo}"><img
+														src="${product.filePath[0]}" alt=" Blog-post Thumbnail" /></a>
+												</div>
+												<div class="post-header font-alt">
+													<h2 class="post-title">
+														<a href="#">${product.prodTitle}</a>
+													</h2>
+													<div class="post-meta">
+														평점 &nbsp;<a href="#">${product.star} 점</a>&nbsp;| 출시일 :
+														${product.prodRdate}
+													</div>
+												</div>
+												<div class="post-entry">
+													<h5
+														style="overflow: hidden; height: 65px;">${product.prodSpaceInfo}</h5>
+													<br />
+													<h6>가격 : ${product.prodPrice}</h6>
+													<h6>주소 : ${product.prodFullAddress}</h6>
+												</div>
+												<div class="post-more">
+													<a class="more-link" href="#">${product.mainCategoryName}</a>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+								</div>
+								<div class="pagination font-alt">
+									<c:choose>
+										<c:when test="${currentPage < 1}">
+											<a href="#"><input type="hidden" /><i
+												class="fa fa-angle-left"></i></a>
+										</c:when>
+										<c:when test="${currentPage >= 1}">
+											<a
+												href="/product/search-page?page=${currentPage - 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}"><input
+												type="hidden" /><i class="fa fa-angle-left"></i></a>
+										</c:when>
+									</c:choose>
+
+									<c:forEach begin="${startPage}" end="${endPage}" var="page">
+										<a class="active"
+											href="/product/search-page?page=${page - 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}">${page}</a>
+									</c:forEach>
+
+									<c:choose>
+										<c:when test="${currentPage >= endPage || currentPage == endPage - 1}">
+											<a href="#"><input type="hidden" /><i
+												class="fa fa-angle-right"></i></a>
+										</c:when>
+										<c:when test="${currentPage < endPage - 1}">
+											<a
+												href="/product/search-page?page=${currentPage + 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}"><input
+												type="hidden" /><i class="fa fa-angle-right"></i></a>
+										</c:when>
+									</c:choose>
+								</div>
+							</div>
+						</section>
+						<!-- 상품 종료 -->
+					</div>
+					<!-- 메인 상품 종료 -->
 				</div>
-				<!-- 메인 상품 종료 -->
 			</div>
-		</div>
+		</form>
 	</section>
 
 	<!-- 메인 섹션 종료 -->
 </div>
 
+<script>
+console.log("헬로" +${endPage})
+console.log("헬로" +${startPage})
+console.log("헬로" +${totalItems})
+</script>
+
 <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 	crossorigin="anonymous"></script>
+
 <script>
+
+	var star = document.querySelector("#star-form");
+	var majorCategory = document.querySelector("#majorCategory-form");
+	var subcategory = document.querySelector("#subcategory-form");
+	var categoryText = document.querySelector("#category-text-form");
 	
-	var star = 1; // 별점
-	var majorCategory = 1; // 메인 카테고리
-	var subcategory = 1; // 서브 카테고리
+	// 
+	$(document).ready(function(){
+		$("#nav ul.sub").hide();
+		$("#nav ul.menu li").click(function(){
+			$("ul",this).slideToggle("fast");
+		});
+	});
 	
+	
+	// 별점
 	document.addEventListener('DOMContentLoaded', function() {
 	    // 별점을 나타내는 요소들을 가져옵니다.
 	    var stars = document.querySelectorAll('.star_rating > .star');
@@ -254,40 +366,21 @@ img {
 
 	    // 파라미터 값 추출
 	    var paramValue = urlParams.get('star');
-	    var searchText = urlParams.get('search');
-	    var searchMinAmount = urlParams.get('min');
-	    var searchMaxAmount = urlParams.get('max');
-	    
+
 	    
 		console.log(paramValue);
-		console.log(searchText);
-		console.log(searchMinAmount);
-		console.log(searchMaxAmount);
+
 	    // 별점 
 	    if(paramValue == null) {
-	    	paramValue = 1;
+	    	paramValue = 0;
 	    }
-	 	// 기본적으로 3개의 별점에 불을 켭니다.
+	 	// 기본적으로 파라미터 값의 별점을 붙입니다.
 	    for (var i = 0; i < paramValue; i++) {
 	        stars[i].classList.add('on');
 	    }
-	 
-	 
-	    if(searchText != null) {
-			var search = document.querySelector("#search-text");
-			search.value = searchText;
-	    }
-	    
-	    if(searchMinAmount != null) {
-			var search = document.querySelector("#search-min");
-			search.value = searchMinAmount;
-			
-	    }
-	    
-	    if(searchMaxAmount != null) {
-	    	var search = document.querySelector("#search-max");
-	    	search.value = searchMaxAmount;
-	    }
+	 	
+	 	// 파라미터의 값을 넣어줍니다.
+	 	star.value = paramValue;
 	})
 	
 	// 별점 선택
@@ -297,50 +390,33 @@ img {
 		
 		// 속성 뽑아내기
 		var form = $(this)
-		star = form[0].attributes[1].nodeValue;
+		var starValue = form[0].attributes[1].nodeValue;
 		
-		console.log(star);
-		onClickSideBar();
+		// input hidden 값
+		star.value = starValue;
 	})
 	
 	// 메이저 카테고리 선택
-	const onClickMajorCategory = (category) => {
-		majorCategory = category;
+	const onClickMajorCategory = (categoryName, category) => {
+		majorCategory.value = category
+		subcategory.value = null
 		
-		console.log(majorCategory)
-		onClickSideBar();
+		categoryText.innerText = categoryName;
 	}
 	
 	// 서브 카테고리 선택
-	const onClickSubcategory = (major , sub) => {
-		majorCategory = major;
-		subcategory = sub;
+	const onClickSubcategory = (majorCategoryName , major , subcategoryName , sub) => {
+		majorCategory.value = major;
+		subcategory.value = sub;
 		
-		console.log(majorCategory)
-		console.log(subcategory)
-		onClickSideBar();
+		categoryText.innerText = majorCategoryName + " / " + subcategoryName;
 	}
-	
-	// 사이드 바 공략
-	const onClickSideBar = () => {
-		var searchText = document.querySelector("#search-text");
-		var searchMinAmount = document.querySelector("#search-min");
-		var searchMaxAmount = document.querySelector("#search-max");
-		console.log(searchText.value);
-		console.log(searchMinAmount.value);
-		console.log(searchMaxAmount.value);
-		
-		// 전달
-		location.href= "/product/search-page?majorCategory=" + majorCategory +
-				"&subcategory=" + subcategory + "&search=" + searchText.value 
-				+ "&max=" + searchMaxAmount.value + "&min=" + searchMinAmount.value +
-				"&star=" + star;
-	} 
 	
 	// 파라미터 리셋 버튼
 	const onClickReset = () => {
 		location.href= "/product/search-page";
 	}
 </script>
-<!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/product/common/footer.jsp"%>
+
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

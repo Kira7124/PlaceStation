@@ -1,7 +1,6 @@
 package com.project3.placestation.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +36,7 @@ public class SecurityConfig  {
    public AuthTokenFilter authenticationJwtTokenFilter() {
       return new AuthTokenFilter();
   }
-   
+
    @Bean
    public FilterRegistrationBean<AuthTokenFilter> authMethodFilter() {
    	FilterRegistrationBean<AuthTokenFilter> bean = new FilterRegistrationBean<>();
@@ -45,6 +44,7 @@ public class SecurityConfig  {
    	bean.setEnabled(false);
    	return bean;
    }
+
     
     //  DB 에서 가져온 정보와 input 된 정보를 비교하는 함수
     @Bean
@@ -93,6 +93,7 @@ public class SecurityConfig  {
                 .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
 
    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 토큰 필터 적용
+
         http
                 .formLogin((auth) -> auth.loginPage("/member/login")
                         .loginProcessingUrl("/loginProc")

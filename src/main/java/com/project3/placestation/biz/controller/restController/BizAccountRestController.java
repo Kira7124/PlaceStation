@@ -38,6 +38,7 @@ public class BizAccountRestController {
 			
 			// 확인
 			if(dbPassword.getPassword().equals(currentPassword.getPassword())) {
+
 				return new ResponseEntity<>(true,HttpStatus.ACCEPTED);
 			}
 			return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);

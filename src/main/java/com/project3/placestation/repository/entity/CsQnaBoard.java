@@ -1,11 +1,19 @@
 package com.project3.placestation.repository.entity;
 
 import java.sql.Timestamp;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class CsQnaBoard {
 	
 	private Integer qbno;	// 글번호
-	private Integer qwriter;	// 글쓴이 기본키
+	private String qwriter;	// 글쓴이 기본키
 	private String qcontent;	// 내용
 	private String qtitle;	// 글제목
 	private String filepath;	// 첨부사진 URL

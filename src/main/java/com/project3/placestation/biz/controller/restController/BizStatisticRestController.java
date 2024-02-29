@@ -67,6 +67,7 @@ public class BizStatisticRestController {
 			log.info(monthlyFeeStatistic.toString());
 			log.info(resStatisticDto.toString());
 			return new ResponseEntity<>(resStatisticDto, HttpStatus.OK);
+
 		} catch (Exception e) {
 			log.info(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

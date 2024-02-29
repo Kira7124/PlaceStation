@@ -43,6 +43,7 @@ public class AdminProdHistoryService {
 		List<BizHistoryDto> list = adminProdHistoryRepository.findAllByBizId(bizId, pageReq , text);
 		int totalCount = adminProdHistoryRepository.countFindAllByBizId(bizId , text);
 
+
 		PageRes<BizHistoryDto> pageRes = new PageRes<>(list, pageReq.getPage(), totalCount, pageReq.getSize());
 		return pageRes;
 	}
@@ -63,6 +64,7 @@ public class AdminProdHistoryService {
 					new ScheduleDto(dto.getProdTitle(), dto.getStartTime(), dto.getEndTime(), dto.getPurchaseDate(),
 					dto.getAdminHisNo() , dto.getAdminHisProdNo() , dto.getAdminHisCreatedAt() , dto.getAdminHisBuyerId() , dto.getCancelYn(),
 					dto.getCancelAt() , dto.getCancelAmount()));
+
 		}
 		log.info(scheduleDtos.toString());
 		return scheduleDtos;
@@ -266,5 +268,6 @@ public class AdminProdHistoryService {
 	 */
 	public List<BizMonthlyFeeDto> findMonthlyFee(int bizId) {
 		return adminProdHistoryRepository.findMonthlyFee(bizId);
+
 	}
 }

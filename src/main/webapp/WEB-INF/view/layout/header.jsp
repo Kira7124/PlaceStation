@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,28 +19,46 @@
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- layout stylesheets -->
 	<link href="/assets/css/layout.css" rel="stylesheet">
+<!-- Default stylesheets-->
+<link href="/assets/lib/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- Template specific stylesheets-->
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Volkhov:400i"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
+	rel="stylesheet">
+<link href="/assets/lib/animate.css/animate.css" rel="stylesheet">
+<link
+	href="/assets/lib/components-font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="/assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
+<link href="/assets/lib/flexslider/flexslider.css" rel="stylesheet">
+<link href="/assets/lib/owl.carousel/dist//assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link
+	href="/assets/lib/owl.carousel/dist//assets/owl.theme.default.min.css"
+	rel="stylesheet">
+<link href="/assets/lib/magnific-popup/dist/magnific-popup.css"
+	rel="stylesheet">
+<link href="/assets/lib/simple-text-rotator/simpletextrotator.css"
+	rel="stylesheet">
 <!-- Main stylesheet and color file-->
-	<link href="/css/style.css" rel="stylesheet">
+<link href="/assets/css/style.css" rel="stylesheet">
+<link id="color-scheme" href="/assets/css/colors/default.css"
+	rel="stylesheet">
 	<link id="color-scheme" href="/css/colors/default.css" rel="stylesheet">
 </head>
  <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
     <main>
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container-search">
-          <form role="form">
-            <div class="search-box">
-              <input class="form-control" type="text" placeholder="Search..."/>
-              <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
-            </div>
-          </form>
-        </div> 
+        
         <div class="container" id="header">
           <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html">PlaceStation</a>
+           <a class="navbar-brand" href="main">PlaceStation</a>
           </div>
           <!-- nav 바 시작 -->
           <div class="collapse navbar-collapse" id="custom-collapse">
@@ -136,7 +155,16 @@
               </li>
             </ul>
           </div>
-          <div class="login_register" style="display: inline-block">
+          
+          <div class="container-search">
+          <form role="form">
+            <div class="search-box">
+              <input class="form-control" type="text" placeholder="Search..."/>
+              <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+        </div> 
+        <div class="login_register" style="display: inline-block">
             <a href="#">로그인</a>
             <a href="#">회원가입</a>
           </div>

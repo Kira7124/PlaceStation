@@ -117,6 +117,7 @@
 																		value="${historyDto.adminHisPrice}" /> <input
 																		type="hidden" name="adminHisCharge"
 																		value="${historyDto.adminHisCharge}" /> <input
+
 																		type="submit" class="btn btn-primary"></input>
 																</div>
 															</form>
@@ -152,6 +153,7 @@
 									<c:forEach begin="${startPage}" end="${endPage}" var="var">
 										<li class="page-item"><a class="page-link"
 											href="/biz/reservation-management?page=${var - 1}&size=${size}&text=${text}">${var}</a></li>
+
 									</c:forEach>
 
 
@@ -159,6 +161,7 @@
 											<c:when test="${currentPage < endPage - 1}">
 												<a class="page-link"
 													href="/biz/reservation-management?page=${currentPage + 1}&size=${size}&text=${text}"
+
 													aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 												</a>
 
@@ -199,5 +202,6 @@
 console.log(${startPage})
 console.log(${endPage})
 </script>
+
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_footer.jsp"%>

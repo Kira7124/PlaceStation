@@ -41,9 +41,6 @@
 	</delete>
 
 
-
-
-
 	<!-- 사업자검색(관리자) -->
 	<select id="searchBizMemberlist"
 		resultType="com.project3.placestation.repository.entity.Biz">
