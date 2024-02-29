@@ -76,6 +76,23 @@ public class AdminProdHistoryService {
 	}
 	
 	
+	/**
+	 * 환불업데이트
+	 */
+	@Transactional
+	public void AdminPaymentCancel(BizHistoryDto dto) {
+		Integer result = adminProdHistoryRepository.AdminPaymentCancel(dto);
+	}
+	
+	/**
+	 * 환불업데이트2
+	 */
+	@Transactional
+	public void AdminPaymentCancel2(BizHistoryDto dto) {
+		Integer result = adminProdHistoryRepository.AdminPaymentCancel2(dto);
+	}
+	
+	
 	
 	
 	/**

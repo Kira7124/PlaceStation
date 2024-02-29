@@ -38,4 +38,6 @@ public class BizHistoryDto {
 	private String prodTitle;
 	private String mainCategory;
 	private String subcategory;
+	private Integer bizId;
+
 }

@@ -153,7 +153,12 @@ public class AdminController {
 		log.debug("admin-user관리 페이지 출력!");
 		return "admin/adminmember";
 	}
-
+	
+	
+	
+	
+	
+	
 	// http://localhost:80/admin/admin-biz
 	// 관리자 사업자관리페이지 출력
 	@GetMapping("/admin-biz")
@@ -324,6 +329,32 @@ public class AdminController {
 		log.debug("사업자등록증확인 GET 실행!");
 		return "admin/adminbizcheck";
 	}
+	
+	
+	//관리자 환불기능 GET 처리
+	@GetMapping("/admin-paymentcancel")
+	public String adminpaymentCancelGET() {
+		log.debug("환불 modal 창 실행!");
+		return "admin/adminpaymentcancel";
+	}
+
+
+
+	//관리자 환불기능 post 처리
+	@PostMapping("/admin-paymentcancel")
+	public String adminpaymentCancelPOST(BizHistoryDto dto) {
+		log.debug("관리자 환불 post 실행!");
+		adminProdHistoryService.AdminPaymentCancel(dto);
+		adminProdHistoryService.AdminPaymentCancel2(dto);
+		return "redirect:/admin/admin-payment";
+	}
+
+	
+	
+	
+	
+	
+	
 	
 	
 	
