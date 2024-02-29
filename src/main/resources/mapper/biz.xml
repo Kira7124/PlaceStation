@@ -27,21 +27,12 @@
 		update biz set biz_brand_name=#{bizBrandName},biz_hp=#{bizHp},
 		biz_email=#{bizEmail},biz_id=#{bizId},biz_tel=#{bizTel},file_path=#{filePath}
 		where biz_no = #{bizNo}
-	<update id="AdminUpdateBiz">
-		update biz set
-		biz_brand_name=#{bizbrandname},biz_hp=#{bizhp},
-		biz_email=#{bizemail},biz_id=#{bizid},biz_tel=#{biztel}
-		where biz_no =
-		#{bizno}
 	</update>
 
 
 	<!-- 사업자정보삭제(관리자) -->
 	<delete id ="AdminDeleteBiz">
 		delete from biz where biz_no=#{bizNo} and biz_id=#{bizId}
-	<delete id="AdminDeleteBiz">
-		delete from biz where biz_no=#{bizno} and
-		biz_id=#{bizid}
 	</delete>
 
 
