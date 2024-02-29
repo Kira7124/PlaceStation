@@ -64,7 +64,7 @@ public class MemberService {
 
 	//관리자회원수정
 	@Transactional
-	public void AdminUpdateMember(AdminMemberDTO dto) {
+	public void AdminUpdateMember(AdminMemberDTO dto,String filePath) {
 		Member member = Member.builder()
 				.userno(dto.getUserno())
 				.userid(dto.getUserid())
@@ -73,6 +73,7 @@ public class MemberService {
 				.userhp(dto.getUserhp())
 				.useremail(dto.getUseremail())
 				.grade(dto.getGrade())
+				.filepath(filePath)
 				.build();
 		
 		Integer result = memberRepository.AdminUpdateMember(member);
@@ -124,6 +125,16 @@ public class MemberService {
 		return result;
 	}
 	
+
+	
+	
+	
+	//관리자 유저id중복체크
+	public Integer AdminCheckID(String userid) {		
+		Integer checkID = memberRepository.AdminCheckID(userid);
+		return checkID;
+
+	} 
 
 	/**
 	 *  유저 정보 상세조회
@@ -181,31 +192,8 @@ public class MemberService {
 				.build();
 				
 		
-		
-	/*	member.setUserid(dto.getUserId());
-		member.setUsername(dto.getUserName());
-		member.setUserpassword(bCryptPasswordEncoder.encode(dto.getUserPassword()));
-		member.setUseremail(dto.getUserEmail());
-		member.setUseraddress(dto.getUserAddress());
-		member.setUserhp(dto.getUserHp());
-		member.setGender(dto.getGender());
-		member.setRole("ROLE_USER");
-		member.setUseraddress(dto.getUserAddress());
-		*/
 				
 				
-		System.out.println("회원 가입 form데이터 바인딩 테스트: "+ dto.toString());
-		System.out.println("회원 가입 form데이터 바인딩 테스트1: "+ dto.getUserId());
-		System.out.println("회원 가입 form데이터 바인딩 테스트2: "+ dto.getUserName());
-		System.out.println("회원 가입 form데이터 바인딩 테스트3: "+ dto.getUserPassword());
-		System.out.println("회원 가입 form데이터 바인딩 테스트4: "+ dto.getUserEmail());
-		System.out.println("회원 가입 form데이터 바인딩 테스트5: "+ dto.getUserAddress());
-		System.out.println("회원 가입 form데이터 바인딩 테스트6: "+ dto.getGender());
-		System.out.println("회원 가입 form데이터 바인딩 테스트7: "+ dto.getUserHp());
-		System.out.println("=====================================================");
-		System.out.println("회원 가입 entity tostring: "+ member.toString());
-		
-		
 		memberRepository.insertUser(member);
 		
 	}
@@ -214,7 +202,6 @@ public class MemberService {
 	@Transactional
 	public void sJoinProcess(RequestJoinDTO dto, String filepath) {
 		
-		System.out.println("판매자 가입 프로세스++++++++++++++++++++++: " + dto.getUserHp());
 		
 		Member member = Member.builder()
 				.userid(dto.getUserId())
@@ -228,31 +215,7 @@ public class MemberService {
 				.filepath(filepath)
 				.build();
 		
-		
-		
-		/*	member.setUserid(dto.getUserId());
-		member.setUsername(dto.getUserName());
-		member.setUserpassword(bCryptPasswordEncoder.encode(dto.getUserPassword()));
-		member.setUseremail(dto.getUserEmail());
-		member.setUseraddress(dto.getUserAddress());
-		member.setUserhp(dto.getUserHp());
-		member.setGender(dto.getGender());
-		member.setRole("ROLE_USER");
-		member.setUseraddress(dto.getUserAddress());
-		 */
-		
-		
-		System.out.println("회원 가입 form데이터 바인딩 테스트: "+ dto.toString());
-		System.out.println("회원 가입 form데이터 바인딩 테스트1: "+ dto.getUserId());
-		System.out.println("회원 가입 form데이터 바인딩 테스트2: "+ dto.getUserName());
-		System.out.println("회원 가입 form데이터 바인딩 테스트3: "+ dto.getUserPassword());
-		System.out.println("회원 가입 form데이터 바인딩 테스트4: "+ dto.getUserEmail());
-		System.out.println("회원 가입 form데이터 바인딩 테스트5: "+ dto.getUserAddress());
-		System.out.println("회원 가입 form데이터 바인딩 테스트6: "+ dto.getGender());
-		System.out.println("회원 가입 form데이터 바인딩 테스트7: "+ dto.getUserHp());
-		System.out.println("=====================================================");
-		System.out.println("회원 가입 entity tostring: "+ member.toString());
-		
+
 		
 		// bizUser insert
 		memberRepository.insertUser(member);
@@ -260,12 +223,10 @@ public class MemberService {
 		// member.setBizid(userNo.getUserno());
 		Member userNo = memberRepository.selectByUserId(member);
 		
-		System.out.println("++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@" + userNo.getUserno());
 		
-		
+		// userno값 호출
 		member.setUserno(userNo.getUserno());
 		
-		System.out.println("++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@11111111111111111111" + member.getUserno());
 		
 		// biz insert
 		memberRepository.insertBiz(member);
@@ -279,7 +240,6 @@ public class MemberService {
 	public void sendEmail(String to, String subject, String text) throws MessagingException {
 
 		
-		System.out.println("sendEmail 서비스 호출=============================================");
 		SimpleMailMessage message = new SimpleMailMessage();
 		
 		message.setSubject(subject);
@@ -327,13 +287,10 @@ public class MemberService {
 
 	public int confirmCodeByMail(String code) {
 
-		System.out.println("이메일 컨펌 서비스 호출=======================");
 		 if(code.equals(code)) {
-			 System.out.println("이메일 컨펌 서비스 호출======================= 석세스탐!!!!");
-			 
+			 	// 이메일 코드 일치시
 	            return 1;
 	        }else {
-	        	 System.out.println("이메일 컨펌 서비스 호출======================= 실패!#################!!!!");
 	            return 0;
 	        }
 		

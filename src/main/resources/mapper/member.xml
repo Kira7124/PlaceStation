@@ -5,8 +5,7 @@
 
 
 
-<mapper
-	namespace="com.project3.placestation.repository.interfaces.MemberRepository">
+<mapper namespace="com.project3.placestation.repository.interfaces.MemberRepository">
 
 
 	<!-- 일반회원명단출력 -->
@@ -20,94 +19,85 @@
 	<!-- 페이징처리 갯수세팅 -->
 	<select id="countMember" resultType="int">
 			<![CDATA[ select count(*) from member where user_no > 0 ]]>
-
-	</select>
-
-
-
-	<!-- 회원정보 수정(관리자) -->
-	<update id="AdminUpdateMember">
-		update member set
-		user_name=#{username},user_address=#{useraddress},user_hp=#{userhp},
-		user_email=#{useremail},grade=#{grade},user_id=#{userid}
-		where user_no
-		= #{userno}
-	</update>
-
-
-	<!-- 회원정보 삭제(관리자) -->
-	<delete id="AdminDeleteMember">
-		delete from member where user_no=#{userno} and
-		user_password=#{userpassword}
-	</delete>
-
-
-
-	<!-- 유저이름검색(관리자) -->
-	<select id="searchMemberlist"
-		resultType="com.project3.placestation.repository.entity.Member">
-		select * from member
-		<where>
-			<if test="searchKeyword != null and searchKeyword != ''">
-				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
-				<choose>
-					<when test="searchOption == 'user_name'">
-						and user_name like concat('%', #{searchKeyword},
-						'%')
-					</when>
-					<when test="searchOption == 'user_address'">
-						and user_address like concat('%', #{searchKeyword},
-						'%')
-					</when>
-					<when test="searchOption == 'grade'">
-						and grade like concat('%', #{searchKeyword}, '%')
-					</when>
-					<when test="searchOption == 'join_at'">
-						and join_at like concat('%', #{searchKeyword}, '%')
-					</when>
-					<!-- 기본적으로는 user_name으로 검색 -->
-					<otherwise>
-						and user_name like concat('%', #{searchKeyword}, '%')
-					</otherwise>
-				</choose>
-			</if>
-		</where>
-		limit #{startPage}, #{pageSize}
-	</select>
-
-
-
-
-	<!-- 관리자유저검색카운팅 -->
-	<select id="countSearchMemberlist" resultType="int">
-		select count(*) from member
-		<where>
-			<if test="searchKeyword != null and searchKeyword != ''">
-				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
-				<choose>
-					<when test="searchOption == 'user_name'">
-						and user_name like concat('%', #{searchKeyword},
-						'%')
-					</when>
-					<when test="searchOption == 'user_address'">
-						and user_address like concat('%', #{searchKeyword},
-						'%')
-					</when>
-					<when test="searchOption == 'grade'">
-						and grade like concat('%', #{searchKeyword}, '%')
-					</when>
-					<when test="searchOption == 'join_at'">
-						and join_at like concat('%', #{searchKeyword}, '%')
-					</when>
-					<!-- 기본적으로는 user_name으로 검색 -->
-					<otherwise>
-						and user_name like concat('%', #{searchKeyword}, '%')
-					</otherwise>
-				</choose>
-			</if>
-		</where>
-	</select>
-
+		</select>
+		
+		
+		
+		<!-- 회원정보 수정(관리자) -->
+		<update id = "AdminUpdateMember">
+			update member set user_name=#{username},user_address=#{useraddress},user_hp=#{userhp},file_path=#{filepath},
+			user_email=#{useremail},grade=#{grade},user_id=#{userid}
+			where user_no = #{userno}
+		</update>
+		
+		
+		<!-- 회원정보 삭제(관리자) -->
+		<delete id ="AdminDeleteMember">
+			delete from member where user_no=#{userno} and user_password=#{userpassword}
+		</delete>
+		
+		
+		
+		<!-- 유저이름검색(관리자) -->
+		<select id="searchMemberlist" resultType="com.project3.placestation.repository.entity.Member">
+		    select * from member
+		    <where>
+		        <if test="searchKeyword != null and searchKeyword != ''">
+		            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+		            <choose>
+		            	<when test="searchOption == 'user_name'">
+		                    and user_name like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'user_address'">
+		                    and user_address like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'grade'">
+		                    and grade like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'join_at'">
+		                    and join_at like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <!-- 기본적으로는 user_name으로 검색 -->
+		                <otherwise>
+		                    and user_name like concat('%', #{searchKeyword}, '%')
+		                </otherwise>
+		            </choose>
+		        </if>
+		    </where>
+		    limit #{startPage}, #{pageSize}
+		</select>
+		
+		
+		
+		
+		<!-- 관리자유저검색카운팅 -->
+		<select id="countSearchMemberlist" resultType="int">
+			 select count(*) from member
+			    <where>
+			        <if test="searchKeyword != null and searchKeyword != ''">
+			            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+			            <choose>
+				            <when test="searchOption == 'user_name'">
+			                    and user_name like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'user_address'">
+			                    and user_address like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'grade'">
+			                    and grade like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'join_at'">
+			                    and join_at like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <!-- 기본적으로는 user_name으로 검색 -->
+			                <otherwise>
+			                    and user_name like concat('%', #{searchKeyword}, '%')
+			                </otherwise>
+			            </choose>
+			        </if>
+			    </where>
+		</select>
+		
 
 	<!-- 판매자 join 유저 -->
 	<select id="SelectJoinBiz"
@@ -196,6 +186,18 @@
 		#{userNo}
 	</select>
 
+
+
+	<!-- 중복id 체크용(관리자)  -->
+	<select id ="AdminCheckID" resultType="Integer">
+		select count(*) from member where user_id = #{userid}
+	</select>
+
+
+	
+
+
+
 	<update id="updateMemberPoint">
 		update member set
 		user_point = #{userPoint} ,
@@ -240,7 +242,7 @@
 	</select>
 
 
-	<!-- 판매자 회원 가입용 selectKey userNo를 반환 -->
+	<!-- 판매자 회원 가입용 selectKey userNo를 반환  [현재 사용하지 않는중] -->
 	<insert id="insertUserAndSelectUserNo">
 		<selectKey keyProperty="userNo" order="AFTER"
 			resultType="com.project3.placestation.repository.entity.Member">
@@ -252,7 +254,7 @@
 		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender})
 	</insert>
 
-	<!-- 판매자 회원가입 -->
+	<!-- (판매자 회원가입) biz테이블 insert -->
 	<insert id="insertBiz">
 		insert into biz
 		(biz_id, file_path)
@@ -261,10 +263,9 @@
 	</insert>
 
 
-   <!-- 트랜잭션 회원 userNo로 검색 -->
+   <!-- (판매자 회원가입) userNo값 bizid 셋팅용 -->
  	<select id="selectByUserId" resultType="com.project3.placestation.repository.entity.Member">
  		select user_no from member where user_id = #{userid}
- 		
 	</select>
 
 

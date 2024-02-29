@@ -41,7 +41,7 @@ public interface QnaBoardRepository {
 	//1:1숫자세기(검색,페이징처리)
 	public int countAdminSearchQnalist(Criteria cri) throws Exception;
 	
-	
-	
+	// 1:1 문의 저장
+	public int saveQna(QnaBoard board);
 	
 }

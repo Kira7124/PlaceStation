@@ -27,7 +27,6 @@ public class BizAccountRestController {
 		try {
 			// 우효성 검사
 			log.info(currentPassword.toString());
-			System.out.println("안되나요");
 			if(currentPassword.getPassword() == null || currentPassword.getPassword().isEmpty()) {
 				return new ResponseEntity<>("데이터가 오지 않았습니다." ,HttpStatus.BAD_REQUEST);
 			}
@@ -39,7 +38,7 @@ public class BizAccountRestController {
 			
 			// 확인
 			if(dbPassword.getPassword().equals(currentPassword.getPassword())) {
-				System.out.println("확인!!");
+
 				return new ResponseEntity<>(true,HttpStatus.ACCEPTED);
 			}
 			return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);

@@ -678,6 +678,7 @@ a,
   letter-spacing: 2px;
   font-size: 11px;
   padding: 8px 37px;
+  float: none;
 }
 
 
@@ -2177,7 +2178,7 @@ Google map
 	Blog Post
 --------------------------------------------------------------*/
 .post {
-  margin: 0 0 80px;
+  margin: 0 0 40px;
 }
 
 .post-title {
@@ -2508,66 +2509,98 @@ Google map
 	Shop Items
 --------------------------------------------------------------*/
 .shop-item {
-  text-align: center;
-  margin: 0 0 40px;
+    text-align: center;
+    margin: 0 0 40px;
+    position: relative;
+    box-shadow: 1px 2px 6px 0 rgba(0,0,0,.16078);
+    border-radius: 30px;
 }
 
 .shop-item-image {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
 
 .shop-item-image img {
-  width: 100%;
+    width: 100%;
+}
+
+.shop-item-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight:bold;
 }
 
 .shop-item-detail,
 .shop-item-image:after {
-  transition: all 0.4s ease-in-out 0s;
+    transition: all 0.4s ease-in-out 0s;
 }
 
 .shop-item-image:after {
-  position: absolute;
-  display: block;
-  content: "";
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
+    position: absolute;
+    display: block;
+    content: "";
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
 }
 
 .shop-item-detail {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  bottom: 100%;
-  padding: 20px;
-  opacity: 0;
-  z-index: 2;
-  text-align: center;
-  font-size: 12px;
-  color: #aaa;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 100%;
+    padding: 20px;
+    opacity: 0;
+    z-index: 2;
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
 }
 
 .shop-item-title {
-  font-weight: 400;
-  font-size: 14px;
-  color: #111;
-  margin: 15px 0 5px;
+    font-size: 14px;
+    color: #111;
+    margin: 0;
+    text-align: center;
+}
+
+.shop-item-price {
+	align-self: flex-end;
+    margin-top: 5px;
+}
+
+.shop-item-maximum {
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.shop-item-maximum span {
+    margin-left: 5px; 
 }
 
 /* Shop item hover */
 .shop-item:hover .shop-item-image:after {
-  background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.7);
 }
 
 .shop-item:hover .shop-item-detail {
-  opacity: 1;
-  bottom: 50%;
-  -webkit-transform: translateY(50%);
-  -ms-transform: translateY(50%);
-  transform: translateY(50%);
+    opacity: 1;
+    bottom: 50%;
+    -webkit-transform: translateY(50%);
+    -ms-transform: translateY(50%);
+    transform: translateY(50%);
 }
+
 
 /* -------------------------------------------------------------------
 	Exclusive products
