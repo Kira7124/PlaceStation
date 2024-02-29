@@ -28,6 +28,7 @@
 					        </div> 
 						</div>
 						<div class="comments"></div>
+
 						<!-- 공지사항 목록 전체 div -->
 						<div>
 							<div class="panel panel-default">

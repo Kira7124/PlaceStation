@@ -41,6 +41,8 @@ public class CsController {
 		model.addAttribute("pageVO", pageVO);
 		log.info("pageVO1: " + pageVO);
 
+		// 카테고리 
+		
 		// 공지사항 리스트 출력
 		List<CsNoticeBoard> result1 = csService.CsNoticeBoardListAll(cri);
 		model.addAttribute("noticeList", result1);

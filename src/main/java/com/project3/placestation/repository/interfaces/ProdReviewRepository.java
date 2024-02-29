@@ -18,4 +18,6 @@ public interface ProdReviewRepository {
 	public int saveReview(ProdReview review); // 답글 등록
 	public int deleteReview(int prodRevNo);
 
+	public int countReview(int prodNo);
+	public int avgStar(int prodNo);
 }
