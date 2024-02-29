@@ -605,9 +605,9 @@
 							<!-- 결제 시작 -->
 							<div class="widget">
 								<!-- 폼 태그 시작 -->
-								<form action="payment" method="get">
+								<form action="/payment/main" method="get">
 									<h5 class="widget-title font-alt">예약하기</h5>
-
+										<input type="hidden" name="prodNo" value="${product.prodNo}"/>
 
 									<!-- 스케줄 선택 -->
 									<div>

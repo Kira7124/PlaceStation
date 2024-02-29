@@ -188,7 +188,7 @@ public class PaymentService {
 
 		// Request Body 설정
 		MultiValueMap<String, String> params3 = new LinkedMultiValueMap();
-		params3.add("imp_uid", impUid); // 내 키 (주의) (필수)
+		// params3.add("imp_uid", impUid); // 내 키 (주의) (필수)
 		params3.add("merchant_uid", merchantUid); // 상품 넘버 (필수) -- 객체에서 가져오기
 		params3.add("reason", reason); // 환불 사유 (선택)
 		params3.add("amount", String.valueOf(resAmount)); // 환불 계좌 예금주 (선택)
