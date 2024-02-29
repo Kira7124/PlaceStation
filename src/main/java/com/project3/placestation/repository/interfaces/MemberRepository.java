@@ -2,18 +2,14 @@ package com.project3.placestation.repository.interfaces;
 
 import java.util.List;
 
-
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResPassword;
-
-import com.project3.placestation.payment.model.dto.PaymentMemberDto;
-import com.project3.placestation.member.dto.bizJoinDTO;
 import com.project3.placestation.member.dto.memberDTO;
+import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
 
@@ -81,7 +77,27 @@ public interface MemberRepository {
 	//회원 단건 정보 검색
 	public Member selectByIsUserId(String uid);
 
+	//(회원가입)유저 중복검사
+	public int selectByValidUserId(String uid);
+	
+	//(회원가입)전화번호 중복검사 
+	public int selectByValidManageHp(String hp);
+	
+	//(회원가입)사업자 전화번호 중복검사
+	public int selectByValidHp(String managehp);
+	
+	//이메일로 유저 검색
 	public Member selecyByUserEmail(String email);
+
+	//(회원가입)이메일로 중복 검사
+	public int selectByValidEmail(String email);
 	
+	//(회원가입) 판매자 가입시 user_id, filePath insert
+	public int insertBiz(Member member);
 	
+	//(회원가입) 판매자 selectkey 사용하여 userNo받기 -- 안쓰는중
+	public Member insertUserAndSelectUserNo(Member member);
+
+	//(회원가입) 판매자 bizId용 select
+	public Member selectByUserId(Member member);
 }
