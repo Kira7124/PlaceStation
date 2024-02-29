@@ -678,6 +678,10 @@ a,
   letter-spacing: 2px;
   font-size: 11px;
   padding: 8px 37px;
+<<<<<<< HEAD
+=======
+  float: non;
+>>>>>>> origin/product
 }
 
 
@@ -2177,7 +2181,7 @@ Google map
 	Blog Post
 --------------------------------------------------------------*/
 .post {
-  margin: 0 0 80px;
+  margin: 0 0 40px;
 }
 
 .post-title {

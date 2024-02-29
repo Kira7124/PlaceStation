@@ -19,7 +19,7 @@ create table product_views (
 );
 
 create table wish_list (
-	w_no INT PRIMARY KEY NOT NULL,
+	w_no INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     prod_no INT NOT NULL,
     user_no INT NOT NULL
 );
