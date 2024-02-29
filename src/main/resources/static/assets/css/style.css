@@ -2512,6 +2512,8 @@ Google map
     text-align: center;
     margin: 0 0 40px;
     position: relative;
+    box-shadow: 1px 2px 6px 0 rgba(0,0,0,.16078);
+    border-radius: 30px;
 }
 
 .shop-item-image {
@@ -2528,12 +2530,13 @@ Google map
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.7);
+    background: white;
     padding: 10px;
     opacity: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-weight:bold;
 }
 
 .shop-item-detail,
@@ -2565,7 +2568,6 @@ Google map
 }
 
 .shop-item-title {
-    font-weight: bold;
     font-size: 14px;
     color: #111;
     margin: 0;

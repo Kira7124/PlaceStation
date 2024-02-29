@@ -236,7 +236,7 @@
 												</span>
 											</div>
 											<div style="float: right; clear: both; margin-right: 15px;">
-												평균 ${avgStar} 점</div>
+												평균 <span style="color:  #FFD700;">${avgStar}</span> 점</div>
 										</c:if>
 										<c:if test="${avgStar == 0}">
 											<span class="comment-star"> <c:forEach begin="1"

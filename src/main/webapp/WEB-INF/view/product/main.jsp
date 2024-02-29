@@ -209,7 +209,7 @@ img {
 									<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 								</h4>
 								<div class="shop-item-price">${product.prodPrice}원/시간</div>
-								<div class="shop-item-maximum">최대${product.prodMaximumPeople}인 ${product.prodStartTime}시~${product.prodEndTime}시</div>
+								<div class="shop-item-maximum">최대 ${product.prodMaximumPeople}인 ${product.prodStartTime}시~${product.prodEndTime}시</div>
 							</div>
 						</div>
 					</div>
