@@ -3,7 +3,9 @@ package com.project3.placestation.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.h2.mvstore.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -103,4 +105,5 @@ public class ProdReviewService {
     	Double avgStar = prodReviewRepository.avgStar(prodNo);
         return avgStar != null ? avgStar : 0;
     }
+
 }
