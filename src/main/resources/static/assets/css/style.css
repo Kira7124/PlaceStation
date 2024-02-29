@@ -678,7 +678,8 @@ a,
   letter-spacing: 2px;
   font-size: 11px;
   padding: 8px 37px;
-  float: right;
+}
+
 
 .btn.active.focus,
 .btn.active:focus,
