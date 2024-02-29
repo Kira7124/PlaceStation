@@ -2531,9 +2531,9 @@ Google map
     background: rgba(255, 255, 255, 0.7);
     padding: 10px;
     opacity: 1;
-    display: ruby;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .shop-item-detail,
@@ -2569,10 +2569,11 @@ Google map
     font-size: 14px;
     color: #111;
     margin: 0;
-    text-align: left;
+    text-align: center;
 }
 
 .shop-item-price {
+	align-self: flex-end;
     margin-top: 5px;
 }
 
