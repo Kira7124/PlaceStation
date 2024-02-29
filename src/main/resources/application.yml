@@ -13,9 +13,6 @@ spring:
     restart:
       enabled: false
   mvc:
-    hiddenmethod:
-      filter:
-        enabled: true  # 히든 메서드 추가 (put , delete)
     view:
       prefix: /WEB-INF/view/
       suffix: .jsp
@@ -36,6 +33,33 @@ spring:
       data-locations:
         - classpath:db/table.sql
         - classpath:db/data.sql
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+#  datasource:    
+#    url: jdbc:h2:mem:testdb;MODE=MySQL
+#    driver-class-name: org.h2.Driver
+#    username: user # 유저 이름
+#    password: # 비밀번호 (비워두면 비밀번호 X)
+#  h2:
+#    console:
+#      enabled: true
+#  sql:
+#    init:
+#      data-locations:
+#        - classpath:db/table.sql
+#        - classpath:db/data.sql
+
+
 
 #  jpa:
 #    hibernate:
@@ -54,7 +78,13 @@ mybatis:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
    
+   
 logging:
   level:
     org.mybatis: DEBUG
     com.project3.placestation: DEBUG
+    
+jwts:
+  secret: djkwqbkjcwedbkjlkjvcklwqfkjldwqblkcbkldjbckjwqkjlwjaofjomzfo13124901824501joamjf2387u10ucbwkl
+jwt:
+  access-token-validity-in-seconds: 86400000

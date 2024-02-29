@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class ProductViews {
 
-	private int prodViews; // 게시물 조회수
-	private int prodNo; // 게시물 번호
+	private Integer prodViews; // 게시물 조회수
+	private Integer prodNo; // 게시물 번호
 }

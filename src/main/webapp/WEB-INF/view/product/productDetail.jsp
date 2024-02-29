@@ -43,6 +43,8 @@
 <link rel="icon" type="image/png" sizes="16x16"
 	href="/assets/images/favicons/favicon-16x16.png" />
 <link rel="manifest" href="/manifest.json" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 <meta name="msapplication-TileColor" content="#ffffff" />
 <meta name="msapplication-TileImage"
@@ -89,6 +91,8 @@
 <!-- Swiper CSS -->
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
 .hide {
 	display: none;
@@ -151,13 +155,37 @@
 	justify-content: center;
 	align-items: center;
 	"
-<<<<<<< HEAD
 }
 
 .disabled-div {
 	background-color: gray;
-=======
->>>>>>> origin/product
+}
+
+.comment-star {
+	float: right;
+	margin-right: 10px;
+}
+
+.btn.btn-sm {
+	float: none;
+}
+
+.btn.btn-d {
+	float: right;
+}
+
+.post-title {
+	position: relative;
+}
+
+.post-title::after {
+	content: "";
+	position: absolute;
+	bottom: -8px;
+	left: 0;
+	height: 4px;
+	width: 20px;
+	background-color: #ffd014;
 }
 </style>
 </head>
@@ -167,314 +195,8 @@
 		<div class="page-loader">
 			<div class="loader">Loading...</div>
 		</div>
-		<!-- nav bar 시작 -->
-		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button class="navbar-toggle" type="button" data-toggle="collapse"
-						data-target="#custom-collapse">
-						<span class="sr-only">Toggle navigation</span><span
-							class="icon-bar"></span><span class="icon-bar"></span><span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/product/main">Titan</a>
-				</div>
-				<div class="collapse navbar-collapse" id="custom-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Home</a>
-							<ul class="dropdown-menu">
-								<li><a href="index_mp_fullscreen_video_background.html">Default</a>
-								</li>
-								<li><a href="index_op_fullscreen_gradient_overlay.html">One
-										Page</a></li>
-								<li><a href="index_agency.html">Agency</a></li>
-								<li><a href="index_portfolio.html">Portfolio</a></li>
-								<li><a href="index_restaurant.html">Restaurant</a></li>
-								<li><a href="index_finance.html">Finance</a></li>
-								<li><a href="index_landing.html">Landing Page</a></li>
-								<li><a href="index_photography.html">Photography</a></li>
-								<li><a href="index_shop.html">Shop</a></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Headers</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Static Image Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_static.html">Fulscreen</a>
-										</li>
-										<li><a href="index_mp_classic_static.html">Classic</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Flexslider Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_flexslider.html">Fulscreen</a>
-										</li>
-										<li><a href="index_mp_classic_flexslider.html">Classic</a>
-										</li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Video Background Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_video_background.html">Fulscreen</a>
-										</li>
-										<li><a href="index_mp_classic_video_background.html">Classic</a>
-										</li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Text Rotator Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_text_rotator.html">Fulscreen</a>
-										</li>
-										<li><a href="index_mp_classic_text_rotator.html">Classic</a>
-										</li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Gradient Overlay Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_gradient_overlay.html">Fulscreen</a>
-										</li>
-										<li><a href="index_mp_classic_gradient_overlay.html">Classic</a>
-										</li>
-									</ul></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Pages</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">About</a>
-									<ul class="dropdown-menu">
-										<li><a href="about1.html">About 1</a></li>
-										<li><a href="about2.html">About 2</a></li>
-										<li><a href="about3.html">About 3</a></li>
-										<li><a href="about4.html">About 4</a></li>
-										<li><a href="about5.html">About 5</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Services</a>
-									<ul class="dropdown-menu">
-										<li><a href="service1.html">Service 1</a></li>
-										<li><a href="service2.html">Service 2</a></li>
-										<li><a href="service3.html">Service 3</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Pricing</a>
-									<ul class="dropdown-menu">
-										<li><a href="pricing1.html">Pricing 1</a></li>
-										<li><a href="pricing2.html">Pricing 2</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Gallery</a>
-									<ul class="dropdown-menu">
-										<li><a href="gallery_col_2.html">2 Columns</a></li>
-										<li><a href="gallery_col_3.html">3 Columns</a></li>
-										<li><a href="gallery_col_4.html">4 Columns</a></li>
-										<li><a href="gallery_col_6.html">6 Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Contact</a>
-									<ul class="dropdown-menu">
-										<li><a href="contact1.html">Contact 1</a></li>
-										<li><a href="contact2.html">Contact 2</a></li>
-										<li><a href="contact3.html">Contact 3</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Restaurant menu</a>
-									<ul class="dropdown-menu">
-										<li><a href="restaurant_menu1.html">Menu 2 Columns</a></li>
-										<li><a href="restaurant_menu2.html">Menu 3 Columns</a></li>
-									</ul></li>
-								<li><a href="login_register.html">Login / Register</a></li>
-								<li><a href="faq.html">FAQ</a></li>
-								<li><a href="404.html">Page 404</a></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Portfolio</a>
-							<ul class="dropdown-menu" role="menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Boxed</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio_boxed_col_2.html">2 Columns</a></li>
-										<li><a href="portfolio_boxed_col_3.html">3 Columns</a></li>
-										<li><a href="portfolio_boxed_col_4.html">4 Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Boxed - Gutter</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio_boxed_gutter_col_2.html">2
-												Columns</a></li>
-										<li><a href="portfolio_boxed_gutter_col_3.html">3
-												Columns</a></li>
-										<li><a href="portfolio_boxed_gutter_col_4.html">4
-												Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Full Width</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio_full_width_col_2.html">2
-												Columns</a></li>
-										<li><a href="portfolio_full_width_col_3.html">3
-												Columns</a></li>
-										<li><a href="portfolio_full_width_col_4.html">4
-												Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Full Width - Gutter</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio_full_width_gutter_col_2.html">2
-												Columns</a></li>
-										<li><a href="portfolio_full_width_gutter_col_3.html">3
-												Columns</a></li>
-										<li><a href="portfolio_full_width_gutter_col_4.html">4
-												Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Masonry</a>
-									<ul class="dropdown-menu">
-										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Boxed</a>
-											<ul class="dropdown-menu">
-												<li><a href="portfolio_masonry_boxed_col_2.html">2
-														Columns</a></li>
-												<li><a href="portfolio_masonry_boxed_col_3.html">3
-														Columns</a></li>
-												<li><a href="portfolio_masonry_boxed_col_4.html">4
-														Columns</a></li>
-											</ul></li>
-										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Full Width</a>
-											<ul class="dropdown-menu">
-												<li><a href="portfolio_masonry_full_width_col_2.html">2
-														Columns</a></li>
-												<li><a href="portfolio_masonry_full_width_col_3.html">3
-														Columns</a></li>
-												<li><a href="portfolio_masonry_full_width_col_4.html">4
-														Columns</a></li>
-											</ul></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Hover Style</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio_hover_black.html">Black</a></li>
-										<li><a href="portfolio_hover_gradient.html">Gradient</a>
-										</li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Single</a>
-									<ul class="dropdown-menu">
-										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Featured Image</a>
-											<ul class="dropdown-menu">
-												<li><a href="portfolio_single_featured_image1.html">Style
-														1</a></li>
-												<li><a href="portfolio_single_featured_image2.html">Style
-														2</a></li>
-											</ul></li>
-										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Featured Slider</a>
-											<ul class="dropdown-menu">
-												<li><a href="portfolio_single_featured_slider1.html">Style
-														1</a></li>
-												<li><a href="portfolio_single_featured_slider2.html">Style
-														2</a></li>
-											</ul></li>
-										<li class="dropdown"><a class="dropdown-toggle" href="#"
-											data-toggle="dropdown">Featured Video</a>
-											<ul class="dropdown-menu">
-												<li><a href="portfolio_single_featured_video1.html">Style
-														1</a></li>
-												<li><a href="portfolio_single_featured_video2.html">Style
-														2</a></li>
-											</ul></li>
-									</ul></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Blog</a>
-							<ul class="dropdown-menu" role="menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Standard</a>
-									<ul class="dropdown-menu">
-										<li><a href="blog_standard_left_sidebar.html">Left
-												Sidebar</a></li>
-										<li><a href="blog_standard_right_sidebar.html">Right
-												Sidebar</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Grid</a>
-									<ul class="dropdown-menu">
-										<li><a href="blog_grid_col_2.html">2 Columns</a></li>
-										<li><a href="blog_grid_col_3.html">3 Columns</a></li>
-										<li><a href="blog_grid_col_4.html">4 Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Masonry</a>
-									<ul class="dropdown-menu">
-										<li><a href="blog_grid_masonry_col_2.html">2 Columns</a>
-										</li>
-										<li><a href="blog_grid_masonry_col_3.html">3 Columns</a>
-										</li>
-										<li><a href="blog_grid_masonry_col_4.html">4 Columns</a>
-										</li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Single</a>
-									<ul class="dropdown-menu">
-										<li><a href="blog_single_left_sidebar.html">Left
-												Sidebar</a></li>
-										<li><a href="blog_single_right_sidebar.html">Right
-												Sidebar</a></li>
-									</ul></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Features</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="alerts-and-wells.html"><i
-										class="fa fa-bolt"></i> Alerts and Wells</a></li>
-								<li><a href="buttons.html"><i class="fa fa-link fa-sm"></i>
-										Buttons</a></li>
-								<li><a href="tabs_and_accordions.html"><i
-										class="fa fa-tasks"></i> Tabs &amp; Accordions</a></li>
-								<li><a href="content_box.html"><i
-										class="fa fa-list-alt"></i> Contents Box</a></li>
-								<li><a href="forms.html"><i
-										class="fa fa-check-square-o"></i> Forms</a></li>
-								<li><a href="icons.html"><i class="fa fa-star"></i>
-										Icons</a></li>
-								<li><a href="progress-bars.html"><i
-										class="fa fa-server"></i> Progress Bars</a></li>
-								<li><a href="typography.html"><i class="fa fa-font"></i>
-										Typography</a></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Shop</a>
-							<ul class="dropdown-menu" role="menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Product</a>
-									<ul class="dropdown-menu">
-										<li><a href="shop_product_col_3.html">3 columns</a></li>
-										<li><a href="shop_product_col_4.html">4 columns</a></li>
-									</ul></li>
-								<li><a href="shop_single_product.html">Single Product</a></li>
-								<li><a href="shop_checkout.html">Checkout</a></li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle"
-							href="documentation.html" data-toggle="dropdown">Documentation</a>
-							<ul class="dropdown-menu">
-								<li><a href="documentation.html#contact">Contact Form</a></li>
-								<li><a href="documentation.html#reservation">Reservation
-										Form</a></li>
-								<li><a href="documentation.html#mailchimp">Mailchimp</a></li>
-								<li><a href="documentation.html#gmap">Google Map</a></li>
-								<li><a href="documentation.html#plugin">Plugins</a></li>
-								<li><a href="documentation.html#changelog">Changelog</a></li>
-							</ul></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
 		<!-- nav bar 끝 -->
-		<div class="main" style="margin: 0px">
+		<div class="main" style="margin-top: 120px">
 			<section class="module">
 				<div class="container">
 					<div class="row">
@@ -483,7 +205,7 @@
 							<div class="post">
 								<div class="post">
 									<div class="post-header font-alt">
-										<h2 class="post-title">
+										<h2 style="font-size: 42px">
 											<a>${product.prodTitle}</a>
 										</h2>
 
@@ -492,7 +214,7 @@
 										</div>
 									</div>
 									<div class="post-images-slider"
-										style="width: 800px; height: 400px;">
+										style="width: 750px; height: 400px;">
 										<ul class="slides post-thumbnail">
 											<c:forEach var="file" items="${product.filePath}">
 												<li><img src="${file}" alt="Blog Slider Image"
@@ -500,7 +222,35 @@
 											</c:forEach>
 										</ul>
 									</div>
-									<div class="post-entry"></div>
+									<div class="post-entry" style="font-size: 20px;">
+										<i class="fas fa-solid fa-heart" style="margin: 10px"></i>${wishlistCount}
+										<i class="fas fa-regular fa-comment" style="margin: 10px"></i>${reviewCount != null ? reviewCount : 0}
+										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>101055
+										<c:if test="${avgStar != 0}">
+											<div style="float: right; margin-right: 5px;">
+												<span class="comment-star"> <c:forEach begin="1"
+														end="${avgStar}">
+														<i class="fa fa-star star"></i>
+													</c:forEach> <c:forEach begin="${avgStar + 1}" end="5">
+														<i class="fa fa-star star-off"></i>
+													</c:forEach>
+												</span>
+											</div>
+											<div style="float: right; clear: both; margin-right: 15px;">
+												평균 <span style="color:  #FFD700;">${avgStar}</span> 점</div>
+										</c:if>
+										<c:if test="${avgStar == 0}">
+											<span class="comment-star"> <c:forEach begin="1"
+													end="${avgStar}">
+													<i class="fa fa-star star"></i>
+												</c:forEach> <c:forEach begin="${avgStar + 1}" end="5">
+													<i class="fa fa-star star-off"></i>
+												</c:forEach>
+											</span>
+											<div style="float: right; clear: both; margin-right: 15px;">
+												등록된 점수가 없습니다</div>
+										</c:if>
+									</div>
 								</div>
 							</div>
 
@@ -529,30 +279,36 @@
 											<!-- 본문 1 -->
 											<div class="post #">
 												<div class="post-header font-alt">
-													<h2 class="post-title">
+													<h1 class="post-title" style="font-weight: bold">
 														<a>공간 소개</a>
-													</h2>
-													<div class="post-meta">${product.prodSpaceInfo}</div>
+													</h1>
+													<div class="post-meta" style="white-space: pre-line;">
+														<h5>${product.prodSpaceInfo}</h5>
+													</div>
 												</div>
 											</div>
 
 											<!-- 본문 2 -->
 											<div class="post #">
 												<div class="post-header font-alt">
-													<h2 class="post-title">
+													<h1 class="post-title" style="font-weight: bold">
 														<a>대여 가능</a>
-													</h2>
-													<div class="post-meta">${product.prodGoodsInfo}</div>
+													</h1>
+													<div class="post-meta" style="white-space: pre-line;">
+														<h5>${product.prodGoodsInfo}</h5>
+													</div>
 												</div>
 											</div>
 
 											<!-- 본문 3 -->
 											<div class="post #">
 												<div class="post-header font-alt">
-													<h2 class="post-title">
+													<h1 class="post-title" style="font-weight: bold">
 														<a>예약시 주의사항</a>
-													</h2>
-													<div class="post-meta">${product.prodCautionInfo}</div>
+													</h1>
+													<div class="post-meta" style="white-space: pre-line;">
+														<h5>${product.prodCautionInfo}</h5>
+													</div>
 												</div>
 											</div>
 											<!-- 카카오맵 API -->
@@ -591,7 +347,7 @@
 													</tr>
 													<tr>
 														<td>사업자 명</td>
-														<td>적당한거 넣기</td>
+														<td>UserName</td>
 													</tr>
 
 												</tbody>
@@ -636,8 +392,6 @@
 																class="usage-period">이용 당일</span> <span
 																class="refund-policy">환불 불가</span></li>
 														</ol>
-
-
 													</div>
 												</div>
 											</div>
@@ -651,74 +405,71 @@
 												<div id="reviews" class="tab-pane">
 													<div class="comments reviews">
 														<h3>이용 후기</h3>
+														<!-- 원글 출력 -->
 														<c:forEach items="${reviewProdNo}" var="review">
 															<div class="comment clearfix"
-																style="border-bottom: 1px solid #ccc; margin-bottom: 8px;">
-																<div class="comment-avatar">
-																	<img src="" alt="avatar" />
-																</div>
-																<div class="comment-content clearfix">
-																	<div class="comment-author font-alt">
-																		<p>
-																			유저 닉네임1234 |
-																			<c:forEach begin="1" end="${review.prodRevStar}">
-																				<i class="fa fa-star star"></i>
-																			</c:forEach>
-																			<c:forEach begin="${review.prodRevStar + 1}" end="5">
-																				<i class="fa fa-star star-off"></i>
-																			</c:forEach>
-																		</p>
+																style="border-bottom: 1px solid #ccc;">
+																<!-- 원글 내용 출력 -->
+																<c:if test="${review.parentId == null}">
+																	<div class="comment-avatar">
+																		<img src="" alt="avatar" />
 																	</div>
-																	<div class="comment-body">
-																		<p>${review.prodRevContent}</p>
+																	<div class="comment-content clearfix">
+																		<div class="comment-author font-alt">
+																			<p>
+																				유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
+																				<button class="btn btn-danger btn-sm"
+																					onclick="deleteReview(${review.prodRevNo})">리뷰
+																					삭제</button>
+																				<span class="comment-star"> <c:if
+																						test="${review.prodRevStar != 0}">
+																						<c:forEach begin="1" end="${review.prodRevStar}">
+																							<i class="fa fa-star star"></i>
+																						</c:forEach>
+																						<c:forEach begin="${review.prodRevStar + 1}"
+																							end="5">
+																							<i class="fa fa-star star-off"></i>
+																						</c:forEach>
+																					</c:if></span>
+																			</p>
+																		</div>
 																	</div>
-																	<div class="comment-meta font-alt">
-																		<p>${review.prodRevCreateAt}</p>
+																	<div class="comment-body" style="margin-left: 75px; word-wrap: break-word;">
+																		<p style="margin-right:55px;">${review.prodRevContent}</p>
 																	</div>
-																</div>
-																<!-- 대댓글 버튼 추가 -->
-																<div class="comment-reply">
-																	<button class="btn btn-round btn-d"
-																		onclick="showReplyForm(${review.prodRevNo})">답글
-																		달기</button>
-																</div>
+																	<!-- 대댓글 버튼 추가 -->
+																	<c:if test="${review.parentId == null}">
+																		<div class="comment-reply">
+																			<button class="btn btn-round btn-d"
+																				onclick="showReplyForm(${review.prodRevNo})">답글
+																				달기</button>
+																		</div>
+																	</c:if>
+																</c:if>
 															</div>
+
 															<!-- 대댓글 작성 폼 -->
 															<div id="replyForm_${review.prodRevNo}"
-																class="comment-form mt-30" style="display: none;">
-																<h4 class="comment-form-title font-alt">답글 작성</h4>
+																class="comment-form mt-30 hidden"
+																style="display: block; border-bottom: 1px solid #ccc;">
 																<form method="post" action="/product/saveReview">
 																	<div class="row">
 																		<div class="col-sm-4">
 																			<div class="form-group">
 																				<input type="hidden" name="prodNo"
-																					value="${product.prodNo}"> <input
-																					type="hidden" name="parentId"
-																					value="${review.prodRevNo}"> <label
-																					for="userNo">유저번호</label> <input
-																					class="form-control" type="text" name="userNo"
-																					placeholder="유저번호" required />
+																					value="${product.prodNo}">
+																				<!-- 부모 댓글의 parentId 값을 사용 -->
+																				<input type="hidden" name="parentId"
+																					value="${review.prodRevNo}"> <input
+																					type="hidden" name="userNo" value="12">
 																			</div>
 																		</div>
-																		<div class="col-sm-4">
-																			<div class="form-group">
-																				<label for="prodRevStar">평점</label> <select
-																					class="form-control" id="prodRevStar"
-																					name="prodRevStar" required>
-																					<option selected disabled>평점 선택</option>
-																					<option value="1">1</option>
-																					<option value="2">2</option>
-																					<option value="3">3</option>
-																					<option value="4">4</option>
-																					<option value="5">5</option>
-																				</select>
-																			</div>
-																		</div>
+																		<input type="hidden" name="prodRevStar" value="0">
 																		<div class="col-sm-12">
 																			<div class="form-group">
-																				<label for="prodRevContent">리뷰 내용</label>
+																				<label for="prodRevContent">답글 작성</label>
 																				<textarea class="form-control" name="prodRevContent"
-																					rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
+																					rows="4" placeholder="답글을 작성해주세요" required></textarea>
 																			</div>
 																		</div>
 																		<div class="col-sm-12">
@@ -728,10 +479,34 @@
 																	</div>
 																</form>
 															</div>
+															<!-- 대댓글 출력 -->
+															<c:forEach items="${reviewProdNo}" var="reply">
+																<c:if test="${reply.parentId == review.prodRevNo}">
+																	<div class="comment clearfix"
+																		style="margin-left: 30px;">
+																		<!-- 대댓글 내용 출력 -->
+																		<i class="fa-solid fa-arrow-turn-down-right"></i>
+																		<div class="comment-avatar">
+																			<img src="" alt="avatar" />
+																		</div>
+																		<div class="comment-content clearfix">
+																			<div class="comment-author font-alt">
+																				<p>
+																					유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
+																					<button class="btn btn-danger btn-sm"
+																						onclick="deleteReview(${review.prodRevNo})">리뷰
+																						삭제</button>
+																			</div>
+																			<div class="comment-body">
+																				<p>${reply.prodRevContent}</p>
+																			</div>
+																		</div>
+																	</div>
+																</c:if>
+															</c:forEach>
 														</c:forEach>
 													</div>
 												</div>
-
 											</c:if>
 
 											<!-- 리뷰가 없는 경우 -->
@@ -743,7 +518,7 @@
 											</c:if>
 
 											<!-- 리뷰 등록 -->
-											<div class="comment-form mt-30">
+											<div class="comment-form col-sm-12">
 												<h4 class="comment-form-title font-alt">리뷰 작성</h4>
 												<form method="post" action="/product/addReview">
 													<div class="row">
@@ -751,11 +526,10 @@
 															<div class="form-group">
 																<input type="hidden" name="prodNo" id="prodNo"
 																	value="${product.prodNo}"> <input type="hidden"
-																	name="parentId" id="parentId"
-																	value=""> <label
-																	for="username">유저번호</label> <input class="form-control"
-																	type="text" id="userNo" name="userNo"
-																	placeholder="유저번호" required />
+																	name="parentId" id="${review.prodRevNo}" value="">
+																<label for="username">유저번호</label> <input
+																	class="form-control" type="text" id="userNo"
+																	name="userNo" placeholder="유저번호" required />
 															</div>
 														</div>
 
@@ -788,31 +562,42 @@
 												</form>
 											</div>
 										</div>
-										<!-- 리뷰 끝 -->
-
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- 본문 끝 -->
 						<!-- 사이드 바 시작 -->
-						<div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
-							<div class="widget" style="margin-top: 30px">
-								<h5 class="widget-title font-alt">Text</h5>
-								The languages only differ in their grammar, their pronunciation
-								and their most common words. Everyone realizes why a new common
-								language would be desirable: one could refuse to pay expensive
-								translators.
+						<div class="col-sm-3 col-sm-offset-1 sidebar">
+							<div class="widget" style="margin-top: 30px; text-align: center">
+								<h2 class="widget-title font-alt" style="font-weight: bold">결제
+									후 바로 예약 확정</h2>
+								<p>
+									빠르고 확실한 예약을 위해 'PlaceStation'에서 <br /> 온라인 결제를 진행하세요.
+								</p>
 							</div>
 							<div class="widget">
 								<h5 class="widget-title font-alt">제품</h5>
 								<div class="row">
 									<div class="col-sm-4">
-										<p style="text-align: right">
-											<button class="btn btn-success btn-circle" type="button">
-												<i class="fa fa-smile-o"></i> 찜하기
-											</button>
-										</p>
+										<form method="post" action="/product/addWishlist">
+											<input type="hidden" name="prodNo" value="${product.prodNo}">
+											<input type="hidden" name="userNo" value="1">
+											<p style="text-align: right">
+												<button class="btn btn-success btn-circle" type="submit">
+													<i class="fa fa-smile-o"></i> 찜하기
+												</button>
+											</p>
+										</form>
+										<!-- 찜 삭제 버튼 폼 -->
+										<form method="post" action="/product/deleteWishlist">
+											<input type="hidden" name="prodNo" value="${product.prodNo}">
+											<input type="hidden" name="userNo" value="1">
+											<p style="text-align: right">
+												<button class="btn btn-danger btn-circle" type="submit">
+													<i class="fa fa-frown-o"></i> 찜 삭제
+												</button>
+											</p>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -822,28 +607,6 @@
 								<!-- 폼 태그 시작 -->
 								<form action="payment" method="get">
 									<h5 class="widget-title font-alt">예약하기</h5>
-									<!-- 가격 선택 -->
-									<div>
-										<h5 class="font-alt">가격</h5>
-										<div class="row mb-20">
-											<div class="col-sm-12">
-												<input class="form-control input-lg" type="number"
-													name="price" value="50000" required="required" disabled />
-											</div>
-										</div>
-									</div>
-
-									<!-- 총 인수 선택 -->
-									<div>
-										<h5 class="font-alt">총인수</h5>
-										<div class="row mb-20">
-											<div class="col-sm-12">
-												<input class="form-control input-lg" type="number"
-													name="people" max="6" min="1" required="required" />
-											</div>
-										</div>
-									</div>
-
 
 
 									<!-- 스케줄 선택 -->
@@ -852,8 +615,8 @@
 										<button class="btn btn-secondary dropdown-toggle"
 											type="button" id="dropdownMenuClickableInside"
 											data-bs-toggle="dropdown" data-bs-auto-close="outside"
-											aria-expanded="false" onclick="hoverDateTime()">
-											스케쥴 선택 호버</button>
+											aria-expanded="false" onclick="hoverDateTime()">스케쥴
+											선택 호버</button>
 										<!-- input 창은 여기!! -->
 										<input type="hidden" id="form-date" name="date" /> <input
 											type="hidden" id="form-first-time" name="startTime" /> <input
@@ -876,8 +639,28 @@
 											</div>
 										</div>
 									</div>
+									<!-- 가격 선택 -->
+									<div>
+										<h5 class="font-alt">가격</h5>
+										<div class="row mb-20">
+											<div class="col-sm-12">
+												<input class="form-control input-lg" type="number"
+													name="price" value="50000" required="required" disabled />
+											</div>
+										</div>
+									</div>
 
-									<div class="widget" style="margin-top : 30px;">
+									<!-- 총 인수 선택 -->
+									<div>
+										<h5 class="font-alt">총인수</h5>
+										<div class="row mb-20">
+											<div class="col-sm-12">
+												<input class="form-control input-lg" type="number"
+													name="people" max="6" min="1" required="required" />
+											</div>
+										</div>
+									</div>
+									<div class="widget" style="margin-top: 30px;">
 										<h4 class="widget-title font-alt">예약 확인</h4>
 
 
@@ -888,9 +671,9 @@
 										<br />
 									</div>
 									<div class="">
-										<div class="col-sm-12">
-											<input class="btn btn-lg btn-block btn-round btn-b" type="submit">Add
-												To Cart</input>
+										<div class="col-sm-12" style="margin-top: -50px;">
+											<input class="btn btn-lg btn-block btn-round btn-b"
+												type="submit"></input>
 											<p id="dateText" style="visibility: hidden"></p>
 											<br />
 											<p id="dayText" style="visibility: hidden"></p>
@@ -903,106 +686,15 @@
 						<!-- 사이드 바 끝 -->
 					</div>
 				</div>
-			</section>
-			<div class="module-small bg-dark">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="widget">
-								<h5 class="widget-title font-alt">About Titan</h5>
-								<p>The languages only differ in their grammar, their
-									pronunciation and their most common words.</p>
-								<p>Phone: +1 234 567 89 10</p>
-								Fax: +1 234 567 89 10
-								<p>
-									Email:<a href="#">somecompany@example.com</a>
-								</p>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="widget">
-								<h5 class="widget-title font-alt">Recent Comments</h5>
-								<ul class="icon-list">
-									<li>Maria on <a href="#">Designer Desk Essentials</a></li>
-									<li>John on <a href="#">Realistic Business Card Mockup</a>
-									</li>
-									<li>Andy on <a href="#">Eco bag Mockup</a></li>
-									<li>Jack on <a href="#">Bottle Mockup</a></li>
-									<li>Mark on <a href="#">Our trip to the Alps</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="widget">
-								<h5 class="widget-title font-alt">Blog Categories</h5>
-								<ul class="icon-list">
-									<li><a href="#">Photography - 7</a></li>
-									<li><a href="#">Web Design - 3</a></li>
-									<li><a href="#">Illustration - 12</a></li>
-									<li><a href="#">Marketing - 1</a></li>
-									<li><a href="#">Wordpress - 16</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="widget">
-								<h5 class="widget-title font-alt">Popular Posts</h5>
-								<ul class="widget-posts">
-									<li class="clearfix">
-										<div class="widget-posts-image">
-											<a href="#"><img src="/assets/images/rp-1.jpg"
-												alt="Post Thumbnail" /></a>
-										</div>
-										<div class="widget-posts-body">
-											<div class="widget-posts-title">
-												<a href="#">Designer Desk Essentials</a>
-											</div>
-											<div class="widget-posts-meta">23 january</div>
-										</div>
-									</li>
-									<li class="clearfix">
-										<div class="widget-posts-image">
-											<a href="#"><img src="/assets/images/rp-2.jpg"
-												alt="Post Thumbnail" /></a>
-										</div>
-										<div class="widget-posts-body">
-											<div class="widget-posts-title">
-												<a href="#">Realistic Business Card Mockup</a>
-											</div>
-											<div class="widget-posts-meta">15 February</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr class="divider-d" />
-			<footer class="footer bg-dark">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-6">
-							Shared by <i class="fa fa-love"></i><a
-								href="https://bootstrapthemes.co">BootstrapThemes</a>
-						</div>
-						<div class="col-sm-6">
-							<div class="footer-social-links">
-								<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
-									class="fa fa-twitter"></i></a><a href="#"><i
-									class="fa fa-dribbble"></i></a><a href="#"><i
-									class="fa fa-skype"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</footer>
+				<!-- 리뷰 끝 -->
 		</div>
-		<div class="scroll-up">
-			<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
 		</div>
-	</main>
+		<!--  사이드바  -->
+		</section>
+		</div>
+		<!-- 본문 끝 -->
 
+	</main>
 	<!--  
     JavaScripts
     =============================================
@@ -1269,16 +961,25 @@
       formatDate("${review.prodRevCreateAt}", "formattedReviewDate");
       
       function showReplyForm(parentId) {
-          // parentId를 기반으로 대댓글 작성 폼이 있는지 확인
-          var replyFormId = "replyForm_" + parentId;
-          var replyForm = document.getElementById(replyFormId);
-          if (replyForm.style.display === "none" || replyForm.style.display === "") {
-              replyForm.style.display = "block"; // 대댓글 작성 폼 표시
-          } else {
-              replyForm.style.display = "none"; // 대댓글 작성 폼 숨김
+    	    // parentId를 기반으로 대댓글 작성 폼이 있는지 확인
+    	    var replyFormId = "replyForm_" + parentId;
+    	    var replyForm = document.getElementById(replyFormId);
+    	    if (replyForm.classList.contains("hidden")) {
+    	        replyForm.classList.remove("hidden"); // 대댓글 작성 폼 표시
+    	    } else {
+    	        replyForm.classList.add("hidden"); // 대댓글 작성 폼 숨김
+    	    }
+    	}
+
+      function deleteReview(prodRevNo) {
+          if (confirm("리뷰를 삭제하시겠습니까?")) {
+
+              window.location.href = "/product/deleteReview/" + prodRevNo;
           }
       }
-  </script>
 
+  </script>
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 </body>
 </html>

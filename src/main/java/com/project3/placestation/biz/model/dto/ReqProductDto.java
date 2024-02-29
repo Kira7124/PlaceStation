@@ -32,4 +32,5 @@ public class ReqProductDto {
 	private String prodFullAddress; // 위치 풀 네임
 	private Double prodLocationX; // 위도 값
 	private Double prodLocationY; // 경도 값
+	private String isFile;
 }

@@ -20,6 +20,9 @@ public class ReqBizAccountDto {
 	private String userPassword;
 	private String bizTel;
 	private String userAddress;
+	private String impUid;
+	private String impKey;
+	private String impSecret;
 	private MultipartFile profile;
 	private String changeImage;
 	private String bizBrandName;

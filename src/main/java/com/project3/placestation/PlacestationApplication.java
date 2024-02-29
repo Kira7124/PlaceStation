@@ -9,5 +9,4 @@ public class PlacestationApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PlacestationApplication.class, args);
 	}
-
 }

@@ -40,25 +40,34 @@
 		p.prod_title AS prodTitle,
 		pm.category_name AS mainCategory,
 		ps.subcategory_name AS subcategory,
-		h.purchase_date as purchaseDate
+		h.purchase_date as purchaseDate,
+		h.token as token
 		FROM
 		admin_prod_history h
 		LEFT JOIN biz b
-		ON h.admin_his_seller_id =
+		ON
+		h.admin_his_seller_id =
 		b.biz_id
 		LEFT JOIN product p
-		ON h.admin_his_prod_no = p.prod_no
+		ON
+		h.admin_his_prod_no = p.prod_no
 		LEFT JOIN
 		member m
-		ON h.admin_his_buyer_id = m.user_no
+		ON
+		h.admin_his_buyer_id = m.user_no
 		LEFT JOIN
 		prod_major_category pm
-		ON pm.category_id = p.prod_major_category_id
+		ON
+		pm.category_id = p.prod_major_category_id
 		LEFT JOIN prod_subcategory
 		ps
 		ON ps.category_id = p.prod_subcategory_id
 		WHERE
-		h.admin_his_seller_id = #{bizId}
+		h.admin_his_seller_id =
+		#{bizId}
+		and h.admin_his_no Like '%' || #{text} || '%'
+		order by
+		h.admin_his_created_at desc
 		LIMIT
 		#{pageReq.page} *
 		#{pageReq.size},#{pageReq.size}
@@ -85,13 +94,19 @@
 		on ps.category_id = p.prod_subcategory_id
 		where p.prod_delete_yn = 'N'
 		and h.admin_his_seller_id = #{bizId}
+		and h.admin_his_no Like '%'||#{text}|| '%'
+
 	</select>
 
 	<select id="findScheduleByBizId"
 		resultType="com.project3.placestation.biz.model.dto.ResScheduleDto">
 		select p.prod_title , h.start_time , h.end_time ,
-		h.purchase_date
-		from admin_prod_history h , product p
+		h.purchase_date , h.admin_his_no as adminHisNo, h.admin_his_prod_no as
+		adminHisProdNo, h.admin_his_created_at as adminHisCreatedAt,
+		h.admin_his_buyer_id as adminHisBuyerId, h.cancel_yn as cancelYn,
+		h.cancel_at as cancelAt, h.cancel_amount as cancelAmount
+		from
+		admin_prod_history h , product p
 		where
 		h.admin_his_prod_no = p.prod_no
 		and h.admin_his_seller_id = #{bizId}
@@ -191,6 +206,93 @@
 		select start_time , end_time , purchase_date from
 		admin_prod_history
 		where admin_his_prod_no = #{prodNo}
-		and purchase_date like #{date}
+		and purchase_date
+		like #{date}
+	</select>
+
+	<select id="findUserPointByBuyerId"
+		resultType="com.project3.placestation.payment.model.dto.AdminHisPointDto">
+		select sum(admin_his_save_point) as userSavePoint,
+		admin_his_buyer_id as adminHisBuyerId
+		from admin_prod_history
+		where
+		admin_his_buyer_id = #{buyerId}
+		group by admin_his_buyer_id
+	</select>
+
+	<insert id="save">
+		insert into admin_prod_history
+		(
+		admin_his_no ,
+		admin_his_prod_no,
+		admin_his_price , admin_his_use_point
+		,
+		admin_his_save_point , admin_his_discount ,
+		admin_his_charge ,
+		admin_his_prod_name,
+		admin_his_seller_id , admin_his_confirm ,
+		admin_his_buyer_id , bank ,
+		start_time , end_time , people_count ,
+		purchase_date,
+		token
+		)
+		values (
+		#{adminHisNo} , #{adminHisProdNo} ,
+		#{adminHisPrice} ,
+		#{adminHisUsePoint} , #{adminHisSavePoint} ,
+		#{adminHisDiscount} ,
+		#{adminHisCharge} , #{adminHisProdName},
+		#{adminHisSellerId} ,
+		#{adminHisConfirm} ,
+		#{adminHisBuyerId} , #{bank}
+		,#{startTime} ,
+		#{endTime} , #{peopleCount} , #{purchaseDate} ,
+		#{token}
+		)
+	</insert>
+
+	<select id="getToken">
+		select token from admin_prod_history
+		where
+		admin_his_no = #{merchantUid}
+	</select>
+
+	<update id="updateCancel">
+		update admin_prod_history
+		set CANCEL_YN = 'Y' ,
+		CANCEL_AT = now() ,
+		CANCEL_AMOUNT = #{cancelAmount}
+		where admin_his_no =
+		#{merchantUid}
+	</update>
+
+
+	<select id="findMemberTopFive"
+		resultType="com.project3.placestation.biz.model.dto.MemberToptenDto">
+		select h.admin_his_buyer_id as adminHisBuyerId ,
+		m.file_path as filePath , count(h.*) as count , m.user_name as
+		userName , m.grade as grade, m.gender as gender
+		from admin_prod_history
+		h
+		join member m
+		on h.admin_his_buyer_id = m.user_no
+		where
+		h.admin_his_seller_id = #{bizId}
+		group by h.admin_his_buyer_id
+		order by
+		count(h.*) desc
+		limit 5
+	</select>
+
+
+	<select id="findMonthlyFee"
+		resultType="com.project3.placestation.biz.model.dto.BizMonthlyFeeDto">
+		SELECT sum(admin_his_charge) as charge,
+		FORMATDATETIME(admin_his_created_at , 'yyyy-MM') as date
+		FROM
+		ADMIN_PROD_HISTORY
+		WHERE ADMIN_HIS_SELLER_ID = #{bizId}
+		group by
+		FORMATDATETIME(admin_his_created_at ,'yyyy-MM')
 	</select>
 </mapper>

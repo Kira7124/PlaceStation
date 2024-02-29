@@ -1,5 +1,8 @@
 package com.project3.placestation.biz.controller;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -10,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
+import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.MemberService;
+import com.project3.placestation.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,7 +36,11 @@ public class BizAccountController {
 	@Autowired
 	BizService bizService;
 	
+
+	@Autowired
+	ProductService productService;
 	
+
 	/**
 	 * 사업자 유저 상세 조회
 	 * @param model
@@ -42,15 +51,22 @@ public class BizAccountController {
 	public String accountManagementForm(Model model) {
 		
 		int userId = 1;
-		BizJoin dto = memberService.SelectJoinBiz(userId);
+
 		
-		if(dto == null) {
+		// 회원 정보
+		BizJoin biz = memberService.SelectJoinBiz(userId);
+		if(biz == null) {
 			throw new CustomRestfulException("회원 정보가 변경되었거나 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		log.info(dto.toString());
+		// 상품 정보
+		List<ResProductDto> products = productService.findProductAllByUserId(userId);
 		
-		model.addAttribute("biz" , dto);
+		log.info(biz.toString());
+		log.info(products.toString());
+		
+		model.addAttribute("biz" , biz);
+		model.addAttribute("products" , products);
 		return "biz/account/biz_account_management";
 	}
 	
@@ -126,8 +142,15 @@ public class BizAccountController {
 //		if(accountDto.getProfile() == null || accountDto.getProfile().isEmpty()) {
 //			throw new CustomRestfulException("프로필 사진이 없습니다. 프로필 사진을 등록해주세요", HttpStatus.BAD_REQUEST);
 //		}
-		
-		
+		if(accountDto.getImpUid() == null || accountDto.getImpUid().isEmpty()) {
+			throw new CustomRestfulException("포트원 uid 를 적어주세요", HttpStatus.BAD_REQUEST);
+		}
+		if(accountDto.getImpKey() == null || accountDto.getImpKey().isEmpty()) {
+			throw new CustomRestfulException("포트원 key 를 적어주세요", HttpStatus.BAD_REQUEST);
+		}
+		if(accountDto.getImpSecret() == null || accountDto.getImpSecret().isEmpty()) {
+			throw new CustomRestfulException("포트원 secret 를 적어주세요", HttpStatus.BAD_REQUEST);
+		}
 		
 		String filePath = "";
 		// 프로필 사진을 변경했다면
@@ -142,11 +165,6 @@ public class BizAccountController {
 		accountDto.setFilePath(filePath);
 		memberService.BizUpdateMember(accountDto , 1);
 		bizService.updateBizByBizId(accountDto , userId);
-		
-//		// 사업자 등록증을 변경했다면..
-//		if(accountDto.getBizFile().equals('Y')) {
-//			
-//		}
 		
 		
 		return "redirect:/biz/account-management";
