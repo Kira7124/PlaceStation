@@ -55,4 +55,5 @@ public interface AdminProdHistoryRepository {
 	
 	// 월 수수료 통계
 	public List<BizMonthlyFeeDto> findMonthlyFee(int bizId);
+
 }

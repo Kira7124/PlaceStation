@@ -3,13 +3,10 @@ package com.project3.placestation.config.jwt;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.project3.placestation.member.dto.MemberLoginDto;
@@ -62,6 +59,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
 //     인증된 authentication 객체를 홀더에 넣어둠
 				SecurityContextHolder.getContext().setAuthentication(authentication);
+
 
 			}
 		} catch (Exception e) {

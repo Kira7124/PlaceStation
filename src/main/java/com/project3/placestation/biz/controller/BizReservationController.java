@@ -16,7 +16,6 @@ import com.project3.placestation.biz.model.dto.ReqBizHistoryRefundDto;
 import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.payment.model.common.PaymentDaySince;
-import com.project3.placestation.payment.model.dto.PaymentDto;
 import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
 import com.project3.placestation.repository.entity.Company;
 import com.project3.placestation.service.AdminProdHistoryService;
@@ -44,9 +43,11 @@ public class BizReservationController {
 	@Autowired
 	PaymentService paymentService;
 	
+
 	@Autowired
 	CompanyService companyService;
 	
+
 	// http://localhost/biz/reservation-management
 	@GetMapping("/reservation-management")
 	public String reservationManagementForm(Model model, 
@@ -125,16 +126,16 @@ public class BizReservationController {
 		int amount = bizHistoryRefundDto.getAdminHisPrice();
 		
 		// merchantUid 값으로 정보 - token 조회
-		PaymentDto paymentDto = new PaymentDto();
-		paymentDto.setMerchantUid(merchantUid);
-		String token = paymentService.paymentGetToken(paymentDto, fortOne);
-		if(token == null || token.isEmpty()) {
+
+		DbToken token = adminProdHistoryService.getToken(merchantUid);
+		if(token.getToken() == null || token.getToken().isEmpty()) {
 			throw new CustomRestfulException("토큰 누락", HttpStatus.BAD_REQUEST);
 		}
 		
 		// 환불 전에 몇일 지났는지 확인
 		int since = paymentService.validRefundDate(bizHistoryRefundDto.getAdminHisCreatedAt());
 		
+
 		log.info("지난 일수 : " + since);
 		
 		// 환불 금액
@@ -143,48 +144,53 @@ public class BizReservationController {
 		// 시간 일자 별로 환불 신청
 		switch (since) {
 		case 7 : {
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.ONE);
+			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.ONE);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ONE);
 			break;
 		}
 		case 6 : {
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.TWO);
+			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.TWO);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.TWO);
 			break;
 		}
 		
 		case 5 : {
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.THREE);
+			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.THREE);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.THREE);
 			break;
 		}
 		
 		case 4 : {
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.FOUR);
+			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.FOUR);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.FOUR);
 			break;
 		}
 		
 		case 3 : {
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.FIVE);
+
+			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.FIVE);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.FIVE);
 			break;
 		}
 		
 		case 2 : {
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SIX);
+
+			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SIX);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SIX);
+
 			break;
 		}
 		
 		case 1 : {
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SEVEN);
+
+			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SEVEN);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SEVEN);
 			break;
 		}
 		case 0 : {
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SEVEN);
+			paymentService.refund(token.getToken(), merchantUid, fortOne.getImpUid(), reason,  amount, PaymentDaySince.SEVEN);
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SEVEN);
+
 			break;
 		}
 		default:

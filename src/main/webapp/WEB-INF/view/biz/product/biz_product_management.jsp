@@ -147,6 +147,8 @@ h2, p, h4 {
 								</button>
 							</div>
 						</div>
+
+
 						<c:forEach items="${products}" var="product">
 
 							<div class="container" style="margin-bottom: 20px;">

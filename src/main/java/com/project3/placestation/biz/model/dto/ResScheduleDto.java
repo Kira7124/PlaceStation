@@ -21,4 +21,5 @@ public class ResScheduleDto {
 	private String cancelYn;
 	private String cancelAt;
 	private Integer cancelAmount;
+
 }

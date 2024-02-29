@@ -2,8 +2,6 @@ package com.project3.placestation.product.dto;
 
 import java.sql.Timestamp;
 
-import com.project3.placestation.biz.model.dto.ResProductDto;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,4 +38,5 @@ public class ProductDto {
     private Timestamp prodDeleteAt; // 상품 삭제 시간
     private String prodDeleteYn; // 상품 삭제 'Y','N'
     private String prodDeleteReason; // 상품 삭제 이유
+
 }

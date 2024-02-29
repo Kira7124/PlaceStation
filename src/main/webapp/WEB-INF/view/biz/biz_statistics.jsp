@@ -29,6 +29,7 @@
 								<span class="number" id="annualCount">0</span> <span
 									class="percentage"><i class=" text-success"></i></span> 번<span
 									class="info-label">정상 판매량</span>
+
 							</div>
 							<div class="weekly-summary text-right">
 								<span class="number" id="annualTotalAmount">0</span> <span
@@ -66,6 +67,7 @@
 										<th>이용 날짜 &amp; 시간</th>
 										<th>결제 날짜 &amp; 시간</th>
 										<th>결제</th>
+
 
 									</tr>
 								</thead>
@@ -245,10 +247,14 @@
 					</div>
 				</div>
 			</div>
+
+
+			<div class="row"></div>
 		</div>
-		<!-- END MAIN CONTENT -->
 	</div>
-	<!-- END MAIN -->
+	<!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN -->
 </div>
 <!-- END WRAPPER -->
 <script
@@ -450,7 +456,6 @@
 		};
 
 		new Chartist.Bar('#monthly-fee', data, options);
-
 		}
 	});
 	</script>

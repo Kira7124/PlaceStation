@@ -3,11 +3,13 @@
 
 <!-- adminheader.jsp -->
 <%@ include file="/WEB-INF/view/product/common/header.jsp"%>
+
 <style>
 img {
 	border-radius: 10px;
 }
 </style>
+
 
 <div class="main">
 	<!-- 배너 이미지 -->
@@ -22,7 +24,7 @@ img {
 			</div>
 		</div>
 	</section>
-	
+
 	<!-- PlaceStation의 추천!! -->
 	        <section class="module" id="news">
           <div class="container">
@@ -168,6 +170,7 @@ img {
 		</div>
 	</section>
 
+
 	<!-- 3번 상품 리스트 (새로 등록된 순) -->
 	<section class="module" id="specialities">
 		<div class="container">
@@ -189,6 +192,7 @@ img {
 				style="float: right; margin-bottom: 10px;">전체 조회</a>
 
 			<div class="row multi-columns-row" style="clear: both;">
+
 				<c:forEach var="product" items="${productsStart}">
 					<div class="col-sm-6 col-md-3 col-lg-3">
 						<div class="shop-item">

@@ -1,5 +1,6 @@
 package com.project3.placestation.biz.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +36,11 @@ public class BizAccountController {
 	@Autowired
 	BizService bizService;
 	
+
 	@Autowired
 	ProductService productService;
 	
-	
-	
+
 	/**
 	 * 사업자 유저 상세 조회
 	 * @param model
@@ -50,6 +51,7 @@ public class BizAccountController {
 	public String accountManagementForm(Model model) {
 		
 		int userId = 1;
+
 		
 		// 회원 정보
 		BizJoin biz = memberService.SelectJoinBiz(userId);
@@ -77,8 +79,6 @@ public class BizAccountController {
 	public String updateForm(Model model) {
 		
 		int userId = 1;
-		
-		// 회원 정보
 		BizJoin dto = memberService.SelectJoinBiz(userId);
 		
 		if(dto == null) {

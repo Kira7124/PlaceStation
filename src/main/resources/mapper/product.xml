@@ -142,7 +142,6 @@
 		prod_delete_yn = 'N'
 	</select>
 
-
 	<select id="findMainAllBysearchAndPriceAndstar"
 		resultType="com.project3.placestation.product.dto.ProdFilterDto">
 		select p.prod_no as prodNo
@@ -234,4 +233,5 @@
 		) AS subquery;
 
 	</select>
+
 </mapper>

@@ -12,5 +12,6 @@ public interface CompanyRepository {
 	
 	// 회사 잔고 플러스
 	public int updateCompanyBalance(int balance);
-	
+
+
 }

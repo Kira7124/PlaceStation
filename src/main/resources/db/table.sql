@@ -10,6 +10,7 @@ CREATE TABLE prod_Review (
     prod_rev_delete_yn VARCHAR(1) DEFAULT 'N',
     prod_rev_delete_at TIMESTAMP,
     parent_id INT DEFAULT NULL
+
 );
 
 create table product_views (
@@ -179,4 +180,16 @@ CREATE TABLE qna_board (
   q_status VARCHAR(10) NULL DEFAULT '진행',
   q_reply VARCHAR(400) NULL
   );
+
+create table faq_board (
+f_bno int not null primary key auto_increment,
+f_writer VARCHAR(45) not null,
+f_content varchar(400) not null,
+f_title varchar(200) not null,
+file_path varchar(400),
+f_regdate timestamp  DEFAULT now(),
+f_updatedate timestamp  DEFAULT now(),
+f_delete_at timestamp  DEFAULT now(),
+category_id int
+);
 
