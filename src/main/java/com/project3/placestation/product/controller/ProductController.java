@@ -63,9 +63,9 @@ public class ProductController {
 		List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNo(prodNo);
 		List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo, "");
         // 상품의 찜,리뷰 개수 조회
-        int wishlistCount = prodWishListService.getCountWishlist(prodNo);
-        int reviewCount = prodReviewService.getCountReview(prodNo);
-        int avgStar = prodReviewService.getAvgStar(prodNo);
+		Integer wishlistCount = prodWishListService.getCountWishlist(prodNo);
+        Integer reviewCount = prodReviewService.getCountReview(prodNo);
+        Double avgStar = prodReviewService.getAvgStar(prodNo);
 
 		log.info(invalidDate.toString());
 		model.addAttribute("product", product);

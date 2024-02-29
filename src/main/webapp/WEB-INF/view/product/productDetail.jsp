@@ -223,8 +223,8 @@
 									</div>
 									<div class="post-entry" style="font-size: 20px;">
 										<i class="fas fa-solid fa-heart" style="margin: 10px"></i>${wishlistCount}
-										<i class="fas fa-regular fa-comment" style="margin: 10px"></i>${reviewCount}
-										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>조회수
+										<i class="fas fa-regular fa-comment" style="margin: 10px"></i>${reviewCount != null ? reviewCount : 0}
+										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>101055
 										<c:if test="${avgStar != 0}">
 											<div style="float: right; margin-right: 5px;">
 												<span class="comment-star"> <c:forEach begin="1"
@@ -235,8 +235,19 @@
 													</c:forEach>
 												</span>
 											</div>
-											<div style="float: right; clear: both; margin-right:15px;">
+											<div style="float: right; clear: both; margin-right: 15px;">
 												평균 ${avgStar} 점</div>
+										</c:if>
+										<c:if test="${avgStar == 0}">
+											<span class="comment-star"> <c:forEach begin="1"
+													end="${avgStar}">
+													<i class="fa fa-star star"></i>
+												</c:forEach> <c:forEach begin="${avgStar + 1}" end="5">
+													<i class="fa fa-star star-off"></i>
+												</c:forEach>
+											</span>
+											<div style="float: right; clear: both; margin-right: 15px;">
+												등록된 점수가 없습니다</div>
 										</c:if>
 									</div>
 								</div>
@@ -335,7 +346,7 @@
 													</tr>
 													<tr>
 														<td>사업자 명</td>
-														<td>적당한거 넣기</td>
+														<td>UserName</td>
 													</tr>
 
 												</tbody>
@@ -422,8 +433,8 @@
 																			</p>
 																		</div>
 																	</div>
-																	<div class="comment-body" style="margin-left: 75px">
-																		<p>${review.prodRevContent}</p>
+																	<div class="comment-body" style="margin-left: 75px; word-wrap: break-word;">
+																		<p style="margin-right:55px;">${review.prodRevContent}</p>
 																	</div>
 																	<!-- 대댓글 버튼 추가 -->
 																	<c:if test="${review.parentId == null}">
@@ -496,59 +507,60 @@
 													</div>
 												</div>
 											</c:if>
-										</div>
-									</div>
-									<!-- 리뷰가 없는 경우 -->
-									<c:if test="${empty reviewProdNo}">
-										<div id="reviews" class="tab-pane">
-											<h3>등록된 후기</h3>
-											<div class="noRev">아직 등록된 후기가 없습니다.</div>
-										</div>
-									</c:if>
 
-									<!-- 리뷰 등록 -->
-									<div class="comment-form col-sm-12">
-										<h4 class="comment-form-title font-alt">리뷰 작성</h4>
-										<form method="post" action="/product/addReview">
-											<div class="row">
-												<div class="col-sm-4">
-													<div class="form-group">
-														<input type="hidden" name="prodNo" id="prodNo"
-															value="${product.prodNo}"> <input type="hidden"
-															name="parentId" id="${review.prodRevNo}" value="">
-														<label for="username">유저번호</label> <input
-															class="form-control" type="text" id="userNo"
-															name="userNo" placeholder="유저번호" required />
-													</div>
+											<!-- 리뷰가 없는 경우 -->
+											<c:if test="${empty reviewProdNo}">
+												<div id="reviews" class="tab-pane">
+													<h3>등록된 후기</h3>
+													<div class="noRev">아직 등록된 후기가 없습니다.</div>
 												</div>
+											</c:if>
 
-												<div class="col-sm-4">
-													<div class="form-group">
-														<label for="prodRevStar">평점</label> <select
-															class="form-control" id="prodRevStar" name="prodRevStar"
-															required>
-															<option selected disabled>평점 선택</option>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-														</select>
+											<!-- 리뷰 등록 -->
+											<div class="comment-form col-sm-12">
+												<h4 class="comment-form-title font-alt">리뷰 작성</h4>
+												<form method="post" action="/product/addReview">
+													<div class="row">
+														<div class="col-sm-4">
+															<div class="form-group">
+																<input type="hidden" name="prodNo" id="prodNo"
+																	value="${product.prodNo}"> <input type="hidden"
+																	name="parentId" id="${review.prodRevNo}" value="">
+																<label for="username">유저번호</label> <input
+																	class="form-control" type="text" id="userNo"
+																	name="userNo" placeholder="유저번호" required />
+															</div>
+														</div>
+
+														<div class="col-sm-4">
+															<div class="form-group">
+																<label for="prodRevStar">평점</label> <select
+																	class="form-control" id="prodRevStar"
+																	name="prodRevStar" required>
+																	<option selected disabled>평점 선택</option>
+																	<option value="1">1</option>
+																	<option value="2">2</option>
+																	<option value="3">3</option>
+																	<option value="4">4</option>
+																	<option value="5">5</option>
+																</select>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label for="prodRevContent">리뷰 내용</label>
+																<textarea class="form-control" name="prodRevContent"
+																	rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<button class="btn btn-round btn-d" type="submit">리뷰
+																작성</button>
+														</div>
 													</div>
-												</div>
-												<div class="col-sm-12">
-													<div class="form-group">
-														<label for="prodRevContent">리뷰 내용</label>
-														<textarea class="form-control" name="prodRevContent"
-															rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
-													</div>
-												</div>
-												<div class="col-sm-12">
-													<button class="btn btn-round btn-d" type="submit">리뷰
-														작성</button>
-												</div>
+												</form>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -658,7 +670,7 @@
 										<br />
 									</div>
 									<div class="">
-										<div class="col-sm-12" style="margin-top:-50px;">
+										<div class="col-sm-12" style="margin-top: -50px;">
 											<input class="btn btn-lg btn-block btn-round btn-b"
 												type="submit"></input>
 											<p id="dateText" style="visibility: hidden"></p>

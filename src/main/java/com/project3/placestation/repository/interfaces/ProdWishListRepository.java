@@ -11,7 +11,7 @@ public interface ProdWishListRepository {
 
 	public void deleteWishList(ProdWishList prodWishList);
 
-	public int countWishlist(int prodNo);
+	public int countWishlist(Integer prodNo);
 
 
 }
