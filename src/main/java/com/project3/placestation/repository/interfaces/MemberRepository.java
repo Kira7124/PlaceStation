@@ -75,7 +75,25 @@ public interface MemberRepository {
 	//회원 단건 정보 검색
 	public Member selectByIsUserId(String uid);
 
+	//(회원가입)유저 중복검사
+	public int selectByValidUserId(String uid);
+	
+	//(회원가입)전화번호 중복검사 
+	public int selectByValidManageHp(String hp);
+	
+	//(회원가입)사업자 전화번호 중복검사
+	public int selectByValidHp(String managehp);
+	
+	//이메일로 유저 검색
 	public Member selecyByUserEmail(String email);
+
+	//(회원가입)이메일로 중복 검사
+	public int selectByValidEmail(String email);
 	
+	//(회원가입) 판매자 가입시 user_id, filePath insert
+	public int insertBiz(Member member);
 	
+	public Member insertUserAndSelectUserNo(Member member);
+
+	public Member selectByUserId(Member member);
 }

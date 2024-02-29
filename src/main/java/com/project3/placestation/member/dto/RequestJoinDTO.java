@@ -1,15 +1,19 @@
 package com.project3.placestation.member.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+
+/*
+ * 회원가입시 form 데이터를 받기 위한 dto   
+ */
 
 @ToString
 @Data
@@ -18,33 +22,33 @@ import lombok.ToString;
 public class RequestJoinDTO {
 	
 	private int userNo;
-	@NotBlank(message = "아이디를 입력해 주세요")
-	@Pattern(regexp = "^[A-Za-z0-9]$", message="아이디는 영어와 숫자로 작성해 주세요")
-	@Size(min = 5, max =15, message = "아이디는 최소 5자 최대 15자 까지 작성 가능합니다.")
 	private String userId;
-	@NotBlank(message = "비밀번호를 입력해 주세요")
-	@Pattern(regexp = "^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$", message="비밀 번호는 영어,숫자,특수 문자를 포함한 8~20자리로 작성해 주세요")
 	private String userPassword;
+	// address를 받기 위한 변수
+	private String zip;
+	private String addr1;
+	private String addr2;
+	// address를 받아서 합친 변수
 	private String userAddress;
-	@NotBlank(message = "이름을 입력해 주세요")
-	@Pattern(regexp = "^[가-힣]*$", message="이름은 한글로 작성해 주세요")
-	@Size(min = 2, max =20, message = "이름은 2자 이상 작성해야 합니다.")
 	private String userName;
-	@NotBlank(message = "전화 번호를 입력해 주세요")
-	@Pattern(regexp = "^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$", message="전화 번호형식에 어긋 납니다")
 	private String userHp;
-	@NotBlank(message = "이메일을 입력해 주세요")
-	@Pattern(regexp = "([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", message="이메일을 형식에 맞게 입력해 주세요")
+	
+	// email 받아서 합친 변수
+	private String email;
+	private String email2;
+	// email을 합친 변수
 	private String userEmail;
-	@NotNull
+	
 	private String grade;
 	private int userPoin;
 	private Timestamp joinAt;
 	private Timestamp outAt;
 	private String outYn;
-	private String filePath;
+	private List<MultipartFile> filePath;
 	private String userOauth;
 	private String role;
 	private String gender;
 
+	// 주소 1,2,3을 받기 위한 address
+	
 }

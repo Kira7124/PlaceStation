@@ -3,16 +3,13 @@ package com.project3.placestation.config.jwt;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.project3.placestation.member.dto.MemberLoginDto;
+import com.project3.placestation.repository.entity.Member;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -45,10 +42,14 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		try {
 //   웹토큰 받아서 문자열로 변환
+			System.out.println("토큰 필터 request: " + request);
 			String jwt = parseJwt(request);
 //   1. 웹토큰 유효성 체크해서
 //   2. 유효하면 DB에서 유저 있는 지 조회
 //   3. 조회된 유저를 인증된 유저로 해서 홀더에 넣음
+			
+			System.out.println("토큰 필터 jwt 파스: " + jwt);
+		
 			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
 //     웹토큰에서 유저 id 꺼냄
 				String id = jwtUtils.getUserNameFromJwtToken(jwt);
@@ -78,7 +79,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	private String parseJwt(HttpServletRequest request) {
 // String headerAuth = request.getHeader("Authorization");
 		System.out.println("토큰 parseJwt 가 작동");
-		MemberLoginDto sessionMemeber = (MemberLoginDto) httpSession.getAttribute("member");
+		Member sessionMemeber = (Member) httpSession.getAttribute("member");
 		
 		if(sessionMemeber == null) {
 			return null;
