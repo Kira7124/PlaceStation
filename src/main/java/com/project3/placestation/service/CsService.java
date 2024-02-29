@@ -43,10 +43,30 @@ public class CsService {
 			return csNoticeBoardRepository.CsNoticeBoardCount();
 		}
 		
-//		//글 조회수 증가
+	   // 카테고리에 따른 공지사항 수
+		public int CsNoticeBoardCountByCategory() throws Exception{
+			return csNoticeBoardRepository.CsNoticeBoardCountByCategory();
+		}
+		
+		// 카테고리에 따른 공지사항 리스트 출력
+		public List<CsNoticeBoard> CsNoticeBoardListByCategory(Criteria cri) throws Exception {
+			List<CsNoticeBoard> result1 = csNoticeBoardRepository.CsNoticeBoardListByCategory(cri);
+			return result1;
+		}
+		
+		
+//		// 글 조회수 증가
 //		public void updateReadCnt(Integer nbno) throws Exception{
 //			CsNoticeBoardRepository.UpdateReadCnt(nbno);
 //		}
+		
+		// 공지사항 검색 수 (페이징)
+//		public int countNoticeSearchlist(Criteria cri) throw Exception {
+//			return csNoticeBoardRepository.countNoticeSearchlist(cri);
+//		}
+		
+		// 공지사항 검색 목록
+		//noticeSearchlist
 
 // 1:1 문의	
 		// 1:1 문의 리스트 출력

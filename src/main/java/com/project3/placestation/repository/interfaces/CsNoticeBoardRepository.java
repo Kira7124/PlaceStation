@@ -21,6 +21,13 @@ public interface CsNoticeBoardRepository {
 	
 //	// 글조회수증가
 //	public void UpdateReadCnt(Integer nbno) throws Exception;
-
 	
+	// 공지사항숫자세기(검색,페이징처리)
+	public int countNoticeSearchlist(Criteria cri) throws Exception;
+
+    // 카테고리에 따른 공지사항 수
+	public int CsNoticeBoardCountByCategory() throws Exception;
+	
+	// 카테고리에 따른 공지사항 리스트 출력
+	public List<CsNoticeBoard> CsNoticeBoardListByCategory(Criteria cri) throws Exception;
 }

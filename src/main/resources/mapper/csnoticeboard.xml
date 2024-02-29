@@ -24,8 +24,21 @@
 	<!-- <update id="UpdateReadCnt">
 			update notice_board set n_readcount = n_readcount + 1 where n_bno = #{nbno} 
 	</update> -->
-
-
 	
+	<!-- 카테고리에 따른 공지사항 수 -->
+	<!--
+	<select id="CsNoticeBoardCountByCategory">
+	</select>
+	-->
+
+
+	<!-- 카테고리에 따른 공지사항 리스트 출력 -->
+	<!--  
+	<select id= "CsNoticeBoardListByCategory" resultType="com.project3.placestation.cs.dto.CsNoticeDTO">
+			select * from notice_board
+			<if test=""></if>
+			limit #{startPage},#{pageSize}
+	</select>
+	-->
 
 </mapper>
