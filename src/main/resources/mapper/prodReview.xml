@@ -58,7 +58,7 @@
     
     <!-- 리뷰 평균 평점 -->
     <select id="avgStar">
-        SELECT AVG(prod_rev_star) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_star != 0
+        SELECT ROUND(AVG(prod_rev_star) , 1) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_star != 0
     </select>
     
 

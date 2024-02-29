@@ -1,9 +1,105 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--  
+    Document Title
+    =============================================
+    -->
+<title>Titan | Multipurpose HTML5 Template</title>
+<!--  
+    Favicons
+    =============================================
+    -->
+<link rel="apple-touch-icon" sizes="57x57"
+	href="/assets/images/favicons/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60"
+	href="/assets/images/favicons/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72"
+	href="/assets/images/favicons/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76"
+	href="/assets/images/favicons/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114"
+	href="/assets/images/favicons/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120"
+	href="/assets/images/favicons/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144"
+	href="/assets/images/favicons/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152"
+	href="/assets/images/favicons/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/assets/images/favicons/apple-icon-180x180.png" />
+<link rel="icon" type="image/png" sizes="192x192"
+	href="/assets/images/favicons/android-icon-192x192.png" />
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/assets/images/favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96"
+	href="/assets/images/favicons/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/assets/images/favicons/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage"
+	content="/assets/images/favicons/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+<!--  
+    Stylesheets
+    =============================================
+    
+    -->
+<!-- Default stylesheets-->
+<link href="/assets/lib/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+<!-- Template specific stylesheets-->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700"
+	rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Volkhov:400i"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
+	rel="stylesheet" />
+<link href="/assets/lib/animate.css/animate.css" rel="stylesheet" />
+<link
+	href="/assets/lib/components-font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" />
+<link href="/assets/lib/et-line-font/et-line-font.css" rel="stylesheet" />
+<link href="/assets/lib/flexslider/flexslider.css" rel="stylesheet" />
+<link href="/assets/lib/owl.carousel/dist//assets/owl.carousel.min.css"
+	rel="stylesheet" />
+<link
+	href="/assets/lib/owl.carousel/dist//assets/owl.theme.default.min.css"
+	rel="stylesheet" />
+<link href="/assets/lib/magnific-popup/dist/magnific-popup.css"
+	rel="stylesheet" />
+<link href="/assets/lib/simple-text-rotator/simpletextrotator.css"
+	rel="stylesheet" />
+<!-- Main stylesheet and color file-->
+<link href="/assets/css/style.css" rel="stylesheet" />
+<link id="color-scheme" href="/assets/css/colors/default.css"
+	rel="stylesheet" />
+
+<!-- Swiper -->
+<!-- Swiper CSS -->
+<link rel="stylesheet"
+	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+>>>>>>> origin/product
 <style>
 .hide {
 	display: none;
@@ -135,8 +231,8 @@
 									</div>
 									<div class="post-entry" style="font-size: 20px;">
 										<i class="fas fa-solid fa-heart" style="margin: 10px"></i>${wishlistCount}
-										<i class="fas fa-regular fa-comment" style="margin: 10px"></i>${reviewCount}
-										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>조회수
+										<i class="fas fa-regular fa-comment" style="margin: 10px"></i>${reviewCount != null ? reviewCount : 0}
+										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>101055
 										<c:if test="${avgStar != 0}">
 											<div style="float: right; margin-right: 5px;">
 												<span class="comment-star"> <c:forEach begin="1"
@@ -147,8 +243,19 @@
 													</c:forEach>
 												</span>
 											</div>
-											<div style="float: right; clear: both; margin-right:15px;">
-												평균 ${avgStar} 점</div>
+											<div style="float: right; clear: both; margin-right: 15px;">
+												평균 <span style="color:  #FFD700;">${avgStar}</span> 점</div>
+										</c:if>
+										<c:if test="${avgStar == 0}">
+											<span class="comment-star"> <c:forEach begin="1"
+													end="${avgStar}">
+													<i class="fa fa-star star"></i>
+												</c:forEach> <c:forEach begin="${avgStar + 1}" end="5">
+													<i class="fa fa-star star-off"></i>
+												</c:forEach>
+											</span>
+											<div style="float: right; clear: both; margin-right: 15px;">
+												등록된 점수가 없습니다</div>
 										</c:if>
 									</div>
 								</div>
@@ -247,7 +354,7 @@
 													</tr>
 													<tr>
 														<td>사업자 명</td>
-														<td>적당한거 넣기</td>
+														<td>UserName</td>
 													</tr>
 
 												</tbody>
@@ -334,8 +441,8 @@
 																			</p>
 																		</div>
 																	</div>
-																	<div class="comment-body" style="margin-left: 75px">
-																		<p>${review.prodRevContent}</p>
+																	<div class="comment-body" style="margin-left: 75px; word-wrap: break-word;">
+																		<p style="margin-right:55px;">${review.prodRevContent}</p>
 																	</div>
 																	<!-- 대댓글 버튼 추가 -->
 																	<c:if test="${review.parentId == null}">
@@ -408,59 +515,60 @@
 													</div>
 												</div>
 											</c:if>
-										</div>
-									</div>
-									<!-- 리뷰가 없는 경우 -->
-									<c:if test="${empty reviewProdNo}">
-										<div id="reviews" class="tab-pane">
-											<h3>등록된 후기</h3>
-											<div class="noRev">아직 등록된 후기가 없습니다.</div>
-										</div>
-									</c:if>
 
-									<!-- 리뷰 등록 -->
-									<div class="comment-form col-sm-12">
-										<h4 class="comment-form-title font-alt">리뷰 작성</h4>
-										<form method="post" action="/product/addReview">
-											<div class="row">
-												<div class="col-sm-4">
-													<div class="form-group">
-														<input type="hidden" name="prodNo" id="prodNo"
-															value="${product.prodNo}"> <input type="hidden"
-															name="parentId" id="${review.prodRevNo}" value="">
-														<label for="username">유저번호</label> <input
-															class="form-control" type="text" id="userNo"
-															name="userNo" placeholder="유저번호" required />
-													</div>
+											<!-- 리뷰가 없는 경우 -->
+											<c:if test="${empty reviewProdNo}">
+												<div id="reviews" class="tab-pane">
+													<h3>등록된 후기</h3>
+													<div class="noRev">아직 등록된 후기가 없습니다.</div>
 												</div>
+											</c:if>
 
-												<div class="col-sm-4">
-													<div class="form-group">
-														<label for="prodRevStar">평점</label> <select
-															class="form-control" id="prodRevStar" name="prodRevStar"
-															required>
-															<option selected disabled>평점 선택</option>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-														</select>
+											<!-- 리뷰 등록 -->
+											<div class="comment-form col-sm-12">
+												<h4 class="comment-form-title font-alt">리뷰 작성</h4>
+												<form method="post" action="/product/addReview">
+													<div class="row">
+														<div class="col-sm-4">
+															<div class="form-group">
+																<input type="hidden" name="prodNo" id="prodNo"
+																	value="${product.prodNo}"> <input type="hidden"
+																	name="parentId" id="${review.prodRevNo}" value="">
+																<label for="username">유저번호</label> <input
+																	class="form-control" type="text" id="userNo"
+																	name="userNo" placeholder="유저번호" required />
+															</div>
+														</div>
+
+														<div class="col-sm-4">
+															<div class="form-group">
+																<label for="prodRevStar">평점</label> <select
+																	class="form-control" id="prodRevStar"
+																	name="prodRevStar" required>
+																	<option selected disabled>평점 선택</option>
+																	<option value="1">1</option>
+																	<option value="2">2</option>
+																	<option value="3">3</option>
+																	<option value="4">4</option>
+																	<option value="5">5</option>
+																</select>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label for="prodRevContent">리뷰 내용</label>
+																<textarea class="form-control" name="prodRevContent"
+																	rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<button class="btn btn-round btn-d" type="submit">리뷰
+																작성</button>
+														</div>
 													</div>
-												</div>
-												<div class="col-sm-12">
-													<div class="form-group">
-														<label for="prodRevContent">리뷰 내용</label>
-														<textarea class="form-control" name="prodRevContent"
-															rows="4" placeholder="리뷰를 작성해주세요" required></textarea>
-													</div>
-												</div>
-												<div class="col-sm-12">
-													<button class="btn btn-round btn-d" type="submit">리뷰
-														작성</button>
-												</div>
+												</form>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -570,7 +678,7 @@
 										<br />
 									</div>
 									<div class="">
-										<div class="col-sm-12" style="margin-top:-50px;">
+										<div class="col-sm-12" style="margin-top: -50px;">
 											<input class="btn btn-lg btn-block btn-round btn-b"
 												type="submit"></input>
 											<p id="dateText" style="visibility: hidden"></p>
@@ -594,7 +702,10 @@
 		<!-- 본문 끝 -->
 
 	</main>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/product
 	<!--  
     JavaScripts
     =============================================
