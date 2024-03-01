@@ -191,7 +191,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-SAACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',5,6,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-SAACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',5,6,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -210,7 +210,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-FSACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-FSACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -229,7 +229,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-VDACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',7,8,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-VDACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',7,8,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -248,7 +248,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-DSANKLN' ,1,3000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',9,10,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-DSANKLN' ,1,33000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',9,10,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -267,7 +267,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-) values ('OXDS231AD-KOPKP' ,1,30000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',11,12,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+) values ('OXDS231AD-KOPKP' ,1,330000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',11,12,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 

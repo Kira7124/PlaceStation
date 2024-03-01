@@ -153,7 +153,12 @@ public class AdminController {
 		log.debug("admin-user관리 페이지 출력!");
 		return "admin/adminmember";
 	}
-
+	
+	
+	
+	
+	
+	
 	// http://localhost:80/admin/admin-biz
 	// 관리자 사업자관리페이지 출력
 	@GetMapping("/admin-biz")
