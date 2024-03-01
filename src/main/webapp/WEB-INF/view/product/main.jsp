@@ -10,20 +10,38 @@ img {
 }
 
 .module.bg-dark-60.shop-page-header {
-    background-image: url('/assets/img/dog.jpg');
+ 	background-image: url('/assets/img/dog.jpg');
+    cursor: pointer;
+    
   	
 }
 
 </style>
 
+	<script>
+		  let currentImageIndex = 0;
+		  const images = [
+		    '/assets/img/dog.jpg',
+		    '/assets/img/cat.jpg',
+		    '/assets/img/bird.jpg'
+		  ];
+		
+		  function changeBackground() {
+		    currentImageIndex = (currentImageIndex + 1) % images.length;
+		    const section = document.querySelector('.module.bg-dark-60.shop-page-header');
+		    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
+		  }
+		
+		  // 2초마다 changeBackground 함수를 호출하여 배경 이미지를 변경합니다.
+		  setInterval(changeBackground, 2000);
+	</script>
+
 
 
 
 <div class="main">
-
-
 	<!-- 배너 이미지 -->
-	<section class="module bg-dark-60 shop-page-header">
+	<section class="module bg-dark-60 shop-page-header" >
 		<div class="container"style = "margin-top: 150px;">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
@@ -328,6 +346,14 @@ img {
 			</div>
 		</div>
 	</section>
+	
+	
+	
+	
+	
+
+
+
 
 
 <!-- include.jsp -->
