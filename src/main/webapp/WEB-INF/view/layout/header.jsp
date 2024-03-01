@@ -57,11 +57,13 @@
       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         
         <div class="container" id="header">
-          <div class="navbar-header">
-           <a class="navbar-brand" href="/main/index">PlaceStation</a>
+          <div class="navbar-header" style="margin-bottom: 50px; margin-right: 100px;">
+           <a class="navbar-brand" href="/main/index">
+           		<img src="/logo/logo.jpg.png" style ="width: 120px; height: 80px;">
+           </a>
           </div>
           <!-- nav 바 시작 -->
-          <div class="collapse navbar-collapse" id="custom-collapse">
+          <div class="collapse navbar-collapse" id="custom-collapse" style="margin-bottom: 20px;">
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Home</a>
                 <ul class="dropdown-menu">
@@ -156,7 +158,7 @@
             </ul>
           </div>
           
-          <div class="container-search">
+          <div class="container-search" style="margin-bottom: 30px;">
           <form role="form">
             <div class="search-box">
               <input class="form-control" type="text" placeholder="Search..."/>
@@ -164,7 +166,7 @@
             </div>
           </form>
         </div> 
-        <div class="login_register" style="display: inline-block">
+        <div class="login_register" style="display: inline-block; margin-bottom: 30px;"">
             <a href="/member/login">로그인</a>
             <a href="/member/uregister">회원가입</a>
           </div>
