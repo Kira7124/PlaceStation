@@ -56,16 +56,16 @@ public class QnaBoardService {
 	@Transactional
 	public void AdminUpdateQna(AdminQnaDTO dto) throws Exception{
 		
-//		QnaBoard qnaboard = QnaBoard.builder()
-//				.qbno(dto.getQbno())
-//				.qreply(dto.getQreply())
-//				.qstatus(dto.getQstatus())
-//				.qwriter(dto.getQwriter())
-//				.qtitle(dto.getQtitle())
-//				.qcontent(dto.getQcontent())
-//				.build();
+		QnaBoard qnaboard = QnaBoard.builder()
+				.qbno(dto.getQbno())
+				.qreply(dto.getQreply())
+				.qstatus(dto.getQstatus())
+				.qwriter(dto.getQwriter())
+				.qtitle(dto.getQtitle())
+				.qcontent(dto.getQcontent())
+				.build();
 		
-//		Integer result = qnaBoardRepository.AdminUpdateQna(qnaboard);
+		Integer result = qnaBoardRepository.AdminUpdateQna(qnaboard);
 		
 	}
 	

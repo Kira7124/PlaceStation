@@ -56,12 +56,6 @@ values('kira','12121212121','rerere'),
 ('kira11','12121212121','rerere');
 
 
-insert into biz (biz_id , biz_brand_name,biz_balance , file_path , biz_tel , imp_uid , imp_key , imp_secret)
-values (1 , '상호명' , 20000 , 'https://picsum.photos/200/300​' ,'010-1111-1111', 'imp05516285' , '2076220350658738' , 'UidsW7v862X8nxk9NnjaPvpxYuiwSiG67gLkAYzx0tMxRRbwVOIHBsYZZ7I3rz78gqgA3oroohDtXDlp');
-insert into biz (biz_id , biz_brand_name,biz_balance , file_path ,biz_tel)
-values (13 , '상호명' , 20000 , 'https://picsum.photos/200/300​','010-1111-1111');
-
-
 insert into admin_todo(todo_title,todo_content)
 values('1번할일','어드민페이지완성'),
 ('2번할일','어드민페이지완성2'),
@@ -160,11 +154,6 @@ insert into admin_prod_history (
 
 
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into biz (biz_id,biz_brand_name,biz_hp,biz_tel,biz_email)
 values
 (1111,'직방','01012341234','021231234','dabang@naver.com'),
@@ -250,11 +239,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-<<<<<<< HEAD
 ) values ('OXDS231AD-SAACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',5,6,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-=======
-) values ('OXDS231AD-SAACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',5,6,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
->>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -273,11 +258,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-<<<<<<< HEAD
 ) values ('OXDS231AD-FSACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-=======
-) values ('OXDS231AD-FSACSA' ,4,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
->>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -296,11 +277,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-<<<<<<< HEAD
 ) values ('OXDS231AD-VDACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',7,8,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-=======
-) values ('OXDS231AD-VDACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',7,8,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
->>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -319,11 +296,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-<<<<<<< HEAD
 ) values ('OXDS231AD-DSANKLN' ,1,33000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',9,10,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-=======
-) values ('OXDS231AD-DSANKLN' ,1,3000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',9,10,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
->>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -342,11 +315,7 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
-<<<<<<< HEAD
 ) values ('OXDS231AD-KOPKP' ,1,330000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',11,12,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-=======
-) values ('OXDS231AD-KOPKP' ,1,30000 ,0,0,0,0,'타이틀' , 1,true ,3 ,'한화은행',11,12,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
->>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -451,10 +420,6 @@ insert into company values ('PlaceStation' , '부산광역시 부산진구 중�
 
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 INSERT INTO FAQ_BOARD(F_BNO, F_WRITER, F_CONTENT, F_TITLE)VALUES (1, 1, '로그인 하고 싶어요', '로그인이 안 돼요');
 
 insert into banner (ban_name)
