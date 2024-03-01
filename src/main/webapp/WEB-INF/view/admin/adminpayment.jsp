@@ -69,8 +69,17 @@
 								  <span class="label label-danger">취소</span>
 								</td>
 								<td>
-								  <span class="label label-info">환불</span>
-								  <span class="label label-info">환불완료</span>
+								    <c:choose>
+								        <c:when test="${paymentlist.cancelYn eq 'N'}">
+								          <a href ="/admin/admin-paymentcancel" data-toggle="modal" data-target="#cancelModal">
+								            <span class="label label-info">환불</span>
+								          </a>
+								        </c:when>
+								        <c:when test="${paymentlist.cancelYn eq 'Y'}">
+								            <span class="label label-info">환불완료</span>
+								        </c:when>
+								    </c:choose>
+								</td>									
 								</td>								
 							</tr>
 						</tbody>
@@ -133,6 +142,12 @@
 	
 	
 	
+	<!-- Modal -->
+	<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
 	
 	
 	

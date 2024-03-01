@@ -180,16 +180,7 @@ public class AdminController {
 
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	// http://localhost:80/admin/admin-payment
 	// 관리자 결제,예약관리페이지출력
 	@GetMapping("/admin-payment")
@@ -211,19 +202,7 @@ public class AdminController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -329,6 +308,32 @@ public class AdminController {
 		log.debug("사업자등록증확인 GET 실행!");
 		return "admin/adminbizcheck";
 	}
+	
+	
+	//관리자 환불기능 GET 처리
+	@GetMapping("/admin-paymentcancel")
+	public String adminpaymentCancelGET() {
+		log.debug("환불 modal 창 실행!");
+		return "admin/adminpaymentcancel";
+	}
+
+
+
+	//관리자 환불기능 post 처리
+	@PostMapping("/admin-paymentcancel")
+	public String adminpaymentCancelPOST(BizHistoryDto dto) {
+		log.debug("관리자 환불 post 실행!");
+		adminProdHistoryService.AdminPaymentCancel(dto);
+		adminProdHistoryService.AdminPaymentCancel2(dto);
+		return "redirect:/admin/admin-payment";
+	}
+
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -648,7 +653,7 @@ public class AdminController {
 	
 	
 	
-	
+
 	
 	// 회원중복체크 ( ajax 비동기 )
 	@GetMapping("/checkID")
@@ -678,3 +683,4 @@ public class AdminController {
 	
 
 }
+

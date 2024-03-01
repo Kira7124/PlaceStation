@@ -128,7 +128,7 @@
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
-
+							
 
 				
 							<c:if test="${pageVO.next }">

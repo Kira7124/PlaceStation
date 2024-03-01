@@ -107,6 +107,9 @@
 		b.biz_id as bizId,
 		b.biz_brand_name
 		as bizBrandName,
+		b.imp_uid as impUid,
+		b.imp_key as impKey,
+		b.imp_secret as impSecret,
 		m.user_password as userPassword,
 		m.user_address as
 		userAddress,
@@ -131,8 +134,10 @@
 	<select id="findPasswordById"
 		resultType="com.project3.placestation.biz.model.dto.ResPassword">
 		select user_password as password from member
-		where user_no = #{userNo}
+		where user_no =
+		#{userNo}
 	</select>
+
 
 	<update id="BizUpdateMember">
 		update member set
@@ -150,6 +155,34 @@
 		</if>
 		where user_no = #{userNo};
 	</update>
+	
+	
+	<!-- 이메일 유저 중복 검사  -->
+	<select id="selecyByUserEmail"	resultType="com.project3.placestation.repository.entity.Member">
+		select * from member where user_email = #{email}
+	</select>
+	
+	
+	<!-- 일반 유저 회원가입 -->
+	<insert id="insertUser"	>
+		insert into member(user_id,user_password,user_address,user_name, user_hp,
+		user_email,join_at,user_role,gender)
+		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender})
+	</insert>
+
+	<!-- 판매자 join 유저 -->
+	<select id="findMemberById"
+		resultType="com.project3.placestation.payment.model.dto.PaymentMemberDto">
+		select user_no as userNo ,
+		user_address as userAddress ,
+		user_name as userName , user_hp as
+		userHp , user_email as userEmail ,
+		grade as userGrade , user_point as
+		userPoint , join_at as joinAt ,
+		user_role as userRole , gender as
+		gender from member where user_no =
+		#{userNo}
+	</select>
 
 
 
@@ -163,5 +196,16 @@
 
 
 
+	<update id="updateMemberPoint">
+		update member set
+		user_point = #{userPoint} , 
+		grade = #{grade}
+		where user_no = #{buyerId}
+	</update>
+
+	<!-- 유저 아이디 중복 검사 -->
+	<select id="selectByIsUserId"	>
+		select * from member where user_id = #{uid}
+	</select>
 </mapper>
 

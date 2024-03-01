@@ -27,8 +27,11 @@ public class Member {
 	private Integer userpoint;
 	private String filepath;
 	private Timestamp joinat;
-	private String role;
+	private String userrole;
 	private String grade;
+	private String gender;
+	private String token;
+	private String oauth;
 	
 	
 	
@@ -60,8 +63,7 @@ public class Member {
 	
 	
 	
-	
-	
+
 	
 	
 	

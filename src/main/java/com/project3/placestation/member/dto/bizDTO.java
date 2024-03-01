@@ -21,5 +21,5 @@ public class bizDTO {
 	private String bizRole;
 	private int bizFileNo;
 	private String bizTel;
-	
+
 }

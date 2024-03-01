@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Slf4j
 public class BizHistoryDto {
 	private String adminHisNo;	// 기본키 == 포트원 키
 	private String adminHisProdName; // 상품명
@@ -38,4 +37,6 @@ public class BizHistoryDto {
 	private String prodTitle;
 	private String mainCategory;
 	private String subcategory;
+	private Integer bizId;
+	private String token; // 토큰
 }

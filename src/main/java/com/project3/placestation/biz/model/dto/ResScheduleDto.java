@@ -14,4 +14,12 @@ public class ResScheduleDto {
 	private Integer startTime;
 	private Integer endTime;
 	private String purchaseDate;
+	private String adminHisNo; //
+	private Integer adminHisProdNo;
+	private String adminHisCreatedAt;
+	private Integer adminHisBuyerId;
+	private String cancelYn;
+	private String cancelAt;
+	private Integer cancelAmount;
+
 }

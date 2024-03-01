@@ -31,12 +31,12 @@ public class ProductRestController {
 		try {
 			// date 값과 같은 날짜인 start_time 과 end_time을 받아옵니다.
 			List<ProductInvalidDateDto> list = adminProdHistoryService.findProductInvalidByProdNo(prodNo , date);
-			ProductValidDateTimeDto dateTimeDto = new ProductValidDateTimeDto();
 			log.info(date);
-			System.out.println(prodNo);
 			log.info(list.toString());
+			
+			// 만약 객체가 있다면 시간 배열 가져오기
 			if (!list.isEmpty()) {
-				int[] resArray = dateTimeDto.conversionTime(date, list);
+				int[] resArray = adminProdHistoryService.conversionTime(date, list);
 				log.info(Arrays.toString(resArray));
 				return new ResponseEntity<>(resArray, HttpStatus.OK);
 			}

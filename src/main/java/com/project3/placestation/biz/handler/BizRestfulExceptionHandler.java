@@ -10,8 +10,8 @@ import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 @Order(1)
 @RestControllerAdvice
 public class BizRestfulExceptionHandler {
-	
-	// 모든 예외 클래스 설정 
+
+	// 모든 예외 클래스 설정
 	@ExceptionHandler(Exception.class)
 	public void exception(Exception e) {
 		System.out.println("--------------");
@@ -19,7 +19,7 @@ public class BizRestfulExceptionHandler {
 		System.out.println(e.getMessage());
 		System.out.println("--------------");
 	}
-	
+
 	@ExceptionHandler(CustomRestfulException.class)
 	public String basicException(CustomRestfulException e) {
 		StringBuffer sb = new StringBuffer();
@@ -29,5 +29,5 @@ public class BizRestfulExceptionHandler {
 		sb.append("</script>");
 		return sb.toString();
 	}
-	
+
 }
