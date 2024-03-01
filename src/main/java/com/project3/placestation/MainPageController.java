@@ -14,8 +14,8 @@ public class MainPageController {
 	//http://localhost:80/main/index
 	@GetMapping("/index")
 	public String indexGET() {
-		log.debug("index 페이지호출");
-		return "main/index";
+		log.debug("index(메인) 페이지호출");
+		return "product/main";
 	}
 	
 	
