@@ -12,13 +12,35 @@ img {
 .module.bg-dark-60.shop-page-header {
  	background-image: url('/assets/img/dog.jpg');
     cursor: pointer;
+    background-position: 100% 50%; /* 배경 이미지를 오른쪽에 정렬합니다. */
+    transition: background-position 1s ease; /* 배경 이미지 이동에 부드러운 애니메이션 효과를 추가합니다. */
     
   	
 }
 
+
+  .btn-next, .btn-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .btn-next {
+    right: 20px;
+  }
+  
+  .btn-prev {
+    left: 20px;
+  }
+
 </style>
 
-	<script>
+	 <script>
 		  let currentImageIndex = 0;
 		  const images = [
 		    '/assets/img/dog.jpg',
@@ -26,16 +48,18 @@ img {
 		    '/assets/img/bird.jpg'
 		  ];
 		
-		  function changeBackground() {
+		  function nextBackground() {
 		    currentImageIndex = (currentImageIndex + 1) % images.length;
 		    const section = document.querySelector('.module.bg-dark-60.shop-page-header');
 		    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
 		  }
-		
-		  // 2초마다 changeBackground 함수를 호출하여 배경 이미지를 변경합니다.
-		  setInterval(changeBackground, 2000);
-	</script>
-
+		  
+		  function prevBackground() {
+		    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+		    const section = document.querySelector('.module.bg-dark-60.shop-page-header');
+		    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
+		  }
+	 </script>
 
 
 
@@ -50,6 +74,8 @@ img {
 				</div>
 			</div>
 		</div>
+		    <button class="btn-prev" onclick="prevBackground()">‹</button>
+   			<button class="btn-next" onclick="nextBackground()">›</button>
 	</section>
 
 
