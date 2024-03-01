@@ -124,11 +124,47 @@ insert into product (
     ,129.02526756 , 35.1112677103576
 );
 
+insert into admin_prod_history (
+	admin_his_no , 
+    admin_his_prod_no, 
+    admin_his_price ,
+    admin_his_use_point ,
+    admin_his_save_point ,
+    admin_his_discount ,
+    admin_his_charge ,
+    admin_his_prod_name ,
+    admin_his_seller_id ,
+    admin_his_confirm ,
+    admin_his_buyer_id ,
+    bank ,
+    start_time ,
+    end_time,
+    people_count
+) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2) ,
+('OXDSAD-Dvdska' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-Djpwdqjpo' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-Dewqjdq' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-DNSKAdsds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAdsaD-DNSdsaKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-DNSKdss1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSdsaAD-DNSdKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-DNvSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('aOXDdsaSAD-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-DNSxzKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSdAD-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSdsaAD-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAdasD-DNSKds1dsa' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSADdsa-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OasXDSAD-cDNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
+('OXDSAD-qweniqo' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2);
 
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into biz (biz_id,biz_brand_name,biz_hp,biz_tel,biz_email)
 values
 (1111,'직방','01012341234','021231234','dabang@naver.com'),
@@ -214,7 +250,11 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
+<<<<<<< HEAD
 ) values ('OXDS231AD-SAACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',5,6,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+=======
+) values ('OXDS231AD-SAACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',5,6,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+>>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -233,7 +273,11 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
+<<<<<<< HEAD
 ) values ('OXDS231AD-FSACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+=======
+) values ('OXDS231AD-FSACSA' ,4,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+>>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -252,7 +296,11 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
+<<<<<<< HEAD
 ) values ('OXDS231AD-VDACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',7,8,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+=======
+) values ('OXDS231AD-VDACSA' ,1,150000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',7,8,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+>>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -271,7 +319,11 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
+<<<<<<< HEAD
 ) values ('OXDS231AD-DSANKLN' ,1,33000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',9,10,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+=======
+) values ('OXDS231AD-DSANKLN' ,1,3000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',9,10,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+>>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -290,7 +342,11 @@ insert into admin_prod_history (
     people_count ,
     purchase_date ,
     admin_his_created_at
+<<<<<<< HEAD
 ) values ('OXDS231AD-KOPKP' ,1,330000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',11,12,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+=======
+) values ('OXDS231AD-KOPKP' ,1,30000 ,0,0,0,0,'타이틀' , 1,true ,3 ,'한화은행',11,12,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+>>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -395,6 +451,10 @@ insert into company values ('PlaceStation' , '부산광역시 부산진구 중�
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 INSERT INTO FAQ_BOARD(F_BNO, F_WRITER, F_CONTENT, F_TITLE)VALUES (1, 1, '로그인 하고 싶어요', '로그인이 안 돼요');
 
 insert into banner (ban_name)

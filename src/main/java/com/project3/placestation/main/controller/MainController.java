@@ -35,9 +35,13 @@ public class MainController {
 	
 	@Autowired
 	ProductService productService;
+<<<<<<< HEAD
 	
 	
 	// http://localhost:80/product/search-page
+=======
+
+>>>>>>> c3278e901e2712ada31e601f7086d0f5065ad142
 	@GetMapping("/search-page")
 	public String searchPageForm(@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "size", defaultValue = "3") int size,
