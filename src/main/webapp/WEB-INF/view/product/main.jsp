@@ -8,22 +8,34 @@
 img {
 	border-radius: 10px;
 }
+
+.module.bg-dark-60.shop-page-header {
+    background-image: url('/assets/img/dog.jpg');
+  	
+}
+
 </style>
 
 
+
+
 <div class="main">
+
+
 	<!-- 배너 이미지 -->
-	<section class="module bg-dark-60 shop-page-header"
-		data-background="/assets/images/shop/product-page-bg.jpg">
-		<div class="container">
+	<section class="module bg-dark-60 shop-page-header">
+		<div class="container"style = "margin-top: 150px;">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
-					<h2 class="module-title font-alt">하~이</h2>
+					<h2 class="module-title font-alt">사진자리</h2>
 					<div class="module-subtitle font-serif">가나다라마바사</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+
+
 
 	<!-- PlaceStation의 추천!! -->
 	<section class="module" id="news">
