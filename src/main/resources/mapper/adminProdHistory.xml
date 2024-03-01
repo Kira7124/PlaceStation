@@ -118,7 +118,7 @@
 		h.admin_his_no AS adminHisNo,
 		h.admin_his_prod_no AS
 		adminHisProdNo,
-		h.admin_his_price + h.ADMIN_HIS_CHARGE AS adminHisPrice,
+		h.admin_his_price AS adminHisPrice,
 		h.admin_his_use_point AS adminHisUsePoint,
 		h.admin_his_save_point AS
 		adminHisSavePoint,

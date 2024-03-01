@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqProdMainCategoryDto;
 import com.project3.placestation.biz.model.dto.ReqProdSubcategoryDto;
@@ -22,10 +23,12 @@ import com.project3.placestation.biz.model.dto.ReqUpdateProductDto;
 import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.filedb.service.FiledbService;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.ProdMajorCategoryService;
 import com.project3.placestation.service.ProdSubcategoryService;
 import com.project3.placestation.service.ProductService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -44,14 +47,22 @@ public class BizProductController {
 
 	@Autowired
 	ProdSubcategoryService prodSubcategoryService;
+	
+	@Autowired
+	HttpSession httpSession;
 
 	// http://localhost/biz/product-management
 	@GetMapping("/product-management")
 	public String productManagementForm(Model model) {
 
-		int userId = 1;
+		// 유효성 검사
+		Member member = (Member) httpSession.getAttribute("member"); 
 
-		List<ResProductDto> dto = bizProductService.findAll(userId);
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		List<ResProductDto> dto = bizProductService.findAll(member.getUserno());
 		model.addAttribute("products", dto);
 		return "biz/product/biz_product_management";
 	}
@@ -98,6 +109,13 @@ public class BizProductController {
 	public String addProduct(ReqProductDto dto) {
 		log.info(dto.toString());
 		// 1. 유효성 검사
+		// 유효성 검사
+		Member member = (Member) httpSession.getAttribute("member"); 
+
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 		if (dto.getProdTitle() == null || dto.getProdTitle().isEmpty()) {
 			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_TITLE, HttpStatus.BAD_REQUEST);
 		}
@@ -165,7 +183,7 @@ public class BizProductController {
 			throw new CustomRestfulException("이미지 저장시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		bizProductService.saveProduct(filePath, dto);
+		bizProductService.saveProduct(filePath, member.getUserno() ,  dto);
 
 		return "redirect:/biz/product-management";
 	}
@@ -257,6 +275,13 @@ public class BizProductController {
 	public String deleteProduct(@PathVariable(value = "prodNo") Integer prodNo,
 			@RequestParam(value = "prodDeleteReason") String prodDeleteReason) {
 
+		// 유효성 검사
+		Member member = (Member) httpSession.getAttribute("member"); 
+
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 		if(prodDeleteReason == null || prodDeleteReason.isEmpty()) {
 			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_REASON, HttpStatus.BAD_REQUEST);
 		}

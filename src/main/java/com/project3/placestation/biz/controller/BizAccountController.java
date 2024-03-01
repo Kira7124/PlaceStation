@@ -5,22 +5,27 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.repository.entity.BizJoin;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.ProductService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -41,6 +46,12 @@ public class BizAccountController {
 	@Autowired
 	ProductService productService;
 	
+	@Autowired
+	HttpSession httpSession;
+	
+	@Autowired
+	PasswordEncoder encoder;
+	
 
 	/**
 	 * 사업자 유저 상세 조회
@@ -51,17 +62,21 @@ public class BizAccountController {
 	@GetMapping("/account-management")
 	public String accountManagementForm(Model model) {
 		
-		int userId = 1;
+		// 멤버 받기
+		Member member = (Member) httpSession.getAttribute("member"); 
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
 		
 		// 회원 정보
-		BizJoin biz = memberService.SelectJoinBiz(userId);
+		BizJoin biz = memberService.SelectJoinBiz(member.getUserno());
 		if(biz == null) {
 			throw new CustomRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		// 상품 정보
-		List<ResProductDto> products = productService.findProductAllByUserId(userId);
+		List<ResProductDto> products = productService.findProductAllByUserId(member.getUserno());
 		
 		log.info(biz.toString());
 		log.info(products.toString());
@@ -78,8 +93,12 @@ public class BizAccountController {
 	 */
 	@GetMapping("/account/update-form")
 	public String updateForm(Model model) {
-		
-		int userId = 1;
+		// 멤버 받기
+		Member member = (Member) httpSession.getAttribute("member"); 
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		int userId = member.getUserno();
 		BizJoin dto = memberService.SelectJoinBiz(userId);
 		
 		if(dto == null) {
@@ -159,14 +178,22 @@ public class BizAccountController {
 			filePath = filedbService.saveFiles(accountDto.getProfile());
 		}
 		
-		int userId = 1;
+		// 멤버 받기
+		Member member = (Member) httpSession.getAttribute("member"); 
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		int userNo = member.getUserno();
 		
 		log.info(filePath);
-		// 업데이트
-		accountDto.setFilePath(filePath);
-		memberService.BizUpdateMember(accountDto , 1);
-		bizService.updateBizByBizId(accountDto , userId);
 		
+		// 업데이트
+		String changinPassword = accountDto.getUserPassword();
+		String encode = encoder.encode(changinPassword);
+		accountDto.setUserPassword(encode);
+		accountDto.setFilePath(filePath);
+		memberService.BizUpdateMember(accountDto , userNo);
+		bizService.updateBizByBizId(accountDto , userNo);
 		
 		return "redirect:/biz/account-management";
 	}

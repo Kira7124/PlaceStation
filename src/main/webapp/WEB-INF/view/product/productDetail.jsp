@@ -645,7 +645,7 @@
 										<div class="row mb-20">
 											<div class="col-sm-12">
 												<input class="form-control input-lg" type="number"
-													name="price" value="50000" required="required" disabled />
+													name="price" value="${product.prodPrice}" required="required" disabled />
 											</div>
 										</div>
 									</div>
@@ -656,7 +656,7 @@
 										<div class="row mb-20">
 											<div class="col-sm-12">
 												<input class="form-control input-lg" type="number"
-													name="people" max="6" min="1" required="required" />
+													name="people" max="${product.prodMaximumPeople}" min="1" required="required" />
 											</div>
 										</div>
 									</div>

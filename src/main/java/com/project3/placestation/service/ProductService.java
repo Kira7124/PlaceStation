@@ -36,9 +36,9 @@ public class ProductService {
 	 * @param dto
 	 */
 	@Transactional
-	public void saveProduct(String filePath, ReqProductDto dto) {
+	public void saveProduct(String filePath, int userNo , ReqProductDto dto) {
 
-		Product product = Product.builder().prodWriterNo(1).prodTitle(dto.getProdTitle())
+		Product product = Product.builder().prodWriterNo(userNo).prodTitle(dto.getProdTitle())
 				.prodStartTime(dto.getProdStartTime()).prodEndTime(dto.getProdEndTime()).prodPrice(dto.getProdPrice())
 				.prodSpaceInfo(dto.getProdSpaceInfo()).prodGoodsInfo(dto.getProdGoodsInfo())
 				.prodCautionInfo(dto.getProdCautionInfo()).prodMaximumPeople(dto.getProdMaximumPeople())
@@ -114,7 +114,7 @@ public class ProductService {
 					filePath = receiveFilePath.split(",");
 				}
 
-				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
 						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
 						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
 						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
@@ -152,7 +152,7 @@ public class ProductService {
 					filePath = receiveFilePath.split(",");
 				}
 
-				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
 						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
 						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
 						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
@@ -190,7 +190,7 @@ public class ProductService {
 					filePath = receiveFilePath.split(",");
 				}
 
-				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
 						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
 						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
 						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
@@ -227,7 +227,7 @@ public class ProductService {
 			filePath = receiveFilePath.split(",");
 		}
 
-		ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+		ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
 				.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
 				.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
 				.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
@@ -275,7 +275,7 @@ public class ProductService {
 					filePath = receiveFilePath.split(",");
 				}
 
-				ResProdMainFilterDto dto = ResProdMainFilterDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+				ResProdMainFilterDto dto = ResProdMainFilterDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
 						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
 						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
 						.prodSpaceInfo(product.getProdSpaceInfo()).filePath(filePath)

@@ -14,8 +14,10 @@ import com.project3.placestation.biz.model.dto.BizMonthlyFeeDto;
 import com.project3.placestation.biz.model.dto.ResStatisticDto;
 import com.project3.placestation.biz.model.dto.StatisticDto;
 import com.project3.placestation.biz.model.util.StatisticKind;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.AdminProdHistoryService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -26,6 +28,8 @@ public class BizStatisticRestController {
 	@Autowired
 	AdminProdHistoryService adminProdHistoryService;
 
+	@Autowired
+	HttpSession httpSession;
 	/**
 	 * 사업자 통계
 	 * 
@@ -35,8 +39,13 @@ public class BizStatisticRestController {
 	@GetMapping("/all")
 	public ResponseEntity<?> getAll() {
 		try {
-
-			int bizId = 1; 
+			// 멤버 받기
+			Member member = (Member) httpSession.getAttribute("member"); 
+			if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+				return new ResponseEntity<>(false , HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			int bizId = member.getUserno(); 
+			
 			List<StatisticDto> annualList = exchangeList(adminProdHistoryService.findStatisticSales(bizId, StatisticKind.ANNUAL)); // 년간 매출
 			
 			
@@ -79,7 +88,7 @@ public class BizStatisticRestController {
 	}
 
 	/**
-	 * 
+	 * 환불처리된 금액은 제외
 	 * @param list
 	 * @return
 	 */

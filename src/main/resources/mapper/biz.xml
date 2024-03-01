@@ -125,7 +125,7 @@
 		select imp_uid as impUid , imp_key as imp_key , imp_secret
 		as impSecret
 		from biz
-		where biz_no = #{bizNo}
+		where biz_id = #{bizNo}
 	</select>
 
 </mapper>

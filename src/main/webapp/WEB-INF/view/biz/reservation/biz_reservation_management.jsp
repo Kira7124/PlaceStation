@@ -65,7 +65,7 @@
 											<td>${historyDto.prodTitle}</td>
 											<td>${historyDto.userName}</td>
 											<td>${historyDto.userGrade}</td>
-											<td>${historyDto.adminHisPrice}</td>
+											<td>${historyDto.adminHisPrice + historyDto.adminHisCharge}</td>
 											<td>${historyDto.peopleCount}명</td>
 											<td>${historyDto.bank}</td>
 											<td>${historyDto.purchaseDate}&nbsp
@@ -108,7 +108,10 @@
 																		data-dismiss="modal">닫기</button>
 
 																	<input type="hidden" name="merchantUid"
-																		value="${historyDto.adminHisNo}" /> <input
+																		value="${historyDto.adminHisNo}" /> 
+																		<input type="hidden" name="adminHisSellerId"
+																		value="${historyDto.adminHisSellerId}" /> 
+																		<input
 																		type="hidden" name="adminHisCreatedAt"
 																		value="${historyDto.adminHisCreatedAt}" /> <input
 																		type="hidden" name="purchaseDate"

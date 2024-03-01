@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.biz.model.util.BizDefine;
@@ -23,12 +24,14 @@ import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.payment.model.dto.ReqPaymentPageDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
 import com.project3.placestation.repository.entity.Grade;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.GradeService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.ProductService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -50,9 +53,12 @@ public class PaymentController {
 	
 	@Autowired
 	GradeService gradeService;
+	
+	@Autowired
+	HttpSession httpSession;
 
 	/**
-	 * payment 메인 폼 넘어가기 (수정 필요)
+	 * payment 메인 폼 넘어가기
 	 * 
 	 * @param dto
 	 * @return
@@ -106,15 +112,19 @@ public class PaymentController {
 			throw new CustomRestfulException(BizDefine.DUPLICATED_TIME, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		// 유저 정보 ( 수정 필요 )
-		int userNo = 7;
-		PaymentMemberDto member = memberService.findMemberById(userNo);
+		// 유효성 검사
+		Member member = (Member) httpSession.getAttribute("member"); 
+
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		PaymentMemberDto memberDto = memberService.findMemberById(member.getUserno());
 
 		// 상품 writerNo 값으로 포트원 키 찾기
 		PaymentFortOneKeyDto fortOneKeyDto = bizService.findFortOneKeyByBizNo(product.getProdWriterNo());
 
 		// 유저 등급별 discount (수정 필요)
-		Grade grade = gradeService.findByGradeName(member.getUserGrade());
+		Grade grade = gradeService.findByGradeName(memberDto.getUserGrade());
 		
 		int discountPercent = grade.getGradeDiscount();
 		// 총합 계산
@@ -130,7 +140,7 @@ public class PaymentController {
 		// 2. 데이터 넘겨주기
 		model.addAttribute("product", product);
 		model.addAttribute("order", order);
-		model.addAttribute("member", member);
+		model.addAttribute("member", memberDto);
 		model.addAttribute("fortOneKey", fortOneKeyDto);
 
 		return "payment/paymentMain";
@@ -153,7 +163,6 @@ public class PaymentController {
 		// 비교
 		if (comparisonDate != null && comparisonDate.before(today)) {
 			// 오늘보다 날짜가 낮으면
-
 			return true;
 		} else {
 			// 오늘보다 날짜가 크면

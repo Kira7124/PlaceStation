@@ -20,6 +20,7 @@ import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.payment.model.common.PaymentDaySince;
 import com.project3.placestation.payment.model.dto.PaymentDto;
 import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
+import com.project3.placestation.payment.model.dto.PaymentRefundDto;
 import com.project3.placestation.payment.model.dto.PaymentReqDto;
 import com.project3.placestation.payment.model.dto.PaymentTokenDto;
 
@@ -203,12 +204,13 @@ public class PaymentService {
 
 // API 호출
 		// code = 0 이 환불 완료 / 나머지 환불 취소 오류
-		ResponseEntity<String> refund = restTemplate.exchange("https://api.iamport.kr/payments/cancel", HttpMethod.POST,
-				entity3, String.class);
+		ResponseEntity<PaymentRefundDto> refund = restTemplate.exchange("https://api.iamport.kr/payments/cancel", HttpMethod.POST,
+				entity3, PaymentRefundDto.class);
 		log.info("환불 신청 : " + refund);
 
 //        Api 검증 
-		if (refund.getBody() == null || refund.getBody().isEmpty()) {
+		if (refund.getBody() == null || refund.getBody().getCode() != 0) {
+			log.info("환불 신청 메시지 : " + refund.getBody().getMessage());
 			return false;
 		}
 		return true;

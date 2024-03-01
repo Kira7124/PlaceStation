@@ -4,14 +4,15 @@ import org.springframework.http.HttpStatus;
 
 import lombok.Getter;
 
-@Getter
-public class CustomRestfulException extends RuntimeException {
+public class CustomLoginRestfulException extends RuntimeException {
 
+	// 상태코드
 	private HttpStatus httpStatus;
 
-	public CustomRestfulException(String message, HttpStatus httpStatus) {
+	public CustomLoginRestfulException(String message, HttpStatus httpStatus) {
 		super(message);
 		this.httpStatus = httpStatus;
 	}
+	// 사용하는 시점에 활용가능
 
 }

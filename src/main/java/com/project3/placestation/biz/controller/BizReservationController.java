@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.BizHistoryDto;
 import com.project3.placestation.biz.model.dto.ReqBizHistoryRefundDto;
@@ -19,12 +20,14 @@ import com.project3.placestation.payment.model.common.PaymentDaySince;
 import com.project3.placestation.payment.model.dto.PaymentDto;
 import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
 import com.project3.placestation.repository.entity.Company;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.CompanyService;
 import com.project3.placestation.service.PaymentService;
 import com.project3.placestation.service.ProductService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -48,6 +51,9 @@ public class BizReservationController {
 	@Autowired
 	CompanyService companyService;
 	
+	@Autowired
+	HttpSession httpSession;
+	
 
 	// http://localhost/biz/reservation-management
 	@GetMapping("/reservation-management")
@@ -61,10 +67,15 @@ public class BizReservationController {
 		log.info("size = " + size);
 		log.info("text = " + text);
 		
-		int userId = 1;
+		// 유효성 검사
+		Member member = (Member) httpSession.getAttribute("member"); 
+
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
 		PageReq pageReq = new PageReq(page,size);
-		PageRes<BizHistoryDto> pageRes = adminProdHistoryService.findByBizId(userId, pageReq , text);
+		PageRes<BizHistoryDto> pageRes = adminProdHistoryService.findByBizId(member.getUserno(), pageReq , text);
 
 		log.info(pageRes.toString());
 		
@@ -83,12 +94,19 @@ public class BizReservationController {
 	}
 	
 	/**
-	 *  사업자가 환불 ( 수 정 필 요 )
+	 *  사업자가 환불
 	 * @param bizHistoryRefundDto
 	 * @return
 	 */
 	@PostMapping("/reservation-management/refund") 
 	public String refund(ReqBizHistoryRefundDto bizHistoryRefundDto) {
+		
+		// 유효성 검사
+		Member member = (Member) httpSession.getAttribute("member"); 
+
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		
 		log.info(bizHistoryRefundDto.toString());
 		if(bizHistoryRefundDto.getReason() == null || bizHistoryRefundDto.getReason().isEmpty()) {
@@ -110,9 +128,8 @@ public class BizReservationController {
 			throw new CustomRestfulException(BizDefine.NO_VALID_AMOUNT_HISTORY_DATE, HttpStatus.BAD_REQUEST);
 		}
 		
-		// 사업자 No 값으로 상세 조회 - impUid 값 필요 ( 수 정 필 요 )
-		int userNo = 1;
-		PaymentFortOneKeyDto fortOne = bizService.findFortOneKeyByBizNo(userNo);
+		// 사업자 No 값으로 상세 조회 - impUid 값 필요 
+		PaymentFortOneKeyDto fortOne = bizService.findFortOneKeyByBizNo(bizHistoryRefundDto.getAdminHisSellerId());
 		if(fortOne.getImpUid() == null | fortOne.getImpUid().isEmpty()) {
 			throw new CustomRestfulException(BizDefine.NO_VALID_IMP_UID, HttpStatus.BAD_REQUEST);
 		}
