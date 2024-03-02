@@ -29,11 +29,10 @@
     <!-- 리뷰 삭제 -->
     <update id="deleteReview">
         update prod_review SET
-        prod_rev_update_at = NOW(),
         prod_rev_delete_yn = 'Y',
         prod_rev_delete_at = NOW()
         WHERE prod_rev_no =
-        #{prodRevNo}
+        #{prodRevNo} or parent_id = #{prodRevNo}
     </update>
 
     <!-- 상품 번호로 리뷰 불러오기 -->
@@ -53,12 +52,12 @@
 	
 	<!-- 리뷰 개수 count -->
 	<select id="countReview">
-        SELECT COUNT(*) FROM prod_review WHERE prod_no = #{prodNo}
+        SELECT COUNT(*) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_delete_yn = 'N'
     </select>
     
     <!-- 리뷰 평균 평점 -->
     <select id="avgStar">
-        SELECT ROUND(AVG(prod_rev_star) , 1) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_star != 0
+        SELECT ROUND(AVG(prod_rev_star) , 1) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_star != 0 AND prod_rev_delete_yn = 'N'
     </select>
     
 </mapper>

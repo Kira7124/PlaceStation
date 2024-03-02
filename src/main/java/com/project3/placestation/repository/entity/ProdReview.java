@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ProdReview {
-
+	  
     private Integer prodRevNo;
     private Integer prodNo;
     private String prodRevContent;

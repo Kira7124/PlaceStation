@@ -237,7 +237,8 @@
 												</span>
 											</div>
 											<div style="float: right; clear: both; margin-right: 15px;">
-												평균 <span style="color:  #FFD700;">${avgStar}</span> 점</div>
+												평균 <span style="color: #FFD700;">${avgStar}</span> 점
+											</div>
 										</c:if>
 										<c:if test="${avgStar == 0}">
 											<span class="comment-star"> <c:forEach begin="1"
@@ -418,24 +419,32 @@
 																		<div class="comment-author font-alt">
 																			<p>
 																				유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
-																				<button class="btn btn-danger btn-sm"
-																					onclick="deleteReview(${review.prodRevNo})">리뷰
+																			<form id="deleteReview"
+																				action="/product/deleteReview/${review.prodRevNo}"
+																				method="post" style="display: inline;">
+																				<input type="hidden" name="prodRevNo"
+																					value="${review.prodRevNo}"> <input
+																					type="hidden" name="prodNo"
+																					value="${product.prodNo}">
+																				<button type="submit" class="btn btn-danger btn-sm">리뷰
 																					삭제</button>
-																				<span class="comment-star"> <c:if
-																						test="${review.prodRevStar != 0}">
-																						<c:forEach begin="1" end="${review.prodRevStar}">
-																							<i class="fa fa-star star"></i>
-																						</c:forEach>
-																						<c:forEach begin="${review.prodRevStar + 1}"
-																							end="5">
-																							<i class="fa fa-star star-off"></i>
-																						</c:forEach>
-																					</c:if></span>
+																			</form>
+																			<span class="comment-star"> <c:if
+																					test="${review.prodRevStar != 0}">
+																					<c:forEach begin="1" end="${review.prodRevStar}">
+																						<i class="fa fa-star star"></i>
+																					</c:forEach>
+																					<c:forEach begin="${review.prodRevStar + 1}"
+																						end="5">
+																						<i class="fa fa-star star-off"></i>
+																					</c:forEach>
+																				</c:if></span>
 																			</p>
 																		</div>
 																	</div>
-																	<div class="comment-body" style="margin-left: 75px; word-wrap: break-word;">
-																		<p style="margin-right:55px;">${review.prodRevContent}</p>
+																	<div class="comment-body"
+																		style="margin-left: 75px; word-wrap: break-word;">
+																		<p style="margin-right: 55px;">${review.prodRevContent}</p>
 																	</div>
 																	<!-- 대댓글 버튼 추가 -->
 																	<c:if test="${review.parentId == null}">
@@ -481,7 +490,8 @@
 															</div>
 															<!-- 대댓글 출력 -->
 															<c:forEach items="${reviewProdNo}" var="reply">
-																<c:if test="${reply.parentId == review.prodRevNo}">
+																<c:if
+																	test="${reply.parentId == review.prodRevNo && reply.prodRevDeleteYn ne 'Y'}">
 																	<div class="comment clearfix"
 																		style="margin-left: 30px;">
 																		<!-- 대댓글 내용 출력 -->
@@ -493,9 +503,16 @@
 																			<div class="comment-author font-alt">
 																				<p>
 																					유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
-																					<button class="btn btn-danger btn-sm"
-																						onclick="deleteReview(${review.prodRevNo})">리뷰
+																				<form id="deleteReview"
+																					action="/product/deleteReview/${reply.prodRevNo}"
+																					method="post" style="display: inline;">
+																					<input type="hidden" name="prodRevNo"
+																						value="${reply.prodRevNo}"> <input
+																						type="hidden" name="prodNo"
+																						value="${product.prodNo}">
+																					<button type="submit" class="btn btn-danger btn-sm">리뷰
 																						삭제</button>
+																				</form>
 																			</div>
 																			<div class="comment-body">
 																				<p>${reply.prodRevContent}</p>
@@ -971,15 +988,8 @@
     	    }
     	}
 
-      function deleteReview(prodRevNo) {
-          if (confirm("리뷰를 삭제하시겠습니까?")) {
-
-              window.location.href = "/product/deleteReview/" + prodRevNo;
-          }
-      }
-
   </script>
-<!-- include.jsp -->
-<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+	<!-- include.jsp -->
+	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 </body>
 </html>
