@@ -33,7 +33,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="/admin/admin-main" style="color:black;">
+				<a href="/main/index" style="color:black;">
 					<img src="/logo/logo.jpg.png" style ="width: 80px; height: 40px;">
 				</a>
 			</div>

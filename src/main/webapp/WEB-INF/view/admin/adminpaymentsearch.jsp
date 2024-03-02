@@ -51,6 +51,7 @@
 							<tr>
 								<th>상품번호</th>
 								<th>사업자번호</th>
+								<th>사업자아이디</th>
 								<th>사업자잔액</th>								
 								<th>결제금액</th>
 								<th>상품명</th>
@@ -64,20 +65,33 @@
 							<tr>
 								<td>${searchpaymentlist.adminHisProdNo}</td>
 								<td>${searchpaymentlist.bizId}</td>
+								<td>${searchpaymentlist.userId}</td>
 								<td>${searchpaymentlist.bizBalance}</td>
 								<td>${searchpaymentlist.adminHisPrice}</td>
 								<td>${searchpaymentlist.adminHisProdName}</td>
 								<td>${searchpaymentlist.bank}</td>
 								<td>
-								  <span class="label label-success">확정</span>
-								  <span class="label label-danger">취소</span>
+								    <c:choose>
+								        <c:when test="${searchpaymentlist.adminHisConfirm}">
+								            <span class="label label-success">확정</span>
+								        </c:when>
+								        <c:otherwise>
+								            <span class="label label-danger">취소</span>
+								        </c:otherwise>
+								    </c:choose>
 								</td>
 								<td>
-									<a href ="/admin/admin-paymentcancel">
-									  <span class="label label-info">환불</span>
-									</a>		  
-								  <span class="label label-info">환불완료</span>
-								</td>								
+								    <c:choose>
+								        <c:when test="${searchpaymentlist.cancelYn eq 'N'}">
+								          <a href ="/admin/admin-paymentcancel" data-toggle="modal" data-target="#cancelModal">
+								            <span class="label label-info">환불</span>
+								          </a>
+								        </c:when>
+								        <c:when test="${searchpaymentlist.cancelYn eq 'Y'}">
+								            <span class="label label-info">환불완료</span>
+								        </c:when>
+								    </c:choose>
+								</td>									
 							</tr>
 						</tbody>
 					  </c:forEach>
