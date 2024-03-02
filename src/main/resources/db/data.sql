@@ -536,3 +536,11 @@ insert into addition_explanation (file_path , name) values ('/assets/images/biz/
 ('/assets/images/biz/speaker.png','블루투스 스피커'),
 ('/assets/images/biz/sliper.png','실내화'),
 ('/assets/images/biz/tripod.png','삼각대');
+
+
+
+insert into party (party_name , party_title , party_description , party_host, party_maximum_people , party_manager , product_no ,admin_his_no
+) values ('모임 이름 ' , '모임 타이틀' , '모임 설명' , 28 , 6 , null , 3 , 1 );
+
+insert into party_announcement (party_no , party_announcement_title , party_announcement_description
+) values (1 , '모임 공지 타이틀' , '모임 공지 설명');

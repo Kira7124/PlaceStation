@@ -4,8 +4,6 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 </div>
 </nav>
-
-
 <div class="main">
 	<section class="module-small">
 		<div class="container">
@@ -21,35 +19,84 @@
 
 						</div>
 						<div class="post-header font-alt"></div>
-
-						<!-- 카테고리 섹션 -->
-						<section class="module">
-							<div>
-								<div class="panel ">
-									<div class="container">
-										<ul
-											class="works-grid works-grid-gut works-grid-3 works-hover-w col-md-7"
-											id="works-grid">
-											<c:forEach var="tag" items="${tag}">
-												<li class="work-item illustration webdesign"><a
-													href="/cs/qna/qna-write/${tag.categoryId}">
-														<div class="work-image">
-															<img src="${tag.filePath}" alt="Portfolio Item" style="width:75%; height: 75%;" />
-														</div>
-														<div class="work-caption font-alt">
-															<h3 class="work-title">${tag.categoryName}</h3>
-															<div class="work-descr">${tag.categoryDescription}</div>
-														</div>
-												</a></li>
-											</c:forEach>
-										</ul>
-									</div>
+						<div class="search">
+							<form role="form" action="/cs/qna">
+								<div class="search-box">
+									<input class="form-control" type="text" placeholder="Search..."
+										name="search" />
+									<button class="search-btn" type="submit">
+										<i class="fa fa-search"></i>
+									</button>
 								</div>
-							</div>
-						</section>
-						<!-- 카테고리 섹션 종료 -->
-
+							</form>
+						</div>
 						<div></div>
+					</div>
+					<div class="comments" style="text-align: right;">
+						<h5>
+							<a href="/cs/qna/qna-tag" class="btn btn-default btn-round"
+								type="button">글 쓰기</a>
+						</h5>
+					</div>
+
+					<div>
+						<div class="panel panel-default">
+							<c:forEach var="qnaList" items="${qnaList}">
+								<div class="panel-heading">
+									<h4 class="panel-title font-alt">
+										<a class="collapsed" data-toggle="collapse"
+											data-parent="#accordion" href="#support${qnaList.qbno}">
+											<p style="text-align: left;">${qnaList.qtitle}</p> 등록일 :
+											${qnaList.qregdate}
+										</a>
+
+									</h4>
+								</div>
+								<div class="panel-collapse collapse" id="support${qnaList.qbno}">
+									<div class="panel-body">
+										<p>${qnaList.qcontent}</p>
+
+
+										<img src="${qnaList.filepath}" />
+									</div>
+
+								<c:choose>
+									<c:when test="${qnaList.qstatus == '완료'}">
+										<div class="panel-body">
+											<hr />
+											<h4>관리자</h4>
+											<p>${qnaList.qreply}</p>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="panel-body">
+											<hr />
+											<h3>아직 답변 글이 없습니다.</h3>
+										</div>
+									</c:otherwise>
+									</c:choose>
+								</div>
+
+							</c:forEach>
+						</div>
+					</div>
+					<div class="pagination font-alt">
+						<c:if test="${pageVO.prev}">
+							<a href="/cs/qna?page=${pageVO.startPage - 1}"><i
+								class="fa fa-angle-left"></i></a>
+						</c:if>
+
+						<c:forEach var="i" begin="${pageVO.startPage}"
+							end="${pageVO.endPage}" step="1">
+							<c:set var="isActive" value="${pageVO.cri.page == i}" />
+							<li class="page-item ${isActive ? 'active' : ''}"><a
+								class="page-link" href="/cs/qna?page=${i}">${i}</a></li>
+						</c:forEach>
+
+						<c:if test="${pageVO.next}">
+							<a href="/cs/qna?page=${pageVO.endPage + 1}"><i
+								class="fa fa-angle-right"></i></a>
+						</c:if>
 					</div>
 				</div>
 				<!-- 메인 끝 -->

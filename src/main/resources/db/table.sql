@@ -217,3 +217,31 @@ create table qna_board_category (
     use_yn varchar(1) default 'Y',
     file_path varchar (400)
 );
+
+create table party (
+	party_no int primary key auto_increment,
+    party_name varchar ( 400 ) ,
+    party_title varchar ( 400 ) ,
+    party_description varchar ( 400 ) ,
+    party_host int ,
+    party_maximum_people int ,
+    file_path varchar ( 400 ) ,
+    party_manager int ,
+    product_no int ,
+    admin_his_no varchar ( 400 ) ,
+    party_created_at timestamp default now() ,
+	party_update_at timestamp ,
+	party_delete_at timestamp,
+    party_delete_yn varchar (1) default 'N' 
+);
+
+create table party_announcement (
+	party_announcement_no int primary key auto_increment ,
+    party_no int ,
+    party_announcement_title varchar ( 400 ) ,
+    party_announcement_description varchar ( 1000 ) ,
+    party_announcement_update_at timestamp,
+    party_announcement_delete_at timestamp,
+    party_announcement_delete_yn varchar ( 1 ) default 'N' ,
+    party_announcement_created_at timestamp default now()
+);
