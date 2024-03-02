@@ -310,6 +310,20 @@ public class AdminController {
 	}
 	
 	
+	
+	//관리자 사업자등록증 수정
+	@GetMapping("/admin-checkupdate")
+	public String admincheckUpdateGET() {
+		log.debug("checkGET UPDATE 출력");
+		return "admin/adminbizcheckupdate";
+	}
+	
+	
+	
+	
+	
+
+	
 	//관리자 환불기능 GET 처리
 	@GetMapping("/admin-paymentcancel")
 	public String adminpaymentCancelGET() {
@@ -441,6 +455,7 @@ public class AdminController {
 
 	
 	
+	//사진정보수정관리자
 	@PostMapping("/admin-photoupdate")
 	public String adminphotoupdatePOST(AdminMemberDTO dto) {
 		
@@ -452,6 +467,20 @@ public class AdminController {
 		return "redirect:/admin/admin-member";
 		
 	}
+	
+	
+	@PostMapping("/admin-checkupdate")
+	public String admincheckUpdatePOST(AdminBizDTO dto) {
+		
+		String filePath = filedbService.saveFiles(dto.getFiles());
+		log.debug("post check update실행");
+		bizService.AdminUpdateCheck(dto, filePath);
+		
+		return "redirect:/admin/admin-biz";
+		
+		
+	}
+	
 	
 	
 	
