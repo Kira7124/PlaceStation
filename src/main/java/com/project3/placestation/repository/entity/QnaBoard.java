@@ -18,7 +18,7 @@ import lombok.ToString;
 public class QnaBoard {
 	
 	private Integer qbno;
-	private String qwriter;
+	private Integer qwriter;
 	private String qcontent;
 	private String qtitle;
 	private String filepath;
@@ -29,6 +29,7 @@ public class QnaBoard {
 	private Timestamp qdeleteat;
 	private String qstatus;
 	private String qreply;
+	private String userid;
 
 	
 	//포메터(시간)

@@ -3,6 +3,7 @@ package com.project3.placestation.repository.interfaces;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.project3.placestation.admin.dto.Criteria;
@@ -35,6 +36,10 @@ public interface BizRepository {
 	
 
 	public int updateBizByBizId(@Param("biz")ReqBizAccountDto biz ,@Param("bizId")int bizId);
+	
+	
+	//사업자등록증(관리자조회)
+	public Biz detailBizFile(Integer bizNo) throws Exception;
 
 	// 사업자 포트원 키 찾기
 	public PaymentFortOneKeyDto findFortOneKeyByBizNo(int bizNo);

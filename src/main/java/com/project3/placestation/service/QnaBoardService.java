@@ -3,16 +3,21 @@ package com.project3.placestation.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project3.placestation.admin.dto.AdminQnaDTO;
 import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.repository.entity.NoticeBoard;
 import com.project3.placestation.repository.entity.QnaBoard;
 import com.project3.placestation.repository.interfaces.QnaBoardRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class QnaBoardService {
 
 	@Autowired
@@ -84,6 +89,20 @@ public class QnaBoardService {
 	}
 	
 	
-	
+	// 1 : 1 문의 저장
+	@Transactional
+	public int saveQna(int writer, String content, String title, String filePath, int categoryId) {
+
+		QnaBoard board = QnaBoard.builder().qwriter(writer).qcontent(content).qtitle(title).filepath(filePath)
+				.categoryid(categoryId).build();
+
+		int result = qnaBoardRepository.saveQna(board);
+		log.info("결과 : " + result);
+		if (result < 1) {
+			throw new CustomRestfulException("저장 시 서버 에러가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return result;
+	}
+
 	
 }

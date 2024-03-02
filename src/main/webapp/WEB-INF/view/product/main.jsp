@@ -2,84 +2,148 @@
 	pageEncoding="UTF-8"%>
 
 <!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/product/common/header.jsp"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<link rel="stylesheet" href="/css/mainpage.css" />
 
-<style>
-img {
-	border-radius: 10px;
-}
-</style>
 
 
 <div class="main">
 	<!-- 배너 이미지 -->
-	<section class="module bg-dark-60 shop-page-header"
-		data-background="/assets/images/shop/product-page-bg.jpg">
+	
+	<div class="section" style="margin-top: 150px; margin-left: 50px;">
+		<input type="radio" name="slide" id="slide01" checked>
+		<input type="radio" name="slide" id="slide02">
+		<input type="radio" name="slide" id="slide03">
+		<input type="radio" name="slide" id="slide04">
+	<div class="slidewrap">
+		
+		<ul class="slidelist">
+			<!-- 슬라이드 영역 -->
+			<li class="slideitem">
+				<a href="/main/index">
+				   <img src="/banner/welcome.jpg">
+				</a>
+			</li>
+			<li class="slideitem">
+				<a href="#">
+				   <img src="/banner/sport.jpg">
+				</a>
+			</li>
+			<li class="slideitem">
+				<a href="#">
+				   <img src="/banner/party.jpg">
+				</a>
+			</li class="slideitem">
+			<li class="slideitem">
+				<a href="#">
+				   <img src="/banner/camp.jpg">
+				</a>
+			</li class="slideitem">
+
+			<!-- 좌,우 슬라이드 버튼 -->
+			<div class="slide-control">
+				<div>
+					<label for="slide03" class="left"></label>
+					<label for="slide02" class="right"></label>
+				</div>
+				<div>
+					<label for="slide01" class="left"></label>
+					<label for="slide03" class="right"></label>
+				</div>
+				<div>
+					<label for="slide02" class="left"></label>
+					<label for="slide01" class="right"></label>
+				</div>
+				<div>
+					<label for="slide04" class="left"></label>
+					<label for="slide03" class="right"></label>
+				</div>
+				<div>
+					<label for="slide01" class="left"></label>
+					<label for="slide04" class="right"></label>
+				</div>
+			</div>
+
+		</ul>
+		<!-- 페이징 -->
+		<ul class="slide-pagelist">
+			<li><label for="slide01"></label></li>
+			<li><label for="slide02"></label></li>
+			<li><label for="slide03"></label></li>
+			<li><label for="slide04"></label></li>
+		</ul>
+	</div>
+
+	
+</div>
+ 	 
+
+
+
+
+
+
+
+
+
+	<!-- PlaceStation의 추천!! -->
+	<section class="module" id="news" style="margin-top: 50px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
-					<h2 class="module-title font-alt">하~이</h2>
-					<div class="module-subtitle font-serif">가나다라마바사</div>
+					<h2 class="module-title font-alt">PlaceStation의 추천</h2>
+					<div class="module-subtitle font-serif">설명~</div>
 				</div>
 			</div>
-		</div>
+			<div class="col-sm-6 col-md-3 col-lg-3">
+				<div class="shop-item">
+					<div class="shop-item-image">
+						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
+						<div class="shop-item-detail">
+							<a class="btn btn-round btn-b"
+								href="productDetail?prod_no=${product.prodNo}"><span
+								class="icon-basket">보러가기</span></a>
+						</div>
+					</div>
+					<h4 class="shop-item-title font-alt">
+						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+					</h4>
+					${product.prodPrice} 원/시간
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3 col-lg-3">
+				<div class="shop-item">
+					<div class="shop-item-image">
+						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
+						<div class="shop-item-detail">
+							<a class="btn btn-round btn-b"
+								href="productDetail?prod_no=${product.prodNo}"><span
+								class="icon-basket">보러가기</span></a>
+						</div>
+					</div>
+					<h4 class="shop-item-title font-alt">
+						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+					</h4>
+					${product.prodPrice} 원/시간
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3 col-lg-3">
+				<div class="shop-item">
+					<div class="shop-item-image">
+						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
+						<div class="shop-item-detail">
+							<a class="btn btn-round btn-b"
+								href="productDetail?prod_no=${product.prodNo}"><span
+								class="icon-basket">보러가기</span></a>
+						</div>
+					</div>
+					<h4 class="shop-item-title font-alt">
+						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+					</h4>
+					${product.prodPrice} 원/시간
+				</div>
+			</div>
 	</section>
-
-	<!-- PlaceStation의 추천!! -->
-	        <section class="module" id="news">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-6 col-sm-offset-3">
-                <h2 class="module-title font-alt">PlaceStation의 추천</h2>
-                <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</div>
-              </div>
-            </div>
-            <div class="row multi-columns-row post-columns">
-              <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="post mb-20">
-                  <div class="post-thumbnail"><a href="#"><img src="assets/images/post-1.jpg" alt="Blog-post Thumbnail"/></a></div>
-                  <div class="post-header font-alt">
-                    <h2 class="post-title"><a href="#">Our trip to the Alps</a></h2>
-                    <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>&nbsp;| 23 November | 3 Comments
-                    </div>
-                  </div>
-                  <div class="post-entry">
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                  </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="post mb-20">
-                  <div class="post-thumbnail"><a href="#"><img src="assets/images/post-2.jpg" alt="Blog-post Thumbnail"/></a></div>
-                  <div class="post-header font-alt">
-                    <h2 class="post-title"><a href="#">Shore after the tide</a></h2>
-                    <div class="post-meta">By&nbsp;<a href="#">Andy River</a>&nbsp;| 11 November | 4 Comments
-                    </div>
-                  </div>
-                  <div class="post-entry">
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                  </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="post mb-20">
-                  <div class="post-thumbnail"><a href="#"><img src="assets/images/post-3.jpg" alt="Blog-post Thumbnail"/></a></div>
-                  <div class="post-header font-alt">
-                    <h2 class="post-title"><a href="#">We in New Zealand</a></h2>
-                    <div class="post-meta">By&nbsp;<a href="#">Dylan Woods</a>&nbsp;| 5 November | 15 Comments
-                    </div>
-                  </div>
-                  <div class="post-entry">
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                  </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
 	<!-- 1번 상품 리스트 (전체 조회) -->
 	<section class="module" id="specialities"
@@ -190,31 +254,34 @@ img {
 			</div>
 			<a class="btn btn-b btn-round" href="/product/search-page"
 				style="float: right; margin-bottom: 10px;">전체 조회</a>
-
 			<div class="row multi-columns-row" style="clear: both;">
 
 				<c:forEach var="product" items="${productsStart}">
 					<div class="col-sm-6 col-md-3 col-lg-3">
 						<div class="shop-item">
 							<div class="shop-item-image">
-
 								<img src="${fn:split(product.filePath, ',')[0]}"
 									alt="${product.prodTitle}" />
-
 								<div class="shop-item-detail">
 									<a class="btn btn-round btn-b"
-										href="productDetail?prod_no=${product.prodNo}"><span
-										class="icon-basket">보러가기</span></a>
+										href="productDetail?prod_no=${product.prodNo}"> <span
+										class="icon-basket">보러가기</span>
+									</a>
 								</div>
 							</div>
-							<h4 class="shop-item-title font-alt">
-								<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
-							</h4>
-							${product.prodPrice} 원/시간
+							<div class="shop-item-info">
+								<h4 class="shop-item-title font-alt">
+									<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+								</h4>
+								<div class="shop-item-price">${product.prodPrice}원/시간</div>
+								<div class="shop-item-maximum">최대 ${product.prodMaximumPeople}인 ${product.prodStartTime}시~${product.prodEndTime}시</div>
+							</div>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
+
+
 		</div>
 	</section>
 
@@ -262,7 +329,7 @@ img {
 			</div>
 		</div>
 	</section>
-	
+
 	<!-- 리퀘스트 시작 -->
 	<section class="module bg-dark-60 request-cta"
 		data-background="assets/images/finance/rqst_bg.jpg">
@@ -310,7 +377,15 @@ img {
 			</div>
 		</div>
 	</section>
+	
+	
+	
+	
+	
 
 
-	<!-- adminheader.jsp -->
-	<%@ include file="/WEB-INF/view/product/common/footer.jsp"%>
+
+
+
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

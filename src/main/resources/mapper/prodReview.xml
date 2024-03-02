@@ -44,21 +44,21 @@
         and prod_no = #{prod_no}
     </select>
 
-    <select id="findRevNo">
-        select * from prod_review
-        where prod_rev_delete_yn =
-        'N'
-        and prod_no = #{prod_no}
-    </select>
-
-    <!-- 리뷰 개수 count -->
-    <select id="countReview">
+	<select id="findRevNo">
+		select * from prod_review
+		where prod_rev_delete_yn =
+		'N'
+		and prod_no = #{prod_no}
+	</select>
+	
+	<!-- 리뷰 개수 count -->
+	<select id="countReview">
         SELECT COUNT(*) FROM prod_review WHERE prod_no = #{prodNo}
     </select>
-
+    
     <!-- 리뷰 평균 평점 -->
     <select id="avgStar">
-        SELECT AVG(prod_rev_star) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_star != 0
+        SELECT ROUND(AVG(prod_rev_star) , 1) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_star != 0
     </select>
-
+    
 </mapper>

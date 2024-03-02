@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project3.placestation.biz.handler.exception.CustomRestfulException;
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.payment.model.common.MemberGrade;
 import com.project3.placestation.payment.model.dto.AdminHisPointDto;
 import com.project3.placestation.payment.model.dto.PaymentDto;
@@ -118,7 +120,6 @@ public class PaymentRestController {
 
 			log.info("시간 중복 확인 DB 데이터 : " + Arrays.toString(arrayOrder));
 			log.info("시간 중복 확인 ORDER 데이터 : " + paymentDto.getStartTime() + "시 ~ " + paymentDto.getEndTime() + "시");
-			log.info("시간 중복 되면 Y , 안되면 N : " + validTime);
 
 			// --------------------------------------------------------------------------
 

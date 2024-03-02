@@ -19,7 +19,7 @@ create table product_views (
 );
 
 create table wish_list (
-	w_no INT PRIMARY KEY NOT NULL,
+	w_no INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     prod_no INT NOT NULL,
     user_no INT NOT NULL
 );
@@ -47,7 +47,14 @@ create table product (
 	prod_update_at timestamp ,
     prod_delete_at timestamp ,
 	prod_delete_reason varchar (1000),
-    prod_delete_yn varchar (1) default 'N'
+    prod_delete_yn varchar (1) default 'N' ,
+    addition_explanation VARCHAR(400) 				
+);
+
+create table addition_explanation (
+	addition_explanation_no	int primary key auto_increment ,
+    file_path varchar (400) ,
+    name varchar ( 100 )
 );
 
 create table filedb (
@@ -65,7 +72,7 @@ create table member (
   user_hp VARCHAR(20) NOT NULL,
   user_email VARCHAR(30) NOT NULL,
   user_point INT NULL DEFAULT 10,
-  file_path VARCHAR(100) DEFAULT 'https://localhost/file-path/dsanlk',
+  file_path VARCHAR(100) DEFAULT 'default.jpg',
   join_at DATETIME NULL DEFAULT now(),
   user_role VARCHAR(20) NOT NULL,
   grade VARCHAR(20) NULL DEFAULT '브론즈',
@@ -101,6 +108,7 @@ create table biz (
     biz_hp varchar(30),
     biz_balance int,
     file_path varchar (1000),
+    joinat datetime default now(),
     biz_tel varchar (20) ,
     biz_email varchar (50),
     imp_uid varchar ( 100 ) ,
@@ -168,7 +176,7 @@ create table company (
 
 CREATE TABLE qna_board (
   q_bno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  q_writer VARCHAR(45) NOT NULL,
+  q_writer INT NOT NULL,
   q_content VARCHAR(400) NOT NULL,
   q_title VARCHAR(200) NOT NULL,
   file_path VARCHAR(400) NULL,
@@ -181,9 +189,18 @@ CREATE TABLE qna_board (
   q_reply VARCHAR(400) NULL
   );
 
+
+CREATE TABLE banner (
+  ban_no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ban_name varchar(50),
+  file_path varchar(100) DEFAULT 'defaultbanner.jpg'
+);
+
+
+
 create table faq_board (
 f_bno int not null primary key auto_increment,
-f_writer VARCHAR(45) not null,
+f_writer INT not null,
 f_content varchar(400) not null,
 f_title varchar(200) not null,
 file_path varchar(400),
@@ -193,3 +210,10 @@ f_delete_at timestamp  DEFAULT now(),
 category_id int
 );
 
+create table qna_board_category (
+	category_id int auto_increment ,
+    category_name varchar (40),
+    category_description varchar (400),
+    use_yn varchar(1) default 'Y',
+    file_path varchar (400)
+);

@@ -85,7 +85,7 @@ public class ProdReviewService {
 
 
     // 리뷰 삭제
-    public void deleteReview(int prodRevNo) {
+    public void deleteReview(Integer prodRevNo) {
     	
     	int result = prodReviewRepository.deleteReview(prodRevNo);
 		if (result < 1) {
@@ -93,5 +93,14 @@ public class ProdReviewService {
 		}
 
 	}
-
+    
+    // 리뷰 개수 count
+    public Integer getCountReview(Integer prodNo) {
+    	return prodReviewRepository.countReview(prodNo);
+    }
+    
+    public Double getAvgStar(Integer prodNo) {
+    	Double avgStar = prodReviewRepository.avgStar(prodNo);
+        return avgStar != null ? avgStar : 0;
+    }
 }

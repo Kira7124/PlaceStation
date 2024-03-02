@@ -6,7 +6,7 @@
 
 
 <!-- LEFT SIDEBAR -->
-		<div id="sidebar-nav" class="sidebar">
+		<div id="sidebar-nav" class="sidebar"style="margin-top: 15px;">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
@@ -22,6 +22,7 @@
 								</ul>
 							</div>
 						</li>
+						<li><a href="/admin/admin-banner" class=""><i class="lnr lnr-cog"></i> <span>광고관리</span></a></li>
 						<li><a href="/admin/admin-payment" class=""><i class="lnr lnr-cog"></i> <span>결제/예약관리</span></a></li>
 					</ul>
 				</nav>

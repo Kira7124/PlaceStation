@@ -8,8 +8,11 @@ public class ReqBizHistoryRefundDto {
 	private String merchantUid;
 	private String token;
 	private String adminHisCreatedAt;
+	private Integer adminHisSellerId;
 	private String purchaseDate;
 	private Integer adminHisPrice;
 	private Integer adminHisCharge;
-
+	private Integer adminHisSavePoint;
+	private Integer adminHisUsePoint;
+	private Integer adminHisDiscount;
 }

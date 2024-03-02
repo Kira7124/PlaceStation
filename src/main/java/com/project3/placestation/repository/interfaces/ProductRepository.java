@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.product.dto.ProdFilterDto;

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/product/common/header.jsp"%>
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
 img {
 	border-radius: 10px;
@@ -212,7 +212,6 @@ body {
 						</div>
 						<!-- 위젯 1번 - 카테고리 별 종료 -->
 
-
 						<!-- 위젯 2번 - 별점 별 시작 -->
 						<div class="widget">
 							<h5 class="widget-title font-alt">별점 별</h5>
@@ -280,7 +279,7 @@ body {
 													<h6>주소 : ${product.prodFullAddress}</h6>
 												</div>
 												<div class="post-more">
-													<a class="more-link" href="#">${product.mainCategoryName}</a>
+													<a class="more-link">${product.mainCategoryName}</a>
 												</div>
 											</div>
 										</div>
@@ -417,5 +416,6 @@ console.log("헬로" +${totalItems})
 		location.href= "/product/search-page";
 	}
 </script>
-<!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/product/common/footer.jsp"%>
+
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

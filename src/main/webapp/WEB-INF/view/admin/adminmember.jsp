@@ -63,7 +63,14 @@
 						<tbody>
 							<tr>
 								<td>
-								  <img src="/assets/img/${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
+								    <c:choose>
+								        <c:when test="${memberlist.filepath eq 'default.jpg'}">
+								            <img src="/assets/img/default.jpg" style="width:30px; height: 30px; border-radius:50%;">
+								        </c:when>
+								        <c:otherwise>
+								            <img src="${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
+								        </c:otherwise>
+								    </c:choose>
 								</td>
 								  <td>	
 									<c:choose>

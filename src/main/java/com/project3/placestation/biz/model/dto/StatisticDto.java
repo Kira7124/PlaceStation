@@ -11,5 +11,6 @@ import lombok.ToString;
 @ToString
 public class StatisticDto {
 	private Integer amount;
+	private Integer cancelAmount;
 	private String date;
 }

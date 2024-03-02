@@ -107,17 +107,20 @@ public class CsController {
 	// http://localhost/cs/qna
 	// CS 1:1 문의 페이지
 	@GetMapping("/qna")
-	public String qnaList(CsQnaDTO csqdto, Model model, Criteria cri) throws Exception {
+	public String qnaList(CsQnaDTO csqdto, Model model, Criteria cri , @RequestParam(value = "search" ,defaultValue = "") String search) throws Exception {
 
+		// 유저 -- 세션
+		int userId = 1;
+		
 		PageVO pageVO = new PageVO();
 		pageVO.setCri(cri);
 
-		pageVO.setTotalCount(csService.CsQnaBoardCount());
+		pageVO.setTotalCount(csService.countCsQnaBoardListByUserId(search , userId , cri));
 		model.addAttribute("pageVO", pageVO);
 		log.info("pageVO2: " + pageVO);
 
 		// 1:1 문의 리스트 출력
-		List<CsQnaBoard> result2 = csService.CsQnaBoardListAll(cri);
+		List<CsQnaBoard> result2 = csService.CsQnaBoardListByUserId(search , userId , cri);
 		model.addAttribute("qnaList", result2);
 		
 		return "cs/cs_qna";

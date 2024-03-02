@@ -10,41 +10,42 @@
 
 	<!-- 관리자사업자명단출력 -->
 
-	<select id="BizAll"
-		resultType="com.project3.placestation.repository.entity.Biz">
-		select * from biz
+	<select id="BizAll" resultType="com.project3.placestation.repository.entity.Biz">
+		SELECT biz.*, member.user_id
+		FROM biz
+		JOIN member 
+		ON biz.biz_id = member.user_no
 		limit #{startPage},#{pageSize}
 	</select>
 
 
-
 	<!-- 페이징처리 갯수셋팅 -->
 	<select id="countBiz" resultType="int">
-		<![CDATA[ select count(*) from biz where biz_no > 0 ]]>
+		<![CDATA[ SELECT COUNT(*) FROM biz JOIN member ON biz.biz_id = member.user_no]]>
 	</select>
 
 
 	<!-- 사업자정보수정(관리자) -->
-	<update id="AdminUpdateBiz">
-		update biz set
-		biz_brand_name=#{bizbrandname},biz_hp=#{bizhp},
-		biz_email=#{bizemail},biz_id=#{bizid},biz_tel=#{biztel}
-		where biz_no =
-		#{bizno}
+	<update id ="AdminUpdateBiz">
+		update biz set biz_brand_name=#{bizBrandName},biz_hp=#{bizHp},
+		biz_email=#{bizEmail},biz_tel=#{bizTel},file_path=#{filePath}
+		where biz_no = #{bizNo}		
 	</update>
 
 
 	<!-- 사업자정보삭제(관리자) -->
+
 	<delete id="AdminDeleteBiz">
-		delete from biz where biz_no=#{bizno} and
-		biz_id=#{bizid}
+		delete from biz where biz_no=#{bizNo}
 	</delete>
 
 
 	<!-- 사업자검색(관리자) -->
-	<select id="searchBizMemberlist"
-		resultType="com.project3.placestation.repository.entity.Biz">
-		select * from biz
+	<select id="searchBizMemberlist" resultType="com.project3.placestation.repository.entity.Biz">
+		SELECT biz.*, member.user_id
+		FROM biz
+		JOIN member 
+		ON biz.biz_id = member.user_no
 		<where>
 			<if test="searchKeyword != null and searchKeyword != ''">
 				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
@@ -77,7 +78,9 @@
 
 	<!-- 관리자사업자검색카운팅 -->
 	<select id="countSearchBizlist">
-		select count(*) from biz
+		SELECT COUNT(*)
+		FROM biz
+		JOIN member ON biz.biz_id = member.user_no
 		<where>
 			<if test="searchKeyword != null and searchKeyword != ''">
 				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
@@ -114,13 +117,23 @@
 		imp_secret = #{biz.impSecret}
 		where biz_id = #{bizId}
 	</update>
+	
+	
+	<!-- 사업자등록증조회하기 -->
+	<select id ="detailBizFile" resultType="com.project3.placestation.repository.entity.Biz">
+		select * from biz where biz_no = #{bizNo}
+	</select>
+	
+	
+	
+  
 
 	<select id="findFortOneKeyByBizNo"
 		resultType="com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto">
 		select imp_uid as impUid , imp_key as imp_key , imp_secret
 		as impSecret
 		from biz
-		where biz_no = #{bizNo}
+		where biz_id = #{bizNo}
 	</select>
 
 </mapper>

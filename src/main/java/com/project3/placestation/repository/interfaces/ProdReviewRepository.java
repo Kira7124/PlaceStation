@@ -16,6 +16,7 @@ public interface ProdReviewRepository {
 	
 	public int addReview(ProdReview review); // 리뷰 등록
 	public int saveReview(ProdReview review); // 답글 등록
-	public int deleteReview(int prodRevNo);
-
+	public int deleteReview(Integer prodRevNo);
+	public int countReview(Integer prodNo);
+	public Double avgStar(Integer prodNo);
 }

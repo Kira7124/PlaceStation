@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.handler.exception.CustomPageException;
 
 
@@ -23,5 +24,6 @@ public class BizPageExceptionHandler {
 		modelAndView.addObject("message", e.getMessage());
 		return modelAndView; // 페이지 반환 + 데이터 내려줌
 	}
+
 
 }
