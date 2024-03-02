@@ -76,6 +76,23 @@ public class MemberService {
 	}
 	
 	
+	
+	//관리자사진수정
+	@Transactional
+	public void AdminPhotoUpdate(AdminMemberDTO dto, String filePath) {
+		
+			Member member = Member.builder()
+					.userno(dto.getUserno())
+					.filepath(filePath)
+					.build();
+			
+		Integer result = memberRepository.AdminPhotoUpdate(member);	
+	}
+	
+	
+	
+	
+	
 	//관리자회원삭제
 	@Transactional
 	public void AdminDeleteMember(AdminMemberDTO dto) {

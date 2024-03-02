@@ -32,6 +32,14 @@
 		</update>
 		
 		
+		<!-- 사진수정(관리자) -->
+		<update id="AdminPhotoUpdate">
+			update member set file_path=#{filepath}
+			where user_no = #{userno}
+		</update>
+		
+		
+		
 		<!-- 회원정보 삭제(관리자) -->
 		<delete id ="AdminDeleteMember">
 			delete from member where user_no=#{userno} and user_password=#{userpassword}

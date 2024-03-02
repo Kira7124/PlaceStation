@@ -400,6 +400,17 @@ public class AdminController {
 		log.debug("adminupdate페이지출력");
 		return "admin/adminupdate";
 	}
+	
+	
+	
+	// admin 회원 사진update페이지출력(모달)
+	@GetMapping("/admin-photoupdate")
+	public String adminphotoupdateGET() {
+		log.debug("adminphotoGET() 실행!");
+		return "admin/adminphotoupdate";
+	}
+	
+	
 
 	// admin 사업자update페이지출력(모달)
 	@GetMapping("/admin-bizupdate")
@@ -428,6 +439,21 @@ public class AdminController {
 		return "redirect:/admin/admin-member";
 	}
 
+	
+	
+	@PostMapping("/admin-photoupdate")
+	public String adminphotoupdatePOST(AdminMemberDTO dto) {
+		
+		String filePath = filedbService.saveFiles(dto.getFiles());
+		log.debug("adminphotoupdate POST 실행");
+		memberService.AdminPhotoUpdate(dto, filePath);
+		
+		
+		return "redirect:/admin/admin-member";
+		
+	}
+	
+	
 	
 	
 	// admin 사업자update정보수정POST
