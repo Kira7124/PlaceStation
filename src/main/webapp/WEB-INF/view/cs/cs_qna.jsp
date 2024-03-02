@@ -22,7 +22,8 @@
 						<div class="search">
 							<form role="form" action="/cs/qna">
 								<div class="search-box">
-									<input class="form-control" type="text" placeholder="Search..." name="search" />
+									<input class="form-control" type="text" placeholder="Search..."
+										name="search" />
 									<button class="search-btn" type="submit">
 										<i class="fa fa-search"></i>
 									</button>
@@ -33,7 +34,8 @@
 					</div>
 					<div class="comments" style="text-align: right;">
 						<h5>
-							<a href="/cs/qna/qna-tag" class="btn btn-default btn-round" type="button">글 쓰기</a>
+							<a href="/cs/qna/qna-tag" class="btn btn-default btn-round"
+								type="button">글 쓰기</a>
 						</h5>
 					</div>
 
@@ -44,12 +46,37 @@
 									<h4 class="panel-title font-alt">
 										<a class="collapsed" data-toggle="collapse"
 											data-parent="#accordion" href="#support${qnaList.qbno}">
-											${qnaList.qtitle} </a>
+											<p style="text-align: left;">${qnaList.qtitle}</p> 등록일 :
+											${qnaList.qregdate}
+										</a>
+
 									</h4>
 								</div>
 								<div class="panel-collapse collapse" id="support${qnaList.qbno}">
-									<div class="panel-body">${qnaList.qcontent}</div>
+									<div class="panel-body">
+										<p>${qnaList.qcontent}</p>
+
+
+										<img src="${qnaList.filepath}" />
+									</div>
+
+								<c:choose>
+									<c:when test="${qnaList.qstatus == '완료'}">
+										<div class="panel-body">
+											<hr />
+											<h4>관리자</h4>
+											<p>${qnaList.qreply}</p>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="panel-body">
+											<hr />
+											<h3>아직 답변 글이 없습니다.</h3>
+										</div>
+									</c:otherwise>
+									</c:choose>
 								</div>
+
 							</c:forEach>
 						</div>
 					</div>

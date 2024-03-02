@@ -58,7 +58,7 @@
 		, prod_subcategory_id ,
 		prod_full_address ,
 		prod_location_x ,
-		prod_location_y )
+		prod_location_y , addition_explanation )
 		values (#{prodWriterNo}, #{prodTitle} ,
 		#{prodStartTime} , #{prodEndTime} , #{prodSpaceInfo} ,
 		#{prodGoodsInfo} , #{prodCautionInfo} , #{prodMaximumPeople}
@@ -66,7 +66,7 @@
 		#{prodAddress}
 		, #{prodDetailedAddress} , #{prodPrice} , #{filePath} ,
 		#{prodMajorCategoryId}, #{prodSubcategoryId} , #{prodFullAddress} ,
-		#{prodLocationX} , #{prodLocationY} )
+		#{prodLocationX} , #{prodLocationY} , #{additionExplanation} )
 	</insert>
 
 	<update id="updateProduct">
@@ -98,6 +98,7 @@
 		#{product.prodFullAddress},
 		prod_location_x = #{product.prodLocationX},
 		prod_location_y = #{product.prodLocationY},
+		addition_explanation = #{product.additionExplanation} , 
 		prod_update_at = NOW()
 		<if test="changeImage == 'Y'.toString()">
 			,
@@ -136,7 +137,35 @@
 
 	<select id="findById"
 		resultType="com.project3.placestation.repository.entity.Product">
-		select * from product
+		select
+		prod_no as prodNo,
+		prod_writer_no as prodWriterNo ,
+		prod_title as prodTitle ,
+		prod_start_time as prodStartTime,
+		prod_end_time as prodEndTime ,
+		prod_space_info as prodSpaceInfo ,
+		prod_goods_info as prodGoodsInfo ,
+		prod_caution_info as prodCautionInfo ,
+		prod_maximum_people as
+		prodMaximumPeople ,
+		prod_address as prodAddress ,
+		prod_detailed_address
+		as prodDetailedAddress ,
+		prod_price as prodPrice ,
+		file_path as filePath
+		,
+		prod_major_category_id as prodMajorCategoryId ,
+		prod_subcategory_id as
+		prodSubcategoryId ,
+		prod_full_address as prodFullAddress ,
+		prod_location_x as prodLocationX ,
+		prod_location_y as prodLocationY,
+		prod_rdate as prodRdate ,
+		prod_update_at as prodUpdateAt ,
+		prod_delete_reason as prodDeleteReason ,
+		prod_delete_yn as prodDeleteYn , 
+		addition_explanation as additionExplanation
+		from product
 		where prod_no = #{prod_no}
 		and
 		prod_delete_yn = 'N'
@@ -215,10 +244,12 @@
 		SELECT p.prod_no
 		FROM product p
 		LEFT JOIN prod_review r ON p.prod_no = r.prod_no
-		LEFT JOIN prod_major_category mc ON mc.category_id =
+		LEFT JOIN
+		prod_major_category mc ON mc.category_id =
 		p.prod_major_category_id
 		WHERE p.prod_title LIKE CONCAT('%', #{search}, '%')
-		AND p.prod_price BETWEEN #{min} AND #{max}
+		AND p.prod_price
+		BETWEEN #{min} AND #{max}
 		<if test="majorCategory != 0">
 			AND p.prod_major_category_id = #{majorCategory}
 		</if>

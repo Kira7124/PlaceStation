@@ -20,6 +20,7 @@ import com.project3.placestation.service.ProdMajorCategoryService;
 import com.project3.placestation.service.ProdSubcategoryService;
 import com.project3.placestation.service.ProductService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -89,4 +90,6 @@ public class MainController {
         model.addAttribute("star", star); // 컨텐츠 배열
 		return "product/search_page";
 	}
+	
+
 }

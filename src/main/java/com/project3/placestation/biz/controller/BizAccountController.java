@@ -5,21 +5,27 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResProductDto;
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.repository.entity.BizJoin;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.ProductService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -40,6 +46,12 @@ public class BizAccountController {
 	@Autowired
 	ProductService productService;
 	
+	@Autowired
+	HttpSession httpSession;
+	
+	@Autowired
+	PasswordEncoder encoder;
+	
 
 	/**
 	 * 사업자 유저 상세 조회
@@ -50,17 +62,21 @@ public class BizAccountController {
 	@GetMapping("/account-management")
 	public String accountManagementForm(Model model) {
 		
-		int userId = 1;
+		// 멤버 받기
+		Member member = (Member) httpSession.getAttribute("member"); 
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
 		
 		// 회원 정보
-		BizJoin biz = memberService.SelectJoinBiz(userId);
+		BizJoin biz = memberService.SelectJoinBiz(member.getUserno());
 		if(biz == null) {
-			throw new CustomRestfulException("회원 정보가 변경되었거나 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		// 상품 정보
-		List<ResProductDto> products = productService.findProductAllByUserId(userId);
+		List<ResProductDto> products = productService.findProductAllByUserId(member.getUserno());
 		
 		log.info(biz.toString());
 		log.info(products.toString());
@@ -77,12 +93,16 @@ public class BizAccountController {
 	 */
 	@GetMapping("/account/update-form")
 	public String updateForm(Model model) {
-		
-		int userId = 1;
+		// 멤버 받기
+		Member member = (Member) httpSession.getAttribute("member"); 
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		int userId = member.getUserno();
 		BizJoin dto = memberService.SelectJoinBiz(userId);
 		
 		if(dto == null) {
-			throw new CustomRestfulException("회원 정보가 변경되었거나 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		log.info(dto.toString());
@@ -114,42 +134,42 @@ public class BizAccountController {
 
 		// 1. 유효성 검사
 		if(accountDto.getUserName() == null || accountDto.getUserName().isEmpty() || accountDto.getUserName().length() > 20) {
-			throw new CustomRestfulException("유저이름을 적어주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_USERNAME, HttpStatus.BAD_REQUEST);
 		}
 		if(accountDto.getUserPassword() == null || accountDto.getUserPassword().isEmpty()) {
-			throw new CustomRestfulException("유저 패스워드를 적어주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_PASSWORD, HttpStatus.BAD_REQUEST);
 		}
 		if(accountDto.getBizTel() == null || accountDto.getBizTel().isEmpty()) {
-			throw new CustomRestfulException("대표 전화번호를 적어주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_CEO_PHONE, HttpStatus.BAD_REQUEST);
 		}
 		if(accountDto.getChangePassword().equals("Y")) {
 			if(accountDto.getUserHp() == null || accountDto.getUserHp().isEmpty()) {
-				throw new CustomRestfulException("일반 전화번호를 적어주세요", HttpStatus.BAD_REQUEST);
+				throw new CustomRestfulException(BizDefine.PLEASE_WRITE_NORMAL_PHONE, HttpStatus.BAD_REQUEST);
 			}
 		}
 		 if(!accountDto.getUserHp().matches(regex) || accountDto.getUserHp().length() > 15) {
-				throw new CustomRestfulException("유효하지 않은 휴대폰 번호 입니다.", HttpStatus.BAD_REQUEST);
+				throw new CustomRestfulException(BizDefine.NO_VALID_PHONE, HttpStatus.BAD_REQUEST);
 		 }
 		 if(!accountDto.getBizTel().matches(regex)  || accountDto.getBizTel().length() > 15) {
-				throw new CustomRestfulException("유효하지 않은 휴대폰 번호 입니다.", HttpStatus.BAD_REQUEST);
+				throw new CustomRestfulException(BizDefine.NO_VALID_PHONE, HttpStatus.BAD_REQUEST);
 		 }
 		if(accountDto.getUserAddress() == null || accountDto.getUserAddress().isEmpty()) {
-			throw new CustomRestfulException("주소를 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.NO_VALID_ADDRESS, HttpStatus.BAD_REQUEST);
 		}
 		if(accountDto.getBizBrandName() == null || accountDto.getBizBrandName().isEmpty()) {
-			throw new CustomRestfulException("사업자 상호명을 적어주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_BUIZNESS_NAME, HttpStatus.BAD_REQUEST);
 		}
 //		if(accountDto.getProfile() == null || accountDto.getProfile().isEmpty()) {
 //			throw new CustomRestfulException("프로필 사진이 없습니다. 프로필 사진을 등록해주세요", HttpStatus.BAD_REQUEST);
 //		}
 		if(accountDto.getImpUid() == null || accountDto.getImpUid().isEmpty()) {
-			throw new CustomRestfulException("포트원 uid 를 적어주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_IMP_UID, HttpStatus.BAD_REQUEST);
 		}
 		if(accountDto.getImpKey() == null || accountDto.getImpKey().isEmpty()) {
-			throw new CustomRestfulException("포트원 key 를 적어주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_IMP_KEY, HttpStatus.BAD_REQUEST);
 		}
 		if(accountDto.getImpSecret() == null || accountDto.getImpSecret().isEmpty()) {
-			throw new CustomRestfulException("포트원 secret 를 적어주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_IMP_SECRET, HttpStatus.BAD_REQUEST);
 		}
 		
 		String filePath = "";
@@ -158,14 +178,22 @@ public class BizAccountController {
 			filePath = filedbService.saveFiles(accountDto.getProfile());
 		}
 		
-		int userId = 1;
+		// 멤버 받기
+		Member member = (Member) httpSession.getAttribute("member"); 
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		int userNo = member.getUserno();
 		
 		log.info(filePath);
-		// 업데이트
-		accountDto.setFilePath(filePath);
-		memberService.BizUpdateMember(accountDto , 1);
-		bizService.updateBizByBizId(accountDto , userId);
 		
+		// 업데이트
+		String changinPassword = accountDto.getUserPassword();
+		String encode = encoder.encode(changinPassword);
+		accountDto.setUserPassword(encode);
+		accountDto.setFilePath(filePath);
+		memberService.BizUpdateMember(accountDto , userNo);
+		bizService.updateBizByBizId(accountDto , userNo);
 		
 		return "redirect:/biz/account-management";
 	}

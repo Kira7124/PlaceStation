@@ -19,7 +19,6 @@
 	<!-- 페이징처리 갯수세팅 -->
 	<select id="countMember" resultType="int">
 			<![CDATA[ select count(*) from member where user_no > 0 ]]>
-
 		</select>
 		
 		
@@ -109,7 +108,8 @@
 		as bizBrandName,
 		b.imp_uid as impUid,
 		b.imp_key as impKey,
-		b.imp_secret as impSecret,
+		b.imp_secret
+		as impSecret,
 		m.user_password as userPassword,
 		m.user_address as
 		userAddress,
@@ -155,17 +155,19 @@
 		</if>
 		where user_no = #{userNo};
 	</update>
-	
-	
-	<!-- 이메일 유저 중복 검사  -->
-	<select id="selecyByUserEmail"	resultType="com.project3.placestation.repository.entity.Member">
+
+
+	<!-- 이메일 유저 중복 검사 -->
+	<select id="selecyByUserEmail"
+		resultType="com.project3.placestation.repository.entity.Member">
 		select * from member where user_email = #{email}
 	</select>
-	
-	
+
+
 	<!-- 일반 유저 회원가입 -->
-	<insert id="insertUser"	>
-		insert into member(user_id,user_password,user_address,user_name, user_hp,
+	<insert id="insertUser">
+		insert into
+		member(user_id,user_password,user_address,user_name, user_hp,
 		user_email,join_at,user_role,gender)
 		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender})
 	</insert>
@@ -198,14 +200,76 @@
 
 	<update id="updateMemberPoint">
 		update member set
-		user_point = #{userPoint} , 
-		grade = #{grade}
+		user_point = #{userPoint} ,
+		grade =
+		#{grade}
 		where user_no = #{buyerId}
 	</update>
 
-	<!-- 유저 아이디 중복 검사 -->
-	<select id="selectByIsUserId"	>
-		select * from member where user_id = #{uid}
+
+	<select id="selectByIsUserId"
+		resultType="com.project3.placestation.repository.entity.Member">
+		select * from member where user_id
+		= #{uid}
 	</select>
+
+
+	<!-- (회원가입)유저 아이디 중복 검사 -->
+	<select id="selectByValidUserId" resultType="Integer">
+		select count(*) from
+		member where
+		user_id = #{uid}
+	</select>
+
+	<!-- (회원가입)전화번호 중복검사 -->
+	<select id="selectByValidHp" resultType="Integer">
+		select count(*) from
+		member where
+		user_hp = #{hp}
+	</select>
+
+	<!-- (회원가입)사업자 전화번호 중복검사 -->
+	<select id="selectByValidManageHp">
+		select count(*) from biz where
+		biz_tel = #{managehp}
+	</select>
+
+	<!-- (회원가입)이메일 중복검사 -->
+	<select id="selectByValidEmail">
+		select count(user_email) from member where
+		user_email
+		= #{email}
+	</select>
+
+
+	<!-- 판매자 회원 가입용 selectKey userNo를 반환  [현재 사용하지 않는중] -->
+	<insert id="insertUserAndSelectUserNo">
+		<selectKey keyProperty="userNo" order="AFTER"
+			resultType="com.project3.placestation.repository.entity.Member">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into
+		member(user_id,user_password,user_address,user_name, user_hp,
+		user_email,join_at,user_role,gender)
+		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender})
+	</insert>
+
+	<!-- (판매자 회원가입) biz테이블 insert -->
+	<insert id="insertBiz">
+		insert into biz
+		(biz_id, file_path)
+		values(#{userno},#{filepath})
+
+	</insert>
+
+
+   <!-- (판매자 회원가입) userNo값 bizid 셋팅용 -->
+ 	<select id="selectByUserId" resultType="com.project3.placestation.repository.entity.Member">
+ 		select user_no from member where user_id = #{userid}
+	</select>
+
+
+
+
 </mapper>
 

@@ -622,9 +622,9 @@
 							<!-- 결제 시작 -->
 							<div class="widget">
 								<!-- 폼 태그 시작 -->
-								<form action="payment" method="get">
+								<form action="/payment/main" method="get">
 									<h5 class="widget-title font-alt">예약하기</h5>
-
+										<input type="hidden" name="prodNo" value="${product.prodNo}"/>
 
 									<!-- 스케줄 선택 -->
 									<div>
@@ -662,7 +662,7 @@
 										<div class="row mb-20">
 											<div class="col-sm-12">
 												<input class="form-control input-lg" type="number"
-													name="price" value="50000" required="required" disabled />
+													name="price" value="${product.prodPrice}" required="required" disabled />
 											</div>
 										</div>
 									</div>
@@ -673,7 +673,7 @@
 										<div class="row mb-20">
 											<div class="col-sm-12">
 												<input class="form-control input-lg" type="number"
-													name="people" max="6" min="1" required="required" />
+													name="people" max="${product.prodMaximumPeople}" min="1" required="required" />
 											</div>
 										</div>
 									</div>

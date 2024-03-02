@@ -13,6 +13,7 @@ import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqProductDto;
 import com.project3.placestation.biz.model.dto.ReqUpdateProductDto;
 import com.project3.placestation.biz.model.dto.ResProductDto;
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.product.dto.ProdFilterDto;
@@ -34,22 +35,23 @@ public class ProductService {
 	 * @param filePath
 	 * @param dto
 	 */
-	public void saveProduct(String filePath, ReqProductDto dto) {
+	@Transactional
+	public void saveProduct(String filePath,  String additionExplanation , int userNo , ReqProductDto dto) {
 
-		Product product = Product.builder().prodWriterNo(1).prodTitle(dto.getProdTitle())
+		Product product = Product.builder().prodWriterNo(userNo).prodTitle(dto.getProdTitle())
 				.prodStartTime(dto.getProdStartTime()).prodEndTime(dto.getProdEndTime()).prodPrice(dto.getProdPrice())
 				.prodSpaceInfo(dto.getProdSpaceInfo()).prodGoodsInfo(dto.getProdGoodsInfo())
 				.prodCautionInfo(dto.getProdCautionInfo()).prodMaximumPeople(dto.getProdMaximumPeople())
 				.prodAddress(dto.getProdAddress()).filePath(filePath).prodMajorCategoryId(dto.getProdMajorCategoryId())
 				.prodSubcategoryId(dto.getProdSubcategoryId()).prodFullAddress(dto.getProdFullAddress())
 				.prodDetailedAddress(dto.getProdDetailedAddress()).prodLocationX(dto.getProdLocationX())
-				.prodLocationY(dto.getProdLocationY()).build();
+				.prodLocationY(dto.getProdLocationY()).additionExplanation(additionExplanation).build();
 
 		int result = productRepository.saveProduct(product);
 
 		// 확인
 		if (result < 1) {
-			throw new CustomRestfulException("상품 저장시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException(BizDefine.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -61,7 +63,7 @@ public class ProductService {
 	 * @param writerNo
 	 */
 	@Transactional
-	public void updateProduct(String filePath, ReqUpdateProductDto dto, int prodNo, int writerNo) {
+	public void updateProduct(String filePath,String additionExplanation, ReqUpdateProductDto dto, int prodNo, int writerNo) {
 		Product product = Product.builder().prodNo(prodNo).prodWriterNo(writerNo).prodTitle(dto.getProdTitle())
 				.prodStartTime(dto.getProdStartTime()).prodEndTime(dto.getProdEndTime()).prodPrice(dto.getProdPrice())
 				.prodSpaceInfo(dto.getProdSpaceInfo()).prodGoodsInfo(dto.getProdGoodsInfo())
@@ -69,13 +71,15 @@ public class ProductService {
 				.prodAddress(dto.getProdAddress()).filePath(filePath).prodMajorCategoryId(dto.getProdMajorCategoryId())
 				.prodSubcategoryId(dto.getProdSubcategoryId()).prodFullAddress(dto.getProdFullAddress())
 				.prodDetailedAddress(dto.getProdDetailedAddress()).prodLocationX(dto.getProdLocationX())
-				.prodLocationY(dto.getProdLocationY()).build();
+				.prodLocationY(dto.getProdLocationY())
+				.additionExplanation(additionExplanation)
+				.build();
 
 		int result = productRepository.updateProduct(product, dto.getChangeImage());
 
 		// 확인
 		if (result < 1) {
-			throw new CustomRestfulException("상품 업데이트시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException(BizDefine.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -88,7 +92,7 @@ public class ProductService {
 	public void deleteProduct(int prodNo, String prodDeleteReason) {
 		int result = productRepository.deleteProduct(prodNo, prodDeleteReason);
 		if (result < 1) {
-			throw new CustomRestfulException("상품 삭제시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException(BizDefine.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 	}
@@ -112,7 +116,7 @@ public class ProductService {
 					filePath = receiveFilePath.split(",");
 				}
 
-				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
 						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
 						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
 						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
@@ -150,7 +154,7 @@ public class ProductService {
 					filePath = receiveFilePath.split(",");
 				}
 
-				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
 						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
 						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
 						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
@@ -188,7 +192,7 @@ public class ProductService {
 					filePath = receiveFilePath.split(",");
 				}
 
-				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
 						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
 						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
 						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
@@ -217,6 +221,7 @@ public class ProductService {
 			throw new CustomRestfulException("해당 상품이 없거나 오류가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
+		// 파일 배열
 		String[] filePath = {};
 
 		if (product.getFilePath() != null && product.getFilePath().isEmpty() == false) {
@@ -225,7 +230,12 @@ public class ProductService {
 			filePath = receiveFilePath.split(",");
 		}
 
-		ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+		// String -> 배열로 바꾸기
+		ExchangeService<String> exchangeService = new ExchangeService<>();
+		
+		String[] additionExplanation = exchangeService.exchangeToArrayFromString(product.getAdditionExplanation());
+		
+		ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
 				.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
 				.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
 				.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
@@ -235,7 +245,9 @@ public class ProductService {
 				.prodFullAddress(product.getProdFullAddress()).prodDetailedAddress(product.getProdDetailedAddress())
 				.prodLocationX(product.getProdLocationX()).prodLocationY(product.getProdLocationY())
 				.prodRdate(product.getProdRdate()).prodUpdateAt(product.getProdUpdateAt())
-				.prodDeleteYn(product.getProdDeleteYn()).prodDeleteAt(product.getProdDeleteAt()).build();
+				.prodDeleteYn(product.getProdDeleteYn()).prodDeleteAt(product.getProdDeleteAt())
+				.additionExplanation(additionExplanation)
+				.build();
 		log.info(dto.toString());
 		return dto;
 	}
@@ -273,7 +285,7 @@ public class ProductService {
 					filePath = receiveFilePath.split(",");
 				}
 
-				ResProdMainFilterDto dto = ResProdMainFilterDto.builder().prodNo(product.getProdNo()).prodWriterNo(1)
+				ResProdMainFilterDto dto = ResProdMainFilterDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
 						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
 						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
 						.prodSpaceInfo(product.getProdSpaceInfo()).filePath(filePath)

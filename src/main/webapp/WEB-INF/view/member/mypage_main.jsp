@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file ="/WEB-INF/view/member/layout/header.jsp" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
     <!-- mypage content 시작 -->
 
@@ -63,8 +62,9 @@
                 <div class="p-3 py-5">
                   <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-center" style="font-size: xx-large;">Profile Settings</h4>
-                    <h4><c:out value= "${id}"/>ssssssssss</h4>
                     <p>principal : <sec:authentication property="principal" /></p>
+                    <p>${id} </p>
+                    <p>${role} </p>
                   </div>
                   <br>
                   <br>

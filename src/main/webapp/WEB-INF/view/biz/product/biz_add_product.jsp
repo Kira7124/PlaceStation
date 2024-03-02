@@ -20,6 +20,23 @@
 	color: #999;
 	font-size: .9em;
 }
+
+.toggle3 input[type=checkbox] {
+	display: none;
+}
+
+.toggle3 input[type=checkbox]+label {
+	color: #e0e0e0;
+	font-size: 5em;
+}
+
+.toggle3 input[type=checkbox]:checked+label {
+	color: #000;
+}
+
+h4 {
+	font-weight: bold;
+}
 </style>
 
 <!-- MAIN -->
@@ -67,7 +84,7 @@
 										<div id='att_zone'
 											data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
 									</div>
-									<input type="hidden" value="N" name="isFile" id="isFile"/> <br>
+									<input type="hidden" value="N" name="isFile" id="isFile" /> <br>
 									<h4>영업 시작 시간을 입력해 주세요</h4>
 									<input type="number" class="form-control"
 										placeholder="영업 시작 시간을 입력해 주세요" name="prodStartTime" value="1"
@@ -116,6 +133,36 @@
 								</div>
 							</div>
 							<!-- END INPUTS -->
+
+							<!-- INPUT GROUPS -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">부가 설명</h3>
+								</div>
+								<div class="panel-body">
+									<!-- 부가 이미지 시작 -->
+									<h4>부가 설명하실 이미지를 선택해 주세요.</h4>
+
+									<!-- 부가 이미지 -->
+									<div class="toggle3" style="text-align: center;">
+										<c:forEach items="${additionExplanation}"
+											var="additionExplanation">
+											<input type="checkbox"
+												id="toggle3-${additionExplanation.additionExplanationNo}"
+												name="descriptionImage"
+												value="${additionExplanation.additionExplanationNo}">
+											<label
+												for="toggle3-${additionExplanation.additionExplanationNo}"
+												style="margin-right: 20px;"><img
+												src="${additionExplanation.filePath}" alt=""
+												style="width: 100px; height: 100px;" />
+												<h4>${additionExplanation.name}</h4> </label>
+										</c:forEach>
+									</div>
+									<!-- 부가 이미지 종료 -->
+								</div>
+							</div>
+							<!-- END INPUT GROUPS -->
 
 							<!-- INPUT GROUPS -->
 							<div class="panel">

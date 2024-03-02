@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ include file ="/WEB-INF/view/member/layout/header.jsp" %>
+ <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
      <!-- login content 시작 -->
       <!--로그인 섹션 시작-->
         <section class="module">
@@ -8,6 +9,9 @@
             <div class="row">
               <div class="col-sm-5 col-sm-offset-1 mb-sm-40" id="login" style="margin-left: 33%;">
                 <h4 class="font-alt">Login</h4>
+                 <p>principal : <sec:authentication property="principal" /></p>
+         <%--         <p>principal : <sec:authentication property="principal.userName" /></p>
+                 <p>principal : <sec:authentication property="principal.authority" /></p> --%>
                 <hr class="divider-w mb-10">
                 <form class="form" action="/loginProc" method="post">
                   <div class="form-group">
@@ -24,28 +28,28 @@
                     width: 47px !important;
                     background-color: white !important; 
                     border: none !important;">
-                      <img src="/assets/img/social_login/btnG_icon_square.png" class="social_btn">
+                      <img src="/assets/img/social_login/btnG_icon_square.png" class="social_btn" style="max-height: 39px">
                     </button>
                     <button type="button" class="social_btn"
                     style="height: 38px !important;
                     width: 47px !important;
                     background-color: white !important; 
                     border: none !important;">
-                      <img src="/assets/img/social_login/Asset 1.png" class="social_btn">
+                      <img src="/assets/img/social_login/Asset 1.png" class="social_btn" style="max-height: 39px">
                     </button>
                     <button type="button" class="social_btn"
                     style="height: 38px !important;
                     width: 47px !important;
                     background-color: white !important; 
                     border: none !important;">
-                      <img src="/assets/img/social_login/web_light_sq_na@2x.png" class="social_btn">
+                      <img src="/assets/img/social_login/web_light_sq_na@2x.png" class="social_btn" style="max-height: 39px">
                     </button>
                   </div>
                   </div>
                   <div class="form-group" style="position: absolute; width: 93%;">
                     <a href="" style="font-weight: 600;">Forgot Password?</a> 
-                    <a href="/member/terms_user.jsp" style="float: right; font-weight: 600; position: relative; padding-left: 5%;">User Register</a>
-                    <a href="/member/terms_seller.jsp" style="float: right; font-weight: 600; position: relative;">Seller Regist</a>
+                    <a href="/member/uregister" style="float: right; font-weight: 600; position: relative; padding-left: 5%;">User Register</a>
+                    <a href="/member/sregister" style="float: right; font-weight: 600; position: relative;">Seller Regist</a>
                     </div>
                   <div class="form-group"></div>
                 </form>

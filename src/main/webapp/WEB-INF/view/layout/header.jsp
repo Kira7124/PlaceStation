@@ -58,7 +58,7 @@
         
         <div class="container" id="header">
           <div class="navbar-header">
-           <a class="navbar-brand" href="main">PlaceStation</a>
+           <a class="navbar-brand" href="/product/main">PlaceStation</a>
           </div>
           <!-- nav 바 시작 -->
           <div class="collapse navbar-collapse" id="custom-collapse">
@@ -165,7 +165,7 @@
           </form>
         </div> 
         <div class="login_register" style="display: inline-block">
-            <a href="#">로그인</a>
+            <a href="/member/login">로그인</a>
             <a href="#">회원가입</a>
           </div>
         </div>

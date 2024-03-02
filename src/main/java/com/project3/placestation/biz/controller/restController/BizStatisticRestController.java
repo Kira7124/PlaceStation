@@ -14,8 +14,10 @@ import com.project3.placestation.biz.model.dto.BizMonthlyFeeDto;
 import com.project3.placestation.biz.model.dto.ResStatisticDto;
 import com.project3.placestation.biz.model.dto.StatisticDto;
 import com.project3.placestation.biz.model.util.StatisticKind;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.AdminProdHistoryService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -26,6 +28,8 @@ public class BizStatisticRestController {
 	@Autowired
 	AdminProdHistoryService adminProdHistoryService;
 
+	@Autowired
+	HttpSession httpSession;
 	/**
 	 * 사업자 통계
 	 * 
@@ -35,11 +39,20 @@ public class BizStatisticRestController {
 	@GetMapping("/all")
 	public ResponseEntity<?> getAll() {
 		try {
-
-			int bizId = 1; 
-			List<StatisticDto> annualList = adminProdHistoryService.findStatisticSales(bizId, StatisticKind.ANNUAL); // 년간 매출
-			List<StatisticDto> monthlyList = adminProdHistoryService.findStatisticSales(bizId, StatisticKind.MONTHLY); // 월간 매출
-			List<StatisticDto> weekList = adminProdHistoryService.findStatisticSales(bizId, StatisticKind.WEEK); // 주간 매출 
+			// 멤버 받기
+			Member member = (Member) httpSession.getAttribute("member"); 
+			if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+				return new ResponseEntity<>(false , HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			int bizId = member.getUserno(); 
+			
+			List<StatisticDto> annualList = exchangeList(adminProdHistoryService.findStatisticSales(bizId, StatisticKind.ANNUAL)); // 년간 매출
+			
+			
+			List<StatisticDto> monthlyList = exchangeList(adminProdHistoryService.findStatisticSales(bizId, StatisticKind.MONTHLY)); // 월간 매출
+			
+			log.info(monthlyList.toString());
+			List<StatisticDto> weekList = exchangeList(adminProdHistoryService.findStatisticSales(bizId, StatisticKind.WEEK)); // 주간 매출 
 
 			int annualCount = adminProdHistoryService.findStatisticSalesVolumes(bizId, StatisticKind.ANNUAL); // 년간 판매량
 			int monthlyCount = adminProdHistoryService.findStatisticSalesVolumes(bizId, StatisticKind.MONTHLY); // 월간 판매량
@@ -74,4 +87,19 @@ public class BizStatisticRestController {
 		}
 	}
 
+	/**
+	 * 환불처리된 금액은 제외
+	 * @param list
+	 * @return
+	 */
+	public List<StatisticDto> exchangeList(List<StatisticDto> list) {
+		List<StatisticDto> sList = new ArrayList<>();
+		for(StatisticDto dto : list) {
+			if(dto.getCancelAmount() > 0) {
+				dto.setAmount(dto.getAmount() - dto.getCancelAmount());
+			}
+			sList.add(dto);
+		}
+		return sList;
+	}
 }
