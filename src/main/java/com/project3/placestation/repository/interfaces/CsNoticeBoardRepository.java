@@ -3,6 +3,7 @@ package com.project3.placestation.repository.interfaces;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.repository.entity.CsNoticeBoard;
@@ -22,12 +23,12 @@ public interface CsNoticeBoardRepository {
 //	// 글조회수증가
 //	public void UpdateReadCnt(Integer nbno) throws Exception;
 	
-	// 공지사항숫자세기(검색,페이징처리)
+	// 공지사항 숫자 세기(검색,페이징처리)
 	public int countNoticeSearchlist(Criteria cri) throws Exception;
 
     // 카테고리에 따른 공지사항 수
-	public int CsNoticeBoardCountByCategory() throws Exception;
+	public int CsNoticeBoardCountByCategory(@Param("categoryid") Integer categoryid, @Param("cri") Criteria cri) throws Exception;
 	
 	// 카테고리에 따른 공지사항 리스트 출력
-	public List<CsNoticeBoard> CsNoticeBoardListByCategory(Criteria cri) throws Exception;
+	public List<CsNoticeBoard> CsNoticeBoardListByCategory(@Param("categoryid") Integer categoryid, @Param("cri") Criteria cri) throws Exception;
 }
