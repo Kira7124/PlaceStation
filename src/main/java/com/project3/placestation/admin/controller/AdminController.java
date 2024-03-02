@@ -84,7 +84,7 @@ public class AdminController {
 		session.setAttribute("totalNotice", totalNotice);
 		session.setAttribute("totalQna", totalQna);
 		session.setAttribute("viewcntCheck", true);
-
+		
 		PageVO pageVO = new PageVO();
 		pageVO.setCri(cri);
 		// pageVO.setTotalCount(noticeBoardService.AdmincountNoticeBoard());

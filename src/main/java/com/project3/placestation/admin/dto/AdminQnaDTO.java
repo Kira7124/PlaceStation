@@ -16,9 +16,9 @@ import lombok.ToString;
 public class AdminQnaDTO {
 
 	private Integer qbno;
-	private String qwriter;
-	private String qcontent;
+	private Integer qwriter;
 	private String qtitle;
+	private String qcontent;
 	private String filepath;
 	private Timestamp qregdate;
 	private Timestamp qupdatedate;

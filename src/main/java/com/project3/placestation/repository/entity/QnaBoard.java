@@ -29,6 +29,7 @@ public class QnaBoard {
 	private Timestamp qdeleteat;
 	private String qstatus;
 	private String qreply;
+	private String userid;
 
 	
 	//포메터(시간)

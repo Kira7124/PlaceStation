@@ -64,7 +64,7 @@
 							<tbody>
 								<tr>
 									<td>${qnalist.qbno}</td>
-									<td>${qnalist.qwriter}</td>
+									<td>${qnalist.userid}</td>
 									<td><a href="/admin/admin-qnadetail?qbno=${qnalist.qbno}">${qnalist.qtitle}</a></td>
 									<td>${qnalist.formatjoinAt()}</td>							
 									<td>

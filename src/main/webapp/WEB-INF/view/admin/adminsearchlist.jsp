@@ -72,8 +72,6 @@
 								            <img src="${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
 								        </c:otherwise>
 								    </c:choose>
-								<td>
-								  <img src="/assets/img/${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
 								</td>
 								  <td>	
 									<c:choose>
@@ -130,7 +128,7 @@
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
-
+							
 
 				
 							<c:if test="${pageVO.next }">

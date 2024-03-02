@@ -9,19 +9,23 @@
 
 
 	<!-- Qna리스트출력확인 -->
-	<select id="AdminQnaBoardListAll"
-		resultType="com.project3.placestation.repository.entity.QnaBoard">
-		select * from qna_board
+	<select id="AdminQnaBoardListAll" resultType="com.project3.placestation.repository.entity.QnaBoard">
+		select qna_board.*, member.user_id
+		from qna_board
+		join member
+		on qna_board.q_writer = member.user_no
 		limit #{startPage},#{pageSize}
 	</select>
 
-
+	
 	<!-- Qna리스트(조건화)출력 -->
-	<select id="AdminQnaBoardListAll2"
-		resultType="com.project3.placestation.repository.entity.QnaBoard">
-		select * from qna_board
-		where q_status = #{status}
-		limit #{startPage},#{pageSize}
+	<select id="AdminQnaBoardListAll2" resultType="com.project3.placestation.repository.entity.QnaBoard">
+		SELECT qna_board.*, member.user_id
+		FROM qna_board
+		JOIN member 
+		ON qna_board.q_writer = member.user_no
+		WHERE qna_board.q_status = #{status}
+		LIMIT #{startPage}, #{pageSize}
 	</select>
 
 
