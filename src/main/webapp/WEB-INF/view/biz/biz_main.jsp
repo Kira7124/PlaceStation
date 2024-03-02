@@ -95,7 +95,7 @@
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<a href="/biz/main"> <span class="icon"><i
+										<a href="/cs/qna"> <span class="icon"><i
 												class="fa fa-download"></i></span>
 											<p>
 												<span class="number">문의 내역</span> <br /> <span><p>사용자의

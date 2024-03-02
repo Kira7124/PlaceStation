@@ -3,30 +3,91 @@
 
 <!-- adminheader.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<link rel="stylesheet" href="/css/mainpage.css" />
 
-<style>
-img {
-	border-radius: 10px;
-}
-</style>
 
 
 <div class="main">
 	<!-- 배너 이미지 -->
-	<section class="module bg-dark-60 shop-page-header"
-		data-background="/assets/images/shop/product-page-bg.jpg">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3">
-					<h2 class="module-title font-alt">하~이</h2>
-					<div class="module-subtitle font-serif">가나다라마바사</div>
+	
+	<div class="section" style="margin-top: 150px; margin-left: 50px;">
+		<input type="radio" name="slide" id="slide01" checked>
+		<input type="radio" name="slide" id="slide02">
+		<input type="radio" name="slide" id="slide03">
+		<input type="radio" name="slide" id="slide04">
+	<div class="slidewrap">
+		
+		<ul class="slidelist">
+			<!-- 슬라이드 영역 -->
+			<li class="slideitem">
+				<a href="/main/index">
+				   <img src="/banner/welcome.jpg">
+				</a>
+			</li>
+			<li class="slideitem">
+				<a href="#">
+				   <img src="/banner/sport.jpg">
+				</a>
+			</li>
+			<li class="slideitem">
+				<a href="#">
+				   <img src="/banner/party.jpg">
+				</a>
+			</li class="slideitem">
+			<li class="slideitem">
+				<a href="#">
+				   <img src="/banner/camp.jpg">
+				</a>
+			</li class="slideitem">
+
+			<!-- 좌,우 슬라이드 버튼 -->
+			<div class="slide-control">
+				<div>
+					<label for="slide03" class="left"></label>
+					<label for="slide02" class="right"></label>
+				</div>
+				<div>
+					<label for="slide01" class="left"></label>
+					<label for="slide03" class="right"></label>
+				</div>
+				<div>
+					<label for="slide02" class="left"></label>
+					<label for="slide01" class="right"></label>
+				</div>
+				<div>
+					<label for="slide04" class="left"></label>
+					<label for="slide03" class="right"></label>
+				</div>
+				<div>
+					<label for="slide01" class="left"></label>
+					<label for="slide04" class="right"></label>
 				</div>
 			</div>
-		</div>
-	</section>
+
+		</ul>
+		<!-- 페이징 -->
+		<ul class="slide-pagelist">
+			<li><label for="slide01"></label></li>
+			<li><label for="slide02"></label></li>
+			<li><label for="slide03"></label></li>
+			<li><label for="slide04"></label></li>
+		</ul>
+	</div>
+
+	
+</div>
+ 	 
+
+
+
+
+
+
+
+
 
 	<!-- PlaceStation의 추천!! -->
-	<section class="module" id="news">
+	<section class="module" id="news" style="margin-top: 50px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
@@ -316,6 +377,14 @@ img {
 			</div>
 		</div>
 	</section>
+	
+	
+	
+	
+	
+
+
+
 
 
 <!-- include.jsp -->

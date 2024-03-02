@@ -1,10 +1,16 @@
 package com.project3.placestation.main.controller;
 
+import java.util.Arrays;
+
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,45 +18,44 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomErrorController implements ErrorController {
 
-    private static final String ERROR_PATH = "/error";
-    private static final String ERROR_PAGE_PATH = "error/error";
+	private static final String ERROR_PATH = "/error";
+	private static final String ERROR_PAGE_PATH = "error/error";
 
-    @RequestMapping(ERROR_PATH)
-    public String handleError(HttpServletRequest request , Model model) {
-    	
-//		// 에러 코드를 획득한다.
-//		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-//
-//		// 에러 코드에 대한 상태 정보
-//		HttpStatus httpStatus = HttpStatus.valueOf(Integer.valueOf(status.toString()));
-//        
-//		if (status != null) {
-//			// HttpStatus와 비교해 페이지 분기를 나누기 위한 변수
-//			int statusCode = Integer.valueOf(status.toString());
-//
-//			// 로그로 상태값을 기록 및 출력
-//			log.info("httpStatus : " + statusCode);
-//
-//			// 404 error
-//			if (statusCode == HttpStatus.NOT_FOUND.value()) {
-//				// 에러 페이지에 표시할 정보
-//				model.addAttribute("code", status.toString());
-//				model.addAttribute("msg", httpStatus.getReasonPhrase());
-//				model.addAttribute("timestamp", new Date());
-//				return ERROR_404_PAGE_PATH;
-//			}
-//            
-//			// 500 error
-//			if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-//				// 서버에 대한 에러이기 때문에 사용자에게 정보를 제공하지 않는다.
-//				return ERROR_500_PAGE_PATH;
-//			}
-//		}
-        // 에러 페이지 처리 로직을 구현합니다.
-        return ERROR_PAGE_PATH; // 에러 페이지의 뷰 이름을 반환합니다.
-    }
+	@RequestMapping(ERROR_PATH)
+	public String handleError(HttpServletRequest request, Model model) {
 
-    public String getErrorPath() {
-        return ERROR_PATH;
-    }
+		System.out.println("안녕하세요`");
+		// 에러 코드를 획득한다.
+		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+
+		// 에러 코드에 대한 상태 정보
+		HttpStatus httpStatus = HttpStatus.valueOf(Integer.valueOf(status.toString()));
+
+		if (status != null) {
+			// HttpStatus와 비교해 페이지 분기를 나누기 위한 변수
+			int statusCode = Integer.valueOf(status.toString());
+
+			String strStatusCode = String.valueOf(statusCode);
+			int[] array = new int[strStatusCode.length()];
+
+			for (int i = 0; i < strStatusCode.length(); i++) {
+				char c = strStatusCode.charAt(i);
+				array[i] = Character.getNumericValue(c);
+			}
+
+			log.info("배열 : " + Arrays.toString(array));
+			model.addAttribute("code", statusCode);
+		} else {
+			model.addAttribute("code", 404);
+		}
+
+		// 에러 페이지 처리 로직을 구현합니다.
+		return ERROR_PAGE_PATH; // 에러 페이지의 뷰 이름을 반환합니다.
+	}
+	
+
+
+	public String getErrorPath() {
+		return ERROR_PATH;
+	}
 }
