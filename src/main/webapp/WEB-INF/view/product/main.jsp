@@ -5,19 +5,17 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 <style>
-img {
-	border-radius: 10px;
-}
+	img {
+		border-radius: 10px;
+	}
 
 .module.bg-dark-60.shop-page-header {
- 	background-image: url('/assets/img/dog.jpg');
-    cursor: pointer;
-    background-position: 100% 50%; /* 배경 이미지를 오른쪽에 정렬합니다. */
-    transition: background-position 1s ease; /* 배경 이미지 이동에 부드러운 애니메이션 효과를 추가합니다. */
-    
-  	
+	background-image: url('/assets/img/dog.jpg');
+	cursor: pointer;
+	overflow: hidden; /* 요소 바깥으로 넘치는 컨텐츠를 숨김 */
+	position: relative;
 }
-
+	
 
   .btn-next, .btn-prev {
     position: absolute;
@@ -38,6 +36,12 @@ img {
     left: 20px;
   }
 
+ .module-title,
+  .module-subtitle {
+    visibility: hidden;
+  }
+	
+	
 </style>
 
 	 <script>
@@ -47,26 +51,56 @@ img {
 		    '/assets/img/cat.jpg',
 		    '/assets/img/bird.jpg'
 		  ];
-		
+			
+		  function updateBackground() {
+			    const section = document.querySelector('.module.bg-dark-60.shop-page-header');
+			    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
+			  }
+		  
 		  function nextBackground() {
 		    currentImageIndex = (currentImageIndex + 1) % images.length;
 		    const section = document.querySelector('.module.bg-dark-60.shop-page-header');
 		    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
+		    updateBackground();
+
 		  }
 		  
 		  function prevBackground() {
 		    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
 		    const section = document.querySelector('.module.bg-dark-60.shop-page-header');
 		    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
+		    updateBackground();
+
 		  }
+		  
+		  
+		  function bannerLinkClicked() {
+			    // 현재 이미지 인덱스에 따라 작업을 수행합니다.
+			    // 예를 들어, 다른 페이지로 이동하거나 기타 작업을 수행할 수 있습니다.
+			    switch (currentImageIndex) {
+			      case 0:
+			        window.location.href = "/admin/admin-main"; // 필요에 따라 URL을 변경하세요.
+			        break;
+			      case 1:
+			        window.location.href = "/admin/admin-notice"; // 필요에 따라 URL을 변경하세요.
+			        break;
+			      case 2:
+			        window.location.href = "/admin/admin-payment"; // 필요에 따라 URL을 변경하세요.
+			        break;
+			      default:
+			        break;
+			    }
+			  }
+
 	 </script>
 
 
 
 <div class="main">
 	<!-- 배너 이미지 -->
-	<section class="module bg-dark-60 shop-page-header" >
-		<div class="container"style = "margin-top: 150px;">
+	
+	<section class="module bg-dark-60 shop-page-header">
+		<div class="container" style = "margin-top: 150px;" onclick="bannerLinkClicked()">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
 					<h2 class="module-title font-alt">사진자리</h2>
@@ -74,10 +108,10 @@ img {
 				</div>
 			</div>
 		</div>
-		    <button class="btn-prev" onclick="prevBackground()">‹</button>
-   			<button class="btn-next" onclick="nextBackground()">›</button>
+		<button class="btn-prev" onclick="prevBackground()">‹</button>
+   	 	<button class="btn-next" onclick="nextBackground()">›</button>
 	</section>
-
+ 	 
 
 
 
