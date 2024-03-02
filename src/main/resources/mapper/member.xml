@@ -182,7 +182,7 @@
 		grade as userGrade , user_point as
 		userPoint , join_at as joinAt ,
 		user_role as userRole , gender as
-		gender from member where user_no =
+		gender , file_path as filePath from member where user_no =
 		#{userNo}
 	</select>
 

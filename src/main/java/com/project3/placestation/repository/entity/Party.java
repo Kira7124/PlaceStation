@@ -21,6 +21,7 @@ public class Party {
 	private Integer partyHost;
 	private Integer partyMaximumPeople;
 	private String filePath;
+	private String parcipationUserNo;
 	private Integer partyManager;
 	private Integer productNo;
 	private String adminHisNo;
@@ -28,4 +29,5 @@ public class Party {
 	private String partyUpdateAt;
 	private String partyDeleteAt;
 	private String partyDeleteYn;
+	
 }

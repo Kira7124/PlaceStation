@@ -26,6 +26,10 @@ img {
 .main {
 	margin-top: 100px;
 }
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
 </style>
 
 <div class="main">
@@ -37,32 +41,31 @@ img {
 					<div class="widget">
 						<form role="form">
 							<div class="search-box">
+
 								<input class="form-control" type="text" placeholder="Search..." />
 								<button class="search-btn" type="submit">
 									<i class="fa fa-search"></i>
 								</button>
+
 							</div>
 						</form>
 					</div>
 					<div class="widget">
 						<h5 class="widget-title font-alt">공지 사항</h5>
 						<ul class="icon-list">
-							<li><a href="#">Photography - 7</a></li>
-							<li><a href="#">Web Design - 3</a></li>
-							<li><a href="#">Illustration - 12</a></li>
-							<li><a href="#">Marketing - 1</a></li>
-							<li><a href="#">Wordpress - 16</a></li>
+							<c:forEach items="${partyAnnouncement}" var="anno">
+								<li><a
+									href="/party/announcement/${anno.partyAnnouncementNo}">${anno.partyAnnouncementTitle}</a></li>
+							</c:forEach>
 						</ul>
 					</div>
 
 					<div class="widget">
 						<h5 class="widget-title font-alt">이런 모임은 어떠세요?</h5>
 						<ul class="icon-list">
-							<li>Maria on <a href="#">Designer Desk Essentials</a></li>
-							<li>John on <a href="#">Realistic Business Card Mockup</a></li>
-							<li>Andy on <a href="#">Eco bag Mockup</a></li>
-							<li>Jack on <a href="#">Bottle Mockup</a></li>
-							<li>Mark on <a href="#">Our trip to the Alps</a></li>
+							<c:forEach items="${partyAnnouncement}" var="anno">
+								<li><a href="#">${anno.partyAnnouncementTitle}</a></li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
@@ -76,13 +79,74 @@ img {
 								alt="Blog Featured Image" />
 						</div>
 						<div class="post-header font-alt">
+							<div style="text-align: right;">
+								<!-- 참가하기 -->
+								<form action="/party/join" method="post">
+									<input type="hidden" name="_method" value="put" /> <input
+										type="hidden" value="${member.userno}" name="userNo" /> <input
+										type="hidden" value="${party.parcipationUserNo}"
+										name="parcipationUserNo" /> <input type="hidden"
+										value="${party.partyNo}" name="partyNo" />
+
+									<c:choose>
+										<c:when test="${party.validPartyJoin(member.userno)}">
+										<input type="hidden" name="isJoin" value="N"/>
+											<button class="btn btn-danger btn-round" type="submit">모임
+												나가기</button>
+										</c:when>
+										<c:otherwise>
+										<input type="hidden" name="isJoin" value="Y"/>
+											<button class="btn btn-success btn-round" type="submit">모임
+												참가하기</button>
+										</c:otherwise>
+									</c:choose>
+
+								</form>
+								<!-- 참가하기 종료 -->
+							</div>
 							<h1 class="post-title">${party.partyName}</h1>
 							<div class="post-meta">
-								By&nbsp;<a href="#">${party.partyHost}</a>&nbsp;| ${party.partyCreatedAt} |
+								By&nbsp;<a href="#">${party.username}</a>&nbsp;|
+								${party.partyCreatedAt} |
 							</div>
 						</div>
+
 						<div class="post-entry">
-							<p>모임설명</p>
+							<h3>상품 소개</h3>
+							<p>상품명 : ${party.prodTitle}</p>
+
+							<blockquote>
+								<p>${party.prodSpaceInfo}</p>
+							</blockquote>
+							<p></p>
+
+							<ul>
+								<li>인당 가격 : ${party.peopleByamount()}&nbsp; 원</li>
+								<li>위치 : ${party.prodFullAddress}</li>
+								<li>해당 주소 : <a
+									href="/product/productDetail?prod_no=${party.prodNo}">http://127.0.0.1/product/productDetail?prod_no=${party.prodNo}</a></li>
+
+								<li>시간 :
+									${party.purchaseDate}&nbsp;&nbsp;${party.startTime}시&nbsp;~&nbsp;${party.endTime}시
+								</li>
+							</ul>
+						</div>
+						<div class="post-entry">
+							<h3>모임 소개</h3>
+							<p>${party.partyDescription}</p>
+							<ul>
+								<li>주최자 : ${party.username}</li>
+								<c:choose>
+									<c:when test="${party.gender == 'M'}">
+										<li>주최자 성별 : 남성</li>
+									</c:when>
+									<c:when test="${party.gender == 'F'}">
+										<li>주최자 성별 : 여성</li>
+									</c:when>
+								</c:choose>
+								<li>주최자 등급 : ${party.grade}</li>
+								<li>주최자 이메일 : ${party.useremail}</li>
+							</ul>
 						</div>
 					</div>
 					<!-- 본문 종료 -->
@@ -90,28 +154,18 @@ img {
 					<!-- 사람 인원 칸 시작 -->
 					<div class="comments">
 						<h4 class="comment-title font-alt">모임 사람들</h4>
-						<div class="comment clearfix">
-							<div class="comment-avatar">
-								<img
-									src="https://s3.amazonaws.com/uifaces/faces/twitter/ryanbattles/128.jpg"
-									alt="avatar" />
-							</div>
-							<div class="comment-content clearfix">
-								<div class="comment-author font-alt">
-									<a href="#">John Doe</a>
+						<c:forEach items="${memberList}" var="memberList">
+							<div class="comment clearfix">
+								<div class="comment-avatar">
+									<img src="${memberList.filePath}" alt="avatar" />
 								</div>
-								<div class="comment-body">
-									<p>The European languages are members of the same family.
-										Their separate existence is a myth. For science, music, sport,
-										etc, Europe uses the same vocabulary. The European languages
-										are members of the same family. Their separate existence is a
-										myth.</p>
-								</div>
-								<div class="comment-meta font-alt">
-									Today, 14:55 - <a href="#">Reply</a>
+								<div class="comment-content clearfix">
+									<div class="comment-author font-alt">
+										<a href="#">${memberList.userName}&nbsp;&nbsp; 님</a>
+									</div>
 								</div>
 							</div>
-						</div>
+						</c:forEach>
 					</div>
 					<!-- 사람 인원 칸 종료 -->
 				</div>

@@ -1,5 +1,7 @@
 package com.project3.placestation.party.dto;
 
+import java.util.Arrays;
+
 import lombok.Data;
 
 @Data
@@ -11,6 +13,7 @@ public class PartyDto {
 	private Integer partyHost;
 	private Integer partyMaximumPeople;
 	private String filePath;
+	private String parcipationUserNo;
 	private Integer partyManager;
 	private Integer productNo;
 	private String adminHisNo;
@@ -79,4 +82,23 @@ public class PartyDto {
 	private Integer cancelAmount;
 	private Integer peopleCount;
 	private String purchaseDate;
+	
+	/**
+	 * 개인 당 금액 계산
+	 * @return
+	 */
+	public String peopleByamount() {
+		int amount = adminHisPrice / peopleCount;
+		return String.valueOf(amount);
+	}
+	
+	/**
+	 * 파티에 가입되어 있는지 확인
+	 * @param userno
+	 * @return
+	 */
+	public boolean validPartyJoin(int userno) {
+		String[] strArray = parcipationUserNo.split(",");
+		return Arrays.asList(strArray).contains(String.valueOf(userno));
+	}
 }

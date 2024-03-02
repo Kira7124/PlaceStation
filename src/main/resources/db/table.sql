@@ -229,6 +229,7 @@ create table party (
     party_manager int ,
     product_no int ,
     admin_his_no varchar ( 400 ) ,
+    parcipation_user_no varchar ( 400 ),
     party_created_at timestamp default now() ,
 	party_update_at timestamp ,
 	party_delete_at timestamp,
