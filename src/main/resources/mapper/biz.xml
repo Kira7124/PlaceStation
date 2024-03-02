@@ -18,9 +18,10 @@
 		limit #{startPage},#{pageSize}
 	</select>
 
+
 	<!-- 페이징처리 갯수셋팅 -->
 	<select id="countBiz" resultType="int">
-		<![CDATA[ select count(*) from biz where biz_no > 0 ]]>
+		<![CDATA[ SELECT COUNT(*) FROM biz JOIN member ON biz.biz_id = member.user_no]]>
 	</select>
 
 
@@ -40,9 +41,11 @@
 
 
 	<!-- 사업자검색(관리자) -->
-	<select id="searchBizMemberlist"
-		resultType="com.project3.placestation.repository.entity.Biz">
-		select * from biz
+	<select id="searchBizMemberlist" resultType="com.project3.placestation.repository.entity.Biz">
+		SELECT biz.*, member.user_id
+		FROM biz
+		JOIN member 
+		ON biz.biz_id = member.user_no
 		<where>
 			<if test="searchKeyword != null and searchKeyword != ''">
 				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
@@ -75,7 +78,9 @@
 
 	<!-- 관리자사업자검색카운팅 -->
 	<select id="countSearchBizlist">
-		select count(*) from biz
+		SELECT COUNT(*)
+		FROM biz
+		JOIN member ON biz.biz_id = member.user_no
 		<where>
 			<if test="searchKeyword != null and searchKeyword != ''">
 				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
