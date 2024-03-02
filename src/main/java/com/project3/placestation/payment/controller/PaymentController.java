@@ -29,6 +29,7 @@ import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.GradeService;
 import com.project3.placestation.service.MemberService;
+import com.project3.placestation.service.PaymentService;
 import com.project3.placestation.service.ProductService;
 
 import jakarta.servlet.http.HttpSession;
@@ -53,6 +54,9 @@ public class PaymentController {
 	
 	@Autowired
 	GradeService gradeService;
+	
+	@Autowired
+	PaymentService paymentService;
 	
 	@Autowired
 	HttpSession httpSession;
@@ -108,7 +112,9 @@ public class PaymentController {
 		log.info(Arrays.toString(resArray));
 
 		// 시간이 중복되었는지 확인
-		if (Arrays.asList(resArray).contains(startTime) || Arrays.asList(resArray).contains(endTime)) {
+		boolean validTime = adminProdHistoryService.validTime(resArray, startTime,
+				endTime);
+		if(validTime) {
 			throw new CustomRestfulException(BizDefine.DUPLICATED_TIME, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 

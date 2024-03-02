@@ -41,8 +41,8 @@ VALUES
 ('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
 ('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
 ('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
-('san2636', '$2a$10$2RC0sD8amY1GFavAs9eKkuv0y8iuXI4XTBRZqu95dKy/NEzIcGmn6', '49376부산 사하구 감내1로 7dsa', '이산하', '010-1111-1111', 'san2636@naver.com@null', 'ROLE_USER','BRONZE','M'),
-('san26362', '$2a$10$2RC0sD8amY1GFavAs9eKkuv0y8iuXI4XTBRZqu95dKy/NEzIcGmn6', '49376부산 사하구 감내1로 7dsa', '이산하', '010-1111-1111', 'san2636@naver.com@null', 'ROLE_BIZ','BRONZE','M');
+('san2636', '$2a$10$2RC0sD8amY1GFavAs9eKkuv0y8iuXI4XTBRZqu95dKy/NEzIcGmn6', '49376부산 사하구 감내1로 7dsa', '이산하', '010-2518-7987', 'san2636@naver.com', 'ROLE_USER','BRONZE','M'),
+('san26362', '$2a$10$2RC0sD8amY1GFavAs9eKkuv0y8iuXI4XTBRZqu95dKy/NEzIcGmn6', '49376부산 사하구 감내1로 7dsa', '이산하', '010-2518-7987', 'san2636@naver.com', 'ROLE_BIZ','BRONZE','M');
 
 insert into notice_board (n_writer,n_content,n_title)
 values('kira','12121212121','rerere'),
@@ -489,3 +489,24 @@ INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) v
 INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('상품' , '상품에 대한 문의가 가능합니다.' , '/assets/images/qna/icon3.png');
 INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('포인트' , '자신의 포인트에 대한 문의가 가능합니다.' , '/assets/images/qna/icon2.png');
 INSERT INTO QNA_BOARD_CATEGORY(category_name, category_description ,file_path) values ('결제' ,'결제에 실패하였거나 환불이 필요한 경우 문의가 가능합니다.'  , '/assets/images/qna/icon7.png');
+
+
+insert into addition_explanation (file_path , name) values ('/assets/images/biz/aircon.png' , '에어컨'),
+('/assets/images/biz/copymachine.png','복사기/인쇄기'),
+('/assets/images/biz/box.png','택배 발송 서비스'),
+('/assets/images/biz/concent.png','콘센트'),
+('/assets/images/biz/openall.png','24시 운영'),
+('/assets/images/biz/mail.png','메일 서비스'),
+('/assets/images/biz/parking.png','실내 주차장'),
+('/assets/images/biz/whiteboard.png','화이트보드'),
+('/assets/images/biz/storage.png','창고 서비스'),
+('/assets/images/biz/fax.png','팩스'),
+('/assets/images/biz/heating.png','난방기'),
+('/assets/images/biz/openall2.png','연중 무휴'),
+('/assets/images/biz/tv.png','TV'),
+('/assets/images/biz/projecter.png','프로젝터'),
+('/assets/images/biz/wifi.png','인터넷 / wifi'),
+('/assets/images/biz/water.png','정수기'),
+('/assets/images/biz/speaker.png','블루투스 스피커'),
+('/assets/images/biz/sliper.png','실내화'),
+('/assets/images/biz/tripod.png','삼각대');

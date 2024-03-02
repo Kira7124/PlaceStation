@@ -231,9 +231,17 @@ public class AdminProdHistoryService {
 		
 		// 있다면 확인
 		for(int i : order) {
-			if(i == startTime || i == endTime) {
+			// 안에 있다면
+			if(i > startTime && i < endTime) {
 				return true;
 			}
+			if(startTime == i) {
+				return Arrays.asList(order).contains(i + 1);
+			}
+			if(endTime == i) {
+				return Arrays.asList(order).contains(i - 1);
+			}
+			
 		}
 		return false;
 	}

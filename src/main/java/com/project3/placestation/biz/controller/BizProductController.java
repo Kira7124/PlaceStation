@@ -23,7 +23,10 @@ import com.project3.placestation.biz.model.dto.ReqUpdateProductDto;
 import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.filedb.service.FiledbService;
+import com.project3.placestation.repository.entity.AdditionExplanation;
 import com.project3.placestation.repository.entity.Member;
+import com.project3.placestation.service.AddtionExplanationService;
+import com.project3.placestation.service.ExchangeService;
 import com.project3.placestation.service.ProdMajorCategoryService;
 import com.project3.placestation.service.ProdSubcategoryService;
 import com.project3.placestation.service.ProductService;
@@ -47,6 +50,10 @@ public class BizProductController {
 
 	@Autowired
 	ProdSubcategoryService prodSubcategoryService;
+	
+	@Autowired
+	AddtionExplanationService addtionExplanationService;
+	
 	
 	@Autowired
 	HttpSession httpSession;
@@ -75,9 +82,12 @@ public class BizProductController {
 		List<ReqProdSubcategoryDto> subCategory = prodSubcategoryService.findAll();
 		log.info(mainCategory.toString());
 		log.info(subCategory.toString());
+		
+		List<AdditionExplanation> additionExplanation = addtionExplanationService.findAll();
 
 		model.addAttribute("mainCategory", mainCategory);
 		model.addAttribute("subcategory", subCategory);
+		model.addAttribute("additionExplanation", additionExplanation);
 		return "biz/product/biz_add_product";
 	}
 
@@ -87,7 +97,7 @@ public class BizProductController {
 		ResProductDto dto = bizProductService.findById(prodNo);
 		List<ReqProdMainCategoryDto> mainCategory = prodMajorCategoryService.findAll();
 		List<ReqProdSubcategoryDto> subCategory = prodSubcategoryService.findAll();
-
+		List<AdditionExplanation> additionExplanation = addtionExplanationService.findAll();
 		log.info(dto.toString());
 		log.info(mainCategory.toString());
 		log.info(subCategory.toString());
@@ -95,7 +105,7 @@ public class BizProductController {
 		model.addAttribute("mainCategory", mainCategory);
 		model.addAttribute("subcategory", subCategory);
 		model.addAttribute("product", dto);
-
+		model.addAttribute("additionExplanation", additionExplanation);
 		return "biz/product/biz_update_product";
 	}
 
@@ -107,7 +117,6 @@ public class BizProductController {
 	 */
 	@PostMapping("/product/add-product")
 	public String addProduct(ReqProductDto dto) {
-		log.info(dto.toString());
 		// 1. 유효성 검사
 		// 유효성 검사
 		Member member = (Member) httpSession.getAttribute("member"); 
@@ -134,7 +143,6 @@ public class BizProductController {
 		if (dto.getProdStartTime() >= dto.getProdEndTime()) {
 			throw new CustomRestfulException(BizDefine.NO_VALID_END_TIME_LESS_THAN_START_TIME, HttpStatus.BAD_REQUEST);
 		}
-
 		if(dto.getIsFile() == null || dto.getIsFile().equals("N")) {
 			throw new CustomRestfulException(BizDefine.NO_VALID_BANNER_IMAGE_OR_LESS_THAN_SIX, HttpStatus.BAD_REQUEST);
 		}
@@ -176,14 +184,19 @@ public class BizProductController {
 
 		// 파일 저장
 		String filePath = filedbService.saveFiles(dto.getFiles());
-
+		
+		
+		ExchangeService<Integer> exchangeService = new ExchangeService<>();
+		String additionExplanation = exchangeService.exchangeToStringFromList(dto.getDescriptionImage());
+		
+		
 //		 파일 저장 실패시
 		if (filePath.isBlank()) {
 			// 실패 로직
 			throw new CustomRestfulException("이미지 저장시 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		bizProductService.saveProduct(filePath, member.getUserno() ,  dto);
+		bizProductService.saveProduct(filePath,additionExplanation, member.getUserno() ,  dto);
 
 		return "redirect:/biz/product-management";
 	}
@@ -252,14 +265,23 @@ public class BizProductController {
 		}
 
 		// 인증 검사가 끝났다면 유저의 아이디값을 가져와야 합니다.
-		int writerNo = 1;
+		Member member = (Member) httpSession.getAttribute("member"); 
 
+		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		// 파일 Str 가져오기
 		String filePath = "";
 		if (dto.getChangeImage().equals("Y")) {
 			filePath = filedbService.saveFiles(dto.getFiles());
 		}
+		
+		// 부가 설명 가져오기
+		ExchangeService<Integer> exchangeService = new ExchangeService<>();
+		String additionExplanation = exchangeService.exchangeToStringFromList(dto.getDescriptionImage());
 
-		bizProductService.updateProduct(filePath, dto, prodNo, writerNo);
+		bizProductService.updateProduct(filePath,additionExplanation, dto, prodNo, member.getUserno());
 
 		return "redirect:/biz/product-management";
 	}

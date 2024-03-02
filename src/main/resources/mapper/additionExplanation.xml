@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.AdditionExplanationRepository">
+
+	<!-- 배너리스트 출력(페이징) -->
+	<select id="findAll"
+		resultType="com.project3.placestation.repository.entity.AdditionExplanation">
+		select addition_explanation_no as additionExplanationNo , file_path as filePath , name as name from addition_explanation
+	</select>
+
+
+
+</mapper>

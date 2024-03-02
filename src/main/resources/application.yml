@@ -1,11 +1,15 @@
 server:
+  error:
+    include-exception: TRUE
+    include-stacktrace: ALWAYS
+    whitelabel.enabled : false
   servlet:
     encoding:
       charset: utf-8
       force: true
     session:
       timeout: 30m
-  port: 80
+  port: 80  
 
 # JSP, mustache 원하는거 사용
 spring:

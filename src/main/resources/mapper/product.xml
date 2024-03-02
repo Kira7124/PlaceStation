@@ -58,7 +58,7 @@
 		, prod_subcategory_id ,
 		prod_full_address ,
 		prod_location_x ,
-		prod_location_y )
+		prod_location_y , addition_explanation )
 		values (#{prodWriterNo}, #{prodTitle} ,
 		#{prodStartTime} , #{prodEndTime} , #{prodSpaceInfo} ,
 		#{prodGoodsInfo} , #{prodCautionInfo} , #{prodMaximumPeople}
@@ -66,7 +66,7 @@
 		#{prodAddress}
 		, #{prodDetailedAddress} , #{prodPrice} , #{filePath} ,
 		#{prodMajorCategoryId}, #{prodSubcategoryId} , #{prodFullAddress} ,
-		#{prodLocationX} , #{prodLocationY} )
+		#{prodLocationX} , #{prodLocationY} , #{additionExplanation} )
 	</insert>
 
 	<update id="updateProduct">
@@ -98,6 +98,7 @@
 		#{product.prodFullAddress},
 		prod_location_x = #{product.prodLocationX},
 		prod_location_y = #{product.prodLocationY},
+		addition_explanation = #{product.additionExplanation} , 
 		prod_update_at = NOW()
 		<if test="changeImage == 'Y'.toString()">
 			,
@@ -162,7 +163,8 @@
 		prod_rdate as prodRdate ,
 		prod_update_at as prodUpdateAt ,
 		prod_delete_reason as prodDeleteReason ,
-		prod_delete_yn as prodDeleteYn
+		prod_delete_yn as prodDeleteYn , 
+		addition_explanation as additionExplanation
 		from product
 		where prod_no = #{prod_no}
 		and

@@ -20,6 +20,23 @@
 	color: #999;
 	font-size: .9em;
 }
+
+.toggle3 input[type=checkbox] {
+	display: none;
+}
+
+.toggle3 input[type=checkbox]+label {
+	color: #e0e0e0;
+	font-size: 5em;
+}
+
+.toggle3 input[type=checkbox]:checked+label {
+	color: #000;
+}
+
+h4 {
+	font-weight: bold;
+}
 </style>
 
 <!-- MAIN -->
@@ -128,6 +145,37 @@
 								</div>
 							</div>
 							<!-- END INPUTS -->
+
+							<!-- INPUT GROUPS -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">부가 설명</h3>
+								</div>
+								<div class="panel-body">
+									<!-- 부가 이미지 시작 -->
+									<h4>부가 설명하실 이미지를 선택해 주세요.</h4>
+
+									<!-- 부가 이미지 -->
+									<div class="toggle3" style="text-align: center;">
+										<c:forEach items="${additionExplanation}"
+											var="additionExplanation">
+											<input type="checkbox"
+												id="toggle3-${additionExplanation.additionExplanationNo}"
+												name="descriptionImage"
+												value="${additionExplanation.additionExplanationNo}">
+											<label
+												for="toggle3-${additionExplanation.additionExplanationNo}"
+												style="margin-right: 20px;"><img
+												src="${additionExplanation.filePath}" alt=""
+												style="width: 100px; height: 100px;" />
+												<h4>${additionExplanation.name}</h4> </label>
+										</c:forEach>
+									</div>
+									<!-- 부가 이미지 종료 -->
+								</div>
+							</div>
+							<!-- END INPUT GROUPS -->
+
 
 							<!-- INPUT GROUPS -->
 							<div class="panel">
@@ -413,6 +461,7 @@ $textarea3.oninput = (event) => {
 	// 페이지 로드 시 초기 설정
 	document.addEventListener("DOMContentLoaded", function() {
 		   updateSubcategories();
+		   getAddtionExplanation();
 	});
 	
 	// 비동기 통신 - 메인 카테고리 id 로 서브 카테고리 id 찾기
@@ -451,6 +500,31 @@ $textarea3.oninput = (event) => {
 	    }
 	}
 	
+	// 비동기 통신 - 메인 카테고리 id 로 서브 카테고리 id 찾기
+	function getAddtionExplanation() {
+
+	    $.ajax({
+	        type: "get",
+	        url: "/biz/product/addition-explanation?prodNo=" + ${product.prodNo},
+	        headers : {"Content-Type" : "application/json"},
+			dataType : "json",
+		       success: function (res) {
+				for(var i = 0; i < res.additionExplanation.length; i++){
+					 var checkbox = document.getElementById(`toggle3-` + res.additionExplanation[i]); // 체크하고자 하는 체크박스의 ID 사용
+			            if (checkbox) {
+			                checkbox.checked = true; // 체크박스 체크
+			            }
+				}
+		     },
+	        error: function(e) {
+	            console.log(e);
+	        }
+	    });
+	}
+	
+
+
 </script>
+
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_footer.jsp"%>

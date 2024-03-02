@@ -47,7 +47,14 @@ create table product (
 	prod_update_at timestamp ,
     prod_delete_at timestamp ,
 	prod_delete_reason varchar (1000),
-    prod_delete_yn varchar (1) default 'N'
+    prod_delete_yn varchar (1) default 'N' ,
+    addition_explanation VARCHAR(400) 				
+);
+
+create table addition_explanation (
+	addition_explanation_no	int primary key auto_increment ,
+    file_path varchar (400) ,
+    name varchar ( 100 )
 );
 
 create table filedb (
