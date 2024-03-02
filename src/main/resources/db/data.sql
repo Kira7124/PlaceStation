@@ -489,9 +489,6 @@ insert into company values ('PlaceStation' , '부산광역시 부산진구 중�
 
 INSERT INTO FAQ_BOARD(F_BNO, F_WRITER, F_CONTENT, F_TITLE)VALUES (1, 1, '로그인 하고 싶어요', '로그인이 안 돼요');
 
-<<<<<<< HEAD
-INSERT INTO FAQ_BOARD(F_BNO, F_WRITER, F_CONTENT, F_TITLE)VALUES (1, 1, '로그인 하고 싶어요', '로그인이 안 돼요');
-
 Insert into notice_board (n_writer, n_content, n_title, category_id) 
 values ('yb','111111111111','aaaaaaa', 0),
 ('yb','2222222222','bbbbbbbbb', 0),
@@ -509,7 +506,7 @@ values ('yb','111111111111','aaaaaaa', 0),
 ('by','666666666666','ffffffff', 1),
 ('by','777777777777','gggggggg', 1),
 ('by','88888888888','hhhhhhhhh', 1);
-=======
+
 insert into banner (ban_name)
 values('1번배너'),('2번배너'),('3번배너'),('4번배너'),('5번배너'),('6번배너'),('7번배너'),('8번배너'),('9번배너'),('10번배너');
 
@@ -539,4 +536,3 @@ insert into addition_explanation (file_path , name) values ('/assets/images/biz/
 ('/assets/images/biz/speaker.png','블루투스 스피커'),
 ('/assets/images/biz/sliper.png','실내화'),
 ('/assets/images/biz/tripod.png','삼각대');
->>>>>>> bizsh
