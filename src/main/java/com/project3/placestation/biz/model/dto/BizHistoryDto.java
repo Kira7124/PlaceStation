@@ -38,5 +38,6 @@ public class BizHistoryDto {
 	private String mainCategory;
 	private String subcategory;
 	private Integer bizId;
+	private Integer bizBalance;
 	private String token; // 토큰
 }

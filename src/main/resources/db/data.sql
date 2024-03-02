@@ -118,6 +118,9 @@ insert into product (
     ,129.02526756 , 35.1112677103576
 );
 
+
+
+
 insert into admin_prod_history (
 	admin_his_no , 
     admin_his_prod_no, 
@@ -133,24 +136,27 @@ insert into admin_prod_history (
     bank ,
     start_time ,
     end_time,
-    people_count
-) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2) ,
-('OXDSAD-Dvdska' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSAD-Djpwdqjpo' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSAD-Dewqjdq' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSAD-DNSKAdsds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSAdsaD-DNSdsaKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSAD-DNSKdss1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSdsaAD-DNSdKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSAD-DNvSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('aOXDdsaSAD-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSAD-DNSxzKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSdAD-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSdsaAD-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSAdasD-DNSKds1dsa' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSADdsa-DNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OasXDSAD-cDNSKds1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2),
-('OXDSAD-qweniqo' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2);
+    people_count,
+    purchase_date 
+) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31') ,
+('OXDSAD-Dvdska' ,2,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-Djpwdqjpo' ,3,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-Dewqjdq' ,4,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-DNSKAdsds1' ,5,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAdsaD-DNSdsaKds1' ,6,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-DNSKdss1' ,7,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSdsaAD-DNSdKds1' ,8,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-DNvSKds1' ,9,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('aOXDdsaSAD-DNSKds1' ,10,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-DNSxzKds1' ,11,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSdAD-DNSKds1' ,12,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSdsaAD-DNSKds1' ,13,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAdasD-DNSKds1dsa' ,14,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSADdsa-DNSKds1' ,15,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OasXDSAD-cDNSKds1' ,16,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-qweniqo' ,17,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31');
+
+
 
 
 
@@ -203,176 +209,7 @@ values('1번할일','어드민페이지완성'),
 ('7번할일','어드민페이지완성7'),
 ('8번할일','어드민페이지완성8');
 
-insert into admin_prod_history (
-	admin_his_no , 
-    admin_his_prod_no, 
-    admin_his_price ,
-    admin_his_use_point ,
-    admin_his_save_point ,
-    admin_his_discount ,
-    admin_his_charge ,
-    admin_his_prod_name ,
-    admin_his_seller_id ,
-    admin_his_confirm ,
-    admin_his_buyer_id ,
-    bank ,
-    start_time ,
-    end_time,
-    people_count ,
-    purchase_date
-) values ('OXDS231AD-csacsaxasa' ,2,150000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',1,2,3 , '2024-02-23');
-insert into admin_prod_history (
-	admin_his_no , 
-    admin_his_prod_no, 
-    admin_his_price ,
-    admin_his_use_point ,
-    admin_his_save_point ,
-    admin_his_discount ,
-    admin_his_charge ,
-    admin_his_prod_name ,
-    admin_his_seller_id ,
-    admin_his_confirm ,
-    admin_his_buyer_id ,
-    bank ,
-    start_time ,
-    end_time,
-    people_count ,
-    purchase_date ,
-    admin_his_created_at
-) values ('OXDS231AD-SAACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',5,6,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-insert into admin_prod_history (
-	admin_his_no , 
-    admin_his_prod_no, 
-    admin_his_price ,
-    admin_his_use_point ,
-    admin_his_save_point ,
-    admin_his_discount ,
-    admin_his_charge ,
-    admin_his_prod_name ,
-    admin_his_seller_id ,
-    admin_his_confirm ,
-    admin_his_buyer_id ,
-    bank ,
-    start_time ,
-    end_time,
-    people_count ,
-    purchase_date ,
-    admin_his_created_at
-) values ('OXDS231AD-FSACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',3,4,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-insert into admin_prod_history (
-	admin_his_no , 
-    admin_his_prod_no, 
-    admin_his_price ,
-    admin_his_use_point ,
-    admin_his_save_point ,
-    admin_his_discount ,
-    admin_his_charge ,
-    admin_his_prod_name ,
-    admin_his_seller_id ,
-    admin_his_confirm ,
-    admin_his_buyer_id ,
-    bank ,
-    start_time ,
-    end_time,
-    people_count ,
-    purchase_date ,
-    admin_his_created_at
-) values ('OXDS231AD-VDACSA' ,1,350000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',7,8,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-insert into admin_prod_history (
-	admin_his_no , 
-    admin_his_prod_no, 
-    admin_his_price ,
-    admin_his_use_point ,
-    admin_his_save_point ,
-    admin_his_discount ,
-    admin_his_charge ,
-    admin_his_prod_name ,
-    admin_his_seller_id ,
-    admin_his_confirm ,
-    admin_his_buyer_id ,
-    bank ,
-    start_time ,
-    end_time,
-    people_count ,
-    purchase_date ,
-    admin_his_created_at
-) values ('OXDS231AD-DSANKLN' ,1,33000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',9,10,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-insert into admin_prod_history (
-	admin_his_no , 
-    admin_his_prod_no, 
-    admin_his_price ,
-    admin_his_use_point ,
-    admin_his_save_point ,
-    admin_his_discount ,
-    admin_his_charge ,
-    admin_his_prod_name ,
-    admin_his_seller_id ,
-    admin_his_confirm ,
-    admin_his_buyer_id ,
-    bank ,
-    start_time ,
-    end_time,
-    people_count ,
-    purchase_date ,
-    admin_his_created_at
-) values ('OXDS231AD-KOPKP' ,1,330000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',11,12,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-insert into admin_prod_history (
-	admin_his_no , 
-    admin_his_prod_no, 
-    admin_his_price ,
-    admin_his_use_point ,
-    admin_his_save_point ,
-    admin_his_discount ,
-    admin_his_charge ,
-    admin_his_prod_name ,
-    admin_his_seller_id ,
-    admin_his_confirm ,
-    admin_his_buyer_id ,
-    bank ,
-    start_time ,
-    end_time,
-    people_count ,
-    purchase_date ,
-    admin_his_created_at
-) values ('OXDS231AD-KOBFDM' ,1,30000 ,0,0,0,0,'타이틀' , 1,true ,1 ,'한화은행',13,14,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-insert into admin_prod_history (
-	admin_his_no , 
-    admin_his_prod_no, 
-    admin_his_price ,
-    admin_his_use_point ,
-    admin_his_save_point ,
-    admin_his_discount ,
-    admin_his_charge ,
-    admin_his_prod_name ,
-    admin_his_seller_id ,
-    admin_his_confirm ,
-    admin_his_buyer_id ,
-    bank ,
-    start_time ,
-    end_time,
-    people_count ,
-    purchase_date ,
-    admin_his_created_at
-) values ('OXDS231AD-KODSAM' ,1,31000 ,0,0,0,0,'타이틀' , 1,true ,3 ,'한화은행',20,21,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
-insert into admin_prod_history (
-	admin_his_no , 
-    admin_his_prod_no, 
-    admin_his_price ,
-    admin_his_use_point ,
-    admin_his_save_point ,
-    admin_his_discount ,
-    admin_his_charge ,
-    admin_his_prod_name ,
-    admin_his_seller_id ,
-    admin_his_confirm ,
-    admin_his_buyer_id ,
-    bank ,
-    start_time ,
-    end_time,
-    people_count ,
-    purchase_date ,
-    admin_his_created_at
-) values ('OXDSCAVD-KOBFDM' ,10,31000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'한화은행',23,24,3 , '2024-02-23' , TO_CHAR(TIMESTAMP '2024-02-23 02:31', 'YYYY-MM-DD HH24:MI'));
+
 
 insert into qna_board(q_writer,q_content,q_title)
 values(1,'첫번째내용입니다','0번째qna글1'),

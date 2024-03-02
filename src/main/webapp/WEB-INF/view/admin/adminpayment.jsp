@@ -50,6 +50,8 @@
 						<thead>
 							<tr>
 								<th>상품번호</th>
+								<th>사업자번호</th>
+								<th>사업자잔액</th>
 								<th>결제금액</th>
 								<th>상품명</th>
 								<th>은행</th>
@@ -61,6 +63,8 @@
 						<tbody>
 							<tr>
 								<td>${paymentlist.adminHisProdNo}</td>
+								<td>${paymentlist.bizId}</td>
+								<td>${paymentlist.bizBalance}</td>
 								<td>${paymentlist.adminHisPrice}</td>
 								<td>${paymentlist.adminHisProdName}</td>
 								<td>${paymentlist.bank}</td>
