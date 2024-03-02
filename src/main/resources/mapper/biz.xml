@@ -10,9 +10,11 @@
 
 	<!-- 관리자사업자명단출력 -->
 
-	<select id="BizAll"
-		resultType="com.project3.placestation.repository.entity.Biz">
-		select * from biz
+	<select id="BizAll" resultType="com.project3.placestation.repository.entity.Biz">
+		SELECT biz.*, member.user_id
+		FROM biz
+		JOIN member 
+		ON biz.biz_id = member.user_no
 		limit #{startPage},#{pageSize}
 	</select>
 
@@ -26,7 +28,7 @@
 	<update id ="AdminUpdateBiz">
 		update biz set biz_brand_name=#{bizBrandName},biz_hp=#{bizHp},
 		biz_email=#{bizEmail},biz_id=#{bizId},biz_tel=#{bizTel},file_path=#{filePath}
-		where biz_no = #{bizNo}
+		where biz_no = #{bizNo}		
 	</update>
 
 

@@ -64,7 +64,7 @@
 						<tbody>
 							<tr>
 								<td>${bizlist.bizNo}</td>
-								<td>${bizlist.bizId}</td>
+								<td>${bizlist.userId}</td>
 								<td>${bizlist.bizBrandName}</td>
 								<td>${bizlist.bizBalance}</td>
 								<td>${bizlist.formatHp(bizlist.bizHp)}</td>
