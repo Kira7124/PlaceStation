@@ -51,6 +51,7 @@
 <link id="color-scheme" href="/assets/css/colors/default.css"
 	rel="stylesheet">
 	<link id="color-scheme" href="/css/colors/default.css" rel="stylesheet">
+	<link rel="icon" type="image/png" sizes="48x48" href="/favicon/android-icon-48x48.png">
 </head>
  <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
     <main>
