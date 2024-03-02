@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.product.dto.ProdReviewDto;
@@ -87,15 +88,14 @@ public class ProdReviewService {
 
 
     // 리뷰 삭제
+    @Transactional
     public void deleteReview(Integer prodRevNo) {
-    	
-    	int result = prodReviewRepository.deleteReview(prodRevNo);
-		if (result < 1) {
-			throw new CustomRestfulException("리뷰 삭제에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+        int result = prodReviewRepository.deleteReview(prodRevNo);
+        if (result < 1) {
+            throw new CustomRestfulException("리뷰 삭제에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-	}
-    
     // 리뷰 개수 count
     public Integer getCountReview(Integer prodNo) {
     	return prodReviewRepository.countReview(prodNo);
