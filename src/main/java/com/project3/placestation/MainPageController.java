@@ -18,10 +18,4 @@ public class MainPageController {
 		return "product/main";
 	}
 	
-	
-	
-	
-	
-	
-	
 }

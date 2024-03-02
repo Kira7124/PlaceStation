@@ -156,9 +156,6 @@ public class AdminController {
 	
 	
 	
-	
-	
-	
 	// http://localhost:80/admin/admin-biz
 	// 관리자 사업자관리페이지 출력
 	@GetMapping("/admin-biz")

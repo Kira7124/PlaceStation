@@ -2,7 +2,11 @@ server:
   error:
     include-exception: TRUE
     include-stacktrace: ALWAYS
-    whitelabel.enabled : false
+    whitelabel.enabled : true
+    path: /error
+    include-binding-errors: ALWAYS
+    
+    
   servlet:
     encoding:
       charset: utf-8
