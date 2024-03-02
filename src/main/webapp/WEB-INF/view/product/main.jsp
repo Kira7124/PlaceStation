@@ -9,111 +9,132 @@
 		border-radius: 10px;
 	}
 
-.module.shop-page-header {
-	background-image: url('/assets/img/dog.jpg');
-	cursor: pointer;
-	overflow: hidden; /* 요소 바깥으로 넘치는 컨텐츠를 숨김 */
-	position: relative;
-}
+* {margin:0;padding:0;}
+	.section input[id*="slide"] {display:none;}
+	.section .slidewrap {max-width:1200px;margin:0 auto;}
+	.section .slidelist {white-space:nowrap;font-size:0;overflow:hidden;position:relative;}
+	.section .slidelist > li {display:inline-block;vertical-align:middle;width:100%;transition:all .5s;}
+	.section .slidelist > li > a {display:block;position:relative;}
+	.section .slidelist > li > a img {width:100%;}
+	.section .slidelist label {position:absolute;z-index:10;top:50%;transform:translateY(-50%);padding:50px;cursor:pointer;}
+	.section .slidelist .textbox {position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);line-height:1.6;text-align:center;}
+	.section .slidelist .textbox h3 {font-size:36px;color:#fff;;transform:translateY(30px);transition:all .5s;}
+	.section .slidelist .textbox p {font-size:16px;color:#fff;opacity:0;transform:translateY(30px);transition:all .5s;}
 	
-	
-	
-	
+	/* input에 체크되면 슬라이드 효과 */
+	.section input[id="slide01"]:checked ~ .slidewrap .slidelist > li {transform:translateX(0%);}
+	.section input[id="slide02"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-100%);}
+	.section input[id="slide03"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-200%);}
 
-  .btn-next, .btn-prev {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .btn-next {
-    right: 20px;
-  }
-  
-  .btn-prev {
-    left: 20px;
-  }
+	/* input에 체크되면 텍스트 효과 */
+	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .textbox h3 {opacity:1;transform:translateY(0);transition-delay:.2s;}
+	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .textbox p {opacity:1;transform:translateY(0);transition-delay:.4s;}
+	.section input[id="slide02"]:checked ~ .slidewrap li:nth-child(2) .textbox h3 {opacity:1;transform:translateY(0);transition-delay:.2s;}
+	.section input[id="slide02"]:checked ~ .slidewrap li:nth-child(2) .textbox p {opacity:1;transform:translateY(0);transition-delay:.4s;}
+	.section input[id="slide03"]:checked ~ .slidewrap li:nth-child(3) .textbox h3 {opacity:1;transform:translateY(0);transition-delay:.2s;}
+	.section input[id="slide03"]:checked ~ .slidewrap li:nth-child(3) .textbox p {opacity:1;transform:translateY(0);transition-delay:.4s;}
 
- .module-title,
-  .module-subtitle {
-    visibility: hidden;
-  }
-	
-	
+	/* 좌,우 슬라이드 버튼 */
+	.slide-control > div {display:none;}
+	.section .left {left:30px;background:url('./img/left.png') center center / 100% no-repeat;}
+	.section .right {right:30px;background:url('./img/right.png') center center / 100% no-repeat;}
+	.section input[id="slide01"]:checked ~ .slidewrap .slide-control > div:nth-child(1) {display:block;}
+	.section input[id="slide02"]:checked ~ .slidewrap .slide-control > div:nth-child(2) {display:block;}
+	.section input[id="slide03"]:checked ~ .slidewrap .slide-control > div:nth-child(3) {display:block;}
+
+	/* 페이징 */
+	.slide-pagelist {text-align:center;padding:20px;}
+	.slide-pagelist > li {display:inline-block;vertical-align:middle;}
+	.slide-pagelist > li > label {display:block;padding:8px 30px;border-radius:30px;background:#ccc;margin:20px 10px;cursor:pointer;}
+	.section input[id="slide01"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(1) > label {background:#999;}
+	.section input[id="slide02"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(2) > label {background:#999;}
+	.section input[id="slide03"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(3) > label {background:#999;}
 </style>
 
-	 <script>
-		  let currentImageIndex = 0;
-		  const images = [
-		    '/assets/img/dog.jpg',
-		    '/assets/img/cat.jpg',
-		    '/assets/img/bird.jpg'
-		  ];
-			
-		  
-		  function nextBackground() {
-		    currentImageIndex = (currentImageIndex + 1) % images.length;
-		    const section = document.querySelector('.module.shop-page-header');
-		    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
-
-		  }
-		  
-		  function prevBackground() {
-		    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-		    const section = document.querySelector('.module.shop-page-header');
-		    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
-
-		  }
-		  
-		  
-		  function bannerLinkClicked() {
-			    // 현재 이미지 인덱스에 따라 작업을 수행합니다.
-			    // 예를 들어, 다른 페이지로 이동하거나 기타 작업을 수행할 수 있습니다.
-			    switch (currentImageIndex) {
-			      case 0:
-			        window.location.href = "/admin/admin-main"; // 필요에 따라 URL을 변경하세요.
-			        break;
-			      case 1:
-			        window.location.href = "/admin/admin-notice"; // 필요에 따라 URL을 변경하세요.
-			        break;
-			      case 2:
-			        window.location.href = "/admin/admin-payment"; // 필요에 따라 URL을 변경하세요.
-			        break;
-			      default:
-			        break;
-			    }
-			  }
-
-	 </script>
+	
 
 
 
 <div class="main">
 	<!-- 배너 이미지 -->
 	
-	<section class="module shop-page-header">
-		<div class="container" style = "margin-top: 150px;" onclick="bannerLinkClicked()">
-			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3">
-					<h2 class="module-title font-alt">사진자리</h2>
-					<div class="module-subtitle font-serif">가나다라마바사</div>
+	<div class="section" style="margin-top: 150px; margin-left: 80px;">
+		<input type="radio" name="slide" id="slide01" checked>
+		<input type="radio" name="slide" id="slide02">
+		<input type="radio" name="slide" id="slide03">
+	<div class="slidewrap">
+		
+		<ul class="slidelist">
+			<!-- 슬라이드 영역 -->
+			<li class="slideitem">
+				<a>
+					<div class="textbox">
+						<h3>첫번째 슬라이드</h3>
+						<p>첫번째 슬라이드 입니다.</p>
+					</div>
+					<img src="/assets/img/dog.jpg">
+				</a>
+			</li>
+			<li class="slideitem">
+				<a>
+					
+					<div class="textbox">
+						<h3>두번째 슬라이드</h3>
+						<p>두번째 슬라이드 입니다.</p>
+					</div>
+					<img src="/assets/img/cat.jpg">
+				</a>
+			</li>
+			<li class="slideitem">
+				<a>
+					
+					<div class="textbox">
+						<h3>두번째 슬라이드</h3>
+						<p>두번째 슬라이드 입니다.</p>
+					</div>
+					<img src="/assets/img/bird.jpg">
+				</a>
+			</li class="slideitem">
+
+			<!-- 좌,우 슬라이드 버튼 -->
+			<div class="slide-control">
+				<div>
+					<label for="slide03" class="left"></label>
+					<label for="slide02" class="right"></label>
+				</div>
+				<div>
+					<label for="slide01" class="left"></label>
+					<label for="slide03" class="right"></label>
+				</div>
+				<div>
+					<label for="slide02" class="left"></label>
+					<label for="slide01" class="right"></label>
 				</div>
 			</div>
-		</div>
-		<button class="btn-prev" onclick="prevBackground()">‹</button>
-   	 	<button class="btn-next" onclick="nextBackground()">›</button>
-	</section>
+
+		</ul>
+		<!-- 페이징 -->
+		<ul class="slide-pagelist">
+			<li><label for="slide01"></label></li>
+			<li><label for="slide02"></label></li>
+			<li><label for="slide03"></label></li>
+		</ul>
+	</div>
+
+	
+</div>
  	 
 
 
 
+
+
+
+
+
+
 	<!-- PlaceStation의 추천!! -->
-	<section class="module" id="news">
+	<section class="module" id="news" style="margin-top: 50px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
