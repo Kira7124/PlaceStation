@@ -65,10 +65,14 @@
 								<td>
 								    <c:choose>
 								        <c:when test="${memberlist.filepath eq 'default.jpg'}">
+								           <a href="/admin/admin-photoupdate" data-toggle="modal" data-target="#photoModal">
 								            <img src="/assets/img/default.jpg" style="width:30px; height: 30px; border-radius:50%;">
+								           </a>
 								        </c:when>
 								        <c:otherwise>
+								           <a href="/admin/admin-photoupdate"  data-toggle="modal" data-target="#photoModal">
 								            <img src="${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
+								           </a>
 								        </c:otherwise>
 								    </c:choose>
 								</td>
@@ -156,6 +160,15 @@
 	        <div class="modal-content"></div>
 	    </div>
 	</div>
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
 	
 	<!-- Modal -->
 	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

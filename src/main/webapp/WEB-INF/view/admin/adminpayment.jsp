@@ -51,6 +51,7 @@
 							<tr>
 								<th>상품번호</th>
 								<th>사업자번호</th>
+								<th>사업자아이디</th>
 								<th>사업자잔액</th>
 								<th>결제금액</th>
 								<th>상품명</th>
@@ -64,6 +65,7 @@
 							<tr>
 								<td>${paymentlist.adminHisProdNo}</td>
 								<td>${paymentlist.bizId}</td>
+								<td>${paymentlist.userId}</td>
 								<td>${paymentlist.bizBalance}</td>
 								<td>${paymentlist.adminHisPrice}</td>
 								<td>${paymentlist.adminHisProdName}</td>
@@ -89,8 +91,7 @@
 								            <span class="label label-info">환불완료</span>
 								        </c:when>
 								    </c:choose>
-								</td>									
-								</td>								
+								</td>																	
 							</tr>
 						</tbody>
 					  </c:forEach>

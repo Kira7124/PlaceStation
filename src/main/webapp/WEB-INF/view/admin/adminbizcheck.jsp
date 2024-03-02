@@ -49,7 +49,9 @@
 								 <div class="form-group w-50" style="margin: 0 auto; text-align: center;">
 									<c:choose>
 									   <c:when test="${empty detailBizFile.filePath}">
+									   <a href="/admin/admin-checkupdate" data-toggle="modal" data-target="#checkModal">
 									     <img src="/assets/img/nofile.jpg" style="margin-top: 10px; margin-bottom:20px; width: 600px; height: 300px;">
+									   </a>
 									  </c:when>
 									  <c:otherwise>
 	    								<img src="${detailBizFile.filePath}" style="margin-top: 10px; margin-bottom:20px; width: 600px; height: 300px;">
@@ -91,6 +93,20 @@
 		<!-- END MAIN -->	
 	</div>
 	<!-- END WRAPPER -->
+	
+	
+	
+	
+		<!-- Modal -->
+	<div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
+	
+	
+	
 	
 	
 	

@@ -8,10 +8,12 @@
 
 	<!-- 관리자 결제내역명단 총 출력 -->
 	<select id="paymentlistAll" resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
-		select admin_prod_history.*, biz.biz_id, biz.biz_balance
+		select admin_prod_history.*, biz.biz_id, biz.biz_balance, member.user_id
 		from admin_prod_history
 		join biz
 		on admin_prod_history.admin_his_prod_no = biz.biz_id
+		join member
+		on biz.biz_id = member.user_no
 		limit #{startPage},#{pageSize}
 
 	</select>
@@ -26,10 +28,12 @@
 
 	<!-- 관리자 결제내역검색 -->
 	<select id ="searchPaymentlist" resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
-		 select admin_prod_history.*, biz.biz_id, biz.biz_balance
+		 select admin_prod_history.*, biz.biz_id, biz.biz_balance, member.user_id
 		 from admin_prod_history
 		 join biz
 		 on admin_prod_history.admin_his_prod_no = biz.biz_id
+		 join member
+		 on biz.biz_id = member.user_no
 		    <where>
 		        <if test="searchKeyword != null and searchKeyword != ''">
 		            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
@@ -57,6 +61,8 @@
 			select count(*) from admin_prod_history
 			join biz 
 			on biz.biz_id = admin_prod_history.admin_his_prod_no
+			join member
+		 	on biz.biz_id = member.user_no
 				<where>
 			        <if test="searchKeyword != null and searchKeyword != ''">
 			            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->

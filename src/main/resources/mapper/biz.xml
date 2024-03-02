@@ -31,7 +31,14 @@
 		biz_email=#{bizEmail},biz_tel=#{bizTel},file_path=#{filePath}
 		where biz_no = #{bizNo}		
 	</update>
-
+	
+	
+	<!-- 등록증수정(관리자) -->
+	<update id ="AdminUpdateCheck">
+		update biz set file_path=#{filePath}
+		where biz_no = #{bizNo}
+	</update>
+	
 
 	<!-- 사업자정보삭제(관리자) -->
 
