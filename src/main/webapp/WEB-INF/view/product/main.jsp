@@ -9,12 +9,15 @@
 		border-radius: 10px;
 	}
 
-.module.bg-dark-60.shop-page-header {
+.module.shop-page-header {
 	background-image: url('/assets/img/dog.jpg');
 	cursor: pointer;
 	overflow: hidden; /* 요소 바깥으로 넘치는 컨텐츠를 숨김 */
 	position: relative;
 }
+	
+	
+	
 	
 
   .btn-next, .btn-prev {
@@ -52,24 +55,18 @@
 		    '/assets/img/bird.jpg'
 		  ];
 			
-		  function updateBackground() {
-			    const section = document.querySelector('.module.bg-dark-60.shop-page-header');
-			    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
-			  }
 		  
 		  function nextBackground() {
 		    currentImageIndex = (currentImageIndex + 1) % images.length;
-		    const section = document.querySelector('.module.bg-dark-60.shop-page-header');
+		    const section = document.querySelector('.module.shop-page-header');
 		    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
-		    updateBackground();
 
 		  }
 		  
 		  function prevBackground() {
 		    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-		    const section = document.querySelector('.module.bg-dark-60.shop-page-header');
+		    const section = document.querySelector('.module.shop-page-header');
 		    section.style.backgroundImage = 'url(' + images[currentImageIndex] + ')';
-		    updateBackground();
 
 		  }
 		  
@@ -99,7 +96,7 @@
 <div class="main">
 	<!-- 배너 이미지 -->
 	
-	<section class="module bg-dark-60 shop-page-header">
+	<section class="module shop-page-header">
 		<div class="container" style = "margin-top: 150px;" onclick="bannerLinkClicked()">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
