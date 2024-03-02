@@ -179,6 +179,9 @@ public class BizProductController {
 		if (dto.getProdLocationX() == null || dto.getProdLocationY() == null) {
 			throw new CustomRestfulException(BizDefine.NO_VALID_MAP, HttpStatus.BAD_REQUEST);
 		}
+		if(dto.getDescriptionImage() == null || dto.getDescriptionImage().isEmpty()) {
+			throw new CustomRestfulException(BizDefine.NO_VALID_DESCRIPTION_IMAGE, HttpStatus.BAD_REQUEST);
+		}
 
 		log.info(dto.toString());
 
@@ -263,7 +266,9 @@ public class BizProductController {
 		if (dto.getProdLocationX() == null || dto.getProdLocationY() == null) {
 			throw new CustomRestfulException(BizDefine.NO_VALID_MAP, HttpStatus.BAD_REQUEST);
 		}
-
+		if(dto.getDescriptionImage() == null || dto.getDescriptionImage().isEmpty()) {
+			throw new CustomRestfulException(BizDefine.NO_VALID_DESCRIPTION_IMAGE, HttpStatus.BAD_REQUEST);
+		}
 		// 인증 검사가 끝났다면 유저의 아이디값을 가져와야 합니다.
 		Member member = (Member) httpSession.getAttribute("member"); 
 

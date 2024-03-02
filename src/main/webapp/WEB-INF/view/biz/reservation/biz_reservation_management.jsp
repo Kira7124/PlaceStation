@@ -35,7 +35,7 @@
 							<form action="/biz/reservation-management">
 								<input type="hidden" name="page" value="${currentPage}"/>
 								<input type="hidden" name="size" value="${size}" />
-								<input class="form-control" type="text" name="text" style="width: 350px"/> <span
+								<input class="form-control" type="text" name="text" style="width: 350px" placeholder="거래내역 번호를 적어주세요!!"/> <span
 									class="input-group-btn" >
 									<button class="btn btn-primary"
 								type="submit">검색</button></span>
@@ -44,7 +44,7 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th>내역 번호</th>
+										<th>거래 내역 번호</th>
 										<th>상품명</th>
 										<th>이용자 이름</th>
 										<th>이용자 등급</th>

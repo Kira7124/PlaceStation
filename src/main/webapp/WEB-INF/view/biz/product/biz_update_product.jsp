@@ -13,6 +13,7 @@
 	min-height: 150px;
 	padding: 10px;
 	border: 1px dotted #00f;
+	border-radius: 10px;
 }
 
 #att_zone:empty:before {
