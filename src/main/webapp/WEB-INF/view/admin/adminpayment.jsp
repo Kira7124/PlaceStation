@@ -65,8 +65,14 @@
 								<td>${paymentlist.adminHisProdName}</td>
 								<td>${paymentlist.bank}</td>
 								<td>
-								  <span class="label label-success">확정</span>
-								  <span class="label label-danger">취소</span>
+								    <c:choose>
+								        <c:when test="${paymentlist.adminHisConfirm}">
+								            <span class="label label-success">확정</span>
+								        </c:when>
+								        <c:otherwise>
+								            <span class="label label-danger">취소</span>
+								        </c:otherwise>
+								    </c:choose>
 								</td>
 								<td>
 								    <c:choose>

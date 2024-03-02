@@ -82,7 +82,8 @@
 		update admin_prod_history
 		set cancel_at=#{cancelAt},
 		cancel_yn=#{cancelYn},
-		cancel_amount=#{cancelAmount}
+		cancel_amount=#{cancelAmount},
+		admin_his_confirm=false
 		where admin_his_prod_no=#{adminHisProdNo}
 	</update>
 	
