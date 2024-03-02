@@ -26,17 +26,17 @@
 			</li>
 			<li class="slideitem">
 				<a href="#">
-				   <img src="/banner/sport.jpg">
+				   <img src="/banner/sp1.jpg">
 				</a>
 			</li>
 			<li class="slideitem">
 				<a href="#">
-				   <img src="/banner/party.jpg">
+				   <img src="/banner/party4.jpg">
 				</a>
 			</li class="slideitem">
 			<li class="slideitem">
 				<a href="#">
-				   <img src="/banner/camp.jpg">
+				   <img src="/banner/camping2.jpg">
 				</a>
 			</li class="slideitem">
 
@@ -330,53 +330,7 @@
 		</div>
 	</section>
 
-	<!-- 리퀘스트 시작 -->
-	<section class="module bg-dark-60 request-cta"
-		data-background="assets/images/finance/rqst_bg.jpg">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<h2 class="font-alt">Request a call back</h2>
-					<p>Would you like to speak to one of our financial advisers
-						over the phone? Just submit your details and we’ll be in touch
-						shortly. You can also email us if you would prefer.</p>
-				</div>
-				<div class="col-sm-8">
-					<div class="row">
-						<form class="form rqst-form" id="requestACall" role="form"
-							method="post" action="php/request_call.php">
-							<div class="form-group col-sm-6 col-xs-12">
-								<input class="form-control input-lg" type="text" name="name"
-									placeholder="Name" />
-							</div>
-							<div class="form-group col-sm-6 col-xs-12">
-								<select class="form-control input-lg" name="subject">
-									<option value="subject1" disabled="" selected="">Subject</option>
-									<option value="BusinessConsulting">Business consulting</option>
-									<option value="MarketingStrategy">Marketing Strategy</option>
-									<option value="TaxesAdvisory">Taxes Advisory</option>
-									<option value="InvestmentPlanning">Investment Planning</option>
-									<option value="ITManagement">IT Management</option>
-									<option value="DataAnalytics">Data Analytics</option>
-								</select>
-							</div>
-							<div class="form-group col-sm-6 col-xs-12">
-								<input class="form-control input-lg" type="text" name="phone"
-									placeholder="Phone Number" />
-							</div>
-							<div class="form-group col-sm-6 col-xs-12">
-								<button class="btn btn-border-w btn-circle btn-block"
-									id="racSubmit" type="submit">
-									<i class="fa fa-paper-plane-o"></i> Submit
-								</button>
-							</div>
-							<div id="requestFormResponse"></div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	
 	
 	
 	
