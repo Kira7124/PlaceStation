@@ -319,9 +319,6 @@ public class AdminController {
 	}
 	
 	
-	
-	
-	
 
 	
 	//관리자 환불기능 GET 처리
@@ -342,15 +339,6 @@ public class AdminController {
 		return "redirect:/admin/admin-payment";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 	// 공지사항 등록페이지 GET

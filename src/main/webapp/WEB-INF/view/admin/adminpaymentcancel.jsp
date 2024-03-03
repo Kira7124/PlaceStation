@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
 
+<script type="text/javascript" src="/js/admin/refund.js"></script>
+
+
+
+
 
 	<form action="/admin/admin-paymentcancel" method="post">
 		<div class="card mb-3" style="max-width: 700px;">
@@ -47,7 +52,7 @@
 				    </div>
 				    <div class="col-md-5">
 				        <div class="input-box">
-				            <input type="text" class="form-control" name = "cancelAmount" >
+				            <input type="text" class="form-control" id="user_price_input" name = "cancelAmount" >
 				        </div>
 				    </div>
 				  </div>

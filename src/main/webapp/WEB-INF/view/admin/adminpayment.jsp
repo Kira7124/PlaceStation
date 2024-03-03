@@ -6,6 +6,12 @@
 	<!-- adminside.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
     
+    
+    
+ 
+    
+ 
+ 
 			
 		<!-- MAIN -->
 		<div class="main">
@@ -83,7 +89,7 @@
 								<td>
 								    <c:choose>
 								        <c:when test="${paymentlist.cancelYn eq 'N'}">
-								          <a href ="/admin/admin-paymentcancel" data-toggle="modal" data-target="#cancelModal">
+								          <a href ="/admin/admin-paymentcancel" data-toggle="modal" data-target="#cancelModal" >
 								            <span class="label label-info">환불</span>
 								          </a>
 								        </c:when>
