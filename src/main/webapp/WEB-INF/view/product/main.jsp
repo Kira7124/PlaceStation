@@ -21,22 +21,22 @@
 			<!-- 슬라이드 영역 -->
 			<li class="slideitem">
 				<a href="/main/index">
-				   <img src="/banner/welcome.jpg">
+				   <img src="/banner/slogan2.png">
 				</a>
 			</li>
 			<li class="slideitem">
 				<a href="#">
-				   <img src="/banner/sp1.jpg">
+				   <img src="/banner/fit.png">
 				</a>
 			</li>
 			<li class="slideitem">
 				<a href="#">
-				   <img src="/banner/party4.jpg">
+				   <img src="/banner/pa2.png">
 				</a>
 			</li class="slideitem">
 			<li class="slideitem">
 				<a href="#">
-				   <img src="/banner/camping2.jpg">
+				   <img src="/banner/cam1.png">
 				</a>
 			</li class="slideitem">
 
