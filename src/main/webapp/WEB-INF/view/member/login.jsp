@@ -12,10 +12,12 @@
                  <p>principal : <sec:authentication property="principal" /></p>
          <%--         <p>principal : <sec:authentication property="principal.userName" /></p>
                  <p>principal : <sec:authentication property="principal.authority" /></p> --%>
+                    <p>${id} </p>
+                    <p>${role} </p> 
                 <hr class="divider-w mb-10">
                 <form class="form" action="/loginProc" method="post">
                   <div class="form-group">
-                    <input class="form-control" id="username" type="text" name="userId" placeholder="Username"/>
+                    <input class="form-control" id="username" type="text" name="RuserId" placeholder="Username"/>
                   </div>
                   <div class="form-group">
                     <input class="form-control" id="password" type="password" name="userPassword" placeholder="Password"/>
@@ -23,27 +25,27 @@
                   <div class="form-group">
                     <button class="btn-round btn-b login-btn" type="submit">Login </button>
                     <div style="float: right;">
-                    <button type="button" class="social_btn" 
+                    <a class="social_btn" href="/oauth2/authorization/naver"
                     style="height: 38px !important;
                     width: 47px !important;
                     background-color: white !important; 
                     border: none !important;">
                       <img src="/assets/img/social_login/btnG_icon_square.png" class="social_btn" style="max-height: 39px">
-                    </button>
-                    <button type="button" class="social_btn"
+                    </a>
+                    <a  class="social_btn" href="/oauth2/authorization/kakao"
                     style="height: 38px !important;
                     width: 47px !important;
                     background-color: white !important; 
-                    border: none !important;">
+                    border: none !important;" >
                       <img src="/assets/img/social_login/Asset 1.png" class="social_btn" style="max-height: 39px">
-                    </button>
-                    <button type="button" class="social_btn"
+                    </a>
+                    <a class="social_btn" href="/oauth2/authorization/google"
                     style="height: 38px !important;
                     width: 47px !important;
                     background-color: white !important; 
                     border: none !important;">
                       <img src="/assets/img/social_login/web_light_sq_na@2x.png" class="social_btn" style="max-height: 39px">
-                    </button>
+                    </a>
                   </div>
                   </div>
                   <div class="form-group" style="position: absolute; width: 93%;">

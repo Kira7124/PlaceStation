@@ -2,8 +2,11 @@ package com.project3.placestation.member.controller;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.StringTokenizer;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,15 +14,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project3.placestation.config.jwt.JwtUtils;
 import com.project3.placestation.config.jwt.UserDetailsImpl;
+import com.project3.placestation.config.oauth2.Oauth2Attributes;
 import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.member.dto.MemberLoginDto;
 import com.project3.placestation.member.dto.RequestJoinDTO;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
+import com.project3.placestation.repository.interfaces.MemberRepository;
 import com.project3.placestation.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
@@ -33,8 +38,6 @@ public class memberController {
 	@Autowired
 	private MemberService service;
 
-	@Autowired
-	JwtUtils jwtUtils;
 
 	@Autowired
 	HttpSession httpSession;
@@ -42,11 +45,22 @@ public class memberController {
 	@Autowired
 	FiledbService fileService;
 	
+	@Autowired
+	MemberRepository repository;
+	
 	
 	@GetMapping("/login")
 	public String login(Model model) {
+		// 유저 네임 정보
+		String id = SecurityContextHolder.getContext().getAuthentication().getName();
+		Object details = SecurityContextHolder.getContext().getAuthentication().getDetails();
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("role", details);
+		model.addAttribute("name", id);
 
-		
+		System.out.println("s회원가입 아이디: " + id);
+		System.out.println("s회원가입 롤: " + details);
+
 		return "member/login";
 	}
 
@@ -86,10 +100,9 @@ public class memberController {
 
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		
-		String jwt = jwtUtils.generateJwtToken(authentication);
 		
 		Member member = Member
-				.builder().token(jwt)
+				.builder()
 				.userno(userDetails.getUserNo())
 				.userid(userDetails.getUserId())
 				.useraddress(userDetails.getUserAddress())
@@ -105,7 +118,7 @@ public class memberController {
 		
 		
 		// 세션에 저장
-		httpSession.setAttribute("member", member);
+		httpSession.setAttribute("member", authentication);
 
 		
 		System.out.println("멤버 투스트링 ^^&^&^&^&^&&&&&&&&&&&&&&&&&&&&&&&&&&& " + member.toString());
@@ -182,7 +195,7 @@ public class memberController {
 
 	@GetMapping("/uregister")
 	public String userRegister() {
-
+		
 		return "member/user_register_form";
 	}
 
@@ -199,12 +212,14 @@ public class memberController {
 
 		String address = dto.getZip() + dto.getAddr1() + dto.getAddr2();
 		
+	
+		
 		// 합친 주소
 		dto.setUserAddress(address);
 		
 		// 합친 이메일
-		String userEmail = dto.getEmail() + "@" + dto.getEmail2();
-		dto.setUserEmail(userEmail);
+		String userEmail = dto.getEmail();
+		dto.setEmail(userEmail);
 		
 		
 		service.uJoinProcess(dto);
@@ -222,16 +237,25 @@ public class memberController {
 		// 파일 저장
 		String filepath = fileService.saveFiles(dto.getFilePath());
 		
-	
-
+		String fulladdress = dto.getAddr1();
+		
+		
+		
 		// 주소 수정
-		String address = dto.getZip() + dto.getAddr1() + dto.getAddr2();
+		String address = dto.getZip() + dto.getAddr1() + " " + dto.getAddr2();
 		dto.setUserAddress(address);
 		
+		System.out.println("조인 유저 어드레스1111111 : "+ dto.getZip());
+		System.out.println("조인 유저 어드레스2222222222 : "+ dto.getAddr1());
+		System.out.println("조인 유저 어드레스333333333 : "+ dto.getAddr2());
+		System.out.println("조인 유저 어드레스4444444444 : "+ address);
+		System.out.println("조인 유저 어드레스5555555555555 : "+ dto.getImpkey());
+		System.out.println("조인 유저 어드레스6666666666666 : "+ dto.getImpsecret());
+		System.out.println("조인 유저 어드레스77777777777777777 : "+ dto.getImpuid());
 		
 		// 이메일값 수정 
-		String userEmail = dto.getEmail() + "@" + dto.getEmail2();
-		dto.setUserEmail(userEmail);
+		String userEmail = dto.getEmail();
+		dto.setEmail(userEmail);
 		
 		
 		// 판매자 회원 가입 서비스 호출
@@ -241,6 +265,118 @@ public class memberController {
 		
 		return "redirect:/member/login";
 	}
+	
+	
+	// 소셜 로그인 
+	@GetMapping("/social/register")
+	public String registerSocialMember(Model model){
+		String username = null;
+		//@RequestBody Oauth2Attributes attributes  
+		log.info("소셜로그인 페이지 요청 겟맵핑 시작~~~~~~~~~~");
+		/*
+		 * // 추가 정보를 입력받은 후에 데이터베이스에 저장 Member member = Member.builder()
+		 * .userid(attributes.getUsername()) .userpassword(attributes.getPassword())
+		 * .username(attributes.getNickname()) .useremail(attributes.getEmail()) // 다른
+		 * 속성도 필요에 따라 추가 .build();
+		 */
+        
+		/* repository.insertUser(member); */
+        
+        // ResponseEntity.ok("Social member registered successfully!")
+		
+		// 여기 까지함 세션 객체 유저디테일스 임플리로 캐스팅 안됨
+		
+		UserDetailsImpl principal = (UserDetailsImpl)httpSession.getAttribute("member");
+		System.out.println("11111111111111111111111111");
+		model.addAttribute("principal", principal);
+		System.out.println("222222222222222222222222222222222222" + principal.getUsername());
+		// db에 존재하는 유저네임(= 이메일값) + social값을 더해서 session에 존재하는 username을 비교  존재하면 login으로 넘겨야함 그냥 session이 null인지 체크 하는건 의미가 없음  
+		Member member = new Member();
+		member.setUserid(principal.getUserId());
+		
+		if(member.getUserid() != null) {
+		 username = member.getUserid();
+		}
+		System.out.println("33333333333333333333333333333333333333333");
+		boolean checkOauth = service.OauthFirstCheckProcess(username);
+		System.out.println("44444444444444444444444444444444444444444");
+		if(checkOauth) {
+			System.out.println("55555555555555555555555555555555555555555555555555555");
+			return "member/login";
+		}else {
+			System.out.println("66666666666666666666666666666666666666666666666666666");
+			return "member/socialregister";
+		}
+		
+    }
+	
+	
+	@PostMapping("/social/register")
+	public String registerSocialMemberProc(RequestJoinDTO dto){
+		
+		
+		String fulladdress = dto.getAddr1();
+		
+		
+		// 주소 수정
+		String address = dto.getZip() + dto.getAddr1() + " " + dto.getAddr2();
+		dto.setUserAddress(address);
+		
+		System.out.println("조인 유저 어드레스1111111 : "+ dto.getZip());
+		System.out.println("조인 유저 어드레스2222222222 : "+ dto.getAddr1());
+		System.out.println("조인 유저 어드레스333333333 : "+ dto.getAddr2());
+		System.out.println("조인 유저 어드레스4444444444 : "+ address);
+		System.out.println("조인 유저 어드레스5555555555555 : "+ dto.toString());
+		
+		//유저 아이디 수정
+		String userid = dto.getUserId();
+		
+		
+		String[] parse = userid.split("_", 2); // "_"를 기준으로 문자열을 2개로 분할
+		
+		
+		for (int i = 0; i < parse.length; i++) {
+		    System.out.println("Index " + i + ": " + parse[i]);
+		}
+		
+		// oauth명 파싱
+	    String oauth = parse[0]; // 소셜 구분
+	    String userName = parse[1]; // 소셜 prefix가 떨어진 유저명
+	    
+	    System.out.println("Prefix: " + oauth);
+	    System.out.println("Remainder: " + userName);
+		
+	    dto.setUserOauth(oauth+"_");
+	    dto.setUserId(userName);
+	    
+		// 이메일값 수정 
+		String userEmail = dto.getEmail();
+		dto.setEmail(userEmail);
+		
+		// 오스 이메일 가입자의 비밀번호 생성
+		 int randomNumber = (int) (Math.random() * 100000000);
+		 UUID uuPass = new UUID(0, randomNumber);
+		 
+		 System.out.println("조인 유저 어드레스88888888888888 : "+ randomNumber);
+		 
+		 dto.setUserPassword(uuPass.toString());
+		 
+		 System.out.println("조인 유저 어드레스999999999999999999 : "+ uuPass.toString());
+		 
+		 
+		 
+		 System.out.println("조인 유저 어드레스66666666666666666666 : "+ dto.toString());
+		// 회원 가입 서비스 호출
+		service.OauthJoinProcess(dto);
+		   
+		   
+        
+        // ResponseEntity.ok("Social member registered successfully!")
+        return "redirect:/member/login";
+    }
+		
+	
+	
 
 	////////////////////////////////////////////////////////// biz
 	////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////

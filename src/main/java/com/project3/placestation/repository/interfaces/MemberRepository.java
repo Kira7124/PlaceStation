@@ -52,24 +52,23 @@ public interface MemberRepository {
 	// 유저의 패스워드 가져오기
 	public ResPassword findPasswordById(int userNo);
 	
-	
 	//관리자 유저ID 중복체크
 	public Integer AdminCheckID(String userid);
 	
-	
-
-
 	// payment 유저 정보
 	public  PaymentMemberDto findMemberById(int userNo);
 	
 	// 유저 포인트 업데이트
-	public  int updateMemberPoint(@Param("userPoint") int userPoint ,@Param("grade") String grade , @Param("buyerId") int buyerId);
+	public  int updateMemberPoint(@Param("userPoint") int userPoint, @Param("grade") String grade, @Param("buyerId") int buyerId);
 
 	//회원 단건 정보 검색(로그인 처리)
 	public memberDTO selectUser(String userId);
 
 	//일반 회원 가입(회원 가입 처리)
 	public int insertUser(Member member);
+	
+	//소셜 회원 가입(회원 가입 처리)
+	public int insertOauthUser(Member member);
 	
 	//회원 단건 정보 검색(로그인 처리)
 	public memberDTO selecByUserId(String username);
@@ -79,6 +78,9 @@ public interface MemberRepository {
 
 	//(회원가입)유저 중복검사
 	public int selectByValidUserId(String uid);
+	
+	//(소셜 로그인)유저 중복검사 오스
+	public Member selectByValidUserIdOauth(String uid);
 	
 	//(회원가입)전화번호 중복검사 
 	public int selectByValidManageHp(String hp);
@@ -100,4 +102,8 @@ public interface MemberRepository {
 
 	//(회원가입) 판매자 bizId용 select
 	public Member selectByUserId(Member member);
+	
+	//(소셜) 최초 로그인 여부 검증
+	public Boolean selectByValidUserNameOauth(String uid);
+	
 }

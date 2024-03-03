@@ -63,14 +63,14 @@
                   <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-center" style="font-size: xx-large;">Profile Settings</h4>
                     <!-- 시큐리티 태그립을 사용하는 방법 property="principal"가 적혀있는 페이지에는  -->
-                    <p>principal : <sec:authentication property="principal" /></p>
-                    <p>principal : <sec:authentication property="principal.username" /></p>
+                      <p>principal : <sec:authentication property="principal" /></p> 
+               <%--     <p>principal : <sec:authentication property="principal.username" /></p>
                     <p>principal : <sec:authentication property="principal.gender" /></p>
-                    <p>principal : <sec:authentication property="principal.userAddress" /></p>
+                    <p>principal : <sec:authentication property="principal.userAddress" /></p> 
                     <!-- 모델 객체로 참조하는 방법 -->
-                    <p>${id} </p>
-                    <p>${role} </p>
-                  </div>
+                   <p>${id} </p>
+                    <p>${role} </p> 
+                  </div> --%>
                   <br>
                   <br>
                   <div class="row mt-2">

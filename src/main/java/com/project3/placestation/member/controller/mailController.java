@@ -69,22 +69,22 @@ public class mailController {
     	//String auth = random.generateVerificationCode();
         String to = dto.getEmail(); 				
         String subject = "PlaceStation 회원가입 이메일 인증 입니다.";
-        String text = "인증번호 < " + auth + " > 해당 6자리 숫자를 입력해 주세요";
+        String text = "인증번호 < " + auth + " > 인증 번호를 입력해 주세요";
 
         System.out.println("이메일 인증 호출 랜덤킴 생성: " + auth);
         
             
         	try {
 				
-        		log.info("트라이 탔음 좋아연 !!!!!!!!!!!!!!!!!!!!!!!!!!");
+        		System.out.println("트라이 탔음 좋아연 !!!!!!!!!!!!!!!!!!!!!!!!!!");
         		System.out.println("트라이 탔음 좋아연 !!!");
         		resEDto.setStatus(1);
-        		log.info("트라이타고 셋 스테이터스 확인이요: " + resEDto.getStatus());
+        		System.out.println("트라이타고 셋 스테이터스 확인이요: " + resEDto.getStatus());
         		service.sendEmail(to, subject, text);
         		
 			} catch (MessagingException e) {
 				
-				log.info("캣치 탔음 이게 뭐누?");
+				System.out.println("캣치 탔음 이게 뭐누?");
 				System.out.println("캣치 탔음 이게 뭐누?");
 				resEDto.setStatus(0);
 				e.printStackTrace();
@@ -92,7 +92,7 @@ public class mailController {
 
         	
         	
-        	log.info("대체왜 이메일 전송 서비스만 만나면 status 값이 0으로 초기화 되는거임?: " + resEDto.getStatus());
+        	System.out.println("대체왜 이메일 전송 서비스만 만나면 status 값이 0으로 초기화 되는거임?: " + resEDto.getStatus());
         	
         	
         	System.out.println("메일 컨트롤러 이거 그대로 셋 되면 1일듯: " + resEDto.getStatus());

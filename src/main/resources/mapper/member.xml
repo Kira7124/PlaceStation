@@ -164,12 +164,20 @@
 	</select>
 
 
-	<!-- 일반 유저 회원가입 -->
+	<!-- 판매자 유저 회원가입 -->
 	<insert id="insertUser">
 		insert into
 		member(user_id,user_password,user_address,user_name, user_hp,
-		user_email,join_at,user_role,gender)
-		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender})
+		user_email,join_at,user_role,gender,imp_uid,imp_secret, imp_key)
+		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender},#{impuid},#{impsecret},#{impkey})
+	</insert>
+
+	<!-- 소셜 유저 회원가입 -->
+	<insert id="insertOauthUser">
+		insert into
+		member(user_id,user_password,user_address,user_name, user_hp,
+		user_email,join_at,user_role,gender,social)
+		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender},#{oauth})
 	</insert>
 
 	<!-- 판매자 join 유저 -->
@@ -241,6 +249,19 @@
 		= #{email}
 	</select>
 
+	<!-- (소셜 로그인)이메일 중복검사 -->
+	<select id="selectByValidUserIdOauth" resultType="com.project3.placestation.repository.entity.Member">
+		select * from member where
+		user_id
+		= #{uid}
+	</select>
+
+	<!-- (회원가입)유저 아이디 중복 검사 -->
+	<select id="selectByValidUserNameOauth" resultType="boolean">
+		select * from
+		member where
+		(social + user_id) = #{uid}
+	</select>
 
 	<!-- 판매자 회원 가입용 selectKey userNo를 반환  [현재 사용하지 않는중] -->
 	<insert id="insertUserAndSelectUserNo">
