@@ -438,7 +438,8 @@
 																						end="5">
 																						<i class="fa fa-star star-off"></i>
 																					</c:forEach>
-																				</c:if></span>
+																				</c:if>
+																			</span>
 																			</p>
 																		</div>
 																	</div>
@@ -521,7 +522,29 @@
 																	</div>
 																</c:if>
 															</c:forEach>
-														</c:forEach>
+															</c:forEach>
+															<!-- 페이지 바 추가 -->
+															<div class="row">
+																<div class="col-sm-12">
+																	<ul class="pagination justify-content-center">
+																		<li class="page-item"><a class="page-link"
+																			href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo-1}">이전</a>
+																		</li>
+																		<c:forEach var="i" begin="1" end="${totalPage}"
+																			varStatus="status">
+																			<li
+																				class="page-item <c:if test='${status.index eq pageNo}'>active</c:if>">
+																				<a class="page-link"
+																				href="productDetail?prod_no=${product.prodNo}&pageNo=${status.index}">${status.index}</a>
+																			</li>
+																		</c:forEach>
+																		<li class="page-item"><a class="page-link"
+																			href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo+1}">다음</a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+															<!-- 페이지 바 종료 -->
 													</div>
 												</div>
 											</c:if>
@@ -624,7 +647,7 @@
 								<!-- 폼 태그 시작 -->
 								<form action="/payment/main" method="get">
 									<h5 class="widget-title font-alt">예약하기</h5>
-										<input type="hidden" name="prodNo" value="${product.prodNo}"/>
+									<input type="hidden" name="prodNo" value="${product.prodNo}" />
 
 									<!-- 스케줄 선택 -->
 									<div>
@@ -662,7 +685,8 @@
 										<div class="row mb-20">
 											<div class="col-sm-12">
 												<input class="form-control input-lg" type="number"
-													name="price" value="${product.prodPrice}" required="required" disabled />
+													name="price" value="${product.prodPrice}"
+													required="required" disabled />
 											</div>
 										</div>
 									</div>
@@ -673,7 +697,8 @@
 										<div class="row mb-20">
 											<div class="col-sm-12">
 												<input class="form-control input-lg" type="number"
-													name="people" max="${product.prodMaximumPeople}" min="1" required="required" />
+													name="people" max="${product.prodMaximumPeople}" min="1"
+													required="required" />
 											</div>
 										</div>
 									</div>
@@ -742,6 +767,7 @@
 	<!-- fullCalendar -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="fullcalendar/dist/index.global.js"></script>
 	<script>
       const calendarDays = document.querySelectorAll(".calendar_days"),
@@ -987,8 +1013,9 @@
     	        replyForm.classList.add("hidden"); // 대댓글 작성 폼 숨김
     	    }
     	}
+      
+      </script>
 
-  </script>
 	<!-- include.jsp -->
 	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 </body>

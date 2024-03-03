@@ -53,17 +53,29 @@ public class ProductController {
 
 	//http://localhost:80/productDetail?prod_no=
 	@GetMapping("/productDetail")
-	public String productDetail(@RequestParam("prod_no") Integer prodNo, Model model) {
+	public String productDetail(@RequestParam("prod_no") Integer prodNo,
+            @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
+            Model model) {
 		log.debug("상품 상세 페이지 - 상품번호: {}", prodNo);
 
 		// 상품 번호로 조회
 		ResProductDto product = productService.findById(prodNo);
-		// 상품 번호로 리뷰 조회
-		List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNo(prodNo);
-		List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo, "");
-        // 상품의 찜,리뷰 개수 조회
-		Integer wishlistCount = prodWishListService.getCountWishlist(prodNo);
+		// 상품의 리뷰 개수 조회
         Integer reviewCount = prodReviewService.getCountReview(prodNo);
+        
+	    // 페이지당 리뷰 수 설정
+	    int reviewsPerPage = 2;
+	    // 총 페이지 수 계산
+	    int totalPage = (int) Math.ceil((double) reviewCount / reviewsPerPage);
+
+		// 상품 번호로 리뷰 조회
+		List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo, "");
+		
+	    // 리뷰 목록을 페이징하여 조회
+	    List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNoPaged(prodNo, (pageNo - 1) * reviewsPerPage, reviewsPerPage);
+	    
+        // 상품의 찜 개수 조회
+		Integer wishlistCount = prodWishListService.getCountWishlist(prodNo);
         Double avgStar = prodReviewService.getAvgStar(prodNo);
 
 		log.info(invalidDate.toString());
@@ -73,6 +85,8 @@ public class ProductController {
 		model.addAttribute("wishlistCount", wishlistCount);
 		model.addAttribute("reviewCount", reviewCount);
 		model.addAttribute("avgStar", avgStar);
+	    model.addAttribute("pageNo", pageNo); // 현재 페이지 번호 추가
+	    model.addAttribute("totalPage", totalPage); // 총 페이지 수 추가
 
 		return "product/productDetail";
 	}

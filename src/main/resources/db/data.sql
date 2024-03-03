@@ -9,6 +9,9 @@ INSERT INTO prod_Review (prod_no, user_no, prod_rev_content, prod_rev_star, prod
 VALUES 
 (1, 1, '리뷰 내용 1', 5, 'N', null),
 (1, 1, '리뷰 내용 2', 1, 'N', null),
+(1, 1, '리뷰 내용 3', 4, 'N', null),
+(1, 1, '리뷰 내용 4', 3, 'N', null),
+(1, 1, '리뷰 내용 5', 4, 'N', null),
 (1, 1, '리뷰 내용 3', 0, 'N', 2),
 (2, 2, '리뷰 내용 4', 4, 'N', null);
 

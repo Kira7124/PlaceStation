@@ -16,8 +16,8 @@ import com.project3.placestation.repository.entity.ProdReview;
 public interface ProdReviewRepository {
 
 	// 상품 번호로 리뷰 조회
-	public List<ProdReview> findByRevProdNo(int prodNo);
-	
+	List<ProdReview> findByRevProdNoPaged(@Param("prod_no") int prodNo, @Param("offset") int offset, @Param("limit") int limit);
+
 	public int addReview(ProdReview review); // 리뷰 등록
 	public int saveReview(ProdReview review); // 답글 등록
 	public int countReview(Integer prodNo);
