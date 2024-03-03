@@ -45,4 +45,16 @@ public class PartyController {
 		model.addAttribute("party" , dto);
 		return "party/party_detail";
 	}
+	
+	// 모임 생성 페이지
+	@GetMapping("/create")
+	public String partyCreate() {
+		return "party/party_create";
+	}
+	
+	// 모임 공지사항 페이지
+	@GetMapping("/announcement")
+	public String partyAnnouncement() {
+		return "party/party_announcement";
+	}
 }
