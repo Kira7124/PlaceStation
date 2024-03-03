@@ -226,6 +226,25 @@
 										<i class="fas fa-solid fa-heart" style="margin: 10px"></i>${wishlistCount}
 										<i class="fas fa-regular fa-comment" style="margin: 10px"></i>${reviewCount != null ? reviewCount : 0}
 										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>101055
+										<form method="post" action="/product/addWishlist">
+											<input type="hidden" name="prodNo" value="${product.prodNo}">
+											<input type="hidden" name="userNo" value="1">
+											<p style="text-align: right">
+												<button class="btn btn-success btn-circle" type="submit">
+													<i class="fa fa-smile-o"></i> 찜하기
+												</button>
+											</p>
+										</form>
+										<!-- 찜 삭제 버튼 폼 -->
+										<form method="post" action="/product/deleteWishlist">
+											<input type="hidden" name="prodNo" value="${product.prodNo}">
+											<input type="hidden" name="userNo" value="1">
+											<p style="text-align: right">
+												<button class="btn btn-danger btn-circle" type="submit">
+													<i class="fa fa-frown-o"></i> 찜 삭제
+												</button>
+											</p>
+										</form>
 										<c:if test="${avgStar != 0}">
 											<div style="float: right; margin-right: 5px;">
 												<span class="comment-star"> <c:forEach begin="1"
@@ -522,29 +541,29 @@
 																	</div>
 																</c:if>
 															</c:forEach>
-															</c:forEach>
-															<!-- 페이지 바 추가 -->
-															<div class="row">
-																<div class="col-sm-12">
-																	<ul class="pagination justify-content-center">
-																		<li class="page-item"><a class="page-link"
-																			href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo-1}">이전</a>
+														</c:forEach>
+														<!-- 페이지 바 추가 -->
+														<div class="row">
+															<div class="col-sm-12">
+																<ul class="pagination justify-content-center">
+																	<li class="page-item"><a class="page-link"
+																		href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo-1}">이전</a>
+																	</li>
+																	<c:forEach var="i" begin="1" end="${totalPage}"
+																		varStatus="status">
+																		<li
+																			class="page-item <c:if test='${status.index eq pageNo}'>active</c:if>">
+																			<a class="page-link"
+																			href="productDetail?prod_no=${product.prodNo}&pageNo=${status.index}">${status.index}</a>
 																		</li>
-																		<c:forEach var="i" begin="1" end="${totalPage}"
-																			varStatus="status">
-																			<li
-																				class="page-item <c:if test='${status.index eq pageNo}'>active</c:if>">
-																				<a class="page-link"
-																				href="productDetail?prod_no=${product.prodNo}&pageNo=${status.index}">${status.index}</a>
-																			</li>
-																		</c:forEach>
-																		<li class="page-item"><a class="page-link"
-																			href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo+1}">다음</a>
-																		</li>
-																	</ul>
-																</div>
+																	</c:forEach>
+																	<li class="page-item"><a class="page-link"
+																		href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo+1}">다음</a>
+																	</li>
+																</ul>
 															</div>
-															<!-- 페이지 바 종료 -->
+														</div>
+														<!-- 페이지 바 종료 -->
 													</div>
 												</div>
 											</c:if>
@@ -619,25 +638,16 @@
 								<h5 class="widget-title font-alt">제품</h5>
 								<div class="row">
 									<div class="col-sm-4">
-										<form method="post" action="/product/addWishlist">
-											<input type="hidden" name="prodNo" value="${product.prodNo}">
-											<input type="hidden" name="userNo" value="1">
+										<div>
 											<p style="text-align: right">
-												<button class="btn btn-success btn-circle" type="submit">
-													<i class="fa fa-smile-o"></i> 찜하기
-												</button>
+											${product.additionExplanationFilePath}
+											${product.additionExplanationName}
 											</p>
-										</form>
-										<!-- 찜 삭제 버튼 폼 -->
-										<form method="post" action="/product/deleteWishlist">
-											<input type="hidden" name="prodNo" value="${product.prodNo}">
-											<input type="hidden" name="userNo" value="1">
+										</div>
+										<div>
 											<p style="text-align: right">
-												<button class="btn btn-danger btn-circle" type="submit">
-													<i class="fa fa-frown-o"></i> 찜 삭제
-												</button>
 											</p>
-										</form>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -728,10 +738,8 @@
 						<!-- 사이드 바 끝 -->
 					</div>
 				</div>
-				<!-- 리뷰 끝 -->
 		</div>
 		</div>
-		<!--  사이드바  -->
 		</section>
 		</div>
 		<!-- 본문 끝 -->

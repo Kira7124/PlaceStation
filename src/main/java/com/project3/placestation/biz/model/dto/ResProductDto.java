@@ -37,5 +37,6 @@ public class ResProductDto {
 	private String prodDeleteAt;	// 삭제일
 	private String prodDeleteReason; // 삭제 이유
 	private String[] additionExplanation;
-
+    private String additionExplanationFilePath; // 부가 설명 파일 경로
+    private String additionExplanationName; // 부가 설명 파일 이름
 }
