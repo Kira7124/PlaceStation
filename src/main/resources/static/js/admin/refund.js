@@ -27,7 +27,7 @@
             // 일정 시간이 지난 후에 변환 작업 수행
             setTimeout(function () {
                 // 입력된 금액의 10% 계산
-                var convertedAmount = enteredAmount * 0.05;
+                var convertedAmount = enteredAmount * 0.1;
 
                 // 변환된 금액을 입력 필드에 자동으로 설정
                 // 이 부분을 실제로 입력 필드에 설정하는 코드로 변경하십시오

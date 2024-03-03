@@ -34,7 +34,10 @@
 					
 				<div class="row" style ="margin-top: 30px;">
 				    <div class="col-md-3">
-				        <label for="name" class="form-label">사업자ID</label>
+				        <label for="name" class="form-label">
+				         사업자<br>
+				         회원번호
+				         </label>
 				    </div>
 				    <div class="col-md-5">
 				        <div class="input-box">
@@ -64,7 +67,7 @@
 				    </div>
 				    <div class="col-md-5">
 				        <div class="input-box">
-				            <input type="text" class="form-control" name = "cancelYn" >
+				            <input type="text" class="form-control" name = "cancelYn"  value="Y">
 				        </div>
 				    </div>
 				  </div>
