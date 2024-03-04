@@ -108,7 +108,7 @@
 					</table>
 
 
-					
+					<!-- nav start 긁어가기  -->
 					<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
 						<ul class="pagination">
 							<c:if test="${pageVO.prev }">
@@ -133,14 +133,14 @@
 				
 							<c:if test="${pageVO.next }">
 								<li class="page-item"><a class="page-link"
-									href="/admin/admin-member?page=${pageVO.endPage + 1 }"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									href="/admin/admin-member?page=${pageVO.endPage + 1 }"     
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span> <!-- href="/admin/admin-member 여기 주소만 바꾸면됨 -->
 								</a></li>
 							</c:if>
 
 						</ul>
 					</nav>
-
+					<!-- nav end  -->
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->
