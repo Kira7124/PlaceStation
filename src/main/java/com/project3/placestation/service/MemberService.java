@@ -184,7 +184,7 @@ public class MemberService {
 				.userid(dto.getUserId())
 				.username(dto.getUserName())
 				.userpassword(bCryptPasswordEncoder.encode(dto.getUserPassword()))
-				.useremail(dto.getUserEmail())
+				.useremail(dto.getEmail())
 				.useraddress(dto.getUserAddress())
 				.userhp(dto.getUserHp())
 				.gender(dto.getGender())
@@ -198,6 +198,45 @@ public class MemberService {
 		
 	}
 	
+	// 소셜 유저 회원가입 처리
+	public void OauthJoinProcess(RequestJoinDTO dto) {
+		
+		
+		Member member = Member.builder()
+				.userid(dto.getUserId())
+				.username(dto.getUserName())
+				.userpassword(bCryptPasswordEncoder.encode(dto.getUserPassword()))
+				.useremail(dto.getEmail())
+				.useraddress(dto.getUserAddress())
+				.userhp(dto.getUserHp())
+				.gender(dto.getGender())
+				.userrole("ROLE_USER")
+				.oauth(dto.getUserOauth())
+				.build();
+		
+		
+		System.out.println("오스 서비스=======: " + member);
+		
+		
+		memberRepository.insertOauthUser(member);
+		
+	}
+	
+	
+	// 소셜 유저 회원가입 최초 여부
+	public int OauthFirstCheckProcess(String username) {
+		
+		
+		int userCheck = memberRepository.selectByValidUserNameOauth(username);
+		
+		
+		
+		return userCheck;
+		
+	}
+	
+	
+	
 	// 판매자 유저 회원가입 처리
 	@Transactional
 	public void sJoinProcess(RequestJoinDTO dto, String filepath) {
@@ -207,12 +246,15 @@ public class MemberService {
 				.userid(dto.getUserId())
 				.username(dto.getUserName())
 				.userpassword(bCryptPasswordEncoder.encode(dto.getUserPassword()))
-				.useremail(dto.getUserEmail())
+				.useremail(dto.getEmail())
 				.useraddress(dto.getUserAddress())
 				.userhp(dto.getUserHp())
 				.gender(dto.getGender())
 				.userrole("ROLE_SELLER")
 				.filepath(filepath)
+				.impkey(dto.getImpkey())
+				.impuid(dto.getImpuid())
+				.impsecret(dto.getImpsecret())
 				.build();
 		
 
@@ -239,7 +281,7 @@ public class MemberService {
 	// email 샌더
 	public void sendEmail(String to, String subject, String text) throws MessagingException {
 
-		
+		System.out.println("send Email");
 		SimpleMailMessage message = new SimpleMailMessage();
 		
 		message.setSubject(subject);
@@ -247,7 +289,7 @@ public class MemberService {
 		message.setTo(to);
 
 		mailSender.send(message);
-		
+		System.out.println("send Email$$$$$$$$$$$$$$$$$$$$$");
 		/*	MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 		

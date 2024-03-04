@@ -6,8 +6,13 @@ let isUidOk = false;
 let isPassOk1 = false;
 let isPassOk2 = false;
 let isNameOk = false;
-let isEmailOk = false;
 let isHpOk = false;
+let isImpuid = false;
+let isImpkey = false;
+let isImpsecret = false;
+let isFileOk = false;
+let isAddressOk = false;
+
 
 // 데이터 검증에 사용하는 정규표현식
 const reUid = /^[a-z]+[a-z0-9]{4,19}$/g;
@@ -15,6 +20,10 @@ const rePass = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,16
 const reName = /^[가-힣]{2,10}$/
 const reEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 const reHp = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
+const reImpuid = /^[0-9a-z-]{7,20}$/;     // /^[0-9]{9}$/;  숫자만
+const reImpkey = /^[0-9a-z-]{20,60}$/;
+const reImpsecret = /^[0-9a-z-]{20,60}$/;
+
 
 // 유효성 검사(Validation)
 $(function() {
@@ -99,24 +108,34 @@ $(function() {
 			isNameOk = false;
 		}
 	});
+	
+	
 
 	// 이메일 검사
-	$('input[name=email]').keydown(function() {
+	$('input[name=email]').focusout(function() {
 		$('.msgEmail').text('');
 		isEmailOk = false; // 공백은 유효하지 않은 별명임
 	});
 
 	// 휴대폰 검사
-	$('input[name=userHp]').keydown(function() {
-
+	$('input[name=userHp]').focusout(function() {
 		$('.msgHp').text('');
 		isHpOk = false; // 공백은 유효하지 않은 별명임
 	});
-	// 담당자 휴대폰 검사
-	$('input[name=managerHp]').keydown(function() {
-
-		$('.msgManagerHp').text('');
-		isHpOk = false; // 공백은 유효하지 않은 별명임
+	// 
+	$('input[name=impuid]').focusout(function() {
+		$('.impuid').text('');
+		isImpuid = false; // 공백은 유효하지 않은 별명임
+	});
+	// 
+	$('input[name=impkey]').focusout(function() {
+		$('.impkey').text('');
+		isImpkey = false; // 공백은 유효하지 않은 별명임
+	});
+	// 
+	$('input[name=impsecret]').focusout(function() {
+		$('.impsecret').text('');
+		isImpsecret = false; // 공백은 유효하지 않은 별명임
 	});
 
 
@@ -125,19 +144,9 @@ $(function() {
 	// 판매자 최종 확인
 	$('button[name=sRegister]').click(function() {
 
-		// true면 전송, false면 전송 취소
-		if (!isUidOk) {
-			alert('아이디를 확인하십시오.');
-			return false; // 폼 전송 취소
-		}
-		if (!isPassOk1 || !isPassOk2) {
-			alert('비밀번호를 확인하십시오.');
-			return false;// 폼 전송 취소
-		}
-		if (!isNameOk) {
-			alert('이름을 확인하십시오.');
-			return false;// 폼 전송 취소
-		}
+	
+	
+	
 		if (!isEmailOk) {
 			alert('이메일을 확인하십시오.');
 			return false;// 폼 전송 취소
@@ -146,14 +155,30 @@ $(function() {
 			alert('휴대폰 번호를 확인하십시오.');
 			return false;// 폼 전송 취소
 		}
+
+
+		// 포트원 변수
+		if (!isImpuid) {
+			alert('포트원 아이디를 입력 하십시오.')
+			return false // 폼 전송 취소
+		}
+		if (!isImpkey) {
+			alert('포트원 키를 입력 하십시오.')
+			return false // 폼 전송 취소
+		}
+		if (!isImpsecret) {
+			alert('포트원 시크릿을 입력 하십시오.')
+			return false // 폼 전송 취소
+		}
+
 		if (!isFileOk) {
 			alert('사업자 등록증을 첨부 하십시오.')
 			return false // 폼 전송 취소
 		}
-		
+
 		return true; // 폼 전송 시작
 	});
-	
+
 	// 일반유저 최종 확인
 	$('button[name=uRegister]').click(function() {
 
@@ -178,7 +203,20 @@ $(function() {
 			alert('휴대폰 번호를 확인하십시오.');
 			return false;// 폼 전송 취소
 		}
-		
+
+		return true; // 폼 전송 시작
+	});
+
+	// 소셜유저 최종 확인
+	$('button[name=socialRegister]').click(function() {
+
+	
+
+		if (!isHpOk) {
+			alert('휴대폰 번호를 확인하십시오.');
+			return false;// 폼 전송 취소
+		}
+
 		return true; // 폼 전송 시작
 	});
 
@@ -236,7 +274,7 @@ window.onload = function() {
 	// 휴대폰 중복체크
 	$('input[name=userHp]').focusout(function() {
 		const hp = $(this).val();
-		console.log(hp);
+		console.log('설마 이체크 유저냐?'+hp);
 		if (!hp.match(reHp)) {
 			$('.msgHp').css('color', 'red').text('휴대폰 번호가 유효하지 않습니다.');
 			isHpOk = false;
@@ -284,22 +322,78 @@ window.onload = function() {
 
 	});
 
-		// 사업자 등록증 유무
+	// 사업자 등록증 유무
+
+	// 파일 input 요소가 변경될 때마다 호출되는 함수
+	$('input[name=filePath]').change(function() {
+		// 파일이 선택되었는지 여부 확인
+		if ($(this).prop('files').length === 0) {      //property값 가져오고 
+			console.log('파일이 선택되지 않았습니다.');
+			$('.msgFile').css('color', 'red').text('사업자 등록증 파일을 등록하셔야 합니다.');
+		} else {
+			console.log('파일이 선택되었습니다.');
+			$('.msgFile').css('color', 'red').text('사업자 등록증 첨부 완료');
+		}
+	});
+
+	//포트원키 검증
+	$('input[name=impsecret]').focusout(function() {
+		const impsecret = $(this).val();
+
+		if (!impsecret.match(reImpsecret)) {
+			$('.msgSecret').css('color', 'red').text('잘못된 입력 양식 입니다.');
+			isImpsecret = false;
+			return;
+		} else {
+			$('.msgSecret').css('color', 'green').text('');
+			isImpsecret = true;
+		}
+
+	});
+
+	//포트원키 검증
+	$('input[name=impuid]').focusout(function() {
+		const impuid = $(this).val();
+
+		if (!impuid.match(reImpuid)) {
+			$('.msgUid').css('color', 'red').text('잘못된 입력 양식 입니다.');
+			isImpuid = false;
+			return;
+		} else {
+			$('.msgUid').css('color', 'green').text('');
+			isImpuid = true;
+		}
+
+	});
+
+	//포트원키 검증
+	$('input[name=impkey]').focusout(function() {
+		const impkey = $(this).val();
+
+		if (!impkey.match(reImpkey)) {
+			$('.msgKey').css('color', 'red').text('잘못된 입력 양식 입니다.');
+			isImpkey = false;
+			return;
+		} else {
+			$('.msgKey').css('color', 'green').text('');
+			isImpkey = true;
+		}
+
+	});
+
+	// 파일 입력 요소의 변경 이벤트 핸들러
+	$('input[name=filePath]').change(function() {
+		const fileInput = $(this)[0];
+		const files = fileInput.files;
+
+		// 파일 목록의 길이를 확인하여 파일이 선택되었는지 여부를 판단
+
+		if(files.length < 0){
+			isFileOk = false
+		}else if(files.length > 0){
+			isFileOk = true		
+		}
+		
+	});
 	
-		// 파일 input 요소가 변경될 때마다 호출되는 함수
-		$('input[name=filePath]').change(function() {
-			// 파일이 선택되었는지 여부 확인
-			if ($(this).prop('files').length === 0) {      //property값 가져오고 
-				console.log('파일이 선택되지 않았습니다.');
-				$('.msgFile').css('color', 'red').text('사업자 등록증 파일을 등록하셔야 합니다.');
-			} else {
-				console.log('파일이 선택되었습니다.');
-				$('.msgFile').css('color', 'red').text('사업자 등록증 첨부 완료');
-			}
-		});
-
-
-
-
-
 }; // onload end

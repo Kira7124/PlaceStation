@@ -101,7 +101,7 @@ create table biz (
     biz_hp varchar(30),
     biz_balance int,
     file_path varchar (1000),
-    joinat datetime default now()
+    joinat datetime default now(),
     biz_tel varchar (20) ,
     biz_email varchar (50),
     imp_uid varchar ( 100 ) ,
@@ -130,8 +130,7 @@ create table admin_prod_history (
     cancel_at timestamp ,
     cancel_amount double,
     people_count int (3),
-    purchase_date varchar (100),
-    token varchar(200)
+    purchase_date varchar (100)
 );
 
 create table prod_major_category (

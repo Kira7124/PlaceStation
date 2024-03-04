@@ -45,6 +45,11 @@ public class Member {
 	private int bizid;
 	// 사업자 등록증 이미지 경로
 	private String filepath;
+
+	// 포트원 관련 변수
+	private String impuid;
+	private String impkey;
+	private String impsecret;
 	
 	
 	// jwt관련 변수
