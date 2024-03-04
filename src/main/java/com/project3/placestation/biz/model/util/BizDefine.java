@@ -48,7 +48,9 @@ public class BizDefine {
 	public final static String NO_VALID_TOKEN = "토큰 누락, 서버 에러가 발생하였습니다.";
 	public final static String NO_VALID_DESCRIPTION_IMAGE = "부가 설명을 하나라도 지정해 주세요.";
 	public final static String PRODUCT_NOTHING_FOUND = "상품이 변경되었거나 삭제되었습니다.";
+	public final static String PARCIPATION_PARTY_NOTHING_FOUND = "모임이 변경되었거나 삭제되었습니다.";
 	public final static String INTERVAL_SERVER_ERROR = "로그인이 되어있지 않거나 , 서버 에러가 발생하였습니다.";
 	public final static String NO_VALID_JOIN = "이미 참가했거나 참가 인원이 꽉 찼습니다.";
+	public final static String NO_VALID_PARTY_DATE = "이미 종료 시간이 지났습니다.";
 	
 }

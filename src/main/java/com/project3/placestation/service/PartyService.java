@@ -1,5 +1,8 @@
 package com.project3.placestation.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,17 +46,28 @@ public class PartyService {
 	}
 
 	/**
-	 * 업데이트
-	 * @param party
+	 * 모임 시간 체크
+	 * @param purchaseDate
+	 * @param startTime
 	 * @return
 	 */
-	@Transactional
-	public int updateParcipationUserNoById(Party party) {
-		int result = partyRepository.updateParcipationUserNoById(party);
-		if (result < 1) {
-			throw new CustomRestfulException(BizDefine.INTERVAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
+	public boolean validJoinTime(String purchaseDate , int startTime) {
+		Date now = new Date();
+		
+		String purchaseDate2 = purchaseDate + " " + startTime;
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH");
+		try {
+			Date parseDate = dateFormat.parse(purchaseDate2);	
+			if(now.before(parseDate)) {
+				return false;
+			}
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return result;
+		return true;
 	}
 
 }

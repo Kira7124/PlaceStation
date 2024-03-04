@@ -46,7 +46,6 @@ h1, h2, h3, h4, h5, h6 {
 								<button class="search-btn" type="submit">
 									<i class="fa fa-search"></i>
 								</button>
-
 							</div>
 						</form>
 					</div>
@@ -81,27 +80,35 @@ h1, h2, h3, h4, h5, h6 {
 						<div class="post-header font-alt">
 							<div style="text-align: right;">
 								<!-- 참가하기 -->
-								<form action="/party/join" method="post">
-									<input type="hidden" name="_method" value="put" /> <input
-										type="hidden" value="${member.userno}" name="userNo" /> <input
-										type="hidden" value="${party.parcipationUserNo}"
-										name="parcipationUserNo" /> <input type="hidden"
-										value="${party.partyNo}" name="partyNo" />
 
-									<c:choose>
-										<c:when test="${party.validPartyJoin(member.userno)}">
-										<input type="hidden" name="isJoin" value="N"/>
+								<c:choose>
+									<c:when test="${validDate}">
+										<button class="btn btn-danger btn-round" disabled>이미
+											시간이 지난 모임입니다.</button>
+									</c:when>
+									<c:when test="${member == null}">
+										<a class="btn btn-danger btn-round" href="/member/login">
+											로그인을 먼저 해주세요</a>
+									</c:when>
+									<c:when test="${validJoin}">
+										<form action="/party/delete-join" method="post">
+											<input type="hidden" name="_method" value="delete" /> <input
+												type="hidden" name="partyNo" value="${party.partyNo}" /> <input
+												type="hidden" name="isJoin" value="N" />
 											<button class="btn btn-danger btn-round" type="submit">모임
 												나가기</button>
-										</c:when>
-										<c:otherwise>
-										<input type="hidden" name="isJoin" value="Y"/>
+										</form>
+									</c:when>
+									<c:when test="${!validJoin}">
+										<form action="/party/join" method="post">
+											<input type="hidden" name="partyNo" value="${party.partyNo}" />
+											<input type="hidden" name="isJoin" value="Y" />
 											<button class="btn btn-success btn-round" type="submit">모임
 												참가하기</button>
-										</c:otherwise>
-									</c:choose>
+										</form>
+									</c:when>
+								</c:choose>
 
-								</form>
 								<!-- 참가하기 종료 -->
 							</div>
 							<h1 class="post-title">${party.partyName}</h1>
@@ -154,7 +161,7 @@ h1, h2, h3, h4, h5, h6 {
 					<!-- 사람 인원 칸 시작 -->
 					<div class="comments">
 						<h4 class="comment-title font-alt">모임 사람들</h4>
-						<c:forEach items="${memberList}" var="memberList">
+						<c:forEach items="${parcipationParties}" var="memberList">
 							<div class="comment clearfix">
 								<div class="comment-avatar">
 									<img src="${memberList.filePath}" alt="avatar" />

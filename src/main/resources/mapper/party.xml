@@ -41,7 +41,6 @@
 		p.file_path as filePath,
 		p.party_manager as partyManager,
 		p.product_no as productNo,
-		p.parcipation_user_no as parcipationUserNo ,
 		p.admin_his_no as admin_his_no,
 		p.party_created_at as partyCreatedAt,
 		p.party_update_at as partyUpdateAt,
@@ -106,9 +105,4 @@
 		AND pd.prod_delete_yn = 'N';
 	</select>
 	
-	<update id="updateParcipationUserNoById">
-		update party
-		set parcipation_user_no = #{parcipationUserNo}
-		where party_no = #{partyNo}
-	</update>
 </mapper>

@@ -12,8 +12,6 @@ import lombok.ToString;
 @ToString
 @Builder
 public class PartyJoinReqDto {
-	private Integer userNo;
 	private Integer partyNo;
-	private String parcipationUserNo;
 	private String isJoin;
 }

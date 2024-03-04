@@ -229,11 +229,20 @@ create table party (
     party_manager int ,
     product_no int ,
     admin_his_no varchar ( 400 ) ,
-    parcipation_user_no varchar ( 400 ),
     party_created_at timestamp default now() ,
 	party_update_at timestamp ,
 	party_delete_at timestamp,
     party_delete_yn varchar (1) default 'N' 
+);
+
+create table parcipation_party (
+	parcipation_party_no	int primary key auto_increment,
+    party_no int,
+    party_user_no int ,
+    parcipation_join_at timestamp default now() ,
+	parcipation_update_at timestamp ,
+	parcipation_delete_at timestamp,
+    parcipation_delete_yn varchar (1) default 'N' 
 );
 
 create table party_announcement (

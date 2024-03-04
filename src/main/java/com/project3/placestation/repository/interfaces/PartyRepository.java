@@ -13,6 +13,4 @@ public interface PartyRepository {
 	
 	public PartyDto findById(int partyNo);
 	
-	public int updateParcipationUserNoById(Party party);
-	
 }
