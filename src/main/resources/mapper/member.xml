@@ -293,9 +293,15 @@
 	
 	<!-- 유저사진변경하기 -->
 	<update id="changePhoto">
-			update member set file_path=#{filepath}
+			update member set file_path = #{filePath}
 			where user_no = #{userno}
 	</update>
+	
+	
+	<!-- 유저사진변경 filepath 가져오기 -->
+	<select id="selectUserUpdatePhoto" resultType="com.project3.placestation.repository.entity.Member">
+			select * from member where user_no = #{userno}
+	</select>
 	
 
 </mapper>

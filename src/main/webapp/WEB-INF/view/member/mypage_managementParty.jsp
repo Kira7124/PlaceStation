@@ -1,117 +1,212 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file ="/WEB-INF/view/member/layout/header.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/member/layout/header.jsp"%>
 
-    <!-- mypage content 시작 -->
+<!-- mypage content 시작 -->
+<style>
+body {
+	margin-top: 20px;
+	background-color: #eee;
+}
 
-      <!--  프로필 content 시작  -->
-      <section class="module" style="
-        align-items: center;
-        align-content: space-between;
-        flex-wrap: nowrap;
-        flex-direction: row-reverse;
-        justify-content: flex-start;
-    ">
-        <div class="container rounded bg-white mt-5 mb-5" style="
-        display: flex;
-        align-content: space-between;
-        flex-wrap: wrap;
-        flex-direction: row;
-        align-items: baseline;
-    ">
-          <div class="row" style="
-        flex-direction: column;
-    ">
+.project-list-table {
+	border-collapse: separate;
+	border-spacing: 0 12px
+}
 
-            <div class="col-md-10 border-right" style="
-        display: flex;
-        justify-content: space-between;
-    ">
-              <div class="col-md-2 border-right" style="
-                      margin-top: 5%;
-                      display: inline-block;
-                      width: 250px;
-                  ">
-                <div>
-                  <div class="d-flex flex-column align-items-center text-center p-3 py-5" style="
-        position: relative;
-    "><img class="rounded-circle mt-5" width="150px"
-                      src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    <span class="font-weight-bold"
-                      style="border: solid 2px #a1a1a1 ; border-radius: 10px; width: 100px; height: 30px; display: inline-block;">
-                      change photo</span>
-                  </div>
-                </div>
-                <br>
-                <br>
-                <div style="width: 100%;">
-                  <ul class="list-group" style="text-align: center ;">
-                    <li class="list-group-item disabled" aria-disabled="true"><a href="/member/mypage/main">결제내역</a></li>
-                    <li class="list-group-item"><a href="/member/mypage/wishlist">찜목록</a></li>
-                    <li class="list-group-item"><a href="/member/mypage/qna">문의 내역</a></li>
-                    <li class="list-group-item"><a href="/member/mypage/main">내정보 변경</a></li>
-                    <li class="list-group-item"><a href="/member/mypage/managementParty">모임 내역 관리</a></li>
-                  </ul>
-                </div>
-              </div>
+.project-list-table tr {
+	background-color: #fff
+}
 
-              <div class="col-md-8 border-right" style="
-        margin-top: 0%;
-        /* display: inline-block; */
-        /* float: right; */
-    ">
-                <div class="p-3 py-5">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-center" style="font-size: xx-large;">Profile Settings</h4>
-                    <!-- 시큐리티 태그립을 사용하는 방법 property="principal"가 적혀있는 페이지에는  -->
-                      <p>principal : <sec:authentication property="principal" /></p> 
-               <%--     <p>principal : <sec:authentication property="principal.username" /></p>
-                    <p>principal : <sec:authentication property="principal.gender" /></p>
-                    <p>principal : <sec:authentication property="principal.userAddress" /></p> 
-                    <!-- 모델 객체로 참조하는 방법 -->
-                   <p>${id} </p>
-                    <p>${role} </p> 
-                  </div> --%>
-                  <br>
-                  <br>
-                  <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control"
-                        placeholder="first name" value="" readonly></div>
-                    <div class="col-md-6"><label class="labels">password</label><input type="text" class="form-control"
-                        value="" placeholder="surname" readonly></div>
-                  </div>
-                  <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Email</label><input type="text"
-                        class="form-control" placeholder="enter phone number" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text"
-                        class="form-control" placeholder="enter address line 1" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text"
-                        class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">gender</label><input type="text" class="form-control"
-                        placeholder="enter address line 2" value="" readonly></div>
-                    <div class="col-md-12"><label class="labels">hp</label><input type="text" class="form-control"
-                        placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Education</label><input type="text"
-                        class="form-control" placeholder="education" value=""></div>
-                  </div>
-                  <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control"
-                        placeholder="country" value=""></div>
-                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text"
-                        class="form-control" value="" placeholder="state"></div>
-                  </div>
-                  <br>
-                  <br>
-                  <br>
-                  <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save
-                      Profile</button></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!--  프로필 content 끝 -->
-    </div>
-    </div>
-    <%@ include file ="/WEB-INF/view/member/layout/footer.jsp" %>
+.table-nowrap td, .table-nowrap th {
+	white-space: nowrap;
+}
+
+.table-borderless>:not(caption)>*>* {
+	border-bottom-width: 0;
+}
+
+.table>:not(caption)>*>* {
+	padding: 0.75rem 0.75rem;
+	background-color: var(--bs-table-bg);
+	border-bottom-width: 1px;
+	box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+
+.avatar-sm {
+	height: 2rem;
+	width: 2rem;
+}
+
+.rounded-circle {
+	border-radius: 50% !important;
+}
+
+.me-2 {
+	margin-right: 0.5rem !important;
+}
+
+img, svg {
+	vertical-align: middle;
+}
+
+a {
+	color: #3b76e1;
+	text-decoration: none;
+}
+
+.badge-soft-danger {
+	color: #f56e6e !important;
+	background-color: rgba(245, 110, 110, .1);
+}
+
+.badge-soft-success {
+	color: #63ad6f !important;
+	background-color: rgba(99, 173, 111, .1);
+}
+
+.badge-soft-primary {
+	color: #3b76e1 !important;
+	background-color: rgba(59, 118, 225, .1);
+}
+
+.badge-soft-info {
+	color: #57c9eb !important;
+	background-color: rgba(87, 201, 235, .1);
+}
+
+.avatar-title {
+	align-items: center;
+	background-color: #3b76e1;
+	color: #fff;
+	display: flex;
+	font-weight: 500;
+	height: 100%;
+	justify-content: center;
+	width: 100%;
+}
+
+.bg-soft-primary {
+	background-color: rgba(59, 118, 225, .25) !important;
+}
+</style>
+
+<!--  프로필 content 시작  -->
+<section class="module"
+	style="align-items: center; align-content: space-between; flex-wrap: nowrap; flex-direction: row-reverse; justify-content: flex-start;">
+	<div class="container rounded bg-white mt-5 mb-5"
+		style="display: flex; align-content: space-between; flex-wrap: wrap; flex-direction: row; align-items: baseline;">
+		<div class="row" style="flex-direction: column;">
+
+			<div class="col-md-10 border-right"
+				style="display: flex; justify-content: space-between;">
+				<div class="col-md-2 border-right"
+					style="margin-top: 5%; display: inline-block; width: 250px;">
+					<div>
+						<div
+							class="d-flex flex-column align-items-center text-center p-3 py-5"
+							style="position: relative;">
+							<img class="rounded-circle mt-5" width="150px"
+								src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+							<span class="font-weight-bold"
+								style="border: solid 2px #a1a1a1; border-radius: 10px; width: 100px; height: 30px; display: inline-block;">
+								change photo</span>
+						</div>
+					</div>
+					<br> <br>
+					<%@ include file="/WEB-INF/view/layout/myPageAside.jsp"%>
+				</div>
+
+				<!-- 리스트 start -->
+				<div class="container"
+					style="display: flex; flex-direction: column; justify-content: space-between;">
+					<div class="row align-items-center">
+						<div class="col-md-6">
+							<div class="mb-3">
+								<h2 class="card-title">결제내역</h2>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="">
+								<div class="table-responsive">
+									<table
+										class="table project-list-table table-nowrap align-middle table-borderless">
+										<thead>
+											<tr>
+
+												<th scope="col">Name</th>
+												<th scope="col">Position</th>
+												<th scope="col">Email</th>
+												<th scope="col">Projects</th>
+												<th scope="col" style="width: 200px;">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><img
+													src="https://bootdey.com/img/Content/avatar/avatar1.png"
+													alt="" class="avatar-sm rounded-circle me-2" /><a href="#"
+													class="text-body">Simon Ryles</a></td>
+												<td><span class="badge badge-soft-success mb-0">Full
+														Stack Developer</span></td>
+												<td>SimonRyles@minible.com</td>
+												<td>125</td>
+												<td>
+													<ul class="list-inline mb-0">
+														<li class="list-inline-item"><a
+															href="javascript:void(0);" data-bs-toggle="tooltip"
+															data-bs-placement="top" title="Edit"
+															class="px-2 text-primary"><i
+																class="bx bx-pencil font-size-18"></i></a></li>
+														<li class="list-inline-item"><a
+															href="javascript:void(0);" data-bs-toggle="tooltip"
+															data-bs-placement="top" title="Delete"
+															class="px-2 text-danger"><i
+																class="bx bx-trash-alt font-size-18"></i></a></li>
+														<li class="list-inline-item dropdown"><a
+															class="text-muted dropdown-toggle font-size-18 px-2"
+															href="#" role="button" data-bs-toggle="dropdown"
+															aria-haspopup="true"><i
+																class="bx bx-dots-vertical-rounded"></i></a>
+															<div class="dropdown-menu dropdown-menu-end">
+																<a class="dropdown-item" href="#">Action</a><a
+																	class="dropdown-item" href="#">Another action</a><a
+																	class="dropdown-item" href="#">Something else here</a>
+															</div></li>
+													</ul>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row g-0 align-items-center pb-4">
+						<div class="col-sm-6">
+							<div class="float-sm-end">
+								<ul class="pagination mb-sm-0">
+									<li class="page-item disabled"><a href="#"
+										class="page-link"><i class="mdi mdi-chevron-left"></i></a></li>
+									<li class="page-item active"><a href="#" class="page-link">1</a></li>
+									<li class="page-item"><a href="#" class="page-link">2</a></li>
+									<li class="page-item"><a href="#" class="page-link">3</a></li>
+									<li class="page-item"><a href="#" class="page-link">4</a></li>
+									<li class="page-item"><a href="#" class="page-link">5</a></li>
+									<li class="page-item"><a href="#" class="page-link"><i
+											class="mdi mdi-chevron-right"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 리스트 end -->
+			</div>
+		</div>
+</section>
+<!--  프로필 content 끝 -->
+</div>
+</div>
+<%@ include file="/WEB-INF/view/member/layout/footer.jsp"%>

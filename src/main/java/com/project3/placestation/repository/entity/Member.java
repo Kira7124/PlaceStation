@@ -34,6 +34,7 @@ public class Member {
 	private String useremail;
 	// 유저 포인트
 	private Integer userpoint;
+	
 	// 회원 가입 일자
 	private Timestamp joinat;
 	// 회원 타입
@@ -48,7 +49,7 @@ public class Member {
 	private int bizid;
 	// 사업자 등록증 이미지 경로
 	private String filepath;
-	private List<MultipartFile> Profilefilepath;
+	private MultipartFile Profilefilepath;
 
 	// 포트원 관련 변수
 	private String impuid;

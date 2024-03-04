@@ -362,14 +362,22 @@ public class MemberService {
 	
 	
 	//사진변경
-	public void changePhoto(Member member, String filePath) {
+	public int changePhoto(int userno, String filePath) {
 			
-		member = Member.builder()
-				.filepath(filePath)
-				.build();
 		
-		memberRepository.changePhoto(member);
 		
+		
+		 memberRepository.changePhoto(userno, filePath);
+		
+		 return 1;
+	}
+
+	public Member selectUserUpdatePhoto(int userno) {
+
+		Member member = memberRepository.selectUserUpdatePhoto(userno);
+		
+		
+		return member;
 		
 	}
 	

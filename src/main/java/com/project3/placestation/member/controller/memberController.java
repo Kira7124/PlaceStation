@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project3.placestation.config.jwt.UserDetailsImpl;
 import com.project3.placestation.config.oauth2.Oauth2Attributes;
@@ -393,12 +394,26 @@ public class memberController {
 	
 	
 	@PostMapping("/changePhoto")
-	public String changePhoto(Member member) {
+	//@ResponseBody
+	public Member changePhoto(Member member) {
+		int userno = member.getUserno();
 		
+		log.info("유저넘버 :"+userno);
+		log.info("다정이 내이름을 불러 "+member.getProfilefilepath());
 		String filePath = fileService.saveFiles(member.getProfilefilepath());
-		memberService.changePhoto(member, filePath);
+		log.info("changePhoto 파일패스: "+ filePath);
 		
-		return "redirect:/member/mypage/main";
+		int filepath = memberService.changePhoto(userno, filePath);
+		
+		
+		
+		Member PhotoMember = memberService.selectUserUpdatePhoto(userno);
+		
+		String path = PhotoMember.getFilepath();
+		
+		log.info("모든 것을 다 거치고 돌아온 파일 패스 경로: "+path);
+		
+		return PhotoMember;
 		
 	}
 	

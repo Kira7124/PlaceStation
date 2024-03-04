@@ -106,9 +106,11 @@ public interface MemberRepository {
 	//(소셜) 최초 로그인 여부 검증
 	public Member selectByValidUserNameOauth(String uid);
 	
-	
-	//사진바꾸기
-	public Integer changePhoto(Member member);
+	// 사진바꾸기
+	public int changePhoto(int userno, String filePath);
+
+	// 
+	public Member selectUserUpdatePhoto(int userno);
 	
 	
 	

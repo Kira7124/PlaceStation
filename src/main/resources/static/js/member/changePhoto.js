@@ -7,14 +7,18 @@
 $(document).ready(function() {
     // 파일 선택기 변경 이벤트
     $('#fileInput').change(function() {
-        var file = this.files[0];
-        var username = this.files[0];
+		console.log("**************************** start")
+        var filepath = this.files[0];
+        console.log("**************************** start2222222")
+        var userno = $('#hiddenuserNo').val();
+        console.log("**************************** start33333" + userno)
         var formData = new FormData();
-        formData.append('Profilefilepath', file);
-        formData.append('username', username);
+        formData.append('Profilefilepath', filepath);
+        formData.append('userno', userno);
+        console.log("**************************** start55555555")
 
-		console.log('1111111111111111111111111111111' + file);
-		console.log('444444444444444444444444444444' + username);
+		console.log('1111111111111111111111111111111' + filepath);
+		console.log('444444444444444444444444444444' + userno);
 		
         // AJAX 요청
         $.ajax({
@@ -27,10 +31,12 @@ $(document).ready(function() {
             success: function(data) {
 				console.log('22222222222222222222222222222222222');
                 // 성공 시 이미지의 src 속성에 파일 경로 할당
+                console.log('77777777777777777'+ data.filepath);
                 $('#profileImage').attr('src', data.filepath);
             },
             error: function(xhr, status, error) {
                 console.error('에러 발생:', error);
+                
             }
         });
     });
@@ -40,4 +46,5 @@ $(document).ready(function() {
 		console.log('3333333333333333333333333333333333333');
         $('#fileInput').click();
     });
+    
 });
