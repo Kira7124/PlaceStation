@@ -19,6 +19,14 @@
 		<![CDATA[ select count(*) from banner where ban_no > 0 ]]>
 	</select>
 
+		
+	<!-- 배너추가 -->
+	<insert id ="AdminInsertBanner">
+		insert into banner (ban_name,file_path)
+		values(#{banName},#{filePath})
+	</insert>
+	
+	
 	
 	<!-- 배너수정(관리자)  -->
 	<update id ="AdminUpdateBanner">

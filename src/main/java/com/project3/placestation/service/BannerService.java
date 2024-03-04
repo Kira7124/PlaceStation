@@ -31,6 +31,21 @@ public class BannerService {
 	}
 	
 	
+	//배너등록
+	@Transactional
+	public void AdminInsertBanner(String filePath, AdminBannerDTO dto) {
+		
+			Banner banner = Banner.builder()
+					.banName(dto.getBanname())
+					.filePath(filePath)
+					.build();
+		
+			int result = bannerRepository.AdminInsertBanner(banner);
+		
+	}
+	
+	
+	
 	
 	//배너리스트 업데이트
 	@Transactional

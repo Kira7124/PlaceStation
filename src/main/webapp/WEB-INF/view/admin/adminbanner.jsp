@@ -20,6 +20,9 @@
 				</div>
 				
 			 	<div style="position: absolute; right: 100px;">
+			 			<a href="/admin/admin-bannerinsert" data-toggle="modal" data-target="#bannerinsertModal">
+        					<span class="label label-info">등록</span>
+    					</a>  
 						<a href="/admin/admin-bannerupdate" data-toggle="modal" data-target="#bannerupdateModal">
         					<span class="label label-success">수정</span>
     					</a>     	
@@ -117,6 +120,12 @@
 	<!-- END WRAPPER -->
 	
 	
+	<!-- Modal -->
+	<div class="modal fade" id="bannerinsertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
 	
 	
 	<!-- Modal -->

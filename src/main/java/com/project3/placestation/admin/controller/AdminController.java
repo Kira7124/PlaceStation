@@ -420,7 +420,16 @@ public class AdminController {
 		log.debug("adminbizupdate페이지출력");
 		return "admin/adminbizupdate";
 	}
-
+	
+	
+	// admin 배너insert페이지출력(모달)
+	@GetMapping("/admin-bannerinsert")
+	public String adminBannerinsertGET() {
+		log.debug("adminInsertBanner 페이지출력");
+		return "admin/adminbannerinsert";
+	}
+	
+	
 	// admin 배너update페이지출력(모달)
 	@GetMapping("/admin-bannerupdate")
 	public String adminBannerupdateGET() {
@@ -499,6 +508,24 @@ public class AdminController {
 		return "redirect:/admin/admin-banner";
 
 	}
+	
+	
+	
+	// admin 배너insert POST(모달)
+	@PostMapping("/admin-bannerinsert")
+	public String adminBannerinsertPOST(AdminBannerDTO dto) {
+			
+		//파일저장
+		String filePath = filedbService.saveFiles(dto.getFiles());
+			
+		log.info(filePath);
+		bannerService.AdminInsertBanner(filePath, dto);
+			
+		return "redirect:/admin/admin-banner";
+			
+			
+	}
+	
 	
 	
 	

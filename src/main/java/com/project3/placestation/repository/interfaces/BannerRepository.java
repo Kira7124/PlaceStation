@@ -18,6 +18,10 @@ public interface BannerRepository {
 	public int BannerListCount() throws Exception;
 	
 	
+	// 배너등록(관리자)
+	public Integer AdminInsertBanner(Banner banner);
+	
+	
 	// 배너수정(관리자)
 	public Integer AdminUpdateBanner(Banner banner);
 	
