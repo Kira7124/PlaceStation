@@ -488,6 +488,7 @@ public class AdminController {
 		
 		String filePath = filedbService.saveFiles(dto.getFiles());
 		
+		
 		log.debug("adminbizupdatePOST 실행");
 		bizService.AdminUpdateBiz(dto,filePath);
 		return "redirect:/admin/admin-biz";
@@ -517,6 +518,12 @@ public class AdminController {
 			
 		//파일저장
 		String filePath = filedbService.saveFiles(dto.getFiles());
+		
+		
+		if (filePath == null || filePath.isEmpty()) {
+	        filePath = "defaultbanner.jpg";
+	    }
+
 			
 		log.info(filePath);
 		bannerService.AdminInsertBanner(filePath, dto);

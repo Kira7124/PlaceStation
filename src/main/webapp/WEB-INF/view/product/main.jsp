@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- adminheader.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/mainpage.css" />
@@ -16,7 +16,6 @@
 		<input type="radio" name="slide" id="slide03">
 		<input type="radio" name="slide" id="slide04">
 	<div class="slidewrap">
-		
 		<ul class="slidelist">
 			<!-- 슬라이드 영역 -->
 			<li class="slideitem">
@@ -25,18 +24,18 @@
 				</a>
 			</li>
 			<li class="slideitem">
-				<a href="#">
-				   <img src="/banner/fit.png">
-				</a>
+			  <a href="#">
+			  	 <img src="/banner/slogan2.png">
+			  </a>
 			</li>
 			<li class="slideitem">
 				<a href="#">
-				   <img src="/banner/pa2.png">
+				   <img src="/banner/slogan2.png">
 				</a>
 			</li class="slideitem">
 			<li class="slideitem">
 				<a href="#">
-				   <img src="/banner/cam1.png">
+				   <img src="/banner/slogan2.png">
 				</a>
 			</li class="slideitem">
 
@@ -97,12 +96,12 @@
 						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 						<div class="shop-item-detail">
 							<a class="btn btn-round btn-b"
-								href="productDetail?prod_no=${product.prodNo}"><span
+								href="/product/productDetail?prod_no=${product.prodNo}"><span
 								class="icon-basket">보러가기</span></a>
 						</div>
 					</div>
 					<h4 class="shop-item-title font-alt">
-						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 					</h4>
 					${product.prodPrice} 원/시간
 				</div>
@@ -113,12 +112,12 @@
 						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 						<div class="shop-item-detail">
 							<a class="btn btn-round btn-b"
-								href="productDetail?prod_no=${product.prodNo}"><span
+								href="/product/productDetail?prod_no=${product.prodNo}"><span
 								class="icon-basket">보러가기</span></a>
 						</div>
 					</div>
 					<h4 class="shop-item-title font-alt">
-						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 					</h4>
 					${product.prodPrice} 원/시간
 				</div>
@@ -129,12 +128,12 @@
 						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 						<div class="shop-item-detail">
 							<a class="btn btn-round btn-b"
-								href="productDetail?prod_no=${product.prodNo}"><span
+								href="/product/productDetail?prod_no=${product.prodNo}"><span
 								class="icon-basket">보러가기</span></a>
 						</div>
 					</div>
 					<h4 class="shop-item-title font-alt">
-						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 					</h4>
 					${product.prodPrice} 원/시간
 				</div>
@@ -170,12 +169,12 @@
 								<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 								<div class="shop-item-detail">
 									<a class="btn btn-round btn-b"
-										href="productDetail?prod_no=${product.prodNo}"><span
+										href="/product/productDetail?prod_no=${product.prodNo}"><span
 										class="icon-basket">보러가기</span></a>
 								</div>
 							</div>
 							<h4 class="shop-item-title font-alt">
-								<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+								<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 							</h4>
 							${product.prodPrice} 원/시간
 						</div>
@@ -212,12 +211,12 @@
 												alt="${product.prodTitle}" />
 											<div class="shop-item-detail">
 												<a class="btn btn-round btn-b"
-													href="productDetail?prod_no=${product.prodNo}"><span
+													href="/product/productDetail?prod_no=${product.prodNo}"><span
 													class="icon-basket">보러가기</span></a>
 											</div>
 										</div>
 										<h4 class="shop-item-title font-alt">
-											<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+											<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 										</h4>
 										${product.prodPrice} 원/시간
 									</div>
@@ -260,14 +259,14 @@
 									alt="${product.prodTitle}" />
 								<div class="shop-item-detail">
 									<a class="btn btn-round btn-b"
-										href="productDetail?prod_no=${product.prodNo}"> <span
+										href="/product/productDetail?prod_no=${product.prodNo}"> <span
 										class="icon-basket">보러가기</span>
 									</a>
 								</div>
 							</div>
 							<div class="shop-item-info">
 								<h4 class="shop-item-title font-alt">
-									<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+									<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 								</h4>
 								<div class="shop-item-price">${product.prodPrice}원/시간</div>
 								<div class="shop-item-maximum">최대 ${product.prodMaximumPeople}인 ${product.prodStartTime}시~${product.prodEndTime}시</div>
@@ -308,12 +307,12 @@
 												alt="${product.prodTitle}" />
 											<div class="shop-item-detail">
 												<a class="btn btn-round btn-b"
-													href="productDetail?prod_no=${product.prodNo}"><span
+													href="/product/productDetail?prod_no=${product.prodNo}"><span
 													class="icon-basket">보러가기</span></a>
 											</div>
 										</div>
 										<h4 class="shop-item-title font-alt">
-											<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+											<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 										</h4>
 										${product.prodPrice} 원/시간
 									</div>

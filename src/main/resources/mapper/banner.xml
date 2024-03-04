@@ -13,6 +13,12 @@
 		limit #{startPage},#{pageSize}
 	</select>
 	
+	<!-- 메인페이지출력용 배너리스트 -->
+	<select id ="BannerListMain" resultType="com.project3.placestation.repository.entity.Banner">
+		select ban_no,file_path from banner
+	</select>
+	
+	
 	
 	<!-- 배너리스트 갯수카운팅 -->		
 	<select id="BannerListCount">

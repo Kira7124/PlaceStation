@@ -86,7 +86,7 @@
 		  
 		  <div class="row">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-success" id="cancelButton" style="margin-left:450px; margin-bottom: 10px; margin-top:10px;">환불하기</button>
+                <button type="submit" class="btn btn-info" id="cancelButton" style="margin-left:450px; margin-bottom: 10px; margin-top:10px;">환불하기</button>
             </div>
           </div>
 

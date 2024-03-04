@@ -50,7 +50,7 @@
 								<td>${bannerlist.banName}</td>
 								<td>
 								    <c:choose>
-								        <c:when test="${bannerlist.filePath eq 'defaultbanner.jpg'}">
+								        <c:when test="${empty bannerlist.filePath or bannerlist.filePath eq 'defaultbanner.jpg'}">
 								            <img src="/assets/img/defaultbanner.jpg" style="width: 400px; height: 100px;">
 								        </c:when>
 								        <c:otherwise>
