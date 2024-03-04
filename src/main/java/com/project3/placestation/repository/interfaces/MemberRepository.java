@@ -104,6 +104,6 @@ public interface MemberRepository {
 	public Member selectByUserId(Member member);
 	
 	//(소셜) 최초 로그인 여부 검증
-	public Boolean selectByValidUserNameOauth(String uid);
+	public int selectByValidUserNameOauth(String uid);
 	
 }

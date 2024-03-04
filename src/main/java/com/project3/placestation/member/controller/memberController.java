@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project3.placestation.config.jwt.UserDetailsImpl;
 import com.project3.placestation.config.oauth2.Oauth2Attributes;
+import com.project3.placestation.config.oauth2.SessionUser;
 import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.member.dto.MemberLoginDto;
 import com.project3.placestation.member.dto.RequestJoinDTO;
@@ -284,24 +285,26 @@ public class memberController {
         
         // ResponseEntity.ok("Social member registered successfully!")
 		
-		// 여기 까지함 세션 객체 유저디테일스 임플리로 캐스팅 안됨
 		
-		UserDetailsImpl principal = (UserDetailsImpl)httpSession.getAttribute("member");
+		// 세션 유저 객체에서 빼온 유저 정보 캐스팅
+		// 캐스팅한 유저정보로 최초 소셜 로그인 여부 검증
+		SessionUser principal = (SessionUser)httpSession.getAttribute("member");
 		System.out.println("11111111111111111111111111");
 		model.addAttribute("principal", principal);
-		System.out.println("222222222222222222222222222222222222" + principal.getUsername());
-		// db에 존재하는 유저네임(= 이메일값) + social값을 더해서 session에 존재하는 username을 비교  존재하면 login으로 넘겨야함 그냥 session이 null인지 체크 하는건 의미가 없음  
+		System.out.println("222222222222222222222222222222222222" + principal.getName());
+		  
 		Member member = new Member();
-		member.setUserid(principal.getUserId());
+		member.setUserid(principal.getName());
 		
 		if(member.getUserid() != null) {
 		 username = member.getUserid();
 		}
 		System.out.println("33333333333333333333333333333333333333333");
-		boolean checkOauth = service.OauthFirstCheckProcess(username);
-		System.out.println("44444444444444444444444444444444444444444");
-		if(checkOauth) {
+		int checkOauth = service.OauthFirstCheckProcess(username);
+		System.out.println("44444444444444444444444444444444444444444 "+ checkOauth);
+		if(checkOauth == 1) {
 			System.out.println("55555555555555555555555555555555555555555555555555555");
+			//TODO 여기 메인화면으로 바꿔줘야함
 			return "member/login";
 		}else {
 			System.out.println("66666666666666666666666666666666666666666666666666666");

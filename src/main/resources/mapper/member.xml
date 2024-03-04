@@ -257,8 +257,8 @@
 	</select>
 
 	<!-- (회원가입)유저 아이디 중복 검사 -->
-	<select id="selectByValidUserNameOauth" resultType="boolean">
-		select * from
+	<select id="selectByValidUserNameOauth" resultType="Integer">
+		select count(*) from
 		member where
 		(social + user_id) = #{uid}
 	</select>

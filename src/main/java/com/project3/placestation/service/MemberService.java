@@ -224,10 +224,10 @@ public class MemberService {
 	
 	
 	// 소셜 유저 회원가입 최초 여부
-	public boolean OauthFirstCheckProcess(String username) {
+	public int OauthFirstCheckProcess(String username) {
 		
 		
-		boolean userCheck = memberRepository.selectByValidUserNameOauth(username);
+		int userCheck = memberRepository.selectByValidUserNameOauth(username);
 		
 		
 		
