@@ -39,7 +39,8 @@ public class BizHistoryDto {
 	private String subcategory;
 	private Integer bizId;
 	private Integer bizBalance;
-	private Integer userNo;
-	private String userId;
+	private Integer userNo; // 진수추가
+	private String userId; // 진수추가
+	private Integer refundAmount; // 진수추가
 	private String token; // 토큰
 }

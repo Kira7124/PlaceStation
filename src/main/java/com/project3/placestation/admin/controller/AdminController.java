@@ -456,7 +456,7 @@ public class AdminController {
 		
 	}
 	
-	
+	//관리자등록증확인사진업로드
 	@PostMapping("/admin-checkupdate")
 	public String admincheckUpdatePOST(AdminBizDTO dto) {
 		
@@ -691,6 +691,31 @@ public class AdminController {
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	//환불완료내역확인(관리자)
+	@GetMapping("/admin-refund")
+	public String adminRefundGET(@RequestParam("adminHisProdNo") Integer adminHisProdNo, Model model,BizHistoryDto dto) {
+		
+		BizHistoryDto result = adminProdHistoryService.AdminRefund(adminHisProdNo);
+		model.addAttribute("refund", result);
+		
+		log.debug("dto 넘어오나? " + dto.getAdminHisPrice());
+		log.debug("dto 넘어오나? " + dto.getCancelAmount());
+		
+		
+		Integer refundUser = result.getAdminHisPrice() - result.getCancelAmount();
+		dto.setRefundAmount(refundUser);
+		model.addAttribute("refundUser", refundUser);
+		
+		log.debug("환불완료내역확인!");
+		return"admin/adminrefund";
+	}
+	
 	
 	
 	

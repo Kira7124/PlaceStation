@@ -94,7 +94,9 @@
 								          </a>
 								        </c:when>
 								        <c:when test="${paymentlist.cancelYn eq 'Y'}">
+								          <a href="/admin/admin-refund?adminHisProdNo=${paymentlist.adminHisProdNo}">
 								            <span class="label label-info">환불완료</span>
+								          </a>   
 								        </c:when>
 								    </c:choose>
 								</td>																	
