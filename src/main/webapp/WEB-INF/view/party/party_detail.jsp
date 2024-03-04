@@ -74,8 +74,9 @@ h1, h2, h3, h4, h5, h6 {
 				<div class="col-sm-8 col-sm-offset-1">
 					<div class="post">
 						<div class="post-thumbnail">
-							<img src="/assets/images/product/image2.jpg"
-								alt="Blog Featured Image" />
+							<img src="${party.filePath}" alt="Blog Featured Image"
+								style="width: 100%" />
+
 						</div>
 						<div class="post-header font-alt">
 							<div style="text-align: right;">
@@ -89,6 +90,21 @@ h1, h2, h3, h4, h5, h6 {
 									<c:when test="${member == null}">
 										<a class="btn btn-danger btn-round" href="/member/login">
 											로그인을 먼저 해주세요</a>
+									</c:when>
+									<c:when test="${member.userno == party.partyHost}">
+										<a class="btn btn-success btn-round"
+											href="/party/announcement/create?party-no=${party.partyNo}">
+											공지사항 쓰기</a>
+
+										<a class="btn btn-success btn-round"
+											href="/party/update/${party.partyNo}"> 모임 수정하기</a>
+
+										<form action="/party/delete/${party.partyNo}"
+											method="post">
+											<input type="hidden" name="_method" value="delete" /> <button
+												class="btn btn-success btn-round" 
+												type="submit"> 모임 삭제하기</button>
+										</form>
 									</c:when>
 									<c:when test="${validJoin}">
 										<form action="/party/delete-join" method="post">
@@ -111,7 +127,7 @@ h1, h2, h3, h4, h5, h6 {
 
 								<!-- 참가하기 종료 -->
 							</div>
-							<h1 class="post-title">${party.partyName}</h1>
+							<h1 class="post-title">${party.partyTitle}</h1>
 							<div class="post-meta">
 								By&nbsp;<a href="#">${party.username}</a>&nbsp;|
 								${party.partyCreatedAt} |
@@ -131,7 +147,8 @@ h1, h2, h3, h4, h5, h6 {
 								<li>인당 가격 : ${party.peopleByamount()}&nbsp; 원</li>
 								<li>위치 : ${party.prodFullAddress}</li>
 								<li>해당 주소 : <a
-									href="/product/productDetail?prod_no=${party.prodNo}">http://127.0.0.1/product/productDetail?prod_no=${party.prodNo}</a></li>
+									href="/product/productDetail?prod_no=${party.prodNo}">이곳을
+										클릭해 주세요!!</a></li>
 
 								<li>시간 :
 									${party.purchaseDate}&nbsp;&nbsp;${party.startTime}시&nbsp;~&nbsp;${party.endTime}시
@@ -140,7 +157,7 @@ h1, h2, h3, h4, h5, h6 {
 						</div>
 						<div class="post-entry">
 							<h3>모임 소개</h3>
-							<p>${party.partyDescription}</p>
+							<p style="white-space: pre-line;">${party.partyDescription}</p>
 							<ul>
 								<li>주최자 : ${party.username}</li>
 								<c:choose>
@@ -161,6 +178,19 @@ h1, h2, h3, h4, h5, h6 {
 					<!-- 사람 인원 칸 시작 -->
 					<div class="comments">
 						<h4 class="comment-title font-alt">모임 사람들</h4>
+						<div class="comment clearfix">
+
+							<div class="comment-avatar">
+
+								<img src="${party.userFilePath}" alt="avatar" />
+							</div>
+							<div class="comment-content clearfix">
+								<div class="comment-author font-alt">
+
+									<a href="#">${party.username}&nbsp;&nbsp; (파티장) 님</a>
+								</div>
+							</div>
+						</div>
 						<c:forEach items="${parcipationParties}" var="memberList">
 							<div class="comment clearfix">
 								<div class="comment-avatar">

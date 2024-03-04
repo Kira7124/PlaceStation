@@ -103,6 +103,22 @@ img {
 	margin-bottom: 5px;
 }
 
+input-lg textarea {
+	margin-left: 10px;
+	padding: 10px;
+	border: 1px solid #999;
+	border-radius: 10px;
+	box-shadow: 3px 3px 10px #e6e6e6;
+}
+
+textarea {
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 200px;
+	box-shadow: inset 3px 3px 10px #e6e6e6;
+	/* vertical-align: 텍스트를 수직, 수평 정렬 할 수 있다. */
+	vertical-align: top;
+}
 </style>
 <div class="main">
 
@@ -123,62 +139,66 @@ img {
 	<!-- 배너 섹션 종료 -->
 
 	<!-- selected box 시작 -->
-	<section class="module-small">
-		<!-- 공지사항 작성 -->
-		<div class="row">
-			<div class="col-sm-6 col-sm-offset-3">
-				<div class="post">
-					<div class="comment-form">
-						<h4 class="comment-form-title font-alt">공지사항</h4>
-						<p>공지 날짜 : ${announcement.partyAnnouncementCreatedAt}</p>
-					</div>
-					<!-- 공지사항 제목 -->
-					<div class="post-header font-alt">
-
-						<h3>제목 : ${announcement.partyAnnouncementTitle}</h3>
-
-					</div>
-
-					<div class="post-quote"
-						style="white-space: pre-line; text-align: left;">
-						<h4>${announcement.partyAnnouncementDescription}</h4>
-					</div>
-				</div>
-				<div class="row">
-					<!-- <div style="text-align: right;"> -->
-					<div style="display: flex; justify-content: flex-end; ">
-						<c:if test="${member.userno == party.partyHost}">
-							<a class="btn btn-success" style="margin-right: 10px" 
-								href="/party/announcement/update?announcement-no=${announcement.partyAnnouncementNo}">수정하기</a>
-
-							<form
-								action="/party/announcement/delete/${announcement.partyAnnouncementNo}"
-
-								method="post">
-								<input type="hidden" name="_method" value="delete" />
-								<button class="btn btn-danger" type="submit" >삭제하기</button>
-							</form>
-
-						</c:if>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</section>
+	<section class="module-small"></section>
 	<!-- selected box 종료 -->
-
 
 	<!-- 메인 섹션 시작 -->
 	<section class="module">
 		<div class="container">
-			<div class="post-columns"></div>
+			<div class="post-columns">
+
+				<!-- 모임 생성 폼 -->
+				<div class="col-sm-6 col-sm-offset-3">
+					<div class="post">
+						<div class="post-header font-alt">
+							<h2 class="post-title">공지사항 수정</h2>
+						</div>
+						<div class="post-entry">
+							<form id="partyUpdateForm" action="/party/announcement/update"
+								method="post">
+								<input type="hidden" name="_method" value="put" /> <input
+									type="hidden" name="partyAnnouncementNo"
+									value="${announcement.partyAnnouncementNo}" />
+								<div class="form-group">
+									<label for="partyName">공지사항 제목</label> <input type="text"
+										class="form-control" id="partyAnnouncementTitle"
+										name="partyAnnouncementTitle" placeholder="모임 이름을 입력하세요"
+										value="${announcement.partyAnnouncementTitle}">
+									<!-- 모임 설명 입력 폼 -->
+									<label for="partyDescription">공지사항 설명</label>
+									<textarea class="form-control"
+										id="partyAnnouncementDescription"
+										name="partyAnnouncementDescription"
+										placeholder="공지사항 설명을 입력하세요" rows="30">${announcement.partyAnnouncementDescription}</textarea>
+								</div>
+								<button type="submit" class="btn btn-d btn-circle">수정</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 	<!-- 메인 섹션 종료 -->
+
 </div>
 
+<script>
+//Textarea 자동 줄 바꿈
+const DEFAULT_HEIGHT = 30; // textarea 기본 height
 
+const $textarea1 = document.querySelector('#partyDescription'); // textarea 1
+
+// textarea 1
+$textarea1.oninput = (event) => {
+
+	 if(oninput.scrollHeight > oninput.clientHeight) //textarea height 확장
+		 oninput.style.height= oninput.scrollHeight + "px";
+	 else //textarea height 축소
+		 oninput.style.height= (oninput.scrollHeight-18) + "px";
+};
+
+</script>
 <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="

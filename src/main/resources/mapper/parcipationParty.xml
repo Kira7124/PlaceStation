@@ -36,6 +36,7 @@
 		and p.parcipation_delete_yn
 		= 'N'
 	</select>
+	
 
 	<insert id="save">
 		insert into parcipation_party (party_no , party_user_no) values (${partyNo}, ${userNo});
@@ -50,4 +51,10 @@
 		and party_user_no = #{userNo}
 	</update>
 
+	<select id="validByUserNoAndPartyNo" resultType="int">
+		select count(*) from parcipation_party
+		where party_no = #{partyNo}
+		and  party_user_no = #{userNo}
+		and parcipation_delete_yn = 'N'
+	</select>
 </mapper>

@@ -102,7 +102,6 @@ img {
 .post-entry h6 {
 	margin-bottom: 5px;
 }
-
 </style>
 <div class="main">
 
@@ -122,60 +121,89 @@ img {
 	</section>
 	<!-- 배너 섹션 종료 -->
 
-	<!-- selected box 시작 -->
-	<section class="module-small">
-		<!-- 공지사항 작성 -->
-		<div class="row">
-			<div class="col-sm-6 col-sm-offset-3">
-				<div class="post">
-					<div class="comment-form">
-						<h4 class="comment-form-title font-alt">공지사항</h4>
-						<p>공지 날짜 : ${announcement.partyAnnouncementCreatedAt}</p>
-					</div>
-					<!-- 공지사항 제목 -->
-					<div class="post-header font-alt">
-
-						<h3>제목 : ${announcement.partyAnnouncementTitle}</h3>
-
-					</div>
-
-					<div class="post-quote"
-						style="white-space: pre-line; text-align: left;">
-						<h4>${announcement.partyAnnouncementDescription}</h4>
-					</div>
-				</div>
-				<div class="row">
-					<!-- <div style="text-align: right;"> -->
-					<div style="display: flex; justify-content: flex-end; ">
-						<c:if test="${member.userno == party.partyHost}">
-							<a class="btn btn-success" style="margin-right: 10px" 
-								href="/party/announcement/update?announcement-no=${announcement.partyAnnouncementNo}">수정하기</a>
-
-							<form
-								action="/party/announcement/delete/${announcement.partyAnnouncementNo}"
-
-								method="post">
-								<input type="hidden" name="_method" value="delete" />
-								<button class="btn btn-danger" type="submit" >삭제하기</button>
-							</form>
-
-						</c:if>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</section>
-	<!-- selected box 종료 -->
-
-
 	<!-- 메인 섹션 시작 -->
 	<section class="module">
 		<div class="container">
-			<div class="post-columns"></div>
+			<div class="post-columns">
+				<h2>모임을 만드실 예약 번호를 선택해 주세요</h2>
+				<ul>
+					<li>예약 시간이 지난 상품은 선택할 수 없습니다.</li>
+				</ul>
+				<c:forEach items="${partyList}" var="party">
+					<div class="col-sm-6 col-md-4 col-lg-4">
+						<div class="post">
+							<div class="post-thumbnail">
+								<a href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}"><img src="${party.filePath[0]}"
+									alt="Blog-post Thumbnail" /></a>
+							</div>
+							<div class="post-header font-alt">
+								<h2 class="post-title">
+									<a href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}">${party.prodTitle}</a>
+								</h2>
+								<div class="post-meta">
+									예약 일자&nbsp;<a href="#"></a>&nbsp;| ${party.purchaseDate}
+								</div>
+							</div>
+							<div class="post-entry">
+								<p>위치 : ${party.prodFullAddress}</p>
+								<p>모임 최대 인원 : ${party.peopleCount}</p>
+							</div>
+							<div class="post-more">
+								<a class="more-link" href="#">${party.mainCategory}</a>
+								<a class="more-link" href="#">${party.subcategory}</a>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+
+			</div>
 		</div>
 	</section>
 	<!-- 메인 섹션 종료 -->
+	<section class="container">
+	
+		<ul class="pagination font-alt">
+			<li class="page-item"><c:choose>
+					<c:when test="${currentPage > 0}">
+						<a class="page-link"
+							href="/party/select-create?page=${currentPage - 1}&size=${size}&text=${text}"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a>
+
+					</c:when>
+
+					<c:otherwise>
+						<a class="page-link" href="#" aria-label="Previous"> <span
+							aria-hidden="true">&laquo;</span>
+						</a>
+					</c:otherwise>
+				</c:choose></li>
+
+			<c:forEach begin="${startPage}" end="${endPage}" var="var">
+				<li class="page-item"><a class="page-link"
+					href="/party/select-create?page=${var - 1}&size=${size}&text=${text}">${var}</a></li>
+
+			</c:forEach>
+
+
+			<li class="page-item"><c:choose>
+					<c:when test="${currentPage < endPage - 1}">
+						<a class="page-link"
+							href="/party/select-create?page=${currentPage + 1}&size=${size}&text=${text}"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a>
+
+					</c:when>
+					<c:otherwise>
+						<a class="page-link" href="#" aria-label="Next"> <span
+							aria-hidden="true">&raquo;</span>
+						</a>
+					</c:otherwise>
+				</c:choose></li>
+		</ul>
+
+
+	</section>
 </div>
 
 

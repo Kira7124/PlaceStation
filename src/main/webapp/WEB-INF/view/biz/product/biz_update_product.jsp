@@ -289,7 +289,7 @@ $textarea3.oninput = (event) => {
   imageView = function imageView(att_zone, btn){
 
     var attZone = document.getElementById(att_zone);
-    var btnAtt = document.getElementById(btn)
+    var btnAtt = document.getElementById(btn);
     var sel_files = [];
     
     // 이미지와 체크 박스를 감싸고 있는 div 속성

@@ -70,4 +70,9 @@ public class ParcipationPartyService {
 		}
 		return true;
 	}
+	
+	public int validByUserNoAndPartyNo(int partyNo , int userNo) {
+		int result = parcipationPartyRepository.validByUserNoAndPartyNo(partyNo, userNo);
+		return result;
+	}
 }

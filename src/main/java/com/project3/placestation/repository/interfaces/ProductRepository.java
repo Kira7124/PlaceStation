@@ -36,5 +36,7 @@ public interface ProductRepository {
 	public List<ProdFilterDto> findMainAllBysearchAndPriceAndstar(@Param("search")String search , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory ,@Param("pageReq") PageReq pageReq);
 	public int countFindMainAllBysearchAndPriceAndstar(@Param("search")String search , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory);
 	
+	// 상품 확인
+	public int existById(int prodNo);
 
 }

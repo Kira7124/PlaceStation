@@ -18,4 +18,7 @@ public interface ParcipationPartyRepository {
 	
 	// 모임 불참가하기
 	public int deleteParty(@Param("partyNo")int partyNo,@Param("userNo") int userNo);
+	
+	// 모임에 참가되어 있는지
+	public int validByUserNoAndPartyNo(@Param("partyNo")int partyNo,@Param("userNo") int userNo);
 }

@@ -103,22 +103,21 @@ img {
 	margin-bottom: 5px;
 }
 
-input-lg textarea{
-    margin-left: 10px;
-    padding: 10px;
-    border: 1px solid #999;
-    border-radius: 10px;
-    box-shadow: 3px 3px 10px #e6e6e6;
+input-lg textarea {
+	margin-left: 10px;
+	padding: 10px;
+	border: 1px solid #999;
+	border-radius: 10px;
+	box-shadow: 3px 3px 10px #e6e6e6;
 }
 
 textarea {
-    min-width: 100%;
-    max-width: 100%;
-    min-height : 200px;
-    box-shadow: inset 3px 3px 10px #e6e6e6;
-
-    /* vertical-align: 텍스트를 수직, 수평 정렬 할 수 있다. */
-    vertical-align: top;
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 200px;
+	box-shadow: inset 3px 3px 10px #e6e6e6;
+	/* vertical-align: 텍스트를 수직, 수평 정렬 할 수 있다. */
+	vertical-align: top;
 }
 </style>
 <div class="main">
@@ -155,27 +154,33 @@ textarea {
 							<h2 class="post-title">모임 생성</h2>
 						</div>
 						<div class="post-entry">
-							<form id="partyCreateForm" action="/party/create" method="post" enctype="multipart/form-data">
-							<input type="hidden" name="productNo" value="${product.prodNo}"/>
-							<input type="hidden" name="adminHisNo" value="${adminProdHistory.adminHisNo}"/>
+							<form id="partyCreateForm" action="/party/update" method="post"
+								enctype="multipart/form-data">
+								<input type="hidden" name="_method" value="put" /> <input
+									type="hidden" name="partyNo" value="${party.partyNo}" />
+
 								<div class="form-group">
 									<label for="partyName">모임 제목</label> <input type="text"
 										class="form-control" id="partyName" name="partyTitle"
-										placeholder="모임 이름을 입력하세요"> 
+										value="${party.partyTitle}" placeholder="모임 이름을 입력하세요">
 									<!-- 모임 설명 입력 폼 -->
 									<label for="partyDescription">모임 설명</label>
 									<textarea class="form-control" id="partyDescription"
-										name="partyDescription" placeholder="모임 설명을 입력하세요" rows="30"></textarea>
+										name="partyDescription" placeholder="모임 설명을 입력하세요" rows="30">${party.partyDescription}</textarea>
 									<!-- 모임 일 폼 -->
 									<!--  <label for="#">모임일</label> <input type="date"
 										class="form-control" id="#" name="#"> -->
 									<!-- 모임 최대 인원 폼 -->
 									<label for="partyMaximumPeople">모임 최대 인원</label> <input
 										type="number" class="form-control" id="partyMaximumPeople"
-										name="partyMaximumPeople" min="1" max="${adminProdHistory.peopleCount}">
+										name="partyMaximumPeople" min="1"
+										max="${adminProdHistory.peopleCount}"
+										value="${party.partyMaximumPeople}">
 									<!-- 사진 업로드 폼 -->
-									<label for="partyImage">모임 사진</label> <input type="file"
-										class="form-control" id="#" name="file">
+									<label for="partyImage">모임 사진 (선택하지 않으시면 이전 사진이 적용됩니다.)</label>
+									<input type="file" class="form-control" id='btnAtt' name="file"
+										onchange="fileSelect()"> <input type="hidden"
+										name="isFileChange" value="false" id="isFileChange" />
 								</div>
 								<button type="submit" class="btn btn-d btn-circle">전송</button>
 							</form>
@@ -188,7 +193,10 @@ textarea {
 	<!-- 메인 섹션 종료 -->
 
 </div>
-
+<!-- jquery cdn -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	crossorigin="anonymous"></script>
 <script>
 //Textarea 자동 줄 바꿈
 const DEFAULT_HEIGHT = 30; // textarea 기본 height
@@ -204,11 +212,22 @@ $textarea1.oninput = (event) => {
 		 oninput.style.height= (oninput.scrollHeight-18) + "px";
 };
 
+function fileSelect() {
+    // 파일이 선택되었는지 확인
+    if (document.getElementById("btnAtt").files.length > 0) {
+        // 파일이 선택되었으면 isFileChange 값을 true로 변경
+        document.getElementById("isFileChange").value = "true";
+        console.log(document.getElementById("isFileChange").value);
+    } else {
+        // 파일이 선택되지 않았으면 isFileChange 값을 false로 변경
+        document.getElementById("isFileChange").value = "false";
+        console.log(document.getElementById("isFileChange").value)
+
+    }
+}
+
 </script>
-<!-- jquery cdn -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-	crossorigin="anonymous"></script>
+
 
 
 <!-- include.jsp -->

@@ -69,5 +69,45 @@ public class PartyService {
 		}
 		return true;
 	}
+	
+	/**
+	 * 모임이 이미 있는지 확인
+	 * @param userNo
+	 * @param prodNo
+	 * @param adminHisNo
+	 * @return boolean
+	 */
+	public boolean existByUserNoAndProdNoAndAdminHisNo(int userNo , int prodNo , String adminHisNo) {
+		return partyRepository.existByUserNoAndProdNoAndAdminHisNo(userNo, prodNo, adminHisNo);
+	}
 
+	/**
+	 * 모임 저장
+	 * @param party
+	 * @return
+	 */
+	@Transactional
+	public int save(Party party) {
+		return partyRepository.save(party);
+	}
+	
+	/**
+	 * 모임 저장
+	 * @param party
+	 * @return
+	 */
+	@Transactional
+	public int update(Party party , String isFileChange) {
+		return partyRepository.update(party , isFileChange);
+	}
+	
+	/**
+	 * 모임 삭제
+	 * @param partyNo
+	 * @return
+	 */
+	@Transactional
+	public int delete(int partyNo) {
+		return partyRepository.delete(partyNo);
+	}
 }

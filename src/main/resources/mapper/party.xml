@@ -6,7 +6,8 @@
 <mapper
 	namespace="com.project3.placestation.repository.interfaces.PartyRepository">
 
-	<select id="findAll">
+	<select id="findAll"
+		resultType="com.project3.placestation.repository.entity.Party">
 		select
 		party_no as partyNo,
 		party_name as partyName ,
@@ -28,33 +29,45 @@
 		party_delete_yn as
 		partyDeleteYn
 		from party
+		where
+		party_delete_yn = 'N'
 	</select>
 
-	<select id="findById">
+	<select id="findById"
+		resultType="com.project3.placestation.party.dto.PartyDto">
 		SELECT
 		p.party_no as partyNo,
-		p.party_name as partyName,
+		p.party_name as
+		partyName,
 		p.party_title as partyTitle,
-		p.party_description as partyDescription,
+		p.party_description as
+		partyDescription,
 		p.party_host as partyHost,
-		p.party_maximum_people as partyMaximumPeople,
+		p.party_maximum_people as
+		partyMaximumPeople,
 		p.file_path as filePath,
-		p.party_manager as partyManager,
+		p.party_manager as
+		partyManager,
 		p.product_no as productNo,
 		p.admin_his_no as admin_his_no,
 		p.party_created_at as partyCreatedAt,
-		p.party_update_at as partyUpdateAt,
+		p.party_update_at as
+		partyUpdateAt,
 		p.party_delete_at as partyDeleteAt,
-		p.party_delete_yn as partyDeleteYn,
+		p.party_delete_yn as
+		partyDeleteYn,
 		m.user_no as userno,
 		m.user_id as userid,
-		m.user_name as username,
+		m.user_name as
+		username,
 		m.user_hp as userhp,
 		m.user_email as useremail,
-		m.user_role as userrole,
+		m.user_role as
+		userrole,
 		m.grade as grade,
 		m.gender as gender,
-		m.file_path as userFilePath,
+		m.file_path as
+		userFilePath,
 		pd.prod_no as prodNo,
 		pd.prod_writer_no as prodWriterNo,
 		pd.prod_title as prodTitle,
@@ -62,47 +75,98 @@
 		pd.prod_end_time as prodEndTime,
 		pd.prod_space_info as prodSpaceInfo,
 		pd.prod_goods_info as prodGoodsInfo,
-		pd.prod_caution_info as prodCautionInfo,
+		pd.prod_caution_info as
+		prodCautionInfo,
 		pd.prod_maximum_people as prodMaximumPeople,
 		pd.prod_address as prodAddress,
-		pd.prod_detailed_address as prodDetailedAddress,
+		pd.prod_detailed_address as
+		prodDetailedAddress,
 		pd.prod_price as prodPrice,
-		pd.file_path as productFilePath,
+		pd.file_path as
+		productFilePath,
 		pd.prod_major_category_id as prodMajorCategoryId,
 		pd.prod_subcategory_id as prodSubcategoryId,
-		pd.prod_full_address as prodFullAddress,
+		pd.prod_full_address as
+		prodFullAddress,
 		pd.prod_location_x as prodLocationX,
 		pd.prod_location_y as prodLocationY,
 		pd.prod_rdate as prodRdate,
 		pd.prod_update_at as prodUpdateAt,
-		pd.prod_delete_reason as prodDeleteReason,
+		pd.prod_delete_reason as
+		prodDeleteReason,
 		pd.prod_delete_yn as prodDeleteYn,
-		h.admin_his_no AS historyAdminHisNo,
+		h.admin_his_no AS
+		historyAdminHisNo,
 		h.admin_his_prod_no AS adminHisProdNo,
 		h.admin_his_price AS adminHisPrice,
-		h.admin_his_use_point AS adminHisUsePoint,
+		h.admin_his_use_point AS
+		adminHisUsePoint,
 		h.admin_his_save_point AS adminHisSavePoint,
 		h.admin_his_discount AS adminHisDiscount,
-		h.admin_his_charge AS adminHisCharge,
+		h.admin_his_charge AS
+		adminHisCharge,
 		h.admin_his_prod_name AS adminHisProdName,
 		h.admin_his_seller_id AS adminHisSellerId,
-		h.admin_his_confirm AS adminHisConfirm,
+		h.admin_his_confirm AS
+		adminHisConfirm,
 		h.admin_his_created_at AS adminHisCreatedAt,
 		h.admin_his_buyer_id AS adminHisBuyerId,
 		h.bank AS bank,
-		h.start_time AS startTime,
+		h.start_time AS
+		startTime,
 		h.end_time AS endTime,
 		h.cancel_yn AS cancelYn,
-		h.cancel_at AS cancelAt,
+		h.cancel_at AS
+		cancelAt,
 		h.cancel_amount AS cancelAmount,
-		h.people_count AS peopleCount,
+		h.people_count AS
+		peopleCount,
 		h.purchase_date AS purchaseDate
 		FROM party p
-		LEFT JOIN member m ON p.party_host = m.user_no
-		LEFT JOIN product pd ON p.product_no = pd.prod_no
-		LEFT JOIN admin_prod_history h ON p.admin_his_no = h.admin_his_no
+		LEFT JOIN
+		member m ON p.party_host = m.user_no
+		LEFT JOIN product pd ON
+		p.product_no = pd.prod_no
+		LEFT JOIN admin_prod_history h ON
+		p.admin_his_no = h.admin_his_no
 		WHERE p.party_no = #{partyNo}
-		AND pd.prod_delete_yn = 'N';
+		AND
+		pd.prod_delete_yn = 'N';
 	</select>
+
+	<select id="existByUserNoAndProdNoAndAdminHisNo"
+		resultType="boolean">
+		select count(*) from party
+		where party_host = #{userNo}
+		and
+		product_no = #{prodNo}
+		and admin_his_no = #{adminHisNo}
+	</select>
+
+	<insert id="save">
+		insert into party (party_title , party_description , party_host,
+		party_maximum_people , product_no ,admin_his_no , file_path)
+		values (#{partyTitle}, #{partyDescription} , #{partyHost} ,
+		${partyMaximumPeople} , #{productNo} ,#{adminHisNo} , #{filePath});
+	</insert>
 	
+	<update id="update">
+		update party 
+		set party_title = #{party.partyTitle},
+		party_description = #{party.partyDescription} ,
+		party_maximum_people = #{party.partyMaximumPeople}
+		<if test="isFileChange == 'true'.toString()">
+		,
+		file_path = #{party.filePath}
+		</if>
+		where party_no = #{party.partyNo}
+	</update>
+	
+	<update id="delete">
+		update party 
+		set party_delete_at = now() ,
+		party_update_at = now() ,
+		party_delete_yn = 'Y'
+		where party_no = #{partyNo}
+	</update>
 </mapper>
