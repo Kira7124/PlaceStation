@@ -69,6 +69,12 @@ public class CsService {
 	}
 	
 	// 공지사항 검색 목록
+	public List<CsNoticeBoard> noticeSearchlist(Criteria cri) throws Exception {
+		List<CsNoticeBoard> result1 = csNoticeBoardRepository.noticeSearchlist(cri);
+		log.info("cri" + cri);
+		log.info(cri.toString());
+		return result1;
+	}
 	
 
 // 1:1 문의	

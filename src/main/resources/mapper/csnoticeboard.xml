@@ -38,4 +38,15 @@
 			limit #{cri.startPage},#{cri.pageSize}
 	</select>
 
+	<!-- 공지사항 검색 -->
+	<select id="CsSearchNoticeBoardlist" resultType="com.project3.placestation.cs.dto.CsNoticeDTO">
+			select * from notice_board
+			<where>
+		        <if test="searchKeyword != null">
+		            AND n_title LIKE CONCAT('%', #{searchKeyword}, '%')
+		        </if>
+		    </where>
+			limit #{cri.startPage},#{cri.pageSize}
+	</select>
+
 </mapper>

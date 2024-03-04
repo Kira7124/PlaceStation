@@ -39,22 +39,55 @@ public class CsController {
 	// http://localhost/cs/notice
 	// CS 공지사항 페이지
 	@GetMapping("/notice")
-	public String noticeList(CsNoticeDTO csndto, Model model, Criteria cri) throws Exception {
+	public String noticeList(CsNoticeDTO csndto, Model model, Criteria cri, HttpServletRequest request) throws Exception {
 		
-		// 페이징
-		PageVO pageVO = new PageVO();
-		pageVO.setCri(cri);
+		 // 페이징
+		 PageVO pageVO = new PageVO();
+		 pageVO.setCri(cri);
 
-		pageVO.setTotalCount(csService.CsNoticeBoardCount());
-		model.addAttribute("pageVO", pageVO);
-		log.info("pageVO1: " + pageVO);
+		 pageVO.setTotalCount(csService.CsNoticeBoardCount());
+		 model.addAttribute("pageVO", pageVO);
+		 log.info("pageVO1: " + pageVO);
 
-		// 공지사항 리스트 출력
-		List<CsNoticeBoard> result1 = csService.CsNoticeBoardListAll(cri);
-		model.addAttribute("noticeList", result1);
+		 // 공지사항 리스트 출력
+		 List<CsNoticeBoard> result1 = csService.CsNoticeBoardListAll(cri);
+		 model.addAttribute("noticeList", result1);
 	
-		return "cs/cs_notice";
+		 // 검색 기능
+		 String searchKeyword = request.getParameter("searchKeyword");
+		 if (searchKeyword != null && !searchKeyword.isEmpty()) {
+		 	cri.setSearchKeyword(searchKeyword);
+		 }
+	  
+		  return "cs/cs_notice";
 	}
+	// CS 공지사항 검색 페이지
+	@GetMapping("/notice/search")
+	public String noticeSearchlist (Criteria cri, Model model, HttpServletRequest request) throws Exception {
+		 
+		 // 페이징
+		  PageVO pageVO = new PageVO();
+		  pageVO.setCri(cri);
+		  
+		String searchKeyword = request.getParameter("searchKeyword");
+		  if (searchKeyword != null && !searchKeyword.isEmpty()) {
+			  cri.setSearchKeyword(searchKeyword);
+			  log.info("searchKeyword" + searchKeyword);
+			  // 검색 결과에 따른 공지사항 수
+			  pageVO.setTotalCount(csService.countNoticeSearchlist(cri));
+			  log.info("cri" + cri);
+			  // 검색 결과에 따른 공지사항 리스트 출력
+			  List<CsNoticeBoard> result = csService.noticeSearchlist(cri);
+			  model.addAttribute("noticeList", result);
+		  } else {
+			  pageVO.setTotalCount(csService.CsNoticeBoardCount());
+			  // 공지사항 리스트 출력
+			  List<CsNoticeBoard> result = csService.CsNoticeBoardListAll(cri);
+			  model.addAttribute("noticeList", result);
+		  }
+		  return "cs/cs_notice_search";
+	}
+	
 	
 	@GetMapping("/notice/category")
 	public String noticeListByCategory(@RequestParam("categoryid") Integer categoryid, CsNoticeDTO csndto, Model model, Criteria cri) throws Exception {

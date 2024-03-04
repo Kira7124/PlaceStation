@@ -31,4 +31,10 @@ public interface CsNoticeBoardRepository {
 	
 	// 카테고리에 따른 공지사항 리스트 출력
 	public List<CsNoticeBoard> CsNoticeBoardListByCategory(@Param("categoryid") Integer categoryid, @Param("cri") Criteria cri) throws Exception;
+
+	// 검색 결과에 따른 공지사항 리스트 출력
+	public List<CsNoticeBoard> noticeSearchlist(Criteria cri) throws Exception;
+
+	// 검색 결과에 따른 공지사항 수
+	public int countNoticeSearchlistbySearch(Criteria cri) throws Exception;
 }
