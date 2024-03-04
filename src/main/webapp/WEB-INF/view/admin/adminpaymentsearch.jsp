@@ -88,8 +88,9 @@
 								          </a>
 								        </c:when>
 								        <c:when test="${searchpaymentlist.cancelYn eq 'Y'}">
+										  <a href="/admin/admin-refund?adminHisProdNo=${paymentlist.adminHisProdNo}">
 								            <span class="label label-info">환불완료</span>
-								        </c:when>
+								          </a>  								        </c:when>
 								    </c:choose>
 								</td>									
 							</tr>
@@ -142,6 +143,12 @@
 				
 	
 	
+		<!-- Modal -->
+	<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
 	
 	
 	
