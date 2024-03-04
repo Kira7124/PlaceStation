@@ -20,7 +20,7 @@
 			<!-- 슬라이드 영역 -->
 			<li class="slideitem">
 				<a href="/main/index">
-				   <img src="/banner/slogan2.png">
+				   <img src="/banner/slogans2.png">
 				</a>
 			</li>
 			<li class="slideitem">
