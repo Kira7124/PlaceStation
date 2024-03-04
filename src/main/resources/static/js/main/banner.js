@@ -7,6 +7,6 @@
     }
 
     setInterval(function() {
-        var nextSlideId = 'slide0' + ((currentSlide % 4) + 1);
+        var nextSlideId = 'slide0' + ((currentSlide % 5) + 1);
         changeSlide(nextSlideId);
     }, 3000);

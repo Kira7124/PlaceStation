@@ -15,6 +15,7 @@
 		<input type="radio" name="slide" id="slide02">
 		<input type="radio" name="slide" id="slide03">
 		<input type="radio" name="slide" id="slide04">
+		<input type="radio" name="slide" id="slide05">
 	<div class="slidewrap">
 		<ul class="slidelist">
 			<!-- 슬라이드 영역 -->
@@ -59,6 +60,11 @@
 				</c:choose>
 			 </a>
 			</li class="slideitem">
+			<li class="slideitem">
+				<a href="/main/index">
+				   <img src="/banner/community.png">
+				</a>
+			</li>
 
 			<!-- 좌,우 슬라이드 버튼 -->
 			<div class="slide-control">
@@ -79,9 +85,14 @@
 					<label for="slide03" class="right" onclick="changeSlide('slide03')"></label>
 				</div>
 				<div>
-					<label for="slide01" class="left" onclick="changeSlide('slide01')"></label>
+					<label for="slide05" class="left" onclick="changeSlide('slide05')"></label>
 					<label for="slide04" class="right" onclick="changeSlide('slide04')"></label>
 				</div>
+				<div>
+					<label for="slide01" class="left" onclick="changeSlide('slide01')"></label>
+					<label for="slide05" class="right" onclick="changeSlide('slide05')"></label>
+				</div>
+
 			</div>
 
 		</ul>
@@ -91,6 +102,7 @@
 			<li><label for="slide02"></label></li>
 			<li><label for="slide03"></label></li>
 			<li><label for="slide04"></label></li>
+			<li><label for="slide05"></label></li>
 		</ul>
 	</div>
 
