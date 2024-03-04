@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer.UserDetailsBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResPassword;
+import com.project3.placestation.config.jwt.UserDetailsImpl;
 import com.project3.placestation.member.dto.RequestJoinDTO;
 import com.project3.placestation.payment.model.common.MemberGrade;
 import com.project3.placestation.payment.model.dto.PaymentMemberDto;
@@ -199,7 +201,8 @@ public class MemberService {
 	}
 	
 	// 소셜 유저 회원가입 처리
-	public void OauthJoinProcess(RequestJoinDTO dto) {
+	@Transactional
+	public UserDetailsImpl OauthJoinProcess(RequestJoinDTO dto) {
 		
 		
 		Member member = Member.builder()
@@ -218,16 +221,32 @@ public class MemberService {
 		System.out.println("오스 서비스=======: " + member);
 		
 		
-		memberRepository.insertOauthUser(member);
+		int insertMember= memberRepository.insertOauthUser(member);
 		
+		Member memberReturn;
+		// 유저 아이디로 셀렉트 해서 값 들고와서 userimple로 변환
+		if(insertMember == 1) {
+		String uid = member.getUserid();
+		
+		memberReturn = memberRepository.selectByIsUserId(uid);
+		
+		UserDetailsImpl buildMember = UserDetailsImpl.build(memberReturn);
+		
+		return buildMember;
+		
+		}else {
+		
+		return null;
+		}
 	}
 	
 	
 	// 소셜 유저 회원가입 최초 여부
-	public int OauthFirstCheckProcess(String username) {
+	public Member OauthFirstCheckProcess(String username) {
 		
 		
-		int userCheck = memberRepository.selectByValidUserNameOauth(username);
+		Member userCheck = memberRepository.selectByValidUserNameOauth(username);
+		
 		
 		
 		
@@ -337,6 +356,21 @@ public class MemberService {
 	        }
 		
 	}
+	
+	
+	
+	//사진변경
+	public void changePhoto(Member member, String filePath) {
+			
+		member = Member.builder()
+				.filepath(filePath)
+				.build();
+		
+		memberRepository.changePhoto(member);
+		
+		
+	}
+	
 	
 	
 	

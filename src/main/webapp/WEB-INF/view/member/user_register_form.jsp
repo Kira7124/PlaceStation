@@ -180,9 +180,9 @@ h2 {
 				</div>
 			</div>
 			<div class="register-form">
-				<label for="name">name</label> <input type="text" name="zip"
+				<label for="name">Address</label> <input type="text" name="zip"
 					id="zip" placeholder="Enter Adress" onclick="zipcode()" readonly />
-				<span class="msgName"></span>
+				<span class="msgZip"></span>
 				<div>
 					<input type="text" name="addr1" id="addr1" size="50"
 						placeholder="Search Address" readonly />

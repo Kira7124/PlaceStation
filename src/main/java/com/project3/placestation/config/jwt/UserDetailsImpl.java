@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project3.placestation.config.oauth2.SessionUser;
 import com.project3.placestation.repository.entity.Member;
 
 import lombok.extern.log4j.Log4j2;
@@ -59,6 +60,9 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 
 
 
+	public UserDetailsImpl() {
+		
+	};
 
 	public UserDetailsImpl(Integer userno, String userid, String userpassword, String username, String useremail,
 			String useraddress, String userhp, Integer userpoint, String userrole, String gender, String grade,
@@ -334,7 +338,6 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 		// TODO Auto-generated method stub
 		return member.getUsername();
 	}
-
 	
  
 }

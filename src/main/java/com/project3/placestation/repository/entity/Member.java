@@ -1,6 +1,9 @@
 package com.project3.placestation.repository.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,6 +48,7 @@ public class Member {
 	private int bizid;
 	// 사업자 등록증 이미지 경로
 	private String filepath;
+	private List<MultipartFile> Profilefilepath;
 
 	// 포트원 관련 변수
 	private String impuid;

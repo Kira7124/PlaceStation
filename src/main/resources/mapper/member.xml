@@ -257,8 +257,8 @@
 	</select>
 
 	<!-- (회원가입)유저 아이디 중복 검사 -->
-	<select id="selectByValidUserNameOauth" resultType="Integer">
-		select count(*) from
+	<select id="selectByValidUserNameOauth" resultType="com.project3.placestation.repository.entity.Member">
+		select * from
 		member where
 		(social + user_id) = #{uid}
 	</select>
@@ -290,7 +290,13 @@
 	</select>
 
 
-
+	
+	<!-- 유저사진변경하기 -->
+	<update id="changePhoto">
+			update member set file_path=#{filepath}
+			where user_no = #{userno}
+	</update>
+	
 
 </mapper>
 

@@ -65,6 +65,7 @@ $(function() {
 		if (pass1 == pass2) {
 			$('.msgPass1').text('');
 			$('.msgPass2').css('color', 'green').text('비밀번호가 일치합니다.');
+			$('input[name=upassword]').val(pass2);
 			isPassOk1 = true;
 			isPassOk2 = true;
 		} else {
@@ -97,17 +98,7 @@ $(function() {
 			isNameOk = false;
 		}
 	});
-	// 담당자 이름 검사
-	$('input[name=manager]').focusout(function() {
-		const manager = $(this).val();
-		if (manager.match(reName)) {
-			$('.msgManager').text('');
-			isNameOk = true;
-		} else {
-			$('.msgManager').css('color', 'red').text('유효한 이름이 아닙니다.');
-			isNameOk = false;
-		}
-	});
+
 	
 	
 
@@ -219,6 +210,32 @@ $(function() {
 
 		return true; // 폼 전송 시작
 	});
+	
+	
+	// 일반유저정보 업데이트 최종 확인
+	$('button[name=profile-button]').click(function() {
+
+	
+		if (!isNameOk) {
+			alert('이름을 확인하십시오.');
+			return false;// 폼 전송 취소
+		}
+		if (!isPassOk1 || !isPassOk2) {
+			alert('비밀번호를 확인하십시오.');
+			return false;// 폼 전송 취소
+		}
+		if (!isEmailOk) {
+			alert('이메일을 확인하십시오.');
+			return false;// 폼 전송 취소
+		}
+		if (!isHpOk) {
+			alert('휴대폰 번호를 확인하십시오.');
+			return false;// 폼 전송 취소
+		}
+
+		return true; // 폼 전송 시작
+	});
+	
 
 });
 
@@ -229,6 +246,8 @@ window.onload = function() {
 	// 아이디 중복체크
 	const inputUid = document.getElementsByName('userId')[0];
 	const msgId = document.getElementsByClassName('msgId')[0];
+
+
 
 
 	if (inputUid != null) {
