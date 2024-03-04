@@ -123,35 +123,7 @@ img {
 
 	<!-- selected box 시작 -->
 	<section class="module-small">
-		<div class="container" style="display: flex">
-			<form class="row">
-				<div class="col-sm-3 mb-sm-20">
-					<select class="form-control">
-						<option selected="selected" value="">대분류</option>
-						<option>Popular</option>
-						<option>Latest</option>
-					</select>
-				</div>
-				<div class="col-sm-3 mb-sm-20">
-					<select class="form-control">
-						<option selected="selected">소분류</option>
-						<option>Man</option>
-					</select>
-				</div>
-				<div class="col-sm-3 mb-sm-20">
-					<select class="form-control">
-						<option selected="selected">가격</option>
-						<option>1000 ~ 5000</option>
-						<option>1000 ~ 10000</option>
-						<option>10000 ~ 50000</option>
-						<option>50000 ~ 100000</option>
-					</select>
-				</div>
-				<div class="col-sm-3">
-					<button class="btn btn-block btn-round btn-g" type="submit">조회</button>
-				</div>
-			</form>
-		</div>
+		
 	</section>
 	<!-- selected box 종료 -->
 
@@ -159,43 +131,44 @@ img {
 	<section class="module">
 		<div class="container">
 			<div class="post-columns">
-
-				<c:forEach items="${partyList}" var="party">
-					<div class="col-sm-6 col-md-4 col-lg-4">
-						<div class="post">
-							<div class="post-thumbnail">
-								<a href="/party/detail/${party.partyNo}"><img src="/assets/images/product/image2.jpg"
-									alt="Blog-post Thumbnail" /></a>
-							</div>
-							<div class="post-header font-alt">
-								<h2 class="post-title">
-									<a href="#">${party.partyTitle}</a>
-								</h2>
-								<div class="post-meta">
-									생성일자&nbsp;<a href="#"></a>&nbsp;|
-									${party.partyCreatedAt}
-								</div>
-							</div>
-							<div class="post-entry">
-								<p>${party.partyDescription}</p>
-							</div>
-							<div class="post-more">
-								<a class="more-link" href="#">Read more</a>
-							</div>
+			
+			<!-- 모임 생성 폼 -->
+				<div class="col-sm-6 col-sm-offset-3">
+					<div class="post">
+						<div class="post-header font-alt">
+							<h2 class="post-title">모임 생성</h2>
 						</div>
-					</div>
-				</c:forEach>
+						<div class="post-entry">
+							<form id="partyCreateForm" action="/party/create" method="post">
+								<div class="form-group">
+									<label for="partyName">모임 이름</label> 
+									<input type="text"
+										class="form-control" id="partyName" name="partyName"
+										placeholder="모임 이름을 입력하세요">
+									<!-- 모임 설명 입력 폼 -->
+									<label for="partyDescription">모임 설명</label>
+									<textarea class="form-control" id="partyDescription" name="partyDescription"
+										placeholder="모임 설명을 입력하세요"></textarea>
+									<!-- 모임 일 폼 -->
+									<label for="#">모임일</label>
+									<input type="date" class="form-control" id="#" name="#">
+									<!-- 모임 최대 인원 폼 -->
+									<label for="partyMaximumPeople">모임 최대 인원</label>
+									<input type="number" class="form-control" id="partyMaximumPeople" name="partyMaximumPeople">
+									<!-- 사진 업로드 폼 -->
+									<label for="partyImage">모임 사진</label>
+									<input type="file" class="form-control" id="#" name="#">
+								</div>
+									<button type="submit" class="btn btn-d btn-circle">전송</button>
+							</form>
+						</div>
+					</div>			
+				</div>
 			</div>
 		</div>
 	</section>
 	<!-- 메인 섹션 종료 -->
-	<section class="container">
-		<div class="pagination font-alt">
-			<a href="#"><i class="fa fa-angle-left"></i></a><a class="active"
-				href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a
-				href="#"><i class="fa fa-angle-right"></i></a>
-		</div>
-	</section>
+	
 </div>
 
 

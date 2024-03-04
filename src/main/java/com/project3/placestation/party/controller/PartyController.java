@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
@@ -40,7 +39,7 @@ public class PartyController {
 
 	@Autowired
 	PartyAnnouncementService announcementService;
-	
+
 	@Autowired
 	ParcipationPartyService parcipationPartyService;
 
@@ -68,12 +67,10 @@ public class PartyController {
 	@GetMapping("/detail/{partyNo}")
 	public String partyDetail(@PathVariable(value = "partyNo") Integer partyNo, Model model) {
 
-
 		PartyDto party = partyService.findById(partyNo);
 		List<PartyAnnouncement> partyAnnouncement = announcementService.findAllJoinParty(partyNo);
 		List<ParcipationUserDto> parcipationParties = parcipationPartyService.findAllById(partyNo);
-		
-		
+
 		// 멤버 받기
 		Member member = (Member) httpSession.getAttribute("member");
 		boolean validJoin = false;
@@ -82,13 +79,13 @@ public class PartyController {
 		} else {
 			validJoin = parcipationPartyService.validMemberJoin(parcipationParties, member.getUserno());
 		}
-		
+
 		// 만약 시간이 지났다면
 		boolean validDate = false;
-		if(partyService.validJoinTime(party.getPurchaseDate(), party.getStartTime())) {
+		if (partyService.validJoinTime(party.getPurchaseDate(), party.getStartTime())) {
 			validDate = true;
 		}
-		
+
 		model.addAttribute("party", party);
 		model.addAttribute("partyAnnouncement", partyAnnouncement);
 		model.addAttribute("parcipationParties", parcipationParties);
@@ -110,30 +107,31 @@ public class PartyController {
 		if (dto.getPartyNo() == null) {
 			throw new CustomRestfulException(BizDefine.INTERVAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 		// 모임이 있는지 확인
 		PartyDto party = partyService.findById(dto.getPartyNo());
-		
+
 		log.info(party.toString());
-		if(party == null || party.getPartyNo() == null) {
-			throw new CustomRestfulException(BizDefine.PARCIPATION_PARTY_NOTHING_FOUND, HttpStatus.INTERNAL_SERVER_ERROR);
+		if (party == null || party.getPartyNo() == null) {
+			throw new CustomRestfulException(BizDefine.PARCIPATION_PARTY_NOTHING_FOUND,
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		List<ParcipationUserDto> parcipationParties = parcipationPartyService.findAllById(dto.getPartyNo());
 		// 모임의 자리 수 확인
-		if(party.getPartyMaximumPeople() <= parcipationParties.size()) {
+		if (party.getPartyMaximumPeople() <= parcipationParties.size()) {
 			throw new CustomRestfulException(BizDefine.NO_VALID_JOIN, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		// 만약 시간이 지났다면
-		if(partyService.validJoinTime(party.getPurchaseDate(), party.getStartTime())) {
+		if (partyService.validJoinTime(party.getPurchaseDate(), party.getStartTime())) {
 			throw new CustomRestfulException(BizDefine.NO_VALID_PARTY_DATE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 		// 모임 참가
 		parcipationPartyService.save(dto.getPartyNo(), member.getUserno());
-		
+
 		return "redirect:/party/detail/" + dto.getPartyNo();
 	}
-	
+
 	@DeleteMapping("/delete-join")
 	public String partyDeleteJoin(PartyJoinReqDto dto) {
 		log.info(dto.toString());
@@ -162,5 +160,19 @@ public class PartyController {
 		// 모임 불참가
 		parcipationPartyService.deleteParty(dto.getPartyNo(), member.getUserno());
 		return "redirect:/party/detail/" + dto.getPartyNo();
+
+	}
+	
+	// 모임 생성 페이지
+	@GetMapping("/create")
+	public String partyCreate() {
+		return "party/party_create";
+	}
+
+	// 모임 공지사항 페이지
+	@GetMapping("/announcement")
+	public String partyAnnouncement() {
+		return "party/party_announcement";
+
 	}
 }
