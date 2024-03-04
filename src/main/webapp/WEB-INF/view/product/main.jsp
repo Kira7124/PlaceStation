@@ -43,24 +43,24 @@
 			<!-- 좌,우 슬라이드 버튼 -->
 			<div class="slide-control">
 				<div>
-					<label for="slide03" class="left"></label>
-					<label for="slide02" class="right"></label>
+					<label for="slide03" class="left" onclick="changeSlide('slide02')"></label>
+					<label for="slide02" class="right"  onclick="changeSlide('slide01')"></label>
 				</div>
 				<div>
-					<label for="slide01" class="left"></label>
-					<label for="slide03" class="right"></label>
+					<label for="slide01" class="left"  onclick="changeSlide('slide01')"></label>
+					<label for="slide03" class="right"  onclick="changeSlide('slide03')"></label>
 				</div>
 				<div>
-					<label for="slide02" class="left"></label>
-					<label for="slide01" class="right"></label>
+					<label for="slide02" class="left"  onclick="changeSlide('slide02')"></label>
+					<label for="slide01" class="right"  onclick="changeSlide('slide01')"></label>
 				</div>
 				<div>
-					<label for="slide04" class="left"></label>
-					<label for="slide03" class="right"></label>
+					<label for="slide04" class="left" onclick="changeSlide('slide04')"></label>
+					<label for="slide03" class="right" onclick="changeSlide('slide03')"></label>
 				</div>
 				<div>
-					<label for="slide01" class="left"></label>
-					<label for="slide04" class="right"></label>
+					<label for="slide01" class="left" onclick="changeSlide('slide01')"></label>
+					<label for="slide04" class="right" onclick="changeSlide('slide04')"></label>
 				</div>
 			</div>
 
@@ -77,8 +77,20 @@
 	
 </div>
  	 
+<script>
+    var currentSlide = 1;
 
+    function changeSlide(nextSlideId) {
+        document.getElementById('slide0' + currentSlide).checked = false;
+        document.getElementById(nextSlideId).checked = true;
+        currentSlide = parseInt(nextSlideId.slice(-1));
+    }
 
+    setInterval(function() {
+        var nextSlideId = 'slide0' + ((currentSlide % 4) + 1);
+        changeSlide(nextSlideId);
+    }, 3000);
+</script>
 
 
 
