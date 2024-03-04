@@ -64,7 +64,7 @@ public interface MemberRepository {
 	//회원 단건 정보 검색(로그인 처리)
 	public memberDTO selectUser(String userId);
 
-	//일반 회원 가입(회원 가입 처리)
+	//일반,판매자 회원 가입(회원 가입 처리)
 	public int insertUser(Member member);
 	
 	//소셜 회원 가입(회원 가입 처리)

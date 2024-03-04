@@ -268,7 +268,7 @@ public class memberController {
 	}
 	
 	
-	// 소셜 로그인 
+	// 소셜 로그인 추가정보 폼 and 최초 로그인 검증
 	@GetMapping("/social/register")
 	public String registerSocialMember(Model model){
 		String username = null;

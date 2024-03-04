@@ -242,6 +242,8 @@ public class MemberService {
 	public void sJoinProcess(RequestJoinDTO dto, String filepath) {
 		
 		
+
+		
 		Member member = Member.builder()
 				.userid(dto.getUserId())
 				.username(dto.getUserName())
@@ -257,7 +259,7 @@ public class MemberService {
 				.impsecret(dto.getImpsecret())
 				.build();
 		
-
+		// TODO member.xml의 insertBizUser에 filepath컬럼 주가되면 쿼리문 수정(filepath추가) 
 		
 		// bizUser insert
 		memberRepository.insertUser(member);
