@@ -27,5 +27,6 @@ public class ProdReviewDto {
     private String prodRevDeleteYn; // 리뷰삭제 'Y','N'
     private String prodRevDeleteAt; // 리뷰 삭제 시간
     private Integer parentId; // 원 댓글 id값
-
+    private Integer offset;
+    
 }

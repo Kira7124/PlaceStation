@@ -73,19 +73,8 @@
 			<li><label for="slide04"></label></li>
 		</ul>
 	</div>
-
-	
 </div>
  	 
-
-
-
-
-
-
-
-
-
 	<!-- PlaceStation의 추천!! -->
 	<section class="module" id="news" style="margin-top: 50px;">
 		<div class="container">
@@ -101,12 +90,12 @@
 						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 						<div class="shop-item-detail">
 							<a class="btn btn-round btn-b"
-								href="productDetail?prod_no=${product.prodNo}"><span
+								href="/product/productDetail?prod_no=${product.prodNo}"><span
 								class="icon-basket">보러가기</span></a>
 						</div>
 					</div>
 					<h4 class="shop-item-title font-alt">
-						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 					</h4>
 					${product.prodPrice} 원/시간
 				</div>
@@ -117,12 +106,12 @@
 						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 						<div class="shop-item-detail">
 							<a class="btn btn-round btn-b"
-								href="productDetail?prod_no=${product.prodNo}"><span
+								href="/product/productDetail?prod_no=${product.prodNo}"><span
 								class="icon-basket">보러가기</span></a>
 						</div>
 					</div>
 					<h4 class="shop-item-title font-alt">
-						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 					</h4>
 					${product.prodPrice} 원/시간
 				</div>
@@ -133,12 +122,12 @@
 						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 						<div class="shop-item-detail">
 							<a class="btn btn-round btn-b"
-								href="productDetail?prod_no=${product.prodNo}"><span
+								href="/product/productDetail?prod_no=${product.prodNo}"><span
 								class="icon-basket">보러가기</span></a>
 						</div>
 					</div>
 					<h4 class="shop-item-title font-alt">
-						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 					</h4>
 					${product.prodPrice} 원/시간
 				</div>
@@ -174,12 +163,12 @@
 								<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 								<div class="shop-item-detail">
 									<a class="btn btn-round btn-b"
-										href="productDetail?prod_no=${product.prodNo}"><span
+										href="/product/productDetail?prod_no=${product.prodNo}"><span
 										class="icon-basket">보러가기</span></a>
 								</div>
 							</div>
 							<h4 class="shop-item-title font-alt">
-								<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+								<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 							</h4>
 							${product.prodPrice} 원/시간
 						</div>
@@ -188,7 +177,6 @@
 			</div>
 		</div>
 	</section>
-
 
 	<!-- 2번째 상품 (리뷰가 많은 순서)  -->
 	<section class="module">
@@ -216,12 +204,12 @@
 												alt="${product.prodTitle}" />
 											<div class="shop-item-detail">
 												<a class="btn btn-round btn-b"
-													href="productDetail?prod_no=${product.prodNo}"><span
+													href="/product/productDetail?prod_no=${product.prodNo}"><span
 													class="icon-basket">보러가기</span></a>
 											</div>
 										</div>
 										<h4 class="shop-item-title font-alt">
-											<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+											<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 										</h4>
 										${product.prodPrice} 원/시간
 									</div>
@@ -233,7 +221,6 @@
 			</div>
 		</div>
 	</section>
-
 
 	<!-- 3번 상품 리스트 (새로 등록된 순) -->
 	<section class="module" id="specialities">
@@ -264,14 +251,14 @@
 									alt="${product.prodTitle}" />
 								<div class="shop-item-detail">
 									<a class="btn btn-round btn-b"
-										href="productDetail?prod_no=${product.prodNo}"> <span
+										href="/product/productDetail?prod_no=${product.prodNo}"> <span
 										class="icon-basket">보러가기</span>
 									</a>
 								</div>
 							</div>
 							<div class="shop-item-info">
 								<h4 class="shop-item-title font-alt">
-									<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+									<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 								</h4>
 								<div class="shop-item-price">${product.prodPrice}원/시간</div>
 								<div class="shop-item-maximum">최대 ${product.prodMaximumPeople}인 ${product.prodStartTime}시~${product.prodEndTime}시</div>
@@ -280,8 +267,6 @@
 					</div>
 				</c:forEach>
 			</div>
-
-
 		</div>
 	</section>
 
@@ -312,12 +297,12 @@
 												alt="${product.prodTitle}" />
 											<div class="shop-item-detail">
 												<a class="btn btn-round btn-b"
-													href="productDetail?prod_no=${product.prodNo}"><span
+													href="/product/productDetail?prod_no=${product.prodNo}"><span
 													class="icon-basket">보러가기</span></a>
 											</div>
 										</div>
 										<h4 class="shop-item-title font-alt">
-											<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+											<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 										</h4>
 										${product.prodPrice} 원/시간
 									</div>
@@ -378,14 +363,5 @@
 		</div>
 	</section>
 	
-	
-	
-	
-	
-
-
-
-
-
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

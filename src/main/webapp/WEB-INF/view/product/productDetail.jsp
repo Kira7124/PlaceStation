@@ -226,25 +226,6 @@
 										<i class="fas fa-solid fa-heart" style="margin: 10px"></i>${wishlistCount}
 										<i class="fas fa-regular fa-comment" style="margin: 10px"></i>${reviewCount != null ? reviewCount : 0}
 										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>101055
-										<form method="post" action="/product/addWishlist">
-											<input type="hidden" name="prodNo" value="${product.prodNo}">
-											<input type="hidden" name="userNo" value="1">
-											<p style="text-align: right">
-												<button class="btn btn-success btn-circle" type="submit">
-													<i class="fa fa-smile-o"></i> 찜하기
-												</button>
-											</p>
-										</form>
-										<!-- 찜 삭제 버튼 폼 -->
-										<form method="post" action="/product/deleteWishlist">
-											<input type="hidden" name="prodNo" value="${product.prodNo}">
-											<input type="hidden" name="userNo" value="1">
-											<p style="text-align: right">
-												<button class="btn btn-danger btn-circle" type="submit">
-													<i class="fa fa-frown-o"></i> 찜 삭제
-												</button>
-											</p>
-										</form>
 										<c:if test="${avgStar != 0}">
 											<div style="float: right; margin-right: 5px;">
 												<span class="comment-star"> <c:forEach begin="1"
@@ -331,6 +312,29 @@
 													</div>
 												</div>
 											</div>
+											<!-- 본문 4 -->
+											<div class="post #">
+												<div class="post-header font-alt">
+													<h1 class="post-title" style="font-weight: bold">
+														<a>부가 설명</a>
+													</h1>
+													<div class="post-meta"
+														style="white-space: pre-line; margin-top: 30px;">
+														<div class="addition-container"
+															style="display: inline-flex; flex-wrap: wrap;">
+															<c:forEach items="${additionExplanations}" var="no">
+																<label for="toggle3-${no.additionExplanationNo}"
+																	style="margin-right: 20px;"> <img
+																	src="${no.filePath}" alt=""
+																	style="width: 50px; height: 50px;">
+																	<h5>${no.name}</h5>
+																</label>
+															</c:forEach>
+														</div>
+													</div>
+												</div>
+											</div>
+
 											<!-- 카카오맵 API -->
 											<div class="post">
 												<div class="post-quote" style="text-align: left;">
@@ -568,6 +572,7 @@
 												</div>
 											</c:if>
 
+
 											<!-- 리뷰가 없는 경우 -->
 											<c:if test="${empty reviewProdNo}">
 												<div id="reviews" class="tab-pane">
@@ -638,16 +643,25 @@
 								<h5 class="widget-title font-alt">제품</h5>
 								<div class="row">
 									<div class="col-sm-4">
-										<div>
+										<form method="post" action="/product/addWishlist">
+											<input type="hidden" name="prodNo" value="${product.prodNo}">
+											<input type="hidden" name="userNo" value="1">
 											<p style="text-align: right">
-											${product.additionExplanationFilePath}
-											${product.additionExplanationName}
+												<button class="btn btn-success btn-circle" type="submit">
+													<i class="fa fa-smile-o"></i> 찜하기
+												</button>
 											</p>
-										</div>
-										<div>
+										</form>
+										<!-- 찜 삭제 버튼 폼 -->
+										<form method="post" action="/product/deleteWishlist">
+											<input type="hidden" name="prodNo" value="${product.prodNo}">
+											<input type="hidden" name="userNo" value="1">
 											<p style="text-align: right">
+												<button class="btn btn-danger btn-circle" type="submit">
+													<i class="fa fa-frown-o"></i> 찜 삭제
+												</button>
 											</p>
-										</div>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -738,8 +752,10 @@
 						<!-- 사이드 바 끝 -->
 					</div>
 				</div>
+				<!-- 리뷰 끝 -->
 		</div>
 		</div>
+		<!--  사이드바  -->
 		</section>
 		</div>
 		<!-- 본문 끝 -->
@@ -775,7 +791,6 @@
 	<!-- fullCalendar -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="fullcalendar/dist/index.global.js"></script>
 	<script>
       const calendarDays = document.querySelectorAll(".calendar_days"),
@@ -1021,9 +1036,8 @@
     	        replyForm.classList.add("hidden"); // 대댓글 작성 폼 숨김
     	    }
     	}
-      
-      </script>
 
+  </script>
 	<!-- include.jsp -->
 	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 </body>

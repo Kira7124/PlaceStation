@@ -39,14 +39,15 @@
     <select id="findByRevProdNoPaged">
 		SELECT * FROM prod_review
 	    WHERE prod_rev_delete_yn = 'N' AND prod_no = #{prod_no}
-	    ORDER BY prod_rev_no DESC
+	    ORDER BY prod_rev_no 
 	    LIMIT #{offset}, #{limit}
     </select>
 
+	<!-- 리뷰 페이징 -->
 	<select id="findRevNo">
 		SELECT * FROM prod_review
 	    WHERE prod_rev_delete_yn = 'N' AND prod_no = #{prod_no}
-	    ORDER BY prod_rev_no DESC
+	    ORDER BY prod_rev_no 
 	    LIMIT #{offset}, #{limit}
 	</select>
 	

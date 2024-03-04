@@ -1,5 +1,7 @@
 package com.project3.placestation.product.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,9 +18,11 @@ import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.product.dto.ProdReviewDto;
 import com.project3.placestation.product.dto.ProdWishListDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
+import com.project3.placestation.repository.entity.AdditionExplanation;
 import com.project3.placestation.repository.entity.ProdReview;
 import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
+import com.project3.placestation.service.AddtionExplanationService;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.ProdReviewService;
 import com.project3.placestation.service.ProductService;
@@ -38,14 +42,17 @@ public class ProductController {
 	private final ProductService productService;
 	private final ProdReviewService prodReviewService;
 	private final ProdWishListService prodWishListService;
-
+	private final AddtionExplanationService addtionExplanationService;
+	
+	
 	@Autowired
 	public ProductController(ProductRepository productRepository, ProductService productService,
-	        ProdReviewService prodReviewService, ProdWishListService prodWishListService) {
+	        ProdReviewService prodReviewService, ProdWishListService prodWishListService , AddtionExplanationService addtionExplanationService) {
 	    this.productRepository = productRepository;
 	    this.productService = productService;
 	    this.prodReviewService = prodReviewService;
 	    this.prodWishListService = prodWishListService;
+	    this.addtionExplanationService = addtionExplanationService;
 	}
 
 	@Autowired
@@ -64,7 +71,7 @@ public class ProductController {
         Integer reviewCount = prodReviewService.getCountReview(prodNo);
         
 	    // 페이지당 리뷰 수 설정
-	    int reviewsPerPage = 2;
+	    int reviewsPerPage = 5;
 	    // 총 페이지 수 계산
 	    int totalPage = (int) Math.ceil((double) reviewCount / reviewsPerPage);
 
@@ -72,17 +79,29 @@ public class ProductController {
 		List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo, "");
 		
 	    // 리뷰 목록을 페이징하여 조회
-	    List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNoPaged(prodNo, (pageNo - 1) * reviewsPerPage, reviewsPerPage);
+	    List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNoPaged(prodNo, pageNo * (reviewsPerPage - 4), reviewsPerPage);
+	    log.debug("페이지번호 : " + pageNo );
+	    // 부가 설명 이미지
+	    List<AdditionExplanation> additionExplanations = addtionExplanationService.findAll();
 	    
         // 상품의 찜 개수 조회
 		Integer wishlistCount = prodWishListService.getCountWishlist(prodNo);
         Double avgStar = prodReviewService.getAvgStar(prodNo);
+        
+        // 부가 설명 이미지 뽑기
+        List<AdditionExplanation> list = new ArrayList<>();
+        for(String i : product.getAdditionExplanation()) {
+        	list.add(additionExplanations.get(Integer.valueOf(i) - 1));
+        }
+        
+        log.info(list.toString());
 
 		log.info(invalidDate.toString());
 		model.addAttribute("product", product);
 		model.addAttribute("reviewProdNo", reviewProdNo);
 		model.addAttribute("invalidDate", invalidDate);
 		model.addAttribute("wishlistCount", wishlistCount);
+		model.addAttribute("additionExplanations", list);
 		model.addAttribute("reviewCount", reviewCount);
 		model.addAttribute("avgStar", avgStar);
 	    model.addAttribute("pageNo", pageNo); // 현재 페이지 번호 추가
@@ -134,31 +153,5 @@ public class ProductController {
         prodWishListService.deleteWishList(dto);
         return "redirect:/product/productDetail?prod_no=" + prodNo;
     }
-    
-    //http://localhost:80/product/main
-	@GetMapping("/main")
-	public String mainindex(Model model) {
-		log.debug("메인 페이지!");
-		// 상품 전체 리스트 조회
-		List<ResProductDto> products = productService.findAll();
-
-		// 전체 상품 조회 4개
-
-		List<ResProductDto> topProducts = products.stream().limit(8).collect(Collectors.toList());
-		// 리뷰 많은 상품
-		List<ProdReview> productsRev = productRepository.findAllByRev();
-		// 평점 높은 상품
-		List<Product> productsStar = productRepository.findAllByStar();
-		// 최신 상품
-		List<Product> productsStart = productRepository.findAllByStart();
-
-		model.addAttribute("products", topProducts);
-		model.addAttribute("productsRev", productsRev);
-		model.addAttribute("productsStar", productsStar);
-		model.addAttribute("productsStart", productsStart);
-
-		return "product/main";
-	}
-
 
 }
