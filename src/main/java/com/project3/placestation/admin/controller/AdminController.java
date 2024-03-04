@@ -440,11 +440,14 @@ public class AdminController {
 	
 	// 관리자회원정보수정POST (회원번호를 받아서 조회한다음에, 해당하는 회원의 정보를 전달받아서 수정!)
 	@PostMapping("/admin-update")
-	public String adminupdatePOST(AdminMemberDTO dto) {
+	public String adminupdatePOST(AdminMemberDTO dto,HttpServletRequest request) {
 		
 		String filePath = filedbService.saveFiles(dto.getFiles());
+		String address = request.getParameter("zip") +")"+request.getParameter("addr1") + " "+request.getParameter("addr2");
 		
 		log.debug("adminupdatePOST실행!");
+		
+		dto.setUseraddress(address);
 		memberService.AdminUpdateMember(dto,filePath);
 		
 		return "redirect:/admin/admin-member";

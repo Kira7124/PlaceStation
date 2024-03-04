@@ -57,7 +57,7 @@
 	</script>
 
 
-
+	
 
 
 	<form action="/admin/admin-update" method="post" enctype="multipart/form-data">
@@ -128,8 +128,12 @@
 				    </div>
 				    <div class="col-md-7">
 				        <div class="input-box">
-				            <input type="text" class="form-control" name = "useraddress" id="useraddress" placeholder="주소">
+				            <input type="text" class="form-control" name ="zip" id="zip" placeholder="주소">
+				            <input type="text" class="form-control" name ="addr1" id="addr1" placeholder="주소">
+				            <input type="text" class="form-control" name ="addr2" id="addr2" placeholder="주소">
+				            
 				        </div>
+				        <button type="button" class="btn btn-success" id="address"  onclick="zipcode()">주소확인</button>
 				    </div>
 				</div>
 				<div class="row" style ="margin-top: 10px;">
@@ -178,4 +182,4 @@
 		
 	</form>	
 
-
+<script type="text/javascript" src="/js/member/zipcode.js"></script>
