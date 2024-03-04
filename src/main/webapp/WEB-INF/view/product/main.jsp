@@ -77,23 +77,7 @@
 	
 </div>
  	 
-<script>
-    var currentSlide = 1;
-
-    function changeSlide(nextSlideId) {
-        document.getElementById('slide0' + currentSlide).checked = false;
-        document.getElementById(nextSlideId).checked = true;
-        currentSlide = parseInt(nextSlideId.slice(-1));
-    }
-
-    setInterval(function() {
-        var nextSlideId = 'slide0' + ((currentSlide % 4) + 1);
-        changeSlide(nextSlideId);
-    }, 3000);
-</script>
-
-
-
+<script type="text/javascript" src="/js/main/banner.js"></script>
 
 
 
