@@ -25,18 +25,39 @@
 			</li>
 			<li class="slideitem">
 			  <a href="#">
-				<img src="${bannerlist[1].filePath }">
+				<c:choose>
+				    <c:when test="${not empty bannerlist[1].filePath}">
+				        <img src="${bannerlist[1].filePath}" alt="Banner Image" />
+				    </c:when>
+				    <c:otherwise>
+				        <img src="/banner/campings.png" alt="Banner Image" />
+				    </c:otherwise>
+				</c:choose>
      		  </a>
 			</li>
 			<li class="slideitem">
-				<a href="#">
-				   <img src="${bannerlist[2].filePath }">
-				</a>
+			 <a href="#">
+				<c:choose>
+				    <c:when test="${not empty bannerlist[2].filePath}">
+				        <img src="${bannerlist[2].filePath}" alt="Banner Image" />
+				    </c:when>
+				    <c:otherwise>
+				        <img src="/banner/partys.png" alt="Banner Image" />
+				    </c:otherwise>
+				</c:choose>				
+			 </a>
 			</li class="slideitem">
 			<li class="slideitem">
-				<a href="#">
-				   <img src="${bannerlist[3].filePath }">
-				</a>
+			 <a href="#">
+				<c:choose>
+				    <c:when test="${not empty bannerlist[3].filePath}">
+				        <img src="${bannerlist[3].filePath}" alt="Banner Image" />
+				    </c:when>
+				    <c:otherwise>
+				        <img src="/banner/sports.png" alt="Banner Image" />
+				    </c:otherwise>
+				</c:choose>
+			 </a>
 			</li class="slideitem">
 
 			<!-- 좌,우 슬라이드 버튼 -->

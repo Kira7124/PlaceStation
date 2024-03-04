@@ -186,7 +186,7 @@ CREATE TABLE qna_board (
 CREATE TABLE banner (
   ban_no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ban_name varchar(50),
-  file_path varchar(100) DEFAULT 'defaultbanner.jpg'
+  file_path varchar(100)
 );
 
 
