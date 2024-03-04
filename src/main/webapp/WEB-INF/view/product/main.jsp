@@ -25,17 +25,17 @@
 			</li>
 			<li class="slideitem">
 			  <a href="#">
-			  	 <img src="/banner/slogan2.png">
-			  </a>
+				<img src="${bannerlist[1].filePath }">
+     		  </a>
 			</li>
 			<li class="slideitem">
 				<a href="#">
-				   <img src="/banner/slogan2.png">
+				   <img src="${bannerlist[2].filePath }">
 				</a>
 			</li class="slideitem">
 			<li class="slideitem">
 				<a href="#">
-				   <img src="/banner/slogan2.png">
+				   <img src="${bannerlist[3].filePath }">
 				</a>
 			</li class="slideitem">
 

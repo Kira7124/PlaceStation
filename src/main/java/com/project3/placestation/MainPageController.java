@@ -43,7 +43,6 @@ public class MainPageController {
 		
 		model.addAttribute("bannerlist", result);
 		
-		
 		// 상품 전체 리스트 조회
 		List<ResProductDto> products = productService.findAll();
 
