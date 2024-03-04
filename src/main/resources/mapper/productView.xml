@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.ProductViewRepository">
+	
+	<!-- 조회수 증가 쿼리 -->
+	<update id="increaseProductViews">
+		UPDATE product_views
+		SET prod_views = prod_views + 1
+		WHERE prod_no = #{prodNo}
+	</update>
+
+	<!-- 특정 상품의 조회수 확인 쿼리 -->
+	<select id="getProductViews">
+		SELECT prod_views
+		FROM product_views
+		WHERE prod_no = #{prodNo}
+	</select>
+
+</mapper>

@@ -225,7 +225,7 @@
 									<div class="post-entry" style="font-size: 20px;">
 										<i class="fas fa-solid fa-heart" style="margin: 10px"></i>${wishlistCount}
 										<i class="fas fa-regular fa-comment" style="margin: 10px"></i>${reviewCount != null ? reviewCount : 0}
-										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>101055
+										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>${currentViews}
 										<c:if test="${avgStar != 0}">
 											<div style="float: right; margin-right: 5px;">
 												<span class="comment-star"> <c:forEach begin="1"

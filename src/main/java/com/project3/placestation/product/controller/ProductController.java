@@ -26,6 +26,7 @@ import com.project3.placestation.service.AddtionExplanationService;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.ProdReviewService;
 import com.project3.placestation.service.ProductService;
+import com.project3.placestation.service.ProductViewService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -37,26 +38,21 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-
-	private final ProductRepository productRepository;
-	private final ProductService productService;
-	private final ProdReviewService prodReviewService;
-	private final ProdWishListService prodWishListService;
-	private final AddtionExplanationService addtionExplanationService;
-	
 	
 	@Autowired
-	public ProductController(ProductRepository productRepository, ProductService productService,
-	        ProdReviewService prodReviewService, ProdWishListService prodWishListService , AddtionExplanationService addtionExplanationService) {
-	    this.productRepository = productRepository;
-	    this.productService = productService;
-	    this.prodReviewService = prodReviewService;
-	    this.prodWishListService = prodWishListService;
-	    this.addtionExplanationService = addtionExplanationService;
-	}
-
+	ProductRepository productRepository;
+	@Autowired
+	ProductService productService;
+	@Autowired
+	ProdReviewService prodReviewService;
+	@Autowired
+	ProdWishListService prodWishListService;
+	@Autowired
+	AddtionExplanationService addtionExplanationService;
 	@Autowired
 	AdminProdHistoryService adminProdHistoryService;
+	@Autowired
+	ProductViewService productViewService;
 
 	//http://localhost:80/productDetail?prod_no=
 	@GetMapping("/productDetail")
@@ -64,7 +60,11 @@ public class ProductController {
             @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
             Model model) {
 		log.debug("상품 상세 페이지 - 상품번호: {}", prodNo);
-
+		
+	    // 상품 상세 페이지 접속 시 조회수 증가
+	    productViewService.increaseProductViews(prodNo);
+	    // 상품 조회수 가져오기
+	    int currentViews = productViewService.getProductViews(prodNo);
 		// 상품 번호로 조회
 		ResProductDto product = productService.findById(prodNo);
 		// 상품의 리뷰 개수 조회
@@ -106,6 +106,7 @@ public class ProductController {
 		model.addAttribute("avgStar", avgStar);
 	    model.addAttribute("pageNo", pageNo); // 현재 페이지 번호 추가
 	    model.addAttribute("totalPage", totalPage); // 총 페이지 수 추가
+	    model.addAttribute("currentViews", currentViews);
 
 		return "product/productDetail";
 	}
