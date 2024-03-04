@@ -63,11 +63,10 @@
 				  
 				  <div class="row" style ="margin-top: 30px;">
 				    <div class="col-md-3">
-				        <label for="name" class="form-label">환불상태</label>
 				    </div>
 				    <div class="col-md-5">
 				        <div class="input-box">
-				            <input type="text" class="form-control" name = "cancelYn"  value="Y">
+				            <input type="hidden" class="form-control" name = "cancelYn"  value="Y">
 				        </div>
 				    </div>
 				  </div>
