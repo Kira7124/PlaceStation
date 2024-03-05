@@ -116,8 +116,11 @@
 	
 	<!-- 환불내역확인(관리자) -->
 	<select id ="AdminRefund" resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
-		select * from admin_prod_history
-		where admin_his_prod_no = #{adminHisProdNo}
+		SELECT admin_prod_history.*, biz.biz_id, biz.biz_balance, member.user_id
+		FROM admin_prod_history
+		JOIN biz ON admin_prod_history.admin_his_prod_no = biz.biz_id
+		JOIN member ON biz.biz_id = member.user_no
+		WHERE admin_prod_history.admin_his_prod_no = #{adminHisProdNo}
 	</select>
 	
 	<select id="findAllByBizId"
@@ -328,7 +331,7 @@
 
 	<select id="findProductInvalidByProdNo"
 		resultType="com.project3.placestation.product.dto.ProductInvalidDateDto">
-		select start_time , end_time , purchase_date from
+		select start_time , end_time , purchase_date , cancel_yn from 
 		admin_prod_history
 		where admin_his_prod_no = #{prodNo}
 		and purchase_date

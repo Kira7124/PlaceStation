@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <<<<<<< HEAD
 
-<!-- include.jsp -->
-<%@ include file="/WEB-INF/view/layout/header.jsp"%>
-
 =======
+>>>>>>> origin/productKBJ
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -99,7 +97,7 @@
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
->>>>>>> origin/product
+
 <style>
 .hide {
 	display: none;
@@ -448,7 +446,7 @@
 																	<div class="comment-content clearfix">
 																		<div class="comment-author font-alt">
 																			<p>
-																				유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
+																				${review.userName} | <span class="comment-date">${review.prodRevCreateAt}</span>
 																			<form id="deleteReview"
 																				action="/product/deleteReview/${review.prodRevNo}"
 																				method="post" style="display: inline;">
@@ -501,7 +499,8 @@
 																				<!-- 부모 댓글의 parentId 값을 사용 -->
 																				<input type="hidden" name="parentId"
 																					value="${review.prodRevNo}"> <input
-																					type="hidden" name="userNo" value="12">
+																					type="hidden" name="userNo"
+																					value="${member.userno}">
 																			</div>
 																		</div>
 																		<input type="hidden" name="prodRevStar" value="0">
@@ -533,7 +532,7 @@
 																		<div class="comment-content clearfix">
 																			<div class="comment-author font-alt">
 																				<p>
-																					유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
+																					${reply.userName} | <span class="comment-date">${review.prodRevCreateAt}</span>
 																				<form id="deleteReview"
 																					action="/product/deleteReview/${reply.prodRevNo}"
 																					method="post" style="display: inline;">
@@ -598,9 +597,11 @@
 																<input type="hidden" name="prodNo" id="prodNo"
 																	value="${product.prodNo}"> <input type="hidden"
 																	name="parentId" id="${review.prodRevNo}" value="">
-																<label for="username">유저번호</label> <input
-																	class="form-control" type="text" id="userNo"
-																	name="userNo" placeholder="유저번호" required />
+																<label for="username">닉네임</label> <input
+																	class="form-control" type="text" id="userName"
+																	name="userName" value="${member.username}" readonly />
+																<input class="form-control" type="hidden" id="userNo"
+																	name="userNo" value="${member.userno}" />
 															</div>
 														</div>
 
@@ -650,25 +651,31 @@
 								<h5 class="widget-title font-alt">제품</h5>
 								<div class="row">
 									<div class="col-sm-4">
-										<form method="post" action="/product/addWishlist">
-											<input type="hidden" name="prodNo" value="${product.prodNo}">
-											<input type="hidden" name="userNo" value="1">
-											<p style="text-align: right">
-												<button class="btn btn-success btn-circle" type="submit">
-													<i class="fa fa-smile-o"></i> 찜하기
-												</button>
-											</p>
-										</form>
-										<!-- 찜 삭제 버튼 폼 -->
-										<form method="post" action="/product/deleteWishlist">
-											<input type="hidden" name="prodNo" value="${product.prodNo}">
-											<input type="hidden" name="userNo" value="1">
-											<p style="text-align: right">
-												<button class="btn btn-danger btn-circle" type="submit">
-													<i class="fa fa-frown-o"></i> 찜 삭제
-												</button>
-											</p>
-										</form>
+										<!-- 찜하기 버튼 또는 찜 삭제 버튼 -->
+										<c:choose>
+											<c:when test="${isProductInWishlist}">
+												<form method="post" action="/product/deleteWishlist">
+													<input type="hidden" name="prodNo"
+														value="${product.prodNo}">
+													<p style="text-align: right">
+														<button class="btn btn-danger btn-circle" type="submit">
+															<i class="fa fa-frown-o"></i> 찜해제
+														</button>
+													</p>
+												</form>
+											</c:when>
+											<c:otherwise>
+												<form method="post" action="/product/addWishlist">
+													<input type="hidden" name="prodNo"
+													 value="${product.prodNo}">
+													<p style="text-align: right">
+														<button class="btn btn-success btn-circle" type="submit">
+															<i class="fa fa-smile-o"></i> 찜하기
+														</button>
+													</p>
+												</form>
+											</c:otherwise>
+										</c:choose>
 									</div>
 								</div>
 							</div>
@@ -768,10 +775,6 @@
 		<!-- 본문 끝 -->
 
 	</main>
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/product
 	<!--  
     JavaScripts
     =============================================

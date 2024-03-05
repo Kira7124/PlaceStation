@@ -122,39 +122,21 @@ img {
 	<!-- 배너 섹션 종료 -->
 
 	<!-- selected box 시작 -->
-	<section class="module-small">
-		<div class="container" style="display: flex">
-			<form class="row">
-				<div class="col-sm-3 mb-sm-20">
-					<select class="form-control">
-						<option selected="selected" value="">대분류</option>
-						<option>Popular</option>
-						<option>Latest</option>
-					</select>
+	<form action="/party/main">
+		<section class="module">
+			<div class="container">
+				<div class="search-box col-md-6 col-md-offset-4">
+					<input class="form-control" type="text" name="partyTitle"
+						placeholder="Search..." />
+					<button class="search-btn" type="submit"
+						style="margin-right: 10px;">
+						<i class="fa fa-search"></i>
+					</button>
 				</div>
-				<div class="col-sm-3 mb-sm-20">
-					<select class="form-control">
-						<option selected="selected">소분류</option>
-						<option>Man</option>
-					</select>
-				</div>
-				<div class="col-sm-3 mb-sm-20">
-					<select class="form-control">
-						<option selected="selected">가격</option>
-						<option>1000 ~ 5000</option>
-						<option>1000 ~ 10000</option>
-						<option>10000 ~ 50000</option>
-						<option>50000 ~ 100000</option>
-					</select>
-				</div>
-				<div class="col-sm-3">
-					<button class="btn btn-block btn-round btn-g" type="submit">조회</button>
-				</div>
-			</form>
-		</div>
-	</section>
-	<!-- selected box 종료 -->
-
+			</div>
+		</section>
+		<!-- selected box 종료 -->=
+	</form>
 	<!-- 메인 섹션 시작 -->
 	<section class="module">
 		<div class="container">
@@ -164,23 +146,22 @@ img {
 					<div class="col-sm-6 col-md-4 col-lg-4">
 						<div class="post">
 							<div class="post-thumbnail">
-								<a href="/party/detail/${party.partyNo}"><img src="${party.filePath}"
-									alt="Blog-post Thumbnail" /></a>
+								<a href="/party/detail/${party.partyNo}"><img
+									src="${party.filePath}" alt="Blog-post Thumbnail" /></a>
 							</div>
 							<div class="post-header font-alt">
 								<h2 class="post-title">
 									<a href="#">${party.partyTitle}</a>
 								</h2>
 								<div class="post-meta">
-									생성일자&nbsp;<a href="#"></a>&nbsp;|
-									${party.partyCreatedAt}
+									생성일자&nbsp;<a href="#"></a>&nbsp;| ${party.partyCreatedAt}
 								</div>
 							</div>
 							<div class="post-entry">
 								<p>${party.partyDescription}</p>
 							</div>
 							<div class="post-more">
-								<a class="more-link" href="#">Read more</a>
+								<a class="more-link" href="#">${party.partyMaximumPeople} 명</a>
 							</div>
 						</div>
 					</div>
@@ -190,12 +171,51 @@ img {
 	</section>
 	<!-- 메인 섹션 종료 -->
 	<section class="container">
-		<div class="pagination font-alt">
-			<a href="#"><i class="fa fa-angle-left"></i></a><a class="active"
-				href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a
-				href="#"><i class="fa fa-angle-right"></i></a>
-		</div>
+
+		<ul class="pagination font-alt">
+			<li class="page-item"><c:choose>
+					<c:when test="${currentPage > 0}">
+						<a class="page-link"
+							href="/party/main?page=${currentPage - 1}&partyTitle=${partyTitle}"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a>
+
+					</c:when>
+
+					<c:otherwise>
+						<a class="page-link" href="" aria-label="Previous"> <span
+							aria-hidden="true">&laquo;</span>
+						</a>
+					</c:otherwise>
+				</c:choose></li>
+
+			<c:forEach begin="${0}" end="${totalPages == 0 ? 0 : totalPages - 1}"
+				var="var">
+				<li class="page-item"><a class="page-link"
+					href="/party/main?page=${var}&partyTitle=${partyTitle}">${var + 1}</a></li>
+
+			</c:forEach>
+
+
+			<li class="page-item"><c:choose>
+					<c:when test="${currentPage < totalPages - 1}">
+						<a class="page-link"
+							href="/party/main?page=${currentPage + 1}&tpartyTitle=${partyTitle}"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a>
+
+					</c:when>
+					<c:otherwise>
+						<a class="page-link" href="" aria-label="Next"> <span
+							aria-hidden="true">&raquo;</span>
+						</a>
+					</c:otherwise>
+				</c:choose></li>
+		</ul>
+
+
 	</section>
+
 </div>
 
 

@@ -39,9 +39,10 @@ h1, h2, h3, h4, h5, h6 {
 				<!-- 사이드바 시작 -->
 				<div class="col-sm-4 col-md-3 sidebar">
 					<div class="widget">
-						<form role="form">
+						<form role="form" action="/party/main" method="get">
+						<h6>다른 모임 둘러보기</h6>
 							<div class="search-box">
-
+							
 								<input class="form-control" type="text" placeholder="Search..." />
 								<button class="search-btn" type="submit">
 									<i class="fa fa-search"></i>
@@ -74,6 +75,10 @@ h1, h2, h3, h4, h5, h6 {
 								<!-- 참가하기 -->
 
 								<c:choose>
+									<c:when test="${party.cancelYn == 'Y'}">
+										<button class="btn btn-secondary btn-round" disabled>환불이
+											완료된 모임입니다.</button>
+									</c:when>
 									<c:when test="${validDate}">
 										<button class="btn btn-secondary btn-round" disabled>이미
 											시간이 지난 모임입니다.</button>
@@ -130,27 +135,7 @@ h1, h2, h3, h4, h5, h6 {
 							</div>
 						</div>
 
-						<div class="post-entry">
-							<h3>상품 소개</h3>
-							<p>상품명 : ${party.prodTitle}</p>
 
-							<blockquote>
-								<p>${party.prodSpaceInfo}</p>
-							</blockquote>
-							<p></p>
-
-							<ul>
-								<li>인당 가격 : ${party.peopleByamount()}&nbsp; 원</li>
-								<li>위치 : ${party.prodFullAddress}</li>
-								<li>해당 주소 : <a
-									href="/product/productDetail?prod_no=${party.prodNo}">이곳을
-										클릭해 주세요!!</a></li>
-
-								<li>시간 :
-									${party.purchaseDate}&nbsp;&nbsp;${party.startTime}시&nbsp;~&nbsp;${party.endTime}시
-								</li>
-							</ul>
-						</div>
 						<div class="post-entry">
 							<h3>모임 소개</h3>
 							<p style="white-space: pre-line;">${party.partyDescription}</p>
@@ -168,6 +153,28 @@ h1, h2, h3, h4, h5, h6 {
 								<li>주최자 이메일 : ${party.useremail}</li>
 							</ul>
 						</div>
+					</div>
+
+					<div class="post-entry">
+						<h4>상품 정보</h4>
+						<p>상품명 : ${party.prodTitle}</p>
+
+						<blockquote>
+							<!-- <p>${party.prodSpaceInfo}</p>  -->
+						</blockquote>
+						<p></p>
+
+						<ul>
+							<li>인당 가격 : ${party.peopleByamount()}&nbsp; 원</li>
+							<li>위치 : ${party.prodFullAddress}</li>
+							<li>해당 주소 : <a
+								href="/product/productDetail?prod_no=${party.prodNo}">이곳을
+									클릭해 주세요!!</a></li>
+
+							<li>시간 :
+								${party.purchaseDate}&nbsp;&nbsp;${party.startTime}시&nbsp;~&nbsp;${party.endTime}시
+							</li>
+						</ul>
 					</div>
 					<!-- 본문 종료 -->
 

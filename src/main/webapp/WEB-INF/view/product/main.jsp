@@ -109,13 +109,8 @@
 
 <script type="text/javascript" src="/js/main/banner.js"></script>
 
-
-
 	<!-- PlaceStation의 추천!! -->
-	<p>
-		session: ${member}
-	</p>
-	<section class="module" id="news" style="margin-top: 50px;">
+		<section class="module" id="news" style="margin-top: 50px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
@@ -353,8 +348,6 @@
 			</div>
 		</div>
 	</section>
-
-	
 	
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

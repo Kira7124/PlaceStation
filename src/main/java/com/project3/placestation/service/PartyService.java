@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.util.BizDefine;
+import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.party.dto.PartyDto;
 import com.project3.placestation.repository.entity.Party;
 import com.project3.placestation.repository.interfaces.PartyRepository;
@@ -30,8 +31,17 @@ public class PartyService {
 	 * 
 	 * @return
 	 */
-	public List<Party> findAll() {
-		return partyRepository.findAll();
+	public List<Party> findAll(String partyTitle , PageReq pageReq) {
+		return partyRepository.findAll(partyTitle , pageReq);
+	}
+	
+	/**
+	 * 모임 전체 조회 갯수
+	 * @param partyTitle
+	 * @return
+	 */
+	public int countFindAll(String partyTitle) {
+		return partyRepository.countFindAll(partyTitle);
 	}
 
 	/**

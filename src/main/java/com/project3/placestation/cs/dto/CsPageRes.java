@@ -1,4 +1,4 @@
-package com.project3.placestation.biz.model.util;
+package com.project3.placestation.cs.dto;
 
 import java.util.List;
 
@@ -13,30 +13,30 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageRes<Object> {
-    //    쿼리 결과를 저장할 배열
-    private List<Object> content;
+public class CsPageRes<Object> {
+	// 쿼리 결과를 저장할 배열
+	private List<Object> content;
 
-    //    현재 페이지 번호 : 0부터 시작
-    private int number;
+	// 현재 페이지 번호 : 0부터 시작
+	private int number;
 
-    //	테이블 총 건수
-    private long totalElements;
+	// 테이블 총 건수
+	private long totalElements;
 
-    //	테이블 총 건수 / 페이지당 출력할 데이터 개수(size)
+	// 테이블 총 건수 / 페이지당 출력할 데이터 개수(size)
 //    총페이지수
-    private int totalPages;
+	private int totalPages;
 
-    //    1페이지당 개수
-    private int size;
+	// 1페이지당 개수
+	private int size;
 
-    //    시작 블럭 페이지 번호 ( 수정 필요 )
-    private int startPage; 
+	// 시작 블럭 페이지 번호
+	private int startPage;
 
-    //    끝 블럭 페이지 번호 ( 수정 필요 )
-    private int endPage;
+	// 끝 블럭 페이지 번호
+	private int endPage;
 
-    public PageRes(List<Object> content, int number, long totalElements, int size) {
+	public CsPageRes(List<Object> content, int number, long totalElements, int size) {
         this.content = content;
         this.number = number;               // 현재 페이지 번호
         this.totalElements = totalElements; // 총 데이터 개수
@@ -51,12 +51,12 @@ public class PageRes<Object> {
         this.endPage = (this.endPage > this.totalPages ) ? this.totalPages : this.endPage;     // 끝페이지 보정(총페이지수보다 클 수 없음)
     }
 
-    //    데이터가 없으면 false, 있으면 true
-    public boolean isEmpty() {
-        if (totalElements > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+	// 데이터가 없으면 false, 있으면 true
+	public boolean isEmpty() {
+		if (totalElements > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

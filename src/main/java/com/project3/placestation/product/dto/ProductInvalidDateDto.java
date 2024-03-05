@@ -13,4 +13,5 @@ public class ProductInvalidDateDto {
 	private Integer startTime;	// 시작 시간
 	private Integer endTime;	// 종료 시간
 	private String purchaseDate; // 구매된 날짜
+	private String cancelYn;
 }

@@ -94,6 +94,14 @@ public class BizProductController {
 	// http://localhost/biz/update-product-form/{prodNo}
 	@GetMapping("/update-product-form/{prodNo}")
 	public String updateProductForm(@PathVariable(value = "prodNo") int prodNo, Model model) {
+		
+		// 멤버 받기
+		Member member = (Member) httpSession.getAttribute("member"); 
+		if(member == null) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		
 		ResProductDto dto = bizProductService.findById(prodNo);
 		List<ReqProdMainCategoryDto> mainCategory = prodMajorCategoryService.findAll();
 		List<ReqProdSubcategoryDto> subCategory = prodSubcategoryService.findAll();
@@ -117,11 +125,10 @@ public class BizProductController {
 	 */
 	@PostMapping("/product/add-product")
 	public String addProduct(ReqProductDto dto) {
-		// 1. 유효성 검사
-		// 유효성 검사
-		Member member = (Member) httpSession.getAttribute("member"); 
 
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		// 1. 유효성 검사
+		Member member = (Member) httpSession.getAttribute("member"); 
+		if(member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
@@ -215,6 +222,11 @@ public class BizProductController {
 	public String updateProduct(ReqUpdateProductDto dto, @RequestParam(value = "prodNo") Integer prodNo) {
 		log.info(dto.toString());
 		// 1. 유효성 검사
+		// 1. 유효성 검사
+		Member member = (Member) httpSession.getAttribute("member"); 
+		if(member == null) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		if (dto.getProdTitle() == null || dto.getProdTitle().isEmpty()) {
 			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_TITLE, HttpStatus.BAD_REQUEST);
 		}
@@ -269,12 +281,6 @@ public class BizProductController {
 		if(dto.getDescriptionImage() == null || dto.getDescriptionImage().isEmpty()) {
 			throw new CustomRestfulException(BizDefine.NO_VALID_DESCRIPTION_IMAGE, HttpStatus.BAD_REQUEST);
 		}
-		// 인증 검사가 끝났다면 유저의 아이디값을 가져와야 합니다.
-		Member member = (Member) httpSession.getAttribute("member"); 
-
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
-			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
 
 		// 파일 Str 가져오기
 		String filePath = "";
@@ -302,10 +308,9 @@ public class BizProductController {
 	public String deleteProduct(@PathVariable(value = "prodNo") Integer prodNo,
 			@RequestParam(value = "prodDeleteReason") String prodDeleteReason) {
 
-		// 유효성 검사
+		// 1. 유효성 검사
 		Member member = (Member) httpSession.getAttribute("member"); 
-
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if(member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		

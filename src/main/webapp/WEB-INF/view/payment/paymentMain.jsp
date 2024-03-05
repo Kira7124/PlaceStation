@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/payment/common/header.jsp"%>
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 <style>
 #img {
@@ -84,28 +84,28 @@
 						<tbody>
 							<tr>
 								<th>이름 :</th>
-								<td>${member.userName}</td>
+								<td>${memberDto.userName}</td>
 							</tr>
 							<tr>
 								<th>등급 :</th>
-								<td>${member.userGrade}등급</td>
+								<td>${memberDto.userGrade}등급</td>
 							</tr>
 							<tr>
 								<th>전화번호 :</th>
-								<td>${member.userHp}</td>
+								<td>${memberDto.userHp}</td>
 							</tr>
 							<tr>
 								<th>포인트 :</th>
 								<td>
 									<div class="row">
 										<section style="margin-left: 10px;">
-											<h5>현재 포인트 : ${member.userPoint} 원</h5>
+											<h5>현재 포인트 : ${memberDto.userPoint} 원</h5>
 										</section>
 									</div>
 									<div class="row">
 										<div class="col-sm-5">
 											<input class="form-control input-lg " type="number"
-												name="people" max="${member.userPoint}" min="0" step="1000"
+												name="people" max="${memberDto.userPoint}" min="0" step="1000"
 												required="required" style="height: 35px;"
 												onchange="onChangePoint()" id="point" />
 										</div>
@@ -170,25 +170,25 @@
 
 					<div style="margin: 20px; float: inline-start">
 						<button onclick="kakaoPay()">
-							<img src="/assets/images/kakaoPay.png"
+							<img src="/assets/images/payment/kakaoPay.png"
 								style="width: 200px; height: 180px;" />
 						</button>
 					</div>
 					<div style="margin: 20px; float: inline-start">
 						<button onclick="tosspay()">
-							<img src="/assets/images/tosspay.png"
+							<img src="/assets/images/payment/tosspay.png"
 								style="width: 200px; height: 180px;" />
 						</button>
 					</div>
 					<div style="margin: 20px; float: inline-start">
 						<button onclick="payco()">
-							<img src="/assets/images/paypal.webp"
+							<img src="/assets/images/payment/paypal.webp"
 								style="width: 200px; height: 180px;" />
 						</button>
 					</div>
 					<div style="margin: 20px; float: inline-start">
 						<button onclick="kgPay()">
-							<img src="/assets/images/kginisis.jpg"
+							<img src="/assets/images/payment/kgpay.png"
 								style="width: 200px; height: 180px;" />
 						</button>
 					</div>
@@ -222,7 +222,7 @@
 	}
 	
 	// POINT 를 이상하게 쳤을 때
-	if(point > ${member.getUserPoint()}) {
+	if(point > ${memberDto.getUserPoint()}) {
 		alert("현재 가지신 포인트보다 높게 사용하실 수 없습니다.");
 		return null;
 	}
@@ -247,7 +247,7 @@
 		aPoint = document.querySelector("#checkoutAmount");
 		
 		
-		point.value = (${member.userPoint});
+		point.value = (${memberDto.userPoint});
 		
 		// 전역 변수에 넣기
 		checkoutPoint = point.value;
@@ -269,7 +269,7 @@
             let dto = {
               prodNo : ${order.getProdNo()},
               sellerId : ${product.getProdWriterNo()}, 
-              buyerId : ${member.getUserNo()},
+              buyerId : ${memberDto.getUserNo()},
               startTime : ${order.getStartTime()} , 
               endTime : ${order.getEndTime()},
               purchaseDate : '${order.date}',
@@ -317,10 +317,10 @@
            // merchant_uid: merchantUid, // 주문번호
             name: "${product.prodTitle}",
             amount: checkoutAmount, // 숫자 타입
-            buyer_email: "${member.userEmail}",
-            buyer_name: "${member.userName}",
-            buyer_tel: "${member.userHp}",
-            buyer_addr: "${member.userAddress}",
+            buyer_email: "${memberDto.userEmail}",
+            buyer_name: "${memberDto.userName}",
+            buyer_tel: "${memberDto.userHp}",
+            buyer_addr: "${memberDto.userAddress}",
             buyer_postcode: "01181",
           },
           async function (rsp) {
@@ -345,10 +345,10 @@
             // merchant_uid: merchantUid, // 상점에서 관리하는 주문 번호 (주석 == 난수 자동 생성)
             name: "${product.prodTitle}",
             amount: checkoutAmount, // 숫자 타입
-            buyer_email: "${member.userEmail}",
-            buyer_name: "${member.userName}",
-            buyer_tel: "${member.userHp}",
-            buyer_addr: "${member.userAddress}",
+            buyer_email: "${memberDto.userEmail}",
+            buyer_name: "${memberDto.userName}",
+            buyer_tel: "${memberDto.userHp}",
+            buyer_addr: "${memberDto.userAddress}",
             buyer_postcode: "01181",
           },
           function (rsp) {
@@ -373,10 +373,10 @@
             // merchant_uid: merchantUid,
             name: "${product.prodTitle}",
             amount: checkoutAmount, // 숫자 타입
-            buyer_email: "${member.userEmail}",
-            buyer_name: "${member.userName}",
-            buyer_tel: "${member.userHp}",
-            buyer_addr: "${member.userAddress}",
+            buyer_email: "${memberDto.userEmail}",
+            buyer_name: "${memberDto.userName}",
+            buyer_tel: "${memberDto.userHp}",
+            buyer_addr: "${memberDto.userAddress}",
             buyer_postcode: "01181",
             display: {
                 card_quota: [3]  // 할부개월 3개월까지 활성화
@@ -403,10 +403,10 @@
             // merchant_uid: merchantUid,
             name: "${product.prodTitle}",
             amount: checkoutAmount, // 숫자 타입
-            buyer_email: "${member.userEmail}",
-            buyer_name: "${member.userName}",
-            buyer_tel: "${member.userHp}",
-            buyer_addr: "${member.userAddress}",
+            buyer_email: "${memberDto.userEmail}",
+            buyer_name: "${memberDto.userName}",
+            buyer_tel: "${memberDto.userHp}",
+            buyer_addr: "${memberDto.userAddress}",
             buyer_postcode: "01181"
           },
           function (rsp) {
@@ -437,12 +437,12 @@
             discount : ${order.getDiscountPercent()},
             prodName : '${product.getProdTitle()}',
            	sellerId : ${product.getProdWriterNo()}, 
-           	buyerId : ${member.getUserNo()},
+           	buyerId : ${memberDto.getUserNo()},
            	startTime : ${order.getStartTime()} , 
            	endTime : ${order.getEndTime()},
            	peopleCount : ${order.getPeople()},
            	purchaseDate : '${order.date}',
-           	currentUserPoint : ${member.getUserPoint()}
+           	currentUserPoint : ${memberDto.getUserPoint()}
           };
           let response = await fetch(`/payment/save`, {
             method: "POST",
@@ -472,5 +472,5 @@
         }
       }
     </script>
-<!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/payment/common/footer.jsp"%>
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

@@ -1,5 +1,6 @@
 package com.project3.placestation.service;
 
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,12 @@ public class ProdWishListService {
     public int getCountWishlist(int prodNo) {
         return prodWishListRepository.countWishlist(prodNo);
     }
-    
+
+    // 상품이 찜 목록에 있는지 확인
+    public boolean isProductInWishlist(int prodNo, int userNo) {
+        int count = prodWishListRepository.findByProdNoAndUserNo(prodNo, userNo);
+        
+        return count > 0;
+    }
     
 }

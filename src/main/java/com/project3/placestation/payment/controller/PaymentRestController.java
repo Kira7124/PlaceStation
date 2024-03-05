@@ -77,7 +77,11 @@ public class PaymentRestController {
 	public ResponseEntity<?> paymentController(@RequestBody PaymentDto paymentDto) {
 		try {
 		
-			
+			// 유효성 검사
+			Member sessionMember = (Member) httpSession.getAttribute("member"); 
+			if(sessionMember == null) {
+				return new ResponseEntity<>(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
 			// 사업자 포트원 키 가져오기
 			PaymentFortOneKeyDto fortOne = bizService.findFortOneKeyByBizNo(paymentDto.getSellerId());
 			if (fortOne.getImpKey() == null || fortOne.getImpKey().isEmpty()) {
@@ -135,8 +139,7 @@ public class PaymentRestController {
 			// 세개의 값을 구해야한다.
 
 			// 유저 정보
-			// 유효성 검사
-			Member sessionMember = (Member) httpSession.getAttribute("member"); 
+
 			PaymentMemberDto member = memberService.findMemberById(sessionMember.getUserno());
 
 			// 유저 등급별 discount

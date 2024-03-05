@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+.footer {
+	display: flex;
+    justify-content: space-between;
+    align-items: baseline; 
+}
+</style>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +56,10 @@
     <footer class="footer bg-dark">
 			<div class="container">
 				<div class="row">
+					<div style="display: flex; justify-content: space-between; align-items: baseline; ">
 					<h3 id="h3-footer">PlaceStation</h3>
+					<a href="/cs/notice/search">고객센터</h4>
+					</div>
 					<hr class="divider-d" id="footer">
                     <div class="col-sm-6">
                         <p class="p-footer">대표 김진수</p>
