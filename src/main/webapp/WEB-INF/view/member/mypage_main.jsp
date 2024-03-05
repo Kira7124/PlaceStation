@@ -41,19 +41,19 @@
 							<form action="/mypage/userUpdate" id="form" class="form"
 								method="post">
 								<!-- 이 폼으로 유저 데이터 업데이트 가능 -->
-								<c:if test="${not empty Mmember}">
+								<c:if test="${not empty User}">
 										<h4 class="text-center" style="font-size: xx-large;">Profile
 											Settings</h4>
-										<p>ssssss: ${Mmember}</p>
+										<p>ssssss: ${User}</p>
 										<br>
 										<br>
-										<input type="hidden" value="${Mmember.userno}" name="userNo"
+										<input type="hidden" value="${User.userno}" name="userNo"
 											id="hiddenuserNo" />
 										<div class="row mt-2">
 											<div class="col-md-6">
 												<label class="labels">Name</label><input type="text"
 													class="form-control" name="userName" placeholder="name"
-													value="${Mmember.username }">
+													value="${User.username }">
 											</div>
 											<div class="col-md-6">
 												<label class="labels">password</label><input type="password"
@@ -63,52 +63,6 @@
 													style="padding: 3px !important; float: right; color: #fff; width: 38%;"
 													type="button" data-toggle="modal"
 													data-target="#exampleModalPassword">비밀번호 변경</button>
-											</div>
-										</div>
-										<div class="row mt-3">
-											<div class="col-md-12">
-												<label class="labels">Email</label><input type="text"
-													class="form-control" placeholder="enter email"
-													value="${Mmember.userid }" name="uEmail">
-												<button class="col-md-2 terms-btn"
-													style="padding: 3px !important; float: right; color: #fff;"
-													type="button" data-toggle="modal"
-													data-target="#exampleModalEmail">이메일 변경</button>
-											</div>
-											<div class="col-md-12">
-												<label class="labels">Address</label><input type="text"
-													class="form-control" placeholder="enter address"
-													value="${Mmember.useraddress }">
-												<button class="col-md-2 terms-btn"
-													style="padding: 3px !important; float: right; color: #fff;"
-													type="button" data-toggle="modal"
-													data-target="#exampleModalAddress">주소 변경</button>
-											</div>
-											<div class="col-md-12">
-												<label class="labels">gender</label><input type="text"
-													class="form-control" placeholder="enter address line 2"
-													value="${Mmember.gender == 'M' ? '남성' : '여성'}" readonly>
-											</div>
-											<div class="col-md-12">
-												<label class="labels">hp</label><input type="text"
-													class="form-control" placeholder="enter address line 2"
-													value="${Mmember.userhp }">
-											</div>
-											<div class="col-md-12">
-												<label class="labels">Join date</label><input type="text"
-													class="form-control" placeholder="education"
-													value="${member.joinat}" readonly>
-											</div>
-										</div>
-										<div class="row mt-3">
-											<div class="col-md-6">
-												<label class="labels">등급</label><input type="text"
-													class="form-control" value="${Mmember.grade }" readonly>
-											</div>
-											<div class="col-md-6">
-												<label class="labels">포인트</label><input type="text"
-													class="form-control" value="${Mmember.userpoin }"
-													readonly>
 											</div>
 										</div>
 										<br>

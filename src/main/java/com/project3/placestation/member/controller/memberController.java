@@ -79,9 +79,11 @@ public class memberController {
 		 * CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE,
 		 * HttpStatus.INTERNAL_SERVER_ERROR); }
 		 */
-		Object member = httpSession.getAttribute("member");
+		Member member = (Member)httpSession.getAttribute("member");
 		
-		model.addAttribute("Mmember",member);
+		log.info("마이페이지 메인의 컨트롤러: "+member.toString());
+		
+		model.addAttribute("User",member);
 		
 		return "member/mypage_main";
 	}
