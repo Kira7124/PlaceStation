@@ -7,11 +7,29 @@
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
      <!-- jquery/ajax 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js" integrity="sha512-pdCVFUWsxl1A4g0uV6fyJ3nrnTGeWnZN2Tl/56j45UvZ1OMdm9CIbctuIHj+yBIRTUUyv6I9+OivXj4i0LPEYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
     
     
- 
+    
+	 	<script>
+			$(document).ready(function() {
+			    $(".btn-pdf-download").click(function() {
+			        var element = document.querySelector(".box-body");
+			        var opt = {
+			            margin: 0.5,
+			            filename: 'refund_history.pdf',
+			            image: { type: 'jpeg', quality: 0.98 },
+			            html2canvas: { scale: 2 },
+			            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+			        };
+			
+			        html2pdf().from(element).set(opt).save();
+			    });
+			});
+		</script>
     
     
+  	
     
 	<!-- MAIN -->
 		<div class="main">
@@ -34,37 +52,61 @@
 				<div class="panel-body no-padding">
 					
 			<div class="container">
+						<button class="btn btn-info btn-pdf-download" style="margin-left: 800px;">PDF파일받기</button>    
 				   <div class="row justify-content-center">
 					 <div class="col-md-8" style="margin-left: 200px;">	
-						
-							<div class="card">
-					
+								
+						<div class="card">
 		 				  <div class="card-body">
 			        			
-							<div class="box-body">
+							<div class="box-body"><br>
 							
 								<div class="details" style="display: inline;">
 								    <h3 style="font-weight: bold; display: inline;">환불내역서</h3>
-								</div>
+								</div><br><br>
 								
 								<div class="form-group w-25">
-									 <label for="exampleInputEmail1"><h5>결제금액</h5></label>
+									 <label for="exampleInputEmail1"><h5>사업자ID</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.userId}">
+								</div><br>
+								
+								<div class="form-group w-25">
+									 <label for="exampleInputEmail1"><h5>결제금액(원)</h5></label>
 									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.adminHisPrice}">
+								</div><br>
+								
+								<div class="form-group w-25">
+									 <label for="exampleInputEmail1"><h5>상품명</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.adminHisProdName}">
+								</div><br>
+								
+								<div class="form-group w-25">
+									 <label for="exampleInputEmail1"><h5>은행</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.bank}">
 								</div><br>
 								
 								
 								<div class="form-group w-25">
-									 <label for="exampleInputEmail1"><h5>사업자환불금액</h5></label>
+									 <label for="exampleInputEmail1"><h5>사업자환불금액(원)</h5></label>
 									 <input type="text" class="form-control" id="exampleInputEmail1" value="${refund.cancelAmount}">
 								</div><br>
 								
 							
 								<div class="form-group w-25">
-									 <label for="exampleInputEmail1"><h5>유저환불금액</h5></label>
+									 <label for="exampleInputEmail1"><h5>유저환불금액(원)</h5></label>
 									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refundUser}">
-								</div><br>
+								</div><br><br>
+								    
+							  <div style="display: flex; align-items: center;">
+							    <img src="/logo/logo.jpg.png" style="width:100px; height: 100px;">   
+							    <div style="margin-left: 10px;"><h3>대표 김진수</h3>
+							    <h4>부산광역시 부산진구 중앙대로 749, 범향빌딩3층</h4>
+							    <p style="color: red">이 문서를 유출할 시에는 관련법에 의거, 처벌될 수 도 있습니다.</p>
+							    </div>
+							    <img src="/logo/sign.png" style="width:150px; height: 100px;"> 
+							 </div> 
 								      
-							   </div>
+							  </div>
 							   
 							  
     						    
