@@ -442,6 +442,7 @@
 																	<div class="comment-author font-alt">
 																		<p>${review.userName} | <span class="comment-date">${review.prodRevCreateAt}</span>
 																		</p>
+																		 <c:if test="${member != null and (member.userno eq review.userNo or member.userno eq product.prodWriterNo)}">
 																		<form id="deleteReview"
 																			action="/product/deleteReview/${review.prodRevNo}"
 																			method="post" style="display: inline;">
@@ -452,6 +453,7 @@
 																			<button type="submit" class="btn btn-danger btn-sm">리뷰
 																				삭제</button>
 																		</form>
+																		</c:if>
 																		<span class="comment-star"> <c:if
 																				test="${review.prodRevStar != 0}">
 																				<c:forEach begin="1" end="${review.prodRevStar}">
@@ -469,7 +471,7 @@
 																	<p style="margin-right: 55px;">${review.prodRevContent}</p>
 																</div>
 																<!-- 대댓글 버튼 추가 -->
-																<c:if test="${review.parentId == null}">
+																<c:if test="${review.parentId == null and member != null and member.userno eq product.prodWriterNo}">
 																	<div class="comment-reply">
 																		<button class="btn btn-round btn-d"
 																			onclick="showReplyForm(${review.prodRevNo})">답글
@@ -479,6 +481,7 @@
 															</div>
 
 															<!-- 대댓글 작성 폼 -->
+															<c:if test="${member != null and member.userno eq product.prodWriterNo}">
 															<div id="replyForm_${review.prodRevNo}"
 																class="comment-form mt-30 hidden"
 																style="display: block; border-bottom: 1px solid #ccc;">
@@ -510,6 +513,7 @@
 																	</div>
 																</form>
 															</div>
+															</c:if>
 
 															<!-- 대댓글 출력 -->
 															<c:forEach items="${replyList}" var="reply">
@@ -526,6 +530,7 @@
 																			<div class="comment-author font-alt">
 																				<p>${reply.userName} | <span class="comment-date">${review.prodRevCreateAt}</span>
 																				</p>
+																				<c:if test="${member != null and (member.userno eq review.userNo or member.userno eq product.prodWriterNo)}">
 																				<form id="deleteReview"
 																					action="/product/deleteReview/${reply.prodRevNo}"
 																					method="post" style="display: inline;">
@@ -536,6 +541,7 @@
 																					<button type="submit" class="btn btn-danger btn-sm">리뷰
 																						삭제</button>
 																				</form>
+																				</c:if>
 																			</div>
 																			<div class="comment-body">
 																				<p>${reply.prodRevContent}</p>

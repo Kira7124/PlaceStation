@@ -146,16 +146,16 @@ public class ProductController {
 	    model.addAttribute("invalidDate", invalidDate);
 	    model.addAttribute("wishlistCount", wishlistCount);
 	    model.addAttribute("additionExplanations", list);
-	    model.addAttribute("reviewCount", reviewCount);
 	    model.addAttribute("avgStar", avgStar);
-	    model.addAttribute("pageNo", pageNo); // 현재 페이지 번호 추가
+	    model.addAttribute("pageNo", pageNo);
 	    model.addAttribute("currentViews", currentViews.getProdViews());
 	    model.addAttribute("reviewList", reviewList);
 	    model.addAttribute("replyList", replyList);
+	    model.addAttribute("reviewCount", reviewCount);
+	    model.addAttribute("totalReviewPages", totalReviewPages);
 	    
 	    return "product/productDetail";
 	}
-
 	// 답글 작성
 	@PostMapping("/saveReview")
 	public String saveReview(ProdReviewDto dto, @RequestParam("prodNo") Integer prodNo) {
