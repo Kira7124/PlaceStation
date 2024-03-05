@@ -38,7 +38,7 @@ public class MainPageController {
 	public String indexGET(Model model, HttpSession session) throws Exception {
 		
 		
-		session.setAttribute("viewcntCheck", true);
+		session.setAttribute("increaseProductViews", true);
 
 		
 		

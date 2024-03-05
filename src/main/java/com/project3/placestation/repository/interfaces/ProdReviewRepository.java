@@ -24,4 +24,7 @@ public interface ProdReviewRepository {
 	public Double avgStar(Integer prodNo);
 	public int deleteReview(@Param(value = "prodRevNo")Integer prodRevNo); // 리뷰 삭제
 
+    // 상품 번호에 따라 답글을 가져오는 메서드
+    List<ProdReview> findReplies(Integer prodNo);
+	List<ProdReview> findReviews(@Param("prod_no") int prodNo, @Param("offset") int offset, @Param("limit") int limit);
 }

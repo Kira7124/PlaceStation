@@ -426,59 +426,55 @@
 										<!-- 리뷰 시작 -->
 										<div class="tab-pane" id="reviews">
 											<!-- 리뷰가 있는 경우 -->
-											<c:if test="${not empty reviewProdNo}">
+											<c:if test="${not empty reviewList}">
 												<div id="reviews" class="tab-pane">
 													<div class="comments reviews">
 														<h3>이용 후기</h3>
 														<!-- 원글 출력 -->
-														<c:forEach items="${reviewProdNo}" var="review">
+														<c:forEach items="${reviewList}" var="review">
 															<div class="comment clearfix"
 																style="border-bottom: 1px solid #ccc;">
 																<!-- 원글 내용 출력 -->
+																<div class="comment-avatar">
+																	<img src="" alt="avatar" />
+																</div>
+																<div class="comment-content clearfix">
+																	<div class="comment-author font-alt">
+																		<p>${review.userName} | <span class="comment-date">${review.prodRevCreateAt}</span>
+																		</p>
+																		<form id="deleteReview"
+																			action="/product/deleteReview/${review.prodRevNo}"
+																			method="post" style="display: inline;">
+																			<input type="hidden" name="prodRevNo"
+																				value="${review.prodRevNo}"> <input
+																				type="hidden" name="prodNo"
+																				value="${product.prodNo}">
+																			<button type="submit" class="btn btn-danger btn-sm">리뷰
+																				삭제</button>
+																		</form>
+																		<span class="comment-star"> <c:if
+																				test="${review.prodRevStar != 0}">
+																				<c:forEach begin="1" end="${review.prodRevStar}">
+																					<i class="fa fa-star star"></i>
+																				</c:forEach>
+																				<c:forEach begin="${review.prodRevStar + 1}" end="5">
+																					<i class="fa fa-star star-off"></i>
+																				</c:forEach>
+																			</c:if>
+																		</span>
+																	</div>
+																</div>
+																<div class="comment-body"
+																	style="margin-left: 75px; word-wrap: break-word;">
+																	<p style="margin-right: 55px;">${review.prodRevContent}</p>
+																</div>
+																<!-- 대댓글 버튼 추가 -->
 																<c:if test="${review.parentId == null}">
-																	<div class="comment-avatar">
-																		<img src="" alt="avatar" />
+																	<div class="comment-reply">
+																		<button class="btn btn-round btn-d"
+																			onclick="showReplyForm(${review.prodRevNo})">답글
+																			달기</button>
 																	</div>
-																	<div class="comment-content clearfix">
-																		<div class="comment-author font-alt">
-																			<p>
-																				${review.userName} | <span class="comment-date">${review.prodRevCreateAt}</span>
-																			<form id="deleteReview"
-																				action="/product/deleteReview/${review.prodRevNo}"
-																				method="post" style="display: inline;">
-																				<input type="hidden" name="prodRevNo"
-																					value="${review.prodRevNo}"> <input
-																					type="hidden" name="prodNo"
-																					value="${product.prodNo}">
-																				<button type="submit" class="btn btn-danger btn-sm">리뷰
-																					삭제</button>
-																			</form>
-																			<span class="comment-star"> <c:if
-																					test="${review.prodRevStar != 0}">
-																					<c:forEach begin="1" end="${review.prodRevStar}">
-																						<i class="fa fa-star star"></i>
-																					</c:forEach>
-																					<c:forEach begin="${review.prodRevStar + 1}"
-																						end="5">
-																						<i class="fa fa-star star-off"></i>
-																					</c:forEach>
-																				</c:if>
-																			</span>
-																			</p>
-																		</div>
-																	</div>
-																	<div class="comment-body"
-																		style="margin-left: 75px; word-wrap: break-word;">
-																		<p style="margin-right: 55px;">${review.prodRevContent}</p>
-																	</div>
-																	<!-- 대댓글 버튼 추가 -->
-																	<c:if test="${review.parentId == null}">
-																		<div class="comment-reply">
-																			<button class="btn btn-round btn-d"
-																				onclick="showReplyForm(${review.prodRevNo})">답글
-																				달기</button>
-																		</div>
-																	</c:if>
 																</c:if>
 															</div>
 
@@ -514,8 +510,9 @@
 																	</div>
 																</form>
 															</div>
+
 															<!-- 대댓글 출력 -->
-															<c:forEach items="${reviewProdNo}" var="reply">
+															<c:forEach items="${replyList}" var="reply">
 																<c:if
 																	test="${reply.parentId == review.prodRevNo && reply.prodRevDeleteYn ne 'Y'}">
 																	<div class="comment clearfix"
@@ -527,8 +524,8 @@
 																		</div>
 																		<div class="comment-content clearfix">
 																			<div class="comment-author font-alt">
-																				<p>
-																					${reply.userName} | <span class="comment-date">${review.prodRevCreateAt}</span>
+																				<p>${reply.userName} | <span class="comment-date">${review.prodRevCreateAt}</span>
+																				</p>
 																				<form id="deleteReview"
 																					action="/product/deleteReview/${reply.prodRevNo}"
 																					method="post" style="display: inline;">
@@ -548,14 +545,17 @@
 																</c:if>
 															</c:forEach>
 														</c:forEach>
+
 														<!-- 페이지 바 추가 -->
 														<div class="row">
 															<div class="col-sm-12">
 																<ul class="pagination justify-content-center">
-																	<li class="page-item"><a class="page-link"
+																	<li
+																		class="page-item <c:if test='${pageNo le 1}'>disabled</c:if>">
+																		<a class="page-link"
 																		href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo-1}">이전</a>
 																	</li>
-																	<c:forEach var="i" begin="1" end="${totalPage}"
+																	<c:forEach var="i" begin="1" end="${totalReviewPages}"
 																		varStatus="status">
 																		<li
 																			class="page-item <c:if test='${status.index eq pageNo}'>active</c:if>">
@@ -563,7 +563,9 @@
 																			href="productDetail?prod_no=${product.prodNo}&pageNo=${status.index}">${status.index}</a>
 																		</li>
 																	</c:forEach>
-																	<li class="page-item"><a class="page-link"
+																	<li
+																		class="page-item <c:if test='${pageNo ge totalReviewPages}'>disabled</c:if>">
+																		<a class="page-link"
 																		href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo+1}">다음</a>
 																	</li>
 																</ul>
@@ -573,8 +575,6 @@
 													</div>
 												</div>
 											</c:if>
-
-
 											<!-- 리뷰가 없는 경우 -->
 											<c:if test="${empty reviewProdNo}">
 												<div id="reviews" class="tab-pane">
@@ -663,7 +663,7 @@
 											<c:otherwise>
 												<form method="post" action="/product/addWishlist">
 													<input type="hidden" name="prodNo"
-													 value="${product.prodNo}">
+														value="${product.prodNo}">
 													<p style="text-align: right">
 														<button class="btn btn-success btn-circle" type="submit">
 															<i class="fa fa-smile-o"></i> 찜하기

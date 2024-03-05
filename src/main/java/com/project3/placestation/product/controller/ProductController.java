@@ -20,6 +20,7 @@ import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.product.dto.ProdReviewDto;
 import com.project3.placestation.product.dto.ProdWishListDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
+import com.project3.placestation.product.dto.ResProductViewDto;
 import com.project3.placestation.repository.entity.AdditionExplanation;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.interfaces.ProductRepository;
@@ -32,7 +33,7 @@ import com.project3.placestation.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import com.project3.placestation.service.ProdWishListService;
-import com.project3.placestation.service.ProductService;
+import com.project3.placestation.service.ProductViewService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -81,23 +82,36 @@ public class ProductController {
 	    // 상품의 리뷰 개수 조회
 	    Integer reviewCount = prodReviewService.getCountReview(prodNo);
 	    
-	    // 페이지당 리뷰 수 설정
-	    int reviewsPerPage = 5;
-	    // 총 페이지 수 계산
-	    int totalPage = (int) Math.ceil((double) reviewCount / reviewsPerPage);
-
-	    // 상품 번호로 리뷰 조회
-	    List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo, "");
-	    
-	    // 리뷰 목록을 페이징하여 조회
-	    List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNoPaged(prodNo, pageNo * (reviewsPerPage - 4), reviewsPerPage);
+	    // 리뷰 목록을 가져오는 서비스 호출
+	    int reviewsPerPage = 3;
+	    List<ProdReviewDto> reviewList = prodReviewService.findReviews(prodNo, pageNo, reviewsPerPage);
 	    // 리뷰 목록의 작성자 정보 설정
-	    for (ProdReviewDto review : reviewProdNo) {
+	    for (ProdReviewDto review : reviewList) {
 	        PaymentMemberDto reviewer = memberService.findMemberById(review.getUserNo());
 	        if (reviewer != null) {
 	            review.setUserName(reviewer.getUserName());
 	        }
 	    }
+
+	    // 리뷰에 대한 답글 목록을 가져오는 서비스 호출
+	    List<ProdReviewDto> replyList = prodReviewService.findReplies(prodNo);
+	    // 리뷰 목록의 작성자 정보 설정
+	    for (ProdReviewDto review : replyList) {
+	        PaymentMemberDto reviewer = memberService.findMemberById(review.getUserNo());
+	        if (reviewer != null) {
+	            review.setUserName(reviewer.getUserName());
+	        }
+	    }
+
+	    // 총 페이지 수 계산
+	    int totalReviewPages = (int) Math.ceil((double) reviewCount / reviewsPerPage);
+
+	    // 상품 번호로 리뷰 조회
+	    List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo, "");
+	    
+	    // 리뷰 목록을 페이징하여 조회
+	    List<ProdReviewDto> reviewProdNo = prodReviewService.findReviews(prodNo, pageNo * (reviewsPerPage - 4), reviewsPerPage);
+	   
 	    // 상품의 사업자명 설정
 	    PaymentMemberDto writer = memberService.findMemberById(product.getProdWriterNo());
 	    if (writer != null) {
@@ -114,7 +128,6 @@ public class ProductController {
 	        model.addAttribute("isProductInWishlist", isProductInWishlist);
 	    }
 	    
-
 	    // 상품의 찜 개수 조회
 	    Integer wishlistCount = prodWishListService.getCountWishlist(prodNo);
 	    Double avgStar = prodReviewService.getAvgStar(prodNo);
@@ -136,9 +149,10 @@ public class ProductController {
 	    model.addAttribute("reviewCount", reviewCount);
 	    model.addAttribute("avgStar", avgStar);
 	    model.addAttribute("pageNo", pageNo); // 현재 페이지 번호 추가
-	    model.addAttribute("totalPage", totalPage); // 총 페이지 수 추가
 	    model.addAttribute("currentViews", currentViews.getProdViews());
-
+	    model.addAttribute("reviewList", reviewList);
+	    model.addAttribute("replyList", replyList);
+	    
 	    return "product/productDetail";
 	}
 
