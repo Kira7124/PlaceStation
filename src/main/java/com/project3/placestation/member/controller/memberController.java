@@ -302,6 +302,7 @@ public class memberController {
 		System.out.println("11111111111111111111111111");
 		model.addAttribute("principal", principal);
 		System.out.println("222222222222222222222222222222222222" + principal.getName());
+		System.out.println("222222222222222222222222222222222222" + principal.getEmail());
 
 		Member member = new Member();
 		member.setUserid(principal.getName());
