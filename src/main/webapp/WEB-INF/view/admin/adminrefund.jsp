@@ -14,7 +14,7 @@
 	 	<script>
 			$(document).ready(function() {
 			    $(".btn-pdf-download").click(function() {
-			        var element = document.querySelector(".card-body");
+			        var element = document.querySelector(".box-body");
 			        var opt = {
 			            margin: 0.5,
 			            filename: 'refund_history.pdf',
@@ -52,19 +52,18 @@
 				<div class="panel-body no-padding">
 					
 			<div class="container">
+						<button class="btn btn-info btn-pdf-download" style="margin-left: 800px;">PDF파일받기</button>    
 				   <div class="row justify-content-center">
 					 <div class="col-md-8" style="margin-left: 200px;">	
-						
-							<div class="card">
-					
+								
+						<div class="card">
 		 				  <div class="card-body">
 			        			
-							<div class="box-body">
+							<div class="box-body"><br>
 							
 								<div class="details" style="display: inline;">
 								    <h3 style="font-weight: bold; display: inline;">환불내역서</h3>
-										<button class="btn btn-info btn-pdf-download">PDF파일받기</button>    
-								</div>
+								</div><br><br>
 								
 								<div class="form-group w-25">
 									 <label for="exampleInputEmail1"><h5>사업자ID</h5></label>
@@ -72,7 +71,7 @@
 								</div><br>
 								
 								<div class="form-group w-25">
-									 <label for="exampleInputEmail1"><h5>결제금액</h5></label>
+									 <label for="exampleInputEmail1"><h5>결제금액(원)</h5></label>
 									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.adminHisPrice}">
 								</div><br>
 								
@@ -88,17 +87,26 @@
 								
 								
 								<div class="form-group w-25">
-									 <label for="exampleInputEmail1"><h5>사업자환불금액</h5></label>
+									 <label for="exampleInputEmail1"><h5>사업자환불금액(원)</h5></label>
 									 <input type="text" class="form-control" id="exampleInputEmail1" value="${refund.cancelAmount}">
 								</div><br>
 								
 							
 								<div class="form-group w-25">
-									 <label for="exampleInputEmail1"><h5>유저환불금액</h5></label>
+									 <label for="exampleInputEmail1"><h5>유저환불금액(원)</h5></label>
 									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refundUser}">
-								</div><br>
+								</div><br><br>
+								    
+							  <div style="display: flex; align-items: center;">
+							    <img src="/logo/logo.jpg.png" style="width:100px; height: 100px;">   
+							    <div style="margin-left: 10px;"><h3>대표 김진수</h3>
+							    <h4>부산광역시 부산진구 중앙대로 749, 범향빌딩3층</h4>
+							    <p style="color: red">이 문서를 유출할 시에는 관련법에 의거, 처벌될 수 도 있습니다.</p>
+							    </div>
+							    <img src="/logo/sign.png" style="width:150px; height: 100px;"> 
+							 </div> 
 								      
-							   </div>
+							  </div>
 							   
 							  
     						    
