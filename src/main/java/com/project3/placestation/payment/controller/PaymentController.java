@@ -231,6 +231,8 @@ public class PaymentController {
 		double cancelAmount = 0;
 		double chargeAmount = 0;
 		
+		boolean refundResult = false;
+		
 		// 시간 일자 별로 환불 신청
 		// 지난 일수가 7일 이면 
 		// 실질적인 환불 신청
@@ -257,38 +259,43 @@ public class PaymentController {
 		case 4 : {
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.TWENTY);
 			chargeAmount = paymentService.calRefundAmount(memberHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.TWENTY);
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+			refundResult = paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
 			break;
 		}
 		
 		case 3 : {
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.TWENTY);
 			chargeAmount = paymentService.calRefundAmount(memberHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.TWENTY);
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+			refundResult = paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
 			break;
 		}
 		
 		case 2 : {
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ZERO);
 			chargeAmount = paymentService.calRefundAmount(memberHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.ZERO);
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+			refundResult = paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
 			break;
 		}
 		
 		case 1 : {
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ZERO);
 			chargeAmount = paymentService.calRefundAmount(memberHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.ZERO);
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+			refundResult = paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
 			break;
 		}
 		case 0 : {
 			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ZERO);
 			chargeAmount = paymentService.calRefundAmount(memberHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.ZERO);
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+			refundResult = paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
 			break;
 		}
 		default:
 			throw new CustomRestfulException(BizDefine.SERVER_ERROR_TO_REFUND, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		// 환불 에러
+		if(refundResult == false) {
+			throw new CustomRestfulException(BizDefine.SERVER_ERROR_OR_NOT_FOUND, HttpStatus.BAD_REQUEST);
 		}
 		
 		// 거래내역 환불로 바꾸기

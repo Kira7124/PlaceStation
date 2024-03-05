@@ -47,6 +47,7 @@ public class BizDefine {
 	public final static String NO_SEARCH_ANNOUNCEMENT = "공지사항 정보가 없거나 변경되었습니다.";
 	public final static String DUPLICATED_TIME = "시작시간 또는 종료 시간이 중복되었습니다.";
 	public final static String SERVER_ERROR = "서버 에러가 발생하였습니다 관리자에게 문의해주세요.";
+	public final static String SERVER_ERROR_OR_NOT_FOUND = "서버 에러가 발생하였거나 결제내역이 없습니다. 관리자에게 문의해주세요.";
 	public final static String NO_VALID_TOKEN = "토큰 누락, 서버 에러가 발생하였습니다.";
 	public final static String NO_VALID_DESCRIPTION_IMAGE = "부가 설명을 하나라도 지정해 주세요.";
 	public final static String PRODUCT_NOTHING_FOUND = "상품이 변경되었거나 삭제되었습니다.";
