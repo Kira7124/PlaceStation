@@ -141,5 +141,3 @@
 			</div>
 		</nav>
 	</main>
-</body>
-</html>

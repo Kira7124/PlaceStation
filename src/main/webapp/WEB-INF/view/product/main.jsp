@@ -9,7 +9,6 @@
 
 <div class="main">
 	<!-- 배너 이미지 -->
-	
 	<div class="section" style="margin-top: 150px; margin-left: 50px;">
 		<input type="radio" name="slide" id="slide01" checked>
 		<input type="radio" name="slide" id="slide02">

@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/productKBJ
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -91,10 +88,7 @@
 <link id="color-scheme" href="/assets/css/colors/default.css"
 	rel="stylesheet" />
 
-<!-- Swiper -->
-<!-- Swiper CSS -->
-<link rel="stylesheet"
-	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
@@ -775,37 +769,14 @@
 		<!-- 본문 끝 -->
 
 	</main>
-	<!--  
-    JavaScripts
-    =============================================
-    -->
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86c4c40f5a0bbcd706e953e25fdd8538"></script>
-	<script src="/assets/lib/jquery/dist/jquery.js"></script>
-	<script src="/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="/assets/lib/wow/dist/wow.js"></script>
-	<script src="/assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
-	<script src="/assets/lib/isotope/dist/isotope.pkgd.js"></script>
-	<script src="/assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
-	<script src="/assets/lib/flexslider/jquery.flexslider.js"></script>
-	<script src="/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
-	<script src="/assets/lib/smoothscroll.js"></script>
-	<script src="/assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
-	<script
-		src="/assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
-	<script src="/assets/js/plugins.js"></script>
-	<script src="/assets/js/main.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-		crossorigin="anonymous"></script>
-	<!-- Swiper JS -->
-	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 	<!-- fullCalendar -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
 	<script src="fullcalendar/dist/index.global.js"></script>
+	<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/lib/jquery/dist/jquery.js"></script>
 	<script>
       const calendarDays = document.querySelectorAll(".calendar_days"),
         calendarTitle = document.querySelector(".title"),

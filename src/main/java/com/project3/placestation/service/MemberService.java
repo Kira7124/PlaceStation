@@ -15,12 +15,16 @@ import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
 import com.project3.placestation.biz.model.dto.ResPassword;
+import com.project3.placestation.biz.model.util.PageReq;
+import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.config.jwt.UserDetailsImpl;
+import com.project3.placestation.member.dto.MemberHistoryDto;
 import com.project3.placestation.member.dto.RequestJoinDTO;
 import com.project3.placestation.payment.model.common.MemberGrade;
 import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
+import com.project3.placestation.repository.interfaces.AdminProdHistoryRepository;
 import com.project3.placestation.repository.interfaces.MemberRepository;
 
 import jakarta.mail.MessagingException;
@@ -38,6 +42,9 @@ public class MemberService {
 
 	@Autowired
 	private JavaMailSender mailSender;
+
+	@Autowired
+	AdminProdHistoryRepository adminProdHistoryRepository;
 
 	// 관리자회원정보리스트(페이징) 출력
 	public List<Member> listAll(Criteria cri) throws Exception {
@@ -321,4 +328,15 @@ public class MemberService {
 
 	}
 
+	// ------------ StarsinLiver --------------
+	// 유저 거래녀역 찾기
+	public PageRes<MemberHistoryDto> memberFineAllByUserNo(int userNo, PageReq pageReq) {
+		List<MemberHistoryDto> list = adminProdHistoryRepository.memberFindAllByUserNo(userNo, pageReq);
+		int count = adminProdHistoryRepository.countMemberFindAllByUserNo(userNo);
+
+		PageRes<MemberHistoryDto> pageRes = new PageRes<>(list, pageReq.getPage(), count, pageReq.getSize());
+		return pageRes;
+	}
+
+	// ------------ StarsinLiver --------------
 }
