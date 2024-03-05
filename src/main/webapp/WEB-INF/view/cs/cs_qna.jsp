@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<link rel="stylesheet" href="/css/cs.css">
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 </div>
 </nav>

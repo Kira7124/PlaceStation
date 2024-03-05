@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<link rel="stylesheet" href="/css/cs.css">
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<style>
-.comments {
-display: flex,
-flew-direction: row, 
-justify-content: flex-end
-}
-</style>
 </div>
 </nav>
 <div class="main">
@@ -39,21 +32,18 @@ justify-content: flex-end
 						</div>
 					</div>
 					<div class="comments">
-						<h5>
+						<h5 class="button-container">
 							<form action="/cs/notice/search">
-								<input type="hidden" name="categoryId" value="0" /> <input
-									type="hidden" name="searchKeyword" value="" />
-								<button class="btn btn-border-d btn-round"
-									style="padding: 5px 20px" type="submit">일반</button>
+								<input type="hidden" name="categoryId" value="0" />
+								<input type="hidden" name="searchKeyword" value="" />
+								<button class="btn btn-border-d btn-round" style="padding: 5px 20px" type="submit">일반</button>
 							</form>
 							<form action="/cs/notice/search">
-								<input type="hidden" name="categoryId" value="1" /> <input
-									type="hidden" name="searchKeyword" value="" />
-								<button class="btn btn-d btn-round" style="padding: 5px 20px"
-									type="submit">사업자</button>
+								<input type="hidden" name="categoryId" value="1" />
+								<input type="hidden" name="searchKeyword" value="" />
+								<button class="btn btn-d btn-round" style="padding: 5px 20px" type="submit">사업자</button>
 							</form>
 						</h5>
-
 					</div>
 					<!-- 공지사항 목록 전체 div -->
 					<div>

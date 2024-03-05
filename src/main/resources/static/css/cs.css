@@ -1,0 +1,19 @@
+@charset "UTF-8";
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+}
+.button-container {
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-end;
+}
+
+/* 푸터를 페이지 하단에 고정 */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
