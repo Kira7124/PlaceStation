@@ -15,6 +15,9 @@ VALUES
 (1, 1, '리뷰 내용 3', 0, 'N', 2),
 (2, 2, '리뷰 내용 4', 4, 'N', null);
 
+INSERT INTO product_views (prod_views, prod_no) VALUES (0, 1);
+INSERT INTO product_views (prod_views, prod_no) VALUES (0, 2);
+INSERT INTO product_views (prod_views, prod_no) VALUES (0, 3);
 
 INSERT INTO member (user_id, user_password, user_address, user_name, user_hp, user_email, user_role,grade,gender) 
 VALUES 
