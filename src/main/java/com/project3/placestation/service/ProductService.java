@@ -252,6 +252,7 @@ public class ProductService {
 		return dto;
 	}
 
+
 	/**
 	 * 메인 상품 출력 + 페이지 처리
 	 * @param search
@@ -313,3 +314,4 @@ public class ProductService {
 	}
 
 }
+

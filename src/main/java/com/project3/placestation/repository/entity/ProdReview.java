@@ -27,6 +27,7 @@ public class ProdReview {
     private String prodTitle;
     private String prodPrice;
     private String filePath;
+    private Integer offset;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 

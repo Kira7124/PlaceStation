@@ -4,7 +4,7 @@ CREATE TABLE prod_Review (
     prod_no INT NOT NULL,
     user_no INT NOT NULL,
     prod_rev_content VARCHAR(1000),
-    prod_rev_star INT NOT NULL,
+    prod_rev_star INT NOT NULL default 0,
     prod_rev_create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     prod_rev_update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     prod_rev_delete_yn VARCHAR(1) DEFAULT 'N',
@@ -192,7 +192,7 @@ CREATE TABLE qna_board (
 CREATE TABLE banner (
   ban_no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ban_name varchar(50),
-  file_path varchar(100) DEFAULT 'defaultbanner.jpg'
+  file_path varchar(100)
 );
 
 

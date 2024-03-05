@@ -1,8 +1,14 @@
 package com.project3.placestation.admin.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project3.placestation.admin.dto.AdminBannerDTO;
 import com.project3.placestation.admin.dto.AdminBizDTO;
@@ -307,6 +314,17 @@ public class AdminController {
 	}
 	
 	
+	
+	//관리자 사업자등록증 수정
+	@GetMapping("/admin-checkupdate")
+	public String admincheckUpdateGET() {
+		log.debug("checkGET UPDATE 출력");
+		return "admin/adminbizcheckupdate";
+	}
+	
+	
+
+	
 	//관리자 환불기능 GET 처리
 	@GetMapping("/admin-paymentcancel")
 	public String adminpaymentCancelGET() {
@@ -325,15 +343,6 @@ public class AdminController {
 		return "redirect:/admin/admin-payment";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 	// 공지사항 등록페이지 GET
@@ -397,6 +406,17 @@ public class AdminController {
 		log.debug("adminupdate페이지출력");
 		return "admin/adminupdate";
 	}
+	
+	
+	
+	// admin 회원 사진update페이지출력(모달)
+	@GetMapping("/admin-photoupdate")
+	public String adminphotoupdateGET() {
+		log.debug("adminphotoGET() 실행!");
+		return "admin/adminphotoupdate";
+	}
+	
+	
 
 	// admin 사업자update페이지출력(모달)
 	@GetMapping("/admin-bizupdate")
@@ -404,7 +424,16 @@ public class AdminController {
 		log.debug("adminbizupdate페이지출력");
 		return "admin/adminbizupdate";
 	}
-
+	
+	
+	// admin 배너insert페이지출력(모달)
+	@GetMapping("/admin-bannerinsert")
+	public String adminBannerinsertGET() {
+		log.debug("adminInsertBanner 페이지출력");
+		return "admin/adminbannerinsert";
+	}
+	
+	
 	// admin 배너update페이지출력(모달)
 	@GetMapping("/admin-bannerupdate")
 	public String adminBannerupdateGET() {
@@ -415,11 +444,14 @@ public class AdminController {
 	
 	// 관리자회원정보수정POST (회원번호를 받아서 조회한다음에, 해당하는 회원의 정보를 전달받아서 수정!)
 	@PostMapping("/admin-update")
-	public String adminupdatePOST(AdminMemberDTO dto) {
+	public String adminupdatePOST(AdminMemberDTO dto,HttpServletRequest request) {
 		
 		String filePath = filedbService.saveFiles(dto.getFiles());
+		String address = request.getParameter("zip") +")"+request.getParameter("addr1") + " "+request.getParameter("addr2");
 		
 		log.debug("adminupdatePOST실행!");
+		
+		dto.setUseraddress(address);
 		memberService.AdminUpdateMember(dto,filePath);
 		
 		return "redirect:/admin/admin-member";
@@ -427,11 +459,42 @@ public class AdminController {
 
 	
 	
+	//사진정보수정관리자
+	@PostMapping("/admin-photoupdate")
+	public String adminphotoupdatePOST(AdminMemberDTO dto) {
+		
+		String filePath = filedbService.saveFiles(dto.getFiles());
+		log.debug("adminphotoupdate POST 실행");
+		memberService.AdminPhotoUpdate(dto, filePath);
+		
+		
+		return "redirect:/admin/admin-member";
+		
+	}
+	
+	//관리자등록증확인사진업로드
+	@PostMapping("/admin-checkupdate")
+	public String admincheckUpdatePOST(AdminBizDTO dto) {
+		
+		String filePath = filedbService.saveFiles(dto.getFiles());
+		log.debug("post check update실행");
+		bizService.AdminUpdateCheck(dto, filePath);
+		
+		return "redirect:/admin/admin-biz";
+		
+		
+	}
+	
+	
+	
+	
+	
 	// admin 사업자update정보수정POST
 	@PostMapping("/admin-bizupdate")
 	public String adminbizupdatePOST(AdminBizDTO dto) {
 		
 		String filePath = filedbService.saveFiles(dto.getFiles());
+		
 		
 		log.debug("adminbizupdatePOST 실행");
 		bizService.AdminUpdateBiz(dto,filePath);
@@ -453,6 +516,30 @@ public class AdminController {
 		return "redirect:/admin/admin-banner";
 
 	}
+	
+	
+	
+	// admin 배너insert POST(모달)
+	@PostMapping("/admin-bannerinsert")
+	public String adminBannerinsertPOST(AdminBannerDTO dto) {
+			
+		//파일저장
+		String filePath = filedbService.saveFiles(dto.getFiles());
+		
+		
+		if (filePath == null || filePath.isEmpty()) {
+	        filePath = "defaultbanner.jpg";
+	    }
+
+			
+		log.info(filePath);
+		bannerService.AdminInsertBanner(filePath, dto);
+			
+		return "redirect:/admin/admin-banner";
+			
+			
+	}
+	
 	
 	
 	
@@ -650,6 +737,31 @@ public class AdminController {
 	
 	
 	
+	
+	//환불완료내역확인(관리자)
+	@GetMapping("/admin-refund")
+	public String adminRefundGET(@RequestParam("adminHisProdNo") Integer adminHisProdNo, Model model,BizHistoryDto dto) {
+		
+		BizHistoryDto result = adminProdHistoryService.AdminRefund(adminHisProdNo);
+		model.addAttribute("refund", result);
+		
+		log.debug("dto 넘어오나? " + dto.getAdminHisPrice());
+		log.debug("dto 넘어오나? " + dto.getCancelAmount());
+		
+		
+		Integer refundUser = result.getAdminHisPrice() - result.getCancelAmount();
+		dto.setRefundAmount(refundUser);
+		model.addAttribute("refundUser", refundUser);
+		
+		log.debug("환불완료내역확인!");
+		return"admin/adminrefund";
+	}
+	
+	
+	
+	
+	
+	
 
 	
 	// 회원중복체크 ( ajax 비동기 )
@@ -669,14 +781,18 @@ public class AdminController {
 	
 	
 	
+	//http://localhost:80/admin/admin-sign
+	
+	@GetMapping("/admin-sign")
+	public String adminSignGET() {
+		
+		log.debug("signGET 띄우기");
+		return "admin/adminsign";
+		
+	}
 	
 	
-	
-	
-	
-	
-	
-	
+
 	
 
 }

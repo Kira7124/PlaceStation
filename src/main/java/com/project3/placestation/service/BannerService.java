@@ -25,10 +25,36 @@ public class BannerService {
 		
 	}
 	
+	
+	//메인페이지출력용 배너리스트
+	public List<Banner> BannerListMain() throws Exception{
+		
+		List<Banner> result = bannerRepository.BannerListMain();
+		return result;
+	
+	}
+
+	
+	
 	//배너리스트갯수출력
 	public int BannerListCount() throws Exception{
 		return bannerRepository.BannerListCount();
 	}
+	
+	
+	//배너등록
+	@Transactional
+	public void AdminInsertBanner(String filePath, AdminBannerDTO dto) {
+		
+			Banner banner = Banner.builder()
+					.banName(dto.getBanname())
+					.filePath(filePath)
+					.build();
+		
+			int result = bannerRepository.AdminInsertBanner(banner);
+		
+	}
+	
 	
 	
 	

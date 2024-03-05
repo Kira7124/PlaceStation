@@ -9,6 +9,9 @@ INSERT INTO prod_Review (prod_no, user_no, prod_rev_content, prod_rev_star, prod
 VALUES 
 (1, 1, '리뷰 내용 1', 5, 'N', null),
 (1, 1, '리뷰 내용 2', 1, 'N', null),
+(1, 1, '리뷰 내용 3', 4, 'N', null),
+(1, 1, '리뷰 내용 4', 3, 'N', null),
+(1, 1, '리뷰 내용 5', 4, 'N', null),
 (1, 1, '리뷰 내용 3', 0, 'N', 2),
 (2, 2, '리뷰 내용 4', 4, 'N', null);
 
@@ -88,7 +91,8 @@ insert into product (
     prod_subcategory_id ,
     prod_full_address ,
     prod_location_x ,
-    prod_location_y
+    prod_location_y,
+    addition_explanation
 ) values (
 	1, 
     '타이틀' ,
@@ -105,7 +109,8 @@ insert into product (
     1,
     2,
     '전체 주소' ,
-    125.026156153123,35.15165189498
+    125.026156153123,35.15165189498,
+    1
 ),(
 	28, 
     '[부산] 파뤼룸' ,
@@ -157,7 +162,7 @@ insert into product (
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
-   ,35.1112677103576 ,129.02526756 
+   ,35.1112677103576 ,129.02526756 , null
 ),(
 	1, 
     '[부산] 스포츠 센터 축구 농구' ,
@@ -174,7 +179,7 @@ insert into product (
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
-    , 35.1112677103576,129.02526756 
+    , 35.1112677103576,129.02526756, null
 );
 
 

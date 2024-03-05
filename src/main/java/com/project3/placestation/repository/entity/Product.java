@@ -38,4 +38,6 @@ public class Product {
 	private String prodDeleteAt;	// 삭제일
 	private String prodDeleteReason; // 삭제 이유
 	private String additionExplanation; // 부가 설명
+	private String additionExplanationName;
+	private String additionExplanationFilePath;
 }
