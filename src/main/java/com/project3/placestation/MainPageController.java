@@ -18,6 +18,7 @@ import com.project3.placestation.repository.interfaces.ProductRepository;
 import com.project3.placestation.service.BannerService;
 import com.project3.placestation.service.ProductService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -36,7 +37,12 @@ public class MainPageController {
 	
 	//http://localhost:80/main/index
 	@GetMapping("/index")
-	public String indexGET(Model model) throws Exception {
+	public String indexGET(Model model, HttpSession session) throws Exception {
+		
+		
+		session.setAttribute("viewcntCheck", true);
+
+		
 		
 		List<Banner> result = bannerService.BannerListMain(); 
 		

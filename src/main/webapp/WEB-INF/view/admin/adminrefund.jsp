@@ -7,11 +7,29 @@
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
      <!-- jquery/ajax 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js" integrity="sha512-pdCVFUWsxl1A4g0uV6fyJ3nrnTGeWnZN2Tl/56j45UvZ1OMdm9CIbctuIHj+yBIRTUUyv6I9+OivXj4i0LPEYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
     
     
- 
+    
+	 	<script>
+			$(document).ready(function() {
+			    $(".btn-pdf-download").click(function() {
+			        var element = document.querySelector(".card-body");
+			        var opt = {
+			            margin: 0.5,
+			            filename: 'refund_history.pdf',
+			            image: { type: 'jpeg', quality: 0.98 },
+			            html2canvas: { scale: 2 },
+			            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+			        };
+			
+			        html2pdf().from(element).set(opt).save();
+			    });
+			});
+		</script>
     
     
+  	
     
 	<!-- MAIN -->
 		<div class="main">
@@ -45,11 +63,27 @@
 							
 								<div class="details" style="display: inline;">
 								    <h3 style="font-weight: bold; display: inline;">환불내역서</h3>
+										<button class="btn btn-info btn-pdf-download">PDF파일받기</button>    
 								</div>
+								
+								<div class="form-group w-25">
+									 <label for="exampleInputEmail1"><h5>사업자ID</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.userId}">
+								</div><br>
 								
 								<div class="form-group w-25">
 									 <label for="exampleInputEmail1"><h5>결제금액</h5></label>
 									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.adminHisPrice}">
+								</div><br>
+								
+								<div class="form-group w-25">
+									 <label for="exampleInputEmail1"><h5>상품명</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.adminHisProdName}">
+								</div><br>
+								
+								<div class="form-group w-25">
+									 <label for="exampleInputEmail1"><h5>은행</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.bank}">
 								</div><br>
 								
 								
