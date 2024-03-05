@@ -163,7 +163,8 @@
 		select * from member where user_email = #{email}
 	</select>
 
-
+  
+  
 	<!-- 판매자 유저 회원가입 -->
 	<insert id="insertUser">
 		insert into
