@@ -28,10 +28,6 @@ public class ProdReviewDto {
     private String prodRevDeleteAt; // 리뷰 삭제 시간
     private Integer parentId; // 원 댓글 id값
     private Integer offset;
-<<<<<<< HEAD
     private String userName; // member테이블 유저 이름
     private String filePath; // member테이블 유저 프로필
-=======
->>>>>>> ec90f41778ebbee010f2f320c6d1274f4665a9f4
-    
 }

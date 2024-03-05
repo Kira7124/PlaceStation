@@ -42,8 +42,4 @@ public interface ProductRepository {
 	// 상품 확인
 	public int existById(int prodNo);
 
-    public String findAdditionExplanationNameByProdNo(int prodNo);
-    public String findAdditionExplanationFilePathByProdNo(int prodNo);
-
-
 }
