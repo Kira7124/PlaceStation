@@ -4,9 +4,7 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
 .comments {
-display: flex,
-flew-direction: row, 
-justify-content: flex-end
+	display: flex, flew-direction: row, justify-content: flex-end
 }
 </style>
 </div>
@@ -29,9 +27,11 @@ justify-content: flex-end
 						<div class="search">
 							<!-- 검색 폼 -->
 							<form role="form" action="/cs/notice/search" method="get">
+
 								<div class="search-box">
+									<input type="hidden" name="categoryId" value="${categoryId}" />
 									<input class="form-control" type="text" name="searchKeyword"
-										placeholder="Search..." />
+										placeholder="Search..." value="${searchKeyword}" />
 									<button class="search-btn" type="submit">
 										<i class="fa fa-search"></i>
 									</button>
@@ -42,14 +42,12 @@ justify-content: flex-end
 					<div class="comments">
 						<h5>
 							<form action="/cs/notice/search">
-								<input type="hidden" name="categoryId" value="0" /> <input
-									type="hidden" name="searchKeyword" value="" />
+								<input type="hidden" name="categoryId" value="0" />
 								<button class="btn btn-border-d btn-round"
 									style="padding: 5px 20px" type="submit">일반</button>
 							</form>
 							<form action="/cs/notice/search">
-								<input type="hidden" name="categoryId" value="1" /> <input
-									type="hidden" name="searchKeyword" value="" />
+								<input type="hidden" name="categoryId" value="1" />
 								<button class="btn btn-d btn-round" style="padding: 5px 20px"
 									type="submit">사업자</button>
 							</form>
@@ -78,24 +76,36 @@ justify-content: flex-end
 					</div>
 					<!-- 공지사항 목록 전체 div -->
 					<div class="pagination font-alt">
-						<c:if test="${pageVO.prev}">
-							<a href="/cs/notice?page=${pageVO.startPage - 1}"><i
-								class="fa fa-angle-left"></i></a>
-						</c:if>
+						<c:choose>
+							<c:when test="${currentPage > 0}">
+								<form action="/cs/notice/search">
+									<a href="/cs/notice/search?page=${currentPage - 1}&searchKeyword=${searchKeyword}&categoryId=${categoryId}"><i
+										class="fa fa-angle-left"></i></a>
+								</form>
+							</c:when>
+							<c:otherwise>
+								<a href=""><i class="fa fa-angle-left"></i></a>
+							</c:otherwise>
+						</c:choose>
 
-						<c:forEach var="i" begin="${pageVO.startPage}"
-							end="${pageVO.endPage}" step="1">
-							<c:set var="isActive" value="${pageVO.cri.page == i}" />
-							<li class="page-item ${isActive ? 'active' : ''}"><a
-								class="page-link"
-								href="/cs/notice/category?categoryid=${categoryid}&page=${i}">${i}</a>
+						<c:forEach var="i" begin="0"
+							end="${totalPages == 0 ? 0  : totalPages - 1}">
+							<li class="page-item"><a class="page-link"
+								href="/cs/notice/search?categoryId=${categoryId}&page=${i}&searchKeyword=${searchKeyword}">${i + 1}</a>
 							</li>
 						</c:forEach>
 
-						<c:if test="${pageVO.next}">
-							<a href="/cs/notice?page=${pageVO.endPage + 1}"><i
-								class="fa fa-angle-right"></i></a>
-						</c:if>
+						<c:choose>
+							<c:when test="${currentPage < totalPages - 1}">
+								<a
+									href="/cs/notice/search?page=${currentPage + 1}&searchKeyword=${searchKeyword}&categoryId=${categoryId}"><i
+									class="fa fa-angle-right"></i></a>
+							</c:when>
+							<c:otherwise>
+								<a href=""><i class="fa fa-angle-right"></i></a>
+
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<!-- 메인 끝 -->
