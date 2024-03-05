@@ -64,7 +64,7 @@ public class BizAccountController {
 		
 		// 멤버 받기
 		Member member = (Member) httpSession.getAttribute("member"); 
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if(member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -95,9 +95,10 @@ public class BizAccountController {
 	public String updateForm(Model model) {
 		// 멤버 받기
 		Member member = (Member) httpSession.getAttribute("member"); 
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if(member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 		int userId = member.getUserno();
 		BizJoin dto = memberService.SelectJoinBiz(userId);
 		
@@ -180,9 +181,10 @@ public class BizAccountController {
 		
 		// 멤버 받기
 		Member member = (Member) httpSession.getAttribute("member"); 
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if(member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 		int userNo = member.getUserno();
 		
 		log.info(filePath);

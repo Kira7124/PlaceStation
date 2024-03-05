@@ -68,7 +68,7 @@ console.log("프리벤트 아래!!!!!22222")
 								
 								console.log("프리벤트 아래!!!!!4444444444")
 								
-							if (data.status > 0) {
+							if (data.status < 0) {
 								$('.resultEmailForId').css('color', 'green').text('이메일을 확인 후 인증코드를 입력하세요.');
 								$('.resultEmailForPass').css('color', 'green').text('이메일을 확인 후 인증코드를 입력하세요.');
 								$('input[name=auth]').prop('disabled', false);
@@ -125,6 +125,8 @@ console.log("프리벤트 아래!!!!!22222")
 					$('.resultEmailForId').css('color', 'green').text('이메일 인증이 완료 되었습니다.');
 					$('.resultEmailForPass').css('color', 'green').text('이메일 인증이 완료 되었습니다.');
 					$('input[name=email]').val(email);
+					//update시에 모달에서 인증한 email값 uEmail로 전달
+					$('input[name=uEmail]').val(email);
 					isEmailOk = true;
 				} else {
 					$('.msgEmail').css('color', 'red').text('이메일 인증에 실패했습니다.');

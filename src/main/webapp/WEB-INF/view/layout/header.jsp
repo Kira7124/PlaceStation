@@ -170,7 +170,7 @@
 				</div>
 				<div class="login_register"
 					style="display: inline-block; margin-bottom: 30px;">
-					<c:if test="${member == null}">
+ 				<c:if test="${member == null}">
 						<a href="/member/login">로그인</a>
 						<a href="/member/uregister">회원가입</a>
 					</c:if>
