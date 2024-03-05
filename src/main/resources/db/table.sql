@@ -4,13 +4,12 @@ CREATE TABLE prod_Review (
     prod_no INT NOT NULL,
     user_no INT NOT NULL,
     prod_rev_content VARCHAR(1000),
-    prod_rev_star INT NOT NULL,
+    prod_rev_star INT NOT NULL default 0,
     prod_rev_create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     prod_rev_update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     prod_rev_delete_yn VARCHAR(1) DEFAULT 'N',
     prod_rev_delete_at TIMESTAMP,
     parent_id INT DEFAULT NULL
-
 );
 
 create table product_views (
@@ -193,7 +192,7 @@ CREATE TABLE qna_board (
 CREATE TABLE banner (
   ban_no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ban_name varchar(50),
-  file_path varchar(100) DEFAULT 'defaultbanner.jpg'
+  file_path varchar(100)
 );
 
 
@@ -216,4 +215,42 @@ create table qna_board_category (
     category_description varchar (400),
     use_yn varchar(1) default 'Y',
     file_path varchar (400)
+);
+
+create table party (
+	party_no int primary key auto_increment,
+    party_name varchar ( 400 ) ,
+    party_title varchar ( 400 ) ,
+    party_description varchar ( 400 ) ,
+    party_host int ,
+    party_maximum_people int ,
+    file_path varchar ( 400 ) ,
+    party_manager int ,
+    product_no int ,
+    admin_his_no varchar ( 400 ) ,
+    party_created_at timestamp default now() ,
+	party_update_at timestamp ,
+	party_delete_at timestamp,
+    party_delete_yn varchar (1) default 'N' 
+);
+
+create table parcipation_party (
+	parcipation_party_no	int primary key auto_increment,
+    party_no int,
+    party_user_no int ,
+    parcipation_join_at timestamp default now() ,
+	parcipation_update_at timestamp ,
+	parcipation_delete_at timestamp,
+    parcipation_delete_yn varchar (1) default 'N' 
+);
+
+create table party_announcement (
+	party_announcement_no int primary key auto_increment ,
+    party_no int ,
+    party_announcement_title varchar ( 400 ) ,
+    party_announcement_description varchar ( 1000 ) ,
+    party_announcement_update_at timestamp,
+    party_announcement_delete_at timestamp,
+    party_announcement_delete_yn varchar ( 1 ) default 'N' ,
+    party_announcement_created_at timestamp default now()
 );

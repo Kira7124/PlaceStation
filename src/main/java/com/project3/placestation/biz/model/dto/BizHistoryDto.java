@@ -1,5 +1,7 @@
 package com.project3.placestation.biz.model.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,7 +41,8 @@ public class BizHistoryDto {
 	private String subcategory;
 	private Integer bizId;
 	private Integer bizBalance;
-	private Integer userNo;
-	private String userId;
+	private Integer userNo; // 진수추가
+	private String userId; // 진수추가
+	private Integer refundAmount; // 진수추가
 	private String token; // 토큰
 }

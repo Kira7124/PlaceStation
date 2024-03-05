@@ -23,8 +23,7 @@
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon.png">
+	<link rel="icon" type="image/png" sizes="48x48" href="/favicons/android-icon-48x48.png">
 </head>
 
 <body>

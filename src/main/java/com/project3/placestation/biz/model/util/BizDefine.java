@@ -34,6 +34,7 @@ public class BizDefine {
 	public final static String PLEASE_WRITE_MAIN_CATEGORY = "메인 카테고리를 지정해 주세요.";
 	public final static String PLEASE_WRITE_SUB_CATEGORY = "서브 카테고리를 지정해 주세요.";
 	public final static String PLEASE_WRITE_REASON = "상세 이유를 적어주세요.";
+	public final static String PLEASE_WRITE_DESCRIPTION = "설명을 적어주세요.";
 	public final static String PLEASE_WRITE_REASON_LESS_THAN_FOUR_HUNDRED = "상세 이유를 적어주세요.";
 	public final static String PLEASE_WRITE_REFUND_REASON = "환불 사유를 적어주세요.";
 	public final static String PLEASE_WRITE_REFUND_REASON_LESS_THAN_THOUSAND = "환불 사유는 1000자 미만입니다..";
@@ -43,9 +44,20 @@ public class BizDefine {
 	public final static String SERVER_ERROR_TO_REFUND = "서버 에러가 발생하였습니다.. 환불에 실패하였습니다.";
 	public final static String WRONG_REQUEST = "잘못된 요청입니다.";
 	public final static String NO_SEARCH_PRODUCT = "상품 정보가 없습니다.";
+	public final static String NO_SEARCH_ANNOUNCEMENT = "공지사항 정보가 없거나 변경되었습니다.";
 	public final static String DUPLICATED_TIME = "시작시간 또는 종료 시간이 중복되었습니다.";
 	public final static String SERVER_ERROR = "서버 에러가 발생하였습니다 관리자에게 문의해주세요.";
 	public final static String NO_VALID_TOKEN = "토큰 누락, 서버 에러가 발생하였습니다.";
 	public final static String NO_VALID_DESCRIPTION_IMAGE = "부가 설명을 하나라도 지정해 주세요.";
+	public final static String PRODUCT_NOTHING_FOUND = "상품이 변경되었거나 삭제되었습니다.";
+	public final static String PARCIPATION_PARTY_NOTHING_FOUND = "모임이 변경되었거나 삭제되었습니다.";
+	public final static String VALID_PARCIPATION_PARTY = "모임에 참가하지 않으셨군요!";
+	public final static String INTERVAL_SERVER_ERROR = "로그인이 되어있지 않거나 , 서버 에러가 발생하였습니다.";
+	public final static String NO_VALID_JOIN = "이미 참가했거나 참가 인원이 꽉 찼습니다.";
+	public final static String NO_VALID_PARTY_DATE = "이미 종료 시간이 지났습니다.";
+	public final static String NO_VALID_PARTY_CREATE = "모임을 생성하실 수 있는 내역이 없네요!! 예약을 먼저 하셔야겠어요!!";
+	public final static String PARTY_CREATE_ALREADY_DONE = "모임이 이미 있네요!!!";
+	public final static String NO_SEARCH_PARTY = "모임이 찾을수가 없어요! 모임이 변경되었거나 삭제되었나봐요 또는 서버 에러가 발생했을 수도 있으니 관리자에게 문의를 넣어주세요.";
+	public final static String NO_AUTHORITY = "권한이 없습니다.";
 	
 }

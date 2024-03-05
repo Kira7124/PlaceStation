@@ -101,6 +101,7 @@ public class ProdReviewService {
         }
     }
 
+
     // 리뷰 개수 count
     public Integer getCountReview(Integer prodNo) {
     	return prodReviewRepository.countReview(prodNo);

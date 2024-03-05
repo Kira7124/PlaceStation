@@ -38,6 +38,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import com.project3.placestation.service.ProdWishListService;
+import com.project3.placestation.service.ProductService;
+import com.project3.placestation.service.ProductViewService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -75,7 +77,6 @@ public class ProductController {
 	        productViewService.increaseProductViews(prodNo);
 	        session.setAttribute("increaseProductViews", false);
 	    }
-
 	    // 상품 조회수 가져오기
 	    int currentViews = productViewService.getProductViews(prodNo);
 		// 상품 번호로 조회
@@ -87,8 +88,6 @@ public class ProductController {
 	    int reviewsPerPage = 5;
 	    // 총 페이지 수 계산
 	    int totalPage = (int) Math.ceil((double) reviewCount / reviewsPerPage);
-	    
-
 
 		// 상품 번호로 리뷰 조회
 		List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo, "");
@@ -133,8 +132,8 @@ public class ProductController {
 	    model.addAttribute("pageNo", pageNo); // 현재 페이지 번호 추가
 	    model.addAttribute("totalPage", totalPage); // 총 페이지 수 추가
 	    model.addAttribute("currentViews", currentViews);
-	    
-		return "product/productDetail";
+
+	    return "product/productDetail";
 	}
 
 	// 답글 작성
@@ -192,6 +191,7 @@ public class ProductController {
 		return "redirect:/product/productDetail?prod_no=" + prodNo;
 	}
 	
+
 	// 찜 삭제
     @PostMapping("/deleteWishlist")
     public String deleteWishlist(ProdWishListDto dto, @RequestParam("prodNo") Integer prodNo) {
@@ -199,5 +199,6 @@ public class ProductController {
         prodWishListService.deleteWishList(dto);
         return "redirect:/product/productDetail?prod_no=" + prodNo;
     }
+
 
 }

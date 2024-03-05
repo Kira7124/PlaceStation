@@ -3,12 +3,14 @@ console.log('%c Proudly Crafted with ZiOn.', 'background: #222; color: #bada55')
 /* ---------------------------------------------- /*
  * Preloader
  /* ---------------------------------------------- */
+
  
 /*window.addEventListener('mousewheel', scrollHijacking, {passive: false});
 
 window.addEventListener('DOMMouseScroll', scrollHijacking, {passive: false});
 */
  
+
 (function(){
     $(window).on('load', function() {
         $('.loader').fadeOut();

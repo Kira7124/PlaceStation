@@ -289,17 +289,19 @@ $textarea3.oninput = (event) => {
   imageView = function imageView(att_zone, btn){
 
     var attZone = document.getElementById(att_zone);
-    var btnAtt = document.getElementById(btn)
+    var btnAtt = document.getElementById(btn);
     var sel_files = [];
     
     // 이미지와 체크 박스를 감싸고 있는 div 속성
     var div_style = 'display:inline-block;position:relative;'
-                  + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1';
+                  + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1;border-radius : 10px;';
     // 미리보기 이미지 속성
-    var img_style = 'width:100%;height:100%;z-index:none';
+    var img_style = 'width:100%;height:100%;z-index:none; border-radius : 10px;';
     // 이미지안에 표시되는 체크박스의 속성
     var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
-                  + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00';
+                  + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00;'
+                  + "border-radius: 20px;"
+                  + "text-align : center; padding-bottom : 40px;";
   
     btnAtt.onchange = function(e){
     

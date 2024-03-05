@@ -7,7 +7,8 @@
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
     <!-- jquery/ajax 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
 
 		
 		<!-- MAIN -->
@@ -26,7 +27,7 @@
 				    </div>
 				   <form action="/admin/admin-searchmember" method="get">
 					    <div>
-					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1500px; display: flex; align-items: center;">
 					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
 					        			<option value="user_name">이름</option>
 								        <option value="user_address">주소</option>
@@ -111,7 +112,7 @@
 					</table>
 
 
-					
+					<!-- nav start 긁어가기  -->
 					<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
 						<ul class="pagination">
 							<c:if test="${pageVO.prev }">
@@ -136,14 +137,14 @@
 				
 							<c:if test="${pageVO.next }">
 								<li class="page-item"><a class="page-link"
-									href="/admin/admin-member?page=${pageVO.endPage + 1 }"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									href="/admin/admin-member?page=${pageVO.endPage + 1 }"     
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span> <!-- href="/admin/admin-member 여기 주소만 바꾸면됨 -->
 								</a></li>
 							</c:if>
 
 						</ul>
 					</nav>
-
+					<!-- nav end  -->
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->
@@ -318,7 +319,7 @@
 	
 	
 	
-
+	
 	
 
 	

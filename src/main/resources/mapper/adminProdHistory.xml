@@ -7,6 +7,7 @@
 
 
 	<!-- 관리자 결제내역명단 총 출력 -->
+
 	<select id="paymentlistAll" resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
 		select admin_prod_history.*, biz.biz_id, biz.biz_balance, member.user_id
 		from admin_prod_history
@@ -82,15 +83,16 @@
 			    </where>
 			</select>
 
+
 	<!-- 관리자 메인 1달간 결제매출총액 -->
 	<select id="countAdminpaymentCount" resultType="Integer">
 		SELECT
 		SUM(admin_his_price) AS total_amount
 		FROM admin_prod_history
-		WHERE
-		ADMIN_HIS_CREATED_AT >= CURRENT_DATE() - INTERVAL '1' MONTH
-		AND
-		ADMIN_HIS_CREATED_AT &lt; CURRENT_DATE() + INTERVAL '1' DAY;
+
+		WHERE ADMIN_HIS_CREATED_AT >= CURRENT_DATE() - INTERVAL '1' MONTH 
+  		AND ADMIN_HIS_CREATED_AT &lt; CURRENT_DATE() + INTERVAL '1' DAY
+  		AND admin_his_confirm = true
 	</select>
 
 
@@ -105,16 +107,19 @@
 	</update>
 
 	<!-- 관리자 환불처리2 -->
-	<update id="AdminPaymentCancel2">
-		update biz set biz_balance = biz_balance +
-		#{cancelAmount}
-		where biz_id =#{bizId}
-	</update>
-
-
-
-
-
+	<update id ="AdminPaymentCancel2">
+		  update biz set biz_balance = biz_balance + #{cancelAmount}
+		  where biz_id =#{bizId}
+    </update>
+	
+	
+	
+	<!-- 환불내역확인(관리자) -->
+	<select id ="AdminRefund" resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+		select * from admin_prod_history
+		where admin_his_prod_no = #{adminHisProdNo}
+	</select>
+	
 	<select id="findAllByBizId"
 		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
 		SELECT
@@ -240,7 +245,7 @@
 				CURRENT_TIMESTAMP)
 				AND CURRENT_TIMESTAMP
 				group by
-				SUBSTR(admin_his_created_at , 1 ,10);
+				SUBSTR(admin_his_created_at , 1 ,10)
 			</when>
 			<when test="kind == 'WEEK'.toString()">
 				select sum(admin_his_price + ADMIN_HIS_CHARGE ) as
@@ -255,7 +260,7 @@
 				CURRENT_TIMESTAMP)
 				AND CURRENT_TIMESTAMP
 				group by
-				SUBSTR(admin_his_created_at , 1 ,10);
+				SUBSTR(admin_his_created_at , 1 ,10)
 			</when>
 			<when test="kind == 'ANNUAL'.toString()">
 				SELECT SUM(admin_his_price + ADMIN_HIS_CHARGE ) AS
@@ -271,7 +276,7 @@
 				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
 				GROUP
 				BY
-				SUBSTRING(admin_his_created_at, 1, 7);
+				SUBSTRING(admin_his_created_at, 1, 7)
 			</when>
 		</choose>
 	</select>
@@ -416,4 +421,157 @@
 		FORMATDATETIME(admin_his_created_at ,'yyyy-MM')
 	</select>
 
+	<select id="findAllByUserNo"
+		resultType="com.project3.placestation.party.dto.CreatePartySelectDto">
+		SELECT
+		h.admin_his_no AS adminHisNo,
+		h.admin_his_prod_no AS
+		adminHisProdNo,
+		h.admin_his_price AS adminHisPrice,
+		h.admin_his_seller_id AS adminHisSellerId,
+		h.admin_his_confirm AS
+		adminHisConfirm,
+		h.admin_his_buyer_id AS adminHisBuyerId,
+		h.start_time
+		AS startTime,
+		h.end_time AS endTime,
+		h.cancel_yn AS
+		cancelYn,
+		h.cancel_amount AS cancelAmount,
+		h.people_count AS
+		peopleCount,
+		p.prod_no as prodNo
+		, p.prod_writer_no as
+		prodWriterNo ,
+		p.prod_title
+		as
+		prodTitle,
+		p.prod_full_address as
+		prodFullAddress,
+		p.prod_price
+		as
+		prodPrice,
+		p.file_path as
+		filePath,
+		p.prod_major_category_id as
+		prodMajorCategoryId ,
+		p.prod_subcategory_id
+		as prodSubcategoryId,
+		p.prod_rdate as prodRdate,
+		pm.category_name AS
+		mainCategory,
+		ps.subcategory_name AS subcategory,
+		h.purchase_date as
+		purchaseDate
+		FROM
+		admin_prod_history h
+		LEFT JOIN product
+		p
+		ON
+		h.admin_his_prod_no =
+		p.prod_no
+		LEFT JOIN
+		member m
+		ON
+		h.admin_his_buyer_id = m.user_no
+		LEFT JOIN
+		prod_major_category pm
+		ON
+		pm.category_id = p.prod_major_category_id
+		LEFT
+		JOIN prod_subcategory
+		ps
+		ON ps.category_id = p.prod_subcategory_id
+		WHERE
+		h.admin_his_buyer_id =
+		#{userNo}
+		and h.admin_his_no Like '%' || #{text}
+		|| '%'
+		and
+		h.purchase_date > now()
+		and h.admin_his_confirm = true
+		and
+		h.cancel_yn =
+		'N'
+		and p.prod_delete_yn = 'N'
+		and p.prod_no is not null
+		order by
+		h.admin_his_created_at desc
+		LIMIT
+		#{pageReq.page} *
+		#{pageReq.size},#{pageReq.size}
+	</select>
+
+	<select id="countFindAllByUserNo" resultType="int">
+		SELECT
+		count(*)
+		FROM
+		admin_prod_history h
+		LEFT JOIN product
+		p
+		ON
+		h.admin_his_prod_no =
+		p.prod_no
+		LEFT JOIN
+		member m
+		ON
+		h.admin_his_buyer_id = m.user_no
+		LEFT JOIN
+		prod_major_category pm
+		ON
+		pm.category_id = p.prod_major_category_id
+		LEFT
+		JOIN prod_subcategory
+		ps
+		ON ps.category_id = p.prod_subcategory_id
+		WHERE
+		h.admin_his_buyer_id =
+		#{userNo}
+		and h.admin_his_no Like '%' || #{text}
+		|| '%'
+		and
+		h.purchase_date > now()
+		and h.admin_his_confirm = true
+		and
+		h.cancel_yn =
+		'N'
+		and p.prod_delete_yn = 'N'
+		and p.prod_no is not null
+		order by
+		h.admin_his_created_at desc
+	</select>
+	
+	<select id="existById" resultType="boolean">
+		select count(*) from admin_prod_history
+		where admin_his_no = #{adminHisNo}
+		and cancel_yn = 'N'
+		and purchase_date > now()
+	</select>
+	
+	<select id="findByAdminHisNo" resultType="com.project3.placestation.repository.entity.AdminProdHistory">
+		select 
+		admin_his_no AS adminHisNo,
+		admin_his_prod_no AS
+		adminHisProdNo,
+		admin_his_price AS adminHisPrice,
+		admin_his_use_point as adminHisUsePoint ,
+		admin_his_save_point as adminHisSavePoint,
+		admin_his_discount as adminHisDiscount,
+		admin_his_charge as adminHisCharge,
+		admin_his_seller_id AS adminHisSellerId,
+		admin_his_confirm AS
+		adminHisConfirm,
+		admin_his_buyer_id AS adminHisBuyerId,
+		start_time
+		AS startTime,
+		end_time AS endTime,
+		cancel_yn AS
+		cancelYn,
+		cancel_amount AS cancelAmount,
+		people_count AS
+		peopleCount,
+		purchase_date as purchaseDate
+		from admin_prod_history
+		where admin_his_no = #{adminHisNo}
+	</select>
 </mapper>

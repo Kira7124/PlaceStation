@@ -59,14 +59,18 @@
 		prod_full_address ,
 		prod_location_x ,
 		prod_location_y , addition_explanation )
-		values (#{prodWriterNo}, #{prodTitle} ,
+		values (#{prodWriterNo},
+		#{prodTitle} ,
 		#{prodStartTime} , #{prodEndTime} , #{prodSpaceInfo} ,
 		#{prodGoodsInfo} , #{prodCautionInfo} , #{prodMaximumPeople}
 		,
 		#{prodAddress}
 		, #{prodDetailedAddress} , #{prodPrice} , #{filePath} ,
 		#{prodMajorCategoryId}, #{prodSubcategoryId} , #{prodFullAddress} ,
-		#{prodLocationX} , #{prodLocationY} , #{additionExplanation} )
+		#{prodLocationX} , #{prodLocationY} , #{additionExplanation} );
+
+		INSERT INTO product_views (prod_no, prod_views)
+		VALUES (LAST_INSERT_ID(), 0);
 	</insert>
 
 	<update id="updateProduct">
@@ -98,7 +102,8 @@
 		#{product.prodFullAddress},
 		prod_location_x = #{product.prodLocationX},
 		prod_location_y = #{product.prodLocationY},
-		addition_explanation = #{product.additionExplanation} , 
+		addition_explanation =
+		#{product.additionExplanation} ,
 		prod_update_at = NOW()
 		<if test="changeImage == 'Y'.toString()">
 			,
@@ -145,25 +150,32 @@
 		prod_end_time as prodEndTime ,
 		prod_space_info as prodSpaceInfo ,
 		prod_goods_info as prodGoodsInfo ,
-		prod_caution_info as prodCautionInfo ,
+		prod_caution_info as prodCautionInfo
+		,
 		prod_maximum_people as
 		prodMaximumPeople ,
-		prod_address as prodAddress ,
+		prod_address as prodAddress
+		,
 		prod_detailed_address
 		as prodDetailedAddress ,
-		prod_price as prodPrice ,
+		prod_price as prodPrice
+		,
 		file_path as filePath
 		,
 		prod_major_category_id as prodMajorCategoryId ,
 		prod_subcategory_id as
 		prodSubcategoryId ,
-		prod_full_address as prodFullAddress ,
+		prod_full_address as
+		prodFullAddress ,
 		prod_location_x as prodLocationX ,
-		prod_location_y as prodLocationY,
+		prod_location_y as
+		prodLocationY,
 		prod_rdate as prodRdate ,
-		prod_update_at as prodUpdateAt ,
+		prod_update_at as prodUpdateAt
+		,
 		prod_delete_reason as prodDeleteReason ,
-		prod_delete_yn as prodDeleteYn , 
+		prod_delete_yn as
+		prodDeleteYn ,
 		addition_explanation as additionExplanation
 		from product
 		where prod_no = #{prod_no}
@@ -270,4 +282,11 @@
 		FROM member
 		WHERE user_no = #{prodWriterNo}
 	</select>
+
+	<select id="existById" resultType="int">
+		select count(*) from product
+		where prod_no = #{prodNo}
+		and prod_delete_yn = 'N'
+	</select>
+
 </mapper>

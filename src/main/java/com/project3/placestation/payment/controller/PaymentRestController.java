@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.payment.model.common.MemberGrade;
+import com.project3.placestation.payment.model.common.PaymentDefine;
 import com.project3.placestation.payment.model.dto.AdminHisPointDto;
 import com.project3.placestation.payment.model.dto.PaymentDto;
 import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
@@ -24,6 +26,7 @@ import com.project3.placestation.product.dto.ProductInvalidDateDto;
 import com.project3.placestation.repository.entity.Charge;
 import com.project3.placestation.repository.entity.Company;
 import com.project3.placestation.repository.entity.Grade;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.BizService;
 import com.project3.placestation.service.ChargeService;
@@ -32,6 +35,7 @@ import com.project3.placestation.service.GradeService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.PaymentService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -59,6 +63,9 @@ public class PaymentRestController {
 
 	@Autowired
 	CompanyService companyService;
+	
+	@Autowired
+	HttpSession httpSession;
 
 	/**
 	 * 정보 저장하기 ( 수 정 필 요 ) 1. 포트원 결제 - 사후 처리 2. 서버 저장
@@ -69,7 +76,8 @@ public class PaymentRestController {
 	@PostMapping("/save")
 	public ResponseEntity<?> paymentController(@RequestBody PaymentDto paymentDto) {
 		try {
-
+		
+			
 			// 사업자 포트원 키 가져오기
 			PaymentFortOneKeyDto fortOne = bizService.findFortOneKeyByBizNo(paymentDto.getSellerId());
 			if (fortOne.getImpKey() == null || fortOne.getImpKey().isEmpty()) {
@@ -87,7 +95,7 @@ public class PaymentRestController {
 			// 포트원 결제 토큰 정보가 없다면
 			if (token == null) {
 				// 환불
-				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 중 서버 에러");
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), PaymentDefine.INTERVAL_ERROR);
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			// 포트원 결제 - 2. 사후 검증하기
@@ -95,7 +103,7 @@ public class PaymentRestController {
 			// 만약 사후 검증에 아무런 정보가 없다면
 			if (result == null) {
 				// 환불
-				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 중 서버 에러");
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), PaymentDefine.INTERVAL_ERROR);
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
@@ -114,7 +122,7 @@ public class PaymentRestController {
 			// 만약 결제 도중 중복이 발생했다면
 			if (validTime) {
 				// 환불
-				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), PaymentDefine.INTERVAL_ERROR);
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
@@ -123,14 +131,15 @@ public class PaymentRestController {
 
 			// --------------------------------------------------------------------------
 
-			// 서버에 저장 ( 수정 필요 )
+			// 서버에 저장
 			// 세개의 값을 구해야한다.
 
-			// 유저 정보 ( 수정 필요 )
-			int userNo = 1;
-			PaymentMemberDto member = memberService.findMemberById(userNo);
+			// 유저 정보
+			// 유효성 검사
+			Member sessionMember = (Member) httpSession.getAttribute("member"); 
+			PaymentMemberDto member = memberService.findMemberById(sessionMember.getUserno());
 
-			// 유저 등급별 discount (수정 필요)
+			// 유저 등급별 discount
 			// grade 별 discount , savePoint 객체 불러오기
 			Grade getGrade = gradeService.findByGradeName(member.getUserGrade());
 			Charge getCharge = chargeService.findChPercent();
@@ -160,23 +169,23 @@ public class PaymentRestController {
 					paymentDto.getPeopleCount(), paymentDto.getPurchaseDate(), token);
 
 			if (dbResult == 0) {
-				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
-				return new ResponseEntity<>("결제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), PaymentDefine.INTERVAL_ERROR);
+				return new ResponseEntity<>(PaymentDefine.INTERVAL_ERROR_CALL_TO_ADMIN, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
 			// 회사 balance 추가
 			Company company = companyService.findCompany();
-			log.info(company.toString());
+//			log.info(company.toString());
 			if (company == null) {
-				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
-				return new ResponseEntity<>("회사 balance 수정 실패 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), PaymentDefine.INTERVAL_ERROR);
+				return new ResponseEntity<>(PaymentDefine.INTERVAL_ERROR_CALL_TO_ADMIN, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
 			// 회사 balance 수정
 			int resultCompany = companyService.updateSumCompanyBalance(company.getBalance(), dbCharge);
 			if (resultCompany == 0) {
-				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
-				return new ResponseEntity<>("회사 balance 수정 실패 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), PaymentDefine.INTERVAL_ERROR);
+				return new ResponseEntity<>(PaymentDefine.INTERVAL_ERROR_CALL_TO_ADMIN, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
 			// 유저 정보 변경 - 포인트 정보 변경
@@ -187,26 +196,28 @@ public class PaymentRestController {
 
 			// 유저 정보 변경 - 포인트 정보 변경
 			AdminHisPointDto adminHisPointDto = adminProdHistoryService.findUserPointByBuyerId(paymentDto.getBuyerId());
+			// 없다는 것은 저장이 안됬다는 뜻
+			if (adminHisPointDto == null) {
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(),PaymentDefine.INTERVAL_ERROR);
+				return new ResponseEntity<>(PaymentDefine.INTERVAL_ERROR_CALL_TO_ADMIN, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			
+			// 거래내역에 포인트 저장
 			int setPoint = adminHisPointDto.getUserSavePoint() + userPoint;
 			adminHisPointDto.setUserSavePoint(setPoint);
-
 			// 등급 정보 가져오기
 			List<Grade> listGrade = gradeService.findAll();
 
 			log.info(adminHisPointDto.toString());
-			// 없다는 것은 저장이 안됬다는 뜻
-			if (adminHisPointDto == null) {
-				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
-				return new ResponseEntity<>("포인트는 관리자에게 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
-			}
+
 			// 없다는 것은 이전 저장이 잘못되었다는 것
 			if (adminHisPointDto.getAdminHisBuyerId() == null || adminHisPointDto.getUserSavePoint() == null) {
-				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
-				return new ResponseEntity<>("포인트는 관리자에게 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), PaymentDefine.INTERVAL_ERROR);
+				return new ResponseEntity<>(PaymentDefine.INTERVAL_ERROR_CALL_TO_ADMIN, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			if (listGrade == null || listGrade.isEmpty()) {
-				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
-				return new ResponseEntity<>("포인트는 관리자에게 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(),PaymentDefine.INTERVAL_ERROR);
+				return new ResponseEntity<>(PaymentDefine.INTERVAL_ERROR_CALL_TO_ADMIN , HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
 			// 저장 데이터
@@ -265,15 +276,15 @@ public class PaymentRestController {
 
 			if (resultGrade == 0) {
 				// 결제 완료인지 아닌지 판단.. (검증)
-				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), "저장 시 서버 에러");
-				return new ResponseEntity<>("포인트는 관리자에게 문의하세요.", HttpStatus.INTERNAL_SERVER_ERROR);
+				paymentService.refund(token, paymentDto.getMerchantUid(), fortOne.getImpUid(), PaymentDefine.INTERVAL_ERROR);
+				return new ResponseEntity<>(PaymentDefine.INTERVAL_ERROR_CALL_TO_ADMIN, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
 			// 결제 완료인지 아닌지 판단.. (검증)
 			return new ResponseEntity<>("결제 완료", HttpStatus.OK);
 		} catch (Exception e) {
 			log.info(e.getMessage());
-			return new ResponseEntity<>("결제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(PaymentDefine.INTERVAL_ERROR_CALL_TO_ADMIN, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

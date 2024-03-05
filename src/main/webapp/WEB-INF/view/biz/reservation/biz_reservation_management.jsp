@@ -131,7 +131,6 @@
 																		type="hidden" name="adminHisDiscount"
 																		value="${historyDto.adminHisDiscount}" /> 
 																		<input
-
 																		type="submit" class="btn btn-primary"></input>
 																</div>
 															</form>

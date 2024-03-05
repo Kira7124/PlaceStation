@@ -41,7 +41,6 @@
 	
 
 	<!-- 사업자정보삭제(관리자) -->
-
 	<delete id="AdminDeleteBiz">
 		delete from biz where biz_no=#{bizNo}
 	</delete>
