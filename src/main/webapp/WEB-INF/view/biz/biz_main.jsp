@@ -95,7 +95,7 @@
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<a href="/biz/main"> <span class="icon"><i
+										<a href="/cs/qna"> <span class="icon"><i
 												class="fa fa-download"></i></span>
 											<p>
 												<span class="number">문의 내역</span> <br /> <span><p>사용자의
@@ -119,82 +119,6 @@
 						</div>
 					</div>
 					<!-- END RECENT PURCHASES -->
-				</div>
-				<div class="row">
-					<div class="col-md-7">
-						<!-- VISIT CHART -->
-						<div class="panel">
-							<div class="panel-heading">
-								<h3 class="panel-title">일주일 간 사용자 이용량</h3>
-								<div class="right">
-									<button type="button" class="btn-toggle-collapse">
-										<i class="lnr lnr-chevron-up"></i>
-									</button>
-									<button type="button" class="btn-remove">
-										<i class="lnr lnr-cross"></i>
-									</button>
-								</div>
-							</div>
-							<div class="panel-body">
-								<div id="visits-chart" class="ct-chart"></div>
-							</div>
-						</div>
-						<!-- END VISIT CHART -->
-					</div>
-
-					<div class="col-md-5">
-						<!-- TIMELINE -->
-						<div class="panel panel-scrolling">
-							<div class="panel-heading">
-								<h3 class="panel-title">이용자 최근 질문 내역</h3>
-								<div class="right">
-									<button type="button" class="btn-toggle-collapse">
-										<i class="lnr lnr-chevron-up"></i>
-									</button>
-									<button type="button" class="btn-remove">
-										<i class="lnr lnr-cross"></i>
-									</button>
-								</div>
-							</div>
-							<div class="panel-body">
-								<ul class="list-unstyled activity-list">
-									<li><img src="/assets/img/user1.png" alt="Avatar"
-										class="img-circle pull-left avatar">
-										<p>
-											<a href="#">Michael</a> 사용자 질문 있습니다!!! <span
-												class="timestamp">20 minutes ago</span>
-										</p></li>
-									<li><img src="/assets/img/user1.png" alt="Avatar"
-										class="img-circle pull-left avatar">
-										<p>
-											<a href="#">Michael</a> 사용자 질문 있습니다!!! <span
-												class="timestamp">20 minutes ago</span>
-										</p></li>
-									<li><img src="/assets/img/user1.png" alt="Avatar"
-										class="img-circle pull-left avatar">
-										<p>
-											<a href="#">Michael</a> 사용자 질문 있습니다!!! <span
-												class="timestamp">20 minutes ago</span>
-										</p></li>
-									<li><img src="/assets/img/user1.png" alt="Avatar"
-										class="img-circle pull-left avatar">
-										<p>
-											<a href="#">Michael</a> 사용자 질문 있습니다!!! <span
-												class="timestamp">20 minutes ago</span>
-										</p></li>
-									<li><img src="/assets/img/user1.png" alt="Avatar"
-										class="img-circle pull-left avatar">
-										<p>
-											<a href="#">Michael</a> 사용자 질문 있습니다!!! <span
-												class="timestamp">20 minutes ago</span>
-										</p></li>
-								</ul>
-								<button type="button"
-									class="btn btn-primary btn-bottom center-block">더보기</button>
-							</div>
-						</div>
-						<!-- END TIMELINE -->
-					</div>
 				</div>
 			</div>
 		</div>

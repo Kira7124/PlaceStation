@@ -7,6 +7,7 @@
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
     <!-- jquery/ajax 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		
 
 
@@ -27,7 +28,7 @@
 				    </div>
 				   <form action="/admin/admin-searchmember" method="get">
 					    <div>
-					         <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					         <div class="input-group" style="margin-top: 20px; margin-left: 1500px; display: flex; align-items: center;">
 					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
 					        			<option value="user_name">이름</option>
 								        <option value="user_address">주소</option>
@@ -66,14 +67,16 @@
 							     <td>
 								    <c:choose>
 								        <c:when test="${memberlist.filepath eq 'default.jpg'}">
+								           <a href="/admin/admin-photoupdate" data-toggle="modal" data-target="#photoModal">
 								            <img src="/assets/img/default.jpg" style="width:30px; height: 30px; border-radius:50%;">
+								           </a>
 								        </c:when>
 								        <c:otherwise>
+								           <a href="/admin/admin-photoupdate"  data-toggle="modal" data-target="#photoModal">
 								            <img src="${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
+								           </a>
 								        </c:otherwise>
 								    </c:choose>
-								<td>
-								  <img src="/assets/img/${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
 								</td>
 								  <td>	
 									<c:choose>
@@ -130,7 +133,7 @@
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
-
+							
 
 				
 							<c:if test="${pageVO.next }">
@@ -159,6 +162,16 @@
 	        <div class="modal-content"></div>
 	    </div>
 	</div>
+	
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
 	
 	<!-- Modal -->
 	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

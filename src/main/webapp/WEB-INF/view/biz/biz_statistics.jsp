@@ -42,71 +42,78 @@
 			</div>
 			<!-- END OVERVIEW -->
 			<div class="row">
+
 				<div class="col-md-6">
-					<!-- RECENT PURCHASES -->
-					<div class="panel">
-						<div class="panel-heading">
-							<h3 class="panel-title">이용자 결제 내역</h3>
-							<div class="right">
-								<button type="button" class="btn-toggle-collapse">
-									<i class="lnr lnr-chevron-up"></i>
-								</button>
-								<button type="button" class="btn-remove">
-									<i class="lnr lnr-cross"></i>
-								</button>
-							</div>
-						</div>
-						<div class="panel-body no-padding">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>내역 번호</th>
-										<th>가격</th>
-										<th>인원 수</th>
-										<th>은행</th>
-										<th>이용 날짜 &amp; 시간</th>
-										<th>결제 날짜 &amp; 시간</th>
-										<th>결제</th>
 
-
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="history" items="${history}">
-										<tr>
-											<td>${history.adminHisNo}</td>
-											<td>${history.adminHisPrice}</td>
-											<td>${history.peopleCount}명</td>
-											<td>${history.bank}</td>
-											<c:if test="${history.cancelYn == 'N'}">
-												<td>${history.purchaseDate}&nbsp
-													${history.startTime}:00~ ${history.endTime}:00</td>
-											</c:if>
-											<c:if test="${history.cancelYn == 'Y'}">
-												<td><span class="label label-danger">환불 처리</span></td>
-											</c:if>
-											<td>${history.adminHisCreatedAt}</td>
-											<td><span class="label label-success">${history.adminHisConfirm}</span></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-						<div class="panel-footer">
-							<div class="row">
-								<div class="col-md-6">
-									<span class="panel-note"><i class="fa fa-clock-o"></i>
-										결제내역을 더 보시겠습니까?</span>
-								</div>
-								<div class="col-md-6 text-right">
-									<a href="/biz/reservation-management" class="btn btn-primary">결제
-										내역 보기</a>
+					<div class="col-md-12">
+						<!-- VISIT CHART -->
+						<div class="panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">월 수수료 통계</h3>
+								<div class="right">
+									<button type="button" class="btn-toggle-collapse">
+										<i class="lnr lnr-chevron-up"></i>
+									</button>
+									<button type="button" class="btn-remove">
+										<i class="lnr lnr-cross"></i>
+									</button>
 								</div>
 							</div>
+							<div class="panel-body">
+								<div id="monthly-fee" class="ct-chart"></div>
+							</div>
 						</div>
+						<!-- END VISIT CHART -->
 					</div>
-					<!-- END RECENT PURCHASES -->
+					<div class="col-md-12">
+						<!-- VISIT CHART -->
+						<div class="panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">단골 고객 TOP 5</h3>
+								<div class="right">
+									<button type="button" class="btn-toggle-collapse">
+										<i class="lnr lnr-chevron-up"></i>
+									</button>
+									<button type="button" class="btn-remove">
+										<i class="lnr lnr-cross"></i>
+									</button>
+								</div>
+							</div>
+							<div class="panel-body">
+								<table class="table table-borderless">
+									<thead>
+										<tr>
+											<th scope="col">고객</th>
+											<th scope="col">구매 개수</th>
+											<th scope="col">고객 등급</th>
+											<th scope="col">성별</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="member" items="${topTen}">
+											<tr>
+												<th scope="row">
+													<div>
+														<img src="${member.filePath}"
+															style="border-radius: 50%; width: 50px; height: 50px;" />
+													</div>
+													<div>
+														<p>${member.userName}님</p>
+													</div>
+												</th>
+												<td>${member.count}개</td>
+												<td>${member.grade}등급</td>
+												<td>${member.gender}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- END VISIT CHART -->
+					</div>
 				</div>
+
 				<div class="col-md-6">
 					<!-- MULTI CHARTS -->
 					<div class="panel">
@@ -177,12 +184,11 @@
 					</div>
 				</div>
 				<div class="row">
-
-					<div class="col-md-8">
-						<!-- VISIT CHART -->
+					<div class="col-md-12">
+						<!-- RECENT PURCHASES -->
 						<div class="panel">
 							<div class="panel-heading">
-								<h3 class="panel-title">월 수수료 통계</h3>
+								<h3 class="panel-title">이용자 결제 내역</h3>
 								<div class="right">
 									<button type="button" class="btn-toggle-collapse">
 										<i class="lnr lnr-chevron-up"></i>
@@ -192,59 +198,56 @@
 									</button>
 								</div>
 							</div>
-							<div class="panel-body">
-								<div id="monthly-fee" class="ct-chart"></div>
-							</div>
-						</div>
-						<!-- END VISIT CHART -->
-					</div>
-					<div class="col-md-4">
-						<!-- VISIT CHART -->
-						<div class="panel">
-							<div class="panel-heading">
-								<h3 class="panel-title">단골 고객 TOP 5</h3>
-								<div class="right">
-									<button type="button" class="btn-toggle-collapse">
-										<i class="lnr lnr-chevron-up"></i>
-									</button>
-									<button type="button" class="btn-remove">
-										<i class="lnr lnr-cross"></i>
-									</button>
-								</div>
-							</div>
-							<div class="panel-body">
-								<table class="table table-borderless">
+							<div class="panel-body no-padding">
+								<table class="table table-striped">
 									<thead>
 										<tr>
-											<th scope="col">고객</th>
-											<th scope="col">구매 개수</th>
-											<th scope="col">고객 등급</th>
-											<th scope="col">성별</th>
+											<th>내역 번호</th>
+											<th>가격</th>
+											<th>인원 수</th>
+											<th>은행</th>
+											<th>이용 날짜 &amp; 시간</th>
+											<th>결제 날짜 &amp; 시간</th>
+											<th>결제</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="member" items="${topTen}">
+										<c:forEach var="history" items="${history}">
 											<tr>
-												<th scope="row">
-													<div>
-														<img src="${member.filePath}"
-															style="border-radius: 50%; width: 50px; height: 50px;" />
-													</div>
-													<div>
-														<p>${member.userName}님</p>
-													</div>
-												</th>
-												<td>${member.count}개</td>
-												<td>${member.grade}등급</td>
-												<td>${member.gender}</td>
+												<td>${history.adminHisNo}</td>
+												<td>${history.adminHisPrice}</td>
+												<td>${history.peopleCount}명</td>
+												<td>${history.bank}</td>
+												<c:if test="${history.cancelYn == 'N'}">
+													<td>${history.purchaseDate}&nbsp
+														${history.startTime}:00~ ${history.endTime}:00</td>
+												</c:if>
+												<c:if test="${history.cancelYn == 'Y'}">
+													<td><span class="label label-danger">환불 처리</span></td>
+												</c:if>
+												<td>${history.adminHisCreatedAt}</td>
+												<td><span class="label label-success">${history.adminHisConfirm}</span></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-md-6">
+										<span class="panel-note"><i class="fa fa-clock-o"></i>
+											결제내역을 더 보시겠습니까?</span>
+									</div>
+									<div class="col-md-6 text-right">
+										<a href="/biz/reservation-management" class="btn btn-primary">결제
+											내역 보기</a>
+									</div>
+								</div>
+							</div>
 						</div>
-						<!-- END VISIT CHART -->
+						<!-- END RECENT PURCHASES -->
 					</div>
+
 				</div>
 			</div>
 

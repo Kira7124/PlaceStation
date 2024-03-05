@@ -14,4 +14,5 @@ public class PaymentMemberDto {
 	private String joinAt;
 	private String userRole;
 	private String gender;
+	private String filePath;
 }

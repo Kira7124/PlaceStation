@@ -32,7 +32,7 @@
 		  
 		  <div class="row">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-danger" id="deleteButton" style="margin-left:450px; margin-bottom: 10px; margin-top:10px;">탈퇴처리</button>
+                <button type="submit" class="btn btn-danger" id="deleteButton" style="margin-left:450px; margin-bottom: 10px; margin-top:10px;">삭제</button>
             </div>
           </div>
 		  

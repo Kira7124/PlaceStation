@@ -6,7 +6,7 @@
 
 
 <!-- LEFT SIDEBAR -->
-		<div id="sidebar-nav" class="sidebar">
+		<div id="sidebar-nav" class="sidebar"style="margin-top: 15px;">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">

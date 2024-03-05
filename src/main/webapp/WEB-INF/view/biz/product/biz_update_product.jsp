@@ -13,12 +13,30 @@
 	min-height: 150px;
 	padding: 10px;
 	border: 1px dotted #00f;
+	border-radius: 10px;
 }
 
 #att_zone:empty:before {
 	content: attr(data-placeholder);
 	color: #999;
 	font-size: .9em;
+}
+
+.toggle3 input[type=checkbox] {
+	display: none;
+}
+
+.toggle3 input[type=checkbox]+label {
+	color: #e0e0e0;
+	font-size: 5em;
+}
+
+.toggle3 input[type=checkbox]:checked+label {
+	color: #000;
+}
+
+h4 {
+	font-weight: bold;
 }
 </style>
 
@@ -132,6 +150,37 @@
 							<!-- INPUT GROUPS -->
 							<div class="panel">
 								<div class="panel-heading">
+									<h3 class="panel-title">부가 설명</h3>
+								</div>
+								<div class="panel-body">
+									<!-- 부가 이미지 시작 -->
+									<h4>부가 설명하실 이미지를 선택해 주세요.</h4>
+
+									<!-- 부가 이미지 -->
+									<div class="toggle3" style="text-align: center;">
+										<c:forEach items="${additionExplanation}"
+											var="additionExplanation">
+											<input type="checkbox"
+												id="toggle3-${additionExplanation.additionExplanationNo}"
+												name="descriptionImage"
+												value="${additionExplanation.additionExplanationNo}">
+											<label
+												for="toggle3-${additionExplanation.additionExplanationNo}"
+												style="margin-right: 20px;"><img
+												src="${additionExplanation.filePath}" alt=""
+												style="width: 100px; height: 100px;" />
+												<h4>${additionExplanation.name}</h4> </label>
+										</c:forEach>
+									</div>
+									<!-- 부가 이미지 종료 -->
+								</div>
+							</div>
+							<!-- END INPUT GROUPS -->
+
+
+							<!-- INPUT GROUPS -->
+							<div class="panel">
+								<div class="panel-heading">
 									<h3 class="panel-title">위치 선정</h3>
 								</div>
 								<div class="panel-body">
@@ -240,17 +289,19 @@ $textarea3.oninput = (event) => {
   imageView = function imageView(att_zone, btn){
 
     var attZone = document.getElementById(att_zone);
-    var btnAtt = document.getElementById(btn)
+    var btnAtt = document.getElementById(btn);
     var sel_files = [];
     
     // 이미지와 체크 박스를 감싸고 있는 div 속성
     var div_style = 'display:inline-block;position:relative;'
-                  + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1';
+                  + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1;border-radius : 10px;';
     // 미리보기 이미지 속성
-    var img_style = 'width:100%;height:100%;z-index:none';
+    var img_style = 'width:100%;height:100%;z-index:none; border-radius : 10px;';
     // 이미지안에 표시되는 체크박스의 속성
     var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
-                  + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00';
+                  + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00;'
+                  + "border-radius: 20px;"
+                  + "text-align : center; padding-bottom : 40px;";
   
     btnAtt.onchange = function(e){
     
@@ -413,6 +464,7 @@ $textarea3.oninput = (event) => {
 	// 페이지 로드 시 초기 설정
 	document.addEventListener("DOMContentLoaded", function() {
 		   updateSubcategories();
+		   getAddtionExplanation();
 	});
 	
 	// 비동기 통신 - 메인 카테고리 id 로 서브 카테고리 id 찾기
@@ -451,6 +503,31 @@ $textarea3.oninput = (event) => {
 	    }
 	}
 	
+	// 비동기 통신 - 메인 카테고리 id 로 서브 카테고리 id 찾기
+	function getAddtionExplanation() {
+
+	    $.ajax({
+	        type: "get",
+	        url: "/biz/product/addition-explanation?prodNo=" + ${product.prodNo},
+	        headers : {"Content-Type" : "application/json"},
+			dataType : "json",
+		       success: function (res) {
+				for(var i = 0; i < res.additionExplanation.length; i++){
+					 var checkbox = document.getElementById(`toggle3-` + res.additionExplanation[i]); // 체크하고자 하는 체크박스의 ID 사용
+			            if (checkbox) {
+			                checkbox.checked = true; // 체크박스 체크
+			            }
+				}
+		     },
+	        error: function(e) {
+	            console.log(e);
+	        }
+	    });
+	}
+	
+
+
 </script>
+
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_footer.jsp"%>

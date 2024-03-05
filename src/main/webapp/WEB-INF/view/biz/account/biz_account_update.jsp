@@ -22,6 +22,7 @@
 	color: #999;
 	font-size: .9em;
 }
+
 </style>
 
 <!-- MAIN -->
@@ -79,12 +80,13 @@
 										<!-- 비밀번호 변경 -->
 										<div id="change-password-form" style="display: none">
 											<h4>비밀번호 변경</h4>
-											<div class="input-group">
+											<div class="input-group" id="change-password-input">
 												<input type="password" class="form-control"
 													placeholder="변경하실 비밀번호를 입력해 주세요" id="password1"> <span
 													class="input-group-btn"><button type="button"
 														class="btn btn-primary" id="checkPassword"
-														onclick="changePasswordForm()">변경</button></span>
+														onclick="changePasswordForm()">변경</button> 
+												</span>
 											</div>
 											<ul class="list-unstyled activity-list regexDescription">
 												<li>아래의 유효성을 검사합니다.</li>
@@ -122,12 +124,12 @@
 											value="${biz.userAddress}" /> <br />
 										<h4>포트원 uid (imp_uid)</h4>
 										<input type="text" class="form-control"
-											placeholder="주소를 입력해 주세요" name="impUid"
-											value="${biz.impUid}" /> <br />
+											placeholder="주소를 입력해 주세요" name="impUid" value="${biz.impUid}" />
+										<br />
 										<h4>포트원 key (imp_key)</h4>
 										<input type="password" class="form-control"
-											placeholder="주소를 입력해 주세요" name="impKey"
-											value="${biz.impKey}" /> <br />
+											placeholder="주소를 입력해 주세요" name="impKey" value="${biz.impKey}" />
+										<br />
 										<h4>포트원 secret (imp_secret)</h4>
 										<input type="password" class="form-control"
 											placeholder="주소를 입력해 주세요" name="impSecret"
@@ -366,6 +368,7 @@ function isPasswordRight() {
 			alert("비밀번호가 틀렸습니다.")
 		}
 	}
+	
 </script>
 <!-- adminside.jsp -->
 <%@ include file="/WEB-INF/view/biz/common/biz_footer.jsp"%>

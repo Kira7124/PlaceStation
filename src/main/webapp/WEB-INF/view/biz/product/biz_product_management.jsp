@@ -161,7 +161,7 @@ h2, p, h4 {
 											</div>
 											<div class="textBox">
 												<p class="textBox__name">${product.prodTitle}</p>
-												<p class="textBox__price">${product.prodPrice} 원</p>
+												<p class="textBox__price">${product.prodPrice}원</p>
 											</div>
 										</a>
 									</div>

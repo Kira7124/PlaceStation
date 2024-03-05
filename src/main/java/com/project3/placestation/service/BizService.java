@@ -11,6 +11,7 @@ import com.project3.placestation.admin.dto.AdminBizDTO;
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqBizAccountDto;
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
 import com.project3.placestation.repository.entity.Biz;
 import com.project3.placestation.repository.interfaces.BizRepository;
@@ -59,6 +60,21 @@ public class BizService {
 	}
 	
 	
+	
+	//관리자등록증수정
+	@Transactional
+	public void AdminUpdateCheck(AdminBizDTO dto, String filePath) {
+		Biz biz = Biz.builder()
+				.bizNo(dto.getBizno())
+				.filePath(filePath)
+				.build();
+		
+		Integer result = bizRepository.AdminUpdateCheck(biz);
+
+	}
+
+	
+	
 	//관리자사업자수정
 	@Transactional
 	public void AdminUpdateBiz(AdminBizDTO dto,String filePath) {
@@ -91,10 +107,11 @@ public class BizService {
 	
   
 	// 유저 업데이트
+	@Transactional
 	public void updateBizByBizId(ReqBizAccountDto accountDto , int bizId) {
 		int result = bizRepository.updateBizByBizId(accountDto , bizId);
 		if(result < 1) {
-			throw new CustomRestfulException("유저 정보 변경 시 서버 에러가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfulException(BizDefine.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

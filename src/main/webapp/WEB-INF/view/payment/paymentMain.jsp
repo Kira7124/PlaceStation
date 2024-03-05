@@ -378,6 +378,9 @@
             buyer_tel: "${member.userHp}",
             buyer_addr: "${member.userAddress}",
             buyer_postcode: "01181",
+            display: {
+                card_quota: [3]  // 할부개월 3개월까지 활성화
+            }
           },
           function (rsp) {
             if (rsp.success) {
@@ -404,7 +407,7 @@
             buyer_name: "${member.userName}",
             buyer_tel: "${member.userHp}",
             buyer_addr: "${member.userAddress}",
-            buyer_postcode: "01181",
+            buyer_postcode: "01181"
           },
           function (rsp) {
             if (rsp.success) {

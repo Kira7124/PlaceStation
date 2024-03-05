@@ -33,4 +33,5 @@ public class ReqProductDto {
 	private Double prodLocationX; // 위도 값
 	private Double prodLocationY; // 경도 값
 	private String isFile;
+	private List<Integer> descriptionImage;
 }

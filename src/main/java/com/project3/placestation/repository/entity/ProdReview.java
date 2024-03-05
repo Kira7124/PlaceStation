@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ProdReview {
-
+	  
     private Integer prodRevNo;
     private Integer prodNo;
     private String prodRevContent;
@@ -27,6 +27,7 @@ public class ProdReview {
     private String prodTitle;
     private String prodPrice;
     private String filePath;
+    private Integer offset;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 

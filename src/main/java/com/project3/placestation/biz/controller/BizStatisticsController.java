@@ -3,18 +3,23 @@ package com.project3.placestation.biz.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.model.dto.BizHistoryDto;
 import com.project3.placestation.biz.model.dto.MemberToptenDto;
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.PageRes;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.AdminProdHistoryService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -24,6 +29,9 @@ public class BizStatisticsController {
 	
 	@Autowired
 	AdminProdHistoryService adminProdHistoryService;
+	
+	@Autowired
+	HttpSession httpSession;
 
 	// http://localhost/biz/statistics
 	@GetMapping("/statistics")
@@ -31,12 +39,17 @@ public class BizStatisticsController {
 			@RequestParam(value="page" , defaultValue = "0") int page,
 			@RequestParam(value="size" , defaultValue = "10") int size , @RequestParam(value = "text" , defaultValue = "") String text) {
 
-		int userId = 1;
+		// 멤버 받기
+		Member member = (Member) httpSession.getAttribute("member"); 
+		if(member == null) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
 		
 		PageReq pageReq = new PageReq(page,size);
-		PageRes<BizHistoryDto> pageRes = adminProdHistoryService.findByBizId(userId, pageReq , text);
+		PageRes<BizHistoryDto> pageRes = adminProdHistoryService.findByBizId(member.getUserno(), pageReq , text);
 
-		List<MemberToptenDto> topTen = adminProdHistoryService.findMemberTopFive(userId);
+		List<MemberToptenDto> topTen = adminProdHistoryService.findMemberTopFive(member.getUserno());
 		
         model.addAttribute("history",pageRes.getContent()); // 컨텐츠 배열
         model.addAttribute("currentPage",pageRes.getNumber()); // 현재페이지 번호

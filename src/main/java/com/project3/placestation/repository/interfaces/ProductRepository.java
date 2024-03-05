@@ -37,4 +37,11 @@ public interface ProductRepository {
 	public int countFindMainAllBysearchAndPriceAndstar(@Param("search")String search , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory);
 	
 
+	// 상품 확인
+	public int existById(int prodNo);
+
+    public String findAdditionExplanationNameByProdNo(int prodNo);
+    public String findAdditionExplanationFilePathByProdNo(int prodNo);
+
+
 }

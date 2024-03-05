@@ -30,11 +30,15 @@ public interface BizRepository {
 	
 	//사업자정보수정(관리자)
 	public Integer AdminUpdateBiz(Biz biz);
-		
+	
+	//사업자등록증수정(관리자)
+	public Integer AdminUpdateCheck(Biz biz);
+	
 	//사업자정보삭제(관리자)
 	public Integer AdminDeleteBiz(Biz biz);
 	
 
+	
 	public int updateBizByBizId(@Param("biz")ReqBizAccountDto biz ,@Param("bizId")int bizId);
 	
 	
