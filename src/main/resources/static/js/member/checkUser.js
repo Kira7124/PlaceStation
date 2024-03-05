@@ -356,21 +356,6 @@ window.onload = function() {
 	});
 
 	//포트원키 검증
-	$('input[name=impsecret]').focusout(function() {
-		const impsecret = $(this).val();
-
-		if (!impsecret.match(reImpsecret)) {
-			$('.msgSecret').css('color', 'red').text('잘못된 입력 양식 입니다.');
-			isImpsecret = false;
-			return;
-		} else {
-			$('.msgSecret').css('color', 'green').text('');
-			isImpsecret = true;
-		}
-
-	});
-
-	//포트원키 검증
 	$('input[name=impuid]').focusout(function() {
 		const impuid = $(this).val();
 
@@ -381,9 +366,26 @@ window.onload = function() {
 		} else {
 			$('.msgUid').css('color', 'green').text('');
 			isImpuid = true;
+			console.log('impuid '+ isImpuid)
 		}
 
 	});
+	//포트원키 검증
+	$('input[name=impsecret]').focusout(function() {
+		const impsecret = $(this).val();
+
+		if (!impsecret.match(reImpsecret)) {
+			$('.msgSecret').css('color', 'red').text('잘못된 입력 양식 입니다.');
+			isImpsecret = false;
+			return;
+		} else {
+			$('.msgSecret').css('color', 'green').text('');
+			isImpsecret = true;
+			console.log('impsecret: '+ isImpsecret)
+		}
+
+	});
+
 
 	//포트원키 검증
 	$('input[name=impkey]').focusout(function() {
@@ -396,6 +398,7 @@ window.onload = function() {
 		} else {
 			$('.msgKey').css('color', 'green').text('');
 			isImpkey = true;
+			console.log('impkey: '+ isImpkey)
 		}
 
 	});

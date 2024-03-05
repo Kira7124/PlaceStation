@@ -75,7 +75,8 @@ create table member (
   join_at DATETIME NULL DEFAULT now(),
   user_role VARCHAR(20) NOT NULL,
   grade VARCHAR(20) NULL DEFAULT '브론즈',
-  gender varchar (1)
+  gender varchar (1),
+  oauth varchar (10)
   );
 
 

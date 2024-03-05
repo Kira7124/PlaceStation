@@ -132,6 +132,12 @@ a {
 							</div>
 						</div>
 					</div>
+					<p> ${member}
+					
+					
+					=============================
+					<sec:authentication property="principal"/>
+					</p>
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="">

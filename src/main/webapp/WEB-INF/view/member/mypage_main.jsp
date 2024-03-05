@@ -32,8 +32,8 @@
 				</div>
 
 				<div class="col-md-8 border-right" style="margin-top: 0%;">
-					<c:if test="${not empty principal}">
-					</c:if>
+					
+				
 
 					<div class="p-3 py-5">
 						<div
@@ -41,20 +41,19 @@
 							<form action="/mypage/userUpdate" id="form" class="form"
 								method="post">
 								<!-- 이 폼으로 유저 데이터 업데이트 가능 -->
-								<c:choose>
-									<c:when test="${not empty member}">
+								<c:if test="${not empty Mmember}">
 										<h4 class="text-center" style="font-size: xx-large;">Profile
 											Settings</h4>
-										<p>ssssss: ${oauthUser}</p>
+										<p>ssssss: ${Mmember}</p>
 										<br>
 										<br>
-										<input type="hidden" value="${oauthUser.userNo}" name="userNo"
+										<input type="hidden" value="${Mmember.userno}" name="userNo"
 											id="hiddenuserNo" />
 										<div class="row mt-2">
 											<div class="col-md-6">
 												<label class="labels">Name</label><input type="text"
 													class="form-control" name="userName" placeholder="name"
-													value="${oauthUser.username }">
+													value="${Mmember.username }">
 											</div>
 											<div class="col-md-6">
 												<label class="labels">password</label><input type="password"
@@ -70,7 +69,7 @@
 											<div class="col-md-12">
 												<label class="labels">Email</label><input type="text"
 													class="form-control" placeholder="enter email"
-													value="${oauthUser.userId }" name="uEmail">
+													value="${Mmember.userid }" name="uEmail">
 												<button class="col-md-2 terms-btn"
 													style="padding: 3px !important; float: right; color: #fff;"
 													type="button" data-toggle="modal"
@@ -79,7 +78,7 @@
 											<div class="col-md-12">
 												<label class="labels">Address</label><input type="text"
 													class="form-control" placeholder="enter address"
-													value="${oauthUser.userAddress }">
+													value="${Mmember.useraddress }">
 												<button class="col-md-2 terms-btn"
 													style="padding: 3px !important; float: right; color: #fff;"
 													type="button" data-toggle="modal"
@@ -88,27 +87,27 @@
 											<div class="col-md-12">
 												<label class="labels">gender</label><input type="text"
 													class="form-control" placeholder="enter address line 2"
-													value="${oauthUser.gender == 'M' ? '남성' : '여성'}" readonly>
+													value="${Mmember.gender == 'M' ? '남성' : '여성'}" readonly>
 											</div>
 											<div class="col-md-12">
 												<label class="labels">hp</label><input type="text"
 													class="form-control" placeholder="enter address line 2"
-													value="${oauthUser.userHp }">
+													value="${Mmember.userhp }">
 											</div>
 											<div class="col-md-12">
 												<label class="labels">Join date</label><input type="text"
 													class="form-control" placeholder="education"
-													value="${oauthUser.joinAt}" readonly>
+													value="${member.joinat}" readonly>
 											</div>
 										</div>
 										<div class="row mt-3">
 											<div class="col-md-6">
 												<label class="labels">등급</label><input type="text"
-													class="form-control" value="${oauthUser.grade }" readonly>
+													class="form-control" value="${Mmember.grade }" readonly>
 											</div>
 											<div class="col-md-6">
 												<label class="labels">포인트</label><input type="text"
-													class="form-control" value="${oauthUser.userPoin }"
+													class="form-control" value="${Mmember.userpoin }"
 													readonly>
 											</div>
 										</div>
@@ -121,88 +120,7 @@
 												style="background-color: #111; border-color: #111;">Save
 												Profile</button>
 										</div>
-									</c:when>
-									<c:when test="${not empty principal}">
-										<h4 class="text-center" style="font-size: xx-large;">Profile
-											Settings</h4>
-										<p>ssssss: ${principal}</p>
-										<br>
-										<br>
-										<input type="hidden" value="${principal.userNo}" name="userNo"
-											id="hiddenuserNo" />
-										<div class="row mt-2">
-											<div class="col-md-6">
-												<label class="labels">Name</label><input type="text"
-													class="form-control" name="userName" placeholder="name"
-													value="${principal.username }">
-											</div>
-											<div class="col-md-6">
-												<label class="labels">password</label><input type="password"
-													class="form-control" name="upassword" placeholder="surname"
-													readonly>
-												<button class="col-md-2 terms-btn"
-													style="padding: 3px !important; float: right; color: #fff; width: 38%;"
-													type="button" data-toggle="modal"
-													data-target="#exampleModalPassword">비밀번호 변경</button>
-											</div>
-										</div>
-										<div class="row mt-3">
-											<div class="col-md-12">
-												<label class="labels">Email</label><input type="text"
-													class="form-control" placeholder="enter email"
-													value="${principal.userId }" name="uEmail">
-												<button class="col-md-2 terms-btn"
-													style="padding: 3px !important; float: right; color: #fff;"
-													type="button" data-toggle="modal"
-													data-target="#exampleModalEmail">이메일 변경</button>
-											</div>
-											<div class="col-md-12">
-												<label class="labels">Address</label><input type="text"
-													class="form-control" placeholder="enter address"
-													value="${principal.userAddress }">
-												<button class="col-md-2 terms-btn"
-													style="padding: 3px !important; float: right; color: #fff;"
-													type="button" data-toggle="modal"
-													data-target="#exampleModalAddress">주소 변경</button>
-											</div>
-											<div class="col-md-12">
-												<label class="labels">gender</label><input type="text"
-													class="form-control" placeholder="enter address line 2"
-													value="${principal.gender == 'M' ? '남성' : '여성'}" readonly>
-											</div>
-											<div class="col-md-12">
-												<label class="labels">hp</label><input type="text"
-													class="form-control" placeholder="enter address line 2"
-													value="${principal.userHp }">
-											</div>
-											<div class="col-md-12">
-												<label class="labels">Join date</label><input type="text"
-													class="form-control" placeholder="education"
-													value="${principal.joinAt}" readonly>
-											</div>
-										</div>
-										<div class="row mt-3">
-											<div class="col-md-6">
-												<label class="labels">등급</label><input type="text"
-													class="form-control" value="${principal.grade }" readonly>
-											</div>
-											<div class="col-md-6">
-												<label class="labels">포인트</label><input type="text"
-													class="form-control" value="${principal.userPoin }"
-													readonly>
-											</div>
-										</div>
-										<br>
-										<br>
-										<br>
-										<div class="mt-5 text-center">
-											<button class="btn btn-primary profile-button"
-												name="profile-button" type="submit"
-												style="background-color: #111; border-color: #111;">Save
-												Profile</button>
-										</div>
-									</c:when>
-								</c:choose>
+									</c:if>
 							</form>
 						</div>
 					</div>
