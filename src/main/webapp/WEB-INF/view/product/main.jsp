@@ -4,7 +4,7 @@
 <!-- adminheader.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/mainpage.css" />
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 
 <div class="main">
@@ -112,6 +112,9 @@
 
 
 	<!-- PlaceStation의 추천!! -->
+	<p>
+		session: ${member}
+	</p>
 	<section class="module" id="news" style="margin-top: 50px;">
 		<div class="container">
 			<div class="row">

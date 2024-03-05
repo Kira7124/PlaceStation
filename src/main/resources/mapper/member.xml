@@ -177,8 +177,8 @@
 	<insert id="insertUser">
 		insert into
 		member(user_id,user_password,user_address,user_name, user_hp,
-		user_email,join_at,user_role,gender,imp_uid,imp_secret, imp_key)
-		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender},#{impuid},#{impsecret},#{impkey})
+		user_email,join_at,user_role,gender)
+		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender})
 	</insert>
 
 	<!-- 소셜 유저 회원가입 -->
@@ -281,8 +281,8 @@
 	<!-- (판매자 회원가입) biz테이블 insert -->
 	<insert id="insertBiz">
 		insert into biz
-		(biz_id, file_path)
-		values(#{userno},#{filepath})
+		(biz_id, file_path ,imp_uid,imp_secret, imp_key)
+		values(#{userno},#{filepath},#{impuid},#{impsecret},#{impkey})
 
 	</insert>
 
