@@ -24,11 +24,17 @@ public interface CsNoticeBoardRepository {
 //	public void UpdateReadCnt(Integer nbno) throws Exception;
 	
 	// 공지사항 숫자 세기(검색,페이징처리)
-	public int countNoticeSearchlist(Criteria cri) throws Exception;
+	public int countNoticeSearchlist(@Param("searchKeyword") String searchKeyword, @Param("categoryId") int categoryId) throws Exception;
 
     // 카테고리에 따른 공지사항 수
-	public int CsNoticeBoardCountByCategory(@Param("categoryid") Integer categoryid, @Param("cri") Criteria cri) throws Exception;
+	public int CsNoticeBoardCountByCategory(@Param("categoryid") int categoryid, @Param("cri") Criteria cri) throws Exception;
 	
 	// 카테고리에 따른 공지사항 리스트 출력
-	public List<CsNoticeBoard> CsNoticeBoardListByCategory(@Param("categoryid") Integer categoryid, @Param("cri") Criteria cri) throws Exception;
+	public List<CsNoticeBoard> CsNoticeBoardListByCategory(@Param("categoryid") int categoryid, @Param("cri") Criteria cri) throws Exception;
+
+	// 검색 결과에 따른 공지사항 리스트 출력
+	public List<CsNoticeBoard> noticeSearchlist(@Param("cri") Criteria cri , @Param("categoryId") int categoryid) throws Exception;
+
+	// 검색 결과에 따른 공지사항 수
+	public int countNoticeSearchlistbySearch(Criteria cri) throws Exception;
 }

@@ -28,12 +28,12 @@ public class BizController {
 	// http://localhost/biz/main
 	@GetMapping("/main")
 	public String mainForm() {
-		// 유효성 검사
+		// 멤버 받기
 		Member member = (Member) httpSession.getAttribute("member"); 
-
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if(member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 		return "biz/biz_main";
 	}
 

@@ -128,7 +128,7 @@ a {
 					<div class="row align-items-center">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<h2 class="card-title">결제내역</h2>
+								<h2 class="card-title">모임내역 관리</h2>
 							</div>
 						</div>
 					</div>

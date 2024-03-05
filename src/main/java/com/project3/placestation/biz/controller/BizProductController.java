@@ -62,12 +62,12 @@ public class BizProductController {
 	@GetMapping("/product-management")
 	public String productManagementForm(Model model) {
 
-		// 유효성 검사
+		// 멤버 받기
 		Member member = (Member) httpSession.getAttribute("member"); 
-
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if(member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 
 		List<ResProductDto> dto = bizProductService.findAll(member.getUserno());
 		model.addAttribute("products", dto);

@@ -68,12 +68,12 @@ public class BizReservationController {
 		log.info("size = " + size);
 		log.info("text = " + text);
 		
-		// 유효성 검사
+		// 멤버 받기
 		Member member = (Member) httpSession.getAttribute("member"); 
-
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if(member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 
 		PageReq pageReq = new PageReq(page,size);
 		PageRes<BizHistoryDto> pageRes = adminProdHistoryService.findByBizId(member.getUserno(), pageReq , text);
@@ -102,12 +102,12 @@ public class BizReservationController {
 	@PostMapping("/reservation-management/refund") 
 	public String refund(ReqBizHistoryRefundDto bizHistoryRefundDto) {
 		
-		// 유효성 검사
+		// 멤버 받기
 		Member member = (Member) httpSession.getAttribute("member"); 
-
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if(member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 		
 		log.info(bizHistoryRefundDto.toString());
 		if(bizHistoryRefundDto.getReason() == null || bizHistoryRefundDto.getReason().isEmpty()) {

@@ -187,9 +187,9 @@ h2 {
 				</div>
 			</div>
 			<div class="register-form">
-				<label for="name">name</label> <input type="text" name="zip"
+				<label for="name">Address</label> <input type="text" name="zip"
 					id="zip" placeholder="Enter Adress" onclick="zipcode()" readonly />
-				<span class="msgName"></span>
+				<span class="msgZip"></span>
 				<div>
 					<input type="text" name="addr1" id="addr1" size="50"
 						placeholder="Search Address" readonly />
@@ -207,7 +207,6 @@ h2 {
 				<label for="hp">hp</label> <input type="text" name="userHp" id="hp"
 					placeholder="Enter hp"> <span class="msgHp"> - 포함
 					13자리를 입력하세요.</span>
-				</td>
 			</div>
 			<div class="register-form">
 				<div class="mb-3">
@@ -215,8 +214,8 @@ h2 {
 					<div
 						class="form_toggle row-vh d-flex flex-row justify-content-between">
 						<div class="form_radio_btn radio_male">
-							<input id="radio-1" type="radio" name="gender" value="M"
-								checked> <label for="radio-1">남자</label>
+							<input id="radio-1" type="radio" name="gender" value="M" checked>
+							<label for="radio-1">남자</label>
 						</div>
 
 						<div class="form_radio_btn">
@@ -225,16 +224,34 @@ h2 {
 						</div>
 					</div>
 				</div>
+				<br> <br>
+			</div>
+			
+			<div class="register-form">
+				<label for="impuid">impuid</label>
+				<span class="msgNoti" style="color: green">포트원 [토스페이, 카카오, 페이코, kg이니시스 ] 에 관한 결제를 설정해 주셔야 합니다.</span>  
+				<input type="text" name="impuid"
+					id="impuid" placeholder="Enter impuid"> <span
+					class="msgUid"> impuid를 입력하세요.</span>
+			</div>
+			<div class="register-form">
+				<label for="impkey">impkey</label> <input type="text" name="impkey"
+					id="impkey" placeholder="Enter impkey"> <span
+					class="msgKey"> impkey를 입력하세요.</span>
+			</div>
+			<div class="register-form">
+				<label for="impsecret">impsecret</label> <input type="text"
+					name="impsecret" id="impsecret" placeholder="Enter impsecret">
+				<span class="msgSecret"> impsecret를 입력하세요.</span>
 			</div>
 			<br> <br>
 			<div class="input-group mb-3">
 				<label for="name">사업자 등록증</label> <input type="file" name="filePath"
-					class="form-control" id="inputGroupFile02" style="width: 123%;">
+					class="form-control" id="inputGroupFile02" style="width: 100%;">
 				<label class="input-group-text" for="inputGroupFile02"></label> <span
 					class="msgFile">사업자 등록증을 등록해 주세요</span>
 			</div>
-			<br> 
-			<br>
+			<br> <br>
 			<button type="submit" class="terms-btn" id="registerBtnCheck"
 				name="sRegister" style="margin: auto; display: block; color: white;">가입
 				하기</button>

@@ -58,15 +58,6 @@ h1, h2, h3, h4, h5, h6 {
 							</c:forEach>
 						</ul>
 					</div>
-
-					<div class="widget">
-						<h5 class="widget-title font-alt">이런 모임은 어떠세요?</h5>
-						<ul class="icon-list">
-							<c:forEach items="${partyAnnouncement}" var="anno">
-								<li><a href="#">${anno.partyAnnouncementTitle}</a></li>
-							</c:forEach>
-						</ul>
-					</div>
 				</div>
 				<!-- 사이드바 종료 -->
 
