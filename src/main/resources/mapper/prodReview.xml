@@ -36,18 +36,19 @@
     </update>
 
     <!-- 상품 번호로 리뷰 불러오기 -->
-    <select id="findByRevProdNo">
-        select * from prod_review
-        where prod_rev_delete_yn =
-        'N'
-        and prod_no = #{prod_no}
+    <select id="findByRevProdNoPaged">
+		SELECT * FROM prod_review
+	    WHERE prod_rev_delete_yn = 'N' AND prod_no = #{prod_no}
+	    ORDER BY prod_rev_no 
+	    LIMIT #{offset}, #{limit}
     </select>
 
+	<!-- 리뷰 페이징 -->
 	<select id="findRevNo">
-		select * from prod_review
-		where prod_rev_delete_yn =
-		'N'
-		and prod_no = #{prod_no}
+		SELECT * FROM prod_review
+	    WHERE prod_rev_delete_yn = 'N' AND prod_no = #{prod_no}
+	    ORDER BY prod_rev_no 
+	    LIMIT #{offset}, #{limit}
 	</select>
 	
 	<!-- 리뷰 개수 count -->
@@ -60,4 +61,5 @@
         SELECT ROUND(AVG(prod_rev_star) , 1) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_star != 0 AND prod_rev_delete_yn = 'N'
     </select>
     
+
 </mapper>

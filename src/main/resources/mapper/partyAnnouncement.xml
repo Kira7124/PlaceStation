@@ -6,6 +6,80 @@
 <mapper
 	namespace="com.project3.placestation.repository.interfaces.PartyAnnouncementRepository">
 
+	<select id="findAllJoinParty"
+		resultType="com.project3.placestation.repository.entity.PartyAnnouncement">
+		select party_announcement_no as partyAnnouncementNo ,
+		party_no as partyNo ,
+		party_announcement_title as
+		partyAnnouncementTitle ,
+		party_announcement_description as
+		partyAnnouncementDescription ,
+		party_announcement_update_at as
+		partyAnnouncementUpdateAt,
+		party_announcement_delete_at as
+		partyAnnouncementDeleteAt,
+		party_announcement_delete_yn as
+		partyAnnouncementDeleteYn,
+		party_announcement_created_at as
+		partyAnnouncementCreatedAt
+		from party_announcement
+		where party_no =
+		#{partyNo}
+		and party_announcement_delete_yn = 'N'
+	</select>
 
+	<select id="findById"
+		resultType="com.project3.placestation.repository.entity.PartyAnnouncement">
+		select party_announcement_no as partyAnnouncementNo ,
+		party_no as partyNo ,
+		party_announcement_title as
+		partyAnnouncementTitle ,
+		party_announcement_description as
+		partyAnnouncementDescription ,
+		party_announcement_update_at as
+		partyAnnouncementUpdateAt,
+		party_announcement_delete_at as
+		partyAnnouncementDeleteAt,
+		party_announcement_delete_yn as
+		partyAnnouncementDeleteYn,
+		party_announcement_created_at as
+		partyAnnouncementCreatedAt
+		from
+		party_announcement
+		where
+		party_announcement_no = #{partyAnnouncementNo}
+		and party_announcement_delete_yn = 'N'
+	</select>
 
+	<insert id="save">
+		insert into party_announcement (party_no ,
+		party_announcement_title ,
+		party_announcement_description
+		) values
+		(#{partyNo} , #{partyAnnouncementTitle} ,
+		#{partyAnnouncementDescription});
+	</insert>
+
+	<update id="updateById">
+		update party_announcement
+		set party_announcement_title
+		= #{partyAnnouncementTitle} ,
+		party_announcement_update_at = now() ,
+		party_announcement_description =
+		#{partyAnnouncementDescription}
+		where
+		party_announcement_no =
+		#{partyAnnouncementNo}
+	</update>
+
+	<update id="deleteById">
+		update party_announcement
+		set
+		party_announcement_update_at = now() ,
+		party_announcement_delete_at =
+		now() ,
+		party_announcement_delete_yn = 'Y'
+		where party_announcement_no =
+		#{partyAnnouncementNo}
+	</update>
 </mapper>

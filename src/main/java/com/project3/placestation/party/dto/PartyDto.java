@@ -79,4 +79,13 @@ public class PartyDto {
 	private Integer cancelAmount;
 	private Integer peopleCount;
 	private String purchaseDate;
+	
+	/**
+	 * 개인 당 금액 계산
+	 * @return
+	 */
+	public String peopleByamount() {
+		int amount = adminHisPrice / peopleCount;
+		return String.valueOf(amount);
+	}
 }

@@ -102,6 +102,24 @@ img {
 .post-entry h6 {
 	margin-bottom: 5px;
 }
+
+input-lg textarea{
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #999;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #e6e6e6;
+}
+
+textarea {
+    min-width: 100%;
+    max-width: 100%;
+    min-height : 200px;
+    box-shadow: inset 3px 3px 10px #e6e6e6;
+
+    /* vertical-align: 텍스트를 수직, 수평 정렬 할 수 있다. */
+    vertical-align: top;
+}
 </style>
 <div class="main">
 
@@ -122,56 +140,71 @@ img {
 	<!-- 배너 섹션 종료 -->
 
 	<!-- selected box 시작 -->
-	<section class="module-small">
-		
-	</section>
+	<section class="module-small"></section>
 	<!-- selected box 종료 -->
 
 	<!-- 메인 섹션 시작 -->
 	<section class="module">
 		<div class="container">
 			<div class="post-columns">
-			
-			<!-- 모임 생성 폼 -->
+
+				<!-- 모임 생성 폼 -->
 				<div class="col-sm-6 col-sm-offset-3">
 					<div class="post">
 						<div class="post-header font-alt">
 							<h2 class="post-title">모임 생성</h2>
 						</div>
 						<div class="post-entry">
-							<form id="partyCreateForm" action="/party/create" method="post">
+							<form id="partyCreateForm" action="/party/create" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="productNo" value="${product.prodNo}"/>
+							<input type="hidden" name="adminHisNo" value="${adminProdHistory.adminHisNo}"/>
 								<div class="form-group">
-									<label for="partyName">모임 이름</label> 
-									<input type="text"
-										class="form-control" id="partyName" name="partyName"
-										placeholder="모임 이름을 입력하세요">
+									<label for="partyName">모임 제목</label> <input type="text"
+										class="form-control" id="partyName" name="partyTitle"
+										placeholder="모임 이름을 입력하세요"> 
 									<!-- 모임 설명 입력 폼 -->
 									<label for="partyDescription">모임 설명</label>
-									<textarea class="form-control" id="partyDescription" name="partyDescription"
-										placeholder="모임 설명을 입력하세요"></textarea>
+									<textarea class="form-control" id="partyDescription"
+										name="partyDescription" placeholder="모임 설명을 입력하세요" rows="30"></textarea>
 									<!-- 모임 일 폼 -->
-									<label for="#">모임일</label>
-									<input type="date" class="form-control" id="#" name="#">
+									<!--  <label for="#">모임일</label> <input type="date"
+										class="form-control" id="#" name="#"> -->
 									<!-- 모임 최대 인원 폼 -->
-									<label for="partyMaximumPeople">모임 최대 인원</label>
-									<input type="number" class="form-control" id="partyMaximumPeople" name="partyMaximumPeople">
+									<label for="partyMaximumPeople">모임 최대 인원</label> <input
+										type="number" class="form-control" id="partyMaximumPeople"
+										name="partyMaximumPeople" min="1" max="${adminProdHistory.peopleCount}">
 									<!-- 사진 업로드 폼 -->
-									<label for="partyImage">모임 사진</label>
-									<input type="file" class="form-control" id="#" name="#">
+									<label for="partyImage">모임 사진</label> <input type="file"
+										class="form-control" id="#" name="file">
 								</div>
-									<button type="submit" class="btn btn-d btn-circle">전송</button>
+								<button type="submit" class="btn btn-d btn-circle">전송</button>
 							</form>
 						</div>
-					</div>			
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- 메인 섹션 종료 -->
-	
+
 </div>
 
+<script>
+//Textarea 자동 줄 바꿈
+const DEFAULT_HEIGHT = 30; // textarea 기본 height
 
+const $textarea1 = document.querySelector('#partyDescription'); // textarea 1
+
+// textarea 1
+$textarea1.oninput = (event) => {
+
+	 if(oninput.scrollHeight > oninput.clientHeight) //textarea height 확장
+		 oninput.style.height= oninput.scrollHeight + "px";
+	 else //textarea height 축소
+		 oninput.style.height= (oninput.scrollHeight-18) + "px";
+};
+
+</script>
 <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="

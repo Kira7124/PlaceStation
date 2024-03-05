@@ -17,6 +17,7 @@
 						<div class="comment-form">
 							<h4 class="comment-form-title font-alt">공지사항</h4>
 						</div>
+
 						<div class="post-header font-alt"></div>
 						<div class="search">
 							<!-- 검색 폼 -->
@@ -48,6 +49,7 @@
 					<!-- 공지사항 목록 전체 div -->
 					<div>
 						<div class="panel panel-default">
+
 							<c:forEach var="noticeList" items="${noticeList}">
 								<div class="panel-heading">
 									<h4 class="panel-title font-alt">

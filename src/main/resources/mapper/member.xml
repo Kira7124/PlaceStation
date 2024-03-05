@@ -31,6 +31,14 @@
 		</update>
 		
 		
+		<!-- 사진수정(관리자) -->
+		<update id="AdminPhotoUpdate">
+			update member set file_path=#{filepath}
+			where user_no = #{userno}
+		</update>
+		
+		
+		
 		<!-- 회원정보 삭제(관리자) -->
 		<delete id ="AdminDeleteMember">
 			delete from member where user_no=#{userno} and user_password=#{userpassword}
@@ -163,13 +171,22 @@
 		select * from member where user_email = #{email}
 	</select>
 
-
-	<!-- 일반 유저 회원가입 -->
+  
+  
+	<!-- 판매자 유저 회원가입 -->
 	<insert id="insertUser">
 		insert into
 		member(user_id,user_password,user_address,user_name, user_hp,
-		user_email,join_at,user_role,gender)
-		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender})
+		user_email,join_at,user_role,gender,imp_uid,imp_secret, imp_key)
+		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender},#{impuid},#{impsecret},#{impkey})
+	</insert>
+
+	<!-- 소셜 유저 회원가입 -->
+	<insert id="insertOauthUser">
+		insert into
+		member(user_id,user_password,user_address,user_name, user_hp,
+		user_email,join_at,user_role,gender,social)
+		values(#{userid},#{userpassword},#{useraddress},#{username},#{userhp},#{useremail},NOW(),#{userrole},#{gender},#{oauth})
 	</insert>
 
 	<!-- 판매자 join 유저 -->
@@ -182,7 +199,7 @@
 		grade as userGrade , user_point as
 		userPoint , join_at as joinAt ,
 		user_role as userRole , gender as
-		gender from member where user_no =
+		gender , file_path as filePath from member where user_no =
 		#{userNo}
 	</select>
 
@@ -241,6 +258,19 @@
 		= #{email}
 	</select>
 
+	<!-- (소셜 로그인)이메일 중복검사 -->
+	<select id="selectByValidUserIdOauth" resultType="com.project3.placestation.repository.entity.Member">
+		select * from member where
+		user_id
+		= #{uid}
+	</select>
+
+	<!-- (회원가입)유저 아이디 중복 검사 -->
+	<select id="selectByValidUserNameOauth" resultType="com.project3.placestation.repository.entity.Member">
+		SELECT *
+    FROM member
+    WHERE CONCAT(social, '', user_id) = #{uid}
+	</select>
 
 	<!-- 판매자 회원 가입용 selectKey userNo를 반환  [현재 사용하지 않는중] -->
 	<insert id="insertUserAndSelectUserNo">
@@ -269,7 +299,19 @@
 	</select>
 
 
-
+	
+	<!-- 유저사진변경하기 -->
+	<update id="changePhoto">
+			update member set file_path = #{filePath}
+			where user_no = #{userno}
+	</update>
+	
+	
+	<!-- 유저사진변경 filepath 가져오기 -->
+	<select id="selectUserUpdatePhoto" resultType="com.project3.placestation.repository.entity.Member">
+			select * from member where user_no = #{userno}
+	</select>
+	
 
 </mapper>
 

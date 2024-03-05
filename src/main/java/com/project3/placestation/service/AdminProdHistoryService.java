@@ -20,6 +20,8 @@ import com.project3.placestation.biz.model.dto.StatisticDto;
 import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.biz.model.util.StatisticKind;
+import com.project3.placestation.party.dto.CreatePartySelectDto;
+import com.project3.placestation.party.dto.ResCreatePartySelectDto;
 import com.project3.placestation.payment.model.dto.AdminHisPointDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
 import com.project3.placestation.repository.entity.AdminProdHistory;
@@ -99,12 +101,17 @@ public class AdminProdHistoryService {
 		Integer result = adminProdHistoryRepository.AdminPaymentCancel2(dto);
 	}
 	
-	
-	
 
-	
-	
+	/**
+	 * 환불내역확인3
+	 * 
+	 */
+	public BizHistoryDto AdminRefund(Integer adminHisProdNo) {
+		return adminProdHistoryRepository.AdminRefund(adminHisProdNo);
 
+	} 
+	
+	
 	/**
 	 * 사업자의 거래 내역 전체 조회
 	 * 
@@ -328,6 +335,7 @@ public class AdminProdHistoryService {
 	 * @param merchantUid
 	 * @return
 	 */
+	@Transactional
 	public int updateCancel(String merchantUid , double cancelAmount) {
 		return adminProdHistoryRepository.updateCancel(merchantUid , cancelAmount);
 	}
@@ -349,5 +357,84 @@ public class AdminProdHistoryService {
 	public List<BizMonthlyFeeDto> findMonthlyFee(int bizId) {
 		return adminProdHistoryRepository.findMonthlyFee(bizId);
 
+	}
+	
+	/**
+	 * 모임 생성 전 유저의 모임 생성 가능한 내역 찾기
+	 * @param userNo
+	 * @param text
+	 * @param pageReq
+	 * @return
+	 */
+	public List<ResCreatePartySelectDto> findAllByUserNo( int userNo , String text , PageReq pageReq) {
+		List<CreatePartySelectDto> list = adminProdHistoryRepository.findAllByUserNo(userNo, text, pageReq);
+
+		
+		// 파일 배열로 받을 리스트 객체
+		List<ResCreatePartySelectDto> resProduct = new ArrayList<>();
+
+		// 파일 배열로 저장
+		if (list.isEmpty() == false) {
+			for (CreatePartySelectDto product : list) {
+
+				String[] filePath = {};
+				if (product.getFilePath() != null && product.getFilePath().isEmpty() == false) {
+					String receiveFilePath = product.getFilePath();
+					filePath = receiveFilePath.split(",");
+				}
+
+				ResCreatePartySelectDto createPartySelectDto = ResCreatePartySelectDto
+						.builder()
+						.adminHisNo(product.getAdminHisNo())
+						.adminHisProdNo(product.getAdminHisProdNo())
+						.adminHisPrice(product.getAdminHisPrice())
+						.adminHisSellerId(product.getAdminHisSellerId())
+						.adminHisConfirm(product.isAdminHisConfirm())
+						.adminHisBuyerId(product.getAdminHisBuyerId())
+						.startTime(product.getStartTime())
+						.endTime(product.getEndTime())
+						.cancelYn(product.getCancelYn())
+						.peopleCount(product.getPeopleCount())
+						.prodNo(product.getProdNo())
+						.prodTitle(product.getProdTitle())
+						.prodFullAddress(product.getProdFullAddress())
+						.filePath(filePath)
+						.prodMajorCategoryId(product.getProdMajorCategoryId())
+						.prodSubcategoryId(product.getProdSubcategoryId())
+						.prodRdate(product.getProdRdate())
+						.mainCategory(product.getMainCategory())
+						.subcategory(product.getSubcategory())
+						.purchaseDate(product.getPurchaseDate())
+						.build();
+				
+				resProduct.add(createPartySelectDto);
+				
+			}
+		}
+		
+		return resProduct;
+	}
+	
+	/**
+	 * 모임 생성 카운트 ( 페이징 처리 ) 
+	 * @param userNo
+	 * @param text
+	 * @return
+	 */
+	public int countFindAllByUserNo(int userNo , String text) {
+		return adminProdHistoryRepository.countFindAllByUserNo(userNo, text);
+	}
+	
+	/**
+	 * 상품이 있는지 확인용
+	 * @param adminHisNo
+	 * @return boolean
+	 */
+	public boolean existById(String adminHisNo) {
+		return adminProdHistoryRepository.existById(adminHisNo);
+	}
+	
+	public AdminProdHistory findByAdminHisNo(String adminHisNo) {
+		return adminProdHistoryRepository.findByAdminHisNo(adminHisNo);
 	}
 }

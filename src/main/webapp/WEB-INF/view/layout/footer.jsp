@@ -8,6 +8,16 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PlaceStation</title>
+ <!-- member 추가  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="./my-page.js"></script>
+    <script src="/js/member/terms.js"></script>
+    <script src="/js/member/zipcode.js"></script>
+    <script src="/js/member/authEmail.js"></script>
+    <script src="/js/member/checkUser.js"></script>
+    <script src="/js/member/changePhoto.js"></script>
+      <!-- member 추가  -->
  <!--  Favicons -->
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
@@ -17,7 +27,7 @@
 <!-- Default stylesheets-->
     <link href="assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- layout stylesheets -->
-	<link href="assets/css/layout,css" rel=stylesheet">
+	<link href="assets/css/layout,css" rel="stylesheet">
 <!-- Template specific stylesheets-->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">

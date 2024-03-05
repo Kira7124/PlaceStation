@@ -164,7 +164,7 @@ img {
 					<div class="col-sm-6 col-md-4 col-lg-4">
 						<div class="post">
 							<div class="post-thumbnail">
-								<a href="/party/detail/${party.partyNo}"><img src="/assets/images/product/image2.jpg"
+								<a href="/party/detail/${party.partyNo}"><img src="${party.filePath}"
 									alt="Blog-post Thumbnail" /></a>
 							</div>
 							<div class="post-header font-alt">

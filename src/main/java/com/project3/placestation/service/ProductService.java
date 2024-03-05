@@ -252,6 +252,7 @@ public class ProductService {
 		return dto;
 	}
 
+
 	/**
 	 * 메인 상품 출력 + 페이지 처리
 	 * @param search
@@ -302,5 +303,15 @@ public class ProductService {
 		PageRes<ResProdMainFilterDto> pageRes = new PageRes<>(resProduct , pageReq.getPage() , count , pageReq.getSize());
 		return pageRes;
 	}
+	
+	/**
+	 * 상품 확인
+	 * @param prodNo
+	 * @return
+	 */
+	public int existById(int prodNo) {
+		return productRepository.existById(prodNo);
+	}
 
 }
+

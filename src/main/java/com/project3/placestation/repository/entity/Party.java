@@ -28,4 +28,5 @@ public class Party {
 	private String partyUpdateAt;
 	private String partyDeleteAt;
 	private String partyDeleteYn;
+	
 }

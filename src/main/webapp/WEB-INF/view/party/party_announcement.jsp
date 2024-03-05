@@ -102,6 +102,7 @@ img {
 .post-entry h6 {
 	margin-bottom: 5px;
 }
+
 </style>
 <div class="main">
 
@@ -123,31 +124,58 @@ img {
 
 	<!-- selected box 시작 -->
 	<section class="module-small">
-	        <!-- 공지사항 작성 -->
-                <div class="col-sm-6 col-sm-offset-3">
-                    <div class="post">
-                        <div class="comment-form">
-                            <h4 class="comment-form-title font-alt">공지사항</h4>
-                        </div>
-                        <!-- 공지사항 제목 -->
-                        <div class="post-header font-alt">공지사항 제목</div>
-                        <div class="post-quote" style="height: 500px">
-   							 <p>공지사항 내용</p>
-                        </div>
+		<!-- 공지사항 작성 -->
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3">
+				<div class="post">
+					<div class="comment-form">
+						<h4 class="comment-form-title font-alt">공지사항</h4>
+						<p>공지 날짜 : ${announcement.partyAnnouncementCreatedAt}</p>
+					</div>
+					<!-- 공지사항 제목 -->
+					<div class="post-header font-alt">
+
+						<h3>제목 : ${announcement.partyAnnouncementTitle}</h3>
+
+					</div>
+
+					<div class="post-quote"
+						style="white-space: pre-line; text-align: left;">
+						<h4>${announcement.partyAnnouncementDescription}</h4>
+					</div>
+				</div>
+				<div class="row">
+					<!-- <div style="text-align: right;"> -->
+					<div style="display: flex; justify-content: flex-end; ">
+						<c:if test="${member.userno == party.partyHost}">
+							<a class="btn btn-success" style="margin-right: 10px" 
+								href="/party/announcement/update?announcement-no=${announcement.partyAnnouncementNo}">수정하기</a>
+
+							<form
+								action="/party/announcement/delete/${announcement.partyAnnouncementNo}"
+
+								method="post">
+								<input type="hidden" name="_method" value="delete" />
+								<button class="btn btn-danger" type="submit" >삭제하기</button>
+							</form>
+
+						</c:if>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</section>
 	<!-- selected box 종료 -->
+
 
 	<!-- 메인 섹션 시작 -->
 	<section class="module">
 		<div class="container">
-			<div class="post-columns">
-				
-	
-			</div>
+			<div class="post-columns"></div>
 		</div>
 	</section>
 	<!-- 메인 섹션 종료 -->
-	
 </div>
 
 

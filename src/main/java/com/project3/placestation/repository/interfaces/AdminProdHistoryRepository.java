@@ -13,6 +13,7 @@ import com.project3.placestation.biz.model.dto.MemberToptenDto;
 import com.project3.placestation.biz.model.dto.ResScheduleDto;
 import com.project3.placestation.biz.model.dto.StatisticDto;
 import com.project3.placestation.biz.model.util.PageReq;
+import com.project3.placestation.party.dto.CreatePartySelectDto;
 import com.project3.placestation.payment.model.dto.AdminHisPointDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
 import com.project3.placestation.repository.entity.AdminProdHistory;
@@ -40,6 +41,12 @@ public interface AdminProdHistoryRepository {
 	
 	//관리자 환불처리2
 	public Integer AdminPaymentCancel2(BizHistoryDto dto);
+	
+	
+	//관리자 환불내역확인3
+	public BizHistoryDto AdminRefund(Integer adminHisProdNo);
+	
+	
 	
 	// 사업자 거내 내역 관리
 	public List<BizHistoryDto> findAllByBizId(@Param("bizId") int bizId ,@Param("pageReq") PageReq pageReq);
@@ -86,5 +93,16 @@ public interface AdminProdHistoryRepository {
 	
 	// 월 수수료 통계
 	public List<BizMonthlyFeeDto> findMonthlyFee(int bizId);
-
+	
+	// 유저 번호로 모임 찾기
+	public List<CreatePartySelectDto> findAllByUserNo(@Param("userNo") int userNo ,@Param("text") String text , @Param("pageReq")PageReq pageReq);
+	
+	// 유저 번호로 모임 찾기 페이징 처리 카운트
+	public int countFindAllByUserNo(@Param("userNo") int userNo ,@Param("text") String text );
+	
+	// boolean (count) 조회
+	public boolean existById(String adminProdNo);
+	
+	// 상세 조회
+	public AdminProdHistory findByAdminHisNo(String adminProdNo);
 }
