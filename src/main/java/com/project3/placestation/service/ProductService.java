@@ -20,6 +20,7 @@ import com.project3.placestation.product.dto.ProdFilterDto;
 import com.project3.placestation.product.dto.ResProdMainFilterDto;
 import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
+import com.project3.placestation.repository.interfaces.ProductViewRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

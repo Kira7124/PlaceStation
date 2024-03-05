@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.admin.dto.PageVO;
+import com.project3.placestation.biz.model.util.PageReq;
+import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.cs.dto.CsFaqDTO;
 import com.project3.placestation.cs.dto.CsNoticeDTO;
 import com.project3.placestation.cs.dto.CsQnaDTO;
@@ -36,109 +38,42 @@ public class CsController {
 
 	private HttpSession httpSession;
 
-	// http://localhost/cs/notice
-	// CS 공지사항 페이지
-	@GetMapping("/notice")
-	public String noticeList(CsNoticeDTO csndto, Model model, Criteria cri, HttpServletRequest request)
-			throws Exception {
-
-		// 페이징
-		PageVO pageVO = new PageVO();
-		pageVO.setCri(cri);
-
-		pageVO.setTotalCount(csService.CsNoticeBoardCount());
-		model.addAttribute("pageVO", pageVO);
-		log.info("pageVO1: " + pageVO);
-
-		// 카테고리 
-		
-		// 공지사항 리스트 출력
-		List<CsNoticeBoard> result1 = csService.CsNoticeBoardListAll(cri);
-		model.addAttribute("noticeList", result1);
-
-		// 검색 기능
-		String searchKeyword = request.getParameter("searchKeyword");
-		if (searchKeyword != null && !searchKeyword.isEmpty()) {
-			cri.setSearchKeyword(searchKeyword);
-		}
-
-		return "cs/cs_notice";
-	}
 
 	// CS 공지사항 검색 페이지
 	@GetMapping("/notice/search")
 	public String noticeSearchlist(@RequestParam(value = "searchKeyword", defaultValue = "") String searchKeyword,
-			@RequestParam(value = "categoryId", defaultValue = "0") Integer categoryId, Criteria cri, Model model)
-			throws Exception {
-		log.info("searchKeyword : " + searchKeyword);
-		log.info("categoryId : " + categoryId);
-		// 페이징
-		PageVO pageVO = new PageVO();
-		pageVO.setCri(cri);
+			@RequestParam(value = "categoryId", defaultValue = "0") Integer categoryId,
+			@RequestParam(value = "page", defaultValue = "0") Integer page,
+			@RequestParam(value = "size", defaultValue = "4") Integer size,
 
-		cri.setSearchKeyword(searchKeyword);
+			Model model) throws Exception {
+
 		// 검색 결과에 따른 공지사항 수
-		pageVO.setTotalCount(csService.countNoticeSearchlist(searchKeyword , categoryId));
-		log.info("cri" + cri);
-		log.info("pageVO" + pageVO);
+		int count = csService.countNoticeSearchlist(searchKeyword, categoryId);
+
+		PageReq pageReq = new PageReq(page, size);
 		// 검색 결과에 따른 공지사항 리스트 출력
-		List<CsNoticeBoard> result = csService.noticeSearchlist(cri, categoryId);
-		log.info("result : " + result);
+		List<CsNoticeBoard> result = csService.noticeSearchlist(searchKeyword, categoryId, pageReq);
+		
+		
+		PageRes<CsNoticeBoard> pageRes = new PageRes<>(result, page , count , size);
+		log.info("categoryId : "  + categoryId);
+		log.info("count : "  + count);
+		log.info(pageRes.toString());
+		
 		model.addAttribute("noticeList", result);
 		model.addAttribute("categoryId", categoryId);
 		model.addAttribute("searchKeyword", searchKeyword);
-
-		return "cs/cs_notice_search";
-	}
-
-	@GetMapping("/notice/category")
-	public String noticeListByCategory(@RequestParam("categoryid") Integer categoryid, CsNoticeDTO csndto, Model model,
-			Criteria cri) throws Exception {
-		log.info("categoryid: " + categoryid);
-		log.info("categoryid 출력");
-
-		// 페이징
-		PageVO pageVO = new PageVO();
-		pageVO.setCri(cri);
-
-		// 카테고리에 따른 공지사항 수
-		pageVO.setTotalCount(csService.CsNoticeBoardCountByCategory(categoryid, cri));
-		model.addAttribute("pageVO", pageVO);
-
-		// 카테고리에 따른 공지사항 리스트 출력
-		List<CsNoticeBoard> result1 = csService.CsNoticeBoardListByCategory(categoryid, cri);
-		model.addAttribute("noticeList", result1);
+        model.addAttribute("currentPage",pageRes.getNumber()); // 컨텐츠 배열
+        model.addAttribute("totalPages",pageRes.getTotalPages()); // 컨텐츠 배열
+        model.addAttribute("totalItems",pageRes.getTotalElements()); // 컨텐츠 배열
+        model.addAttribute("startPage",pageRes.getStartPage()); // 컨텐츠 배열
+        model.addAttribute("endPage",pageRes.getEndPage()); // 컨텐츠 배열
 
 		return "cs/cs_notice";
 	}
 
-	// CS 공지사항 검색 페이지 출력
-//	@GetMapping("/notice-search")
-//	public String searchNotice(HttpServletRequest request, Criteria cri, Model model) throws Exception {
-//		String searchOption  = request.getParameter("searchOption");
-//		String searchKeyword = request.getParameter("searchKeyword");
-//		
-//		if (searchOption != null && !searchOption.isEmpty()) {
-//	        cri.setSearchOption(searchOption);
-//	    }
-//		
-//		
-//	    if (searchKeyword != null && !searchKeyword.isEmpty()) {
-//	        cri.setSearchKeyword(searchKeyword);
-//	    }
-//		
-//	    PageVO pageVO = new PageVO();
-//	    pageVO.setCri(cri);
-//	    pageVO.setTotalCount(CsService.countNoticeSearchlist(cri));
-//	    
-//	    model.addAttribute("pageVO", pageVO);
-//	    
-//	    List<NoticeBoard> result = CsService.noticeSearchlist(cri);
-//	    model.addAttribute("noticelist", result);
-//	    return "cs/notice-search";
-//		
-//		
-//	}
+
 
 	// http://localhost/cs/qna
 	// CS 1:1 문의 페이지

@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.databind.ser.std.FileSerializer;
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.cs.dto.QnaBoardReqDto;
 import com.project3.placestation.filedb.service.FiledbService;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.entity.QnaBoardCategory;
 import com.project3.placestation.service.CsService;
 import com.project3.placestation.service.QnaBoardCategoryService;
 import com.project3.placestation.service.QnaBoardService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -36,6 +40,10 @@ public class CsQnaController {
 
 	@Autowired
 	FiledbService filedbService;
+	
+	@Autowired
+	HttpSession httpSession;
+	
 	/**
 	 * 1 대 1 문의 태그폼 이동
 	 * @param model
@@ -65,6 +73,11 @@ public class CsQnaController {
 	 */
 	@GetMapping("/qna-write/{category-id}")
 	public String qnaWriteForm(Model model , @PathVariable(value = "category-id") Integer categoryId) {
+		// 1.유효성 검사
+		Member member = (Member) httpSession.getAttribute("member");
+		if (member == null) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		
 		model.addAttribute("categoryId" , categoryId);
 		return "cs/cs_qna_write_form";

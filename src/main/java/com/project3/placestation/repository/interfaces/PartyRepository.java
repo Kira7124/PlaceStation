@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.party.dto.PartyDto;
 import com.project3.placestation.repository.entity.Party;
 
@@ -12,7 +13,10 @@ import com.project3.placestation.repository.entity.Party;
 public interface PartyRepository {
 	
 	// 전체 조회
-	public List<Party> findAll();
+	public List<Party> findAll(@Param("partyTitle")String partyTitle ,@Param("page") PageReq pageReq);
+	
+	// 전체 조회 카운트
+	public int countFindAll(String partyTitle);
 	
 	// 상세 조회
 	public PartyDto findById(int partyNo);

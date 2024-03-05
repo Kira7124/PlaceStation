@@ -39,6 +39,7 @@ public class ResProductDto {
 	private String prodDeleteAt;	// 삭제일
 	private String prodDeleteReason; // 삭제 이유
 	private String[] additionExplanation;
+	private String userName;
 
 
 }

@@ -22,5 +22,11 @@
     <select id="countWishlist">
         SELECT COUNT(*) FROM wish_list WHERE prod_no = #{prodNo}
     </select>
-
+	
+	<!-- 찜 여부 확인 -->
+    <select id="findByProdNoAndUserNo" resultType="int">
+        SELECT count(*)
+        FROM wish_list
+        WHERE prod_no = #{prodNo} AND user_no = #{userNo}
+    </select>
 </mapper>

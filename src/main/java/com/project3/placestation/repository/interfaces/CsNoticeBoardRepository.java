@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.repository.entity.CsNoticeBoard;
 
 @Mapper
@@ -23,8 +24,6 @@ public interface CsNoticeBoardRepository {
 //	// 글조회수증가
 //	public void UpdateReadCnt(Integer nbno) throws Exception;
 	
-	// 공지사항 숫자 세기(검색,페이징처리)
-	public int countNoticeSearchlist(@Param("searchKeyword") String searchKeyword, @Param("categoryId") int categoryId) throws Exception;
 
     // 카테고리에 따른 공지사항 수
 	public int CsNoticeBoardCountByCategory(@Param("categoryid") int categoryid, @Param("cri") Criteria cri) throws Exception;
@@ -32,9 +31,14 @@ public interface CsNoticeBoardRepository {
 	// 카테고리에 따른 공지사항 리스트 출력
 	public List<CsNoticeBoard> CsNoticeBoardListByCategory(@Param("categoryid") int categoryid, @Param("cri") Criteria cri) throws Exception;
 
-	// 검색 결과에 따른 공지사항 리스트 출력
-	public List<CsNoticeBoard> noticeSearchlist(@Param("cri") Criteria cri , @Param("categoryId") int categoryid) throws Exception;
-
 	// 검색 결과에 따른 공지사항 수
 	public int countNoticeSearchlistbySearch(Criteria cri) throws Exception;
+	
+	// 검색 결과에 따른 공지사항 리스트 출력
+	public List<CsNoticeBoard> noticeSearchlist(@Param("searchKeyword") String searchKeyword, @Param("categoryId") int categoryid , @Param("page") PageReq pageReq) throws Exception;
+
+	
+	// 공지사항 숫자 세기(검색,페이징처리)
+	public int countNoticeSearchlist(@Param("searchKeyword") String searchKeyword, @Param("categoryId") int categoryId) throws Exception;
+
 }

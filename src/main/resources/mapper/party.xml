@@ -31,7 +31,20 @@
 		from party
 		where
 		party_delete_yn = 'N'
+		and party_title like '%' || #{partyTitle} || '%'
+		LIMIT #{page.page} *
+		#{page.size} , #{page.size}
 	</select>
+
+	<select id="countFindAll"
+		resultType="int">
+		select count(*)
+		from party
+		where
+		party_delete_yn = 'N'
+		and party_title like '%' || #{partyTitle} || '%'
+	</select>
+	
 
 	<select id="findById"
 		resultType="com.project3.placestation.party.dto.PartyDto">
@@ -144,29 +157,34 @@
 	</select>
 
 	<insert id="save">
-		insert into party (party_title , party_description , party_host,
-		party_maximum_people , product_no ,admin_his_no , file_path)
+		insert into party (party_title , party_description ,
+		party_host,
+		party_maximum_people , product_no ,admin_his_no ,
+		file_path)
 		values (#{partyTitle}, #{partyDescription} , #{partyHost} ,
 		${partyMaximumPeople} , #{productNo} ,#{adminHisNo} , #{filePath});
 	</insert>
-	
+
 	<update id="update">
-		update party 
+		update party
 		set party_title = #{party.partyTitle},
-		party_description = #{party.partyDescription} ,
-		party_maximum_people = #{party.partyMaximumPeople}
+		party_description =
+		#{party.partyDescription} ,
+		party_maximum_people =
+		#{party.partyMaximumPeople}
 		<if test="isFileChange == 'true'.toString()">
-		,
-		file_path = #{party.filePath}
+			,
+			file_path = #{party.filePath}
 		</if>
 		where party_no = #{party.partyNo}
 	</update>
-	
+
 	<update id="delete">
-		update party 
+		update party
 		set party_delete_at = now() ,
 		party_update_at = now() ,
-		party_delete_yn = 'Y'
+		party_delete_yn =
+		'Y'
 		where party_no = #{partyNo}
 	</update>
 </mapper>

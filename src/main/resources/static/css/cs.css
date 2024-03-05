@@ -1,0 +1,27 @@
+@charset "UTF-8";
+html {
+    height: 100%;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+}
+
+.module-small {
+
+    display:flex;
+    flex-basis: 950px; 
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-end;
+}
+
+.pagination {
+	display: flex;
+	flex-direction: row;
+	
+}

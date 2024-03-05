@@ -188,12 +188,13 @@ public class AdminProdHistoryService {
 	 */
 	public int[] conversionTime(String onclickDate, List<ProductInvalidDateDto> list) {
 		// 구매일과 일치하는 요소만 필터링하여 리스트로 반환
-		List<ProductInvalidDateDto> conversionList = list.stream().filter(e -> e.getPurchaseDate().equals(onclickDate))
+		List<ProductInvalidDateDto> conversionList = list.stream().filter(e -> e.getPurchaseDate().equals(onclickDate) && e.getCancelYn().equals("N"))
 				.collect(Collectors.toList());
 
 		// 일치 확인 또는 리턴
 		if (conversionList.isEmpty()) {
-			return null;
+			int[] a = {}; // null 값은 안됨 (== null 이면 오류떠서 없는 배열로 리턴)
+			return a;
 		}
 
 		String strTime = "";

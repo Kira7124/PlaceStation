@@ -13,8 +13,8 @@
 	</update>
 
 	<!-- 특정 상품의 조회수 확인 쿼리 -->
-	<select id="getProductViews">
-		SELECT prod_views
+	<select id="getProductViews" resultType="com.project3.placestation.product.dto.ResProductViewDto">
+		SELECT prod_views as prodViews
 		FROM product_views
 		WHERE prod_no = #{prodNo}
 	</select>

@@ -42,7 +42,7 @@ public class MainController {
 
 	@GetMapping("/search-page")
 	public String searchPageForm(@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "size", defaultValue = "3") int size,
+			@RequestParam(value = "size", defaultValue = "16") int size,
 			@RequestParam(value = "major-category", defaultValue = "0") int majorCategory,
 			@RequestParam(value = "subcategory", defaultValue = "0") int subcategory,
 			@RequestParam(value = "search", defaultValue = "") String search,

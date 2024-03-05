@@ -133,12 +133,14 @@ img {
 					<div class="col-sm-6 col-md-4 col-lg-4">
 						<div class="post">
 							<div class="post-thumbnail">
-								<a href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}"><img src="${party.filePath[0]}"
-									alt="Blog-post Thumbnail" /></a>
+								<a
+									href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}"><img
+									src="${party.filePath[0]}" alt="Blog-post Thumbnail" /></a>
 							</div>
 							<div class="post-header font-alt">
 								<h2 class="post-title">
-									<a href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}">${party.prodTitle}</a>
+									<a
+										href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}">${party.prodTitle}</a>
 								</h2>
 								<div class="post-meta">
 									예약 일자&nbsp;<a href="#"></a>&nbsp;| ${party.purchaseDate}
@@ -149,8 +151,8 @@ img {
 								<p>모임 최대 인원 : ${party.peopleCount}</p>
 							</div>
 							<div class="post-more">
-								<a class="more-link" href="#">${party.mainCategory}</a>
-								<a class="more-link" href="#">${party.subcategory}</a>
+								<a class="more-link" href="#">${party.mainCategory}</a> <a
+									class="more-link" href="#">${party.subcategory}</a>
 							</div>
 						</div>
 					</div>
@@ -161,12 +163,12 @@ img {
 	</section>
 	<!-- 메인 섹션 종료 -->
 	<section class="container">
-	
+
 		<ul class="pagination font-alt">
 			<li class="page-item"><c:choose>
 					<c:when test="${currentPage > 0}">
 						<a class="page-link"
-							href="/party/select-create?page=${currentPage - 1}&size=${size}&text=${text}"
+							href="/party/select-create?page=${currentPage - 1}&text=${text}"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a>
 
@@ -179,9 +181,10 @@ img {
 					</c:otherwise>
 				</c:choose></li>
 
-			<c:forEach begin="${1}" end="${totalPages}" var="var">
+			<c:forEach begin="${0}" end="${totalPages == 0 ? 0 : totalPages - 1}"
+				var="var">
 				<li class="page-item"><a class="page-link"
-					href="/party/select-create?page=${var - 1}&size=${size}&text=${text}">${var}</a></li>
+					href="/party/select-create?page=${var}&text=${text}">${var + 1}</a></li>
 
 			</c:forEach>
 
@@ -189,7 +192,7 @@ img {
 			<li class="page-item"><c:choose>
 					<c:when test="${currentPage < totalPages - 1}">
 						<a class="page-link"
-							href="/party/select-create?page=${currentPage + 1}&size=${size}&text=${text}"
+							href="/party/select-create?page=${currentPage + 1}&text=${text}"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a>
 

@@ -65,7 +65,7 @@ public class PartyAnnouncementController {
 
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		// 해당 공지사항의 접근권한
@@ -93,7 +93,7 @@ public class PartyAnnouncementController {
 	public String partyAnnouncementCreateForm(@RequestParam(value = "party-no") Integer partyNo, Model model) {
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -112,7 +112,7 @@ public class PartyAnnouncementController {
 
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (announcementReqDto.getPartyAnnouncementTitle() == null
@@ -144,7 +144,7 @@ public class PartyAnnouncementController {
 			Model model) {
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		PartyAnnouncement announcement = announcementService.findById(announcementNo);
@@ -166,7 +166,7 @@ public class PartyAnnouncementController {
 
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (announcementReqDto.getPartyAnnouncementNo() == null || announcementReqDto.getPartyAnnouncementNo() < 1) {
@@ -204,7 +204,7 @@ public class PartyAnnouncementController {
 	public String partyAnnouncementDelete(@PathVariable(value = "announcementNo") Integer announcementNo) {
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (announcementNo == null || announcementNo < 1) {

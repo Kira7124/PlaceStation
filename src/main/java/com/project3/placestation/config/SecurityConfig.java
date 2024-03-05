@@ -83,7 +83,7 @@ public class SecurityConfig {
 				// SpringBoot 3.1버전 부터 람다식으로 작성 해야한다.
 				.authorizeHttpRequests((auth) -> auth
 
-						// .requestMatchers("/member/main").hasRole("USER")
+						 .requestMatchers("/biz/main").hasRole("BIZ")
 						.requestMatchers("/**").permitAll().anyRequest().permitAll() // 본인 requsetMapping
 				);
 

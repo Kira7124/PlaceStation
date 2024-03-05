@@ -165,7 +165,10 @@ public class BizReservationController {
 		
 		cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ZERO);
 		chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.ZERO);
-		paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+		boolean refundResult = paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+		if(refundResult == false) {
+			throw new CustomRestfulException(BizDefine.SERVER_ERROR_OR_NOT_FOUND, HttpStatus.BAD_REQUEST);
+		}
 		
 		// 시간 일자 별로 환불 신청
 		// 지난 일수가 7일 이면 

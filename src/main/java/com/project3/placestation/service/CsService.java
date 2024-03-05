@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.cs.controller.CsController;
 import com.project3.placestation.repository.entity.CsFaqBoard;
 import com.project3.placestation.repository.entity.CsNoticeBoard;
@@ -69,10 +70,8 @@ public class CsService {
 	}
 	
 	// 공지사항 검색 목록
-	public List<CsNoticeBoard> noticeSearchlist(Criteria cri , int categoryId) throws Exception {
-		List<CsNoticeBoard> result1 = csNoticeBoardRepository.noticeSearchlist(cri , categoryId);
-		log.info("cri" + cri);
-		log.info(cri.toString());
+	public List<CsNoticeBoard> noticeSearchlist(String searchKeyword , int categoryId , PageReq pageReq) throws Exception {
+		List<CsNoticeBoard> result1 = csNoticeBoardRepository.noticeSearchlist(searchKeyword , categoryId , pageReq);
 		return result1;
 	}
 	
