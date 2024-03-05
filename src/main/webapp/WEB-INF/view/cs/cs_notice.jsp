@@ -27,8 +27,18 @@
 					          </form>
 					        </div> 
 						</div>
+<<<<<<< HEAD
 						<div class="comments"></div>
 
+=======
+						<div class="comments" style="text-align:right">
+							<h5>
+								<button class="btn btn-border-d btn-round" style="padding: 5px 20px"  onclick="location.href='http://localhost/cs/notice/category?categoryid=0'">일반</button>
+								<button class="btn btn-d btn-round" style="padding: 5px 20px"  onclick="location.href='http://localhost/cs/notice/category?categoryid=1'">사업자</button>
+							</h5>
+					
+						</div>
+>>>>>>> partysh
 						<!-- 공지사항 목록 전체 div -->
 						<div>
 							<div class="panel panel-default">
@@ -58,7 +68,7 @@
 							<c:forEach var="i" begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
 								<li class="page-item ${isActive ? 'active' : ''}">
-									<a class="page-link" href="/cs/notice?page=${i}">${i}</a>
+									<a class="page-link" href="/cs/notice/category?categoryid=${categoryid}&page=${i}">${i}</a>
 								</li>
 							</c:forEach>
 						

@@ -27,7 +27,8 @@ public class Biz {
 	private String impUid;
 	private String impKey;
 	private String impSecret;
-	
+	private String userId;
+	private Integer userNo;
 	
 	//포메터(시간)
 	public String formatjoinAt() {

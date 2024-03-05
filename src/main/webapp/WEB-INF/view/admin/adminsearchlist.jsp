@@ -49,7 +49,7 @@
 						<thead>
 							<tr>
 								<th>사진</th>
-								<th>등급</th>
+								<th>등급(포인트)</th>
 								<th>번호</th>
 								<th>이름</th>
 								<th>아이디</th>
@@ -63,19 +63,26 @@
 					<c:forEach var="memberlist" items="${memberlist}">
 						<tbody>
 							<tr>
-								<td>
-								  <img src="/assets/img/${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
+							     <td>
+								    <c:choose>
+								        <c:when test="${memberlist.filepath eq 'default.jpg'}">
+								            <img src="/assets/img/default.jpg" style="width:30px; height: 30px; border-radius:50%;">
+								        </c:when>
+								        <c:otherwise>
+								            <img src="${memberlist.filepath}" style="width:30px; height: 30px; border-radius:50%;">
+								        </c:otherwise>
+								    </c:choose>
 								</td>
 								  <td>	
 									<c:choose>
 										<c:when test="${memberlist.grade == '브론즈'}">
-											<img src="/assets/img/bronze.png" style="width:30px; height: 30px; border-radius:50%;">
+											<img src="/assets/img/bronze.png" style="width:30px; height: 30px; border-radius:50%;">	(${memberlist.userpoint})
 										</c:when>
 										<c:when test="${memberlist.grade =='실버'}">
-											<img src="/assets/img/silver.png" style="width:30px; height: 30px; border-radius:50%;">
+											<img src="/assets/img/silver.png" style="width:30px; height: 30px; border-radius:50%;"> (${memberlist.userpoint})
 										</c:when>
 										<c:otherwise>
-											<img src="/assets/img/gold.png" style="width:30px; height: 30px; border-radius:50%;">
+											<img src="/assets/img/gold.png" style="width:30px; height: 30px; border-radius:50%;"> (${memberlist.userpoint})
 										</c:otherwise>
 									</c:choose>
 								  </td>
@@ -121,7 +128,7 @@
 									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 										${i} </a></li>
 							</c:forEach>
-
+							
 
 				
 							<c:if test="${pageVO.next }">

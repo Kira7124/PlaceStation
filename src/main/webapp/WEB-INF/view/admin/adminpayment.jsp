@@ -13,71 +13,131 @@
 			<div class="main-content">
 				<div class="container-fluid">
 
-					<div class="panel">
-				<div class="panel-heading">
-					<h3 class="panel-title"><b>결제/예약관리</b></h3>
+		<div class="panel">
+		
+		
+		
+		
+		
+			<div style="display: flex;">
+				    <div>
+				        <div class="panel-heading">
+				            <h3 class="panel-title" style="margin-left: 5px; margin-top: 10px;"><b>결제/예약관리</b></h3>
+				        </div>
+				    </div>
+				   <form action="/admin/admin-searchpayment" method="get">
+					    <div>
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
+					        			<option value="bank">은행</option>
+								        <option value="admin_his_prod_name">상품명</option>
+				   				</select>
+					            <input type="text" name="searchKeyword" class="form-control" placeholder="키워드입력">
+					            <span class="input-group-btn">
+					                <button type="submit" class="btn btn-primary" >검색</button>
+					            </span>
+					        </div>
+					    </div>
+				    </form> 
 				</div>
+				
+				
+				
+				
+				
 				<div class="panel-body no-padding">
 					<table class="table table-striped" style="width: 95%; margin: auto;">
 						<thead>
 							<tr>
+								<th>상품번호</th>
+								<th>사업자번호</th>
+								<th>사업자잔액</th>
+								<th>결제금액</th>
 								<th>상품명</th>
-								<th>아이디</th>
-								<th>금액</th>
-								<th>이메일</th>
 								<th>은행</th>
-								<th>예약일</th>
+								<th>구매확정</th>
 								<th>환불</th>
 							</tr>
 						</thead>
+					<c:forEach var="paymentlist" items="${paymentlist}">
 						<tbody>
 							<tr>
-								<td><a href="#">763648</a></td>
-								<td>Steve</td>
-								<td>$122</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-								<td><span class="label label-success">COMPLETED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763649</a></td>
-								<td>Amber</td>
-								<td>$62</td>
-								<td>Oct 21, 2016</td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>
-								<td><span class="label label-warning">PENDING</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763650</a></td>
-								<td>Michael</td>
-								<td>$34</td>
-								<td>Oct 18, 2016</td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-								<td><span class="label label-danger">FAILED</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763651</a></td>
-								<td>Roger</td>
-								<td>$186</td>
-								<td>Oct 17, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-							</tr>
-							<tr>
-								<td><a href="#">763652</a></td>
-								<td>Smith</td>
-								<td>$362</td>
-								<td>Oct 16, 2016</td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
-								<td><span class="label label-success">SUCCESS</span></td>
+								<td>${paymentlist.adminHisProdNo}</td>
+								<td>${paymentlist.bizId}</td>
+								<td>${paymentlist.bizBalance}</td>
+								<td>${paymentlist.adminHisPrice}</td>
+								<td>${paymentlist.adminHisProdName}</td>
+								<td>${paymentlist.bank}</td>
+								<td>
+								    <c:choose>
+								        <c:when test="${paymentlist.adminHisConfirm}">
+								            <span class="label label-success">확정</span>
+								        </c:when>
+								        <c:otherwise>
+								            <span class="label label-danger">취소</span>
+								        </c:otherwise>
+								    </c:choose>
+								</td>
+								<td>
+								    <c:choose>
+								        <c:when test="${paymentlist.cancelYn eq 'N'}">
+								          <a href ="/admin/admin-paymentcancel" data-toggle="modal" data-target="#cancelModal">
+								            <span class="label label-info">환불</span>
+								          </a>
+								        </c:when>
+								        <c:when test="${paymentlist.cancelYn eq 'Y'}">
+								            <span class="label label-info">환불완료</span>
+								        </c:when>
+								    </c:choose>
+								</td>									
+								</td>								
 							</tr>
 						</tbody>
+					  </c:forEach>
 					</table>
+					
+					<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
+						<ul class="pagination">
+							<c:if test="${pageVO.prev }">
+								<li class="page-item">
+								  <a class="page-link" href="/admin/admin-payment?page=${pageVO.startPage - 1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								  </a>
+								</li>
+							</c:if>
+
+
+					
+							<c:forEach var="i" begin="${pageVO.startPage }"
+								end="${pageVO.endPage }" step="1">
+								<c:set var="isActive" value="${pageVO.cri.page == i}" />
+								<li class="page-item ${isActive ? 'active' : ''}"><a
+									class="page-link" href="/admin/admin-payment?page=${i}"
+									style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
+										${i} </a></li>
+							</c:forEach>
+
+
+				
+							<c:if test="${pageVO.next }">
+								<li class="page-item"><a class="page-link"
+									href="/admin/admin-payment?page=${pageVO.endPage + 1 }"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</c:if>
+
+						</ul>
+					 </nav>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				</div>
 			</div>
 
@@ -87,6 +147,28 @@
 		<!-- END MAIN -->	
 	</div>
 	<!-- END WRAPPER -->
+	
+				
+	
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

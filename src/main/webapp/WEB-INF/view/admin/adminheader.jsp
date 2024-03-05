@@ -33,9 +33,11 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<b><a href="/admin/admin-main" style="color:black;">PlaceStation</a></b>
+				<a href="/admin/admin-main" style="color:black;">
+					<img src="/logo/logo.jpg.png" style ="width: 80px; height: 40px;">
+				</a>
 			</div>
-			<div class="container-fluid">
+			<div class="container-fluid" >
 				
 			<div class="navbar-btn navbar-btn-right">
 				</div>

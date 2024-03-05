@@ -12,13 +12,14 @@ import lombok.extern.slf4j.Slf4j;
 @ToString
 public class BizHistoryDto {
 	private String adminHisNo;	// 기본키 == 포트원 키
+	private String adminHisProdName; // 상품명
 	private Integer adminHisProdNo;	 // 상품번호
 	private Integer adminHisPrice;	// 상품 가격
 	private Integer adminHisUsePoint;	// 사용한 포인트
 	private Integer adminHisSavePoint;	// 구매시 적립된 포인트
 	private Integer adminHisDiscount;	// 적용된 할인된 금액
 	private Integer adminHisCharge;	// 구매 수수료
-	private Integer hisSellerId;	// 판매자
+	private Integer adminHisSellerId;	// 판매자
 	private boolean adminHisConfirm;	// 구매 확정 여부
 	private String adminHisCreatedAt;	// 내역 생성 시간
 	private Integer adminHisBuyerId;	// 산 사람
@@ -36,5 +37,7 @@ public class BizHistoryDto {
 	private String prodTitle;
 	private String mainCategory;
 	private String subcategory;
+	private Integer bizId;
+	private Integer bizBalance;
 	private String token; // 토큰
 }

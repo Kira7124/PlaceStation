@@ -3,8 +3,12 @@ package com.project3.placestation.repository.interfaces;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.h2.mvstore.Page;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.stereotype.Component;
 
+import com.project3.placestation.product.dto.ProdReviewDto;
 import com.project3.placestation.repository.entity.ProdReview;
 
 @Component
@@ -17,7 +21,8 @@ public interface ProdReviewRepository {
 	public int addReview(ProdReview review); // 리뷰 등록
 	public int saveReview(ProdReview review); // 답글 등록
 
-	public int deleteReview(Integer prodRevNo);
 	public int countReview(Integer prodNo);
 	public Double avgStar(Integer prodNo);
+	public int deleteReview(@Param(value = "prodRevNo")Integer prodRevNo); // 리뷰 삭제
+
 }

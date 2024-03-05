@@ -97,14 +97,11 @@ public class ProductController {
 
 	// 리뷰 삭제
 	@PostMapping("/deleteReview/{prodRevNo}")
-	public String deleteReview(ProdReviewDto dto, @PathVariable Integer prodRevNo, @RequestParam Integer prodNo) {
-		dto.setProdNo(prodNo);
-		prodReviewService.deleteReview(prodRevNo);
-
-		return "redirect:/product/productDetail?prod_no=" + prodNo;
+	public String deleteReview(@PathVariable("prodRevNo") Integer prodRevNo, @RequestParam("prodNo") Integer prodNo) {
+	    prodReviewService.deleteReview(prodRevNo);
+	    return "redirect:/product/productDetail?prod_no=" + prodNo;
 	}
-
-
+	
 	// 찜(상품 좋아요) 하기
 	@PostMapping("/addWishlist")
 	public String addWishlist(ProdWishListDto dto, @RequestParam("prodNo") Integer prodNo) {

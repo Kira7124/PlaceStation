@@ -22,16 +22,6 @@
 				        </div>
 				    </div>
 				  </div>
-		 		  <div class="row" style ="margin-top: 30px;">
-				    <div class="col-md-3">
-				        <label for="name" class="form-label">아이디</label>
-				    </div>
-				    <div class="col-md-5">
-				        <div class="input-box">
-				            <input type="text" class="form-control" name = "bizid" id="bizid" placeholder="아이디입력">
-				        </div>
-				    </div>
-				  </div>
 				  <div class="row" style ="margin-top: 10px;">
 				    <div class="col-md-3">
 				        <label for="name" class="form-label">브랜드명</label>
@@ -72,7 +62,21 @@
 				        </div>
 				    </div>
 				 </div>
-		
+				
+			   <div class="row" style ="margin-top: 10px;">
+				    <div class="col-md-3">
+				        <label for="name" class="form-label">등록증</label>
+				    </div>
+				    <div class="col-md-5">
+				        <div class="input-box">
+						<input type='file' id='btnAtt' multiple='multiple' name="files">				        
+				    </div>
+				</div>
+		      </div> 	
+				
+				
+				
+				
 		 		
 		      </div>
 		    </div>

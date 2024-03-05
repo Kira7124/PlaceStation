@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,8 +18,12 @@ import com.project3.placestation.cs.dto.CsQnaDTO;
 import com.project3.placestation.repository.entity.CsFaqBoard;
 import com.project3.placestation.repository.entity.CsNoticeBoard;
 import com.project3.placestation.repository.entity.CsQnaBoard;
+import com.project3.placestation.repository.entity.NoticeBoard;
 import com.project3.placestation.service.CsService;
 
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,11 +34,14 @@ public class CsController {
 	@Autowired
 	private CsService csService;
 	
+	private HttpSession httpSession;
+	
 	// http://localhost/cs/notice
 	// CS 공지사항 페이지
 	@GetMapping("/notice")
 	public String noticeList(CsNoticeDTO csndto, Model model, Criteria cri) throws Exception {
-	
+		
+		// 페이징
 		PageVO pageVO = new PageVO();
 		pageVO.setCri(cri);
 
@@ -49,6 +57,54 @@ public class CsController {
 	
 		return "cs/cs_notice";
 	}
+	
+	@GetMapping("/notice/category")
+	public String noticeListByCategory(@RequestParam("categoryid") Integer categoryid, CsNoticeDTO csndto, Model model, Criteria cri) throws Exception {
+		log.info("categoryid: " + categoryid);
+		log.info("categoryid 출력");
+		
+		// 페이징
+	    PageVO pageVO = new PageVO();
+	    pageVO.setCri(cri);
+	    
+	    // 카테고리에 따른 공지사항 수
+	    pageVO.setTotalCount(csService.CsNoticeBoardCountByCategory(categoryid, cri));
+	    model.addAttribute("pageVO", pageVO);
+		
+	    // 카테고리에 따른 공지사항 리스트 출력
+	   List<CsNoticeBoard> result1 = csService.CsNoticeBoardListByCategory(categoryid, cri);
+	   model.addAttribute("noticeList", result1);
+
+	    return "cs/cs_notice";
+	}
+	
+	// CS 공지사항 검색 페이지 출력
+//	@GetMapping("/notice-search")
+//	public String searchNotice(HttpServletRequest request, Criteria cri, Model model) throws Exception {
+//		String searchOption  = request.getParameter("searchOption");
+//		String searchKeyword = request.getParameter("searchKeyword");
+//		
+//		if (searchOption != null && !searchOption.isEmpty()) {
+//	        cri.setSearchOption(searchOption);
+//	    }
+//		
+//		
+//	    if (searchKeyword != null && !searchKeyword.isEmpty()) {
+//	        cri.setSearchKeyword(searchKeyword);
+//	    }
+//		
+//	    PageVO pageVO = new PageVO();
+//	    pageVO.setCri(cri);
+//	    pageVO.setTotalCount(CsService.countNoticeSearchlist(cri));
+//	    
+//	    model.addAttribute("pageVO", pageVO);
+//	    
+//	    List<NoticeBoard> result = CsService.noticeSearchlist(cri);
+//	    model.addAttribute("noticelist", result);
+//	    return "cs/notice-search";
+//		
+//		
+//	}
 	
 	// http://localhost/cs/qna
 	// CS 1:1 문의 페이지

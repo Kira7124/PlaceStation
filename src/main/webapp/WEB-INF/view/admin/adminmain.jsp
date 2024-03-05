@@ -62,8 +62,8 @@
 											<img src="/assets/icons/payment.png" style="width:50px; height:50px;">
 										</span>
 										<p>
-											<span class="number">203</span>
-											<span class="title">결제/예약</span>
+											<span class="number">${totalPrice}</span>
+											<span class="title">매출액(월간)</span>
 										</p>
 									</div>
 								</div>
@@ -104,7 +104,7 @@
 										<tbody>
 											<tr>
 												<td>${qnalist.qbno}</td>
-												<td>${qnalist.qwriter}</td>
+												<td>${qnalist.userid}</td>
 												<td><a href="/admin/admin-qnadetail?qbno=${qnalist.qbno}">${qnalist.qtitle}</a></td>
 												<td>${qnalist.formatjoinAt()}</td>
 												<td>
