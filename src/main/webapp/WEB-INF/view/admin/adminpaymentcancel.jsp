@@ -59,7 +59,16 @@
 				        </div>
 				    </div>
 				  </div>
-
+				  
+				  
+			
+				  
+				  
+				  
+				  
+				  
+				  
+				  	  
 				  
 				  <div class="row" style ="margin-top: 30px;">
 				    <div class="col-md-3">
@@ -96,8 +105,6 @@
 
 		  
 		  
-		   
-
 
 
     

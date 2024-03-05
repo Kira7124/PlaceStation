@@ -9,6 +9,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     
+ 
+    
+    
+    
 	<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -59,10 +63,15 @@
 									 <label for="exampleInputEmail1"><h5>유저환불금액</h5></label>
 									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refundUser}">
 								</div><br>
-								
-							           
+								      
 							   </div>
+							   
+							  
+    						    
 						   </div>
+						   
+				
+    					  
 					  </div>		
 				
 				   </div>				
@@ -70,7 +79,12 @@
 			</div>				
 					
 					
-					
+
+	
+	
+	
+	
+	
 					
 					
 					
@@ -93,6 +107,7 @@
 		<!-- END MAIN -->	
 	</div>
 	<!-- END WRAPPER -->
+	<script type="text/javascript" src="/js/admin/sign.js"></script>
 	
 	
 	

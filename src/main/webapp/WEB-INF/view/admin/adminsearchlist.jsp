@@ -28,7 +28,7 @@
 				    </div>
 				   <form action="/admin/admin-searchmember" method="get">
 					    <div>
-					         <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					         <div class="input-group" style="margin-top: 20px; margin-left: 1500px; display: flex; align-items: center;">
 					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
 					        			<option value="user_name">이름</option>
 								        <option value="user_address">주소</option>

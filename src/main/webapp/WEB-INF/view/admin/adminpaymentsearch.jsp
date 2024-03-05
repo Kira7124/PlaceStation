@@ -27,7 +27,7 @@
 				    </div>
 				   <form action="/admin/admin-searchpayment" method="get">
 					    <div>
-					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1500px; display: flex; align-items: center;">
 					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
 					        			<option value="bank">은행</option>
 								        <option value="admin_his_prod_name">상품명</option>
