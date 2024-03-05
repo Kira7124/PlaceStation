@@ -2,11 +2,9 @@ package com.project3.placestation.member.controller;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.StringTokenizer;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,17 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project3.placestation.config.jwt.UserDetailsImpl;
-import com.project3.placestation.config.oauth2.Oauth2Attributes;
 import com.project3.placestation.config.oauth2.SessionUser;
 import com.project3.placestation.filedb.service.FiledbService;
-import com.project3.placestation.member.dto.MemberLoginDto;
 import com.project3.placestation.member.dto.RequestJoinDTO;
-import com.project3.placestation.member.dto.memberDTO;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.interfaces.MemberRepository;
@@ -77,8 +71,12 @@ public class memberController {
 
 		// TODO 해당 구문은 메인페이지로 넘어가야함 로그인시 마이페이지 메인으로 넘어가면 안됨
 
-		/*
-		 // 유저 네임 정보 String id =
+		Object oauthUser= httpSession.getAttribute("OauthMember");
+		
+		
+		if(oauthUser == null) {
+		 // 유저 네임 정보 
+		 String id =
 		 SecurityContextHolder.getContext().getAuthentication().getName(); Object
 		 details =
 		 SecurityContextHolder.getContext().getAuthentication().getDetails(); Object
@@ -128,10 +126,12 @@ public class memberController {
 		 
 		 
 		 
-		 System.out.println("========================================="); // Ip
-		 address 값, SessionId 값 출력 System.out.println("디테일 : " +
+		 System.out.println("=========================================");
+		 // Ipaddress 값, SessionId 값 출력 
+		 System.out.println("디테일 : " +
 		 authentication.getDetails()); System.out.println("디테일 : " +
-		 authentication.getDetails().toString()); // System.out.println("이름 :" +
+		 authentication.getDetails().toString()); // 
+		 System.out.println("이름 :" +
 		 authentication.getName()); System.out.println("프린시퍼 " +
 		 authentication.getPrincipal()); System.out.println("프린시퍼 " +
 		 authentication.getPrincipal().toString()); System.out.println("유저 정보 : " +
@@ -145,8 +145,8 @@ public class memberController {
 		 role);
 		 
 		 model.addAttribute("role", role); model.addAttribute("name", id);
-		 */
-		
+		 
+		}else {
 		
 
 		/*
@@ -159,13 +159,14 @@ public class memberController {
 		
 		// 세번째 시도
 		
-	    Object oauthUser= httpSession.getAttribute("OauthMember");
+	    
 		 
 	    log.info(" 마이페이지 메인 세션에 남는 객체 정보 "+oauthUser);
 	    log.info(" 마이페이지 메인 세션에 남는 객체 정보 tostirng~~~~~ "+oauthUser.toString());
 	    
 	    
 		model.addAttribute("oauthUser",oauthUser);
+		}
 		
 		
 
@@ -394,15 +395,18 @@ public class memberController {
 	
 	
 	@PostMapping("/changePhoto")
-	//@ResponseBody
-	public Member changePhoto(Member member) {
+	@ResponseBody
+	public String changePhoto(Member member) {
 		int userno = member.getUserno();
 		
 		log.info("유저넘버 :"+userno);
 		log.info("다정이 내이름을 불러 "+member.getProfilefilepath());
+		
+		// 파일 테이블에 파일 저장
 		String filePath = fileService.saveFiles(member.getProfilefilepath());
 		log.info("changePhoto 파일패스: "+ filePath);
 		
+		// 해당 마이페이지 유저의 file_path값을 저장
 		int filepath = memberService.changePhoto(userno, filePath);
 		
 		
@@ -413,7 +417,7 @@ public class memberController {
 		
 		log.info("모든 것을 다 거치고 돌아온 파일 패스 경로: "+path);
 		
-		return PhotoMember;
+		return path;
 		
 	}
 	

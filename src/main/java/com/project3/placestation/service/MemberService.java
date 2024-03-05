@@ -365,6 +365,8 @@ public class MemberService {
 	public int changePhoto(int userno, String filePath) {
 			
 		
+		log.info("체인지포토 서비스 :"+filePath);
+		log.info("체인지 포토 서비스 넘버:"+userno);
 		
 		
 		 memberRepository.changePhoto(userno, filePath);

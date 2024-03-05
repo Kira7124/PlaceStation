@@ -193,8 +193,11 @@ a {
 						<div class="col-sm-6">
 							<div class="float-sm-end">
 								<ul class="pagination mb-sm-0">
-									<li class="page-item disabled"><a href="#"
-										class="page-link"><i class="mdi mdi-chevron-left"></i></a></li>
+									<li class="page-item disabled">
+										<a href="#"	class="page-link">
+											<i class="mdi mdi-chevron-left"></i>
+										</a>
+									</li>
 									<li class="page-item active"><a href="#" class="page-link">1</a></li>
 									<li class="page-item"><a href="#" class="page-link">2</a></li>
 									<li class="page-item"><a href="#" class="page-link">3</a></li>

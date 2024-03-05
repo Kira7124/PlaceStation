@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/member/layout/header.jsp"%>
-
-<!-- mypage content 시작 -->
+<!-- history content 시작 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+	integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+	integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc="
+	crossorigin="anonymous" />
 <style>
 body {
 	margin-top: 20px;
@@ -90,7 +97,6 @@ a {
 	background-color: rgba(59, 118, 225, .25) !important;
 }
 </style>
-
 <!--  프로필 content 시작  -->
 <section class="module"
 	style="align-items: center; align-content: space-between; flex-wrap: nowrap; flex-direction: row-reverse; justify-content: flex-start;">
@@ -116,14 +122,13 @@ a {
 					<br> <br>
 					<%@ include file="/WEB-INF/view/layout/myPageAside.jsp"%>
 				</div>
-
 				<!-- 리스트 start -->
 				<div class="container"
 					style="display: flex; flex-direction: column; justify-content: space-between;">
 					<div class="row align-items-center">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<h2 class="card-title">결제내역</h2>
+								<h2 class="card-title">모임내역 관리</h2>
 							</div>
 						</div>
 					</div>
@@ -188,8 +193,11 @@ a {
 						<div class="col-sm-6">
 							<div class="float-sm-end">
 								<ul class="pagination mb-sm-0">
-									<li class="page-item disabled"><a href="#"
-										class="page-link"><i class="mdi mdi-chevron-left"></i></a></li>
+									<li class="page-item disabled">
+										<a href="#"	class="page-link">
+											<i class="mdi mdi-chevron-left"></i>
+										</a>
+									</li>
 									<li class="page-item active"><a href="#" class="page-link">1</a></li>
 									<li class="page-item"><a href="#" class="page-link">2</a></li>
 									<li class="page-item"><a href="#" class="page-link">3</a></li>
@@ -205,6 +213,7 @@ a {
 				<!-- 리스트 end -->
 			</div>
 		</div>
+	</div>
 </section>
 <!--  프로필 content 끝 -->
 </div>

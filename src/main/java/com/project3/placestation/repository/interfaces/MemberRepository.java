@@ -107,7 +107,7 @@ public interface MemberRepository {
 	public Member selectByValidUserNameOauth(String uid);
 	
 	// 사진바꾸기
-	public int changePhoto(int userno, String filePath);
+	public int changePhoto(@Param("userno") int userno, @Param("filePath") String filePath);
 
 	// 
 	public Member selectUserUpdatePhoto(int userno);
