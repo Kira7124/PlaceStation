@@ -1,6 +1,8 @@
 package com.project3.placestation.biz.model.dto;
 
 
+import java.util.Arrays;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,5 +39,6 @@ public class ResProductDto {
 	private String prodDeleteAt;	// 삭제일
 	private String prodDeleteReason; // 삭제 이유
 	private String[] additionExplanation;
+
 
 }

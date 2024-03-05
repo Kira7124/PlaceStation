@@ -27,10 +27,7 @@
 					          </form>
 					        </div> 
 						</div>
-<<<<<<< HEAD
-						<div class="comments"></div>
 
-=======
 						<div class="comments" style="text-align:right">
 							<h5>
 								<button class="btn btn-border-d btn-round" style="padding: 5px 20px"  onclick="location.href='http://localhost/cs/notice/category?categoryid=0'">일반</button>
@@ -38,7 +35,7 @@
 							</h5>
 					
 						</div>
->>>>>>> partysh
+
 						<!-- 공지사항 목록 전체 div -->
 						<div>
 							<div class="panel panel-default">

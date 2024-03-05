@@ -105,12 +105,9 @@
 			<li><label for="slide05"></label></li>
 		</ul>
 	</div>
-
-	
 </div>
- 	 
-<script type="text/javascript" src="/js/main/banner.js"></script>
 
+<script type="text/javascript" src="/js/main/banner.js"></script>
 
 
 
@@ -217,7 +214,6 @@
 		</div>
 	</section>
 
-
 	<!-- 2번째 상품 (리뷰가 많은 순서)  -->
 	<section class="module">
 		<div class="container">
@@ -261,7 +257,6 @@
 			</div>
 		</div>
 	</section>
-
 
 	<!-- 3번 상품 리스트 (새로 등록된 순) -->
 	<section class="module" id="specialities">
@@ -308,8 +303,6 @@
 					</div>
 				</c:forEach>
 			</div>
-
-
 		</div>
 	</section>
 
@@ -360,14 +353,5 @@
 
 	
 	
-	
-	
-	
-	
-
-
-
-
-
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

@@ -10,7 +10,4 @@
 		resultType="com.project3.placestation.repository.entity.AdditionExplanation">
 		select addition_explanation_no as additionExplanationNo , file_path as filePath , name as name from addition_explanation
 	</select>
-
-
-
 </mapper>

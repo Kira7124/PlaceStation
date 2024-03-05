@@ -24,11 +24,15 @@ public class ProdReviewService {
 	@Autowired
 	ProdReviewRepository prodReviewRepository;
 
-	// 상품 별 리뷰 조회 
-	public List<ProdReviewDto> findByRevProdNo(int prodNo) {
-	    List<ProdReview> prodReviews = prodReviewRepository.findByRevProdNo(prodNo);
+    // 상품 별 리뷰를 페이징하여 조회
+	public List<ProdReviewDto> findByRevProdNoPaged(int prodNo, int pageNo, int reviewsPerPage) {
+	    int offset = (pageNo - 1) * reviewsPerPage;
+	    if (offset < 0) {
+	        offset = 0;
+	    }
+	    List<ProdReview> prodReviews = prodReviewRepository.findByRevProdNoPaged(prodNo, offset, reviewsPerPage);
 	    List<ProdReviewDto> dtos = new ArrayList<>();
-	    
+
 	    for (ProdReview prodRev : prodReviews) {
 	        ProdReviewDto dto = ProdReviewDto.builder()
 	            .prodRevNo(prodRev.getProdRevNo())
@@ -42,9 +46,10 @@ public class ProdReviewService {
 	            .prodRevDeleteAt(prodRev.getProdRevDeleteAt())
 	            .parentId(prodRev.getParentId())
 	            .build();
+	        
 	        dtos.add(dto);
 	    }
-	    
+
 	    return dtos;
 	}
 	

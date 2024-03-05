@@ -18,6 +18,12 @@ import com.project3.placestation.repository.interfaces.ProductRepository;
 import com.project3.placestation.service.BannerService;
 import com.project3.placestation.service.ProductService;
 
+import com.project3.placestation.biz.model.dto.ResProductDto;
+import com.project3.placestation.repository.entity.ProdReview;
+import com.project3.placestation.repository.entity.Product;
+import com.project3.placestation.repository.interfaces.ProductRepository;
+import com.project3.placestation.service.ProductService;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,24 +31,17 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/main")
 public class MainPageController {
 	
-	
+
 	@Autowired
-	private BannerService bannerService;
+	ProductService productService;
 	@Autowired
-	private ProductService productService;
-	@Autowired
-	private ProductRepository productRepository;
-	
+	ProductRepository productRepository;
 	
 	//http://localhost:80/main/index
 	@GetMapping("/index")
-	public String indexGET(Model model) throws Exception {
-		
-		List<Banner> result = bannerService.BannerListMain(); 
-		
-		
-		model.addAttribute("bannerlist", result);
-		
+	public String indexGET(Model model) {
+		log.debug("메인 페이지!");
+
 		// 상품 전체 리스트 조회
 		List<ResProductDto> products = productService.findAll();
 
@@ -60,10 +59,8 @@ public class MainPageController {
 		model.addAttribute("productsRev", productsRev);
 		model.addAttribute("productsStar", productsStar);
 		model.addAttribute("productsStart", productsStart);
-		
-		log.debug("index(메인) 페이지호출");
-		
+
 		return "product/main";
-	}
 	
+	}
 }
