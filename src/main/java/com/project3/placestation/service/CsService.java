@@ -64,13 +64,13 @@ public class CsService {
 
 	
 	// 공지사항 검색 수 (페이징)
-	public int countNoticeSearchlist(Criteria cri) throws Exception {
-		return csNoticeBoardRepository.countNoticeSearchlist(cri);
+	public int countNoticeSearchlist(String searchKeyword , int categoryId) throws Exception {
+		return csNoticeBoardRepository.countNoticeSearchlist(searchKeyword , categoryId);
 	}
 	
 	// 공지사항 검색 목록
-	public List<CsNoticeBoard> noticeSearchlist(Criteria cri) throws Exception {
-		List<CsNoticeBoard> result1 = csNoticeBoardRepository.noticeSearchlist(cri);
+	public List<CsNoticeBoard> noticeSearchlist(Criteria cri , int categoryId) throws Exception {
+		List<CsNoticeBoard> result1 = csNoticeBoardRepository.noticeSearchlist(cri , categoryId);
 		log.info("cri" + cri);
 		log.info(cri.toString());
 		return result1;
