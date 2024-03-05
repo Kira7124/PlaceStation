@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+
+=======
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -93,6 +99,7 @@
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+>>>>>>> origin/product
 <style>
 .hide {
 	display: none;
@@ -745,6 +752,10 @@
 		<!-- 본문 끝 -->
 
 	</main>
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/product
 	<!--  
     JavaScripts
     =============================================

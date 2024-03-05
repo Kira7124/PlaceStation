@@ -60,4 +60,5 @@
         SELECT ROUND(AVG(prod_rev_star) , 1) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_star != 0 AND prod_rev_delete_yn = 'N'
     </select>
     
+
 </mapper>

@@ -26,6 +26,7 @@ import com.project3.placestation.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import com.project3.placestation.service.ProdWishListService;
+import com.project3.placestation.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -127,6 +128,7 @@ public class ProductController {
 		return "redirect:/product/productDetail?prod_no=" + prodNo;
 	}
 	
+
 	// 찜 삭제
     @PostMapping("/deleteWishlist")
     public String deleteWishlist(ProdWishListDto dto, @RequestParam("prodNo") Integer prodNo) {
@@ -134,6 +136,7 @@ public class ProductController {
         prodWishListService.deleteWishList(dto);
         return "redirect:/product/productDetail?prod_no=" + prodNo;
     }
+
     
     //http://localhost:80/product/main
 	@GetMapping("/main")
