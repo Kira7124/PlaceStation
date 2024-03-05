@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,21 +15,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.model.dto.ResProductDto;
+import com.project3.placestation.biz.model.util.BizDefine;
+import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.product.dto.ProdReviewDto;
 import com.project3.placestation.product.dto.ProdWishListDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
 import com.project3.placestation.repository.entity.AdditionExplanation;
+import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.entity.ProdReview;
 import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
 import com.project3.placestation.service.AddtionExplanationService;
 import com.project3.placestation.service.AdminProdHistoryService;
+import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.ProdReviewService;
 import com.project3.placestation.service.ProductService;
 import com.project3.placestation.service.ProductViewService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import com.project3.placestation.service.ProdWishListService;
 
@@ -53,16 +60,22 @@ public class ProductController {
 	AdminProdHistoryService adminProdHistoryService;
 	@Autowired
 	ProductViewService productViewService;
+	@Autowired
+	MemberService memberService;
 
 	//http://localhost:80/productDetail?prod_no=
 	@GetMapping("/productDetail")
 	public String productDetail(@RequestParam("prod_no") Integer prodNo,
             @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
-            Model model) {
-		log.debug("상품 상세 페이지 - 상품번호: {}", prodNo);
+            Model model, HttpSession session) throws Exception {
 		
-	    // 상품 상세 페이지 접속 시 조회수 증가
-	    productViewService.increaseProductViews(prodNo);
+		// 조회수 세션 저장 (새로고침 조회수 증가 x)
+		Boolean increaseProductViews = (Boolean) session.getAttribute("increaseProductViews");
+	    if (increaseProductViews == null || increaseProductViews) {
+	        productViewService.increaseProductViews(prodNo);
+	        session.setAttribute("increaseProductViews", false);
+	    }
+
 	    // 상품 조회수 가져오기
 	    int currentViews = productViewService.getProductViews(prodNo);
 		// 상품 번호로 조회
@@ -74,13 +87,26 @@ public class ProductController {
 	    int reviewsPerPage = 5;
 	    // 총 페이지 수 계산
 	    int totalPage = (int) Math.ceil((double) reviewCount / reviewsPerPage);
+	    
+
 
 		// 상품 번호로 리뷰 조회
 		List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo, "");
 		
 	    // 리뷰 목록을 페이징하여 조회
 	    List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNoPaged(prodNo, pageNo * (reviewsPerPage - 4), reviewsPerPage);
-	    log.debug("페이지번호 : " + pageNo );
+	    // 리뷰 목록의 작성자 정보 설정
+	    for (ProdReviewDto review : reviewProdNo) {
+	        PaymentMemberDto reviewer = memberService.findMemberById(review.getUserNo());
+	        if (reviewer != null) {
+	            review.setUserName(reviewer.getUserName());
+	        }
+	    }
+	    // 상품의 사업자명 설정
+	    PaymentMemberDto writer = memberService.findMemberById(product.getProdWriterNo());
+	    if (writer != null) {
+	        product.setUserName(writer.getUserName());
+	    }
 	    // 부가 설명 이미지
 	    List<AdditionExplanation> additionExplanations = addtionExplanationService.findAll();
 	    
@@ -107,29 +133,48 @@ public class ProductController {
 	    model.addAttribute("pageNo", pageNo); // 현재 페이지 번호 추가
 	    model.addAttribute("totalPage", totalPage); // 총 페이지 수 추가
 	    model.addAttribute("currentViews", currentViews);
-
+	    
 		return "product/productDetail";
 	}
 
 	// 답글 작성
 	@PostMapping("/saveReview")
-	public String saveReview(ProdReviewDto dto, @RequestParam("prodNo") Integer prodNo) {
-		dto.setProdNo(prodNo);
+	public String saveReview(ProdReviewDto dto, @RequestParam("prodNo") Integer prodNo, HttpSession session) {
+	    dto.setProdNo(prodNo);
+	    
+	    // 유효성 검사
+	    Member member = (Member) session.getAttribute("member"); 
+	    if (member == null || member.getUserno() == null) {
+	        throw new CustomLoginRestfulException("로그인 해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	    dto.setUserNo(member.getUserno());
+	    
+	    prodReviewService.saveReview(dto);
 
-		prodReviewService.saveReview(dto);
-
-		return "redirect:/product/productDetail?prod_no=" + prodNo;
+	    return "redirect:/product/productDetail?prod_no=" + prodNo;
 	}
 
 	// 리뷰 작성
 	@PostMapping("/addReview")
-	public String addReview(ProdReviewDto dto, @RequestParam("prodNo") Integer prodNo) {
-		dto.setProdNo(prodNo);
+	public String addReview(ProdReviewDto dto, @RequestParam("prodNo") Integer prodNo, Model model, HttpSession session) {
+	    dto.setProdNo(prodNo);
 
-		prodReviewService.addReview(dto);
+	    // 유효성 검사
+	    Member member = (Member) session.getAttribute("member"); 
+	    if (member == null || member.getUserno() == null) {
+	        throw new CustomLoginRestfulException("로그인 해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	    dto.setUserNo(member.getUserno());
 
-		return "redirect:/product/productDetail?prod_no=" + prodNo;
+	    prodReviewService.addReview(dto);
+	    
+	    PaymentMemberDto memberDto = memberService.findMemberById(member.getUserno());
+	    
+	    model.addAttribute("member", memberDto);
+	    
+	    return "redirect:/product/productDetail?prod_no=" + prodNo;
 	}
+
 
 
 	// 리뷰 삭제

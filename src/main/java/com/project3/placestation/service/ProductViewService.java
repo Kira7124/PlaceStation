@@ -12,9 +12,10 @@ public class ProductViewService {
 	ProductViewRepository productViewRepository;
 	
     // 상품 조회수 증가
-    public void increaseProductViews(int prodNo) {
+    public void increaseProductViews(int prodNo) throws Exception {
         productViewRepository.increaseProductViews(prodNo);
     }
+    
 
     // 상품 조회수 가져오기
     public int getProductViews(int prodNo) {

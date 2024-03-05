@@ -371,9 +371,8 @@
 													</tr>
 													<tr>
 														<td>사업자 명</td>
-														<td>UserName</td>
+														<td>${product.userName}</td>
 													</tr>
-
 												</tbody>
 											</table>
 										</div>
@@ -436,12 +435,12 @@
 																<!-- 원글 내용 출력 -->
 																<c:if test="${review.parentId == null}">
 																	<div class="comment-avatar">
-																		<img src="" alt="avatar" />
+																		<img src="${review.filePath}" alt="avatar" />
 																	</div>
 																	<div class="comment-content clearfix">
 																		<div class="comment-author font-alt">
 																			<p>
-																				유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
+																				${review.userName} | <span class="comment-date">${review.prodRevCreateAt}</span>
 																			<form id="deleteReview"
 																				action="/product/deleteReview/${review.prodRevNo}"
 																				method="post" style="display: inline;">
@@ -494,7 +493,7 @@
 																				<!-- 부모 댓글의 parentId 값을 사용 -->
 																				<input type="hidden" name="parentId"
 																					value="${review.prodRevNo}"> <input
-																					type="hidden" name="userNo" value="12">
+																					type="hidden" name="userNo" value="${member.userNo}">
 																			</div>
 																		</div>
 																		<input type="hidden" name="prodRevStar" value="0">
@@ -526,7 +525,7 @@
 																		<div class="comment-content clearfix">
 																			<div class="comment-author font-alt">
 																				<p>
-																					유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
+																					${reply.userName} | <span class="comment-date">${review.prodRevCreateAt}</span>
 																				<form id="deleteReview"
 																					action="/product/deleteReview/${reply.prodRevNo}"
 																					method="post" style="display: inline;">
@@ -591,9 +590,12 @@
 																<input type="hidden" name="prodNo" id="prodNo"
 																	value="${product.prodNo}"> <input type="hidden"
 																	name="parentId" id="${review.prodRevNo}" value="">
-																<label for="username">유저번호</label> <input
-																	class="form-control" type="text" id="userNo"
-																	name="userNo" placeholder="유저번호" required />
+																<label for="username">닉네임</label> <input
+																	class="form-control" type="text" id="userName"
+																	name="userName" placeholder="${member.userName}" readonly />
+															<input
+																	class="form-control" type="hidden" id="userNo"
+																	name="userNo" value="${member.userNo}"/>
 															</div>
 														</div>
 
