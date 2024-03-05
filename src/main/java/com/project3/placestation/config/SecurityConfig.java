@@ -82,9 +82,9 @@ public class SecurityConfig {
 		http
 				// SpringBoot 3.1버전 부터 람다식으로 작성 해야한다.
 				.authorizeHttpRequests((auth) -> auth
+
 						// .requestMatchers("/member/main").hasRole("USER")
 						.requestMatchers("/**").permitAll().anyRequest().permitAll() // 본인 requsetMapping
-																						// 하위로 경로 열기/
 				);
 
 		http
@@ -94,7 +94,7 @@ public class SecurityConfig {
 
 		// 적용
 		http.formLogin((auth) -> auth.loginPage("/member/login").loginProcessingUrl("/loginProc")
-				.defaultSuccessUrl("/member/main", true).failureUrl("/member/sregister").usernameParameter("RuserId")
+				.defaultSuccessUrl("/member/session", true).failureUrl("/member/sregister").usernameParameter("RuserId")
 				.passwordParameter("userPassword").permitAll());
 
 		http.logout((auth) -> auth.logoutUrl("/member/logout").invalidateHttpSession(true).clearAuthentication(true)

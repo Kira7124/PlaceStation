@@ -27,7 +27,7 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 	
 	//private final Oauth2Response oauth2Response;
 	
-	private int userNo;
+	private int userno;
 	
 	private String name; // Spring Security
 
@@ -45,18 +45,18 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 	private GrantedAuthority authority; // Spring Security
 
 	// 개발자 추가 속성
-	private String userId; 
+	private String userid; 
 	private String email; 
-	private String userAddress; 
-	private String userName; 
-	private String userHp; 
-	private String userEmail; 
+	private String useraddress; 
+	private String username; 
+	private String userhp; 
+	private String useremail; 
 	private String grade; 
-	private int userPoin; 
-	private Timestamp joinAt; 
+	private int userpoin; 
+	private Timestamp joinat; 
 	private String gender; 
-	private String userOauth; 
-	private String userRole; 
+	private String oauth; 
+	private String userrole; 
 
 
 
@@ -67,22 +67,22 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 	public UserDetailsImpl(Integer userno, String userid, String userpassword, String username, String useremail,
 			String useraddress, String userhp, Integer userpoint, String userrole, String gender, String grade,
 			String oauth, Timestamp timestamp, GrantedAuthority authority) {
-		this.userNo = userno;
-		this.userId = userid;
+		this.userno = userno;
+		this.userid = userid;
 		this.password = userpassword;
-		this.userName = username;
-		this.userEmail = useremail;
-		this.userAddress = useraddress;
-		this.userHp = userhp;
-		this.userPoin = userpoint;
-		this.userRole = userrole;
+		this.username = username;
+		this.useremail = useremail;
+		this.useraddress = useraddress;
+		this.userhp = userhp;
+		this.userpoin = userpoint;
+		this.userrole = userrole;
 		this.gender = gender;
 		this.grade = grade;
-		this.userOauth = oauth;
+		this.oauth = oauth;
 		this.authority = authority;
 		this.name = username;
 		this.email = username;
-		this.joinAt = timestamp;
+		this.joinat = timestamp;
 		
 		
 		this.isOAuthUser = false;
@@ -90,35 +90,35 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 
 
 	public String getUserAddress() {
-		return userAddress;
+		return useraddress;
 	}
 
 	public void setUserAddress(String userAddress) {
-		this.userAddress = userAddress;
+		this.useraddress = userAddress;
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	public String getUserHp() {
-		return userHp;
+		return userhp;
 	}
 
 	public void setUserHp(String userHp) {
-		this.userHp = userHp;
+		this.userhp = userHp;
 	}
 
 	public String getUserEmail() {
-		return userEmail;
+		return useremail;
 	}
 
 	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+		this.useremail = userEmail;
 	}
 
 	public String getGrade() {
@@ -130,19 +130,19 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 	}
 
 	public int getUserPoin() {
-		return userPoin;
+		return userpoin;
 	}
 
 	public void setUserPoin(int userPoin) {
-		this.userPoin = userPoin;
+		this.userpoin = userPoin;
 	}
 
 	public Timestamp getJoinAt() {
-		return joinAt;
+		return joinat;
 	}
 
 	public void setJoinAt(Timestamp joinAt) {
-		this.joinAt = joinAt;
+		this.joinat = joinAt;
 	}
 
 
@@ -155,11 +155,11 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 	}
 
 	public String getUserOauth() {
-		return userOauth;
+		return oauth;
 	}
 
 	public void setUserOauth(String userOauth) {
-		this.userOauth = userOauth;
+		this.oauth = userOauth;
 	}
 
 	public static UserDetailsImpl build(Member user) {
@@ -249,19 +249,19 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 	}
 	
 	public int getUserNo() {
-		return userNo;
+		return userno;
 	}
 
 	
 	// ===============
 
 	public String getUserId() {
-		return userId;
+		return userid;
 	}
 
 
 	public void setUserId(String userId) {
-		this.userId = userId;
+		this.userid = userId;
 	}
 
 
@@ -306,11 +306,11 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 
 	@Override
 	public String toString() {
-		return "UserDetailsImpl [userNo=" + userNo + ", name=" + name + ", password=" + password + ", authority="
-				+ authority + ", userId=" + userId + ", email=" + email + ", userAddress=" + userAddress + ", userName="
-				+ userName + ", userHp=" + userHp + ", userEmail=" + userEmail + ", grade=" + grade + ", userPoin="
-				+ userPoin + ", joinAt=" + joinAt + ", gender=" + gender + ", userOauth=" + userOauth + ", userRole="
-				+ userRole + "]";
+		return "UserDetailsImpl [userno=" + userno + ", name=" + name + ", password=" + password + ", authority="
+				+ authority + ", userid=" + userid + ", email=" + email + ", useraddress=" + useraddress + ", username="
+				+ username + ", userhp=" + userhp + ", useremail=" + useremail + ", grade=" + grade + ", userpoin="
+				+ userpoin + ", joinat=" + joinat + ", gender=" + gender + ", oauth=" + oauth + ", userrole="
+				+ userrole + "]";
 	}
 
 	

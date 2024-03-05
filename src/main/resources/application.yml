@@ -1,11 +1,19 @@
 server:
+  error:
+    include-exception: TRUE
+    include-stacktrace: ALWAYS
+    whitelabel.enabled : true
+    path: /error
+    include-binding-errors: ALWAYS
+    
+    
   servlet:
     encoding:
       charset: utf-8
       force: true
     session:
       timeout: 30m
-  port: 80
+  port: 80  
 
 # JSP, mustache 원하는거 사용
 spring:
@@ -20,16 +28,16 @@ spring:
     multipart:
       max-file-size: 20MB
       max-request-size: 20MB      
-  datasource:
-    url: jdbc:mysql://13.211.47.78:3306/placeStation?serverTimeZone=Asia/Seoul
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: Sa1953vb!
+#  datasource:
+#    url: jdbc:mysql://13.211.47.78:3306/placeStation?serverTimeZone=Asia/Seoul
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: Sa1953vb!
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
+    username: jyj0298@gmail.com
+    password: neeb naxx kgvk fpez
     properties:
       mail:
         smtp:
@@ -74,19 +82,19 @@ spring:
             client-name: naver
 
 
-#  datasource:    
-#    url: jdbc:h2:mem:testdb;MODE=MySQL
-#    driver-class-name: org.h2.Driver
-#    username: user # 유저 이름
-#    password: # 비밀번호 (비워두면 비밀번호 X)
-#  h2:
-#    console:
-#      enabled: true
-#  sql:
-#    init:
-#      data-locations:
-#        - classpath:db/table.sql
-#        - classpath:db/data.sql
+  datasource:    
+    url: jdbc:h2:mem:testdb;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: user # 유저 이름
+    password: # 비밀번호 (비워두면 비밀번호 X)
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      data-locations:
+        - classpath:db/table.sql
+        - classpath:db/data.sql
 
 
 
@@ -116,5 +124,10 @@ logging:
     springframework:
         security: DEBUG
         security.oauth2: DEBUG
-    
+
+jwts:
+  secret: djkwqbkjcwedbkjlkjvcklwqfkjldwqblkcbkldjbckjwqkjlwjaofjomzfo13124901824501joamjf2387u10ucbwkl
+jwt:
+  access-token-validity-in-seconds: 86400000
+
 

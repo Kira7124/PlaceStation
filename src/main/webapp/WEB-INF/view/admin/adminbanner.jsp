@@ -20,6 +20,9 @@
 				</div>
 				
 			 	<div style="position: absolute; right: 100px;">
+			 			<a href="/admin/admin-bannerinsert" data-toggle="modal" data-target="#bannerinsertModal">
+        					<span class="label label-info">등록</span>
+    					</a>  
 						<a href="/admin/admin-bannerupdate" data-toggle="modal" data-target="#bannerupdateModal">
         					<span class="label label-success">수정</span>
     					</a>     	
@@ -47,7 +50,7 @@
 								<td>${bannerlist.banName}</td>
 								<td>
 								    <c:choose>
-								        <c:when test="${bannerlist.filePath eq 'defaultbanner.jpg'}">
+								        <c:when test="${empty bannerlist.filePath or bannerlist.filePath eq 'defaultbanner.jpg'}">
 								            <img src="/assets/img/defaultbanner.jpg" style="width: 400px; height: 100px;">
 								        </c:when>
 								        <c:otherwise>
@@ -117,6 +120,12 @@
 	<!-- END WRAPPER -->
 	
 	
+	<!-- Modal -->
+	<div class="modal fade" id="bannerinsertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content"></div>
+	    </div>
+	</div>
 	
 	
 	<!-- Modal -->

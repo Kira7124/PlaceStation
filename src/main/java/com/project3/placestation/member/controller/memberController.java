@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
+import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.config.jwt.UserDetailsImpl;
 import com.project3.placestation.config.oauth2.SessionUser;
 import com.project3.placestation.filedb.service.FiledbService;
@@ -69,12 +72,32 @@ public class memberController {
 	@GetMapping("/mypage/main")
 	public String myPageMain(Model model) { // Model model) {
 
-		// TODO 해당 구문은 메인페이지로 넘어가야함 로그인시 마이페이지 메인으로 넘어가면 안됨
 
-		Object oauthUser= httpSession.getAttribute("OauthMember");
+		/*
+		 * // 멤버 받기 Member member = (Member) httpSession.getAttribute("member");
+		 * if(member == null) { throw new
+		 * CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE,
+		 * HttpStatus.INTERNAL_SERVER_ERROR); }
+		 */
+		Object member = httpSession.getAttribute("member");
 		
+		model.addAttribute("Mmember",member);
 		
-		if(oauthUser == null) {
+		return "member/mypage_main";
+	}
+	
+	@GetMapping("/session")
+	public String session() {
+
+		// TODO 해당 구문은 메인페이지로 넘어가야함 로그인시 마이페이지 메인으로 넘어가면 안됨
+		/*
+		 * if(httpSession.getAttribute("OauthMember") != null) {
+		 * 
+		 * Object member = httpSession.getAttribute("OauthMember");
+		 * httpSession.setAttribute("member", member);
+		 * 
+		 * }
+		 */
 		 // 유저 네임 정보 
 		 String id =
 		 SecurityContextHolder.getContext().getAuthentication().getName(); Object
@@ -104,6 +127,10 @@ public class memberController {
 		 .username(id) .userpoint(userDetails.getUserPoin()) .userrole(role)
 		 .grade(userDetails.getGrade()) .joinat(userDetails.getJoinAt())
 		 .gender(userDetails.getGender()) .build();
+		 
+		 log.info("userDetails가 member로 변환된데이터: "+member.toString());
+		 
+		 httpSession.setAttribute("member", member);
 		 
 		 
 		 // 세션에 저장 httpSession.setAttribute("member", authentication);
@@ -144,35 +171,17 @@ public class memberController {
 		 System.out.println("s회원가입 아이디: " + id); System.out.println("s회원가입 롤: " +
 		 role);
 		 
-		 model.addAttribute("role", role); model.addAttribute("name", id);
 		 
 		 
 	  	 Object sessionmember = httpSession.getAttribute("member");
-	  
-	     model.addAttribute("member",principal);
+	  	 
+	  	 log.info("sessionmember : "  + sessionmember);
 			 
-			 
-		}else {
-		
 
 		
-		
-		
-		// 세번째 시도
-		
-	    
-		 
-	    log.info(" 마이페이지 메인 세션에 남는 객체 정보 "+oauthUser);
-	    log.info(" 마이페이지 메인 세션에 남는 객체 정보 tostirng~~~~~ "+oauthUser.toString());
-	    
-	    
-		model.addAttribute("member",oauthUser);
-		}
-		
-		
-
-		return "member/mypage_main";
+		return "redirect:/main/index";
 	}
+
 
 	/*
 	 * @GetMapping("/member/mypage-main") public String mypageForm (){
@@ -197,6 +206,7 @@ public class memberController {
 	public String myPageWishlist() {
 
 		return "member/mypage_wishlist";
+
 	}
 
 	@GetMapping("/mypage/managementParty")
@@ -320,8 +330,17 @@ public class memberController {
 			// TODO 여기 메인화면으로 바꿔줘야함
 
 			UserDetailsImpl buildMember = UserDetailsImpl.build(checkOauth);
-			httpSession.setAttribute("OauthMember",buildMember);
-			return "member/login";
+		
+			log.info("5와 6사이의 소셜 로그인 최초 검증 분기 세션 값 확인: "+ buildMember);
+			
+			// TODO httpSession.setAttribute("member",buildMember);
+			
+			
+			// TODO Object sessionCheck = httpSession.getAttribute("member");
+			
+			// log.info("세션 체크 멤버가 저장 되었니?? : "+ sessionCheck);
+			
+			return "redirect:/main/index";
 		} else {
 			System.out.println("66666666666666666666666666666666666666666666666666666");
 			return "member/socialregister";
@@ -332,6 +351,8 @@ public class memberController {
 	@PostMapping("/social/register")
 	public String registerSocialMemberProc(RequestJoinDTO dto) {
 
+		
+		
 		String fulladdress = dto.getAddr1();
 
 		// 주소 수정
@@ -382,10 +403,14 @@ public class memberController {
 		UserDetailsImpl OauthJoinProcess = service.OauthJoinProcess(dto);
 
 		
-		httpSession.setAttribute("OauthMember", OauthJoinProcess);
+		httpSession.setAttribute("member", OauthJoinProcess);
+		
+		Object sessionCheck = httpSession.getAttribute("member");
+		
+		log.info("세션 체크 멤버가 저장 되었니?? : "+sessionCheck);
 		
 		// ResponseEntity.ok("Social member registered successfully!")
-		return "redirect:/member/login";
+		return "redirect:/main/index";
 	}
 	
 	@PostMapping("/mypage/userUpdate")

@@ -13,12 +13,30 @@
 	min-height: 150px;
 	padding: 10px;
 	border: 1px dotted #00f;
+	border-radius: 10px;
 }
 
 #att_zone:empty:before {
 	content: attr(data-placeholder);
 	color: #999;
 	font-size: .9em;
+}
+
+.toggle3 input[type=checkbox] {
+	display: none;
+}
+
+.toggle3 input[type=checkbox]+label {
+	color: #e0e0e0;
+	font-size: 5em;
+}
+
+.toggle3 input[type=checkbox]:checked+label {
+	color: #000;
+}
+
+h4 {
+	font-weight: bold;
 }
 </style>
 
@@ -67,7 +85,7 @@
 										<div id='att_zone'
 											data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'></div>
 									</div>
-									<input type="hidden" value="N" name="isFile" id="isFile"/> <br>
+									<input type="hidden" value="N" name="isFile" id="isFile" /> <br>
 									<h4>영업 시작 시간을 입력해 주세요</h4>
 									<input type="number" class="form-control"
 										placeholder="영업 시작 시간을 입력해 주세요" name="prodStartTime" value="1"
@@ -116,6 +134,36 @@
 								</div>
 							</div>
 							<!-- END INPUTS -->
+
+							<!-- INPUT GROUPS -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">부가 설명</h3>
+								</div>
+								<div class="panel-body">
+									<!-- 부가 이미지 시작 -->
+									<h4>부가 설명하실 이미지를 선택해 주세요.</h4>
+
+									<!-- 부가 이미지 -->
+									<div class="toggle3" style="text-align: center;">
+										<c:forEach items="${additionExplanation}"
+											var="additionExplanation">
+											<input type="checkbox"
+												id="toggle3-${additionExplanation.additionExplanationNo}"
+												name="descriptionImage"
+												value="${additionExplanation.additionExplanationNo}">
+											<label
+												for="toggle3-${additionExplanation.additionExplanationNo}"
+												style="margin-right: 20px;"><img
+												src="${additionExplanation.filePath}" alt=""
+												style="width: 100px; height: 100px;" />
+												<h4>${additionExplanation.name}</h4> </label>
+										</c:forEach>
+									</div>
+									<!-- 부가 이미지 종료 -->
+								</div>
+							</div>
+							<!-- END INPUT GROUPS -->
 
 							<!-- INPUT GROUPS -->
 							<div class="panel">
@@ -230,12 +278,14 @@ $textarea3.oninput = (event) => {
     
     // 이미지와 체크 박스를 감싸고 있는 div 속성
     var div_style = 'display:inline-block;position:relative;'
-                  + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1';
+                  + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1;border-radius : 10px;';
     // 미리보기 이미지 속성
-    var img_style = 'width:100%;height:100%;z-index:none';
+    var img_style = 'width:100%;height:100%;z-index:none; border-radius : 10px;';
     // 이미지안에 표시되는 체크박스의 속성
     var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
-                  + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00';
+                  + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00;'
+                  + "border-radius: 20px;"
+                  + "text-align : center; padding-bottom : 40px;";
   
     btnAtt.onchange = function(e){
     

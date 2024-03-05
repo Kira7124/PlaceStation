@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,10 +87,8 @@
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">모임</a>
 							<ul class="dropdown-menu">
-								<li ><a  href="/party/main"
-									">전체 모임</a></li>
-								<li ><a  href="/party/select-create"
-									>모임 생성</a></li>
+								<li><a href="/party/main"">전체 모임</a></li>
+								<li><a href="/party/select-create">모임 생성</a></li>
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
 									data-toggle="dropdown">Video Background Header</a>
 									<ul class="dropdown-menu">
@@ -170,24 +170,22 @@
 				</div>
 				<div class="login_register"
 					style="display: inline-block; margin-bottom: 30px;">
-					<c:if test="${member == null}">
+					<sec:authorize access="isAnonymous()">
 						<a href="/member/login">로그인</a>
 						<a href="/member/uregister">회원가입</a>
-					</c:if>
-					<c:if test="${member != null }">
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
 						<a href="/member/logout">로그아웃</a>
-						<c:choose>
-							<c:when test="${member.userRole == 'ROLE_USER'}">
-								<a href="/member/main">회원정보</a>
-							</c:when>
-							<c:when test="${member.userRole == 'ROLE_BIZ'}">
-								<a href="/biz/main">사업자</a>
-							</c:when>
-							<c:when test="${member.userRole == 'ROLE_ADMIN'}">
-								<a href="/admin/admin-main">관리자</a>
-							</c:when>
-						</c:choose>
-					</c:if>
+						<sec:authorize access="hasRole('ROLE_USER')">
+							<a href="/member/main">회원정보</a>
+						</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_SELLER')">
+							<a href="/biz/main">사업자</a>
+						</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<a href="/admin/admin-main">관리자</a>
+						</sec:authorize>
+					</sec:authorize>
 				</div>
 			</div>
 		</nav>

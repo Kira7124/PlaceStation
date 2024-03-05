@@ -3,9 +3,12 @@ package com.project3.placestation.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.h2.mvstore.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.product.dto.ProdReviewDto;
@@ -21,11 +24,15 @@ public class ProdReviewService {
 	@Autowired
 	ProdReviewRepository prodReviewRepository;
 
-	// 상품 별 리뷰 조회 
-	public List<ProdReviewDto> findByRevProdNo(int prodNo) {
-	    List<ProdReview> prodReviews = prodReviewRepository.findByRevProdNo(prodNo);
+    // 상품 별 리뷰를 페이징하여 조회
+	public List<ProdReviewDto> findByRevProdNoPaged(int prodNo, int pageNo, int reviewsPerPage) {
+	    int offset = (pageNo - 1) * reviewsPerPage;
+	    if (offset < 0) {
+	        offset = 0;
+	    }
+	    List<ProdReview> prodReviews = prodReviewRepository.findByRevProdNoPaged(prodNo, offset, reviewsPerPage);
 	    List<ProdReviewDto> dtos = new ArrayList<>();
-	    
+
 	    for (ProdReview prodRev : prodReviews) {
 	        ProdReviewDto dto = ProdReviewDto.builder()
 	            .prodRevNo(prodRev.getProdRevNo())
@@ -39,9 +46,10 @@ public class ProdReviewService {
 	            .prodRevDeleteAt(prodRev.getProdRevDeleteAt())
 	            .parentId(prodRev.getParentId())
 	            .build();
+	        
 	        dtos.add(dto);
 	    }
-	    
+
 	    return dtos;
 	}
 	
@@ -85,15 +93,15 @@ public class ProdReviewService {
 
 
     // 리뷰 삭제
+    @Transactional
     public void deleteReview(Integer prodRevNo) {
-    	
-    	int result = prodReviewRepository.deleteReview(prodRevNo);
-		if (result < 1) {
-			throw new CustomRestfulException("리뷰 삭제에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+        int result = prodReviewRepository.deleteReview(prodRevNo);
+        if (result < 1) {
+            throw new CustomRestfulException("리뷰 삭제에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-	}
-    
+
     // 리뷰 개수 count
     public Integer getCountReview(Integer prodNo) {
     	return prodReviewRepository.countReview(prodNo);
@@ -103,4 +111,5 @@ public class ProdReviewService {
     	Double avgStar = prodReviewRepository.avgStar(prodNo);
         return avgStar != null ? avgStar : 0;
     }
+
 }

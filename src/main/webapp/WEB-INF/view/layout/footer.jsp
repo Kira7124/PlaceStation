@@ -65,5 +65,6 @@
      	<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
      </div>
   </main>
+	<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.project3.placestation.product.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,13 +17,16 @@ import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.product.dto.ProdReviewDto;
 import com.project3.placestation.product.dto.ProdWishListDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
+import com.project3.placestation.repository.entity.AdditionExplanation;
 import com.project3.placestation.repository.entity.ProdReview;
 import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
+import com.project3.placestation.service.AddtionExplanationService;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.ProdReviewService;
-import com.project3.placestation.service.ProductService;
 import com.project3.placestation.service.ProdWishListService;
+import com.project3.placestation.service.ProductService;
+import com.project3.placestation.service.ProductViewService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,46 +34,75 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-
-	private final ProductRepository productRepository;
-	private final ProductService productService;
-	private final ProdReviewService prodReviewService;
-	private final ProdWishListService prodWishListService;
-
+	
 	@Autowired
-	public ProductController(ProductRepository productRepository, ProductService productService,
-	        ProdReviewService prodReviewService, ProdWishListService prodWishListService) {
-	    this.productRepository = productRepository;
-	    this.productService = productService;
-	    this.prodReviewService = prodReviewService;
-	    this.prodWishListService = prodWishListService;
-	}
-
+	ProductRepository productRepository;
+	@Autowired
+	ProductService productService;
+	@Autowired
+	ProdReviewService prodReviewService;
+	@Autowired
+	ProdWishListService prodWishListService;
+	@Autowired
+	AddtionExplanationService addtionExplanationService;
 	@Autowired
 	AdminProdHistoryService adminProdHistoryService;
+	@Autowired
+	ProductViewService productViewService;
 
 	//http://localhost:80/productDetail?prod_no=
 	@GetMapping("/productDetail")
-	public String productDetail(@RequestParam("prod_no") Integer prodNo, Model model) {
+	public String productDetail(@RequestParam("prod_no") Integer prodNo,
+            @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
+            Model model) {
 		log.debug("상품 상세 페이지 - 상품번호: {}", prodNo);
-
+		
+	    // 상품 상세 페이지 접속 시 조회수 증가
+	    productViewService.increaseProductViews(prodNo);
+	    // 상품 조회수 가져오기
+	    int currentViews = productViewService.getProductViews(prodNo);
 		// 상품 번호로 조회
 		ResProductDto product = productService.findById(prodNo);
-		// 상품 번호로 리뷰 조회
-		List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNo(prodNo);
-		List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo, "");
-        // 상품의 찜,리뷰 개수 조회
-		Integer wishlistCount = prodWishListService.getCountWishlist(prodNo);
+		// 상품의 리뷰 개수 조회
         Integer reviewCount = prodReviewService.getCountReview(prodNo);
+        
+	    // 페이지당 리뷰 수 설정
+	    int reviewsPerPage = 5;
+	    // 총 페이지 수 계산
+	    int totalPage = (int) Math.ceil((double) reviewCount / reviewsPerPage);
+
+		// 상품 번호로 리뷰 조회
+		List<ProductInvalidDateDto> invalidDate = adminProdHistoryService.findProductInvalidByProdNo(prodNo, "");
+		
+	    // 리뷰 목록을 페이징하여 조회
+	    List<ProdReviewDto> reviewProdNo = prodReviewService.findByRevProdNoPaged(prodNo, pageNo * (reviewsPerPage - 4), reviewsPerPage);
+	    log.debug("페이지번호 : " + pageNo );
+	    // 부가 설명 이미지
+	    List<AdditionExplanation> additionExplanations = addtionExplanationService.findAll();
+	    
+        // 상품의 찜 개수 조회
+		Integer wishlistCount = prodWishListService.getCountWishlist(prodNo);
         Double avgStar = prodReviewService.getAvgStar(prodNo);
+        
+        // 부가 설명 이미지 뽑기
+        List<AdditionExplanation> list = new ArrayList<>();
+        for(String i : product.getAdditionExplanation()) {
+        	list.add(additionExplanations.get(Integer.valueOf(i) - 1));
+        }
+        
+        log.info(list.toString());
 
 		log.info(invalidDate.toString());
 		model.addAttribute("product", product);
 		model.addAttribute("reviewProdNo", reviewProdNo);
 		model.addAttribute("invalidDate", invalidDate);
 		model.addAttribute("wishlistCount", wishlistCount);
+		model.addAttribute("additionExplanations", list);
 		model.addAttribute("reviewCount", reviewCount);
 		model.addAttribute("avgStar", avgStar);
+	    model.addAttribute("pageNo", pageNo); // 현재 페이지 번호 추가
+	    model.addAttribute("totalPage", totalPage); // 총 페이지 수 추가
+	    model.addAttribute("currentViews", currentViews);
 
 		return "product/productDetail";
 	}
@@ -97,14 +130,11 @@ public class ProductController {
 
 	// 리뷰 삭제
 	@PostMapping("/deleteReview/{prodRevNo}")
-	public String deleteReview(ProdReviewDto dto, @PathVariable Integer prodRevNo, @RequestParam Integer prodNo) {
-		dto.setProdNo(prodNo);
-		prodReviewService.deleteReview(prodRevNo);
-
-		return "redirect:/product/productDetail?prod_no=" + prodNo;
+	public String deleteReview(@PathVariable("prodRevNo") Integer prodRevNo, @RequestParam("prodNo") Integer prodNo) {
+	    prodReviewService.deleteReview(prodRevNo);
+	    return "redirect:/product/productDetail?prod_no=" + prodNo;
 	}
-
-
+	
 	// 찜(상품 좋아요) 하기
 	@PostMapping("/addWishlist")
 	public String addWishlist(ProdWishListDto dto, @RequestParam("prodNo") Integer prodNo) {
@@ -113,6 +143,7 @@ public class ProductController {
 		return "redirect:/product/productDetail?prod_no=" + prodNo;
 	}
 	
+
 	// 찜 삭제
     @PostMapping("/deleteWishlist")
     public String deleteWishlist(ProdWishListDto dto, @RequestParam("prodNo") Integer prodNo) {
@@ -145,6 +176,7 @@ public class ProductController {
 
 		return "product/main";
 	}
+
 
 
 }

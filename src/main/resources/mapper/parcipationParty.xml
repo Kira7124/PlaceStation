@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.ParcipationPartyRepository">
+
+	<select id="findAllById"
+		resultType="com.project3.placestation.party.dto.ParcipationUserDto">
+		select
+		p.parcipation_party_no as parcipationPartyNo,
+		p.party_no as partyNo,
+		p.party_user_no as
+		partyUserNo,
+		p.parcipation_update_at as parcipationUpdateAt,
+		p.parcipation_delete_at as parcipationDeleteAt,
+		p.parcipation_delete_yn as parcipationDeleteYn,
+		p.parcipation_join_at
+		as parcipationJoinAt ,
+		m.user_name as userName,
+		m.user_hp as userHp,
+		m.user_email as userEmail ,
+		m.grade as grade ,
+		m.user_point as
+		userPoint,
+		m.user_role as userRole,
+		m.gender as gender ,
+		m.file_path as
+		filePath
+		from parcipation_party p
+		left join member m
+		on m.user_no =
+		p.party_user_no
+		where party_no = #{partyNo}
+		and p.parcipation_delete_yn
+		= 'N'
+	</select>
+	
+
+	<insert id="save">
+		insert into parcipation_party (party_no , party_user_no) values (${partyNo}, ${userNo});
+	</insert>
+	
+	<update id="deleteParty">
+		update parcipation_party
+		set parcipation_delete_yn = 'Y' ,
+		parcipation_delete_at = now() ,
+		parcipation_update_at = now() 
+		where party_no = #{partyNo} 
+		and party_user_no = #{userNo}
+	</update>
+
+	<select id="validByUserNoAndPartyNo" resultType="int">
+		select count(*) from parcipation_party
+		where party_no = #{partyNo}
+		and  party_user_no = #{userNo}
+		and parcipation_delete_yn = 'N'
+	</select>
+</mapper>

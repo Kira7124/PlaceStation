@@ -27,7 +27,7 @@
 				    </div>
 				   <form action="/admin/admin-searchbiz" method="get">
 					    <div>
-					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1500px; display: flex; align-items: center;">
 					        	<select name="searchOption" class="form-control" style="width: 110px; margin-right: 2px;">
 					        			<option value="biz_brand_name">브랜드명</option>
 								        <option value="biz_id">아이디</option>
@@ -64,7 +64,7 @@
 						<tbody>
 							<tr>
 								<td>${bizlist.bizNo}</td>
-								<td>${bizlist.bizId}</td>
+								<td>${bizlist.userId}</td>
 								<td>${bizlist.bizBrandName}</td>
 								<td>${bizlist.bizBalance}</td>
 								<td>${bizlist.formatHp(bizlist.bizHp)}</td>

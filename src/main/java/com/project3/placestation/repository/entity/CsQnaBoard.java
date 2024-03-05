@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class CsQnaBoard {
 	
 	private Integer qbno;	// 글번호
-	private String qwriter;	// 글쓴이 기본키
+	private Integer qwriter;	// 글쓴이 기본키
 	private String qcontent;	// 내용
 	private String qtitle;	// 글제목
 	private String filepath;	// 첨부사진 URL
