@@ -2,13 +2,6 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<style>
-.comments {
-display: flex,
-flew-direction: row, 
-justify-content: flex-end
-}
-</style>
 </div>
 </nav>
 <div class="main">
@@ -24,11 +17,11 @@ justify-content: flex-end
 						<div class="comment-form">
 							<h4 class="comment-form-title font-alt">공지사항</h4>
 						</div>
-
 						<div class="post-header font-alt"></div>
 						<div class="search">
 							<!-- 검색 폼 -->
 							<form role="form" action="/cs/notice/search" method="get">
+								<input type="hidden" name="categoryId" value="" ${categoryId} />
 								<div class="search-box">
 									<input class="form-control" type="text" name="searchKeyword"
 										placeholder="Search..." />
@@ -39,7 +32,7 @@ justify-content: flex-end
 							</form>
 						</div>
 					</div>
-					<div class="comments">
+					<div class="comments" style="text-align: right">
 						<h5>
 							<form action="/cs/notice/search">
 								<input type="hidden" name="categoryId" value="0" /> <input
@@ -48,8 +41,8 @@ justify-content: flex-end
 									style="padding: 5px 20px" type="submit">일반</button>
 							</form>
 							<form action="/cs/notice/search">
-								<input type="hidden" name="categoryId" value="1" /> <input
-									type="hidden" name="searchKeyword" value="" />
+								<input type="hidden" name="searchKeyword" value="" /> <input
+									type="hidden" name="categoryId" value="1" />
 								<button class="btn btn-d btn-round" style="padding: 5px 20px"
 									type="submit">사업자</button>
 							</form>
@@ -59,7 +52,6 @@ justify-content: flex-end
 					<!-- 공지사항 목록 전체 div -->
 					<div>
 						<div class="panel panel-default">
-
 							<c:forEach var="noticeList" items="${noticeList}">
 								<div class="panel-heading">
 									<h4 class="panel-title font-alt">
