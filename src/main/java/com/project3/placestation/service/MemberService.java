@@ -271,7 +271,7 @@ public class MemberService {
 				.useraddress(dto.getUserAddress())
 				.userhp(dto.getUserHp())
 				.gender(dto.getGender())
-				.userrole("ROLE_SELLER")
+				.userrole("ROLE_BIZ")
 				.filepath(filepath)
 				.impkey(dto.getImpkey())
 				.impuid(dto.getImpuid())

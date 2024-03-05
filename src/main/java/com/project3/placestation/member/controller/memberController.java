@@ -146,15 +146,16 @@ public class memberController {
 		 
 		 model.addAttribute("role", role); model.addAttribute("name", id);
 		 
+		 
+	  	 Object sessionmember = httpSession.getAttribute("member");
+	  
+	     model.addAttribute("member",principal);
+			 
+			 
 		}else {
 		
 
-		/*
-		 * Object principal = httpSession.getAttribute("member");
-		 * 
-		 * model.addAttribute("principal",principal);
-		 * 
-		 */
+		
 		
 		
 		// 세번째 시도
@@ -165,7 +166,7 @@ public class memberController {
 	    log.info(" 마이페이지 메인 세션에 남는 객체 정보 tostirng~~~~~ "+oauthUser.toString());
 	    
 	    
-		model.addAttribute("oauthUser",oauthUser);
+		model.addAttribute("member",oauthUser);
 		}
 		
 		

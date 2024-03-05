@@ -39,6 +39,7 @@ $(document).ready(function() {
 				// 성공 시 이미지의 src 속성에 파일 경로 할당
 				console.log('77777777777777777' + imageUrl);
 				$('#profileImage').attr('src', imageUrl);
+				
 			},
 			error: function(xhr, status, error) {
 				console.error('에러 발생:', error);

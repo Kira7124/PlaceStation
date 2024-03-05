@@ -258,9 +258,9 @@
 
 	<!-- (회원가입)유저 아이디 중복 검사 -->
 	<select id="selectByValidUserNameOauth" resultType="com.project3.placestation.repository.entity.Member">
-		select * from
-		member where
-		(social + user_id) = #{uid}
+		SELECT *
+    FROM member
+    WHERE CONCAT(social, '', user_id) = #{uid}
 	</select>
 
 	<!-- 판매자 회원 가입용 selectKey userNo를 반환  [현재 사용하지 않는중] -->
