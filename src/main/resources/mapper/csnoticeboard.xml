@@ -58,12 +58,12 @@
 		select * from notice_board
 		where n_title LIKE '%' || #{searchKeyword} || '%'
 		and category_id = #{categoryId}
-		limit #{cri.page},#{cri.pageSize}
+		limit #{page.page} * #{page.size} , #{page.size}
 	</select>
 
 	<select id="countNoticeSearchlist" resultType="int">
 		select count(*) from notice_board
-		where n_title LIKE CONCAT('%', #{searchKeyword}, '%')
+		where n_title LIKE '%' || #{searchKeyword} || '%'
 		and category_id = #{categoryId}
 	</select>
 

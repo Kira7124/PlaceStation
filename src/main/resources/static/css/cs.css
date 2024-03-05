@@ -2,22 +2,17 @@
 html {
     height: 100%;
 }
-body {
-
-   
-}
 
 .main {
 	display: flex;
 	flex-direction: column;
 }
+
 .module-small {
-	/* module-small 영역은 남은 공간을 채웁니다. */
+
     display:flex;
     flex-basis: 950px; 
 }
-
-
 
 .button-container {
     display: flex;
@@ -25,6 +20,8 @@ body {
     justify-content: flex-end;
 }
 
-/* 푸터를 페이지 하단에 고정 */
-
-
+.pagination {
+	display: flex;
+	flex-direction: row;
+	
+}

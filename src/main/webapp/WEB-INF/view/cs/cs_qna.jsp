@@ -71,7 +71,7 @@
 									<c:otherwise>
 										<div class="panel-body">
 											<hr />
-											<h3>아직 답변 글이 없습니다.</h3>
+											<h4>아직 답변 글이 없습니다.</h4>
 										</div>
 									</c:otherwise>
 									</c:choose>
