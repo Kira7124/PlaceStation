@@ -3,8 +3,22 @@ html {
     height: 100%;
 }
 body {
-    min-height: 100%;
+
+   
 }
+
+.main {
+	display: flex;
+	flex-direction: column;
+}
+.module-small {
+	/* module-small 영역은 남은 공간을 채웁니다. */
+    display:flex;
+    flex-basis: 950px; 
+}
+
+
+
 .button-container {
     display: flex;
     flex-direction: row; 
@@ -12,8 +26,5 @@ body {
 }
 
 /* 푸터를 페이지 하단에 고정 */
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
+
+
