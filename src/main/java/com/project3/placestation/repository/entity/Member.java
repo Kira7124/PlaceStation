@@ -21,7 +21,7 @@ import lombok.ToString;
 public class Member {
 
 	// member 테이블 pk값
-	private int userno;
+	private Integer userno;
 	// 유저아이디 (로그인시 입력하는 값) 
 	private String userid;
 	// 비밀번호

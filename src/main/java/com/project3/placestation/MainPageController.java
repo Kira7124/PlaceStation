@@ -24,6 +24,13 @@ import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
 import com.project3.placestation.service.ProductService;
 
+import com.project3.placestation.biz.model.dto.ResProductDto;
+import com.project3.placestation.repository.entity.ProdReview;
+import com.project3.placestation.repository.entity.Product;
+import com.project3.placestation.repository.interfaces.ProductRepository;
+import com.project3.placestation.service.ProductService;
+
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -31,7 +38,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/main")
 public class MainPageController {
 	
-
 	@Autowired
 	ProductService productService;
 	@Autowired
@@ -39,14 +45,14 @@ public class MainPageController {
 	
 	//http://localhost:80/main/index
 	@GetMapping("/index")
-	public String indexGET(Model model) {
-		log.debug("메인 페이지!");
+	public String indexGET(Model model, HttpSession session) {
 
+		// 상세 페이지 조회수 증가 세션
+		session.setAttribute("increaseProductViews", true);
+		
 		// 상품 전체 리스트 조회
 		List<ResProductDto> products = productService.findAll();
-
 		// 전체 상품 조회 4개
-
 		List<ResProductDto> topProducts = products.stream().limit(8).collect(Collectors.toList());
 		// 리뷰 많은 상품
 		List<ProdReview> productsRev = productRepository.findAllByRev();

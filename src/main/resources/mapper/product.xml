@@ -276,6 +276,12 @@
 		) AS subquery;
 
 	</select>
+	<!-- 사업자 닉네임 조회 -->
+	<select id="findProdUsername">
+		SELECT user_name
+		FROM member
+		WHERE user_no = #{prodWriterNo}
+	</select>
 
 	<select id="existById" resultType="int">
 		select count(*) from product

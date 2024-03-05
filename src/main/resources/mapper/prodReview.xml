@@ -3,37 +3,37 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
-    namespace="com.project3.placestation.repository.interfaces.ProdReviewRepository">
+	namespace="com.project3.placestation.repository.interfaces.ProdReviewRepository">
 
-    <!-- 리뷰 등록 -->
-    <insert id="addReview">
-        insert into prod_review (prod_no , user_no , prod_rev_content ,
-        prod_rev_star)
-        values (#{prodNo}, #{userNo},#{prodRevContent},#{prodRevStar});
-    </insert>
+	<!-- 리뷰 등록 -->
+	<insert id="addReview">
+		insert into prod_review (prod_no , user_no , prod_rev_content ,
+		prod_rev_star)
+		values (#{prodNo}, #{userNo},#{prodRevContent},#{prodRevStar});
+	</insert>
 
-    <!-- 답글 등록 -->
-    <insert id="saveReview">
-        INSERT INTO prod_review (
-        prod_no, prod_rev_content,
-        prod_rev_star, user_no,
-        parent_id
-        ) VALUES (
-        #{prodNo},
-        #{prodRevContent},
-        #{prodRevStar}, #{userNo},
-        #{parentId}
-        )
-    </insert>
+	<!-- 답글 등록 -->
+	<insert id="saveReview">
+		INSERT INTO prod_review (
+		prod_no, prod_rev_content,
+		prod_rev_star, user_no,
+		parent_id
+		) VALUES (
+		#{prodNo},
+		#{prodRevContent},
+		#{prodRevStar}, #{userNo},
+		#{parentId}
+		)
+	</insert>
 
-    <!-- 리뷰 삭제 -->
-    <update id="deleteReview">
-        update prod_review SET
-        prod_rev_delete_yn = 'Y',
-        prod_rev_delete_at = NOW()
-        WHERE prod_rev_no =
-        #{prodRevNo} or parent_id = #{prodRevNo}
-    </update>
+	<!-- 리뷰 삭제 -->
+	<update id="deleteReview">
+		update prod_review SET
+		prod_rev_delete_yn = 'Y',
+		prod_rev_delete_at = NOW()
+		WHERE prod_rev_no =
+		#{prodRevNo} or parent_id = #{prodRevNo}
+	</update>
 
     <!-- 상품 번호로 리뷰 불러오기 -->
     <select id="findByRevProdNoPaged">
@@ -50,16 +50,23 @@
 	    ORDER BY prod_rev_no 
 	    LIMIT #{offset}, #{limit}
 	</select>
-	
+
 	<!-- 리뷰 개수 count -->
 	<select id="countReview">
-        SELECT COUNT(*) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_delete_yn = 'N'
-    </select>
-    
-    <!-- 리뷰 평균 평점 -->
-    <select id="avgStar">
-        SELECT ROUND(AVG(prod_rev_star) , 1) FROM prod_review WHERE prod_no = #{prodNo} AND prod_rev_star != 0 AND prod_rev_delete_yn = 'N'
-    </select>
-    
+		SELECT COUNT(*) FROM prod_review WHERE prod_no = #{prodNo} AND
+		prod_rev_delete_yn = 'N'
+	</select>
 
+	<!-- 리뷰 평균 평점 -->
+	<select id="avgStar">
+		SELECT ROUND(AVG(prod_rev_star) , 1) FROM prod_review WHERE prod_no =
+		#{prodNo} AND prod_rev_star != 0 AND prod_rev_delete_yn = 'N'
+	</select>
+
+	<!-- 유저 닉네임 조회 -->
+	<select id="findUsername">
+		SELECT user_name, file_path
+		FROM member
+		WHERE user_no = #{userNo}
+	</select>
 </mapper>
