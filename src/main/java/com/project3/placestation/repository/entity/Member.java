@@ -1,6 +1,9 @@
 package com.project3.placestation.repository.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project3.placestation.utils.TimeUtils;
 
@@ -18,7 +21,7 @@ import lombok.ToString;
 public class Member {
 
 	// member 테이블 pk값
-	private int userno;
+	private Integer userno;
 	// 유저아이디 (로그인시 입력하는 값) 
 	private String userid;
 	// 비밀번호
@@ -33,6 +36,7 @@ public class Member {
 	private String useremail;
 	// 유저 포인트
 	private Integer userpoint;
+	
 	// 회원 가입 일자
 	private Timestamp joinat;
 	// 회원 타입
@@ -47,6 +51,12 @@ public class Member {
 	private int bizid;
 	// 사업자 등록증 이미지 경로
 	private String filepath;
+	private MultipartFile Profilefilepath;
+
+	// 포트원 관련 변수
+	private String impuid;
+	private String impkey;
+	private String impsecret;
 	
 	
 	// jwt관련 변수

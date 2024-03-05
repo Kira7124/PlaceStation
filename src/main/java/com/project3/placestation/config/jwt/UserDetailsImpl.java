@@ -1,26 +1,33 @@
 package com.project3.placestation.config.jwt;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project3.placestation.config.oauth2.SessionUser;
 import com.project3.placestation.repository.entity.Member;
+
+import lombok.extern.log4j.Log4j2;
 
 //아래 @Override 이 부분이 인터페이스에서 정의한 함수로
 //email 은 개발자가 추가한 정보이고,
 //나머지 속성은 Spring Security에서 제공한 속성/함수 정보임
-public class UserDetailsImpl implements UserDetails {
+@Log4j2
+public class UserDetailsImpl implements UserDetails, OAuth2User {
 
 	private static final long serialVersionUID = 1L;
 	
-	private int userNo;
+	//private final Oauth2Response oauth2Response;
+	
+	private int userno;
 	
 	private String name; // Spring Security
 
@@ -28,78 +35,90 @@ public class UserDetailsImpl implements UserDetails {
 	@JsonIgnore
 	private String password; // Spring Security
 	
+	private Member member
+	;
+	private Map<String, Object> attributes;
+	
+	private boolean isOAuthUser;
+	
 	// 계정이 갖고 있는 권한 목록을 저장하는 속성
 	private GrantedAuthority authority; // Spring Security
 
 	// 개발자 추가 속성
-	private String userId; 
+	private String userid; 
 	private String email; 
-	private String userAddress; 
-	private String userName; 
-	private String userHp; 
-	private String userEmail; 
+	private String useraddress; 
+	private String username; 
+	private String userhp; 
+	private String useremail; 
 	private String grade; 
-	private int userPoin; 
-	private Timestamp joinAt; 
+	private int userpoin; 
+	private Timestamp joinat; 
 	private String gender; 
-	private String userOauth; 
-	private String userRole; 
+	private String oauth; 
+	private String userrole; 
 
 
 
+	public UserDetailsImpl() {
+		
+	};
 
 	public UserDetailsImpl(Integer userno, String userid, String userpassword, String username, String useremail,
 			String useraddress, String userhp, Integer userpoint, String userrole, String gender, String grade,
 			String oauth, Timestamp timestamp, GrantedAuthority authority) {
-		this.userNo = userno;
-		this.userId = userid;
+		this.userno = userno;
+		this.userid = userid;
 		this.password = userpassword;
-		this.userName = username;
-		this.userEmail = useremail;
-		this.userAddress = useraddress;
-		this.userHp = userhp;
-		this.userPoin = userpoint;
-		this.userRole = userrole;
+		this.username = username;
+		this.useremail = useremail;
+		this.useraddress = useraddress;
+		this.userhp = userhp;
+		this.userpoin = userpoint;
+		this.userrole = userrole;
 		this.gender = gender;
 		this.grade = grade;
-		this.userOauth = oauth;
+		this.oauth = oauth;
 		this.authority = authority;
 		this.name = username;
 		this.email = username;
-		this.joinAt = timestamp;
+		this.joinat = timestamp;
+		
+		
+		this.isOAuthUser = false;
 	}
 
 
 	public String getUserAddress() {
-		return userAddress;
+		return useraddress;
 	}
 
 	public void setUserAddress(String userAddress) {
-		this.userAddress = userAddress;
+		this.useraddress = userAddress;
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	public String getUserHp() {
-		return userHp;
+		return userhp;
 	}
 
 	public void setUserHp(String userHp) {
-		this.userHp = userHp;
+		this.userhp = userHp;
 	}
 
 	public String getUserEmail() {
-		return userEmail;
+		return useremail;
 	}
 
 	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+		this.useremail = userEmail;
 	}
 
 	public String getGrade() {
@@ -111,19 +130,19 @@ public class UserDetailsImpl implements UserDetails {
 	}
 
 	public int getUserPoin() {
-		return userPoin;
+		return userpoin;
 	}
 
 	public void setUserPoin(int userPoin) {
-		this.userPoin = userPoin;
+		this.userpoin = userPoin;
 	}
 
 	public Timestamp getJoinAt() {
-		return joinAt;
+		return joinat;
 	}
 
 	public void setJoinAt(Timestamp joinAt) {
-		this.joinAt = joinAt;
+		this.joinat = joinAt;
 	}
 
 
@@ -136,18 +155,21 @@ public class UserDetailsImpl implements UserDetails {
 	}
 
 	public String getUserOauth() {
-		return userOauth;
+		return oauth;
 	}
 
 	public void setUserOauth(String userOauth) {
-		this.userOauth = userOauth;
+		this.oauth = userOauth;
 	}
 
 	public static UserDetailsImpl build(Member user) {
 // role.getName().name() : 롤 정보 ( ROLE_USER 등 )
 // 권한 생성은 : new SimpleGrantedAuthority(권한문자열) 생성자를 호출 해서 생성
+		log.info("유저 디테일 메서드에서 유저 권한 호출:!!!!!!!!!!!!!!!!!!!!!!!!"+ user.getUserrole());
 		GrantedAuthority authority = new SimpleGrantedAuthority(user.getUserrole());
 
+		System.out.println("유저 디테일 서비스 빌드 메서드 호출: " + user.getUserrole());
+		
         return new UserDetailsImpl(
         		user.getUserno(),
                 user.getUserid(),
@@ -168,11 +190,42 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
-		Set<GrantedAuthority> set = new HashSet<>();
-
+		
+		 List<GrantedAuthority> authorities = new ArrayList<>(); 
+		 if(!isOAuthUser) { 
+		 // 일반 로그인
+		 authorities.add(authority);
+		 
+		 }else { // 소셜 로그인
+		 authorities.add(new GrantedAuthority() {
+		 
+		 @Override public String getAuthority() { 
+			 
+			 return member.getUserrole(); } 
+		 	}); 
+		 }
+		 
+		 return authorities;
+		 
+		
+ 	/*	Set<GrantedAuthority> set = new HashSet<>();
+		
 		set.add(authority);
+		set.add(attributes.set권한);
+		 return set;
+		*/
+		
+/*
+ * Collection<GrantedAuthority> collection = new ArrayList<>();
+ * 
+ * collection.add(new GrantedAuthority() {
+ * 
+ * @Override public String getAuthority() { // TODO Auto-generated method stub
+ * log.info("유저 임플리 겟 어소리티 로그%%%%%%%%%%%%: "+authority.getAuthority()); return
+ * authority.getAuthority(); } });
+ * return collection;
+ */
 
-		return set;
 	}
 
 	// 계정이 갖고 있는 권한을 리턴하는 함수
@@ -196,19 +249,19 @@ public class UserDetailsImpl implements UserDetails {
 	}
 	
 	public int getUserNo() {
-		return userNo;
+		return userno;
 	}
 
 	
 	// ===============
 
 	public String getUserId() {
-		return userId;
+		return userid;
 	}
 
 
 	public void setUserId(String userId) {
-		this.userId = userId;
+		this.userid = userId;
 	}
 
 
@@ -223,6 +276,12 @@ public class UserDetailsImpl implements UserDetails {
 	// 계정이 잠겨있지 않은지를 리턴( true 이면 잠겨있지 않음을 의미 )
 	@Override
 	public boolean isAccountNonLocked() {
+		
+		/*
+		 * // 탈퇴된 계정 if(member.getOutyn() != null || member.getOutyn() > 1) { return
+		 * false; }
+		 */
+		
 		return true;
 	}
 
@@ -238,26 +297,47 @@ public class UserDetailsImpl implements UserDetails {
 		return true;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		UserDetailsImpl userDto = (UserDetailsImpl) o;
-		return Objects.equals(email, userDto.email);
-	}
+	/*
+	 * @Override public boolean equals(Object o) { if (this == o) return true; if (o
+	 * == null || getClass() != o.getClass()) return false; UserDetailsImpl userDto
+	 * = (UserDetailsImpl) o; return Objects.equals(email, userDto.email); }
+	 */
 
 
 	@Override
 	public String toString() {
-		return "UserDetailsImpl [userNo=" + userNo + ", name=" + name + ", password=" + password + ", authority="
-				+ authority + ", userId=" + userId + ", email=" + email + ", userAddress=" + userAddress + ", userName="
-				+ userName + ", userHp=" + userHp + ", userEmail=" + userEmail + ", grade=" + grade + ", userPoin="
-				+ userPoin + ", joinAt=" + joinAt + ", gender=" + gender + ", userOauth=" + userOauth + ", userRole="
-				+ userRole + "]";
+		return "UserDetailsImpl [userno=" + userno + ", name=" + name + ", password=" + password + ", authority="
+				+ authority + ", userid=" + userid + ", email=" + email + ", useraddress=" + useraddress + ", username="
+				+ username + ", userhp=" + userhp + ", useremail=" + useremail + ", grade=" + grade + ", userpoin="
+				+ userpoin + ", joinat=" + joinat + ", gender=" + gender + ", oauth=" + oauth + ", userrole="
+				+ userrole + "]";
 	}
 
 	
+	
+	
 
+
+
+	// OAuth2 로그인 생성자
+    public UserDetailsImpl(Member member, Map<String, Object> attributes, boolean isOAuthUser) {
+        this.member = member;
+        this.attributes = attributes;
+        this.isOAuthUser = true;
+    }
+    
+	// OAuth2 사용자의 속성
+	@Override
+	public Map<String, Object> getAttributes() {
+		// TODO Auto-generated method stub
+		return attributes;
+	}
+	
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return member.getUsername();
+	}
+	
+ 
 }

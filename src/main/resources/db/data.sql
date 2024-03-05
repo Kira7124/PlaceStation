@@ -15,6 +15,9 @@ VALUES
 (1, 1, '리뷰 내용 3', 0, 'N', 2),
 (2, 2, '리뷰 내용 4', 4, 'N', null);
 
+INSERT INTO product_views (prod_views, prod_no) VALUES (0, 1);
+INSERT INTO product_views (prod_views, prod_no) VALUES (0, 2);
+INSERT INTO product_views (prod_views, prod_no) VALUES (0, 3);
 
 INSERT INTO member (user_id, user_password, user_address, user_name, user_hp, user_email, user_role,grade,gender) 
 VALUES 
@@ -202,23 +205,23 @@ insert into admin_prod_history (
     end_time,
     people_count,
     purchase_date 
-) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31') ,
-('OXDSAD-Dvdska' ,2,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSAD-Djpwdqjpo' ,3,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSAD-Dewqjdq' ,4,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSAD-DNSKAdsds1' ,5,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSAdsaD-DNSdsaKds1' ,6,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSAD-DNSKdss1' ,7,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSdsaAD-DNSdKds1' ,8,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSAD-DNvSKds1' ,9,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('aOXDdsaSAD-DNSKds1' ,10,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSAD-DNSxzKds1' ,11,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSdAD-DNSKds1' ,12,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSdsaAD-DNSKds1' ,13,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSAdasD-DNSKds1dsa' ,14,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSADdsa-DNSKds1' ,15,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OasXDSAD-cDNSKds1' ,16,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31'),
-('OXDSAD-qweniqo' ,17,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31');
+) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,28,'부산은행',1,4,2,'2024-12-31') ,
+('OXDSAD-Dvdska' ,2,100000 ,0,0,0,0,'타이틀' , 1,true ,28,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-Djpwdqjpo' ,3,100000 ,0,0,0,0,'타이틀' , 1,true ,28 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-Dewqjdq' ,4,100000 ,0,0,0,0,'타이틀' , 1,true ,28,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-DNSKAdsds1' ,5,100000 ,0,0,0,0,'타이틀' , 1,true ,28,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAdsaD-DNSdsaKds1' ,6,100000 ,0,0,0,0,'타이틀' , 1,true ,28,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-DNSKdss1' ,7,100000 ,0,0,0,0,'타이틀' , 1,true ,28,'부산은행',1,4,2,'2024-12-31'),
+('OXDSdsaAD-DNSdKds1' ,8,100000 ,0,0,0,0,'타이틀' , 1,true ,28,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-DNvSKds1' ,9,100000 ,0,0,0,0,'타이틀' , 1,true ,27,'부산은행',1,4,2,'2024-12-31'),
+('aOXDdsaSAD-DNSKds1' ,10,100000 ,0,0,0,0,'타이틀' , 1,true ,28,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-DNSxzKds1' ,11,100000 ,0,0,0,0,'타이틀' , 1,true ,27,'부산은행',1,4,2,'2024-12-31'),
+('OXDSdAD-DNSKds1' ,12,100000 ,0,0,0,0,'타이틀' , 1,true ,27 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSdsaAD-DNSKds1' ,13,100000 ,0,0,0,0,'타이틀' , 1,true ,27 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAdasD-DNSKds1dsa' ,14,100000 ,0,0,0,0,'타이틀' , 1,true ,27 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSADdsa-DNSKds1' ,15,100000 ,0,0,0,0,'타이틀' , 1,true ,27,'부산은행',1,4,2,'2024-12-31'),
+('OasXDSAD-cDNSKds1' ,16,100000 ,0,0,0,0,'타이틀' , 1,true ,27 ,'부산은행',1,4,2,'2024-12-31'),
+('OXDSAD-qweniqo' ,17,100000 ,0,0,0,0,'타이틀' , 1,true ,27,'부산은행',1,4,2,'2024-12-31');
 
 
 
@@ -494,6 +497,24 @@ insert into company values ('PlaceStation' , '부산광역시 부산진구 중�
 
 INSERT INTO FAQ_BOARD(F_BNO, F_WRITER, F_CONTENT, F_TITLE)VALUES (1, 1, '로그인 하고 싶어요', '로그인이 안 돼요');
 
+Insert into notice_board (n_writer, n_content, n_title, category_id) 
+values ('yb','111111111111','0번  aaaaa', 0),
+('yb','2222222222','0번 bbbbbbbbb', 0),
+('yb','333333333333','0번 cccccccccc', 0),
+('yb','4444444444444','0번 ddddddd', 0),
+('yb','55555555555','0번 eeeeeee', 0),
+('yb','666666666666','0번 ffffffff', 0),
+('yb','777777777777','0번 gggggggg', 0),
+('yb','88888888888','0번 hhhhhhhhh', 0),
+('by','111111111111','1번aaaaaaa', 1),
+('by','2222222222','1번 bbbbbbbbb', 1),
+('by','333333333333','1번cccccccccc', 1),
+('by','4444444444444','1번ddddddd', 1),
+('by','55555555555','1번eeeeeee', 1),
+('by','666666666666','1번 ffffffff', 1),
+('by','777777777777','1번gggggggg', 1),
+('by','88888888888','1번hhhhhhhhh', 1);
+
 insert into banner (ban_name)
 values('1번배너'),('2번배너'),('3번배너'),('4번배너'),('5번배너'),('6번배너'),('7번배너'),('8번배너'),('9번배너'),('10번배너');
 
@@ -523,3 +544,10 @@ insert into addition_explanation (file_path , name) values ('/assets/images/biz/
 ('/assets/images/biz/speaker.png','블루투스 스피커'),
 ('/assets/images/biz/sliper.png','실내화'),
 ('/assets/images/biz/tripod.png','삼각대');
+
+insert into party (party_name , party_title , party_description , party_host, party_maximum_people, party_manager , product_no ,admin_his_no)
+values ('모임 이름 ' , '모임 타이틀' , '모임 설명' , 28 , 6 , null , 3 ,'OXDSAD-DNSKAN1');
+
+insert into party_announcement (party_no , party_announcement_title , party_announcement_description
+) values (1 , '모임 공지 타이틀' , '모임 공지 설명');
+

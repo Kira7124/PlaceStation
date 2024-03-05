@@ -39,4 +39,7 @@ public interface ProductRepository {
     public String findAdditionExplanationNameByProdNo(int prodNo);
     public String findAdditionExplanationFilePathByProdNo(int prodNo);
 
+	// 상품 확인
+	public int existById(int prodNo);
+
 }

@@ -46,6 +46,7 @@ public class ProdReviewService {
 	            .prodRevDeleteAt(prodRev.getProdRevDeleteAt())
 	            .parentId(prodRev.getParentId())
 	            .build();
+	        
 	        dtos.add(dto);
 	    }
 
@@ -100,6 +101,10 @@ public class ProdReviewService {
         }
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a6ade127c2f19eb4a075a9bf00ccb0f818988af9
     // 리뷰 개수 count
     public Integer getCountReview(Integer prodNo) {
     	return prodReviewRepository.countReview(prodNo);

@@ -67,7 +67,10 @@
 		#{prodAddress}
 		, #{prodDetailedAddress} , #{prodPrice} , #{filePath} ,
 		#{prodMajorCategoryId}, #{prodSubcategoryId} , #{prodFullAddress} ,
-		#{prodLocationX} , #{prodLocationY} , #{additionExplanation} )
+		#{prodLocationX} , #{prodLocationY} , #{additionExplanation} );
+
+		INSERT INTO product_views (prod_no, prod_views)
+		VALUES (LAST_INSERT_ID(), 0);
 	</insert>
 
 	<update id="updateProduct">
@@ -139,38 +142,45 @@
 
 	<select id="findById"
 		resultType="com.project3.placestation.repository.entity.Product">
-		SELECT
-		p.prod_no AS prodNo,
-		p.prod_writer_no AS prodWriterNo,
-		p.prod_title AS prodTitle,
-		p.prod_start_time AS prodStartTime,
-		p.prod_end_time AS prodEndTime,
-		p.prod_space_info AS prodSpaceInfo,
-		p.prod_goods_info AS prodGoodsInfo,
-		p.prod_caution_info AS prodCautionInfo,
-		p.prod_maximum_people AS prodMaximumPeople,
-		p.prod_address AS prodAddress,
-		p.prod_detailed_address AS prodDetailedAddress,
-		p.prod_price AS prodPrice,
-		p.file_path AS filePath,
-		p.prod_major_category_id AS prodMajorCategoryId,
-		p.prod_subcategory_id AS prodSubcategoryId,
-		p.prod_full_address AS prodFullAddress,
-		p.prod_location_x AS prodLocationX,
-		p.prod_location_y AS prodLocationY,
-		p.prod_rdate AS prodRdate,
-		p.prod_update_at AS prodUpdateAt,
-		p.prod_delete_reason AS prodDeleteReason,
-		p.prod_delete_yn AS prodDeleteYn,
-		ae.file_path AS additionExplanationFilePath,
-		ae.name AS additionExplanationName
-		FROM
-		product p
-		LEFT JOIN
-		addition_explanation ae ON p.addition_explanation = ae.addition_explanation_no
-		WHERE
-		p.prod_no = #{prod_no}
-		AND p.prod_delete_yn = 'N';
+		select
+		prod_no as prodNo,
+		prod_writer_no as prodWriterNo ,
+		prod_title as prodTitle ,
+		prod_start_time as prodStartTime,
+		prod_end_time as prodEndTime ,
+		prod_space_info as prodSpaceInfo ,
+		prod_goods_info as prodGoodsInfo ,
+		prod_caution_info as prodCautionInfo
+		,
+		prod_maximum_people as
+		prodMaximumPeople ,
+		prod_address as prodAddress
+		,
+		prod_detailed_address
+		as prodDetailedAddress ,
+		prod_price as prodPrice
+		,
+		file_path as filePath
+		,
+		prod_major_category_id as prodMajorCategoryId ,
+		prod_subcategory_id as
+		prodSubcategoryId ,
+		prod_full_address as
+		prodFullAddress ,
+		prod_location_x as prodLocationX ,
+		prod_location_y as
+		prodLocationY,
+		prod_rdate as prodRdate ,
+		prod_update_at as prodUpdateAt
+		,
+		prod_delete_reason as prodDeleteReason ,
+		prod_delete_yn as
+		prodDeleteYn ,
+		addition_explanation as additionExplanation
+		from product
+		where prod_no = #{prod_no}
+		and
+		prod_delete_yn = 'N'
 	</select>
 
 	<select id="findMainAllBysearchAndPriceAndstar"
@@ -266,6 +276,17 @@
 		) AS subquery;
 
 	</select>
+	<!-- 사업자 닉네임 조회 -->
+	<select id="findProdUsername">
+		SELECT user_name
+		FROM member
+		WHERE user_no = #{prodWriterNo}
+	</select>
 
+	<select id="existById" resultType="int">
+		select count(*) from product
+		where prod_no = #{prodNo}
+		and prod_delete_yn = 'N'
+	</select>
 
 </mapper>

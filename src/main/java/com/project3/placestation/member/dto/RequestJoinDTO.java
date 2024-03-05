@@ -33,11 +33,9 @@ public class RequestJoinDTO {
 	private String userName;
 	private String userHp;
 	
-	// email 받아서 합친 변수
+	// email
 	private String email;
-	private String email2;
-	// email을 합친 변수
-	private String userEmail;
+	
 	
 	private String grade;
 	private int userPoin;
@@ -48,7 +46,12 @@ public class RequestJoinDTO {
 	private String userOauth;
 	private String role;
 	private String gender;
+	
+	// 포트원 변수
+	private String impuid;
+	private String impkey;
+	private String impsecret;
+	
 
-	// 주소 1,2,3을 받기 위한 address
 	
 }

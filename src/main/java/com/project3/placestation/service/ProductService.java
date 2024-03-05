@@ -20,6 +20,7 @@ import com.project3.placestation.product.dto.ProdFilterDto;
 import com.project3.placestation.product.dto.ResProdMainFilterDto;
 import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
+import com.project3.placestation.repository.interfaces.ProductViewRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -302,6 +303,15 @@ public class ProductService {
 		// 페이징 처리를 위한 객체 생성
 		PageRes<ResProdMainFilterDto> pageRes = new PageRes<>(resProduct , pageReq.getPage() , count , pageReq.getSize());
 		return pageRes;
+	}
+	
+	/**
+	 * 상품 확인
+	 * @param prodNo
+	 * @return
+	 */
+	public int existById(int prodNo) {
+		return productRepository.existById(prodNo);
 	}
 
 }

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- adminheader.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/mainpage.css" />
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 
 <div class="main">
@@ -15,53 +15,84 @@
 		<input type="radio" name="slide" id="slide02">
 		<input type="radio" name="slide" id="slide03">
 		<input type="radio" name="slide" id="slide04">
+		<input type="radio" name="slide" id="slide05">
 	<div class="slidewrap">
-		
 		<ul class="slidelist">
 			<!-- 슬라이드 영역 -->
 			<li class="slideitem">
 				<a href="/main/index">
-				   <img src="/banner/welcome.jpg">
+				   <img src="/banner/slogans2.png">
 				</a>
 			</li>
 			<li class="slideitem">
-				<a href="#">
-				   <img src="/banner/sport.jpg">
-				</a>
+			  <a href="#">
+				<c:choose>
+				    <c:when test="${not empty bannerlist[1].filePath}">
+				        <img src="${bannerlist[1].filePath}" alt="Banner Image" />
+				    </c:when>
+				    <c:otherwise>
+				        <img src="/banner/campings.png" alt="Banner Image" />
+				    </c:otherwise>
+				</c:choose>
+     		  </a>
 			</li>
 			<li class="slideitem">
-				<a href="#">
-				   <img src="/banner/party.jpg">
-				</a>
+			 <a href="#">
+				<c:choose>
+				    <c:when test="${not empty bannerlist[2].filePath}">
+				        <img src="${bannerlist[2].filePath}" alt="Banner Image" />
+				    </c:when>
+				    <c:otherwise>
+				        <img src="/banner/partys.png" alt="Banner Image" />
+				    </c:otherwise>
+				</c:choose>				
+			 </a>
 			</li class="slideitem">
 			<li class="slideitem">
-				<a href="#">
-				   <img src="/banner/camp.jpg">
-				</a>
+			 <a href="#">
+				<c:choose>
+				    <c:when test="${not empty bannerlist[3].filePath}">
+				        <img src="${bannerlist[3].filePath}" alt="Banner Image" />
+				    </c:when>
+				    <c:otherwise>
+				        <img src="/banner/sports.png" alt="Banner Image" />
+				    </c:otherwise>
+				</c:choose>
+			 </a>
 			</li class="slideitem">
+			<li class="slideitem">
+				<a href="/main/index">
+				   <img src="/banner/community.png">
+				</a>
+			</li>
 
 			<!-- 좌,우 슬라이드 버튼 -->
 			<div class="slide-control">
 				<div>
-					<label for="slide03" class="left"></label>
-					<label for="slide02" class="right"></label>
+					<label for="slide03" class="left" onclick="changeSlide('slide02')"></label>
+					<label for="slide02" class="right"  onclick="changeSlide('slide01')"></label>
 				</div>
 				<div>
-					<label for="slide01" class="left"></label>
-					<label for="slide03" class="right"></label>
+					<label for="slide01" class="left"  onclick="changeSlide('slide01')"></label>
+					<label for="slide03" class="right"  onclick="changeSlide('slide03')"></label>
 				</div>
 				<div>
-					<label for="slide02" class="left"></label>
-					<label for="slide01" class="right"></label>
+					<label for="slide02" class="left"  onclick="changeSlide('slide02')"></label>
+					<label for="slide01" class="right"  onclick="changeSlide('slide01')"></label>
 				</div>
 				<div>
-					<label for="slide04" class="left"></label>
-					<label for="slide03" class="right"></label>
+					<label for="slide04" class="left" onclick="changeSlide('slide04')"></label>
+					<label for="slide03" class="right" onclick="changeSlide('slide03')"></label>
 				</div>
 				<div>
-					<label for="slide01" class="left"></label>
-					<label for="slide04" class="right"></label>
+					<label for="slide05" class="left" onclick="changeSlide('slide05')"></label>
+					<label for="slide04" class="right" onclick="changeSlide('slide04')"></label>
 				</div>
+				<div>
+					<label for="slide01" class="left" onclick="changeSlide('slide01')"></label>
+					<label for="slide05" class="right" onclick="changeSlide('slide05')"></label>
+				</div>
+
 			</div>
 
 		</ul>
@@ -71,23 +102,15 @@
 			<li><label for="slide02"></label></li>
 			<li><label for="slide03"></label></li>
 			<li><label for="slide04"></label></li>
+			<li><label for="slide05"></label></li>
 		</ul>
 	</div>
-
-	
 </div>
- 	 
 
-
-
-
-
-
-
-
+<script type="text/javascript" src="/js/main/banner.js"></script>
 
 	<!-- PlaceStation의 추천!! -->
-	<section class="module" id="news" style="margin-top: 50px;">
+		<section class="module" id="news" style="margin-top: 50px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
@@ -101,12 +124,12 @@
 						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 						<div class="shop-item-detail">
 							<a class="btn btn-round btn-b"
-								href="productDetail?prod_no=${product.prodNo}"><span
+								href="/product/productDetail?prod_no=${product.prodNo}"><span
 								class="icon-basket">보러가기</span></a>
 						</div>
 					</div>
 					<h4 class="shop-item-title font-alt">
-						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 					</h4>
 					${product.prodPrice} 원/시간
 				</div>
@@ -117,12 +140,12 @@
 						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 						<div class="shop-item-detail">
 							<a class="btn btn-round btn-b"
-								href="productDetail?prod_no=${product.prodNo}"><span
+								href="/product/productDetail?prod_no=${product.prodNo}"><span
 								class="icon-basket">보러가기</span></a>
 						</div>
 					</div>
 					<h4 class="shop-item-title font-alt">
-						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 					</h4>
 					${product.prodPrice} 원/시간
 				</div>
@@ -133,12 +156,12 @@
 						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 						<div class="shop-item-detail">
 							<a class="btn btn-round btn-b"
-								href="productDetail?prod_no=${product.prodNo}"><span
+								href="/product/productDetail?prod_no=${product.prodNo}"><span
 								class="icon-basket">보러가기</span></a>
 						</div>
 					</div>
 					<h4 class="shop-item-title font-alt">
-						<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 					</h4>
 					${product.prodPrice} 원/시간
 				</div>
@@ -174,12 +197,12 @@
 								<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
 								<div class="shop-item-detail">
 									<a class="btn btn-round btn-b"
-										href="productDetail?prod_no=${product.prodNo}"><span
+										href="/product/productDetail?prod_no=${product.prodNo}"><span
 										class="icon-basket">보러가기</span></a>
 								</div>
 							</div>
 							<h4 class="shop-item-title font-alt">
-								<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+								<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 							</h4>
 							${product.prodPrice} 원/시간
 						</div>
@@ -188,7 +211,6 @@
 			</div>
 		</div>
 	</section>
-
 
 	<!-- 2번째 상품 (리뷰가 많은 순서)  -->
 	<section class="module">
@@ -216,12 +238,12 @@
 												alt="${product.prodTitle}" />
 											<div class="shop-item-detail">
 												<a class="btn btn-round btn-b"
-													href="productDetail?prod_no=${product.prodNo}"><span
+													href="/product/productDetail?prod_no=${product.prodNo}"><span
 													class="icon-basket">보러가기</span></a>
 											</div>
 										</div>
 										<h4 class="shop-item-title font-alt">
-											<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+											<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 										</h4>
 										${product.prodPrice} 원/시간
 									</div>
@@ -233,7 +255,6 @@
 			</div>
 		</div>
 	</section>
-
 
 	<!-- 3번 상품 리스트 (새로 등록된 순) -->
 	<section class="module" id="specialities">
@@ -264,14 +285,14 @@
 									alt="${product.prodTitle}" />
 								<div class="shop-item-detail">
 									<a class="btn btn-round btn-b"
-										href="productDetail?prod_no=${product.prodNo}"> <span
+										href="/product/productDetail?prod_no=${product.prodNo}"> <span
 										class="icon-basket">보러가기</span>
 									</a>
 								</div>
 							</div>
 							<div class="shop-item-info">
 								<h4 class="shop-item-title font-alt">
-									<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+									<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 								</h4>
 								<div class="shop-item-price">${product.prodPrice}원/시간</div>
 								<div class="shop-item-maximum">최대 ${product.prodMaximumPeople}인 ${product.prodStartTime}시~${product.prodEndTime}시</div>
@@ -280,8 +301,6 @@
 					</div>
 				</c:forEach>
 			</div>
-
-
 		</div>
 	</section>
 
@@ -312,12 +331,12 @@
 												alt="${product.prodTitle}" />
 											<div class="shop-item-detail">
 												<a class="btn btn-round btn-b"
-													href="productDetail?prod_no=${product.prodNo}"><span
+													href="/product/productDetail?prod_no=${product.prodNo}"><span
 													class="icon-basket">보러가기</span></a>
 											</div>
 										</div>
 										<h4 class="shop-item-title font-alt">
-											<a href="productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+											<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
 										</h4>
 										${product.prodPrice} 원/시간
 									</div>
@@ -329,63 +348,6 @@
 			</div>
 		</div>
 	</section>
-
-	<!-- 리퀘스트 시작 -->
-	<section class="module bg-dark-60 request-cta"
-		data-background="assets/images/finance/rqst_bg.jpg">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<h2 class="font-alt">Request a call back</h2>
-					<p>Would you like to speak to one of our financial advisers
-						over the phone? Just submit your details and we’ll be in touch
-						shortly. You can also email us if you would prefer.</p>
-				</div>
-				<div class="col-sm-8">
-					<div class="row">
-						<form class="form rqst-form" id="requestACall" role="form"
-							method="post" action="php/request_call.php">
-							<div class="form-group col-sm-6 col-xs-12">
-								<input class="form-control input-lg" type="text" name="name"
-									placeholder="Name" />
-							</div>
-							<div class="form-group col-sm-6 col-xs-12">
-								<select class="form-control input-lg" name="subject">
-									<option value="subject1" disabled="" selected="">Subject</option>
-									<option value="BusinessConsulting">Business consulting</option>
-									<option value="MarketingStrategy">Marketing Strategy</option>
-									<option value="TaxesAdvisory">Taxes Advisory</option>
-									<option value="InvestmentPlanning">Investment Planning</option>
-									<option value="ITManagement">IT Management</option>
-									<option value="DataAnalytics">Data Analytics</option>
-								</select>
-							</div>
-							<div class="form-group col-sm-6 col-xs-12">
-								<input class="form-control input-lg" type="text" name="phone"
-									placeholder="Phone Number" />
-							</div>
-							<div class="form-group col-sm-6 col-xs-12">
-								<button class="btn btn-border-w btn-circle btn-block"
-									id="racSubmit" type="submit">
-									<i class="fa fa-paper-plane-o"></i> Submit
-								</button>
-							</div>
-							<div id="requestFormResponse"></div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 	
-	
-	
-	
-	
-
-
-
-
-
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
