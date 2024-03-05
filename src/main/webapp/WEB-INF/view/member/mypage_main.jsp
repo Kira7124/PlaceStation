@@ -201,12 +201,8 @@
 												style="background-color: #111; border-color: #111;">Save
 												Profile</button>
 										</div>
-
-
 									</c:when>
 								</c:choose>
-
-
 							</form>
 						</div>
 					</div>
