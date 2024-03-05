@@ -64,7 +64,7 @@ public interface MemberRepository {
 	//회원 단건 정보 검색(로그인 처리)
 	public memberDTO selectUser(String userId);
 
-	//일반 회원 가입(회원 가입 처리)
+	//일반,판매자 회원 가입(회원 가입 처리)
 	public int insertUser(Member member);
 	
 	//소셜 회원 가입(회원 가입 처리)
@@ -104,6 +104,16 @@ public interface MemberRepository {
 	public Member selectByUserId(Member member);
 	
 	//(소셜) 최초 로그인 여부 검증
-	public int selectByValidUserNameOauth(String uid);
+	public Member selectByValidUserNameOauth(String uid);
+	
+	// 사진바꾸기
+	public int changePhoto(@Param("userno") int userno, @Param("filePath") String filePath);
+
+	// 
+	public Member selectUserUpdatePhoto(int userno);
+	
+	
+	
+	
 	
 }

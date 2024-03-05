@@ -257,10 +257,10 @@
 	</select>
 
 	<!-- (회원가입)유저 아이디 중복 검사 -->
-	<select id="selectByValidUserNameOauth" resultType="Integer">
-		select count(*) from
-		member where
-		(social + user_id) = #{uid}
+	<select id="selectByValidUserNameOauth" resultType="com.project3.placestation.repository.entity.Member">
+		SELECT *
+    FROM member
+    WHERE CONCAT(social, '', user_id) = #{uid}
 	</select>
 
 	<!-- 판매자 회원 가입용 selectKey userNo를 반환  [현재 사용하지 않는중] -->
@@ -290,7 +290,19 @@
 	</select>
 
 
-
+	
+	<!-- 유저사진변경하기 -->
+	<update id="changePhoto">
+			update member set file_path = #{filePath}
+			where user_no = #{userno}
+	</update>
+	
+	
+	<!-- 유저사진변경 filepath 가져오기 -->
+	<select id="selectUserUpdatePhoto" resultType="com.project3.placestation.repository.entity.Member">
+			select * from member where user_no = #{userno}
+	</select>
+	
 
 </mapper>
 

@@ -88,6 +88,8 @@
     <script src="/js/member/zipcode.js"></script>
     <script src="/js/member/authEmail.js"></script>
     <script src="/js/member/checkUser.js"></script>
+    <script src="/js/member/changePhoto.js"></script>
+    
       <!-- member 추가  -->
     
     <script src="/assets/lib/jquery/dist/jquery.js"></script>
