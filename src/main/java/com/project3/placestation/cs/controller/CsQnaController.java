@@ -75,7 +75,7 @@ public class CsQnaController {
 	public String qnaWriteForm(Model model , @PathVariable(value = "category-id") Integer categoryId) {
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		

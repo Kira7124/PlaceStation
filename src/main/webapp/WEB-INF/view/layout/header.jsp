@@ -66,8 +66,7 @@
 		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 
 			<div class="container" id="header">
-				<div class="navbar-header"
-					style="margin-bottom: 50px; margin-right: 100px;">
+				<div class="navbar-header">
 					<a class="navbar-brand" href="/main/index"> <img
 						src="/logo/logo.jpg.png" style="width: 120px; height: 80px;">
 					</a>
@@ -76,95 +75,43 @@
 				<!-- nav 바 시작 -->
 				<div class="collapse navbar-collapse" id="custom-collapse"
 					style="margin-bottom: 20px;">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">상품 조회</a>
+					<ul class="nav navbar-nav navbar-right" style="margin-bottom: -5px; ">
+						<li class="dropdown" style="font-size: 13px"><a class="dropdown-toggle" href="#"
+							data-toggle="dropdown">장소 조회</a>
 							<ul class="dropdown-menu">
 								<li><a href="/product/search-page">전체 상품 조회</a></li>
-								<li><a href="index_op_fullscreen_gradient_overlay.html">One
-										Page</a></li>
-								<li><a href="index_agency.html">Agency</a></li>
-								<li><a href="index_portfolio.html">Portfolio</a></li>
-								<li><a href="index_restaurant.html">Restaurant</a></li>
+								<li><a href="#">평점순</a></li>
+								<li><a href="#">리뷰순</a></li>
+								<li><a href="#">신규순</a></li>
 							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
+						<li class="dropdown" style="font-size: 13px"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">모임</a>
 							<ul class="dropdown-menu">
-								<li><a href="/party/main"">전체 모임</a></li>
-								<li><a href="/party/select-create">모임 생성</a></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Video Background Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_video_background.html">Fulscreen</a></li>
-										<li><a href="index_mp_classic_video_background.html">Classic</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Text Rotator Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_text_rotator.html">Fulscreen</a></li>
-										<li><a href="index_mp_classic_text_rotator.html">Classic</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Gradient Overlay Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_gradient_overlay.html">Fulscreen</a></li>
-										<li><a href="index_mp_classic_gradient_overlay.html">Classic</a></li>
-									</ul></li>
+								<li ><a  href="/party/main"
+									">전체 모임</a></li>
+								<li ><a  href="/party/select-create"
+									>모임 생성</a></li>
 							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Pages</a>
+						<li class="dropdown" style="font-size: 13px"><a class="dropdown-toggle" href="#"
+							data-toggle="dropdown">공지</a>
 							<ul class="dropdown-menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">About</a>
-									<ul class="dropdown-menu">
-										<li><a href="about1.html">About 1</a></li>
-										<li><a href="about2.html">About 2</a></li>
-										<li><a href="about3.html">About 3</a></li>
-										<li><a href="about4.html">About 4</a></li>
-										<li><a href="about5.html">About 5</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Services</a>
-									<ul class="dropdown-menu">
-										<li><a href="service1.html">Service 1</a></li>
-										<li><a href="service2.html">Service 2</a></li>
-										<li><a href="service3.html">Service 3</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Pricing</a>
-									<ul class="dropdown-menu">
-										<li><a href="pricing1.html">Pricing 1</a></li>
-										<li><a href="pricing2.html">Pricing 2</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Gallery</a>
-									<ul class="dropdown-menu">
-										<li><a href="gallery_col_2.html">2 Columns</a></li>
-										<li><a href="gallery_col_3.html">3 Columns</a></li>
-										<li><a href="gallery_col_4.html">4 Columns</a></li>
-										<li><a href="gallery_col_6.html">6 Columns</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Contact</a>
-									<ul class="dropdown-menu">
-										<li><a href="contact1.html">Contact 1</a></li>
-										<li><a href="contact2.html">Contact 2</a></li>
-										<li><a href="contact3.html">Contact 3</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Restaurant menu</a>
-									<ul class="dropdown-menu">
-										<li><a href="restaurant_menu1.html">Menu 2 Columns</a></li>
-										<li><a href="restaurant_menu2.html">Menu 3 Columns</a></li>
-									</ul></li>
+								<li ><a  href="/cs/notice/search
+									">공지사항</a></li>
+								<li ><a  href="/cs/qna"
+									>1:1문의</a></li>
+								<li ><a  href="/cs/faq"
+									>FAQ</a></li>
+							
+								
 							</ul></li>
+			
 					</ul>
 				</div>
 
-				<div class="container-search" style="margin-bottom: 30px;">
+				<div class="container-search" style="margin-bottom: 25px;">
 					<form role="form">
 						<div class="search-box">
-							<input class="form-control" type="text" placeholder="Search..." />
+							<input class="form-control" type="text" style="" placeholder="Search..." />
 							<button class="search-btn" type="submit">
 								<i class="fa fa-search"></i>
 							</button>

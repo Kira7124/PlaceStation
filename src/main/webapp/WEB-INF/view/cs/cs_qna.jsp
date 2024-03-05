@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<link rel="stylesheet" href="/css/cs.css">
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 </div>
 </nav>
@@ -71,7 +71,7 @@
 									<c:otherwise>
 										<div class="panel-body">
 											<hr />
-											<h3>아직 답변 글이 없습니다.</h3>
+											<h4>아직 답변 글이 없습니다.</h4>
 										</div>
 									</c:otherwise>
 									</c:choose>

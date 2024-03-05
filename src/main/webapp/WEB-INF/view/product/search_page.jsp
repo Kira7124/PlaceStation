@@ -4,6 +4,9 @@
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
+.main {
+
+}
 /* Add padding to product boxes */
 .post {
   padding: 20px; /* Adjust the padding value as needed */

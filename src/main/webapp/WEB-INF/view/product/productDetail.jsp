@@ -97,10 +97,7 @@
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/productKBJ
 <style>
 .hide {
 	display: none;

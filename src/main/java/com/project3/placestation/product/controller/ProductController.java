@@ -1,9 +1,7 @@
 package com.project3.placestation.product.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,23 +23,16 @@ import com.project3.placestation.product.dto.ProductInvalidDateDto;
 import com.project3.placestation.product.dto.ResProductViewDto;
 import com.project3.placestation.repository.entity.AdditionExplanation;
 import com.project3.placestation.repository.entity.Member;
-import com.project3.placestation.repository.entity.ProdReview;
-import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
 import com.project3.placestation.service.AddtionExplanationService;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.ProdReviewService;
-import com.project3.placestation.service.ProductService;
-import com.project3.placestation.service.ProductViewService;
-
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-
 import com.project3.placestation.service.ProdWishListService;
 import com.project3.placestation.service.ProductService;
 import com.project3.placestation.service.ProductViewService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

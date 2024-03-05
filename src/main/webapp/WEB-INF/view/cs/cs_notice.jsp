@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<link rel="stylesheet" href="/css/cs.css">
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<style>
-.comments {
-	display: flex, flew-direction: row, justify-content: flex-end
-}
-</style>
+
 </div>
 </nav>
 <div class="main">
@@ -40,7 +36,7 @@
 						</div>
 					</div>
 					<div class="comments">
-						<h5>
+						<h5 class="button-container">
 							<form action="/cs/notice/search">
 								<input type="hidden" name="categoryId" value="0" />
 								<button class="btn btn-border-d btn-round"
@@ -50,9 +46,9 @@
 								<input type="hidden" name="categoryId" value="1" />
 								<button class="btn btn-d btn-round" style="padding: 5px 20px"
 									type="submit">사업자</button>
+
 							</form>
 						</h5>
-
 					</div>
 					<!-- 공지사항 목록 전체 div -->
 					<div>
@@ -75,7 +71,7 @@
 						</div>
 					</div>
 					<!-- 공지사항 목록 전체 div -->
-					<div class="pagination font-alt">
+					<div class="pagination font-alt" style="display: flex">
 						<c:choose>
 							<c:when test="${currentPage > 0}">
 								<form action="/cs/notice/search">
