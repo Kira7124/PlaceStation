@@ -1,5 +1,7 @@
 package com.project3.placestation.biz.model.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,7 @@ public class BizHistoryDto {
 	private Integer adminHisSavePoint;	// 구매시 적립된 포인트
 	private Integer adminHisDiscount;	// 적용된 할인된 금액
 	private Integer adminHisCharge;	// 구매 수수료
-	private Integer hisSellerId;	// 판매자
+	private Integer adminHisSellerId;	// 판매자
 	private boolean adminHisConfirm;	// 구매 확정 여부
 	private String adminHisCreatedAt;	// 내역 생성 시간
 	private Integer adminHisBuyerId;	// 산 사람
@@ -38,5 +40,9 @@ public class BizHistoryDto {
 	private String mainCategory;
 	private String subcategory;
 	private Integer bizId;
+	private Integer bizBalance;
+	private Integer userNo; // 진수추가
+	private String userId; // 진수추가
+	private Integer refundAmount; // 진수추가
 	private String token; // 토큰
 }

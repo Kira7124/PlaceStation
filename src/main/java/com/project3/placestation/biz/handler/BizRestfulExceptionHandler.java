@@ -4,6 +4,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 
 
@@ -30,4 +31,13 @@ public class BizRestfulExceptionHandler {
 		return sb.toString();
 	}
 
+	@ExceptionHandler(CustomLoginRestfulException.class)
+	public String basicException(CustomLoginRestfulException e) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<script>");
+		sb.append("alert('" + e.getMessage() + "');");
+		sb.append("location.href='/member/login';");	// 로그인 페이지 이동
+		sb.append("</script>");
+		return sb.toString();
+	}
 }

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+
+<!-- include.jsp -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+
+=======
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -93,6 +99,7 @@
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+>>>>>>> origin/product
 <style>
 .hide {
 	display: none;
@@ -225,7 +232,7 @@
 									<div class="post-entry" style="font-size: 20px;">
 										<i class="fas fa-solid fa-heart" style="margin: 10px"></i>${wishlistCount}
 										<i class="fas fa-regular fa-comment" style="margin: 10px"></i>${reviewCount != null ? reviewCount : 0}
-										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>101055
+										<i class="fas fa-regular fa-eye" style="margin: 10px"></i>${currentViews}
 										<c:if test="${avgStar != 0}">
 											<div style="float: right; margin-right: 5px;">
 												<span class="comment-star"> <c:forEach begin="1"
@@ -237,7 +244,8 @@
 												</span>
 											</div>
 											<div style="float: right; clear: both; margin-right: 15px;">
-												평균 <span style="color:  #FFD700;">${avgStar}</span> 점</div>
+												평균 <span style="color: #FFD700;">${avgStar}</span> 점
+											</div>
 										</c:if>
 										<c:if test="${avgStar == 0}">
 											<span class="comment-star"> <c:forEach begin="1"
@@ -311,6 +319,29 @@
 													</div>
 												</div>
 											</div>
+											<!-- 본문 4 -->
+											<div class="post #">
+												<div class="post-header font-alt">
+													<h1 class="post-title" style="font-weight: bold">
+														<a>부가 설명</a>
+													</h1>
+													<div class="post-meta"
+														style="white-space: pre-line; margin-top: 30px;">
+														<div class="addition-container"
+															style="display: inline-flex; flex-wrap: wrap;">
+															<c:forEach items="${additionExplanations}" var="no">
+																<label for="toggle3-${no.additionExplanationNo}"
+																	style="margin-right: 20px;"> <img
+																	src="${no.filePath}" alt=""
+																	style="width: 50px; height: 50px;">
+																	<h5>${no.name}</h5>
+																</label>
+															</c:forEach>
+														</div>
+													</div>
+												</div>
+											</div>
+
 											<!-- 카카오맵 API -->
 											<div class="post">
 												<div class="post-quote" style="text-align: left;">
@@ -418,24 +449,33 @@
 																		<div class="comment-author font-alt">
 																			<p>
 																				유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
-																				<button class="btn btn-danger btn-sm"
-																					onclick="deleteReview(${review.prodRevNo})">리뷰
+																			<form id="deleteReview"
+																				action="/product/deleteReview/${review.prodRevNo}"
+																				method="post" style="display: inline;">
+																				<input type="hidden" name="prodRevNo"
+																					value="${review.prodRevNo}"> <input
+																					type="hidden" name="prodNo"
+																					value="${product.prodNo}">
+																				<button type="submit" class="btn btn-danger btn-sm">리뷰
 																					삭제</button>
-																				<span class="comment-star"> <c:if
-																						test="${review.prodRevStar != 0}">
-																						<c:forEach begin="1" end="${review.prodRevStar}">
-																							<i class="fa fa-star star"></i>
-																						</c:forEach>
-																						<c:forEach begin="${review.prodRevStar + 1}"
-																							end="5">
-																							<i class="fa fa-star star-off"></i>
-																						</c:forEach>
-																					</c:if></span>
+																			</form>
+																			<span class="comment-star"> <c:if
+																					test="${review.prodRevStar != 0}">
+																					<c:forEach begin="1" end="${review.prodRevStar}">
+																						<i class="fa fa-star star"></i>
+																					</c:forEach>
+																					<c:forEach begin="${review.prodRevStar + 1}"
+																						end="5">
+																						<i class="fa fa-star star-off"></i>
+																					</c:forEach>
+																				</c:if>
+																			</span>
 																			</p>
 																		</div>
 																	</div>
-																	<div class="comment-body" style="margin-left: 75px; word-wrap: break-word;">
-																		<p style="margin-right:55px;">${review.prodRevContent}</p>
+																	<div class="comment-body"
+																		style="margin-left: 75px; word-wrap: break-word;">
+																		<p style="margin-right: 55px;">${review.prodRevContent}</p>
 																	</div>
 																	<!-- 대댓글 버튼 추가 -->
 																	<c:if test="${review.parentId == null}">
@@ -481,7 +521,8 @@
 															</div>
 															<!-- 대댓글 출력 -->
 															<c:forEach items="${reviewProdNo}" var="reply">
-																<c:if test="${reply.parentId == review.prodRevNo}">
+																<c:if
+																	test="${reply.parentId == review.prodRevNo && reply.prodRevDeleteYn ne 'Y'}">
 																	<div class="comment clearfix"
 																		style="margin-left: 30px;">
 																		<!-- 대댓글 내용 출력 -->
@@ -493,9 +534,16 @@
 																			<div class="comment-author font-alt">
 																				<p>
 																					유저 닉네임1234 | <span class="comment-date">${review.prodRevCreateAt}</span>
-																					<button class="btn btn-danger btn-sm"
-																						onclick="deleteReview(${review.prodRevNo})">리뷰
+																				<form id="deleteReview"
+																					action="/product/deleteReview/${reply.prodRevNo}"
+																					method="post" style="display: inline;">
+																					<input type="hidden" name="prodRevNo"
+																						value="${reply.prodRevNo}"> <input
+																						type="hidden" name="prodNo"
+																						value="${product.prodNo}">
+																					<button type="submit" class="btn btn-danger btn-sm">리뷰
 																						삭제</button>
+																				</form>
 																			</div>
 																			<div class="comment-body">
 																				<p>${reply.prodRevContent}</p>
@@ -505,9 +553,32 @@
 																</c:if>
 															</c:forEach>
 														</c:forEach>
+														<!-- 페이지 바 추가 -->
+														<div class="row">
+															<div class="col-sm-12">
+																<ul class="pagination justify-content-center">
+																	<li class="page-item"><a class="page-link"
+																		href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo-1}">이전</a>
+																	</li>
+																	<c:forEach var="i" begin="1" end="${totalPage}"
+																		varStatus="status">
+																		<li
+																			class="page-item <c:if test='${status.index eq pageNo}'>active</c:if>">
+																			<a class="page-link"
+																			href="productDetail?prod_no=${product.prodNo}&pageNo=${status.index}">${status.index}</a>
+																		</li>
+																	</c:forEach>
+																	<li class="page-item"><a class="page-link"
+																		href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo+1}">다음</a>
+																	</li>
+																</ul>
+															</div>
+														</div>
+														<!-- 페이지 바 종료 -->
 													</div>
 												</div>
 											</c:if>
+
 
 											<!-- 리뷰가 없는 경우 -->
 											<c:if test="${empty reviewProdNo}">
@@ -605,9 +676,9 @@
 							<!-- 결제 시작 -->
 							<div class="widget">
 								<!-- 폼 태그 시작 -->
-								<form action="payment" method="get">
+								<form action="/payment/main" method="get">
 									<h5 class="widget-title font-alt">예약하기</h5>
-
+									<input type="hidden" name="prodNo" value="${product.prodNo}" />
 
 									<!-- 스케줄 선택 -->
 									<div>
@@ -645,7 +716,8 @@
 										<div class="row mb-20">
 											<div class="col-sm-12">
 												<input class="form-control input-lg" type="number"
-													name="price" value="50000" required="required" disabled />
+													name="price" value="${product.prodPrice}"
+													required="required" disabled />
 											</div>
 										</div>
 									</div>
@@ -656,7 +728,8 @@
 										<div class="row mb-20">
 											<div class="col-sm-12">
 												<input class="form-control input-lg" type="number"
-													name="people" max="6" min="1" required="required" />
+													name="people" max="${product.prodMaximumPeople}" min="1"
+													required="required" />
 											</div>
 										</div>
 									</div>
@@ -695,6 +768,10 @@
 		<!-- 본문 끝 -->
 
 	</main>
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/product
 	<!--  
     JavaScripts
     =============================================
@@ -971,15 +1048,8 @@
     	    }
     	}
 
-      function deleteReview(prodRevNo) {
-          if (confirm("리뷰를 삭제하시겠습니까?")) {
-
-              window.location.href = "/product/deleteReview/" + prodRevNo;
-          }
-      }
-
   </script>
-<!-- include.jsp -->
-<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+	<!-- include.jsp -->
+	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 </body>
 </html>

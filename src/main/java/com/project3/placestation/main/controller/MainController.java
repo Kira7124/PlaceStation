@@ -20,6 +20,7 @@ import com.project3.placestation.service.ProdMajorCategoryService;
 import com.project3.placestation.service.ProdSubcategoryService;
 import com.project3.placestation.service.ProductService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -35,6 +36,9 @@ public class MainController {
 	
 	@Autowired
 	ProductService productService;
+	
+	
+	// http://localhost:80/product/search-page
 
 	@GetMapping("/search-page")
 	public String searchPageForm(@RequestParam(value = "page", defaultValue = "0") int page,
@@ -89,4 +93,6 @@ public class MainController {
         model.addAttribute("star", star); // 컨텐츠 배열
 		return "product/search_page";
 	}
+	
+
 }

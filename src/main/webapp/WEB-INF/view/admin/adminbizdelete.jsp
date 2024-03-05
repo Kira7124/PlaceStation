@@ -24,16 +24,6 @@
 				        </div>
 				    </div>
 				  </div>
-				  <div class="row" style ="margin-top: 10px;">
-				    <div class="col-md-3">
-				        <label for="name" class="form-label">아이디</label>
-				    </div>
-				    <div class="col-md-5">
-				        <div class="input-box">
-				            <input type="text" class="form-control" id="bizid" name="bizid" placeholder="아이디">
-				        </div>
-				    </div>
-				</div>
 				
 		      </div>
 		    </div>

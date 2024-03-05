@@ -31,6 +31,14 @@
 		</update>
 		
 		
+		<!-- 사진수정(관리자) -->
+		<update id="AdminPhotoUpdate">
+			update member set file_path=#{filepath}
+			where user_no = #{userno}
+		</update>
+		
+		
+		
 		<!-- 회원정보 삭제(관리자) -->
 		<delete id ="AdminDeleteMember">
 			delete from member where user_no=#{userno} and user_password=#{userpassword}
@@ -191,7 +199,7 @@
 		grade as userGrade , user_point as
 		userPoint , join_at as joinAt ,
 		user_role as userRole , gender as
-		gender from member where user_no =
+		gender , file_path as filePath from member where user_no =
 		#{userNo}
 	</select>
 

@@ -1,11 +1,19 @@
 server:
+  error:
+    include-exception: TRUE
+    include-stacktrace: ALWAYS
+    whitelabel.enabled : true
+    path: /error
+    include-binding-errors: ALWAYS
+    
+    
   servlet:
     encoding:
       charset: utf-8
       force: true
     session:
       timeout: 30m
-  port: 80
+  port: 80  
 
 # JSP, mustache 원하는거 사용
 spring:
@@ -28,8 +36,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
+    username: jyj0298@gmail.com
+    password: neeb naxx kgvk fpez
     properties:
       mail:
         smtp:
@@ -116,5 +124,10 @@ logging:
     springframework:
         security: DEBUG
         security.oauth2: DEBUG
-    
+
+jwts:
+  secret: djkwqbkjcwedbkjlkjvcklwqfkjldwqblkcbkldjbckjwqkjlwjaofjomzfo13124901824501joamjf2387u10ucbwkl
+jwt:
+  access-token-validity-in-seconds: 86400000
+
 
