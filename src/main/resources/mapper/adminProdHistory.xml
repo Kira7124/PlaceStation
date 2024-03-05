@@ -328,7 +328,7 @@
 
 	<select id="findProductInvalidByProdNo"
 		resultType="com.project3.placestation.product.dto.ProductInvalidDateDto">
-		select start_time , end_time , purchase_date from
+		select start_time , end_time , purchase_date , cancel_yn from 
 		admin_prod_history
 		where admin_his_prod_no = #{prodNo}
 		and purchase_date

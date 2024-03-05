@@ -54,6 +54,9 @@
 <link id="color-scheme" href="/css/colors/default.css" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="48x48"
 	href="/favicon/android-icon-48x48.png">
+	<!-- Swiper CSS -->
+<link rel="stylesheet"
+	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
 	data-offset="60">
@@ -174,7 +177,7 @@
 						<a href="/member/login">로그인</a>
 						<a href="/member/uregister">회원가입</a>
 					</c:if>
-					<c:if test="${member != null }">
+					<c:if test="${member != null}">
 						<a href="/member/logout">로그아웃</a>
 						<c:choose>
 							<c:when test="${member.userrole == 'ROLE_USER'}">

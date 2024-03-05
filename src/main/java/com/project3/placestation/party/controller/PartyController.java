@@ -78,11 +78,30 @@ public class PartyController {
 	 * @return
 	 */
 	@GetMapping("/main")
-	public String partyMain(Model model) {
+	public String partyMain(
+			@RequestParam(value = "partyTitle" , defaultValue = "") String partyTitle,
+			@RequestParam(value = "page" , defaultValue = "0") Integer page,
+			@RequestParam(value = "size" , defaultValue = "16") Integer size,			
+			Model model) {
 
-		List<Party> party = partyService.findAll();
-
+		PageReq pageReq = new PageReq(page , size);
+		
+		// 전체 모임 배열
+		List<Party> party = partyService.findAll(partyTitle , pageReq);
+		// 전체 모임 카운트
+		int count = partyService.countFindAll(partyTitle);
+		PageRes<Party> pageRes = new PageRes<>(party , page , count , size);
+		
+		
+		
 		model.addAttribute("partyList", party);
+		model.addAttribute("partyList", pageRes.getContent()); // 컨텐츠 배열
+		model.addAttribute("currentPage", pageRes.getNumber()); // 현재 페이지
+		model.addAttribute("totalPages", pageRes.getTotalPages()); // 전체 페이지 수
+		model.addAttribute("totalItems", pageRes.getTotalElements()); // 전체 아이템 수
+		model.addAttribute("startPage", pageRes.getStartPage()); // 시작 페이지
+		model.addAttribute("endPage", pageRes.getEndPage()); // 종료 페이지 
+		
 		return "party/party_main";
 	}
 
@@ -96,7 +115,7 @@ public class PartyController {
 		// 멤버 받기
 		Member member = (Member) httpSession.getAttribute("member");
 		boolean validJoin = false;
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			validJoin = false;
 		} else {
 			validJoin = parcipationPartyService.validMemberJoin(parcipationParties, member.getUserno());
@@ -120,9 +139,9 @@ public class PartyController {
 	public String partyJoin(PartyJoinReqDto dto) {
 
 		log.info(dto.toString());
-		// 멤버 받기
+		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		// 유효성 검사
@@ -158,9 +177,9 @@ public class PartyController {
 	@DeleteMapping("/delete-join")
 	public String partyDeleteJoin(PartyJoinReqDto dto) {
 		log.info(dto.toString());
-		// 멤버 받기
+		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		// 유효성 검사
@@ -193,9 +212,9 @@ public class PartyController {
 			@RequestParam(value = "size", defaultValue = "16") int size,
 			@RequestParam(value = "text", defaultValue = "") String text) {
 
-		// 유저 유효성 검사
+		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -211,8 +230,8 @@ public class PartyController {
 		log.info(list.toString());
 		model.addAttribute("partyList", pageRes.getContent()); // 컨텐츠 배열
 		model.addAttribute("currentPage", pageRes.getNumber()); // 컨텐츠 배열
-		model.addAttribute("totalPages", pageRes.getTotalElements()); // 컨텐츠 배열
-		model.addAttribute("totalItems", pageRes.getSize()); // 컨텐츠 배열
+		model.addAttribute("totalPages", pageRes.getTotalPages()); // 컨텐츠 배열
+		model.addAttribute("totalItems", pageRes.getTotalElements()); // 컨텐츠 배열
 		model.addAttribute("startPage", pageRes.getStartPage()); // 컨텐츠 배열
 		model.addAttribute("endPage", pageRes.getEndPage()); // 컨텐츠 배열
 		model.addAttribute("text", text); // 컨텐츠 배열
@@ -226,7 +245,7 @@ public class PartyController {
 			@RequestParam(value = "prodNo") Integer prodNo, Model model) {
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (adminHisNo == null || adminHisNo.isEmpty()) {
@@ -265,7 +284,7 @@ public class PartyController {
 
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (createPartyReqDto.getAdminHisNo() == null || createPartyReqDto.getAdminHisNo().isEmpty()) {
@@ -324,7 +343,7 @@ public class PartyController {
 	public String partyUpdateForm(@PathVariable(value = "partyNo") Integer partyNo, Model model) {
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -350,7 +369,7 @@ public class PartyController {
 
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (updatePartyReqDto.getPartyTitle() == null || updatePartyReqDto.getPartyTitle().isEmpty()) {
@@ -394,7 +413,7 @@ public class PartyController {
 	public String deleteParty(@PathVariable(value = "partyNo") Integer partyNo) {
 		// 1.유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
-		if (member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if (member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		PartyDto dto = partyService.findById(partyNo);

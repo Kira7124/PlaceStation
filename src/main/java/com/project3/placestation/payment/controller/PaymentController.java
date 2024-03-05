@@ -130,9 +130,9 @@ public class PaymentController {
 		// 유효성 검사
 		Member member = (Member) httpSession.getAttribute("member"); 
 
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
-			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+//		if(member == null) {
+//			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
 		PaymentMemberDto memberDto = memberService.findMemberById(member.getUserno());
 
 		// 상품 writerNo 값으로 포트원 키 찾기
@@ -155,7 +155,7 @@ public class PaymentController {
 		// 2. 데이터 넘겨주기
 		model.addAttribute("product", product);
 		model.addAttribute("order", order);
-		model.addAttribute("member", memberDto);
+		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("fortOneKey", fortOneKeyDto);
 
 		return "payment/paymentMain";
@@ -173,7 +173,7 @@ public class PaymentController {
 		// 유효성 검사
 		Member member = (Member) httpSession.getAttribute("member"); 
 
-		if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+		if(member == null) {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		

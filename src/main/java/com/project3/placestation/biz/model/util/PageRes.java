@@ -30,10 +30,10 @@ public class PageRes<Object> {
     //    1페이지당 개수
     private int size;
 
-    //    시작 블럭 페이지 번호
-    private int startPage;
+    //    시작 블럭 페이지 번호 ( 수정 필요 )
+    private int startPage; 
 
-    //    끝 블럭 페이지 번호
+    //    끝 블럭 페이지 번호 ( 수정 필요 )
     private int endPage;
 
     public PageRes(List<Object> content, int number, long totalElements, int size) {

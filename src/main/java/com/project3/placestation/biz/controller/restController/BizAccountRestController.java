@@ -38,7 +38,7 @@ public class BizAccountRestController {
 			
 			// 멤버 받기
 			Member member = (Member) httpSession.getAttribute("member"); 
-			if(member == null || member.getToken() == null || member.getToken().isEmpty()) {
+			if(member == null) {
 				return new ResponseEntity<>(false , HttpStatus.BAD_REQUEST);
 			}
 			
