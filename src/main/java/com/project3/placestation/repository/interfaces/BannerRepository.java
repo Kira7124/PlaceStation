@@ -14,8 +14,15 @@ public interface BannerRepository {
 	public List<Banner> BannerListAll(Criteria cri) throws Exception;
 	
 	
+	//메인페이지출력용배너리스트
+	public List<Banner> BannerListMain() throws Exception;
+	
 	// 배너전체갯수카운팅(페이징)
 	public int BannerListCount() throws Exception;
+	
+	
+	// 배너등록(관리자)
+	public Integer AdminInsertBanner(Banner banner);
 	
 	
 	// 배너수정(관리자)

@@ -101,6 +101,17 @@ public class AdminProdHistoryService {
 		Integer result = adminProdHistoryRepository.AdminPaymentCancel2(dto);
 	}
 	
+
+	/**
+	 * 환불내역확인3
+	 * 
+	 */
+	public BizHistoryDto AdminRefund(Integer adminHisProdNo) {
+		return adminProdHistoryRepository.AdminRefund(adminHisProdNo);
+
+	} 
+	
+	
 	/**
 	 * 사업자의 거래 내역 전체 조회
 	 * 

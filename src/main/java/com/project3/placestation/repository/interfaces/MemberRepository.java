@@ -31,6 +31,10 @@ public interface MemberRepository {
 	//관리자회원정보수정
 	public Integer AdminUpdateMember(Member member);
 	
+	//관리자회원사진수정
+	public Integer AdminPhotoUpdate(Member member);
+	
+	
 
 	//판매자와 유저 테이블 join데이터
 	public BizJoin SelectJoinBiz(BizJoin biz); 	

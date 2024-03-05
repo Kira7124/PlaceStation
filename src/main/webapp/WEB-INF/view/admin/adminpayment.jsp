@@ -6,6 +6,12 @@
 	<!-- adminside.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminside.jsp" %>
     
+    
+    
+ 
+    
+ 
+ 
 			
 		<!-- MAIN -->
 		<div class="main">
@@ -27,7 +33,7 @@
 				    </div>
 				   <form action="/admin/admin-searchpayment" method="get">
 					    <div>
-					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1500px; display: flex; align-items: center;">
 					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
 					        			<option value="bank">은행</option>
 								        <option value="admin_his_prod_name">상품명</option>
@@ -50,7 +56,8 @@
 						<thead>
 							<tr>
 								<th>상품번호</th>
-								<th>사업자번호</th>
+								<th>사업자회원번호</th>
+								<th>사업자아이디</th>
 								<th>사업자잔액</th>
 								<th>결제금액</th>
 								<th>상품명</th>
@@ -64,6 +71,7 @@
 							<tr>
 								<td>${paymentlist.adminHisProdNo}</td>
 								<td>${paymentlist.bizId}</td>
+								<td>${paymentlist.userId}</td>
 								<td>${paymentlist.bizBalance}</td>
 								<td>${paymentlist.adminHisPrice}</td>
 								<td>${paymentlist.adminHisProdName}</td>
@@ -81,16 +89,17 @@
 								<td>
 								    <c:choose>
 								        <c:when test="${paymentlist.cancelYn eq 'N'}">
-								          <a href ="/admin/admin-paymentcancel" data-toggle="modal" data-target="#cancelModal">
+								          <a href ="/admin/admin-paymentcancel" data-toggle="modal" data-target="#cancelModal" >
 								            <span class="label label-info">환불</span>
 								          </a>
 								        </c:when>
 								        <c:when test="${paymentlist.cancelYn eq 'Y'}">
+								          <a href="/admin/admin-refund?adminHisProdNo=${paymentlist.adminHisProdNo}">
 								            <span class="label label-info">환불완료</span>
+								          </a>   
 								        </c:when>
 								    </c:choose>
-								</td>									
-								</td>								
+								</td>																	
 							</tr>
 						</tbody>
 					  </c:forEach>

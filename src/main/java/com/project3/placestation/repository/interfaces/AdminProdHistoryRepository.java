@@ -42,6 +42,12 @@ public interface AdminProdHistoryRepository {
 	//관리자 환불처리2
 	public Integer AdminPaymentCancel2(BizHistoryDto dto);
 	
+	
+	//관리자 환불내역확인3
+	public BizHistoryDto AdminRefund(Integer adminHisProdNo);
+	
+	
+	
 	// 사업자 거내 내역 관리
 	public List<BizHistoryDto> findAllByBizId(@Param("bizId") int bizId ,@Param("pageReq") PageReq pageReq);
 	

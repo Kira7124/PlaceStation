@@ -60,6 +60,21 @@ public class BizService {
 	}
 	
 	
+	
+	//관리자등록증수정
+	@Transactional
+	public void AdminUpdateCheck(AdminBizDTO dto, String filePath) {
+		Biz biz = Biz.builder()
+				.bizNo(dto.getBizno())
+				.filePath(filePath)
+				.build();
+		
+		Integer result = bizRepository.AdminUpdateCheck(biz);
+
+	}
+
+	
+	
 	//관리자사업자수정
 	@Transactional
 	public void AdminUpdateBiz(AdminBizDTO dto,String filePath) {

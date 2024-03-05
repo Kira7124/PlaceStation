@@ -24,7 +24,7 @@
 				    </div>
 				   <form action="/admin/admin-searchqna" method="get">
 					    <div>
-					        <div class="input-group" style="margin-top: 20px; margin-left: 1000px; display: flex; align-items: center;">
+					        <div class="input-group" style="margin-top: 20px; margin-left: 1500px; display: flex; align-items: center;">
 					        	<select name="searchOption" class="form-control" style="width: 100px; margin-right: 2px;">
 					        			<option value="q_title">제목</option>
 								        <option value="q_writer">글쓴이</option>
