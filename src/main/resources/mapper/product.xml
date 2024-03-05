@@ -67,7 +67,10 @@
 		#{prodAddress}
 		, #{prodDetailedAddress} , #{prodPrice} , #{filePath} ,
 		#{prodMajorCategoryId}, #{prodSubcategoryId} , #{prodFullAddress} ,
-		#{prodLocationX} , #{prodLocationY} , #{additionExplanation} )
+		#{prodLocationX} , #{prodLocationY} , #{additionExplanation} );
+
+		INSERT INTO product_views (prod_no, prod_views)
+		VALUES (LAST_INSERT_ID(), 0);
 	</insert>
 
 	<update id="updateProduct">

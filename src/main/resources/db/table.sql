@@ -10,7 +10,6 @@ CREATE TABLE prod_Review (
     prod_rev_delete_yn VARCHAR(1) DEFAULT 'N',
     prod_rev_delete_at TIMESTAMP,
     parent_id INT DEFAULT NULL
-
 );
 
 create table product_views (

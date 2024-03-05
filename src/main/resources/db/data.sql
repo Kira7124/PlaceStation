@@ -543,4 +543,3 @@ values ('모임 이름 ' , '모임 타이틀' , '모임 설명' , 28 , 6 , null 
 insert into party_announcement (party_no , party_announcement_title , party_announcement_description
 ) values (1 , '모임 공지 타이틀' , '모임 공지 설명');
 
-insert into parcipation_party (party_no , party_user_no) values (1, 28);

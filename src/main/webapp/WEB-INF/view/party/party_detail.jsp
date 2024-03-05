@@ -84,7 +84,7 @@ h1, h2, h3, h4, h5, h6 {
 
 								<c:choose>
 									<c:when test="${validDate}">
-										<button class="btn btn-danger btn-round" disabled>이미
+										<button class="btn btn-secondary btn-round" disabled>이미
 											시간이 지난 모임입니다.</button>
 									</c:when>
 									<c:when test="${member == null}">
@@ -99,11 +99,10 @@ h1, h2, h3, h4, h5, h6 {
 										<a class="btn btn-success btn-round"
 											href="/party/update/${party.partyNo}"> 모임 수정하기</a>
 
-										<form action="/party/delete/${party.partyNo}"
-											method="post">
-											<input type="hidden" name="_method" value="delete" /> <button
-												class="btn btn-success btn-round" 
-												type="submit"> 모임 삭제하기</button>
+										<form action="/party/delete/${party.partyNo}" method="post">
+											<input type="hidden" name="_method" value="delete" />
+											<button class="btn btn-success btn-round" type="submit">
+												모임 삭제하기</button>
 										</form>
 									</c:when>
 									<c:when test="${validJoin}">
@@ -114,6 +113,12 @@ h1, h2, h3, h4, h5, h6 {
 											<button class="btn btn-danger btn-round" type="submit">모임
 												나가기</button>
 										</form>
+									</c:when>
+
+									<c:when
+										test="${parcipationParties.size() + 1 == party.partyMaximumPeople}">
+										<button class="btn btn-secondary btn-round" disabled>인원이
+											꽉 찼습니다.</button>
 									</c:when>
 									<c:when test="${!validJoin}">
 										<form action="/party/join" method="post">
@@ -177,7 +182,8 @@ h1, h2, h3, h4, h5, h6 {
 
 					<!-- 사람 인원 칸 시작 -->
 					<div class="comments">
-						<h4 class="comment-title font-alt">모임 사람들</h4>
+						<h4 class="comment-title font-alt">모임 사람들 &nbsp;&nbsp;
+							${parcipationParties.size() + 1} / ${party.partyMaximumPeople}</h4>
 						<div class="comment clearfix">
 
 							<div class="comment-avatar">

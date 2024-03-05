@@ -19,6 +19,7 @@ import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.payment.model.common.PaymentDaySince;
 import com.project3.placestation.payment.model.dto.PaymentDto;
 import com.project3.placestation.payment.model.dto.PaymentFortOneKeyDto;
+import com.project3.placestation.payment.model.dto.ReqMemberHistoryRefundDto;
 import com.project3.placestation.repository.entity.Company;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.service.AdminProdHistoryService;
@@ -152,75 +153,79 @@ public class BizReservationController {
 			throw new CustomRestfulException(BizDefine.SERVER_ERROR, HttpStatus.BAD_REQUEST);
 		}
 		
-		// 환불 전에 몇일 지났는지 확인
-		int since = paymentService.validRefundDate(bizHistoryRefundDto.getAdminHisCreatedAt());
+		// 환불 전에 몇일 지났는지 확인 ( 사업자 x , 유저 입장에서 해야함 )
+//		int since = paymentService.validRefundDate(bizHistoryRefundDto.getAdminHisCreatedAt());
 		
 
-		log.info("지난 일수 : " + since);
+//		log.info("지난 일수 : " + since);
 		
 		// 환불 금액
 		double cancelAmount = 0;
 		double chargeAmount = 0;
 		
+		cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ZERO);
+		chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.ZERO);
+		paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+		
 		// 시간 일자 별로 환불 신청
 		// 지난 일수가 7일 이면 
 		// 실질적인 환불 신청
-		switch (since) {
+//		switch (since) {
 //		case 7 : {
-//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SEVEN);
-//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.SEVEN);
-//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount);
+//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.HUNDRED);
+//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.HUNDRED);
+//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
 //			break;
 //		}
 //		case 6 : {
-//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.SIX);
-//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.SIX);
-//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount);
+//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.HUNDRED);
+//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.HUNDRED);
+//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
 //			break;
 //		}
 //		
 //		case 5 : {
-//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.FIVE);
-//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.FIVE);
-//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount);
+//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.HUNDRED);
+//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.HUNDRED);
+//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
 //			break;
 //		}
-		case 4 : {
-			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.FOUR);
-			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.FOUR);
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount);
-			break;
-		}
-		
-		case 3 : {
-			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.THREE);
-			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.THREE);
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount);
-			break;
-		}
-		
-		case 2 : {
-			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.TWO);
-			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.TWO);
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount);
-			break;
-		}
-		
-		case 1 : {
-			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ONE);
-			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.ONE);
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount);
-			break;
-		}
-		case 0 : {
-			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ONE);
-			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.ONE);
-			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  amount);
-			break;
-		}
-		default:
-			throw new CustomRestfulException(BizDefine.SERVER_ERROR_TO_REFUND, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+//		case 4 : {
+//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.TWENTY);
+//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.TWENTY);
+//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+//			break;
+//		}
+//		
+//		case 3 : {
+//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.TWENTY);
+//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.TWENTY);
+//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+//			break;
+//		}
+//		
+//		case 2 : {
+//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ZERO);
+//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.ZERO);
+//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+//			break;
+//		}
+//		
+//		case 1 : {
+//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ZERO);
+//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.ZERO);
+//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+//			break;
+//		}
+//		case 0 : {
+//			cancelAmount = paymentService.calRefundAmount(amount, PaymentDaySince.ZERO);
+//			chargeAmount = paymentService.calRefundAmount(bizHistoryRefundDto.getAdminHisCharge(), PaymentDaySince.ZERO);
+//			paymentService.refund(token, merchantUid, fortOne.getImpUid(), reason,  cancelAmount);
+//			break;
+//		}
+//		default:
+//			throw new CustomRestfulException(BizDefine.SERVER_ERROR_TO_REFUND, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
 		
 		// 거래내역 환불로 바꾸기
 		int result = adminProdHistoryService.updateCancel(merchantUid , cancelAmount);
@@ -236,5 +241,8 @@ public class BizReservationController {
 		}
 		return "redirect:/biz/reservation-management";
 	}
+	
+	
+
 }
 

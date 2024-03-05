@@ -338,6 +338,7 @@ public class PartyController {
 		if(partyService.validJoinTime(dto.getPurchaseDate(), dto.getStartTime())) {
 			throw new CustomRestfulException(BizDefine.WRONG_REQUEST, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		
 
 		model.addAttribute("party", dto);
 		return "party/party_update";
@@ -365,6 +366,11 @@ public class PartyController {
 		if(partyService.validJoinTime(dto.getPurchaseDate(), dto.getStartTime())) {
 			throw new CustomRestfulException(BizDefine.WRONG_REQUEST, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		// 사람 인원 수가 넘지 않은지 검사
+		if (updatePartyReqDto.getPartyMaximumPeople() > dto.getPartyMaximumPeople()) {
+			throw new CustomRestfulException(BizDefine.NO_VALID_PEOPLE, HttpStatus.BAD_REQUEST);
+		}
+		
 		// 파일 저장
 		String filePath = "";
 		if (updatePartyReqDto.getIsFileChange().equals("true")) {

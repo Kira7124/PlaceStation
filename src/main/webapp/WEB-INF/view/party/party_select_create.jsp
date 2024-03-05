@@ -173,13 +173,13 @@ img {
 					</c:when>
 
 					<c:otherwise>
-						<a class="page-link" href="#" aria-label="Previous"> <span
+						<a class="page-link" href="" aria-label="Previous"> <span
 							aria-hidden="true">&laquo;</span>
 						</a>
 					</c:otherwise>
 				</c:choose></li>
 
-			<c:forEach begin="${startPage}" end="${endPage}" var="var">
+			<c:forEach begin="${1}" end="${totalPages}" var="var">
 				<li class="page-item"><a class="page-link"
 					href="/party/select-create?page=${var - 1}&size=${size}&text=${text}">${var}</a></li>
 
@@ -187,7 +187,7 @@ img {
 
 
 			<li class="page-item"><c:choose>
-					<c:when test="${currentPage < endPage - 1}">
+					<c:when test="${currentPage < totalPages - 1}">
 						<a class="page-link"
 							href="/party/select-create?page=${currentPage + 1}&size=${size}&text=${text}"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
@@ -195,7 +195,7 @@ img {
 
 					</c:when>
 					<c:otherwise>
-						<a class="page-link" href="#" aria-label="Next"> <span
+						<a class="page-link" href="" aria-label="Next"> <span
 							aria-hidden="true">&raquo;</span>
 						</a>
 					</c:otherwise>

@@ -73,9 +73,9 @@
 					style="margin-bottom: 20px;">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Home</a>
+							data-toggle="dropdown">상품 조회</a>
 							<ul class="dropdown-menu">
-								<li><a href="index_mp_fullscreen_video_background.html">Default</a></li>
+								<li><a href="/product/search-page">전체 상품 조회</a></li>
 								<li><a href="index_op_fullscreen_gradient_overlay.html">One
 										Page</a></li>
 								<li><a href="index_agency.html">Agency</a></li>
@@ -83,20 +83,12 @@
 								<li><a href="index_restaurant.html">Restaurant</a></li>
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
-							data-toggle="dropdown">Headers</a>
+							data-toggle="dropdown">모임</a>
 							<ul class="dropdown-menu">
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Static Image Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_static.html">Fulscreen</a></li>
-										<li><a href="index_mp_classic_static.html">Classic</a></li>
-									</ul></li>
-								<li class="dropdown"><a class="dropdown-toggle" href="#"
-									data-toggle="dropdown">Flexslider Header</a>
-									<ul class="dropdown-menu">
-										<li><a href="index_mp_fullscreen_flexslider.html">Fulscreen</a></li>
-										<li><a href="index_mp_classic_flexslider.html">Classic</a></li>
-									</ul></li>
+								<li ><a  href="/party/main"
+									">전체 모임</a></li>
+								<li ><a  href="/party/select-create"
+									>모임 생성</a></li>
 								<li class="dropdown"><a class="dropdown-toggle" href="#"
 									data-toggle="dropdown">Video Background Header</a>
 									<ul class="dropdown-menu">
