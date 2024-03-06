@@ -84,7 +84,7 @@ insert into product (
     prod_location_y
 ) values (
 	1, 
-    '타이틀' ,
+    '[서울] 프리미어리그 축구 홀란드' ,
 	1 ,
     24 ,
     '공간 소개',
