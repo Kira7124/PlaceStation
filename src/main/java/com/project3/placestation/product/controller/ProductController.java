@@ -28,11 +28,8 @@ import com.project3.placestation.service.AddtionExplanationService;
 import com.project3.placestation.service.AdminProdHistoryService;
 import com.project3.placestation.service.MemberService;
 import com.project3.placestation.service.ProdReviewService;
-import com.project3.placestation.service.ProductService;
-
-import jakarta.servlet.http.HttpServletRequest;
-
 import com.project3.placestation.service.ProdWishListService;
+import com.project3.placestation.service.ProductService;
 import com.project3.placestation.service.ProductViewService;
 
 import jakarta.servlet.http.HttpSession;
