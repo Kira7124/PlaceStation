@@ -37,8 +37,7 @@ $(document).ready(function() {
 				var imageUrl = responseData.imageUrl; // 예시로 imageUrl을 JSON에서 추출*/
 
 				// 성공 시 이미지의 src 속성에 파일 경로 할당
-				console.log('77777777777777777' + imageUrl);
-				$('#profileImage').attr('src', imageUrl);
+				$('#profileImage').attr('src', data);
 				
 			},
 			error: function(xhr, status, error) {

@@ -20,6 +20,7 @@ import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.config.jwt.UserDetailsImpl;
 import com.project3.placestation.member.dto.MemberHistoryDto;
 import com.project3.placestation.member.dto.RequestJoinDTO;
+import com.project3.placestation.member.dto.UserUpdateDTO;
 import com.project3.placestation.payment.model.common.MemberGrade;
 import com.project3.placestation.payment.model.dto.PaymentMemberDto;
 import com.project3.placestation.repository.entity.BizJoin;
@@ -185,7 +186,7 @@ public class MemberService {
 
 	// 소셜 유저 회원가입 처리
 	@Transactional
-	public UserDetailsImpl OauthJoinProcess(RequestJoinDTO dto) {
+	public Member OauthJoinProcess(RequestJoinDTO dto) {
 
 		Member member = Member.builder().userid(dto.getUserId()).username(dto.getUserName())
 				.userpassword(bCryptPasswordEncoder.encode(dto.getUserPassword())).useremail(dto.getEmail())
@@ -203,9 +204,8 @@ public class MemberService {
 
 			memberReturn = memberRepository.selectByIsUserId(uid);
 
-			UserDetailsImpl buildMember = UserDetailsImpl.build(memberReturn);
 
-			return buildMember;
+			return memberReturn;
 
 		} else {
 
@@ -218,6 +218,8 @@ public class MemberService {
 
 		Member userCheck = memberRepository.selectByValidUserNameOauth(username);
 
+		log.info("소셜 최초 가입 유저서비스 리턴값 확인: "+userCheck);
+		
 		return userCheck;
 
 	}
@@ -328,6 +330,37 @@ public class MemberService {
 
 	}
 
+	public Member selectUserNo(int userno) {
+
+		
+		
+		return memberRepository.selectUserNo(userno);
+	}
+
+	@Transactional
+	public void updateUser(UserUpdateDTO dto) {
+
+		
+		Member updateMember = Member.builder()
+				.userno(dto.getUserno())
+				.username(dto.getUpname())
+				.userpassword(bCryptPasswordEncoder.encode(dto.getUppass()))
+				.useremail(dto.getUpemail())
+				.useraddress(dto.getUpaddress())
+				.userhp(dto.getUphp())
+				.filepath(dto.getUpfilepath())
+				.build();
+		
+		int returnMember = memberRepository.userUpdateMember(updateMember);
+		
+		if(returnMember == 0) {
+			throw new CustomRestfulException("서버에러", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		
+		
+	}
+
 	// ------------ StarsinLiver --------------
 	// 유저 거래녀역 찾기
 	public PageRes<MemberHistoryDto> memberFineAllByUserNo(int userNo, PageReq pageReq) {
@@ -338,5 +371,4 @@ public class MemberService {
 		return pageRes;
 	}
 
-	// ------------ StarsinLiver --------------
 }

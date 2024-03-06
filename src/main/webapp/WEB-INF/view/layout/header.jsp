@@ -113,15 +113,15 @@
 							data-toggle="dropdown">장소 조회</a>
 							<ul class="dropdown-menu">
 								<li><a href="/product/search-page">전체 상품 조회</a></li>
-								<li><a href="#">평점순</a></li>
+								<!-- <li><a href="#">평점순</a></li>
 								<li><a href="#">리뷰순</a></li>
-								<li><a href="#">신규순</a></li>
+								<li><a href="#">신규순</a></li>  -->
 							</ul></li>
 						<li class="dropdown" style="font-size: 13px"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">모임</a>
 							<ul class="dropdown-menu">
 								<li ><a  href="/party/main"
-									">전체 모임</a></li>
+									>전체 모임</a></li>
 								<li ><a  href="/party/select-create"
 									>모임 생성</a></li>
 							</ul></li>
@@ -161,7 +161,7 @@
 					<sec:authorize access="isAuthenticated()">
 						<a href="/member/logout">로그아웃</a>
 						<sec:authorize access="hasRole('ROLE_USER')">
-							<a href="/member/main">회원정보</a>
+							<a href="/member/mypage/main">회원정보</a>
 						</sec:authorize>
 						<sec:authorize access="hasRole('ROLE_BIZ')">
 							<a href="/biz/main">사업자</a>

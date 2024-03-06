@@ -32,4 +32,6 @@ public interface PartyRepository {
 	
 	// 모임 삭제
 	public int delete(int partyNo);
+	
+	public List<Party> findByUserNo(int userNo);
 }

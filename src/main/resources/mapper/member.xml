@@ -306,6 +306,21 @@
 			select * from member where user_no = #{userno}
 	</select>
 	
+	<!-- 소셜 세션에 값 남기기 위한 셀렉트 -->
+	<select id="selectUserNo" resultType="com.project3.placestation.repository.entity.Member">
+			select * from member where user_no = #{userno}
+	</select>
+
+	<!-- 유저 데이터 업데이트 -->
+	<update id="userUpdateMember"> 
+		update member set user_name=#{username}
+		<if test="userpassword != null">
+		,user_password=#{userpassword}
+		</if>
+		,user_address=#{useraddress} ,user_email=#{useremail},user_hp=#{userhp}
+		where user_no = #{userno}
+	
+	</update>
 
 </mapper>
 

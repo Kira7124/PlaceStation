@@ -104,8 +104,13 @@ public class CsQnaController {
 			throw new CustomRestfulException("저장 도중 서버 에러가 발생하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		int userId = 1;
-		qnaBoardService.saveQna(userId , boardReqDto.getContent() , boardReqDto.getTitle() , path , boardReqDto.getCategoryId());
+		// 1. 유효성 검사
+		Member member = (Member) httpSession.getAttribute("member");
+		if (member == null) {
+			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		qnaBoardService.saveQna(member.getUserno() , boardReqDto.getContent() , boardReqDto.getTitle() , path , boardReqDto.getCategoryId());
 		
 		
 		return "redirect:/cs/qna";

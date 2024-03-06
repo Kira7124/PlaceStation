@@ -36,15 +36,15 @@
 		#{page.size} , #{page.size}
 	</select>
 
-	<select id="countFindAll"
-		resultType="int">
+	<select id="countFindAll" resultType="int">
 		select count(*)
 		from party
 		where
 		party_delete_yn = 'N'
-		and party_title like '%' || #{partyTitle} || '%'
+		and party_title like '%' || #{partyTitle} ||
+		'%'
 	</select>
-	
+
 
 	<select id="findById"
 		resultType="com.project3.placestation.party.dto.PartyDto">
@@ -154,6 +154,7 @@
 		and
 		product_no = #{prodNo}
 		and admin_his_no = #{adminHisNo}
+		and party_delete_yn = 'N'
 	</select>
 
 	<insert id="save">
@@ -185,6 +186,34 @@
 		party_update_at = now() ,
 		party_delete_yn =
 		'Y'
-		where party_no = #{partyNo}
+		where party_no =
+		#{partyNo}
 	</update>
+
+	<select id="findByUserNo" resultType="com.project3.placestation.repository.entity.Party">
+		select
+		party_no as partyNo,
+		party_name as partyName ,
+		party_title as partyTitle ,
+		party_description as partyDescription ,
+		party_host as partyHost ,
+		party_maximum_people as partyMaximumPeople ,
+		file_path as filePath ,
+		party_manager as partyManager , product_no as
+		productNo ,
+		admin_his_no
+		as admin_his_no ,
+		party_created_at as
+		partyCreatedAt ,
+		party_update_at
+		as partyUpdateAt,
+		party_delete_at as
+		partyDeleteAt,
+		party_delete_yn as
+		partyDeleteYn
+		from party
+		where
+		party_delete_yn = 'N'
+		and party_host = #{partyHost}
+	</select>
 </mapper>

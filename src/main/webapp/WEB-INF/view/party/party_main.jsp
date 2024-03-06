@@ -19,9 +19,6 @@ img {
 	transition: transform 0.3s ease;
 }
 
-.post-thumbnail:hover img {
-	transform: scale(1.05); /* Enlarge image on hover */
-}
 
 /* Transition Effects */
 .post-header .post-title a {
@@ -143,7 +140,7 @@ img {
 			<div class="post-columns">
 
 				<c:forEach items="${partyList}" var="party">
-					<div class="col-sm-6 col-md-4 col-lg-4">
+					<div class="col-sm-6 col-md-4 col-lg-4 wow fadeIn">
 						<div class="post">
 							<div class="post-thumbnail">
 								<a href="/party/detail/${party.partyNo}"><img

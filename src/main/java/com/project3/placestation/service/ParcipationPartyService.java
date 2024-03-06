@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.util.BizDefine;
+import com.project3.placestation.member.dto.MemberParcipationDto;
 import com.project3.placestation.party.dto.ParcipationUserDto;
+import com.project3.placestation.repository.entity.ParcipationParty;
 import com.project3.placestation.repository.interfaces.ParcipationPartyRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -74,5 +76,10 @@ public class ParcipationPartyService {
 	public int validByUserNoAndPartyNo(int partyNo , int userNo) {
 		int result = parcipationPartyRepository.validByUserNoAndPartyNo(partyNo, userNo);
 		return result;
+	}
+	
+	// 참가한 모임 전체 조회
+	public List<MemberParcipationDto> findUserNo(int userNo) {
+		return parcipationPartyRepository.findByUserNo(userNo);
 	}
 }

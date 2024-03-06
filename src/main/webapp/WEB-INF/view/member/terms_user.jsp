@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file ="/WEB-INF/view/member/layout/header.jsp" %>
+    <%@ include file ="/WEB-INF/view/layout/header.jsp" %>
     <!-- terms content 시작 -->
         <section class="module">
           <div class="container">
