@@ -4,7 +4,7 @@
 <!-- adminheader.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/mainpage.css" />
-
+<jsp:include page="popup.jsp"/>
 
 
 <div class="main">
