@@ -9,11 +9,6 @@
             <div class="row">
               <div class="col-sm-5 col-sm-offset-1 mb-sm-40" id="login" style="margin-left: 33%;">
                 <h4 class="font-alt">Login</h4>
-                 <p>principal : <sec:authentication property="principal" /></p>
-         <%--         <p>principal : <sec:authentication property="principal.userName" /></p>
-                 <p>principal : <sec:authentication property="principal.authority" /></p> --%>
-                    <p>${id} </p>
-                    <p>${role} </p> 
                 <hr class="divider-w mb-10">
                 <form class="form" action="/loginProc" method="post">
                   <div class="form-group">
