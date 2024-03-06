@@ -13,18 +13,18 @@
 				<%@ include file="/WEB-INF/view/cs/cs_aside.jsp"%>
 				<!-- aside bar 끝 -->
 				<!-- 메인 시작 -->
-				<div class="col-sm-8 col-sm-offset-1">
+				<div class="col-sm-8 col-sm-offset-1 ">
 					<div class="post">
 						<div class="comment-form">
 							<h4 class="comment-form-title font-alt">공지사항</h4>
 						</div>
 
 						<div class="post-header font-alt"></div>
-						<div class="search">
+						<div class="search wow fadeIn">
 							<!-- 검색 폼 -->
 							<form role="form" action="/cs/notice/search" method="get">
 
-								<div class="search-box">
+								<div class="search-box ">
 									<input type="hidden" name="categoryId" value="${categoryId}" />
 									<input class="form-control" type="text" name="searchKeyword"
 										placeholder="Search..." value="${searchKeyword}" />
@@ -35,7 +35,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="comments">
+					<div class="comments wow fadeIn">
 						<h5 class="button-container">
 							<form action="/cs/notice/search">
 								<input type="hidden" name="categoryId" value="0" />
@@ -52,7 +52,7 @@
 					</div>
 					<!-- 공지사항 목록 전체 div -->
 					<div>
-						<div class="panel panel-default">
+						<div class="panel panel-default wow fadeIn">
 
 							<c:forEach var="noticeList" items="${noticeList}">
 								<div class="panel-heading">
@@ -71,11 +71,12 @@
 						</div>
 					</div>
 					<!-- 공지사항 목록 전체 div -->
-					<div class="pagination font-alt" style="display: flex">
+					<div class="pagination font-alt wow fadeIn" style="display: flex">
 						<c:choose>
 							<c:when test="${currentPage > 0}">
 								<form action="/cs/notice/search">
-									<a href="/cs/notice/search?page=${currentPage - 1}&searchKeyword=${searchKeyword}&categoryId=${categoryId}"><i
+									<a
+										href="/cs/notice/search?page=${currentPage - 1}&searchKeyword=${searchKeyword}&categoryId=${categoryId}"><i
 										class="fa fa-angle-left"></i></a>
 								</form>
 							</c:when>

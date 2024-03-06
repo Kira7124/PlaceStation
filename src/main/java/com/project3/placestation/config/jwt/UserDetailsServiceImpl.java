@@ -37,5 +37,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		// DB에 있는 지 확인해서 있으면 UserDetailsImpl 로 User 객체 생성
 		return UserDetailsImpl.build(user);
 	}
-
 }

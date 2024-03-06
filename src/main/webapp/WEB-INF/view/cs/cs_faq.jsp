@@ -12,7 +12,7 @@
 					<%@ include file="/WEB-INF/view/cs/cs_aside.jsp"%>
 					<!-- aside bar 끝 -->
 					<!-- 메인 시작 -->
-					<div class="col-sm-8 col-sm-offset-1">
+					<div class="col-sm-8 col-sm-offset-1 wow fadeIn">
 						<div class="post">
 							<div class="comment-form">
 								<h4 class="comment-form-title font-alt">자주 묻는 질문</h4>

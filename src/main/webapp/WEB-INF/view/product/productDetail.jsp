@@ -170,7 +170,7 @@
 							</div>
 
 							<!-- description , data sheet , reviews -->
-							<div class="row">
+							<div class="row ">
 								<!-- description , data sheet , reviews nav bar 시작 -->
 								<div class="col-sm-12">
 									<ul class="nav nav-tabs font-alt" role="tablist">
@@ -250,8 +250,8 @@
 											</div>
 
 											<!-- 카카오맵 API -->
-											<div class="post">
-												<div class="post-quote" style="text-align: left;">
+											<div class="post wow fadeIn">
+												<div class="post-quote " style="text-align: left;">
 													<blockquote class="font-serif">
 														<h3>${product.prodTitle}</h3>
 														<p class="font-inc font-uppercase">${product.prodAddress}</p>
@@ -691,7 +691,8 @@
 		<!-- 본문 끝 -->
 
 	</main>
-
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86c4c40f5a0bbcd706e953e25fdd8538"></script>
 	<!-- fullCalendar -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
