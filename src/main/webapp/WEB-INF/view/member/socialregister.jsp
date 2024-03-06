@@ -120,12 +120,6 @@ h2 {
 		<form action="/user/social/register" id="form" class="form" method="post">
 			<c:if test="${not empty principal}">
 				<h2>Register With Us</h2>
-				<p>
-					principal :
-					<sec:authentication property="principal" />
-				</p>
-				<p>=====================================</p>
-				<p>Principal 정보: ${principal}</p>
 				<div class="register-form" style="margin-bottom: 10px;">
 					<label for="id">id</label> <input type="text" id="userId"
 						placeholder="Enter id" name="userId" value="${principal.name}"

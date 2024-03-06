@@ -33,7 +33,6 @@
 								<form action="/user/userUpdate" id="form" class="form" method="post">
 									<h4 class="text-center" style="font-size: xx-large;">Profile
 										Settings</h4>
-									<p>ssssss: ${User}</p>
 									<br> <br> <input type="hidden" value="${User.userno}"
 										name="userno" id="hiddenuserNo" />
 									<div class="row mt-2">
