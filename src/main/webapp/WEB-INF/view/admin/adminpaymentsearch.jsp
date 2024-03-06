@@ -76,11 +76,11 @@
 								<td>${searchpaymentlist.bank}</td>
 								<td>
 								    <c:choose>
-								        <c:when test="${searchpaymentlist.adminHisConfirm}">
+								        <c:when test="${searchpaymentlist.cancelYn eq 'N'}">
 								            <span class="label label-success">확정</span>
 								        </c:when>
 								        <c:otherwise>
-								            <span class="label label-danger">취소</span>
+								        	<span class="label label-danger">취소</span>
 								        </c:otherwise>
 								    </c:choose>
 								</td>
@@ -92,7 +92,8 @@
 								        <c:when test="${searchpaymentlist.cancelYn eq 'Y'}">
 										  <a href="/admin/admin-refund?adminHisNo=${searchpaymentlist.adminHisNo}">
 								            <span class="label label-info">환불완료</span>
-								          </a>  								        </c:when>
+								          </a>  								        
+								         </c:when>
 								    </c:choose>
 								</td>									
 							</tr>

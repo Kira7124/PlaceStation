@@ -82,11 +82,11 @@
 								<td>${paymentlist.bank}</td>
 								<td>
 								    <c:choose>
-								        <c:when test="${paymentlist.adminHisConfirm}">
+								        <c:when test="${paymentlist.cancelYn eq 'N'}">
 								            <span class="label label-success">확정</span>
 								        </c:when>
 								        <c:otherwise>
-								            <span class="label label-danger">취소</span>
+								        	<span class="label label-danger">취소</span>
 								        </c:otherwise>
 								    </c:choose>
 								</td>
