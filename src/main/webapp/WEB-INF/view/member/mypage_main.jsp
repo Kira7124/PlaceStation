@@ -122,4 +122,4 @@
 </div>
 </div>
 
-<%@ include file="/WEB-INF/view/user/layout/footer.jsp"%>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

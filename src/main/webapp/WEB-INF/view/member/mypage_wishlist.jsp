@@ -108,10 +108,11 @@ a {
 				style="display: flex; justify-content: space-between;">
 				<div class="col-md-2 border-right"
 					style="margin-top: 5%; display: inline-block; width: 250px;">
-				
+
 					<%@ include file="/WEB-INF/view/layout/myPageAside.jsp"%>
 				</div>
 				<!-- 리스트 start -->
+
 				<div class="container"
 					style="display: flex; flex-direction: column; justify-content: space-between;">
 					<div class="row align-items-center">
@@ -125,62 +126,81 @@ a {
 						<div class="col-lg-12">
 							<div class="">
 								<div class="table-responsive">
-									<table
-										class="table project-list-table table-nowrap align-middle table-borderless">
-										<thead>
-											<tr>
-
-												<th scope="col">Name</th>
-												<th scope="col">Position</th>
-												<th scope="col">Email</th>
-												<th scope="col">Projects</th>
-												<th scope="col" style="width: 200px;">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><img
-													src="https://bootdey.com/img/Content/avatar/avatar1.png"
-													alt="" class="avatar-sm rounded-circle me-2" /><a href="#"
-													class="text-body">Simon Ryles</a></td>
-												<td><span class="badge badge-soft-success mb-0">Full
-														Stack Developer</span></td>
-												<td>SimonRyles@minible.com</td>
-												<td>125</td>
-												<td>
-													<ul class="list-inline mb-0">
-														<li class="list-inline-item"><a
-															href="javascript:void(0);" data-bs-toggle="tooltip"
-															data-bs-placement="top" title="Delete"
-															class="px-2 text-danger"><i
-																class="bx bx-trash-alt font-size-18"></i></a></li>
-													</ul>
-												</td>
-											</tr>
-										</tbody>
-									</table>
+									<c:forEach items="${wishList}" var="wishList">
+										<table
+											class="table project-list-table table-nowrap align-middle table-borderless">
+											<thead>
+												<tr>
+													<th scope="col">Name</th>
+													<th scope="col">Title</th>
+													<th scope="col">Price</th>
+													<th scope="col">Address</th>
+													<th scope="col" style="width: 200px;">Delete</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><a href="#" class="text-body">${wishList.prodWriterNo}</a></td>
+													<td>${wishList.prodTitle}</td>
+													<td>${wishList.prodPrice }</td>
+													<td>${wishList.prodFullAddress}</td>
+													<td>
+														<ul class="list-inline mb-0">
+															<li class="list-inline-item"><a
+																href="javascript:void(0);" data-bs-toggle="tooltip"
+																data-bs-placement="top" title="Delete"
+																class="px-2 text-danger"><i
+																	class="bx bx-trash-alt font-size-18"></i></a></li>
+														</ul>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="row g-0 align-items-center pb-4">
 						<div class="col-sm-6">
-							<div class="float-sm-end">
-								<ul class="pagination mb-sm-0">
-									<li class="page-item disabled">
-										<a href="#"	class="page-link">
-											<i class="mdi mdi-chevron-left"></i>
-										</a>
-									</li>
-									<li class="page-item active"><a href="#" class="page-link">1</a></li>
-									<li class="page-item"><a href="#" class="page-link">2</a></li>
-									<li class="page-item"><a href="#" class="page-link">3</a></li>
-									<li class="page-item"><a href="#" class="page-link">4</a></li>
-									<li class="page-item"><a href="#" class="page-link">5</a></li>
-									<li class="page-item"><a href="#" class="page-link"><i
-											class="mdi mdi-chevron-right"></i></a></li>
+
+							<!-- nav start 긁어가기  -->
+							<nav aria-label="Page navigation example"
+								style="display: flex; justify-content: center;">
+								<ul class="pagination">
+									<c:if test="${pageVO.prev }">
+										<li class="page-item"><a class="page-link"
+											href="/user/mypage_wishlist?page=${pageVO.startPage - 1 }"
+											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+										</a></li>
+									</c:if>
+
+
+
+									<c:forEach var="i" begin="${pageVO.startPage }"
+										end="${pageVO.endPage }" step="1">
+										<c:set var="isActive" value="${pageVO.cri.page == i}" />
+										<li class="page-item ${isActive ? 'active' : ''}"><a
+											class="page-link" href="/user/mypage_wishlist?page=${i}"
+											style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
+												${i} </a></li>
+									</c:forEach>
+
+
+
+									<c:if test="${pageVO.next }">
+										<li class="page-item"><a class="page-link"
+											href="/user/mypage_wishlist?page=${pageVO.endPage + 1 }"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+												<!-- href="/admin/admin-member 여기 주소만 바꾸면됨 -->
+										</a></li>
+									</c:if>
+
 								</ul>
-							</div>
+							</nav>
+							<!-- nav end  -->
+
+
 						</div>
 					</div>
 				</div>

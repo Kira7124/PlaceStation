@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.admin.dto.PageVO;
 import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.config.jwt.UserDetailsImpl;
@@ -199,16 +201,38 @@ public class memberController {
 	}
 
 	@GetMapping("/mypage/wishlist")
-	public String myPageWishlist(Model model) {
+	public String myPageWishlist(Model model, Criteria cri) {
 
 		// 1. 유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
 //		if (member == null) {
 //			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 //		}
+		int total = service.countByUserWishList(member.getUserno());
+
+		// wishList 전체 개수
+		log.info("위시리트스 총 개수: "+total);
+		
+		PageVO pageVo = new PageVO();
+		pageVo.setCri(cri);
+		pageVo.setTotalCount(total);
+		
+		log.info("위시 리트스 페이지 브이오 객체 값 확인: " + pageVo.toString());
 		
 		List<MemberWishListDto> wishList = prodWishListService.findByUserNo(member.getUserno());
-		log.info("wishList : " + wishList);
+		
+		
+		
+		for(MemberWishListDto dto: wishList) {
+			
+			log.info("wishList11111111111111111111 : "  +  dto.toString());
+			log.info("포문도냐?");
+			
+		}
+		
+		model.addAttribute("pageVo", pageVo);
+		
+		log.info("wishList : " +  wishList);
 		model.addAttribute("wishList", wishList);
 		return "member/mypage_wishlist";
 
