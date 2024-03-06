@@ -14,6 +14,29 @@ img {
 	margin: 0;
 }
 
+/* 버튼 */
+
+div.btn-after-login {
+	float: right;
+}
+
+button.btn {
+	padding: 7px 11px;
+}
+
+button.btn-success {
+	background-color:  #5bc0de;
+	border-color: #00b4d8;
+}
+
+#btn-update {
+	margin-left: 7px;
+}
+
+#btn-delete {
+	margin-left: 7px;
+}
+
 /* Hover Effects */
 .post-thumbnail img {
 	transition: transform 0.3s ease;
@@ -30,6 +53,7 @@ img {
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 }
+
 </style>
 
 <div class="main">
@@ -71,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 
 						</div>
 						<div class="post-header font-alt">
-							<div style="text-align: right;">
+							<div class="button" style="float:right">
 								<!-- 참가하기 -->
 
 								<c:choose>
@@ -84,29 +108,32 @@ h1, h2, h3, h4, h5, h6 {
 											시간이 지난 모임입니다.</button>
 									</c:when>
 									<c:when test="${member == null}">
-										<a class="btn btn-danger btn-round" href="/member/login">
+										<button class="btn btn-danger btn-round">
+										<a href="/member/login" style="color: white">
 											로그인을 먼저 해주세요</a>
 									</c:when>
 									<c:when test="${member.userno == party.partyHost}">
-										<a class="btn btn-success btn-round"
-											href="/party/announcement/create?party-no=${party.partyNo}">
-											공지사항 쓰기</a>
+										<div class="btn-after-login">
+										<button class="btn btn-success btn-round" id="button-write">
+										<a href="/party/announcement/create?party-no=${party.partyNo}" style="color: white">
+											공지사항 작성</a>
 
-										<a class="btn btn-success btn-round"
-											href="/party/update/${party.partyNo}"> 모임 수정하기</a>
+										<button class="btn btn-success btn-round" id="btn-update" >
+										<a href="/party/update/${party.partyNo}" style="color: white"> 모임 수정</a>
 
 										<form action="/party/delete/${party.partyNo}" method="post">
 											<input type="hidden" name="_method" value="delete" />
-											<button class="btn btn-success btn-round" type="submit">
-												모임 삭제하기</button>
+											<button class="btn btn-success btn-round" id="btn-delete" type="submit">
+												모임 삭제</button>
 										</form>
+										</div>
 									</c:when>
 									<c:when test="${validJoin}">
 										<form action="/party/delete-join" method="post">
 											<input type="hidden" name="_method" value="delete" /> <input
 												type="hidden" name="partyNo" value="${party.partyNo}" /> <input
 												type="hidden" name="isJoin" value="N" />
-											<button class="btn btn-danger btn-round" type="submit">모임
+											<button class="btn btn-danger btn-round"  type="submit">모임
 												나가기</button>
 										</form>
 									</c:when>

@@ -44,7 +44,7 @@
 							</form>
 							<form action="/cs/notice/search">
 								<input type="hidden" name="categoryId" value="1" />
-								<button class="btn btn-d btn-round" style="padding: 5px 20px"
+								<button class="btn btn-d btn-round" style="padding: 5px 20px; background-color: #219ebc; border-color: #666;'"
 									type="submit">사업자</button>
 
 							</form>
