@@ -12,7 +12,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @RestController
-@RequestMapping("/member/check")
+@RequestMapping("/user/check")
 public class memberChekcController {
 
 	  	@Autowired

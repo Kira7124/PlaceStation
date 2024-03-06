@@ -133,7 +133,7 @@
 네이버 서비스와 관련하여 궁금하신 사항이 있으시면 고객센터(대표번호: 1588 – 3820/ 평일 09:00~18:00)로 문의 주시기 바랍니다.
 
                       </textarea>
-                      <div>일반 회원 이용자 약관 동의 <input type="checkbox" id="check_terms1" style="float: left; margin-right: 1%;"></div>
+                      <div>일반 회원 이용자 약관 동의 <input type="checkbox" id="user_check_terms1" style="float: left; margin-right: 1%;"></div>
                     </div>
                   </div>
                 </div>
@@ -264,17 +264,17 @@
 네이버 서비스와 관련하여 궁금하신 사항이 있으시면 고객센터(대표번호: 1588 – 3820/ 평일 09:00~18:00)로 문의 주시기 바랍니다.
 
                     </textarea>
-                    <div>14세 이상 약관 동의 <input type="checkbox" id="check_terms2" style="float: left; margin-right: 1%;"></div>
+                    <div>14세 이상 약관 동의 <input type="checkbox" id="user_check_terms2" style="float: left; margin-right: 1%;"></div>
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn-round btn-b terms-btn" style="margin: auto; display: block;" onclick="checkForm()">다음 단계로</button>
+              <button type="submit" class="btn-round btn-b terms-btn user_submit_btn" style="margin: auto; display: block;" onclick="checkUserForm()">다음 단계로</button>
               <br>
-              <button type="submit" class="btn-round btn-b terms-btn" style="margin: auto; display: block; background-color: darkgrey; white-space: pre; color: #000;">  처음으로  </button>
+              <button type="submit" class="btn-round btn-b terms-btn" style="margin: auto; display: block; background-color: darkgrey; white-space: pre; color: #000;"><a href="/main/index">처음으로</a></button>
             </div>
           </div>
         </section>
 
-    <%@ include file ="/WEB-INF/view/member/layout/footer.jsp" %>
+    <%@ include file ="/WEB-INF/view/layout/footer.jsp" %>
 
 

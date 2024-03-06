@@ -19,7 +19,7 @@ import lombok.extern.log4j.Log4j2;
 
 
 @Log4j2
-@RequestMapping("/member/email")
+@RequestMapping("/user/email")
 @RestController
 public class mailController {
 

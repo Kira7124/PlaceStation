@@ -51,7 +51,7 @@ console.log("프리벤트 아래!!!!!22222")
 			} else {
 				console.log("프리벤트 아래!!!!!33333333333")
 				$.ajax({
-					url: '/member/email/authEmail',
+					url: '/user/email/authEmail',
 					type: 'post',
 					data: JSON.stringify(jsonData),
 					dataType: 'json',
@@ -114,7 +114,7 @@ console.log("프리벤트 아래!!!!!22222")
 		const code = $('input[name=auth]').val();
 		console.log("code : " + code);
 		$.ajax({
-			url: '/member/email/emailCheck?code='+code,
+			url: '/user/email/emailCheck?code='+code,
 			type: 'post',
 			dataType: 'json',
 			success: function(data) {

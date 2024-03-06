@@ -50,7 +50,7 @@ public class BizAccountController {
 	@Autowired
 	PasswordEncoder encoder;
 
-	/**
+	/**http://localhost/biz/account-management
 	 * 사업자 유저 상세 조회
 	 * 
 	 * @param model
