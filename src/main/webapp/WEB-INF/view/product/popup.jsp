@@ -38,10 +38,10 @@ font-size:16px; font-weight:600; width: 40px; height : 30px;color:black; float: 
 <!-- layer popup content -->
 <div class="layerPopup" id="layer_popup" style="visibility: visible;">
     <div class="layerBox">
-        <h4 class="title">PlaceStation 공지사항</h4>
+        <h4 class="title">PlaceStation 이벤트</h4>
         <div class="cont">
             <p>
-				<img src="/assets/img/bird.jpg" width=350 height=500 usemap="#popup" alt="event page">
+			  <img src="/assets/img/event.png" usemap="#popup" alt="event page" style="width: 700px; height: 700px;">
             </p>
         </div>
           <form name="pop_form">
