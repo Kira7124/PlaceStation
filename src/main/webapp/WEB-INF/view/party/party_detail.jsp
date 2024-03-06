@@ -37,13 +37,13 @@ h1, h2, h3, h4, h5, h6 {
 		<div class="container">
 			<div class="row">
 				<!-- 사이드바 시작 -->
-				<div class="col-sm-4 col-md-3 sidebar">
+				<div class="col-sm-4 col-md-3 sidebar wow slideInLeft">
 					<div class="widget">
 						<form role="form" action="/party/main" method="get">
 						<h6>다른 모임 둘러보기</h6>
 							<div class="search-box">
 							
-								<input class="form-control" type="text" placeholder="Search..." />
+								<input class="form-control" type="text" placeholder="Search..." name="partyTitle"/>
 								<button class="search-btn" type="submit">
 									<i class="fa fa-search"></i>
 								</button>
@@ -65,12 +65,12 @@ h1, h2, h3, h4, h5, h6 {
 				<!-- 본문 시작 -->
 				<div class="col-sm-8 col-sm-offset-1">
 					<div class="post">
-						<div class="post-thumbnail">
+						<div class="post-thumbnail  wow pulse">
 							<img src="${party.filePath}" alt="Blog Featured Image"
 								style="width: 100%" />
 
 						</div>
-						<div class="post-header font-alt">
+						<div class="post-header font-alt wow pulse">
 							<div style="text-align: right;">
 								<!-- 참가하기 -->
 
@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 						</div>
 
 
-						<div class="post-entry">
+						<div class="post-entry wow fadeIn">
 							<h3>모임 소개</h3>
 							<p style="white-space: pre-line;">${party.partyDescription}</p>
 							<ul>
@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
 						</div>
 					</div>
 
-					<div class="post-entry">
+					<div class="post-entry wow fadeIn">
 						<h4>상품 정보</h4>
 						<p>상품명 : ${party.prodTitle}</p>
 
@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {
 					<!-- 본문 종료 -->
 
 					<!-- 사람 인원 칸 시작 -->
-					<div class="comments">
+					<div class="comments wow fadeIn">
 						<h4 class="comment-title font-alt">모임 사람들 &nbsp;&nbsp;
 							${parcipationParties.size() + 1} / ${party.partyMaximumPeople}</h4>
 						<div class="comment clearfix">

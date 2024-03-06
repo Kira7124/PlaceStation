@@ -77,7 +77,7 @@
 								
 								<div class="form-group w-25">
 									 <label for="exampleInputEmail1"><h5>상품명</h5></label>
-									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.adminHisProdName}">
+									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.prodTitle}">
 								</div><br>
 								
 								<div class="form-group w-25">

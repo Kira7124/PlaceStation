@@ -154,6 +154,7 @@
 		and
 		product_no = #{prodNo}
 		and admin_his_no = #{adminHisNo}
+		and party_delete_yn = 'N'
 	</select>
 
 	<insert id="save">
