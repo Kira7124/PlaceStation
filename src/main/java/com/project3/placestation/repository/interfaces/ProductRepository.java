@@ -35,8 +35,8 @@ public interface ProductRepository {
 	public int deleteProduct(@Param(value = "prodNo")int prodNo ,@Param(value = "prodDeleteReason") String prodDeleteReason);
 
 	// 상품 메인
-	public List<ProdFilterDto> findMainAllBysearchAndPriceAndstar(@Param("search")String search , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory ,@Param("pageReq") PageReq pageReq);
-	public int countFindMainAllBysearchAndPriceAndstar(@Param("search")String search , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory);
+	public List<ProdFilterDto> findMainAllBysearchAndPriceAndstar(@Param("search")String search ,@Param("address") String address ,  @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory ,@Param("pageReq") PageReq pageReq);
+	public int countFindMainAllBysearchAndPriceAndstar(@Param("search")String search ,@Param("address") String address , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory);
 	
     public String findAdditionExplanationNameByProdNo(int prodNo);
     public String findAdditionExplanationFilePathByProdNo(int prodNo);

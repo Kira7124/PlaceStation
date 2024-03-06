@@ -1,9 +1,5 @@
 package com.project3.placestation.product.dto;
 
-import java.sql.Timestamp;
-
-import com.project3.placestation.biz.model.dto.ResProductDto;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +23,6 @@ public class ProdReviewDto {
     private String prodRevDeleteYn; // 리뷰삭제 'Y','N'
     private String prodRevDeleteAt; // 리뷰 삭제 시간
     private Integer parentId; // 원 댓글 id값
-    private Integer offset;
     private String userName; // member테이블 유저 이름
     private String filePath; // member테이블 유저 프로필
 }

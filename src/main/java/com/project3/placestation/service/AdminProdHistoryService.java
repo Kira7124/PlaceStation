@@ -337,8 +337,8 @@ public class AdminProdHistoryService {
 	 * @return
 	 */
 	@Transactional
-	public int updateCancel(String merchantUid , double cancelAmount) {
-		return adminProdHistoryRepository.updateCancel(merchantUid , cancelAmount);
+	public int updateCancel(String merchantUid , double cancelAmount, String cancelReason) {
+		return adminProdHistoryRepository.updateCancel(merchantUid , cancelAmount , cancelReason);
 	}
 	
 	/**

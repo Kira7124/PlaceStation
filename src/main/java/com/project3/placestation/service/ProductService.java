@@ -265,14 +265,14 @@ public class ProductService {
 	 * @param pageReq
 	 * @return
 	 */
-	public PageRes<ResProdMainFilterDto> findMainAllBysearchAndPriceAndstar(String search, int min, int max, int star,
+	public PageRes<ResProdMainFilterDto> findMainAllBysearchAndPriceAndstar(String search, String address , int min, int max, int star,
 			int majorCategory, int subcategory, PageReq pageReq) {
 
 		// DB 에서 정보 받기
-		List<ProdFilterDto> listProduct = productRepository.findMainAllBysearchAndPriceAndstar(search, min, max, star,
+		List<ProdFilterDto> listProduct = productRepository.findMainAllBysearchAndPriceAndstar(search, address ,  min, max, star,
 				majorCategory, subcategory, pageReq);
 		
-		int count = productRepository.countFindMainAllBysearchAndPriceAndstar(search, min, max, star, majorCategory, subcategory);
+		int count = productRepository.countFindMainAllBysearchAndPriceAndstar(search,address ,  min, max, star, majorCategory, subcategory);
 
 		// 파일 배열로 받을 리스트 객체
 		List<ResProdMainFilterDto> resProduct = new ArrayList<>();

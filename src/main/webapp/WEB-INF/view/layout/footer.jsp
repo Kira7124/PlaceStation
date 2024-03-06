@@ -61,6 +61,7 @@
 	crossorigin="anonymous"></script>
 <!-- Swiper JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+<!-- Wow.js 및 관련 CSS 불러오기 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 </body>
 </html>

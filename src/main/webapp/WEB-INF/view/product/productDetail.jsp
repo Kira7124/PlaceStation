@@ -338,6 +338,7 @@
 
 										<!-- 리뷰 시작 -->
 										<div class="tab-pane" id="reviews">
+										
 											<!-- 리뷰가 있는 경우 -->
 											<c:if test="${not empty reviewList}">
 												<div id="reviews" class="tab-pane">
@@ -349,7 +350,7 @@
 																style="border-bottom: 1px solid #ccc;">
 																<!-- 원글 내용 출력 -->
 																<div class="comment-avatar">
-																	<img src="" alt="avatar" />
+																	<img src="${review.filePath}" alt="avatar" />
 																</div>
 																<div class="comment-content clearfix">
 																	<div class="comment-author font-alt">
@@ -383,7 +384,7 @@
 																	style="margin-left: 75px; word-wrap: break-word;">
 																	<p style="margin-right: 55px;">${review.prodRevContent}</p>
 																</div>
-																<!-- 대댓글 버튼 추가 -->
+																<!-- 대댓글 버튼 추가 ( 수정 필요 ) -->
 																<c:if test="${review.parentId == null and member != null and member.userno eq product.prodWriterNo}">
 																	<div class="comment-reply">
 																		<button class="btn btn-round btn-d"
@@ -431,13 +432,13 @@
 															<!-- 대댓글 출력 -->
 															<c:forEach items="${replyList}" var="reply">
 																<c:if
-																	test="${reply.parentId == review.prodRevNo && reply.prodRevDeleteYn ne 'Y'}">
+																	test="${reply.parentId == review.prodRevNo && reply.prodRevDeleteYn eq 'N'}">
 																	<div class="comment clearfix"
 																		style="margin-left: 30px;">
 																		<!-- 대댓글 내용 출력 -->
 																		<i class="fa-solid fa-arrow-turn-down-right"></i>
 																		<div class="comment-avatar">
-																			<img src="" alt="avatar" />
+																			<img src="${reply.filePath}" alt="avatar" />
 																		</div>
 																		<div class="comment-content clearfix">
 																			<div class="comment-author font-alt">
@@ -474,16 +475,16 @@
 																		<a class="page-link"
 																		href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo-1}">이전</a>
 																	</li>
-																	<c:forEach var="i" begin="1" end="${totalReviewPages}"
-																		varStatus="status">
+																	<c:forEach var="i" begin="0" end="${totalReviewPages - 1}"
+																		>
 																		<li
 																			class="page-item <c:if test='${status.index eq pageNo}'>active</c:if>">
 																			<a class="page-link"
-																			href="productDetail?prod_no=${product.prodNo}&pageNo=${status.index}">${status.index}</a>
+																			href="productDetail?prod_no=${product.prodNo}&pageNo=${i}">${i + 1}</a>
 																		</li>
 																	</c:forEach>
 																	<li
-																		class="page-item <c:if test='${pageNo ge totalReviewPages}'>disabled</c:if>">
+																		class="page-item <c:if test='${pageNo ge totalReviewPages - 1}'>disabled</c:if>">
 																		<a class="page-link"
 																		href="productDetail?prod_no=${product.prodNo}&pageNo=${pageNo+1}">다음</a>
 																	</li>
@@ -495,7 +496,7 @@
 												</div>
 											</c:if>
 											<!-- 리뷰가 없는 경우 -->
-											<c:if test="${empty reviewProdNo}">
+											<c:if test="${empty reviewList}">
 												<div id="reviews" class="tab-pane">
 													<h3>등록된 후기</h3>
 													<div class="noRev">아직 등록된 후기가 없습니다.</div>
@@ -943,6 +944,8 @@
     	    }
     	}
 
+      
+      
   </script>
 	<!-- include.jsp -->
 	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

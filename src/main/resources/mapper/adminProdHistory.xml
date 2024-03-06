@@ -414,7 +414,8 @@
 		update admin_prod_history
 		set CANCEL_YN = 'Y' ,
 		CANCEL_AT = now() ,
-		CANCEL_AMOUNT = #{cancelAmount}
+		CANCEL_AMOUNT = #{cancelAmount} ,
+		cancel_reason = #{cancelReason}
 		where admin_his_no =
 		#{merchantUid}
 	</update>

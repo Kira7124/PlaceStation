@@ -86,7 +86,7 @@ public interface AdminProdHistoryRepository {
 	public DbToken getToken(String merchantUid);
 
 	// 환불
-	public int updateCancel(@Param("merchantUid")String merchantUid,@Param("cancelAmount") double cancelAmount);
+	public int updateCancel(@Param("merchantUid")String merchantUid,@Param("cancelAmount") double cancelAmount , @Param("cancelReason") String cancelReason);
 	
 	// 많이 산 유저 탑 5
 	public List<MemberToptenDto> findMemberTopFive(int bizId);

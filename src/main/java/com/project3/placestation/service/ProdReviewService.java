@@ -24,11 +24,8 @@ public class ProdReviewService {
 	ProdReviewRepository prodReviewRepository;
 
     // 상품 별 리뷰를 페이징하여 조회
-	public List<ProdReviewDto> findReviews(int prodNo, int pageNo, int reviewsPerPage) {
-	    int offset = (pageNo - 1) * reviewsPerPage;
-	    if (offset < 0) {
-	        offset = 0;
-	    }
+	public List<ProdReviewDto> findReviews(int prodNo, int offset, int reviewsPerPage) {
+
 	    List<ProdReview> prodReviews = prodReviewRepository.findReviews(prodNo, offset, reviewsPerPage);
 	    List<ProdReviewDto> dtos = new ArrayList<>();
 

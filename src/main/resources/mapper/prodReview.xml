@@ -60,7 +60,19 @@
 
 	<!-- 리뷰 조회 -->
 	<select id="findReviews">
-		SELECT * FROM prod_review
+		SELECT p.prod_rev_no as prodRevNo ,
+		p.prod_no as prodNo ,
+		p.prod_rev_content as prodRevContent ,
+		p.prod_rev_star as prodRevStar ,
+		p.prod_rev_create_at as prodRevCreateAt ,
+		p.user_no as userNo ,
+		p.prod_rev_update_at as prodRevUpdateAt ,
+		p.prod_rev_delete_yn as prodRevDeleteYn , 
+		p.prod_rev_delete_at as prodRevDeleteAt , 
+		p.parent_id as parentId,
+		m.user_name as userName , m.file_path as filePath FROM prod_review p
+		left join member m
+		on m.user_no = p.user_no
 		WHERE prod_rev_delete_yn =
 		'N' AND parent_Id IS NULL AND prod_no =
 		#{prod_no}
@@ -71,10 +83,23 @@
 
 	<!-- 답글 조회 -->
 	<select id="findReplies">
-		SELECT * FROM prod_review
-		WHERE prod_rev_delete_yn = 'N' AND parent_Id IS NOT NULL AND prod_no =
+		SELECT p.prod_rev_no as prodRevNo ,
+		p.prod_no as prodNo ,
+		p.prod_rev_content as prodRevContent ,
+		p.prod_rev_star as prodRevStar ,
+		p.prod_rev_create_at as prodRevCreateAt ,
+		p.user_no as userNo ,
+		p.prod_rev_update_at as prodRevUpdateAt ,
+		p.prod_rev_delete_yn as prodRevDeleteYn , 
+		p.prod_rev_delete_at as prodRevDeleteAt , 
+		p.parent_id as parentId,
+		 m.user_name as userName , m.file_path as filePath FROM prod_review p
+		left join member m
+		on m.user_no = p.user_no
+		WHERE p.prod_rev_delete_yn = 'N' AND p.parent_Id
+		IS NOT NULL AND prod_no =
 		#{prod_no}
-		ORDER BY prod_rev_no DESC
+		ORDER BY p.prod_rev_no DESC;
 	</select>
 
 	<!-- 리뷰 개수 count -->
@@ -82,6 +107,7 @@
 		SELECT COUNT(*) FROM prod_review WHERE prod_no =
 		#{prodNo} AND
 		prod_rev_delete_yn = 'N'
+		and parent_id is null
 	</select>
 
 	<!-- 리뷰 평균 평점 -->

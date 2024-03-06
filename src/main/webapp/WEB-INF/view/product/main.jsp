@@ -4,171 +4,148 @@
 <!-- adminheader.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/mainpage.css" />
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+
+<!-- Wow.js 및 관련 CSS 불러오기 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+<style>
+.shop-item {
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.shop-item:hover {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* 부드러운 그림자 효과 */
+    transform: scale(1.02); /* 약간의 크기 변화 */
+}
+
+.shop-item-title-wrapper {
+    padding: 10px;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.shop-item:hover .shop-item-title-wrapper {
+    transform: translateY(-3px); /* 약간 위로 이동 */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 추가 */
+}
+
+.shop-item-title {
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease; /* 글자색 변화 효과 */
+}
+
+.shop-item:hover .shop-item-title {
+    color: #3498db;
+}
+
+/**/
 
 
-<div class="main">
+</style>
+
+<div class="main wow fadeIn">
 	<!-- 배너 이미지 -->
 	<div class="section" style="margin-top: 150px; margin-left: 50px;">
-		<input type="radio" name="slide" id="slide01" checked>
-		<input type="radio" name="slide" id="slide02">
-		<input type="radio" name="slide" id="slide03">
-		<input type="radio" name="slide" id="slide04">
-		<input type="radio" name="slide" id="slide05">
-	<div class="slidewrap">
-		<ul class="slidelist">
-			<!-- 슬라이드 영역 -->
-			<li class="slideitem">
-				<a href="/main/index">
-				   <img src="/banner/slogans2.png">
-				</a>
-			</li>
-			<li class="slideitem">
-			  <a href="#">
-				<c:choose>
-				    <c:when test="${not empty bannerlist[1].filePath}">
-				        <img src="${bannerlist[1].filePath}" alt="Banner Image" />
-				    </c:when>
-				    <c:otherwise>
-				        <img src="/banner/campings.png" alt="Banner Image" />
-				    </c:otherwise>
-				</c:choose>
-     		  </a>
-			</li>
-			<li class="slideitem">
-			 <a href="#">
-				<c:choose>
-				    <c:when test="${not empty bannerlist[2].filePath}">
-				        <img src="${bannerlist[2].filePath}" alt="Banner Image" />
-				    </c:when>
-				    <c:otherwise>
-				        <img src="/banner/partys.png" alt="Banner Image" />
-				    </c:otherwise>
-				</c:choose>				
-			 </a>
-			</li class="slideitem">
-			<li class="slideitem">
-			 <a href="#">
-				<c:choose>
-				    <c:when test="${not empty bannerlist[3].filePath}">
-				        <img src="${bannerlist[3].filePath}" alt="Banner Image" />
-				    </c:when>
-				    <c:otherwise>
-				        <img src="/banner/sports.png" alt="Banner Image" />
-				    </c:otherwise>
-				</c:choose>
-			 </a>
-			</li class="slideitem">
-			<li class="slideitem">
-				<a href="/main/index">
-				   <img src="/banner/community.png">
-				</a>
-			</li>
+		<input type="radio" name="slide" id="slide01" checked> <input
+			type="radio" name="slide" id="slide02"> <input type="radio"
+			name="slide" id="slide03"> <input type="radio" name="slide"
+			id="slide04"> <input type="radio" name="slide" id="slide05">
+		<div class="slidewrap">
+			<ul class="slidelist">
+				<!-- 슬라이드 영역 -->
+				<li class="slideitem"><a href="/main/index"> <img
+						src="/banner/slogans2.png">
+				</a></li>
+				<li class="slideitem"><a href="#"> <c:choose>
+							<c:when test="${not empty bannerlist[1].filePath}">
+								<img src="${bannerlist[1].filePath}" alt="Banner Image" />
+							</c:when>
+							<c:otherwise>
+								<img src="/banner/campings.png" alt="Banner Image" />
+							</c:otherwise>
+						</c:choose>
+				</a></li>
+				<li class="slideitem"><a href="#"> <c:choose>
+							<c:when test="${not empty bannerlist[2].filePath}">
+								<img src="${bannerlist[2].filePath}" alt="Banner Image" />
+							</c:when>
+							<c:otherwise>
+								<img src="/banner/partys.png" alt="Banner Image" />
+							</c:otherwise>
+						</c:choose>
+				</a></li class="slideitem">
+				<li class="slideitem"><a href="#"> <c:choose>
+							<c:when test="${not empty bannerlist[3].filePath}">
+								<img src="${bannerlist[3].filePath}" alt="Banner Image" />
+							</c:when>
+							<c:otherwise>
+								<img src="/banner/sports.png" alt="Banner Image" />
+							</c:otherwise>
+						</c:choose>
+				</a></li class="slideitem">
+				<li class="slideitem"><a href="/main/index"> <img
+						src="/banner/community.png">
+				</a></li>
 
-			<!-- 좌,우 슬라이드 버튼 -->
-			<div class="slide-control">
-				<div>
-					<label for="slide03" class="left" onclick="changeSlide('slide02')"></label>
-					<label for="slide02" class="right"  onclick="changeSlide('slide01')"></label>
-				</div>
-				<div>
-					<label for="slide01" class="left"  onclick="changeSlide('slide01')"></label>
-					<label for="slide03" class="right"  onclick="changeSlide('slide03')"></label>
-				</div>
-				<div>
-					<label for="slide02" class="left"  onclick="changeSlide('slide02')"></label>
-					<label for="slide01" class="right"  onclick="changeSlide('slide01')"></label>
-				</div>
-				<div>
-					<label for="slide04" class="left" onclick="changeSlide('slide04')"></label>
-					<label for="slide03" class="right" onclick="changeSlide('slide03')"></label>
-				</div>
-				<div>
-					<label for="slide05" class="left" onclick="changeSlide('slide05')"></label>
-					<label for="slide04" class="right" onclick="changeSlide('slide04')"></label>
-				</div>
-				<div>
-					<label for="slide01" class="left" onclick="changeSlide('slide01')"></label>
-					<label for="slide05" class="right" onclick="changeSlide('slide05')"></label>
+				<!-- 좌,우 슬라이드 버튼 -->
+				<div class="slide-control">
+					<div>
+						<label for="slide03" class="left" onclick="changeSlide('slide02')"></label>
+						<label for="slide02" class="right"
+							onclick="changeSlide('slide01')"></label>
+					</div>
+					<div>
+						<label for="slide01" class="left" onclick="changeSlide('slide01')"></label>
+						<label for="slide03" class="right"
+							onclick="changeSlide('slide03')"></label>
+					</div>
+					<div>
+						<label for="slide02" class="left" onclick="changeSlide('slide02')"></label>
+						<label for="slide01" class="right"
+							onclick="changeSlide('slide01')"></label>
+					</div>
+					<div>
+						<label for="slide04" class="left" onclick="changeSlide('slide04')"></label>
+						<label for="slide03" class="right"
+							onclick="changeSlide('slide03')"></label>
+					</div>
+					<div>
+						<label for="slide05" class="left" onclick="changeSlide('slide05')"></label>
+						<label for="slide04" class="right"
+							onclick="changeSlide('slide04')"></label>
+					</div>
+					<div>
+						<label for="slide01" class="left" onclick="changeSlide('slide01')"></label>
+						<label for="slide05" class="right"
+							onclick="changeSlide('slide05')"></label>
+					</div>
+
 				</div>
 
-			</div>
-
-		</ul>
-		<!-- 페이징 -->
-		<ul class="slide-pagelist">
-			<li><label for="slide01"></label></li>
-			<li><label for="slide02"></label></li>
-			<li><label for="slide03"></label></li>
-			<li><label for="slide04"></label></li>
-			<li><label for="slide05"></label></li>
-		</ul>
+			</ul>
+			<!-- 페이징 -->
+			<ul class="slide-pagelist">
+				<li><label for="slide01"></label></li>
+				<li><label for="slide02"></label></li>
+				<li><label for="slide03"></label></li>
+				<li><label for="slide04"></label></li>
+				<li><label for="slide05"></label></li>
+			</ul>
+		</div>
 	</div>
-</div>
 
-<script type="text/javascript" src="/js/main/banner.js"></script>
+	<script type="text/javascript" src="/js/main/banner.js"></script>
 
-	<!-- PlaceStation의 추천!! -->
-		<section class="module" id="news" style="margin-top: 50px;">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3">
-					<h2 class="module-title font-alt">PlaceStation의 추천</h2>
-					<div class="module-subtitle font-serif">설명~</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3 col-lg-3">
-				<div class="shop-item">
-					<div class="shop-item-image">
-						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
-						<div class="shop-item-detail">
-							<a class="btn btn-round btn-b"
-								href="/product/productDetail?prod_no=${product.prodNo}"><span
-								class="icon-basket">보러가기</span></a>
-						</div>
-					</div>
-					<h4 class="shop-item-title font-alt">
-						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
-					</h4>
-					${product.prodPrice} 원/시간
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3 col-lg-3">
-				<div class="shop-item">
-					<div class="shop-item-image">
-						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
-						<div class="shop-item-detail">
-							<a class="btn btn-round btn-b"
-								href="/product/productDetail?prod_no=${product.prodNo}"><span
-								class="icon-basket">보러가기</span></a>
-						</div>
-					</div>
-					<h4 class="shop-item-title font-alt">
-						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
-					</h4>
-					${product.prodPrice} 원/시간
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3 col-lg-3">
-				<div class="shop-item">
-					<div class="shop-item-image">
-						<img src="${product.filePath[0]}" alt="${product.prodTitle}" />
-						<div class="shop-item-detail">
-							<a class="btn btn-round btn-b"
-								href="/product/productDetail?prod_no=${product.prodNo}"><span
-								class="icon-basket">보러가기</span></a>
-						</div>
-					</div>
-					<h4 class="shop-item-title font-alt">
-						<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
-					</h4>
-					${product.prodPrice} 원/시간
-				</div>
-			</div>
-	</section>
+
 
 	<!-- 1번 상품 리스트 (전체 조회) -->
-	<section class="module" id="specialities"
+	<section class="module wow fadeIn" id="specialities" 
 		style="margin-bottom: 0px; , padding: 0px">
 		<div class="container">
 			<div class="row">
@@ -200,10 +177,12 @@
 										class="icon-basket">보러가기</span></a>
 								</div>
 							</div>
-							<h4 class="shop-item-title font-alt">
-								<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
-							</h4>
-							${product.prodPrice} 원/시간
+							<div class="shop-item-title-wrapper">
+								<h4 class="shop-item-title font-alt">
+									<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+								</h4>
+								${product.prodPrice} 원/시간
+							</div>
 						</div>
 					</div>
 				</c:forEach>
@@ -212,7 +191,7 @@
 	</section>
 
 	<!-- 2번째 상품 (리뷰가 많은 순서)  -->
-	<section class="module">
+	<section class="module wow fadeIn">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
@@ -241,10 +220,12 @@
 													class="icon-basket">보러가기</span></a>
 											</div>
 										</div>
-										<h4 class="shop-item-title font-alt">
-											<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
-										</h4>
-										${product.prodPrice} 원/시간
+										<div class="shop-item-title-wrapper">
+											<h4 class="shop-item-title font-alt">
+												<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+											</h4>
+											${product.prodPrice} 원/시간
+										</div>
 									</div>
 								</div>
 							</div>
@@ -256,7 +237,7 @@
 	</section>
 
 	<!-- 3번 상품 리스트 (새로 등록된 순) -->
-	<section class="module" id="specialities">
+	<section class="module wow fadeIn" id="specialities">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-2 col-sm-offset-5">
@@ -288,13 +269,12 @@
 										class="icon-basket">보러가기</span>
 									</a>
 								</div>
-							</div>
-							<div class="shop-item-info">
-								<h4 class="shop-item-title font-alt">
-									<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
-								</h4>
-								<div class="shop-item-price">${product.prodPrice}원/시간</div>
-								<div class="shop-item-maximum">최대 ${product.prodMaximumPeople}인 ${product.prodStartTime}시~${product.prodEndTime}시</div>
+								<div class="shop-item-title-wrapper">
+									<h4 class="shop-item-title font-alt">
+										<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+									</h4>
+									${product.prodPrice} 원/시간
+								</div>
 							</div>
 						</div>
 					</div>
@@ -304,7 +284,7 @@
 	</section>
 
 	<!-- owl carousel 2 번 -->
-	<section class="module">
+	<section class="module wow fadeIn">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
@@ -334,10 +314,12 @@
 													class="icon-basket">보러가기</span></a>
 											</div>
 										</div>
-										<h4 class="shop-item-title font-alt">
-											<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
-										</h4>
-										${product.prodPrice} 원/시간
+										<div class="shop-item-title-wrapper">
+											<h4 class="shop-item-title font-alt">
+												<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+											</h4>
+											${product.prodPrice} 원/시간
+										</div>
 									</div>
 								</div>
 							</div>
@@ -347,6 +329,7 @@
 			</div>
 		</div>
 	</section>
-	
-<!-- include.jsp -->
-<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+
+
+	<!-- include.jsp -->
+	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

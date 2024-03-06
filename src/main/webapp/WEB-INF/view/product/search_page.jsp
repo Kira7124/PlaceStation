@@ -158,9 +158,6 @@ body {
 	transition: transform 0.3s ease;
 }
 
-.post-thumbnail:hover img {
-	transform: scale(1.05); /* Enlarge image on hover */
-}
 
 /* Transition Effects */
 .post-header .post-title a {
@@ -245,7 +242,7 @@ body {
 
 <div class="main">
 	<!-- 배너 섹션 -->
-	<section class="module bg-dark-60 blog-page-header"
+	<section class="module bg-dark-60 blog-page-header wow fadeIn"
 		data-background="assets/images/blog_bg.jpg">
 		<div class="container">
 			<div class="row">
@@ -260,26 +257,44 @@ body {
 
 
 	<!-- 메인 섹션 시작 -->
-	<section class="module">
+	<section class="module ">
 		<form action="/product/search-page" method="get">
 			<div class="">
 				<div class="row">
 					<!-- 사이드 바 시작 -->
 					<div class="col-sm-3 col-md-2 col-md-offset-1 sidebar">
-						<div class="widget">
-							&nbsp;
-							<div class="search-box">
-								<input class="form-control" type="text" placeholder="Search..."
-									id="search-text" name="search" id="search-form" />
-								<button class="search-btn" type="submit">
-									<i class="fa fa-search"></i>
-								</button>
-							</div>
 
+
+
+						<div class="widget wow lightSpeedIn" >
+							&nbsp;
+							<div>
+								<h5>제목</h5>
+								<div class="search-box">
+
+									<input class="form-control" type="text" placeholder="Search..."
+										id="search-text" name="search" id="search-form" value="${search}"/>
+									<button class="search-btn" type="submit">
+										<i class="fa fa-search"></i>
+									</button>
+								</div>
+							</div>
+							<div>
+								<h5>장소</h5>
+								<div class="search-box">
+									<input class="form-control" type="text" placeholder="Search..."
+										id="search-text" name="address" id="search-form" value="${address}"/>
+									<button class="search-btn" type="submit">
+										<i class="fa fa-search"></i>
+									</button>
+								</div>
+							</div>
 						</div>
 
+
+
 						<!-- 위젯 1번 - 카테고리 별 시작 -->
-						<div class="widget">
+						<div class="widget wow lightSpeedIn" data-wow-delay="0.3s">
 							<h5 class="widget-title font-alt" id="nav">카테고리 별</h5>
 							<ul class="icon-list">
 								<li class="menu"><a href="#"
@@ -310,7 +325,7 @@ body {
 						<!-- 위젯 1번 - 카테고리 별 종료 -->
 
 						<!-- 위젯 2번 - 별점 별 시작 -->
-						<div class="widget">
+						<div class="widget wow lightSpeedIn" data-wow-delay="0.3s">
 							<h5 class="widget-title font-alt">별점 별</h5>
 							<div class="star_rating">
 								<span class="star" value="1"> </span> <span class="star"
@@ -323,7 +338,7 @@ body {
 						<!-- 위젯 2번 - 별점 별 종료 -->
 
 						<!-- 위젯 3번 - 가격 별 시작 -->
-						<div class="widget">
+						<div class="widget wow lightSpeedIn">
 							<h5 class="widget-title font-alt">가격 별</h5>
 							<div class="search-box">
 								<input class="form-control" type="number"
@@ -335,7 +350,23 @@ body {
 						</div>
 						<!-- 위젯 3번 - 가격 별 종료 -->
 
-						<div class="widget">
+						<div class="widget wow lightSpeedIn" data-wow-delay="0.6s">
+							&nbsp;
+							<div>
+								<h5 class="widget-title font-alt" id="nav">현재 태그</h5>
+								<ul class="icon-list">
+									<li class="menu"><a>제목 : ${search}</a></li>
+									<li class="menu"><a>주소 : ${address}</a></li>
+									<li class="menu"><a>가격대 : ${min}&nbsp;~&nbsp;${max}</a></li>
+									<li class="menu"><a>별점 : <c:forEach begin="1"
+												end="${star}">
+												<span>⭐</span>
+											</c:forEach></a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="widget wow lightSpeedIn" data-wow-delay="0.6s">
 							<button class="btn btn-default btn-round" type="submit"
 								style="width: 100%; margin-bottom: 10px;">
 								검색 <i class="fa fa-search"></i>
@@ -353,9 +384,9 @@ body {
 							<div class="container">
 								<div class="row  post-columns">
 									<c:forEach items="${products}" var="product">
-										<a href="/product/productDetail?prod_no=${product.prodNo}">
+										<a href="/product/productDetail?prod_no=${product.prodNo}" >
 											<div class="col-md-4 " class="item">
-												<div class="post">
+												<div class="post wow fadeIn">
 													<div class="post-thumbnail imgBox">
 														<img src="${product.filePath[0]}"
 															alt=" Blog-post Thumbnail" />
@@ -365,14 +396,18 @@ body {
 															<a href="#">${product.prodTitle}</a>
 														</h2>
 														<div class="post-meta">
-															평점 &nbsp;<a href="#">${product.star} 점</a>&nbsp;| 출시일 :
-															${product.prodRdate}
+															평점 &nbsp;<a href="#"> <c:forEach begin="1"
+																	end="${product.star}">
+																	<span>⭐</span>
+																</c:forEach>
+
+															</a>&nbsp;|<br/> 출시일 : ${product.prodRdate}
 														</div>
 													</div>
 													<div class="post-entry">
 														<h5 style="overflow: hidden; height: 60px;">${product.prodSpaceInfo}</h5>
 														<br />
-														<h6>가격 : ${product.prodPrice}</h6>
+														<h6>가격 : ${product.prodPrice}&nbsp;원</h6>
 														<h6>주소 : ${product.prodFullAddress}</h6>
 													</div>
 													<div class="post-more">
@@ -391,14 +426,15 @@ body {
 										</c:when>
 										<c:when test="${currentPage >= 1}">
 											<a
-												href="/product/search-page?page=${currentPage - 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}"><input
+												href="/product/search-page?page=${currentPage - 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}&address=${address}"><input
 												type="hidden" /><i class="fa fa-angle-left"></i></a>
 										</c:when>
 									</c:choose>
 
-									<c:forEach begin="${startPage}" end="${endPage}" var="page">
+									<c:forEach begin="0"
+										end="${totalPages == 0 ? 0 : totalPages - 1}" var="page">
 										<a class="active"
-											href="/product/search-page?page=${page - 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}">${page}</a>
+											href="/product/search-page?page=${page}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}&address=${address}">${page + 1}</a>
 									</c:forEach>
 
 									<c:choose>
@@ -409,7 +445,7 @@ body {
 										</c:when>
 										<c:when test="${currentPage < endPage - 1}">
 											<a
-												href="/product/search-page?page=${currentPage + 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}"><input
+												href="/product/search-page?page=${currentPage + 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}&address=${address}"><input
 												type="hidden" /><i class="fa fa-angle-right"></i></a>
 										</c:when>
 									</c:choose>
@@ -452,7 +488,6 @@ console.log("헬로" +${totalItems})
 			$("ul",this).slideToggle("fast");
 		});
 	});
-	
 	
 	// 별점
 	document.addEventListener('DOMContentLoaded', function() {
