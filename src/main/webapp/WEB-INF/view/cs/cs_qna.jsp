@@ -12,7 +12,7 @@
 				<%@ include file="/WEB-INF/view/cs/cs_aside.jsp"%>
 				<!-- aside bar 끝 -->
 				<!-- 메인 시작 -->
-				<div class="col-sm-8 col-sm-offset-1">
+				<div class="col-sm-8 col-sm-offset-1 wow fadeIn">
 					<div class="post">
 						<div class="comment-form">
 							<h4 class="comment-form-title font-alt">1:1 문의</h4>
@@ -60,20 +60,20 @@
 										<img src="${qnaList.filepath}" />
 									</div>
 
-								<c:choose>
-									<c:when test="${qnaList.qstatus == '완료'}">
-										<div class="panel-body">
-											<hr />
-											<h4>관리자</h4>
-											<p>${qnaList.qreply}</p>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<div class="panel-body">
-											<hr />
-											<h4>아직 답변 글이 없습니다.</h4>
-										</div>
-									</c:otherwise>
+									<c:choose>
+										<c:when test="${qnaList.qstatus == '완료'}">
+											<div class="panel-body">
+												<hr />
+												<h4>관리자</h4>
+												<p>${qnaList.qreply}</p>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="panel-body">
+												<hr />
+												<h4>아직 답변 글이 없습니다.</h4>
+											</div>
+										</c:otherwise>
 									</c:choose>
 								</div>
 

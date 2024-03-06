@@ -52,11 +52,7 @@
 								<th>상품번호</th>
 								<th>거래내역번호</th>
 								<th>상품명</th>
-								<th>사업자회원번호</th>
-								<th>사업자아이디</th>
-								<th>사업자잔액</th>								
 								<th>결제금액</th>
-								<th>상품명</th>
 								<th>은행</th>
 								<th>구매확정</th>
 								<th>환불</th>
@@ -68,11 +64,7 @@
 								<td>${searchpaymentlist.adminHisProdNo}</td>
 								<td>${searchpaymentlist.adminHisNo}</td>
 								<td>${searchpaymentlist.prodTitle}</td>
-								<td>${searchpaymentlist.bizId}</td>
-								<td>${searchpaymentlist.userId}</td>
-								<td>${searchpaymentlist.bizBalance}</td>
 								<td>${searchpaymentlist.adminHisPrice}</td>
-								<td>${searchpaymentlist.adminHisProdName}</td>
 								<td>${searchpaymentlist.bank}</td>
 								<td>
 								    <c:choose>

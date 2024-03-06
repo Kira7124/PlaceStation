@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<!-- adminheader.jsp -->
     <%@ include file ="/WEB-INF/view/admin/adminheader.jsp" %>
 	<!-- adminside.jsp -->
@@ -59,7 +59,36 @@
 							<tr>
 								<td>${noticelist.nbno}</td>
 								<td>${noticelist.nwriter}</td>
-								<td><a href="/admin/admin-noticedetail?nbno=${noticelist.nbno}">${noticelist.ntitle}</a></td>
+								<c:choose>
+								  <c:when test="${fn:contains(noticelist.ntitle, '[공지]')}">
+									<td>
+										<a href="/admin/admin-noticedetail?nbno=${noticelist.nbno}" style="text-decoration-line: none; font-weight: bold; color: blue;">
+											${noticelist.ntitle}
+										</a>
+									</td>
+								 </c:when>
+								  <c:when test="${fn:contains(noticelist.ntitle, '[알림]')}">
+									<td>
+										<a href="/admin/admin-noticedetail?nbno=${noticelist.nbno}" style="text-decoration-line: none; font-weight: bold; color: red;">
+											${noticelist.ntitle}
+										</a>
+									</td>
+								 </c:when>
+								  <c:when test="${fn:contains(noticelist.ntitle, '[일반]')}">
+									<td>
+										<a href="/admin/admin-noticedetail?nbno=${noticelist.nbno}" style="text-decoration-line: none; font-weight: bold; color: black;">
+											${noticelist.ntitle}
+										</a>
+									</td>
+								 </c:when>
+								  <c:otherwise>
+							        <td>
+							            <a href="/admin/admin-noticedetail?nbno=${noticelist.nbno}" style="text-decoration-line: none; font-weight: bold; color: black;">
+											${noticelist.ntitle}
+										</a>
+							        </td>
+				    			</c:otherwise>
+							 </c:choose>
 								<td>${noticelist.formatjoinAt()}</td>
 								<td><span class="badge" style="margin-left: 10px;">${noticelist.nreadcount}</span></td>			
 								<td>

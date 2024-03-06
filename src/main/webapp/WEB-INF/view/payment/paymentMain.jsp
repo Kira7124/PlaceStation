@@ -159,7 +159,7 @@
 	</div>
 </section>
 
-<section class="module" id="paymentElement">
+<section class="module " id="paymentElement ">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">

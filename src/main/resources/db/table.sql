@@ -74,7 +74,7 @@ create table member (
   file_path VARCHAR(100) DEFAULT 'default.jpg',
   join_at DATETIME NULL DEFAULT now(),
   user_role VARCHAR(20) NOT NULL,
-  grade VARCHAR(20) NULL DEFAULT '브론즈',
+  grade VARCHAR(20) NULL DEFAULT 'BRONZE',
   gender varchar (1),
   oauth varchar (10)
   );
