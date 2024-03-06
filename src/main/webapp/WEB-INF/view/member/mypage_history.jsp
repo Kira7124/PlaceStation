@@ -129,48 +129,61 @@ a {
 										<thead>
 											<tr>
 
-												<th scope="col">Name</th>
-												<th scope="col">Position</th>
-												<th scope="col">Email</th>
-												<th scope="col">Projects</th>
-												<th scope="col" style="width: 200px;">Action</th>
+												<th scope="col">거래 번호</th>
+												<th scope="col">예약된 시간</th>
+												<th scope="col">예약 가격</th>
+												<th scope="col">거래 날짜</th>
+												<th scope="col" style="width: 200px;">환불신청</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td><img
-													src="https://bootdey.com/img/Content/avatar/avatar1.png"
-													alt="" class="avatar-sm rounded-circle me-2" /><a href="#"
-													class="text-body">Simon Ryles</a></td>
-												<td><span class="badge badge-soft-success mb-0">Full
-														Stack Developer</span></td>
-												<td>SimonRyles@minible.com</td>
-												<td>125</td>
-												<td>
-													<ul class="list-inline mb-0">
-														<li class="list-inline-item"><a
-															href="javascript:void(0);" data-bs-toggle="tooltip"
-															data-bs-placement="top" title="Edit"
-															class="px-2 text-primary"><i
-																class="bx bx-pencil font-size-18"></i></a></li>
-														<li class="list-inline-item"><a
-															href="javascript:void(0);" data-bs-toggle="tooltip"
-															data-bs-placement="top" title="Delete"
-															class="px-2 text-danger"><i
-																class="bx bx-trash-alt font-size-18"></i></a></li>
-														<li class="list-inline-item dropdown"><a
-															class="text-muted dropdown-toggle font-size-18 px-2"
-															href="#" role="button" data-bs-toggle="dropdown"
-															aria-haspopup="true"><i
-																class="bx bx-dots-vertical-rounded"></i></a>
-															<div class="dropdown-menu dropdown-menu-end">
-																<a class="dropdown-item" href="#">Action</a><a
-																	class="dropdown-item" href="#">Another action</a><a
-																	class="dropdown-item" href="#">Something else here</a>
-															</div></li>
-													</ul>
-												</td>
-											</tr>
+
+											<c:forEach items="${history}" var="his">
+												<form action="/payment/reservation-management/user/refund"
+													method="post">
+													<input type="hidden" name="reason" value="거래 환불 요청" /> <input
+														type="hidden" name="merchantUid" value="${his.adminHisNo}" />
+													<input type="hidden" name="adminHisCreatedAt"
+														value="${his.adminHisCreatedAt}" /> <input type="hidden"
+														name="adminHisSellerId" value="${his.adminHisSellerId}" />
+													<input type="hidden" name="purchaseDate"
+														value="${his.purchaseDate}" /> <input type="hidden"
+														name="adminHisPrice" value="${his.adminHisPrice}" /> <input
+														type="hidden" name="adminHisCharge"
+														value="${his.adminHisCharge}" /> <input type="hidden"
+														name="adminHisSavePoint" value="${his.adminHisSavePoint}" />
+													<input type="hidden" name="adminHisUsePoint"
+														value="${his.adminHisUsePoint}" /> <input type="hidden"
+														name="adminHisDiscount" value="${his.adminHisDiscount}" />
+													<tr>
+														<td><img
+															src="https://bootdey.com/img/Content/avatar/avatar1.png"
+															alt="" class="avatar-sm rounded-circle me-2" /><a
+															href="#" class="text-body">${his.adminHisNo}</a></td>
+														<td><span class="badge badge-soft-success mb-0">
+																${his.purchaseDate}&nbsp;${his.startTime}시&nbsp;~&nbsp;${his.endTime}시
+														</span></td>
+														<td>${his.adminHisPrice + his.adminHisCharge}</td>
+														<td>${his.adminHisCreatedAt}</td>
+														<td>
+															<ul class="list-inline mb-0">
+																<c:choose>
+																	<c:when test="${his.cancelYn == 'N'}">
+																		<button class="list-inline-item">
+																			<i class="bx bx-trash-alt font-size-18"></i>
+																		</button>
+																	</c:when>
+																	<c:otherwise>
+																		<button class="list-inline-item btn btn-secondary">
+																			환불완료</button>
+																	</c:otherwise>
+																</c:choose>
+
+															</ul>
+														</td>
+													</tr>
+												</form>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -181,18 +194,34 @@ a {
 						<div class="col-sm-6">
 							<div class="float-sm-end">
 								<ul class="pagination mb-sm-0">
-									<li class="page-item disabled">
-										<a href="#"	class="page-link">
-											<i class="mdi mdi-chevron-left"></i>
-										</a>
-									</li>
-									<li class="page-item active"><a href="#" class="page-link">1</a></li>
-									<li class="page-item"><a href="#" class="page-link">2</a></li>
-									<li class="page-item"><a href="#" class="page-link">3</a></li>
-									<li class="page-item"><a href="#" class="page-link">4</a></li>
-									<li class="page-item"><a href="#" class="page-link">5</a></li>
-									<li class="page-item"><a href="#" class="page-link"><i
+									<c:choose>
+										<c:when test="${currentPage > 0}">
+											<li class="page-item"><a
+												href="/user/mypage/history?page=${currentPage - 1}"
+												class="page-link"> <i class="mdi mdi-chevron-left"></i>
+											</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a href=""
+												class="page-link"> <i class="mdi mdi-chevron-left"></i>
+											</a></li>
+										</c:otherwise>
+									</c:choose>
+									<c:forEach begin="0" end="${totalPages == 0 ? 0 : totalPages - 1}" var="page">
+										<li class="page-item"><a href="/user/mypage/history?page=${page}" class="page-link">${page + 1}</a></li>
+									</c:forEach>
+									
+									<c:choose>
+										<c:when test="${currentPage < totalPages - 1}">
+										<li class="page-item"><a href="/user/mypage/history?page=${currentPage + 1}" class="page-link"><i
 											class="mdi mdi-chevron-right"></i></a></li>
+										</c:when>
+										<c:otherwise>
+										<li class="page-item"><a href="" class="page-link"><i
+											class="mdi mdi-chevron-right"></i></a></li>
+										</c:otherwise>
+									</c:choose>
+									
 								</ul>
 							</div>
 						</div>

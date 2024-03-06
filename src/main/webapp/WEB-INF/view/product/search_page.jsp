@@ -5,236 +5,244 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
 .main {
-
+	
 }
 /* Add padding to product boxes */
 .post {
-  padding: 20px; /* Adjust the padding value as needed */
+	padding: 20px; /* Adjust the padding value as needed */
 }
 
 img {
-  border-radius: 10px;
+	border-radius: 10px;
 }
 
 * {
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 .star_rating {
-  width: 100%;
-  box-sizing: border-box;
-  display: inline-flex;
-  float: left;
-  flex-direction: row;
-  justify-content: flex-start;
+	width: 100%;
+	box-sizing: border-box;
+	display: inline-flex;
+	float: left;
+	flex-direction: row;
+	justify-content: flex-start;
 }
 
 .star_rating .star {
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-  display: inline-block;
-  background: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FE2bww%2FbtsviSSBz4Q%2F5UYnwSWgTlFt6CEFZ1L3Q0%2Fimg.png') no-repeat;
-  background-size: 100%;
-  box-sizing: border-box;
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+	display: inline-block;
+	background:
+		url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FE2bww%2FbtsviSSBz4Q%2F5UYnwSWgTlFt6CEFZ1L3Q0%2Fimg.png')
+		no-repeat;
+	background-size: 100%;
+	box-sizing: border-box;
 }
 
 .star_rating .star.on {
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-  display: inline-block;
-  background: url('https://blog.kakaocdn.net/dn/b2d6gV/btsvbDoal87/XH5b17uLeEJcBP3RV3FyDk/img.png') no-repeat;
-  background-size: 100%;
-  box-sizing: border-box;
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+	display: inline-block;
+	background:
+		url('https://blog.kakaocdn.net/dn/b2d6gV/btsvbDoal87/XH5b17uLeEJcBP3RV3FyDk/img.png')
+		no-repeat;
+	background-size: 100%;
+	box-sizing: border-box;
 }
 
 .star_box {
-  width: 400px;
-  box-sizing: border-box;
-  display: inline-block;
-  margin: 15px 0;
-  background: #F3F4F8;
-  border: 0;
-  border-radius: 10px;
-  height: 100px;
-  resize: none;
-  padding: 15px;
-  font-size: 13px;
-  font-family: sans-serif;
+	width: 400px;
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 15px 0;
+	background: #F3F4F8;
+	border: 0;
+	border-radius: 10px;
+	height: 100px;
+	resize: none;
+	padding: 15px;
+	font-size: 13px;
+	font-family: sans-serif;
 }
 
 .btn02 {
-  display: block;
-  width: 400px;
-  font-weight: bold;
-  border: 0;
-  border-radius: 10px;
-  max-height: 50px;
-  padding: 15px 0;
-  font-size: 1.1em;
-  text-align: center;
-  background: bisque;
+	display: block;
+	width: 400px;
+	font-weight: bold;
+	border: 0;
+	border-radius: 10px;
+	max-height: 50px;
+	padding: 15px 0;
+	font-size: 1.1em;
+	text-align: center;
+	background: bisque;
 }
 
 :root {
-  --btn-width: 30vw;
-  --btn-min-width: 10px;
-  --btn-height: 15vh;
-  --btn-min-height: 5px;
-  --menu-height: calc(var(--btn-height) * 4);
-  --menu-min-height: calc(var(--btn-min-height) * 2);
-  --border-rad: 5px;
-  --font-size: 2vw;
+	--btn-width: 30vw;
+	--btn-min-width: 10px;
+	--btn-height: 15vh;
+	--btn-min-height: 5px;
+	--menu-height: calc(var(--btn-height)* 4);
+	--menu-min-height: calc(var(--btn-min-height)* 2);
+	--border-rad: 5px;
+	--font-size: 2vw;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
 }
 
 body {
-  min-height: 100vh;
-  background-color: rgb(238, 238, 238);
-  justify-content: center;
+	min-height: 100vh;
+	background-color: rgb(238, 238, 238);
+	justify-content: center;
 }
 
 #nav {
-  font-family: 'arial';
+	font-family: 'arial';
 }
 
 #nav ul {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 #nav ul.menu li {
-  position: relative;
-  float: left;
-  width: 100%;
-  list-style-type: none;
-  font-size: 40px;
+	position: relative;
+	float: left;
+	width: 100%;
+	list-style-type: none;
+	font-size: 40px;
 }
 
 #nav ul.menu li a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  line-height: 100px;
-  text-indent: 30px;
-  color: #000;
-  font-weight: bold;
-  text-decoration: none;
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 100px;
+	text-indent: 30px;
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
 }
 
 #nav ul.menu li a:hover {
-  background: #eee;
+	background: #eee;
 }
 
 #nav ul.menu li .sub a {
-  position: relative;
-  float: left;
-  display: block;
-  width: 100%;
-  z-index: 999;
-  background: #ccc;
+	position: relative;
+	float: left;
+	display: block;
+	width: 100%;
+	z-index: 999;
+	background: #ccc;
 }
 
 #nav ul.menu li .sub a:hover {
-  background: #444;
-  color: #fff;
+	background: #444;
+	color: #fff;
 }
-
 
 /* Hover Effects */
 .post-thumbnail img {
-  transition: transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
-.post-thumbnail:hover img {
-  transform: scale(1.05); /* Enlarge image on hover */
-}
+
 
 /* Transition Effects */
 .post-header .post-title a {
-  transition: color 0.3s ease;
+	transition: color 0.3s ease;
 }
+
 .post-header .post-title a:hover {
-  color: #ff9900; /* Change to your desired hover color */
+	color: #ff9900; /* Change to your desired hover color */
 }
 
 /* Border and Box Shadow */
 .post {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-  padding: 20px; /* Add padding around the content */
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.3s ease;
+	padding: 20px; /* Add padding around the content */
 }
+
 .post:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Gradient Background */
 .post {
-  background: #fff; /* Fallback color */
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9));
+	background: #fff; /* Fallback color */
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0),
+		rgba(255, 255, 255, 0.9));
 }
 
 /* Overlay on Images */
 .imgBox {
-  position: relative;
+	position: relative;
 }
+
 .imgBox::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.2); /* Semi-transparent overlay */
-  opacity: 0;
-  transition: opacity 0.3s ease;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.2); /* Semi-transparent overlay */
+	opacity: 0;
+	transition: opacity 0.3s ease;
 }
+
 .imgBox:hover::after {
-  opacity: 1;
+	opacity: 1;
 }
 
 /* Animated Loading */
 .post-thumbnail img {
-  transition: opacity 0.3s ease;
+	transition: opacity 0.3s ease;
 }
+
 .post-thumbnail img.loading {
-  opacity: 0.5;
+	opacity: 0.5;
 }
 
 /* Carousel */
 .multi-columns-row {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
 }
+
 .item {
-  flex: 0 0 auto;
-  scroll-snap-align: start;
+	flex: 0 0 auto;
+	scroll-snap-align: start;
 }
 
 /* Adjustments for better readability */
 .post-entry h5 {
-  margin-bottom: 10px;
-}
-.post-entry h6 {
-  margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 
+.post-entry h6 {
+	margin-bottom: 5px;
+}
 </style>
 
 <div class="main">
 	<!-- 배너 섹션 -->
-	<section class="module bg-dark-60 blog-page-header"
+	<section class="module bg-dark-60 blog-page-header wow fadeIn"
 		data-background="assets/images/blog_bg.jpg">
 		<div class="container">
 			<div class="row">
@@ -249,26 +257,44 @@ body {
 
 
 	<!-- 메인 섹션 시작 -->
-	<section class="module">
+	<section class="module ">
 		<form action="/product/search-page" method="get">
 			<div class="">
 				<div class="row">
 					<!-- 사이드 바 시작 -->
 					<div class="col-sm-3 col-md-2 col-md-offset-1 sidebar">
-						<div class="widget">
-							&nbsp;
-							<div class="search-box">
-								<input class="form-control" type="text" placeholder="Search..."
-									id="search-text" name="search" id="search-form" />
-								<button class="search-btn" type="submit">
-									<i class="fa fa-search"></i>
-								</button>
-							</div>
 
+
+
+						<div class="widget wow lightSpeedIn" >
+							&nbsp;
+							<div>
+								<h5>제목</h5>
+								<div class="search-box">
+
+									<input class="form-control" type="text" placeholder="Search..."
+										id="search-text" name="search" id="search-form" value="${search}"/>
+									<button class="search-btn" type="submit">
+										<i class="fa fa-search"></i>
+									</button>
+								</div>
+							</div>
+							<div>
+								<h5>장소</h5>
+								<div class="search-box">
+									<input class="form-control" type="text" placeholder="Search..."
+										id="search-text" name="address" id="search-form" value="${address}"/>
+									<button class="search-btn" type="submit">
+										<i class="fa fa-search"></i>
+									</button>
+								</div>
+							</div>
 						</div>
 
+
+
 						<!-- 위젯 1번 - 카테고리 별 시작 -->
-						<div class="widget">
+						<div class="widget wow lightSpeedIn" data-wow-delay="0.3s">
 							<h5 class="widget-title font-alt" id="nav">카테고리 별</h5>
 							<ul class="icon-list">
 								<li class="menu"><a href="#"
@@ -299,7 +325,7 @@ body {
 						<!-- 위젯 1번 - 카테고리 별 종료 -->
 
 						<!-- 위젯 2번 - 별점 별 시작 -->
-						<div class="widget">
+						<div class="widget wow lightSpeedIn" data-wow-delay="0.3s">
 							<h5 class="widget-title font-alt">별점 별</h5>
 							<div class="star_rating">
 								<span class="star" value="1"> </span> <span class="star"
@@ -312,7 +338,7 @@ body {
 						<!-- 위젯 2번 - 별점 별 종료 -->
 
 						<!-- 위젯 3번 - 가격 별 시작 -->
-						<div class="widget">
+						<div class="widget wow lightSpeedIn">
 							<h5 class="widget-title font-alt">가격 별</h5>
 							<div class="search-box">
 								<input class="form-control" type="number"
@@ -324,7 +350,23 @@ body {
 						</div>
 						<!-- 위젯 3번 - 가격 별 종료 -->
 
-						<div class="widget">
+						<div class="widget wow lightSpeedIn" data-wow-delay="0.6s">
+							&nbsp;
+							<div>
+								<h5 class="widget-title font-alt" id="nav">현재 태그</h5>
+								<ul class="icon-list">
+									<li class="menu"><a>제목 : ${search}</a></li>
+									<li class="menu"><a>주소 : ${address}</a></li>
+									<li class="menu"><a>가격대 : ${min}&nbsp;~&nbsp;${max}</a></li>
+									<li class="menu"><a>별점 : <c:forEach begin="1"
+												end="${star}">
+												<span>⭐</span>
+											</c:forEach></a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="widget wow lightSpeedIn" data-wow-delay="0.6s">
 							<button class="btn btn-default btn-round" type="submit"
 								style="width: 100%; margin-bottom: 10px;">
 								검색 <i class="fa fa-search"></i>
@@ -340,11 +382,11 @@ body {
 						<!-- 상품 시작 -->
 						<section class="module">
 							<div class="container">
-								<div class="row multi-columns-row post-columns">
+								<div class="row  post-columns">
 									<c:forEach items="${products}" var="product">
-										<a href="/product/productDetail?prod_no=${product.prodNo}">
-											<div class="col-sm-6 col-md-4 col-lg-4" class="item">
-												<div class="post">
+										<a href="/product/productDetail?prod_no=${product.prodNo}" >
+											<div class="col-md-4 " class="item">
+												<div class="post wow fadeIn">
 													<div class="post-thumbnail imgBox">
 														<img src="${product.filePath[0]}"
 															alt=" Blog-post Thumbnail" />
@@ -354,14 +396,18 @@ body {
 															<a href="#">${product.prodTitle}</a>
 														</h2>
 														<div class="post-meta">
-															평점 &nbsp;<a href="#">${product.star} 점</a>&nbsp;| 출시일 :
-															${product.prodRdate}
+															평점 &nbsp;<a href="#"> <c:forEach begin="1"
+																	end="${product.star}">
+																	<span>⭐</span>
+																</c:forEach>
+
+															</a>&nbsp;|<br/> 출시일 : ${product.prodRdate}
 														</div>
 													</div>
 													<div class="post-entry">
 														<h5 style="overflow: hidden; height: 60px;">${product.prodSpaceInfo}</h5>
 														<br />
-														<h6>가격 : ${product.prodPrice}</h6>
+														<h6>가격 : ${product.prodPrice}&nbsp;원</h6>
 														<h6>주소 : ${product.prodFullAddress}</h6>
 													</div>
 													<div class="post-more">
@@ -380,14 +426,15 @@ body {
 										</c:when>
 										<c:when test="${currentPage >= 1}">
 											<a
-												href="/product/search-page?page=${currentPage - 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}"><input
+												href="/product/search-page?page=${currentPage - 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}&address=${address}"><input
 												type="hidden" /><i class="fa fa-angle-left"></i></a>
 										</c:when>
 									</c:choose>
 
-									<c:forEach begin="${startPage}" end="${endPage}" var="page">
+									<c:forEach begin="0"
+										end="${totalPages == 0 ? 0 : totalPages - 1}" var="page">
 										<a class="active"
-											href="/product/search-page?page=${page - 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}">${page}</a>
+											href="/product/search-page?page=${page}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}&address=${address}">${page + 1}</a>
 									</c:forEach>
 
 									<c:choose>
@@ -398,7 +445,7 @@ body {
 										</c:when>
 										<c:when test="${currentPage < endPage - 1}">
 											<a
-												href="/product/search-page?page=${currentPage + 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}"><input
+												href="/product/search-page?page=${currentPage + 1}&majorCategory=${majorCategory}&subcategory=${subcategory}&search=${search}&max=${max}&min=${min}&star=${star}&address=${address}"><input
 												type="hidden" /><i class="fa fa-angle-right"></i></a>
 										</c:when>
 									</c:choose>
@@ -441,7 +488,6 @@ console.log("헬로" +${totalItems})
 			$("ul",this).slideToggle("fast");
 		});
 	});
-	
 	
 	// 별점
 	document.addEventListener('DOMContentLoaded', function() {

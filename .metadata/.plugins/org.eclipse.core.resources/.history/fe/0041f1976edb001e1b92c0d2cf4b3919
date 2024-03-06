@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.AdminProdHistoryRepository">
+
+
+
+	<!-- 관리자 결제내역명단 총 출력 -->
+
+	<select id="paymentlistAll"
+		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+		select admin_prod_history.*, biz.biz_id, biz.biz_balance,product.prod_title,
+		member.user_id
+		from admin_prod_history
+		join biz
+		on
+		admin_prod_history.admin_his_prod_no = biz.biz_id
+		join member
+		on
+		biz.biz_id = member.user_no
+		join product 
+		on admin_prod_history.admin_his_prod_no = product.prod_no
+		limit #{startPage},#{pageSize}
+
+	</select>
+
+
+	<!-- 관리자 총출력 카운팅(페이징용) -->
+	<select id="countPayment" resultType="int">
+		<![CDATA[ select count(*) from admin_prod_history where admin_his_seller_id > 0 ]]>
+	</select>
+
+
+
+	<!-- 관리자 결제내역검색 -->
+	<select id="searchPaymentlist"
+		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+		select admin_prod_history.*, biz.biz_id, biz.biz_balance,
+		member.user_id
+		from admin_prod_history
+		join biz
+		on
+		admin_prod_history.admin_his_prod_no = biz.biz_id
+		join member
+		on
+		biz.biz_id = member.user_no
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+				<choose>
+					<when test="searchOption == 'bank'">
+						and bank like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'admin_his_prod_name'">
+						and admin_his_prod_name like concat('%',
+						#{searchKeyword}, '%')
+					</when>
+					<!-- 기본적으로는 user_name으로 검색 -->
+					<otherwise>
+						and admin_his_prod_name like concat('%',
+						#{searchKeyword}, '%')
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+		limit #{startPage}, #{pageSize}
+	</select>
+
+
+
+	<!-- 결제내역검색 카운팅 -->
+	<select id="countSearchPaymentlist">
+		select count(*) from admin_prod_history
+		join biz
+		on biz.biz_id =
+		admin_prod_history.admin_his_prod_no
+		join member
+		on biz.biz_id =
+		member.user_no
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+				<choose>
+					<when test="searchOption == 'bank'">
+						and bank like concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchOption == 'admin_his_prod_name'">
+						and admin_his_prod_name like concat('%',
+						#{searchKeyword}, '%')
+					</when>
+					<!-- 기본적으로는 user_name으로 검색 -->
+					<otherwise>
+						and admin_his_prod_name like concat('%',
+						#{searchKeyword}, '%')
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+	</select>
+
+
+	<!-- 관리자 메인 1달간 결제매출총액 -->
+	<select id="countAdminpaymentCount" resultType="Integer">
+		SELECT
+		SUM(admin_his_price) AS total_amount
+		FROM admin_prod_history
+
+		WHERE
+		ADMIN_HIS_CREATED_AT >= CURRENT_DATE() - INTERVAL '1' MONTH
+		AND
+		ADMIN_HIS_CREATED_AT &lt; CURRENT_DATE() + INTERVAL '1' DAY
+		AND
+		admin_his_confirm = true
+	</select>
+
+
+	<!-- 관리자 환불처리 -->
+	<update id="AdminPaymentCancel">
+		update admin_prod_history
+		set cancel_at=#{cancelAt},
+		cancel_yn=#{cancelYn},
+		cancel_amount=#{cancelAmount},
+		admin_his_confirm=false
+		where admin_his_prod_no=#{adminHisProdNo}
+	</update>
+
+	<!-- 관리자 환불처리2 -->
+	<update id="AdminPaymentCancel2">
+		update biz set biz_balance = biz_balance +
+		#{cancelAmount}
+		where biz_id =#{bizId}
+	</update>
+
+
+
+	<!-- 환불내역확인(관리자) -->
+	<select id="AdminRefund"
+		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+		SELECT * FROM admin_prod_history
+		WHERE admin_his_prod_no = #{adminHisProdNo} 
+		AND admin_prod_history.admin_his_no=#{adminHisNo}
+	</select>
+
+	<select id="findAllByBizId"
+		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+		SELECT
+		h.admin_his_no AS adminHisNo,
+		h.admin_his_prod_no AS
+		adminHisProdNo,
+		h.admin_his_price AS adminHisPrice,
+		h.admin_his_use_point AS adminHisUsePoint,
+		h.admin_his_save_point AS
+		adminHisSavePoint,
+		h.admin_his_discount AS adminHisDiscount,
+		h.admin_his_charge AS adminHisCharge,
+		h.admin_his_prod_name AS
+		adminHisProdName,
+		h.admin_his_seller_id AS adminHisSellerId,
+		h.admin_his_confirm AS adminHisConfirm,
+		h.admin_his_created_at AS
+		adminHisCreatedAt,
+		h.admin_his_buyer_id AS adminHisBuyerId,
+		h.bank AS
+		bank,
+		h.start_time AS startTime,
+		h.end_time AS endTime,
+		h.cancel_yn AS
+		cancelYn,
+		h.cancel_at AS cancelAt,
+		h.cancel_amount AS cancelAmount,
+		h.people_count AS peopleCount,
+		m.user_name AS userName,
+		m.user_email AS
+		userEmail,
+		m.grade AS userGrade,
+		m.file_path AS userProfile,
+		p.prod_title AS prodTitle,
+		pm.category_name AS mainCategory,
+		ps.subcategory_name AS subcategory,
+		h.purchase_date as purchaseDate,
+		h.token as token
+		FROM
+		admin_prod_history h
+		LEFT JOIN biz b
+		ON
+		h.admin_his_seller_id =
+		b.biz_id
+		LEFT JOIN product p
+		ON
+		h.admin_his_prod_no = p.prod_no
+		LEFT JOIN
+		member m
+		ON
+		h.admin_his_buyer_id = m.user_no
+		LEFT JOIN
+		prod_major_category pm
+		ON
+		pm.category_id = p.prod_major_category_id
+		LEFT JOIN prod_subcategory
+		ps
+		ON ps.category_id = p.prod_subcategory_id
+		WHERE
+		h.admin_his_seller_id =
+		#{bizId}
+		and h.admin_his_no Like '%' || #{text} || '%'
+		order by
+		h.admin_his_created_at desc
+		LIMIT
+		#{pageReq.page} *
+		#{pageReq.size},#{pageReq.size}
+	</select>
+
+	<select id="countFindAllByBizId" resultType="int">
+		select count(*)
+		from
+		admin_prod_history h
+		left join biz
+		b
+		on
+		h.admin_his_seller_id = b.biz_id
+		left join product p
+		on
+		h.admin_his_prod_no = p.prod_no
+		left join member m
+		on
+		h.admin_his_buyer_id = m.user_no
+		left join prod_major_category pm
+		on
+		pm.category_id = p.prod_major_category_id
+		left join prod_subcategory ps
+		on ps.category_id = p.prod_subcategory_id
+		where p.prod_delete_yn = 'N'
+		and h.admin_his_seller_id = #{bizId}
+		and h.admin_his_no Like
+		'%'||#{text}|| '%'
+
+	</select>
+
+	<select id="findScheduleByBizId"
+		resultType="com.project3.placestation.biz.model.dto.ResScheduleDto">
+		select p.prod_title , h.start_time , h.end_time ,
+		h.purchase_date , h.admin_his_no as adminHisNo, h.admin_his_prod_no as
+		adminHisProdNo, h.admin_his_created_at as adminHisCreatedAt,
+		h.admin_his_buyer_id as adminHisBuyerId, h.cancel_yn as cancelYn,
+		h.cancel_at as cancelAt, h.cancel_amount as cancelAmount
+		from
+		admin_prod_history h , product p
+		where
+		h.admin_his_prod_no = p.prod_no
+		and h.admin_his_seller_id = #{bizId}
+	</select>
+
+	<select id="findStatisticSales"
+		resultType="com.project3.placestation.biz.model.dto.StatisticDto">
+		<choose>
+			<when test="kind == 'MONTHLY'.toString()">
+				select sum(admin_his_price + ADMIN_HIS_CHARGE ) as
+				amount ,
+				sum(ifnull(cancel_amount , 0)) as cancelAmount,
+				SUBSTR(admin_his_created_at , 1 ,10) as date from
+				admin_prod_history
+				where admin_his_seller_id = #{bizId}
+				AND
+				admin_his_created_at BETWEEN
+				DATEADD('MONTH', -1,
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
+				group by
+				SUBSTR(admin_his_created_at , 1 ,10)
+			</when>
+			<when test="kind == 'WEEK'.toString()">
+				select sum(admin_his_price + ADMIN_HIS_CHARGE ) as
+				amount ,
+				sum(ifnull(cancel_amount , 0)) as cancelAmount,
+				SUBSTR(admin_his_created_at , 1 ,10) as date from
+				admin_prod_history
+				where admin_his_seller_id = #{bizId}
+				AND
+				admin_his_created_at BETWEEN
+				DATEADD('DAY', -7,
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
+				group by
+				SUBSTR(admin_his_created_at , 1 ,10)
+			</when>
+			<when test="kind == 'ANNUAL'.toString()">
+				SELECT SUM(admin_his_price + ADMIN_HIS_CHARGE ) AS
+				amount ,
+				sum(ifnull(cancel_amount , 0)) as cancelAmount,
+				SUBSTRING(admin_his_created_at, 1, 7) AS date
+				FROM
+				admin_prod_history
+				WHERE admin_his_seller_id = #{bizId}
+				AND
+				admin_his_created_at BETWEEN
+				DATEADD('MONTH', -12,
+				CURRENT_TIMESTAMP) AND CURRENT_TIMESTAMP
+				GROUP
+				BY
+				SUBSTRING(admin_his_created_at, 1, 7)
+			</when>
+		</choose>
+	</select>
+
+
+
+	<select id="findStatisticSalesVolumes" resultType="int">
+
+		<choose>
+			<when test="kind == 'ANNUAL'.toString()">
+				select count(*) from admin_prod_history
+				where
+				admin_his_seller_id =
+				#{bizId}
+				and cancel_yn = 'N'
+				AND
+				admin_his_created_at BETWEEN DATEADD('MONTH',
+				-12,
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
+			</when>
+			<when test="kind == 'MONTHLY'.toString()">
+				select count(*) from admin_prod_history
+				where
+				admin_his_seller_id =
+				#{bizId}
+				and cancel_yn = 'N'
+				AND
+				admin_his_created_at BETWEEN DATEADD('MONTH',
+				-1,
+				CURRENT_TIMESTAMP)
+				AND CURRENT_TIMESTAMP
+			</when>
+			<when test="kind == 'WEEK'.toString()">
+				select count(*) from admin_prod_history
+				where
+				admin_his_seller_id =
+				#{bizId}
+				and cancel_yn = 'N'
+				AND
+				admin_his_created_at BETWEEN
+				DATEADD('DAY', -7,
+				CURRENT_TIMESTAMP)
+				AND
+				CURRENT_TIMESTAMP
+			</when>
+		</choose>
+	</select>
+
+	<select id="findProductInvalidByProdNo"
+		resultType="com.project3.placestation.product.dto.ProductInvalidDateDto">
+		select start_time , end_time , purchase_date , cancel_yn
+		from
+		admin_prod_history
+		where admin_his_prod_no = #{prodNo}
+		and
+		purchase_date
+		like #{date}
+	</select>
+
+	<select id="findUserPointByBuyerId"
+		resultType="com.project3.placestation.payment.model.dto.AdminHisPointDto">
+		select sum(admin_his_save_point) as userSavePoint,
+		admin_his_buyer_id as adminHisBuyerId
+		from admin_prod_history
+		where
+		admin_his_buyer_id = #{buyerId}
+		group by admin_his_buyer_id
+	</select>
+
+	<insert id="save">
+		insert into admin_prod_history
+		(
+		admin_his_no ,
+		admin_his_prod_no,
+		admin_his_price , admin_his_use_point
+		,
+		admin_his_save_point , admin_his_discount ,
+		admin_his_charge ,
+		admin_his_prod_name,
+		admin_his_seller_id , admin_his_confirm ,
+		admin_his_buyer_id , bank ,
+		start_time , end_time , people_count ,
+		purchase_date,
+		token
+		)
+		values (
+		#{adminHisNo} , #{adminHisProdNo} ,
+		#{adminHisPrice} ,
+		#{adminHisUsePoint} , #{adminHisSavePoint} ,
+		#{adminHisDiscount} ,
+		#{adminHisCharge} , #{adminHisProdName},
+		#{adminHisSellerId} ,
+		#{adminHisConfirm} ,
+		#{adminHisBuyerId} , #{bank}
+		,#{startTime} ,
+		#{endTime} , #{peopleCount} , #{purchaseDate} ,
+		#{token}
+		)
+	</insert>
+
+	<select id="getToken">
+		select token from admin_prod_history
+		where
+		admin_his_no = #{merchantUid}
+	</select>
+
+	<update id="updateCancel">
+		update admin_prod_history
+		set CANCEL_YN = 'Y' ,
+		CANCEL_AT = now() ,
+		CANCEL_AMOUNT = #{cancelAmount}
+		where admin_his_no =
+		#{merchantUid}
+	</update>
+
+
+	<select id="findMemberTopFive"
+		resultType="com.project3.placestation.biz.model.dto.MemberToptenDto">
+		select h.admin_his_buyer_id as adminHisBuyerId ,
+		m.file_path as filePath , count(h.*) as count , m.user_name as
+		userName , m.grade as grade, m.gender as gender
+		from admin_prod_history
+		h
+		join member m
+		on h.admin_his_buyer_id = m.user_no
+		where
+		h.admin_his_seller_id = #{bizId}
+		group by h.admin_his_buyer_id
+		order by
+		count(h.*) desc
+		limit 5
+	</select>
+
+
+	<select id="findMonthlyFee"
+		resultType="com.project3.placestation.biz.model.dto.BizMonthlyFeeDto">
+		SELECT sum(admin_his_charge) as charge,
+		FORMATDATETIME(admin_his_created_at , 'yyyy-MM') as date
+		FROM
+		ADMIN_PROD_HISTORY
+		WHERE ADMIN_HIS_SELLER_ID = #{bizId}
+		group by
+		FORMATDATETIME(admin_his_created_at ,'yyyy-MM')
+	</select>
+
+	<select id="findAllByUserNo"
+		resultType="com.project3.placestation.party.dto.CreatePartySelectDto">
+		SELECT
+		h.admin_his_no AS adminHisNo,
+		h.admin_his_prod_no AS
+		adminHisProdNo,
+		h.admin_his_price AS adminHisPrice,
+		h.admin_his_seller_id AS adminHisSellerId,
+		h.admin_his_confirm AS
+		adminHisConfirm,
+		h.admin_his_buyer_id AS adminHisBuyerId,
+		h.start_time
+		AS startTime,
+		h.end_time AS endTime,
+		h.cancel_yn AS
+		cancelYn,
+		h.cancel_amount AS cancelAmount,
+		h.people_count AS
+		peopleCount,
+		p.prod_no as prodNo
+		, p.prod_writer_no as
+		prodWriterNo ,
+		p.prod_title
+		as
+		prodTitle,
+		p.prod_full_address as
+		prodFullAddress,
+		p.prod_price
+		as
+		prodPrice,
+		p.file_path as
+		filePath,
+		p.prod_major_category_id as
+		prodMajorCategoryId ,
+		p.prod_subcategory_id
+		as prodSubcategoryId,
+		p.prod_rdate as prodRdate,
+		pm.category_name AS
+		mainCategory,
+		ps.subcategory_name AS subcategory,
+		h.purchase_date as
+		purchaseDate
+		FROM
+		admin_prod_history h
+		LEFT JOIN product
+		p
+		ON
+		h.admin_his_prod_no =
+		p.prod_no
+		LEFT JOIN
+		member m
+		ON
+		h.admin_his_buyer_id = m.user_no
+		LEFT JOIN
+		prod_major_category pm
+		ON
+		pm.category_id = p.prod_major_category_id
+		LEFT
+		JOIN prod_subcategory
+		ps
+		ON ps.category_id = p.prod_subcategory_id
+		WHERE
+		h.admin_his_buyer_id =
+		#{userNo}
+		and h.admin_his_no Like '%' || #{text}
+		|| '%'
+		and
+		h.purchase_date > now()
+		and h.admin_his_confirm = true
+		and
+		h.cancel_yn =
+		'N'
+		and p.prod_delete_yn = 'N'
+		and p.prod_no is not null
+		order by
+		h.admin_his_created_at desc
+		LIMIT
+		#{pageReq.page} *
+		#{pageReq.size},#{pageReq.size}
+	</select>
+
+	<select id="countFindAllByUserNo" resultType="int">
+		SELECT
+		count(*)
+		FROM
+		admin_prod_history h
+		LEFT JOIN product
+		p
+		ON
+		h.admin_his_prod_no =
+		p.prod_no
+		LEFT JOIN
+		member m
+		ON
+		h.admin_his_buyer_id = m.user_no
+		LEFT JOIN
+		prod_major_category pm
+		ON
+		pm.category_id = p.prod_major_category_id
+		LEFT
+		JOIN prod_subcategory
+		ps
+		ON ps.category_id = p.prod_subcategory_id
+		WHERE
+		h.admin_his_buyer_id =
+		#{userNo}
+		and h.admin_his_no Like '%' || #{text}
+		|| '%'
+		and
+		h.purchase_date > now()
+		and h.admin_his_confirm = true
+		and
+		h.cancel_yn =
+		'N'
+		and p.prod_delete_yn = 'N'
+		and p.prod_no is not null
+		order by
+		h.admin_his_created_at desc
+	</select>
+
+	<select id="existById" resultType="boolean">
+		select count(*) from
+		admin_prod_history
+		where admin_his_no = #{adminHisNo}
+		and cancel_yn =
+		'N'
+		and purchase_date > now()
+	</select>
+
+	<select id="findByAdminHisNo"
+		resultType="com.project3.placestation.repository.entity.AdminProdHistory">
+		select
+		admin_his_no AS adminHisNo,
+		admin_his_prod_no AS
+		adminHisProdNo,
+		admin_his_price AS
+		adminHisPrice,
+		admin_his_use_point as
+		adminHisUsePoint ,
+		admin_his_save_point as adminHisSavePoint,
+		admin_his_discount as
+		adminHisDiscount,
+		admin_his_charge as
+		adminHisCharge,
+		admin_his_seller_id AS adminHisSellerId,
+		admin_his_confirm AS
+		adminHisConfirm,
+		admin_his_buyer_id AS
+		adminHisBuyerId,
+		start_time
+		AS
+		startTime,
+		end_time AS endTime,
+		cancel_yn AS
+		cancelYn,
+		cancel_amount AS
+		cancelAmount,
+		people_count AS
+		peopleCount,
+		purchase_date as purchaseDate
+		from admin_prod_history
+		where admin_his_no
+		= #{adminHisNo}
+	</select>
+
+
+	<select id="memberFindAllByUserNo"
+		resultType="com.project3.placestation.member.dto.MemberHistoryDto">
+		SELECT
+		admin_his_no as adminHisNo,
+		admin_his_prod_no as adminHisProdNo,
+		admin_his_price as adminHisPrice, admin_his_use_point
+		as adminHisUsePoint
+		,
+		admin_his_save_point as adminHisSavePoint, admin_his_discount as adminHisDiscount,
+		admin_his_charge as adminHisCharge,
+		admin_his_prod_name as adminHisProdName,
+		admin_his_seller_id as adminHisSellerId, admin_his_confirm as adminHisConfirm,
+		admin_his_created_at as adminHisCreatedAt ,
+		admin_his_buyer_id as  adminHisBuyerId, bank as bank,
+		start_time as startTime, end_time as endTime, people_count as peopleCount,
+		cancel_yn as cancelYn ,
+		cancel_at as cancelAt,
+		cancel_amount as cancelAmount,
+		purchase_date as purchaseDate
+		FROM
+		admin_prod_history
+		WHERE
+		admin_his_buyer_id =
+		#{userNo}
+		order by
+		admin_his_created_at desc
+		LIMIT
+		#{pageReq.page} *
+		#{pageReq.size}, #{pageReq.size}
+	</select>
+
+	<select id="countMemberFindAllByUserNo" resultType="int">
+		SELECT
+		count(*)
+		FROM
+		admin_prod_history
+		WHERE
+		admin_his_buyer_id =
+		#{userNo}
+	</select>
+</mapper>

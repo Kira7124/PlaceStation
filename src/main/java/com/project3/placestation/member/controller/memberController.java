@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
@@ -26,6 +27,7 @@ import com.project3.placestation.config.oauth2.SessionUser;
 import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.member.dto.MemberParcipationDto;
 import com.project3.placestation.member.dto.MemberWishListDto;
+import com.project3.placestation.member.dto.MemberHistoryDto;
 import com.project3.placestation.member.dto.RequestJoinDTO;
 import com.project3.placestation.member.dto.UserUpdateDTO;
 import com.project3.placestation.party.dto.ResCreatePartySelectDto;
@@ -200,12 +202,6 @@ public class memberController {
 	public String myPageQna() {
 
 		return "member/mypage_qna";
-	}
-
-	@GetMapping("/mypage/history")
-	public String myPageHistory() {
-
-		return "member/mypage_history";
 	}
 
 	@GetMapping("/mypage/wishlist")

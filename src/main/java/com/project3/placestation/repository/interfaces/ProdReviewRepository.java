@@ -20,9 +20,12 @@ public interface ProdReviewRepository {
 
 	public int addReview(ProdReview review); // 리뷰 등록
 	public int saveReview(ProdReview review); // 답글 등록
-
 	public int countReview(Integer prodNo);
 	public Double avgStar(Integer prodNo);
 	public int deleteReview(@Param(value = "prodRevNo")Integer prodRevNo); // 리뷰 삭제
 
+    // 답글 리스트
+    List<ProdReview> findReplies(Integer prodNo);
+    // 리뷰 페이징 리스트 <- 사용중
+	List<ProdReview> findReviews(@Param("prod_no") int prodNo, @Param("offset") int offset, @Param("limit") int limit);
 }

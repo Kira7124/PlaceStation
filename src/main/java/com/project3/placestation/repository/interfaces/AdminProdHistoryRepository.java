@@ -13,6 +13,7 @@ import com.project3.placestation.biz.model.dto.MemberToptenDto;
 import com.project3.placestation.biz.model.dto.ResScheduleDto;
 import com.project3.placestation.biz.model.dto.StatisticDto;
 import com.project3.placestation.biz.model.util.PageReq;
+import com.project3.placestation.member.dto.MemberHistoryDto;
 import com.project3.placestation.party.dto.CreatePartySelectDto;
 import com.project3.placestation.payment.model.dto.AdminHisPointDto;
 import com.project3.placestation.product.dto.ProductInvalidDateDto;
@@ -44,7 +45,7 @@ public interface AdminProdHistoryRepository {
 	
 	
 	//관리자 환불내역확인3
-	public BizHistoryDto AdminRefund(Integer adminHisProdNo);
+	public BizHistoryDto AdminRefund(String adminHisNo);
 	
 	
 	
@@ -54,7 +55,6 @@ public interface AdminProdHistoryRepository {
 	// 사업자 거래 내역 관리 - 페이징 처리 
 	public int countFindAllByBizId(int bizId);
 	
-	//  사업자 스케쥴 관리
 
 
 	// 사업자 거래 내역 관리
@@ -86,7 +86,7 @@ public interface AdminProdHistoryRepository {
 	public DbToken getToken(String merchantUid);
 
 	// 환불
-	public int updateCancel(@Param("merchantUid")String merchantUid,@Param("cancelAmount") double cancelAmount);
+	public int updateCancel(@Param("merchantUid")String merchantUid,@Param("cancelAmount") double cancelAmount , @Param("cancelReason") String cancelReason);
 	
 	// 많이 산 유저 탑 5
 	public List<MemberToptenDto> findMemberTopFive(int bizId);
@@ -105,4 +105,10 @@ public interface AdminProdHistoryRepository {
 	
 	// 상세 조회
 	public AdminProdHistory findByAdminHisNo(String adminProdNo);
+	
+	// 유저 번호로 거래내역 찾기
+	public List<MemberHistoryDto> memberFindAllByUserNo(@Param("userNo") int userNo , @Param("pageReq")PageReq pageReq);
+	
+	// 유저 번호로 거래내역 찾기 페이징 처리 카운트
+	public int countMemberFindAllByUserNo(@Param("userNo") int userNo );
 }

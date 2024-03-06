@@ -130,34 +130,33 @@ img {
 					<li>예약 시간이 지난 상품은 선택할 수 없습니다.</li>
 				</ul>
 				<c:forEach items="${partyList}" var="party">
-					<div class="col-sm-6 col-md-4 col-lg-4">
-						<div class="post">
-							<div class="post-thumbnail">
-								<a
-									href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}"><img
-									src="${party.filePath[0]}" alt="Blog-post Thumbnail" /></a>
-							</div>
-							<div class="post-header font-alt">
-								<h2 class="post-title">
+						<div class="col-sm-6 col-md-4 col-lg-4">
+							<div class="post">
+								<div class="post-thumbnail">
 									<a
-										href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}">${party.prodTitle}</a>
-								</h2>
-								<div class="post-meta">
-									예약 일자&nbsp;<a href="#"></a>&nbsp;| ${party.purchaseDate}
+										href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}"><img
+										src="${party.filePath[0]}" alt="Blog-post Thumbnail" /></a>
+								</div>
+								<div class="post-header font-alt">
+									<h2 class="post-title">
+										<a
+											href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}">${party.prodTitle}</a>
+									</h2>
+									<div class="post-meta">
+										예약 일자&nbsp;<a href="#"></a>&nbsp;| ${party.purchaseDate}
+									</div>
+								</div>
+								<div class="post-entry">
+									<p>위치 : ${party.prodFullAddress}</p>
+									<p>모임 최대 인원 : ${party.peopleCount}</p>
+								</div>
+								<div class="post-more">
+									<a class="more-link" href="#">${party.mainCategory}</a> <a
+										class="more-link" href="#">${party.subcategory}</a>
 								</div>
 							</div>
-							<div class="post-entry">
-								<p>위치 : ${party.prodFullAddress}</p>
-								<p>모임 최대 인원 : ${party.peopleCount}</p>
-							</div>
-							<div class="post-more">
-								<a class="more-link" href="#">${party.mainCategory}</a> <a
-									class="more-link" href="#">${party.subcategory}</a>
-							</div>
 						</div>
-					</div>
 				</c:forEach>
-
 			</div>
 		</div>
 	</section>

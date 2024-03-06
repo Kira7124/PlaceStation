@@ -63,7 +63,7 @@ public class AdminController {
 	private AdminProdHistoryService adminProdHistoryService;
 	@Autowired
 	private HttpSession httpSession;
-
+	
 	// http://localhost:80/admin/admin-main
 	// 관리자 기본메인페이지 출력
 	@GetMapping("/admin-main")
@@ -325,7 +325,7 @@ public class AdminController {
 		return "admin/adminpaymentcancel";
 	}
 
-
+	
 
 	//관리자 환불기능 post 처리
 	@PostMapping("/admin-paymentcancel")
@@ -733,18 +733,11 @@ public class AdminController {
 	
 	//환불완료내역확인(관리자)
 	@GetMapping("/admin-refund")
-	public String adminRefundGET(@RequestParam("adminHisProdNo") Integer adminHisProdNo, Model model,BizHistoryDto dto) {
+	public String adminRefundGET(@RequestParam("adminHisNo") String adminHisNo, Model model,BizHistoryDto dto) {
 		
-		BizHistoryDto result = adminProdHistoryService.AdminRefund(adminHisProdNo);
+		BizHistoryDto result = adminProdHistoryService.AdminRefund(adminHisNo);
 		model.addAttribute("refund", result);
 		
-		log.debug("dto 넘어오나? " + dto.getAdminHisPrice());
-		log.debug("dto 넘어오나? " + dto.getCancelAmount());
-		
-		
-		Integer refundUser = result.getAdminHisPrice() - result.getCancelAmount();
-		dto.setRefundAmount(refundUser);
-		model.addAttribute("refundUser", refundUser);
 		
 		log.debug("환불완료내역확인!");
 		return"admin/adminrefund";

@@ -66,8 +66,8 @@
 								</div><br><br>
 								
 								<div class="form-group w-25">
-									 <label for="exampleInputEmail1"><h5>사업자ID</h5></label>
-									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.userId}">
+									 <label for="exampleInputEmail1"><h5>결제ID</h5></label>
+									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refund.adminHisNo}">
 								</div><br>
 								
 								<div class="form-group w-25">
@@ -87,15 +87,16 @@
 								
 								
 								<div class="form-group w-25">
-									 <label for="exampleInputEmail1"><h5>사업자환불금액(원)</h5></label>
+									 <label for="exampleInputEmail1"><h5>환불금액(원)</h5></label>
 									 <input type="text" class="form-control" id="exampleInputEmail1" value="${refund.cancelAmount}">
 								</div><br>
 								
-							
+								
 								<div class="form-group w-25">
-									 <label for="exampleInputEmail1"><h5>유저환불금액(원)</h5></label>
-									 <input type="text" class="form-control" id="exampleInputEmail1"  value="${refundUser}">
-								</div><br><br>
+									 <label for="exampleInputEmail1"><h5>취소사유</h5></label>
+										<textarea class="form-control" rows="3" readonly="readonly">${refund.cancelReason}</textarea>	
+								</div><br>
+								
 								    
 							  <div style="display: flex; align-items: center;">
 							    <img src="/logo/logo.jpg.png" style="width:100px; height: 100px;">   
