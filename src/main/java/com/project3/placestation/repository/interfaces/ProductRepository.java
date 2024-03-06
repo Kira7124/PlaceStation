@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.project3.placestation.biz.model.util.PageReq;
+import com.project3.placestation.product.dto.MainProductReviewDto;
+import com.project3.placestation.product.dto.MainProductStarDto;
 import com.project3.placestation.product.dto.ProdFilterDto;
 import com.project3.placestation.repository.entity.ProdReview;
 import com.project3.placestation.repository.entity.Product;
@@ -16,9 +18,9 @@ public interface ProductRepository {
 	// 상품 전체 리스트
 	public List<Product> findAll();
 	// 상품 리스트 리뷰 개수
-	public List<ProdReview> findAllByRev();
+	public List<MainProductReviewDto> findAllByRev();
 	// 상품 리스트 높은 평점
-	public List<Product> findAllByStar();
+	public List<MainProductStarDto> findAllByStar();
 	// 상품 리스트 최신
 	public List<Product> findAllByStart();
 	
@@ -33,8 +35,8 @@ public interface ProductRepository {
 	public int deleteProduct(@Param(value = "prodNo")int prodNo ,@Param(value = "prodDeleteReason") String prodDeleteReason);
 
 	// 상품 메인
-	public List<ProdFilterDto> findMainAllBysearchAndPriceAndstar(@Param("search")String search , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory ,@Param("pageReq") PageReq pageReq);
-	public int countFindMainAllBysearchAndPriceAndstar(@Param("search")String search , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory);
+	public List<ProdFilterDto> findMainAllBysearchAndPriceAndstar(@Param("search")String search ,@Param("address") String address ,  @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory ,@Param("pageReq") PageReq pageReq);
+	public int countFindMainAllBysearchAndPriceAndstar(@Param("search")String search ,@Param("address") String address , @Param("min") int min , @Param("max") int max , @Param("star") int star ,@Param("majorCategory") int majorCategory , @Param("subcategory") int subcategory);
 	
     public String findAdditionExplanationNameByProdNo(int prodNo);
     public String findAdditionExplanationFilePathByProdNo(int prodNo);

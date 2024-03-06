@@ -67,7 +67,7 @@
 							</tr>
 							<tr>
 								<th>구매 날짜 및 시간 :</th>
-								<td>${order.date}${order.startTime}시~${order.endTime}시</td>
+								<td>${order.date}&nbsp;${order.startTime}&nbsp;시&nbsp;~&nbsp;${order.endTime}&nbsp;시</td>
 							</tr>
 						</tbody>
 					</table>
@@ -457,18 +457,18 @@
         	console.log(response);
             console.log("포트원 결제 완료");
             alert("결제가 완료되었습니다.");
-            location.href = "/product/main";
+            location.href = "/main/index";
             
             // 저장 완료시 로직
           } else {
             console.error("실패", response.statusText);
             alert("결제에 실패하셨습니다. 자동으로 환불처리 됩니다.");
-            location.href = "/product/main";
+            location.href = "/main/index";
           }
         } catch (e) {
           console.error("실패", e.message);
           alert("결제에 실패하셨습니다. 자동으로 환불처리 됩니다.");
-          location.href = "/product/main";
+          location.href = "/main/index";
         }
       }
     </script>

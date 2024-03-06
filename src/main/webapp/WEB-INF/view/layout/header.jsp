@@ -11,6 +11,36 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PlaceStation</title>
+<link rel="apple-touch-icon" sizes="57x57"
+	href="/assets/images/favicons/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60"
+	href="/assets/images/favicons/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72"
+	href="/assets/images/favicons/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76"
+	href="/assets/images/favicons/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114"
+	href="/assets/images/favicons/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120"
+	href="/assets/images/favicons/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144"
+	href="/assets/images/favicons/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152"
+	href="/assets/images/favicons/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/assets/images/favicons/apple-icon-180x180.png" />
+<link rel="icon" type="image/png" sizes="192x192"
+	href="/assets/images/favicons/android-icon-192x192.png" />
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/assets/images/favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96"
+	href="/assets/images/favicons/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/assets/images/favicons/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
 <!--  Favicons -->
 <link rel="manifest" href="/manifest.json">
 <meta name="msapplication-TileColor" content="#ffffff">
@@ -59,6 +89,9 @@
 	<!-- Swiper CSS -->
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+	<!-- Wow.js 및 관련 CSS 불러오기 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
 	data-offset="60">
@@ -130,7 +163,7 @@
 						<sec:authorize access="hasRole('ROLE_USER')">
 							<a href="/member/main">회원정보</a>
 						</sec:authorize>
-						<sec:authorize access="hasRole('ROLE_SELLER')">
+						<sec:authorize access="hasRole('ROLE_BIZ')">
 							<a href="/biz/main">사업자</a>
 						</sec:authorize>
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -141,5 +174,3 @@
 			</div>
 		</nav>
 	</main>
-</body>
-</html>

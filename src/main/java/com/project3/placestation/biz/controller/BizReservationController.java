@@ -231,7 +231,7 @@ public class BizReservationController {
 //		}
 		
 		// 거래내역 환불로 바꾸기
-		int result = adminProdHistoryService.updateCancel(merchantUid , cancelAmount);
+		int result = adminProdHistoryService.updateCancel(merchantUid , cancelAmount , bizHistoryRefundDto.getReason());
 		if(result == 0) {
 			throw new CustomRestfulException(BizDefine.SERVER_ERROR_TO_REFUND, HttpStatus.INTERNAL_SERVER_ERROR);
 		}

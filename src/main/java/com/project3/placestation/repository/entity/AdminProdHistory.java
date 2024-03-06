@@ -31,6 +31,7 @@ public class AdminProdHistory {
 	private String cancelYn;
 	private String cancelAt;
 	private Integer cancelAmount;
+	private String cancelReason;
 	private Integer peopleCount;
 	private String purchaseDate;
 }
