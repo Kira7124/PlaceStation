@@ -129,6 +129,7 @@ create table admin_prod_history (
     cancel_yn varchar (1) default 'N',
     cancel_at timestamp ,
     cancel_amount double,
+	cancel_reason varchar(1000),
     people_count int (3),
     purchase_date varchar (100)
 );

@@ -104,8 +104,8 @@ public class AdminProdHistoryService {
 	 * 환불내역확인3
 	 * 
 	 */
-	public BizHistoryDto AdminRefund(Integer adminHisProdNo) {
-		return adminProdHistoryRepository.AdminRefund(adminHisProdNo);
+	public BizHistoryDto AdminRefund(String adminHisNo) {
+		return adminProdHistoryRepository.AdminRefund(adminHisNo);
 
 	} 
 	

@@ -29,6 +29,7 @@ public class BizHistoryDto {
 	private String cancelYn;	
 	private String cancelAt;
 	private Integer cancelAmount;
+	private String cancelReason;
 	private Integer peopleCount;
 	private String userName;
 	private String userEmail; 
@@ -41,5 +42,6 @@ public class BizHistoryDto {
 	private Integer userNo; // 진수추가
 	private String userId; // 진수추가
 	private Integer refundAmount; // 진수추가
+	private Integer prodNo;// 진수추가
 	private String token; // 토큰
 }
