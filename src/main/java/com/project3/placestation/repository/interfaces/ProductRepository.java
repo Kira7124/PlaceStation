@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.project3.placestation.biz.model.util.PageReq;
+import com.project3.placestation.product.dto.MainProductReviewDto;
+import com.project3.placestation.product.dto.MainProductStarDto;
 import com.project3.placestation.product.dto.ProdFilterDto;
 import com.project3.placestation.repository.entity.ProdReview;
 import com.project3.placestation.repository.entity.Product;
@@ -16,9 +18,9 @@ public interface ProductRepository {
 	// 상품 전체 리스트
 	public List<Product> findAll();
 	// 상품 리스트 리뷰 개수
-	public List<ProdReview> findAllByRev();
+	public List<MainProductReviewDto> findAllByRev();
 	// 상품 리스트 높은 평점
-	public List<Product> findAllByStar();
+	public List<MainProductStarDto> findAllByStar();
 	// 상품 리스트 최신
 	public List<Product> findAllByStart();
 	

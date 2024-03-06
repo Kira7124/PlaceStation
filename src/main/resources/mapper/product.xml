@@ -12,33 +12,95 @@
 
 
 	<!-- 리뷰 수 많은 상품 -->
-	<select id="findAllByRev">
-		SELECT p.*, COUNT(r.prod_rev_no) as review_count
+	<select id="findAllByRev" resultType="com.project3.placestation.product.dto.MainProductReviewDto">
+		SELECT p.prod_no as prodNo,
+		p.prod_writer_no prodWriterNo,
+		p.prod_title as prodTitle,
+		p.prod_start_time as prodStartTime ,
+		p.prod_end_time as prodEndTime ,
+		p.prod_space_info as prodSpaceInfo ,
+		p.prod_address as prodAddress ,
+		p.prod_goods_info as prodGoodsInfo ,
+		p.prod_caution_info as prodCautionInfo ,
+		p.prod_maximum_people as prodMaximumPeople ,
+		p.prod_price as prodPrice ,
+		p.file_path as filePath ,
+		p.prod_major_category_id as prodMajorCategoryId , 
+		p.prod_subcategory_id as prodSubcategoryId
+		, COUNT(r.prod_rev_no) as reviewCount
 		FROM
 		product p
 		LEFT JOIN prod_review r ON p.prod_no = r.prod_no
 		WHERE
 		p.prod_delete_yn = 'N'
 		GROUP BY p.prod_no
-		ORDER BY review_count DESC
+		ORDER BY reviewCount DESC
 		LIMIT 8
 	</select>
 
 	<!-- 평점 높은 상품 -->
-	<select id="findAllByStar">
-		SELECT p.*, AVG(r.prod_rev_star) as average_rating
+	<select id="findAllByStar" resultType="com.project3.placestation.product.dto.MainProductStarDto">
+		SELECT p.prod_no as prodNo,
+		p.prod_writer_no prodWriterNo,
+		p.prod_title as prodTitle,
+		p.prod_start_time as prodStartTime ,
+		p.prod_end_time as prodEndTime ,
+		p.prod_space_info as prodSpaceInfo ,
+		p.prod_address as prodAddress ,
+		p.prod_goods_info as prodGoodsInfo ,
+		p.prod_caution_info as prodCautionInfo ,
+		p.prod_maximum_people as prodMaximumPeople ,
+		p.prod_price as prodPrice ,
+		p.file_path as filePath ,
+		p.prod_major_category_id as prodMajorCategoryId , 
+		p.prod_subcategory_id as prodSubcategoryId ,
+	    AVG(r.prod_rev_star) as averageRating
 		FROM product p
 		LEFT JOIN prod_review r ON p.prod_no = r.prod_no
 		WHERE
 		p.prod_delete_yn = 'N'
 		GROUP BY p.prod_no
-		ORDER BY average_rating DESC
+		ORDER BY averageRating DESC
 		LIMIT 8
 	</select>
 
 	<!-- 상품 최신 순서 -->
 	<select id="findAllByStart">
-		SELECT *
+		SELECT 
+				prod_no as prodNo,
+		prod_writer_no as prodWriterNo ,
+		prod_title as prodTitle ,
+		prod_start_time as prodStartTime,
+		prod_end_time as prodEndTime ,
+		prod_space_info as prodSpaceInfo ,
+		prod_goods_info as prodGoodsInfo ,
+		prod_caution_info as prodCautionInfo
+		,
+		prod_maximum_people as
+		prodMaximumPeople ,
+		prod_address as prodAddress
+		,
+		prod_detailed_address
+		as prodDetailedAddress ,
+		prod_price as prodPrice
+		,
+		file_path as filePath
+		,
+		prod_major_category_id as prodMajorCategoryId ,
+		prod_subcategory_id as
+		prodSubcategoryId ,
+		prod_full_address as
+		prodFullAddress ,
+		prod_location_x as prodLocationX ,
+		prod_location_y as
+		prodLocationY,
+		prod_rdate as prodRdate ,
+		prod_update_at as prodUpdateAt
+		,
+		prod_delete_reason as prodDeleteReason ,
+		prod_delete_yn as
+		prodDeleteYn ,
+		addition_explanation as additionExplanation
 		FROM product
 		WHERE prod_delete_yn = 'N'
 		ORDER
