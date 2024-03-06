@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="ImportExportAction">
+<<<<<<< HEAD
 		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.buildship.ui.wizards.project.import"/>
 		<item key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID" value="org.eclipse.ui.wizards.export.ZipFile"/>
 		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
@@ -24,5 +25,7 @@
 			<item value="C:\Users\KDP\Desktop\b1.zip"/>
 			<item value="백업1.zip"/>
 		</list>
+=======
+>>>>>>> 1f5e30836842b805496ac9e2e9a472e10614184b
 	</section>
 </section>

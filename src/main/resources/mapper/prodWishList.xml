@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.project3.placestation.repository.interfaces.ProdWishListRepository">
+
+	<!-- 찜 하기 -->
+	<insert id="addWishList">
+		insert into wish_list (prod_no, user_no)
+		values
+		(#{prodNo}, #{userNo})
+	</insert>
+	
+	<!-- 찜 취소(삭제)하기 -->
+	<delete id="deleteWishList">
+		delete from wish_list
+		where prod_no = #{prodNo} AND user_no = #{userNo}
+	</delete>
+	
+	<!-- 찜 개수 count -->
+    <select id="countWishlist">
+        SELECT COUNT(*) FROM wish_list WHERE prod_no = #{prodNo}
+    </select>
+	
+	<!-- 찜 여부 확인 -->
+    <select id="findByProdNoAndUserNo" resultType="int">
+        SELECT count(*)
+        FROM wish_list
+        WHERE prod_no = #{prodNo} AND user_no = #{userNo}
+    </select>
+</mapper>

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.buildship.ui.wizard.project.import">
+<<<<<<< HEAD
 		<item key="project_location" value="C:\Users\KDP\Desktop\PlaceStation-mergesh\PlaceStation-mergesh"/>
+=======
+		<item key="project_location" value="C:\team\PlaceStation"/>
+		<item key="apply_working_sets" value="false"/>
+		<list key="working_sets">
+		</list>
+>>>>>>> 1f5e30836842b805496ac9e2e9a472e10614184b
 	</section>
 </section>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+
+<mapper namespace="com.project3.placestation.repository.interfaces.BannerRepository">
+	
+	<!-- 배너리스트 출력(페이징) -->
+	<select id ="BannerListAll" resultType="com.project3.placestation.repository.entity.Banner">
+		select * from banner
+		limit #{startPage},#{pageSize}
+	</select>
+	
+	<!-- 메인페이지출력용 배너리스트 -->
+	<select id ="BannerListMain" resultType="com.project3.placestation.repository.entity.Banner">
+		select ban_no,file_path from banner
+	</select>
+	
+	
+	
+	<!-- 배너리스트 갯수카운팅 -->		
+	<select id="BannerListCount">
+		<![CDATA[ select count(*) from banner where ban_no > 0 ]]>
+	</select>
+
+		
+	<!-- 배너추가 -->
+	<insert id ="AdminInsertBanner">
+		insert into banner (ban_name,file_path)
+		values(#{banName},#{filePath})
+	</insert>
+	
+	
+	
+	<!-- 배너수정(관리자)  -->
+	<update id ="AdminUpdateBanner">
+		update banner set ban_name = #{banName}, file_path = #{filePath}
+		where ban_no = #{banNo}
+	</update>
+	
+	
+	<!-- 배너삭제(관리자) -->
+	<delete id ="AdminDeleteBanner">
+		delete from banner where ban_no = #{banNo}
+	</delete>
+	
+	
+	
+
+</mapper>

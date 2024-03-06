@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+
+
+	<mapper namespace="com.project3.placestation.repository.interfaces.NoticeBoardRepository">
+			
+			<!-- 공지사항리스트출력(페이징처리) -->
+			<select id ="AdminNoticeBoardListAll" resultType="com.project3.placestation.repository.entity.NoticeBoard">
+				select * from notice_board
+				limit #{startPage},#{pageSize}
+			</select>
+			
+			<!-- 페이징처리 갯수세팅 -->
+			<select id ="AdmincountNoticeBoard" resultType="int">
+				<![CDATA[ select count(*) from notice_board where n_bno > 0 ]]>
+			</select>
+			
+			
+			<!-- 특정 글 조회(글 번호사용) -->
+			<select id="detailNoticeBoard" resultType="com.project3.placestation.repository.entity.NoticeBoard">
+				select * from notice_board where n_bno = #{nbno}
+			</select>
+			
+			
+			
+			<!-- 글 조회수 1 증가 -->
+			<update id ="updateReadCnt">
+				update notice_board set n_readcount = n_readcount + 1 where n_bno = #{nbno} 
+			</update>
+						
+						
+			<!-- 글 등록 -->			
+			<insert id="AdminInsertNotice">
+				insert into notice_board(n_writer,n_content,n_title)
+				values(#{nwriter},#{ncontent},#{ntitle})
+			</insert>
+						
+			
+			<!-- 글 수정 -->
+			<update id ="AdminUpdateNotice">
+				update notice_board set n_writer=#{nwriter},n_content=#{ncontent},n_title=#{ntitle}
+				where n_bno = #{nbno}
+			</update>
+						
+						
+			<!-- 글 삭제 -->			
+			<delete id ="AdminDeleteNotice">
+				delete from notice_board where n_bno=#{nbno} 
+			</delete>			
+						
+						
+						
+	
+		<!-- 공지사항검색(관리자) -->
+		<select id="AdminsearchNoticeBoardlist" resultType="com.project3.placestation.repository.entity.NoticeBoard">
+		    select * from notice_board
+		    <where>
+		        <if test="searchKeyword != null and searchKeyword != ''">
+		            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+		            <choose>
+		            	<when test="searchOption == 'n_title'">
+		                    and n_title like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'n_writer'">
+		                    and n_writer like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'n_bno'">
+		                    and n_bno like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <when test="searchOption == 'n_regdate'">
+		                    and n_regdate like concat('%', #{searchKeyword}, '%')
+		                </when>
+		                <!-- 기본적으로는 user_name으로 검색 -->
+		                <otherwise>
+		                    and n_title like concat('%', #{searchKeyword}, '%')
+		                </otherwise>
+		            </choose>
+		        </if>
+		    </where>
+		    limit #{startPage}, #{pageSize}
+		</select>
+	
+	
+	
+		<!-- 관리자공지사항검색카운팅 -->
+		<select id="countAdminSearchNoticelist" resultType="int">
+			 select count(*) from notice_board
+			    <where>
+			        <if test="searchKeyword != null and searchKeyword != ''">
+			            <!-- Option 값에 따라 검색할 컬럼을 조건에 따라 선택 -->
+			            <choose>
+				            <when test="searchOption == 'n_title'">
+			                    and n_title like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'n_writer'">
+			                    and n_writer like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'n_bno'">
+			                    and n_bno like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <when test="searchOption == 'n_regdate'">
+			                    and n_regdate like concat('%', #{searchKeyword}, '%')
+			                </when>
+			                <!-- 기본적으로는 user_name으로 검색 -->
+			                <otherwise>
+			                    and n_title like concat('%', #{searchKeyword}, '%')
+			                </otherwise>
+			            </choose>
+			        </if>
+			    </where>
+		</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</mapper>
