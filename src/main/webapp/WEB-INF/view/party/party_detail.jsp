@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 						<h6>다른 모임 둘러보기</h6>
 							<div class="search-box">
 							
-								<input class="form-control" type="text" placeholder="Search..." />
+								<input class="form-control" type="text" placeholder="Search..." name="partyTitle"/>
 								<button class="search-btn" type="submit">
 									<i class="fa fa-search"></i>
 								</button>
