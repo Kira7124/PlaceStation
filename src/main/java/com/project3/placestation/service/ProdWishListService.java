@@ -1,9 +1,12 @@
 package com.project3.placestation.service;
 
+import java.util.List;
+
 import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project3.placestation.member.dto.MemberWishListDto;
 import com.project3.placestation.product.dto.ProdWishListDto;
 import com.project3.placestation.repository.entity.ProdWishList;
 import com.project3.placestation.repository.interfaces.ProdWishListRepository;
@@ -47,4 +50,8 @@ public class ProdWishListService {
         return count > 0;
     }
     
+    // 유저 넘버로 찜목록 확인
+    public List<MemberWishListDto> findByUserNo(int userNo)  {
+    	return prodWishListRepository.findByUserNo(userNo);
+    }
 }

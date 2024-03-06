@@ -36,25 +36,66 @@
 		and p.parcipation_delete_yn
 		= 'N'
 	</select>
-	
+
 
 	<insert id="save">
-		insert into parcipation_party (party_no , party_user_no) values (${partyNo}, ${userNo});
+		insert into parcipation_party (party_no ,
+		party_user_no) values (${partyNo}, ${userNo});
 	</insert>
-	
+
 	<update id="deleteParty">
 		update parcipation_party
-		set parcipation_delete_yn = 'Y' ,
+		set parcipation_delete_yn =
+		'Y' ,
 		parcipation_delete_at = now() ,
-		parcipation_update_at = now() 
-		where party_no = #{partyNo} 
+		parcipation_update_at = now()
+		where party_no = #{partyNo}
 		and party_user_no = #{userNo}
 	</update>
 
 	<select id="validByUserNoAndPartyNo" resultType="int">
-		select count(*) from parcipation_party
+		select count(*)
+		from parcipation_party
 		where party_no = #{partyNo}
-		and  party_user_no = #{userNo}
+		and party_user_no =
+		#{userNo}
 		and parcipation_delete_yn = 'N'
+	</select>
+
+	<select id="findByUserNo" resultType="com.project3.placestation.member.dto.MemberParcipationDto">
+		select
+		p.party_no as partyNo,
+		p.party_name as
+		partyName,
+		p.party_title as partyTitle,
+		p.party_description as
+		partyDescription,
+		p.party_host as partyHost,
+		p.party_maximum_people as
+		partyMaximumPeople,
+		p.file_path as filePath,
+		p.party_manager as
+		partyManager,
+		p.product_no as productNo,
+		p.admin_his_no as admin_his_no,
+		p.party_created_at as partyCreatedAt,
+		p.party_update_at as
+		partyUpdateAt,
+		p.party_delete_at as partyDeleteAt,
+		p.party_delete_yn as
+		partyDeleteYn,
+		pc.parcipation_party_no as parcipationPartyNo ,
+		pc.party_user_no as partyUserNo ,
+		pc.parcipation_join_at as parcipationJjoinAt ,
+		pc.parcipation_update_at as parcipationUpdateAt ,
+		pc.parcipation_delete_at as parcipationDeleteAt ,
+		pc.parcipation_delete_yn as parcipationDeleteYn
+		from parcipation_party
+		pc
+		left join party p
+		on p.party_no = pc.party_no
+		where party_user_no = #{userNo}
+		and
+		parcipation_delete_yn = 'N'
 	</select>
 </mapper>

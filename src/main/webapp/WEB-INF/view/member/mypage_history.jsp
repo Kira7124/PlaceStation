@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/view/member/layout/header.jsp"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <!-- history content 시작 -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"

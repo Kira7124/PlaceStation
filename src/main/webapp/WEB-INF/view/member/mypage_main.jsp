@@ -13,63 +13,67 @@
 
 			<div class="col-md-10 border-right"
 				style="display: flex; justify-content: space-between;">
-				<div class="col-md-2 border-right"
-					style="margin-top: 5%; display: inline-block; width: 250px;">
-					<%@ include file="/WEB-INF/view/layout/myPageAside.jsp"%>
-				</div>
+				<c:if test="${not empty User}">
 
-				<div class="col-md-8 border-right" style="margin-top: 0%;">
+					<div class="col-md-2 border-right"
+						style="margin-top: 5%; display: inline-block; width: 250px;">
+
+						<%@ include file="/WEB-INF/view/layout/myPageAside.jsp"%>
+					</div>
+
+					<div class="col-md-8 border-right" style="margin-top: 0%;">
 
 
 
-					<div class="p-3 py-5">
-						<div
-							class="d-flex justify-content-between align-items-center mb-3">
-							<form action="/mypage/userUpdate" id="form" class="form"
-								method="post">
+						<div class="p-3 py-5">
+							<div
+								class="d-flex justify-content-between align-items-center mb-3">
+
 								<!-- 이 폼으로 유저 데이터 업데이트 가능 -->
-								<c:if test="${not empty User}">
+								<form action="/member/userUpdate" id="form" class="form" method="post">
 									<h4 class="text-center" style="font-size: xx-large;">Profile
 										Settings</h4>
 									<p>ssssss: ${User}</p>
-									<br>
-									<br>
-									<input type="hidden" value="${User.userno}" name="userNo"
-										id="hiddenuserNo" />
+									<br> <br> <input type="hidden" value="${User.userno}"
+										name="userno" id="hiddenuserNo" />
 									<div class="row mt-2">
 										<div class="col-md-6">
 											<label class="labels">Name</label><input type="text"
-												class="form-control" name="userName" placeholder="name"
+												class="form-control" name="upname" placeholder="name"
 												value="${User.username }">
 										</div>
 										<div class="col-md-6">
 											<label class="labels">password</label><input type="password"
-												class="form-control" name="upassword" placeholder="surname"
+												class="form-control" name="uppass" placeholder="surname"
 												readonly>
-											<button class="col-md-2 terms-btn"
-												style="padding: 3px !important; float: right; color: #fff; width: 38%;"
-												type="button" data-toggle="modal"
-												data-target="#exampleModalPassword">비밀번호 변경</button>
+
 										</div>
 									</div>
 									<div class="row mt-3">
 										<div class="col-md-12">
 											<label class="labels">Email</label><input type="text"
 												class="form-control" placeholder="enter email"
-												value="${User.userid }" name="uEmail">
-											<button class="col-md-2 terms-btn"
-												style="padding: 3px !important; float: right; color: #fff;"
-												type="button" data-toggle="modal"
-												data-target="#exampleModalEmail">이메일 변경</button>
+												value="${User.userid }" name="upemail">
+
 										</div>
 										<div class="col-md-12">
-											<label class="labels">Address</label><input type="text"
-												class="form-control" placeholder="enter address"
-												value="${User.useraddress }">
-											<button class="col-md-2 terms-btn"
-												style="padding: 3px !important; float: right; color: #fff;"
-												type="button" data-toggle="modal"
-												data-target="#exampleModalAddress">주소 변경</button>
+											<div style="display: flex; flex-direction: column;">
+												<div class="register-form">
+													<label for="name">Address</label> <input type="text"
+														class="form-control" name="zip" id="zip"
+														placeholder="Enter Adress" value="${User.useraddress}"
+														onclick="zipcode()" readonly /> <span class="msgZip"></span>
+													<div>
+														<input type="text" class="form-control" name="addr1"
+															id="addr1" size="50" placeholder="Search Address"
+															readonly />
+													</div>
+													<div>
+														<input type="text" class="form-control" name="addr2"
+															id="addr2" size="50" placeholder="Address Detail" />
+													</div>
+												</div>
+											</div>
 										</div>
 										<div class="col-md-12">
 											<label class="labels">gender</label><input type="text"
@@ -79,11 +83,8 @@
 										<div class="col-md-12">
 											<label class="labels">hp</label><input type="text"
 												class="form-control" placeholder="enter address line 2"
-												value="${User.userhp }">
-												<button class="col-md-2 terms-btn"
-												style="padding: 3px !important; float: right; color: #fff;"
-												type="button" data-toggle="modal"
-												data-target="#exampleModalHp">전화번호 변경</button>
+												name="uphp" value="${User.userhp }">
+
 										</div>
 										<div class="col-md-12">
 											<label class="labels">Join date</label><input type="text"
@@ -101,18 +102,17 @@
 												class="form-control" value="${User.userpoint }" readonly>
 										</div>
 									</div>
-									<br>
-									<br>
-									<br>
+									<br> <br> <br>
 									<button class="btn btn-primary profile-button"
-										name="profile-button" type="submit"
+										 type="submit"
 										style="background-color: #111; border-color: #111;">Save
 										Profile</button>
+								</form>
+							</div>
 						</div>
-						</c:if>
-						</form>
 					</div>
-				</div>
+
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -122,7 +122,4 @@
 </div>
 </div>
 
-<%@ include file="/WEB-INF/view/layout/myPageUpdatePasswordModal.jsp"%>
-<%@ include file="/WEB-INF/view/layout/myPageUpdateEmailModal.jsp"%>
-<%@ include file="/WEB-INF/view/layout/myPageUpdateAddressModal.jsp"%>
 <%@ include file="/WEB-INF/view/member/layout/footer.jsp"%>

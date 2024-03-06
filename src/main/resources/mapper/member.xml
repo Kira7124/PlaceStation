@@ -311,5 +311,16 @@
 			select * from member where user_no = #{userno}
 	</select>
 
+	<!-- 유저 데이터 업데이트 -->
+	<update id="userUpdateMember"> 
+		update member set user_name=#{username}
+		<if test="userpassword != null">
+		,user_password=#{userpassword}
+		</if>
+		,user_address=#{useraddress} ,user_email=#{useremail},user_hp=#{userhp}
+		where user_no = #{userno}
+	
+	</update>
+
 </mapper>
 
