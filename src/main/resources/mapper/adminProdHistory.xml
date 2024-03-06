@@ -133,17 +133,10 @@
 
 
 	<!-- 환불내역확인(관리자) -->
-	<select id="AdminRefund"
-		resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
-		SELECT admin_prod_history.*, biz.biz_id, biz.biz_balance,
-		member.user_id
-		FROM admin_prod_history
-		JOIN biz ON
-		admin_prod_history.admin_his_prod_no = biz.biz_id
-		JOIN member ON
-		biz.biz_id = member.user_no
-		WHERE admin_prod_history.admin_his_prod_no
-		= #{adminHisProdNo}
+
+	<select id ="AdminRefund" resultType="com.project3.placestation.biz.model.dto.BizHistoryDto">
+		SELECT * FROM admin_prod_history
+		WHERE admin_his_no = #{adminHisNo}
 	</select>
 
 	<select id="findAllByBizId"

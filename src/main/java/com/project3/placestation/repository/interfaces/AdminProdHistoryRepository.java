@@ -45,7 +45,7 @@ public interface AdminProdHistoryRepository {
 	
 	
 	//관리자 환불내역확인3
-	public BizHistoryDto AdminRefund(Integer adminHisProdNo);
+	public BizHistoryDto AdminRefund(String adminHisNo);
 	
 	
 	

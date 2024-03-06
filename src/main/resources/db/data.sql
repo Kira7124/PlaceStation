@@ -77,6 +77,36 @@ values('1번할일','어드민페이지완성'),
 
 
 
+insert into admin_prod_history (
+	admin_his_no , 
+    admin_his_prod_no, 
+    admin_his_price ,
+    admin_his_use_point ,
+    admin_his_save_point ,
+    admin_his_discount ,
+    admin_his_charge ,
+    admin_his_prod_name ,
+    admin_his_seller_id ,
+    admin_his_confirm ,
+    admin_his_buyer_id ,
+    bank ,
+    start_time ,
+    end_time,
+    people_count,
+    purchase_date,
+    cancel_reason,
+    cancel_yn,
+    cancel_amount
+) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','Y',15000),
+('OXDSAD-DNSKAN2' ,2,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','Y',15000),
+('OXDSAD-DNSKAN3' ,3,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','Y',15000),
+('OXDSAD-DNSKAN4' ,4,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000),
+('OXDSAD-DNSKAN5' ,5,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000),
+('OXDSAD-DNSKAN6' ,6,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000),
+('OXDSAD-DNSKAN7' ,7,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000),
+('OXDSAD-DNSKAN8' ,8,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000),
+('OXDSAD-DNSKAN9' ,9,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000),
+('OXDSAD-DNSKA1F' ,10,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000);
 
 
 
