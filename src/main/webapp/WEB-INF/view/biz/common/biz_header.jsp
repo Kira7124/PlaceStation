@@ -7,7 +7,7 @@
 <html lang="en">
 
 <head>
-	<title>AdminMainPage</title>
+	<title>Biz Management</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -33,6 +33,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
+
 				<b><a href="/main/index" style="color:black;">PlaceStation</a></b>
 			</div>
 			<div class="container-fluid">
@@ -42,6 +43,7 @@
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" style="margin-right: 30px;">
 						<li class="dropdown">
+
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="${member.filepath}" class="img-circle" alt="Avatar"> <span>${member.username}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="/member/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>

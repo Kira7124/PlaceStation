@@ -106,8 +106,8 @@ public class AdminProdHistoryService {
 	 * 환불내역확인3
 	 * 
 	 */
-	public BizHistoryDto AdminRefund(Integer adminHisProdNo) {
-		return adminProdHistoryRepository.AdminRefund(adminHisProdNo);
+	public BizHistoryDto AdminRefund(String adminHisNo) {
+		return adminProdHistoryRepository.AdminRefund(adminHisNo);
 
 	} 
 	
@@ -337,8 +337,8 @@ public class AdminProdHistoryService {
 	 * @return
 	 */
 	@Transactional
-	public int updateCancel(String merchantUid , double cancelAmount) {
-		return adminProdHistoryRepository.updateCancel(merchantUid , cancelAmount);
+	public int updateCancel(String merchantUid , double cancelAmount, String cancelReason) {
+		return adminProdHistoryRepository.updateCancel(merchantUid , cancelAmount , cancelReason);
 	}
 	
 	/**

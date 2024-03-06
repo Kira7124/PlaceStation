@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <!-- security태그 해당 태그로 유저 정보 출력 가능 -->
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">

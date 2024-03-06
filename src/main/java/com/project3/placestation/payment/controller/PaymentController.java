@@ -299,7 +299,7 @@ public class PaymentController {
 		}
 		
 		// 거래내역 환불로 바꾸기
-		int result = adminProdHistoryService.updateCancel(merchantUid , cancelAmount);
+		int result = adminProdHistoryService.updateCancel(merchantUid , cancelAmount , memberHistoryRefundDto.getReason());
 		if(result == 0) {
 			throw new CustomRestfulException(BizDefine.SERVER_ERROR_TO_REFUND, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -310,7 +310,7 @@ public class PaymentController {
 		if(res == 0) {
 			throw new CustomRestfulException(BizDefine.SERVER_ERROR_TO_REFUND, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return "redirect:/biz/reservation-management";
+		return "redirect:/main/index";
 	}
 
 	public boolean validDate(String dateString) {

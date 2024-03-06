@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.biz.handler.exception.CustomRestfulException;
 import com.project3.placestation.biz.model.dto.ReqProductDto;
 import com.project3.placestation.biz.model.dto.ReqUpdateProductDto;
@@ -16,11 +15,12 @@ import com.project3.placestation.biz.model.dto.ResProductDto;
 import com.project3.placestation.biz.model.util.BizDefine;
 import com.project3.placestation.biz.model.util.PageReq;
 import com.project3.placestation.biz.model.util.PageRes;
+import com.project3.placestation.product.dto.MainProductReviewDto;
+import com.project3.placestation.product.dto.MainProductStarDto;
 import com.project3.placestation.product.dto.ProdFilterDto;
 import com.project3.placestation.product.dto.ResProdMainFilterDto;
 import com.project3.placestation.repository.entity.Product;
 import com.project3.placestation.repository.interfaces.ProductRepository;
-import com.project3.placestation.repository.interfaces.ProductViewRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -265,14 +265,14 @@ public class ProductService {
 	 * @param pageReq
 	 * @return
 	 */
-	public PageRes<ResProdMainFilterDto> findMainAllBysearchAndPriceAndstar(String search, int min, int max, int star,
+	public PageRes<ResProdMainFilterDto> findMainAllBysearchAndPriceAndstar(String search, String address , int min, int max, int star,
 			int majorCategory, int subcategory, PageReq pageReq) {
 
 		// DB 에서 정보 받기
-		List<ProdFilterDto> listProduct = productRepository.findMainAllBysearchAndPriceAndstar(search, min, max, star,
+		List<ProdFilterDto> listProduct = productRepository.findMainAllBysearchAndPriceAndstar(search, address ,  min, max, star,
 				majorCategory, subcategory, pageReq);
 		
-		int count = productRepository.countFindMainAllBysearchAndPriceAndstar(search, min, max, star, majorCategory, subcategory);
+		int count = productRepository.countFindMainAllBysearchAndPriceAndstar(search,address ,  min, max, star, majorCategory, subcategory);
 
 		// 파일 배열로 받을 리스트 객체
 		List<ResProdMainFilterDto> resProduct = new ArrayList<>();
@@ -314,5 +314,109 @@ public class ProductService {
 		return productRepository.existById(prodNo);
 	}
 
+	/**
+	 * 리뷰 많은 상품
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<ResProductDto> findAllByRev() {
+		List<MainProductReviewDto> listProduct = productRepository.findAllByRev();
+		List<ResProductDto> resProduct = new ArrayList<>();
+
+		if (listProduct.isEmpty() == false) {
+			for (MainProductReviewDto product : listProduct) {
+
+				String[] filePath = {};
+				if (product.getFilePath() != null && product.getFilePath().isEmpty() == false) {
+					String receiveFilePath = product.getFilePath();
+					filePath = receiveFilePath.split(",");
+				}
+
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
+						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
+						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
+						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
+						.prodCautionInfo(product.getProdCautionInfo()).prodMaximumPeople(product.getProdMaximumPeople())
+						.prodAddress(product.getProdAddress()).filePath(filePath)
+						.prodMajorCategoryId(product.getProdMajorCategoryId())
+						.prodSubcategoryId(product.getProdSubcategoryId())
+						.prodDetailedAddress(product.getProdDetailedAddress()).build();
+				resProduct.add(dto);
+
+			}
+		}
+		return resProduct;
+	}
+	
+	/**
+	 * 평점이 높은 상품
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<ResProductDto> findAllByStar() {
+		List<MainProductStarDto> listProduct = productRepository.findAllByStar();
+		List<ResProductDto> resProduct = new ArrayList<>();
+
+		if (listProduct.isEmpty() == false) {
+			for (MainProductStarDto product : listProduct) {
+
+				String[] filePath = {};
+				if (product.getFilePath() != null && product.getFilePath().isEmpty() == false) {
+					String receiveFilePath = product.getFilePath();
+					filePath = receiveFilePath.split(",");
+				}
+
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
+						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
+						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
+						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
+						.prodCautionInfo(product.getProdCautionInfo()).prodMaximumPeople(product.getProdMaximumPeople())
+						.prodAddress(product.getProdAddress()).filePath(filePath)
+						.prodMajorCategoryId(product.getProdMajorCategoryId())
+						.prodSubcategoryId(product.getProdSubcategoryId())
+						.prodDetailedAddress(product.getProdDetailedAddress()).build();
+				resProduct.add(dto);
+
+			}
+		}
+		return resProduct;
+	}
+
+	/**
+	 * 평점이 높은 상품
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public List<ResProductDto> findAllByStart() {
+		List<Product> listProduct = productRepository.findAllByStart();
+		List<ResProductDto> resProduct = new ArrayList<>();
+
+		if (listProduct.isEmpty() == false) {
+			for (Product product : listProduct) {
+
+				String[] filePath = {};
+				if (product.getFilePath() != null && product.getFilePath().isEmpty() == false) {
+					String receiveFilePath = product.getFilePath();
+					filePath = receiveFilePath.split(",");
+				}
+
+				ResProductDto dto = ResProductDto.builder().prodNo(product.getProdNo()).prodWriterNo(product.getProdWriterNo())
+						.prodTitle(product.getProdTitle()).prodStartTime(product.getProdStartTime())
+						.prodEndTime(product.getProdEndTime()).prodPrice(product.getProdPrice())
+						.prodSpaceInfo(product.getProdSpaceInfo()).prodGoodsInfo(product.getProdGoodsInfo())
+						.prodCautionInfo(product.getProdCautionInfo()).prodMaximumPeople(product.getProdMaximumPeople())
+						.prodAddress(product.getProdAddress()).filePath(filePath)
+						.prodMajorCategoryId(product.getProdMajorCategoryId())
+						.prodSubcategoryId(product.getProdSubcategoryId())
+						.prodDetailedAddress(product.getProdDetailedAddress()).build();
+				resProduct.add(dto);
+
+			}
+		}
+		return resProduct;
+	}
 }
 

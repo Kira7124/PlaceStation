@@ -25,6 +25,12 @@ public class ProductRestController {
 	@Autowired
 	AdminProdHistoryService adminProdHistoryService;
 
+	/**
+	 * 예약 시간 중복 확인
+	 * @param date
+	 * @param prodNo
+	 * @return
+	 */
 	@GetMapping("/valid-time")
 	public ResponseEntity<?> getMethodName(@RequestParam(value = "date") String date,
 			@RequestParam("prod-no") int prodNo) {
@@ -47,4 +53,5 @@ public class ProductRestController {
 		}
 	}
 
+	
 }
