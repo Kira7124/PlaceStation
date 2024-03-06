@@ -73,12 +73,15 @@ public class memberController {
 	public String myPageMain(Model model) { // Model model) {
 
 
-		/*
+		System.out.println("main ssssssssssssssssssss");
+		
+		/* 
 		 * // 멤버 받기 Member member = (Member) httpSession.getAttribute("member");
 		 * if(member == null) { throw new
 		 * CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE,
 		 * HttpStatus.INTERNAL_SERVER_ERROR); }
 		 */
+		
 		Member member = (Member)httpSession.getAttribute("member");
 		
 		log.info("마이페이지 메인의 컨트롤러: "+member.toString());
@@ -205,8 +208,12 @@ public class memberController {
 	}
 
 	@GetMapping("/mypage/wishlist")
-	public String myPageWishlist() {
+	public String myPageWishlist(Model model) {
 
+		Member member = (Member) httpSession.getAttribute("member");
+		
+		model.addAttribute("User", member);
+		
 		return "member/mypage_wishlist";
 
 	}
@@ -311,36 +318,44 @@ public class memberController {
 
 		// 세션 유저 객체에서 빼온 유저 정보 캐스팅
 		// 캐스팅한 유저정보로 최초 소셜 로그인 여부 검증
-		SessionUser principal = (SessionUser) httpSession.getAttribute("member");
+		Member principal = (Member) httpSession.getAttribute("member");
 		System.out.println("11111111111111111111111111");
 		model.addAttribute("principal", principal);
-		System.out.println("222222222222222222222222222222222222" + principal.getName());
-		System.out.println("222222222222222222222222222222222222" + principal.getEmail());
+		System.out.println("222222222222222222222222222222222222" + principal.getUsername());
+		System.out.println("222222222222222222222222222222222222" + principal.getUseremail());
 
 		Member member = new Member();
-		member.setUserid(principal.getName());
+		member.setUserid(principal.getUsername());
 
 		if (member.getUserid() != null) {
 			username = member.getUserid();
 		}
-		System.out.println("33333333333333333333333333333333333333333");
+		System.out.println("33333333333333333333333333333333333333333"+ member);
 		
 		Member checkOauth = service.OauthFirstCheckProcess(username);
 		System.out.println("44444444444444444444444444444444444444444 " + checkOauth);
 		if (checkOauth != null) {
 			System.out.println("55555555555555555555555555555555555555555555555555555");
 			// TODO 여기 메인화면으로 바꿔줘야함
-
+			
+			int userno = checkOauth.getUserno();
+			
+			log.info("이미 존재하는 회원의 셀력트 값 userno: " + userno);
+			
 			UserDetailsImpl buildMember = UserDetailsImpl.build(checkOauth);
-		
+			
 			log.info("5와 6사이의 소셜 로그인 최초 검증 분기 세션 값 확인: "+ buildMember);
 			
 			// TODO httpSession.setAttribute("member",buildMember);
 			
-			
 			// TODO Object sessionCheck = httpSession.getAttribute("member");
 			
 			// log.info("세션 체크 멤버가 저장 되었니?? : "+ sessionCheck);
+			
+			// 유저 데이터 셀렉트
+			Member OauthJoinProcess = service.selectUserUpdatePhoto(userno); 
+			
+			httpSession.setAttribute("member", OauthJoinProcess);
 			
 			return "redirect:/main/index";
 		} else {
@@ -350,10 +365,10 @@ public class memberController {
 
 	}
 
+	
 	@PostMapping("/social/register")
 	public String registerSocialMemberProc(RequestJoinDTO dto) {
 
-		
 		
 		String fulladdress = dto.getAddr1();
 
@@ -407,7 +422,7 @@ public class memberController {
 		
 		httpSession.setAttribute("member", OauthJoinProcess);
 		
-		Object sessionCheck = httpSession.getAttribute("member");
+		Member sessionCheck = (Member) httpSession.getAttribute("member");
 		
 		log.info("세션 체크 멤버가 저장 되었니?? : "+sessionCheck);
 		
@@ -444,7 +459,9 @@ public class memberController {
 		
 		String path = PhotoMember.getFilepath();
 		
-		log.info("모든 것을 다 거치고 돌아온 파일 패스 경로: "+path);
+		log.info("모든 것을 다 거치고 돌아온 파일 패스 경로: "+ path);
+		
+		// 여기서 session을 열어서 filepath를 set해주는게 의미가 있나? 잘 모르겠음 안하면 마이페이지 다시 요청시 예정 파일 패스를 요청해서 다시 이미가 돌아감
 		
 		return path;
 		

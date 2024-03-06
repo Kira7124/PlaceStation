@@ -321,4 +321,10 @@ public class MemberService {
 
 	}
 
+	// 임시 삭제예정
+	public Member selectUserNo(Member member) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

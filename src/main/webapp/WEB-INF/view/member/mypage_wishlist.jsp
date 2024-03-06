@@ -108,18 +108,7 @@ a {
 				style="display: flex; justify-content: space-between;">
 				<div class="col-md-2 border-right"
 					style="margin-top: 5%; display: inline-block; width: 250px;">
-					<div>
-						<div
-							class="d-flex flex-column align-items-center text-center p-3 py-5"
-							style="position: relative;">
-							<img class="rounded-circle mt-5" width="150px"
-								src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-							<span class="font-weight-bold"
-								style="border: solid 2px #a1a1a1; border-radius: 10px; width: 100px; height: 30px; display: inline-block;">
-								change photo</span>
-						</div>
-					</div>
-					<br> <br>
+				
 					<%@ include file="/WEB-INF/view/layout/myPageAside.jsp"%>
 				</div>
 				<!-- 리스트 start -->

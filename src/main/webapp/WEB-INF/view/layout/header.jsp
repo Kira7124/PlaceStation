@@ -128,7 +128,7 @@
 					<sec:authorize access="isAuthenticated()">
 						<a href="/member/logout">로그아웃</a>
 						<sec:authorize access="hasRole('ROLE_USER')">
-							<a href="/member/main">회원정보</a>
+							<a href="/member/mypage/main">회원정보</a>
 						</sec:authorize>
 						<sec:authorize access="hasRole('ROLE_SELLER')">
 							<a href="/biz/main">사업자</a>
