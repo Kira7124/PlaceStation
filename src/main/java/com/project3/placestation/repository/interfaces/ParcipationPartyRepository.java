@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.project3.placestation.member.dto.MemberParcipationDto;
 import com.project3.placestation.party.dto.ParcipationUserDto;
+import com.project3.placestation.repository.entity.ParcipationParty;
 
 @Mapper
 public interface ParcipationPartyRepository {
@@ -21,4 +23,6 @@ public interface ParcipationPartyRepository {
 	
 	// 모임에 참가되어 있는지
 	public int validByUserNoAndPartyNo(@Param("partyNo")int partyNo,@Param("userNo") int userNo);
+	
+	public List<MemberParcipationDto> findByUserNo(int userNo);
 }

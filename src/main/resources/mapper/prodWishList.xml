@@ -11,22 +11,74 @@
 		values
 		(#{prodNo}, #{userNo})
 	</insert>
-	
+
 	<!-- 찜 취소(삭제)하기 -->
 	<delete id="deleteWishList">
 		delete from wish_list
-		where prod_no = #{prodNo} AND user_no = #{userNo}
+		where prod_no = #{prodNo} AND
+		user_no = #{userNo}
 	</delete>
-	
+
 	<!-- 찜 개수 count -->
-    <select id="countWishlist">
-        SELECT COUNT(*) FROM wish_list WHERE prod_no = #{prodNo}
-    </select>
-	
+	<select id="countWishlist">
+		SELECT COUNT(*) FROM wish_list WHERE prod_no = #{prodNo}
+	</select>
+
 	<!-- 찜 여부 확인 -->
-    <select id="findByProdNoAndUserNo" resultType="int">
-        SELECT count(*)
-        FROM wish_list
-        WHERE prod_no = #{prodNo} AND user_no = #{userNo}
-    </select>
+	<select id="findByProdNoAndUserNo" resultType="int">
+		SELECT count(*)
+		FROM wish_list
+		WHERE prod_no = #{prodNo} AND user_no = #{userNo}
+	</select>
+
+
+	<select id="findByUserNo" resultType="com.project3.placestation.member.dto.MemberWishListDto">
+		select
+		p.prod_no as prodNo,
+		p.prod_writer_no as prodWriterNo ,
+		p.prod_title as prodTitle
+		,
+		p.prod_start_time as prodStartTime,
+		p.prod_end_time as prodEndTime ,
+		p.prod_space_info as prodSpaceInfo ,
+		p.prod_goods_info as prodGoodsInfo
+		,
+		p.prod_caution_info as prodCautionInfo
+		,
+		p.prod_maximum_people as
+		prodMaximumPeople ,
+		p.prod_address as prodAddress
+		,
+		p.prod_detailed_address
+		as prodDetailedAddress ,
+		p.prod_price as
+		prodPrice
+		,
+		p.file_path as filePath
+		,
+		p.prod_major_category_id as
+		prodMajorCategoryId ,
+		p.prod_subcategory_id as
+		prodSubcategoryId ,
+		p.prod_full_address as
+		prodFullAddress ,
+		p.prod_location_x as
+		prodLocationX ,
+		p.prod_location_y as
+		prodLocationY,
+		p.prod_rdate as
+		prodRdate ,
+		p.prod_update_at as prodUpdateAt
+		,
+		p.prod_delete_reason as
+		prodDeleteReason ,
+		p.prod_delete_yn as
+		prodDeleteYn ,
+		p.addition_explanation as additionExplanation
+		from wish_list w
+		left join product p
+		on p.prod_no = w.prod_no
+		where w.user_no = #{userNo}
+		and p.prod_delete_yn = 'N'
+	</select>
 </mapper>

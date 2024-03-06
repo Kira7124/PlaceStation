@@ -120,4 +120,13 @@ public class PartyService {
 	public int delete(int partyNo) {
 		return partyRepository.delete(partyNo);
 	}
+	
+	/**
+	 *  유저가 만든 모임 전체 조회
+	 * @param userNo
+	 * @return
+	 */
+	public List<Party> findbyUserNo(int userNo) {
+		return partyRepository.findByUserNo(userNo);
+	}
 }

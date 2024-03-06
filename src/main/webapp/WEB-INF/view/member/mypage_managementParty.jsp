@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/view/member/layout/header.jsp"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <!-- history content 시작 -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
@@ -108,109 +108,46 @@ a {
 				style="display: flex; justify-content: space-between;">
 				<div class="col-md-2 border-right"
 					style="margin-top: 5%; display: inline-block; width: 250px;">
-					<div>
-						<div
-							class="d-flex flex-column align-items-center text-center p-3 py-5"
-							style="position: relative;">
-							<img class="rounded-circle mt-5" width="150px"
-								src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-							<span class="font-weight-bold"
-								style="border: solid 2px #a1a1a1; border-radius: 10px; width: 100px; height: 30px; display: inline-block;">
-								change photo</span>
-						</div>
-					</div>
-					<br> <br>
 					<%@ include file="/WEB-INF/view/layout/myPageAside.jsp"%>
 				</div>
-				<!-- 리스트 start -->
-				<div class="container"
-					style="display: flex; flex-direction: column; justify-content: space-between;">
-					<div class="row align-items-center">
-						<div class="col-md-6">
-							<div class="mb-3">
-								<h2 class="card-title">모임내역 관리</h2>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="">
-								<div class="table-responsive">
-									<table
-										class="table project-list-table table-nowrap align-middle table-borderless">
-										<thead>
-											<tr>
-
-												<th scope="col">Name</th>
-												<th scope="col">Position</th>
-												<th scope="col">Email</th>
-												<th scope="col">Projects</th>
-												<th scope="col" style="width: 200px;">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><img
-													src="https://bootdey.com/img/Content/avatar/avatar1.png"
-													alt="" class="avatar-sm rounded-circle me-2" /><a href="#"
-													class="text-body">Simon Ryles</a></td>
-												<td><span class="badge badge-soft-success mb-0">Full
-														Stack Developer</span></td>
-												<td>SimonRyles@minible.com</td>
-												<td>125</td>
-												<td>
-													<ul class="list-inline mb-0">
-														<li class="list-inline-item"><a
-															href="javascript:void(0);" data-bs-toggle="tooltip"
-															data-bs-placement="top" title="Edit"
-															class="px-2 text-primary"><i
-																class="bx bx-pencil font-size-18"></i></a></li>
-														<li class="list-inline-item"><a
-															href="javascript:void(0);" data-bs-toggle="tooltip"
-															data-bs-placement="top" title="Delete"
-															class="px-2 text-danger"><i
-																class="bx bx-trash-alt font-size-18"></i></a></li>
-														<li class="list-inline-item dropdown"><a
-															class="text-muted dropdown-toggle font-size-18 px-2"
-															href="#" role="button" data-bs-toggle="dropdown"
-															aria-haspopup="true"><i
-																class="bx bx-dots-vertical-rounded"></i></a>
-															<div class="dropdown-menu dropdown-menu-end">
-																<a class="dropdown-item" href="#">Action</a><a
-																	class="dropdown-item" href="#">Another action</a><a
-																	class="dropdown-item" href="#">Something else here</a>
-															</div></li>
-													</ul>
-												</td>
-											</tr>
-										</tbody>
-									</table>
+				<!-- 메인 섹션 시작 -->
+					<div class="container">
+						<div class="post-columns">
+							<h2>여기서 모임을 볼 수 있습니다.</h2>
+							<ul>
+								<li>1. 자신이 만든 모임 내역</li>
+							</ul>
+							<c:forEach items="${partyList}" var="party">
+								<div class="col-sm-6 col-md-4 col-lg-4">
+									<div class="post">
+										<div class="post-thumbnail">
+											<a
+												href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}"><img
+												src="${party.filePath[0]}" alt="Blog-post Thumbnail" /></a>
+										</div>
+										<div class="post-header font-alt">
+											<h2 class="post-title">
+												<a
+													href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}">${party.prodTitle}</a>
+											</h2>
+											<div class="post-meta">
+												예약 일자&nbsp;<a href="#"></a>&nbsp;| ${party.purchaseDate}
+											</div>
+										</div>
+										<div class="post-entry">
+											<p>위치 : ${party.prodFullAddress}</p>
+											<p>모임 최대 인원 : ${party.peopleCount}</p>
+										</div>
+										<div class="post-more">
+											<a class="more-link" href="#">${party.mainCategory}</a> <a
+												class="more-link" href="#">${party.subcategory}</a>
+										</div>
+									</div>
 								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
-					<div class="row g-0 align-items-center pb-4">
-						<div class="col-sm-6">
-							<div class="float-sm-end">
-								<ul class="pagination mb-sm-0">
-									<li class="page-item disabled">
-										<a href="#"	class="page-link">
-											<i class="mdi mdi-chevron-left"></i>
-										</a>
-									</li>
-									<li class="page-item active"><a href="#" class="page-link">1</a></li>
-									<li class="page-item"><a href="#" class="page-link">2</a></li>
-									<li class="page-item"><a href="#" class="page-link">3</a></li>
-									<li class="page-item"><a href="#" class="page-link">4</a></li>
-									<li class="page-item"><a href="#" class="page-link">5</a></li>
-									<li class="page-item"><a href="#" class="page-link"><i
-											class="mdi mdi-chevron-right"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 리스트 end -->
+				<!-- 메인 섹션 종료 -->
 			</div>
 		</div>
 	</div>

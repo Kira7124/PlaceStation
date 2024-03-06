@@ -115,6 +115,13 @@ public interface MemberRepository {
 
 	// 
 	public Member selectUserUpdatePhoto(int userno);
+
+	// 유저 업데이트
+	public int userUpdateMember(Member updateMember);
+	
+	
+	// 업데이트 유저 데이터 호출
+	public Member selectUserNo(int userno);
 	
 	
 	
