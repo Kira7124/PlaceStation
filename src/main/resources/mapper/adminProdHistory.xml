@@ -94,7 +94,7 @@
 		FROM admin_prod_history
 		WHERE ADMIN_HIS_CREATED_AT >= CURRENT_DATE() - INTERVAL '1' MONTH 
   		AND ADMIN_HIS_CREATED_AT &lt; CURRENT_DATE() + INTERVAL '1' DAY
-  		AND admin_his_confirm = true
+  		AND cancel_yn = 'N'
 	</select>
 	
 	
