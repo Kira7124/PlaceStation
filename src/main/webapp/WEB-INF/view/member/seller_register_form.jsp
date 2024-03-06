@@ -232,17 +232,17 @@ h2 {
 				<span class="msgNoti" style="color: green">포트원 [토스페이, 카카오, 페이코, kg이니시스 ] 에 관한 결제를 설정해 주셔야 합니다.</span>  
 				<input type="text" name="impuid"
 					id="impuid" placeholder="Enter impuid"> <span
-					class="msgUid"> impuid를 입력하세요.</span>
+					class="msgUid">영어,숫자를 조합한 10~15자의 impuid를 입력하세요.</span>
 			</div>
 			<div class="register-form">
 				<label for="impkey">impkey</label> <input type="text" name="impkey"
 					id="impkey" placeholder="Enter impkey"> <span
-					class="msgKey"> impkey를 입력하세요.</span>
+					class="msgKey">숫자로 이루어진 15~20자의 impkey를 입력하세요.</span>
 			</div>
 			<div class="register-form">
 				<label for="impsecret">impsecret</label> <input type="text"
 					name="impsecret" id="impsecret" placeholder="Enter impsecret">
-				<span class="msgSecret"> impsecret를 입력하세요.</span>
+				<span class="msgSecret">영어,숫자를 조합한 80~100자의 impsecret를 입력하세요.</span>
 			</div>
 			<br> <br>
 			<div class="input-group mb-3">
@@ -259,4 +259,4 @@ h2 {
 	</div>
 </section>
 <!-- 회원가입 폼 종료 -->
-<%@ include file="/WEB-INF/view/member/layout/footer.jsp"%>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

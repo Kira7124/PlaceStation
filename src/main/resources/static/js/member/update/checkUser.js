@@ -242,7 +242,7 @@ window.onload = function() {
 
 			// 서버 전송
 			const xhr = new XMLHttpRequest();
-			xhr.open('GET', '/member/check/uid/' + uid);
+			xhr.open('GET', '/user/check/uid/' + uid);
 			xhr.send();
 
 			xhr.onreadystatechange = function() {
@@ -279,7 +279,7 @@ window.onload = function() {
 		}
 		console.log("유효성검사통과!");
 		$.ajax({
-			url: '/member/check/hp/' + hp,
+			url: '/user/check/hp/' + hp,
 			dataType: 'json',
 			type: 'GET',
 			contentType: 'application/json',

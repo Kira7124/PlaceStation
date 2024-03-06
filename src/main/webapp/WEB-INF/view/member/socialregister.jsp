@@ -117,7 +117,7 @@ h2 {
 <section class="module">
 	<div class="container"
 		style="background: #fff; border-radius: 5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); width: 550px;">
-		<form action="/member/social/register" id="form" class="form" method="post">
+		<form action="/user/social/register" id="form" class="form" method="post">
 			<c:if test="${not empty principal}">
 				<h2>Register With Us</h2>
 				<p>
@@ -203,4 +203,4 @@ h2 {
 </section>
 <!-- 회원가입 폼 종료 -->
 
-<%@ include file="/WEB-INF/view/member/layout/footer.jsp"%>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

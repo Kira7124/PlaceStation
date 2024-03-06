@@ -46,7 +46,8 @@ VALUES
 ('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
 ('test9', '1234', '울산광역시', '김진수10', '01089237128', 'afc2024@naver.com', 'USER','GOLD','F'),
 ('san2636', '$2a$10$2RC0sD8amY1GFavAs9eKkuv0y8iuXI4XTBRZqu95dKy/NEzIcGmn6', '49376부산 사하구 감내1로 7dsa', '이산하', '010-2518-7987', 'san2636@naver.com', 'ROLE_USER','BRONZE','M'),
-('san26362', '$2a$10$2RC0sD8amY1GFavAs9eKkuv0y8iuXI4XTBRZqu95dKy/NEzIcGmn6', '49376부산 사하구 감내1로 7dsa', '이산하', '010-2518-7987', 'san2636@naver.com', 'ROLE_BIZ','BRONZE','M');
+('san26362', '$2a$10$2RC0sD8amY1GFavAs9eKkuv0y8iuXI4XTBRZqu95dKy/NEzIcGmn6', '49376부산 사하구 감내1로 7dsa', '이산하', '010-2518-7987', 'san2636@naver.com', 'ROLE_BIZ','BRONZE','M'),
+('san123', '$2a$10$2RC0sD8amY1GFavAs9eKkuv0y8iuXI4XTBRZqu95dKy/NEzIcGmn6', '49376부산 사하구 감내1로 7dsa', '이산하', '010-2518-7986', 'san2634@naver.com', 'ROLE_ADMIN','BRONZE','M');
 
 insert into notice_board (n_writer,n_content,n_title)
 values('kira','12121212121','rerere'),

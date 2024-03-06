@@ -121,12 +121,6 @@ a {
 							</div>
 						</div>
 					</div>
-					<p> ${member}
-					
-					
-					=============================
-					<sec:authentication property="principal"/>
-					</p>
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="">
@@ -198,4 +192,4 @@ a {
 <!--  프로필 content 끝 -->
 </div>
 </div>
-<%@ include file="/WEB-INF/view/member/layout/footer.jsp"%>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

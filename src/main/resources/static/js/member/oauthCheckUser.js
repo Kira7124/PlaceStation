@@ -82,7 +82,7 @@ window.onload = function() {
 		}
 		console.log("유효성검사통과!");
 		$.ajax({
-			url: '/member/check/hp/' + hp,
+			url: '/user/check/hp/' + hp,
 			dataType: 'json',
 			type: 'GET',
 			contentType: 'application/json',

@@ -15,25 +15,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.model.util.BizDefine;
-import com.project3.placestation.biz.model.util.PageReq;
-import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.config.jwt.UserDetailsImpl;
 import com.project3.placestation.config.oauth2.SessionUser;
 import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.member.dto.MemberParcipationDto;
 import com.project3.placestation.member.dto.MemberWishListDto;
-import com.project3.placestation.member.dto.MemberHistoryDto;
 import com.project3.placestation.member.dto.RequestJoinDTO;
 import com.project3.placestation.member.dto.UserUpdateDTO;
-import com.project3.placestation.party.dto.ResCreatePartySelectDto;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
-import com.project3.placestation.repository.entity.ParcipationParty;
 import com.project3.placestation.repository.entity.Party;
 import com.project3.placestation.repository.interfaces.MemberRepository;
 import com.project3.placestation.service.MemberService;
@@ -44,7 +38,7 @@ import com.project3.placestation.service.ProdWishListService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("/member")
+@RequestMapping("/user")
 @Controller
 @Slf4j
 public class memberController {
@@ -461,7 +455,7 @@ public class memberController {
 
 		httpSession.setAttribute("member", member);
 
-		return "redirect:/member/mypage/main";
+		return "redirect:/user/mypage/main";
 
 	}
 

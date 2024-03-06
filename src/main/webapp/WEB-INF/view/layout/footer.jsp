@@ -63,5 +63,16 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- Wow.js 및 관련 CSS 불러오기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<!-- user JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="./my-page.js"></script>
+    <script src="/js/member/terms.js"></script>
+    <script src="/js/member/zipcode.js"></script>
+    <script src="/js/member/authEmail.js"></script>
+    <script src="/js/member/checkUser.js"></script>
+    <script src="/js/member/changePhoto.js"></script>
+
+
 </body>
 </html>
