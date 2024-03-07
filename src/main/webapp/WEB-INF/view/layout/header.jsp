@@ -166,9 +166,11 @@
 						</sec:authorize>
 						<sec:authorize access="hasRole('ROLE_BIZ')">
 							<a href="/biz/main">사업자</a>
+							<a href="/user/mypage/main">회원정보</a>
 						</sec:authorize>
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
 							<a href="/admin/admin-main">관리자</a>
+							<a href="/user/mypage/main">회원정보</a>
 						</sec:authorize>
 					</sec:authorize>
 				</div>

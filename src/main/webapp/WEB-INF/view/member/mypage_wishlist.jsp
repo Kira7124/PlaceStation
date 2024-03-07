@@ -166,7 +166,7 @@ a {
 								<ul class="pagination">
 									<c:if test="${pageVO.prev }">
 										<li class="page-item"><a class="page-link"
-											href="/user/mypage_wishlist?page=${pageVO.startPage - 1 }"
+											href="/user/mypage/wishlist?page=${pageVO.startPage - 1 }"
 											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 										</a></li>
 									</c:if>
@@ -177,7 +177,7 @@ a {
 										end="${pageVO.endPage }" step="1">
 										<c:set var="isActive" value="${pageVO.cri.page == i}" />
 										<li class="page-item ${isActive ? 'active' : ''}"><a
-											class="page-link" href="/user/mypage_wishlist?page=${i}"
+											class="page-link" href="/user/mypage/wishlist?page=${i}"
 											style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
 												${i} </a></li>
 									</c:forEach>
@@ -186,7 +186,7 @@ a {
 
 									<c:if test="${pageVO.next }">
 										<li class="page-item"><a class="page-link"
-											href="/user/mypage_wishlist?page=${pageVO.endPage + 1 }"
+											href="/user/mypage/wishlist?page=${pageVO.endPage + 1 }"
 											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 												<!-- href="/admin/admin-member 여기 주소만 바꾸면됨 -->
 										</a></li>

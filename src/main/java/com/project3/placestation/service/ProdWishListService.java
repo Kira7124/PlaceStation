@@ -6,6 +6,7 @@ import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.member.dto.MemberWishListDto;
 import com.project3.placestation.product.dto.ProdWishListDto;
 import com.project3.placestation.repository.entity.ProdWishList;
@@ -51,7 +52,7 @@ public class ProdWishListService {
     }
     
     // 유저 넘버로 찜목록 확인
-    public List<MemberWishListDto> findByUserNo(int userNo)  {
-    	return prodWishListRepository.findByUserNo(userNo);
+    public List<MemberWishListDto> findByUserNo(int userNo, Criteria cri)  {
+    	return prodWishListRepository.findByUserNo(userNo, cri);
     }
 }

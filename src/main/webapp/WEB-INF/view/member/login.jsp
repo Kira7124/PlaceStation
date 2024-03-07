@@ -4,7 +4,8 @@
  <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
      <!-- login content 시작 -->
       <!--로그인 섹션 시작-->
-        <section class="module">
+        <section class="module" style="    padding: 20% 0;
+        ">
           <div class="container">
             <div class="row">
               <div class="col-sm-5 col-sm-offset-1 mb-sm-40" id="login" style="margin-left: 33%;">
