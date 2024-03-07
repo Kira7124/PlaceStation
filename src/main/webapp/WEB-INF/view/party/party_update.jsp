@@ -151,7 +151,7 @@ textarea {
 				<div class="col-sm-6 col-sm-offset-3">
 					<div class="post">
 						<div class="post-header font-alt">
-							<h2 class="post-title">모임 생성</h2>
+							<h2 class="post-title">모임 수정</h2>
 						</div>
 						<div class="post-entry">
 							<form id="partyCreateForm" action="/party/update" method="post"

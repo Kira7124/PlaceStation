@@ -57,7 +57,7 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 	private String gender; 
 	private String oauth; 
 	private String userrole; 
-
+	private String filePath;
 
 
 	public UserDetailsImpl() {
@@ -66,7 +66,7 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 
 	public UserDetailsImpl(Integer userno, String userid, String userpassword, String username, String useremail,
 			String useraddress, String userhp, Integer userpoint, String userrole, String gender, String grade,
-			String oauth, Timestamp timestamp, GrantedAuthority authority) {
+			String oauth, Timestamp timestamp, String filePath,  GrantedAuthority authority) {
 		this.userno = userno;
 		this.userid = userid;
 		this.password = userpassword;
@@ -83,6 +83,7 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 		this.name = username;
 		this.email = username;
 		this.joinat = timestamp;
+		this.filePath = filePath;
 		
 		
 		this.isOAuthUser = false;
@@ -184,6 +185,7 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
                 user.getGrade(),
                 user.getOauth(),
                 user.getJoinat(),
+                user.getFilepath(),
                 authority);
     }
 // 권한을 스프링 시큐리티의 권한 배열로 만들기
@@ -262,6 +264,10 @@ public class UserDetailsImpl implements UserDetails, OAuth2User {
 
 	public void setUserId(String userId) {
 		this.userid = userId;
+	}
+	
+	public String getFilePath() {
+		return this.filePath;
 	}
 
 

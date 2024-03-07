@@ -12,8 +12,8 @@ VALUES
 (1, 1, '리뷰 내용 3', 4, 'N', null),
 (1, 1, '리뷰 내용 4', 3, 'N', null),
 (1, 1, '리뷰 내용 5', 4, 'N', null),
-(1, 1, '리뷰 내용 3', 0, 'N', 2),
-(2, 2, '리뷰 내용 4', 4, 'N', null);
+(1, 1, '2번 리뷰 답글', 0, 'N', 2),
+(2, 2, '리뷰 내용', 4, 'N', null);
 
 
 
@@ -278,7 +278,6 @@ insert into admin_prod_history (
     admin_his_use_point ,
     admin_his_save_point ,
     admin_his_discount ,
-    admin_his_charge ,
     admin_his_prod_name ,
     admin_his_seller_id ,
     admin_his_confirm ,
@@ -290,17 +289,39 @@ insert into admin_prod_history (
     purchase_date,
     cancel_reason,
     cancel_yn,
-    cancel_amount
-) values ('OXDSAD-DNSKAN1' ,1,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','Y',15000),
-('OXDSAD-DNSKAN2' ,2,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','Y',15000),
-('OXDSAD-DNSKAN3' ,3,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','Y',15000),
-('OXDSAD-DNSKAN4' ,4,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','Y',15000),
-('OXDSAD-DNSKAN5' ,5,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','Y',15000),
-('OXDSAD-DNSKAN6' ,6,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000),
-('OXDSAD-DNSKAN7' ,7,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000),
-('OXDSAD-DNSKAN8' ,8,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000),
-('OXDSAD-DNSKAN9' ,9,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000),
-('OXDSAD-DNSKA1F' ,10,100000 ,0,0,0,0,'타이틀' , 1,true ,2 ,'부산은행',1,4,2,'2024-12-31','제품이구려용','N',15000);
+    cancel_amount ,
+    admin_his_created_at ,
+    ADMIN_HIS_CHARGE
+) values ('OXDSAD-DNSKAN1' ,1,32100 ,0,0,0,'타이틀' , 28,true ,2 ,'부산은행',1,4,2,'2024-12-31',null,'N',0 , DATEADD('DAY', -1, CURRENT_TIMESTAMP()) , 100),
+('OXDSAD-DNSKAN2' ,2,32100 ,0,0,0,'타이틀' , 28,true ,2 ,'부산은행',2,7,2,'2024-12-01',null,'N',0 , DATEADD('DAY', -2, CURRENT_TIMESTAMP()) , 5000),
+('OXDSAD-DNSKAN3' ,3,54600 ,0,0,0,'타이틀' , 28,true ,2 ,'부산은행',3,9,2,'2024-05-12',null,'N',0 , DATEADD('DAY', -3, CURRENT_TIMESTAMP()) , 300),
+('OXDSAD-DNSKAN4' ,4,76000 ,0,0,0,'타이틀' , 28,true ,2 ,'부산은행',1,8,2,'2024-12-12',null,'N',0, DATEADD('DAY', -15, CURRENT_TIMESTAMP()), 400),
+('OXDSAD-DNSKAN5' ,5,32100 ,0,0,0,'타이틀' , 28,true ,2 ,'부산은행',12,14,2,'2024-12-05',null,'N',0 , DATEADD('DAY', -4, CURRENT_TIMESTAMP()), 10000),
+('OXDSAD-DNSKAN6' ,6,76000 ,0,0,0,'타이틀' , 28,true ,2 ,'부산은행',2,14,2,'2024-11-30',null,'N',0 , DATEADD('DAY', -5, CURRENT_TIMESTAMP()) , 4200) ,
+('OXDSAD-DNSKAN7' ,7,312500 ,0,0,0,'타이틀' , 28,true ,2 ,'부산은행',2,3,2,'2024-12-31',null,'N',0 , DATEADD('DAY', -6, CURRENT_TIMESTAMP()) , 5000),
+('OXDSAD-DNSKAN8' ,8,76000 ,0,0,0,'타이틀' , 28,true ,2 ,'부산은행',7,21,2,'2024-12-31',null,'N',0 , DATEADD('DAY', -7, CURRENT_TIMESTAMP()) , 1000),
+('OXDSAD-DNSKAN9' ,9,3000 ,0,0,0,'타이틀' , 28,true ,2 ,'부산은행',1,4,2,'2024-12-31',null,'N',0 , DATEADD('DAY', -8, CURRENT_TIMESTAMP()), 3200),
+('OXDSAD-DSAFSA' ,10,54600 ,0,0,0,'타이틀' , 28,true ,2 ,'부산은행',5,8,2,'2024-12-31',null,'N',0 , DATEADD('DAY', -9, CURRENT_TIMESTAMP()), 3200) ,
+('OXDSAD-VDDSAV' ,11,664500 ,0,0,0,'타이틀' , 28,true ,3 ,'부산은행',1,4,2,'2024-3-24',null,'N',0 , DATEADD('DAY', -50, CURRENT_TIMESTAMP()), 100),
+('OXDSAD-FDSAFQEFQ' ,11,315000 ,0,0,0,'타이틀' , 28,true ,4 ,'부산은행',1,4,2,'2024-3-25',null,'N',0 , DATEADD('MONTH', -1, CURRENT_TIMESTAMP()), 5000),
+('OXDSAD-DSAFASCVZ' ,11,413400 ,0,0,0,'타이틀' , 28,true ,5 ,'부산은행',1,4,2,'2024-3-22',null,'N',0 , DATEADD('DAY', -60, CURRENT_TIMESTAMP()), 100),
+('OXDSAD-WQETRE' ,11,664500 ,0,0,0,'타이틀' , 28,true ,6 ,'부산은행',1,4,2,'2024-1-24',null,'N',0 , DATEADD('DAY', -24, CURRENT_TIMESTAMP()), 100),
+('OXDSAD-KUYUMJH' ,11,100000 ,0,0,0,'타이틀' , 28,true ,7 ,'부산은행',1,4,2,'2024-6-12',null,'N',0 , DATEADD('DAY', -21, CURRENT_TIMESTAMP()), 3200),
+('OXDSAD-JFHHGF' ,11,100000 ,0,0,0,'타이틀' , 28,true ,8 ,'부산은행',1,4,2,'2024-7-14',null,'N',0 , DATEADD('DAY', -25, CURRENT_TIMESTAMP()), 4200),
+('OXDSAD-DSA' ,11,134120 ,0,0,0,'타이틀' , 28,true ,8 ,'부산은행',5,8,2,'2024-7-14',null,'N',0 , DATEADD('DAY', -34, CURRENT_TIMESTAMP()), 100),
+('OXDSAD-VFDVFDSB' ,11,38200 ,0,0,0,'타이틀' , 28,true ,8 ,'부산은행',12,23,2,'2024-7-14',null,'N',0 , DATEADD('DAY', -31, CURRENT_TIMESTAMP()), 400),
+('OXDSAD-DSAFQWWQ' ,11,321000 ,0,0,0,'타이틀' , 28,true ,8 ,'부산은행',1,4,2,'2024-7-16',null,'N',0 , DATEADD('MONTH', -2, CURRENT_TIMESTAMP()), 100),
+('OXDSAD-vswqwe' ,11,76000 ,0,0,0,'타이틀' , 28,true ,8 ,'부산은행',1,4,2,'2024-03-02',null,'N',0 , DATEADD('MONTH', -3, CURRENT_TIMESTAMP()), 400),
+('OXDSAD-rehytjjty' ,11,456100 ,0,0,0,'타이틀' , 28,true ,8 ,'부산은행',1,4,2,'2024-03-03',null,'N',0 , DATEADD('MONTH', -4, CURRENT_TIMESTAMP()), 100),
+('OXDSAD-KJHGJHG' ,11,321000 ,0,0,0,'타이틀' , 28,true ,7 ,'부산은행',5,7,2,'2024-03-04',null,'N',0, DATEADD('MONTH', -4, CURRENT_TIMESTAMP()), 400),
+('OXDSAD-FDSA' ,11,15616400 ,0,0,0,'타이틀' , 28,true ,8 ,'부산은행',1,4,2,'2023-11-04',null,'N',0 , DATEADD('MONTH', -6, CURRENT_TIMESTAMP()), 3200),
+('OXDSAD-EWQQW' ,11,456100 ,0,0,0,'타이틀' , 28,true ,3 ,'부산은행',12,18,2,'2023-11-05',null,'N',0 , DATEADD('MONTH', -6, CURRENT_TIMESTAMP()), 100),
+('OXDSAD-FDSFA' ,11,811600 ,0,0,0,'타이틀' , 28,true ,8 ,'부산은행',1,4,2,'2023-12-12',null,'N',0 , DATEADD('DAY', -76, CURRENT_TIMESTAMP()), 100),
+('OXDSAD-FDSAGBF' ,11,100000 ,0,0,0,'타이틀' , 28,true ,8 ,'부산은행',4,5,2,'2023-03-05',null,'N',0 , DATEADD('DAY', -201, CURRENT_TIMESTAMP()), 3200),
+('OXDSAD-NGFT' ,11,315000 ,0,0,0,'타이틀' , 28,true ,5 ,'부산은행',8,10,2,'2023-10-04',null,'N',0 , DATEADD('DAY', -204, CURRENT_TIMESTAMP()), 5000),
+('OXDSAD-HTRHTRY' ,11,456100 ,0,0,0,'타이틀' , 28,true ,8 ,'부산은행',14,16,2,'2023-10-04',null,'N',0 , DATEADD('DAY', -301, CURRENT_TIMESTAMP()), 100),
+('OXDSAD-EWRQWQD' ,11,100000 ,0,0,0,'타이틀' , 28,true ,1 ,'부산은행',23,24,2,'2023-10-04',null,'N',0 , DATEADD('DAY', -305, CURRENT_TIMESTAMP()), 100)
+;
 
 
 

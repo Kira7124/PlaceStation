@@ -70,7 +70,7 @@
 	rel="stylesheet">
 <link href="/assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
 <link href="/assets/lib/flexslider/flexslider.css" rel="stylesheet">
-<link href="/assets/lib/owl.carousel/dist//assets/owl.carousel.min.css"
+<link href="/assets/lib/owl.carousel/dist/assets/owl.carousel.min.css"
 	rel="stylesheet">
 <link
 	href="/assets/lib/owl.carousel/dist//assets/owl.theme.default.min.css"
@@ -91,7 +91,29 @@
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 	<!-- Wow.js 및 관련 CSS 불러오기 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-	
+<script src="/assets/lib/jquery/dist/jquery.js"></script>
+<script src="/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+<script>
+    $(document).ready(function() {qw
+        $('.owl-carousel').owlCarousel({
+            loop: true, // 끝없이 슬라이드 반복
+            margin: 10, // 슬라이드 사이의 여백
+            nav: false, // 이전/다음 버튼을 표시하지 않음
+            dots: false, // 페이지네이션 버튼을 표시하지 않음
+            responsive: { // 반응형 설정
+                0: { // 화면 크기가 0px 이상일 때
+                    items: 1 // 아이템 한 개를 보여줌
+                },
+                600: { // 화면 크기가 600px 이상일 때
+                    items: 3 // 아이템 세 개를 보여줌
+                },
+                1000: { // 화면 크기가 1000px 이상일 때
+                    items: 5 // 아이템 다섯 개를 보여줌
+                }
+            }
+        });
+    });
+</script>
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation"
 	data-offset="60">
@@ -134,17 +156,16 @@
 									>1:1문의</a></li>
 								<li ><a  href="/cs/faq"
 									>FAQ</a></li>
-							
-								
+
 							</ul></li>
 			
 					</ul>
 				</div>
 
 				<div class="container-search" style="margin-bottom: 25px;">
-					<form role="form">
+					<form role="form" action="/product/search-page" method="get">
 						<div class="search-box">
-							<input class="form-control" type="text" style="" placeholder="Search..." />
+							<input class="form-control" type="text" style="" placeholder="Search..." name="search"/>
 							<button class="search-btn" type="submit">
 								<i class="fa fa-search"></i>
 							</button>
@@ -174,4 +195,3 @@
 				</div>
 			</div>
 		</nav>
-	</main>
