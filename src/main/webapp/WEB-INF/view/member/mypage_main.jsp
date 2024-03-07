@@ -28,13 +28,14 @@
 						<div class="p-3 py-5">
 							<div
 								class="d-flex justify-content-between align-items-center mb-3">
-
 								<!-- 이 폼으로 유저 데이터 업데이트 가능 -->
 								<form action="/user/userUpdate" id="form" class="form" method="post">
 									<h4 class="text-center" style="font-size: xx-large;">Profile
 										Settings</h4>
 									<br> <br> <input type="hidden" value="${User.userno}"
 										name="userno" id="hiddenuserNo" />
+									<input type="hidden" value="${User.oauth}"
+										name="oauth" id="hiddenuserNo" />
 									<div class="row mt-2">
 										<div class="col-md-6">
 											<label class="labels">Name</label><input type="text"
@@ -44,7 +45,8 @@
 										<div class="col-md-6">
 											<label class="labels">password</label><input type="password"
 												class="form-control" name="uppass" placeholder="surname"
-												readonly>
+												value="${User.userpassword }"
+												>
 
 										</div>
 									</div>
