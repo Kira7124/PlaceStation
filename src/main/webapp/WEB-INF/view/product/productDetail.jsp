@@ -350,7 +350,7 @@
 																style="border-bottom: 1px solid #ccc;">
 																<!-- 원글 내용 출력 -->
 																<div class="comment-avatar">
-																	<img src="${review.filePath}" alt="avatar" />
+																	<img src="${review.filePath}" alt="avatar" style="width : 50px ; height : 50px;"/>
 																</div>
 																<div class="comment-content clearfix">
 																	<div class="comment-author font-alt">
@@ -438,7 +438,7 @@
 																		<!-- 대댓글 내용 출력 -->
 																		<i class="fa-solid fa-arrow-turn-down-right"></i>
 																		<div class="comment-avatar">
-																			<img src="${reply.filePath}" alt="avatar" />
+																			<img src="${reply.filePath}" alt="avatar" style="width : 50px ; height : 50px;"/>
 																		</div>
 																		<div class="comment-content clearfix">
 																			<div class="comment-author font-alt">

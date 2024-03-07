@@ -24,10 +24,12 @@ public class ProdReview {
     private String prodRevDeleteYn;
     private String prodRevDeleteAt;
     private Integer parentId;
+    private String userName;
+    private String filePath;
     private String prodTitle;
     private String prodPrice;
-    private String filePath;
     private Integer offset;
+
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 

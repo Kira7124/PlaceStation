@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -104,7 +105,7 @@ public class memberController {
 		Member User = memberService.selectUserNo(userno);
 
 		log.info("마이페이지 메인의 컨트롤러: " + User.toString());
-
+		
 		model.addAttribute("User", User);
 
 		return "member/mypage_main";
@@ -247,7 +248,7 @@ public class memberController {
 //		if (member == null) {
 //			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 //		}
-
+		
 		List<Party> partyList = partyService.findbyUserNo(member.getUserno());
 		List<MemberParcipationDto> parcipationList = parcipationPartyService.findUserNo(member.getUserno());
 		log.info("partyList : " + partyList);

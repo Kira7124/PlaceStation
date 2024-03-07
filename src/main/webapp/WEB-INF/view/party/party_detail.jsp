@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
 
 							<div class="comment-avatar">
 
-								<img src="${party.userFilePath}" alt="avatar" />
+								<img src="${party.userFilePath}" alt="avatar" style="width : 50px; height : 50px;"/>
 							</div>
 							<div class="comment-content clearfix">
 								<div class="comment-author font-alt">
@@ -226,7 +226,7 @@ h1, h2, h3, h4, h5, h6 {
 						<c:forEach items="${parcipationParties}" var="memberList">
 							<div class="comment clearfix">
 								<div class="comment-avatar">
-									<img src="${memberList.filePath}" alt="avatar" />
+									<img src="${memberList.filePath}" alt="avatar" style="width : 50px; height : 50px;"/>
 								</div>
 								<div class="comment-content clearfix">
 									<div class="comment-author font-alt">
