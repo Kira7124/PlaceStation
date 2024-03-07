@@ -187,6 +187,9 @@ public class ProductController {
 			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
+		if(dto.getProdRevStar() < 1 || dto.getProdRevStar() > 5) {
+			throw new CustomRestfulException(BizDefine.PLEASE_WRITE_STAR, HttpStatus.BAD_REQUEST);
+		}
 		prodReviewService.addReview(dto);
 
 		PaymentMemberDto memberDto = memberService.findMemberById(member.getUserno());

@@ -3,7 +3,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
 <!-- include.jsp -->
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
@@ -103,6 +102,7 @@
 }
 </style>
 </head>
+
 <body data-spy="scroll" data-target=".onpage-navigation"
 	data-offset="60">
 	<main>

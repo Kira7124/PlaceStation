@@ -143,7 +143,9 @@ public class memberController {
 		Member member = Member.builder().userno(userDetails.getUserNo()).userid(userDetails.getUserId())
 				.useraddress(userDetails.getUserAddress()).useremail(userDetails.getEmail())
 				.userhp(userDetails.getUserHp()).username(id).userpoint(userDetails.getUserPoin()).userrole(role)
-				.grade(userDetails.getGrade()).joinat(userDetails.getJoinAt()).gender(userDetails.getGender()).build();
+				.grade(userDetails.getGrade()).joinat(userDetails.getJoinAt()).gender(userDetails.getGender())
+				.filepath(userDetails.getFilePath())
+				.build();
 
 		log.info("userDetails가 member로 변환된데이터: " + member.toString());
 
