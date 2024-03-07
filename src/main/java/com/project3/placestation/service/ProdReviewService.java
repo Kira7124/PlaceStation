@@ -37,10 +37,12 @@ public class ProdReviewService {
 	            .prodRevStar(prodRev.getProdRevStar())
 	            .prodRevCreateAt(prodRev.getProdRevCreateAt())
 	            .userNo(prodRev.getUserNo())
+	            .userName(prodRev.getUserName())
 	            .prodRevUpdateAt(prodRev.getProdRevUpdateAt())
 	            .prodRevDeleteYn(prodRev.getProdRevDeleteYn())
 	            .prodRevDeleteAt(prodRev.getProdRevDeleteAt())
 	            .parentId(prodRev.getParentId())
+	            .filePath(prodRev.getFilePath())
 	            .build();
 	        
 	        dtos.add(dto);
@@ -125,6 +127,8 @@ public class ProdReviewService {
                 .prodRevDeleteYn(reply.getProdRevDeleteYn())
                 .prodRevDeleteAt(reply.getProdRevDeleteAt())
                 .parentId(reply.getParentId())
+                .userName(reply.getUserName())
+                .filePath(reply.getFilePath())
                 .build();
             
             replyDtos.add(replyDto);

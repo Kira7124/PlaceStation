@@ -156,17 +156,16 @@
 									>1:1문의</a></li>
 								<li ><a  href="/cs/faq"
 									>FAQ</a></li>
-							
-								
+
 							</ul></li>
 			
 					</ul>
 				</div>
 
 				<div class="container-search" style="margin-bottom: 25px;">
-					<form role="form">
+					<form role="form" action="/product/search-page" method="get">
 						<div class="search-box">
-							<input class="form-control" type="text" style="" placeholder="Search..." />
+							<input class="form-control" type="text" style="" placeholder="Search..." name="search"/>
 							<button class="search-btn" type="submit">
 								<i class="fa fa-search"></i>
 							</button>
@@ -196,4 +195,3 @@
 				</div>
 			</div>
 		</nav>
-	</main>

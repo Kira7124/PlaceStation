@@ -1,16 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- adminheader.jsp -->
-<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/mainpage.css" />
 
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 
-<!-- Wow.js 및 관련 CSS 불러오기 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
 <style>
 .shop-item {
@@ -45,11 +40,12 @@
     color: #3498db;
 }
 
-/**/
 
-<jsp:include page="popup.jsp"/>
 
 </style>
+<!-- adminheader.jsp -->
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<jsp:include page="popup.jsp"/>
 
 <div class="main wow fadeIn">
 	<!-- 배너 이미지 -->
@@ -239,6 +235,7 @@
 		</div>
 	</section>
 
+
 	<!-- 3번 상품 리스트 (새로 등록된 순) -->
 	<section class="module wow fadeIn" id="specialities">
 		<div class="container">
@@ -332,7 +329,7 @@
 			</div>
 		</div>
 	</section>
-
+</div>
 
 	<!-- include.jsp -->
 	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

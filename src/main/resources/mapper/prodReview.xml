@@ -59,7 +59,7 @@
 	</select>
 
 	<!-- 리뷰 조회 -->
-	<select id="findReviews">
+	<select id="findReviews" resultType="com.project3.placestation.repository.entity.ProdReview">
 		SELECT p.prod_rev_no as prodRevNo ,
 		p.prod_no as prodNo ,
 		p.prod_rev_content as prodRevContent ,
@@ -70,7 +70,8 @@
 		p.prod_rev_delete_yn as prodRevDeleteYn , 
 		p.prod_rev_delete_at as prodRevDeleteAt , 
 		p.parent_id as parentId,
-		m.user_name as userName , m.file_path as filePath FROM prod_review p
+		m.user_name as userName 
+		, m.file_path as filePath FROM prod_review p
 		left join member m
 		on m.user_no = p.user_no
 		WHERE prod_rev_delete_yn =
@@ -82,7 +83,7 @@
 	</select>
 
 	<!-- 답글 조회 -->
-	<select id="findReplies">
+	<select id="findReplies" resultType="com.project3.placestation.repository.entity.ProdReview">
 		SELECT p.prod_rev_no as prodRevNo ,
 		p.prod_no as prodNo ,
 		p.prod_rev_content as prodRevContent ,
