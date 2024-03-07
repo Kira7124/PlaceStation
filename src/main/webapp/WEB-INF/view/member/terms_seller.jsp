@@ -16,7 +16,7 @@
  
  
                       </textarea>
-                      <div>판매자 이용 약관 동의 <input type="checkbox" id="check_terms1" style="float: left; margin-right: 1%;"></div>
+                      <div>판매자 이용 약관 동의 <input type="checkbox" id="biz_check_terms1" style="float: left; margin-right: 1%;"></div>
                     </div>
                   </div>
                 </div>
@@ -31,14 +31,14 @@
                  
                  
                     </textarea>
-                    <div>14세 이상 약관 동의 <input type="checkbox" id="check_terms2" style="float: left; margin-right: 1%;"></div>
+                    <div>14세 이상 약관 동의 <input type="checkbox" id="biz_check_terms2" style="float: left; margin-right: 1%;"></div>
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn-round btn-b terms-btn" style="margin: auto; display: block;" onclick="checkForm()">다음 단계로</button>
+              <button type="submit" class="btn-round btn-b terms-btn biz_submit_btn" style="margin: auto; display: block;" onclick="checkBizForm()">다음 단계로</button>
               <br>
-              <button type="submit" class="btn-round btn-b terms-btn" style="margin: auto; display: block; background-color: darkgrey; white-space: pre; color: #000;">  처음으로  </button>
+              <button type="submit" class="btn-round btn-b terms-btn" style="margin: auto; display: block; background-color: darkgrey; white-space: pre; color: #000;"><a href="/main/index">처음으로</a></button>
             </div>
           </div>
         </section>
-    <%@ include file ="/WEB-INF/view/member/layout/footer.jsp" %>
+    <%@ include file ="/WEB-INF/view/layout/footer.jsp" %>

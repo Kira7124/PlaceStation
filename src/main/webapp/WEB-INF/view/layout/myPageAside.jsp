@@ -16,14 +16,14 @@
 <br>
 <div style="width: 100%;">
 	<ul class="list-group" style="text-align: center;">
-		<li class="list-group-item disabled" aria-disabled="true"><a
-			href="/member/mypage/history">결제내역</a></li>
-		<li class="list-group-item"><a href="/member/mypage/wishlist">찜목록</a></li>
+		<li class="list-group-item disabled" ><a
+			href="/user/mypage/history">결제내역</a></li>
+		<li class="list-group-item"><a href="/user/mypage/wishlist">찜목록</a></li>
 		<li class="list-group-item"><a href="/cs/qna">문의
 				내역</a></li>
-		<li class="list-group-item"><a href="/member/mypage/main">내정보
+		<li class="list-group-item"><a href="/user/mypage/main">내정보
 				변경</a></li>
 		<li class="list-group-item"><a
-			href="/member/mypage/managementParty">모임 내역 관리</a></li>
+			href="/user/mypage/managementParty">모임 내역 관리</a></li>
 	</ul>
 </div>

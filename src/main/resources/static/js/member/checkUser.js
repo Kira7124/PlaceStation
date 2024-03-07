@@ -20,9 +20,9 @@ const rePass = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,16
 const reName = /^[가-힣]{2,10}$/
 const reEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 const reHp = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
-const reImpuid = /^[0-9a-z-]{7,20}$/;     // /^[0-9]{9}$/;  숫자만
-const reImpkey = /^[0-9a-z-]{20,60}$/;
-const reImpsecret = /^[0-9a-z-]{20,60}$/;
+const reImpuid = /^[0-9a-zA-Z]{10,15}$/;     // /^[0-9]{9}$/;  숫자만
+const reImpkey = /^[0-9]{15,20}$/;
+const reImpsecret = /^[0-9a-zA-Z]{80,100}$/;
 
 
 // 유효성 검사(Validation)
@@ -242,7 +242,7 @@ window.onload = function() {
 
 			// 서버 전송
 			const xhr = new XMLHttpRequest();
-			xhr.open('GET', '/member/check/uid/' + uid);
+			xhr.open('GET', '/user/check/uid/' + uid);
 			xhr.send();
 
 			xhr.onreadystatechange = function() {
@@ -279,7 +279,7 @@ window.onload = function() {
 		}
 		console.log("유효성검사통과!");
 		$.ajax({
-			url: '/member/check/hp/' + hp,
+			url: '/user/check/hp/' + hp,
 			dataType: 'json',
 			type: 'GET',
 			contentType: 'application/json',
@@ -305,7 +305,7 @@ window.onload = function() {
 			isHpOk = false;
 			return;
 		}
-		const url = '/member/check/managerHp/' + managerHp;
+		const url = '/user/check/managerHp/' + managerHp;
 		$.get(url, function(data) {
 			console.log(data);
 			if (data > 0) {

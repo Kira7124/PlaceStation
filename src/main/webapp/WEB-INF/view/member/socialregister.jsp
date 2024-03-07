@@ -117,15 +117,9 @@ h2 {
 <section class="module">
 	<div class="container"
 		style="background: #fff; border-radius: 5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); width: 550px;">
-		<form action="/member/social/register" id="form" class="form" method="post">
+		<form action="/user/social/register" id="form" class="form" method="post">
 			<c:if test="${not empty principal}">
 				<h2>Register With Us</h2>
-				<p>
-					principal :
-					<sec:authentication property="principal" />
-				</p>
-				<p>=====================================</p>
-				<p>Principal 정보: ${principal}</p>
 				<div class="register-form" style="margin-bottom: 10px;">
 					<label for="id">id</label> <input type="text" id="userId"
 						placeholder="Enter id" name="userId" value="${principal.name}"
@@ -203,4 +197,4 @@ h2 {
 </section>
 <!-- 회원가입 폼 종료 -->
 
-<%@ include file="/WEB-INF/view/member/layout/footer.jsp"%>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

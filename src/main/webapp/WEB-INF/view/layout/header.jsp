@@ -154,14 +154,15 @@
 				<div class="login_register"
 					style="display: inline-block; margin-bottom: 30px;">
 					<sec:authorize access="isAnonymous()">
-						<a href="/member/login">로그인</a>
-						<a href="/member/uregister">회원가입</a>
+						<a href="/user/login">로그인</a>
+						<a href="/user/uterms">일반 회원가입</a>
+						<a href="/user/sterms">판매자 회원가입</a>
 
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
-						<a href="/member/logout">로그아웃</a>
+						<a href="/user/logout">로그아웃</a>
 						<sec:authorize access="hasRole('ROLE_USER')">
-							<a href="/member/mypage/main">회원정보</a>
+							<a href="/user/mypage/main">회원정보</a>
 						</sec:authorize>
 						<sec:authorize access="hasRole('ROLE_BIZ')">
 							<a href="/biz/main">사업자</a>

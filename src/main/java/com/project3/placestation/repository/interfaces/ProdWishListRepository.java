@@ -21,4 +21,8 @@ public interface ProdWishListRepository {
 	
 	// 자신이 찜한 목록 확인
 	public List<MemberWishListDto> findByUserNo(int userNo);
+	
+	// (유저 페이징) 위시 리스트 카운트
+	public int 	countByUserWishList(int userno);
+	
 }

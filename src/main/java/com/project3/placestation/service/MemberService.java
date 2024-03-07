@@ -27,6 +27,7 @@ import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
 import com.project3.placestation.repository.interfaces.AdminProdHistoryRepository;
 import com.project3.placestation.repository.interfaces.MemberRepository;
+import com.project3.placestation.repository.interfaces.ProdWishListRepository;
 
 import jakarta.mail.MessagingException;
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +47,10 @@ public class MemberService {
 
 	@Autowired
 	AdminProdHistoryRepository adminProdHistoryRepository;
+	
+	@Autowired
+	private ProdWishListRepository wishListRepository;
+	
 
 	// 관리자회원정보리스트(페이징) 출력
 	public List<Member> listAll(Criteria cri) throws Exception {
@@ -361,6 +366,16 @@ public class MemberService {
 		
 	}
 
+	
+	public int countByUserWishList(int userno) {
+		
+		
+		
+		
+		return wishListRepository.countByUserWishList(userno);
+	}
+	
+	
 	// ------------ StarsinLiver --------------
 	// 유저 거래녀역 찾기
 	public PageRes<MemberHistoryDto> memberFineAllByUserNo(int userNo, PageReq pageReq) {
