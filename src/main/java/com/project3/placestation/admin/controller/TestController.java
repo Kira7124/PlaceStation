@@ -20,9 +20,12 @@ public class TestController {
 		return "layout/main";
 	}
 
+	//http://localhost:80/test/popup
 
-
-
+	@GetMapping("/popup")
+	public String popget() {
+		return "product/popup";
+	}
 
 
 
