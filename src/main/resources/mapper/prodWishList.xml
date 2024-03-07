@@ -90,5 +90,12 @@
 	</select>
 	
 	
+	<!-- 찜 취소(삭제)하기 -->
+	<delete id="userDeleteWishList">
+		delete from wish_list
+		where prod_no = #{prodNo} AND
+		user_no = #{userNo}
+	</delete>
+	
 	
 </mapper>

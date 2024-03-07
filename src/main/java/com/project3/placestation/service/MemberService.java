@@ -47,10 +47,9 @@ public class MemberService {
 
 	@Autowired
 	AdminProdHistoryRepository adminProdHistoryRepository;
-	
+
 	@Autowired
 	private ProdWishListRepository wishListRepository;
-	
 
 	// 관리자회원정보리스트(페이징) 출력
 	public List<Member> listAll(Criteria cri) throws Exception {
@@ -209,7 +208,6 @@ public class MemberService {
 
 			memberReturn = memberRepository.selectByIsUserId(uid);
 
-
 			return memberReturn;
 
 		} else {
@@ -223,8 +221,8 @@ public class MemberService {
 
 		Member userCheck = memberRepository.selectByValidUserNameOauth(username);
 
-		log.info("소셜 최초 가입 유저서비스 리턴값 확인: "+userCheck);
-		
+		log.info("소셜 최초 가입 유저서비스 리턴값 확인: " + userCheck);
+
 		return userCheck;
 
 	}
@@ -337,45 +335,54 @@ public class MemberService {
 
 	public Member selectUserNo(int userno) {
 
-		
-		
 		return memberRepository.selectUserNo(userno);
 	}
 
 	@Transactional
 	public void updateUser(UserUpdateDTO dto) {
 
-		
-		Member updateMember = Member.builder()
-				.userno(dto.getUserno())
-				.username(dto.getUpname())
-				.userpassword(bCryptPasswordEncoder.encode(dto.getUppass()))
-				.useremail(dto.getUpemail())
-				.useraddress(dto.getUpaddress())
-				.userhp(dto.getUphp())
-				.filepath(dto.getUpfilepath())
-				.build();
-		
-		int returnMember = memberRepository.userUpdateMember(updateMember);
-		
-		if(returnMember == 0) {
-			throw new CustomRestfulException("서버에러", HttpStatus.INTERNAL_SERVER_ERROR);
+		if (dto.getOauth() != "") {
+			Member updateMember = Member.builder().userno(dto.getUserno()).username(dto.getUpname())
+					.userpassword(bCryptPasswordEncoder.encode(dto.getUppass())).useremail(dto.getUpemail())
+					.useraddress(dto.getUpaddress()).userhp(dto.getUphp()).filepath(dto.getUpfilepath()).build();
+
+			int returnMember = memberRepository.userUpdateMember(updateMember);
+
+			if (returnMember == 0) {
+				throw new CustomRestfulException("서버에러", HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			log.info("여기탐!!!!!!!!!!!!!!!!!!!!");
+
+		} else {
+
+			Member updateMember = Member.builder().userno(dto.getUserno()).username(dto.getUpname())
+					.userpassword(dto.getUppass()).useremail(dto.getUpemail()).useraddress(dto.getUpaddress())
+					.userhp(dto.getUphp()).filepath(dto.getUpfilepath()).build();
+
+			int returnMember = memberRepository.userUpdateMember(updateMember);
+
+			if (returnMember == 0) {
+				throw new CustomRestfulException("서버에러", HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			log.info("여기탐222222222222222222222222222222");
 		}
-		
-		
+
+	}
+
+
+	public void deleteWish(int userno, int prodNo) {
+
+		wishListRepository.userDeleteWishList(userno,prodNo);
 		
 	}
 
 	
+	
 	public int countByUserWishList(int userno) {
-		
-		
-		
-		
+
 		return wishListRepository.countByUserWishList(userno);
 	}
-	
-	
+
 	// ------------ StarsinLiver --------------
 	// 유저 거래녀역 찾기
 	public PageRes<MemberHistoryDto> memberFineAllByUserNo(int userNo, PageReq pageReq) {
