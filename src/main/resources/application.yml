@@ -2,7 +2,7 @@ server:
   error:
     include-exception: TRUE
     include-stacktrace: ALWAYS
-    whitelabel.enabled : true
+    whitelabel.enabled : false
     path: /error
     include-binding-errors: ALWAYS
     
@@ -17,6 +17,11 @@ server:
 
 # JSP, mustache 원하는거 사용
 spring:
+  main:
+    allow-bean-definition-overriding: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+    
   devtools:
     restart:
       enabled: false

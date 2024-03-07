@@ -30,5 +30,8 @@ public class UserUpdateDTO {
 	private String uphp;
 	private String upfilepath;
 
+	// 암호화 분기를 위해 사용
+	private String oauth;
+	
 	
 }
