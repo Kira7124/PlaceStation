@@ -78,12 +78,13 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilter(HttpSecurity http) throws Exception {
 		http.csrf((auth) -> auth.disable());
-
+		
 		http
 				// SpringBoot 3.1버전 부터 람다식으로 작성 해야한다.
 				.authorizeHttpRequests((auth) -> auth
 
-						.requestMatchers("/user/**").hasAnyRole("USER","ADMIN","BIZ")
+						.requestMatchers("/user/**").permitAll()
+						.requestMatchers("/user/mypage/**").hasAnyRole("USER","ADMIN","BIZ")
 						.requestMatchers("/biz/**").hasRole("BIZ")
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.anyRequest().permitAll() // 본인 requsetMapping

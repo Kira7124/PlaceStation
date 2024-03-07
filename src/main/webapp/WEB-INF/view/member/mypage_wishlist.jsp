@@ -127,6 +127,7 @@ a {
 							<div class="">
 								<div class="table-responsive">
 									<c:forEach items="${wishList}" var="wishList">
+									<input type="hidden" value="${wishList.prodNo }" id="prodNo">
 										<table
 											class="table project-list-table table-nowrap align-middle table-borderless">
 											<thead>
@@ -145,13 +146,8 @@ a {
 													<td>${wishList.prodPrice }</td>
 													<td>${wishList.prodFullAddress}</td>
 													<td>
-														<ul class="list-inline mb-0">
-															<li class="list-inline-item"><a
-																href="javascript:void(0);" data-bs-toggle="tooltip"
-																data-bs-placement="top" title="Delete"
-																class="px-2 text-danger"><i
-																	class="bx bx-trash-alt font-size-18"></i></a></li>
-														</ul>
+													
+															<a id="deletebtn">삭제</a>
 													</td>
 												</tr>
 											</tbody>
@@ -212,4 +208,34 @@ a {
 <!--  프로필 content 끝 -->
 </div>
 </div>
+
+<script>
+<script>
+$(document).ready(function() {
+    // 삭제 링크 클릭 이벤트 핸들러
+    $("#deletebtn").click(function(event) {
+        
+        // 삭제할 상품 번호 가져오기
+        var prodNo = $("#prodNo").val();
+        
+        // AJAX 요청 보내기
+        $.ajax({
+            type: "POST",
+            url: "/user/deleteWish",
+            data: { prodNo: prodNo }, // 상품 번호 전달
+            success: function(response) {
+                // 성공 시 처리
+                console.log("삭제 요청이 성공했습니다.");
+                window.location.href = "/user/mypage_wishlist"; // 페이지 새로고침
+            },
+            error: function(xhr, status, error) {
+                // 실패 시 처리
+                console.error("삭제 요청이 실패했습니다.");
+                console.error(error);
+            }
+        });
+    });
+});
+</script>
+</script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
