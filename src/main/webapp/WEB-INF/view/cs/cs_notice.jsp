@@ -56,7 +56,7 @@
 						
 							<c:forEach var="i" begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1">
 								<c:set var="isActive" value="${pageVO.cri.page == i}" />
-								<li class="page-item ${isActive ? 'active' : ''}">
+								<li ${isActive ? 'active' : ''}">
 									<a class="page-link" href="/cs/notice?page=${i}">${i}</a>
 								</li>
 							</c:forEach>

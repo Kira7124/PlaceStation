@@ -128,7 +128,7 @@
 						<li class="dropdown" style="font-size: 13px"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">공지</a>
 							<ul class="dropdown-menu">
-								<li ><a  href="/cs/notice/search
+								<li ><a  href="/cs/notice
 									">공지사항</a></li>
 								<li ><a  href="/cs/qna"
 									>1:1문의</a></li>
