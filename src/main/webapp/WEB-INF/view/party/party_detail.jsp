@@ -112,21 +112,25 @@ h1, h2, h3, h4, h5, h6 {
 												해주세요</a>
 									</c:when>
 									<c:when test="${member.userno == party.partyHost}">
-										<div class="btn-after-login">
+										<div class="btn-after-login" style="display: flex;">
+											<div   id="button-write">
 
-											<a
-												href="/party/announcement/create?party-no=${party.partyNo}"
-												style="color: white" class="btn btn-success btn-round">
-												공지사항 작성</a> <a href="/party/update/${party.partyNo}"
-												style="color: white" class="btn btn-success btn-round">
-												모임 수정</a>
+												<a class="btn btn-round" 
+													href="/party/announcement/create?party-no=${party.partyNo}"
+													style="color: white; background-color: #5bc0de"> 공지사항 작성</a>
+											</div>
+											<div  id="btn-update">
 
-
+												<a href="/party/update/${party.partyNo}" class="btn  btn-round"
+													style="color: white; background-color: #5bc0de"> 모임 수정</a>
+											</div>
+											<div >
 											<form action="/party/delete/${party.partyNo}" method="post">
 												<input type="hidden" name="_method" value="delete" />
-												<button class="btn btn-success btn-round" id="btn-delete"
+												<button class="btn  btn-round" id="btn-delete" style="background-color: #5bc0de; color : white"
 													type="submit">모임 삭제</button>
 											</form>
+											</div>
 										</div>
 									</c:when>
 									<c:when test="${validJoin}">
@@ -214,7 +218,7 @@ h1, h2, h3, h4, h5, h6 {
 
 							<div class="comment-avatar">
 
-								<img src="${party.userFilePath}" alt="avatar" style="width : 50px; height : 50px;"/>
+								<img src="${party.userFilePath}" alt="avatar" />
 							</div>
 							<div class="comment-content clearfix">
 								<div class="comment-author font-alt">
@@ -226,7 +230,7 @@ h1, h2, h3, h4, h5, h6 {
 						<c:forEach items="${parcipationParties}" var="memberList">
 							<div class="comment clearfix">
 								<div class="comment-avatar">
-									<img src="${memberList.filePath}" alt="avatar" style="width : 50px; height : 50px;"/>
+									<img src="${memberList.filePath}" alt="avatar" />
 								</div>
 								<div class="comment-content clearfix">
 									<div class="comment-author font-alt">
