@@ -15,8 +15,7 @@
 			<div
 				style="display: flex; justify-content: space-between; align-items: baseline;">
 				<h3 id="h3-footer">PlaceStation</h3>
-				<a href="/cs/notice/search">고객센터
-					</h4>
+
 			</div>
 			<hr class="divider-d" id="footer">
 			<div class="col-sm-6">
