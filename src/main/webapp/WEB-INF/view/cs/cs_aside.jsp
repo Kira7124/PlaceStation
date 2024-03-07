@@ -30,8 +30,7 @@
 		<div class="widget">
 			<h5 class="widget-title font-alt">고객센터</h5>
 			<ul class="icon-list">
-				<li class=""><a href="#">고객센터 홈</a></li>
-				<li><a href="/cs/notice/search">공지사항</a></li>
+				<li><a href="/cs/notice">공지사항</a></li>
 				<li><a href="/cs/qna">1:1 문의</a></li>
 				<li><a href="/cs/faq">FAQ</a></li>
 			</ul>

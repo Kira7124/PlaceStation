@@ -1,7 +1,5 @@
 @charset "UTF-8";
-html {
-    height: 100%;
-}
+
 
 .main {
 	display: flex;
@@ -23,8 +21,16 @@ html {
 .pagination {
 	display: flex;
 	flex-direction: row;
+}	
+.navbar-nav {
+	margin-bottom: 20px !important;
+}	
+
+#header > div.login_register {
+	margin-bottom: 40px !important; 
+}
 	
 /* cs 공지사항 */
 
 	
-}
+

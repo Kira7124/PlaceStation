@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -104,7 +105,7 @@ public class memberController {
 		Member User = memberService.selectUserNo(userno);
 
 		log.info("마이페이지 메인의 컨트롤러: " + User.toString());
-
+		
 		model.addAttribute("User", User);
 
 		return "member/mypage_main";
@@ -143,7 +144,9 @@ public class memberController {
 		Member member = Member.builder().userno(userDetails.getUserNo()).userid(userDetails.getUserId())
 				.useraddress(userDetails.getUserAddress()).useremail(userDetails.getEmail())
 				.userhp(userDetails.getUserHp()).username(id).userpoint(userDetails.getUserPoin()).userrole(role)
-				.grade(userDetails.getGrade()).joinat(userDetails.getJoinAt()).gender(userDetails.getGender()).build();
+				.grade(userDetails.getGrade()).joinat(userDetails.getJoinAt()).gender(userDetails.getGender())
+				.filepath(userDetails.getFilePath())
+				.build();
 
 		log.info("userDetails가 member로 변환된데이터: " + member.toString());
 
@@ -245,7 +248,7 @@ public class memberController {
 //		if (member == null) {
 //			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 //		}
-
+		
 		List<Party> partyList = partyService.findbyUserNo(member.getUserno());
 		List<MemberParcipationDto> parcipationList = parcipationPartyService.findUserNo(member.getUserno());
 		log.info("partyList : " + partyList);
