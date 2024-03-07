@@ -45,7 +45,7 @@
                   </div>
                   </div>
                   <div class="form-group" style="position: absolute; width: 93%;">
-                    <a href="" style="font-weight: 600;">Forgot Password?</a> 
+                    <!-- <a href="" style="font-weight: 600;">Forgot Password?</a>  -->
                     <a href="/user/uterms" style="float: right; font-weight: 600; position: relative; padding-left: 5%;">User Register</a>
                     <a href="/user/sterms" style="float: right; font-weight: 600; position: relative;">Seller Regist</a>
                     </div>

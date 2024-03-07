@@ -158,7 +158,7 @@ insert into product (
     '부산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    '/assets/images/product/camp1.png' ,
+    '/assets/images/product/camp1.jpg' ,
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
@@ -260,7 +260,7 @@ insert into product (
     '부산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    '/assets/images/product/camp5.png' ,
+    '/assets/images/product/camp5.jpg' ,
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
@@ -477,81 +477,7 @@ insert into addition_explanation (file_path , name) values ('/assets/images/biz/
 ('/assets/images/biz/sliper.png','실내화'),
 ('/assets/images/biz/tripod.png','삼각대');
 
-insert into party (party_name , party_title , party_description , party_host, party_maximum_people, party_manager , product_no ,admin_his_no)
-values ('모임 이름 ' , '모임 타이틀' , '모임 설명' , 30 , 6 , null , 3 ,'OXDSAD-DNSKAN1');
 
-insert into party (party_name , party_title , party_description , party_host, party_maximum_people, party_manager , product_no ,admin_his_no)
-values ('모임 이름1 ' , '모임 타이틀1' , '모임 설명1' , 20 , 10 , null , 3 ,'OXDSAD-DNSKAN2');
-
-insert into party (party_name , party_title , party_description , party_host, party_maximum_people, party_manager , product_no ,admin_his_no)
-values ('모임 이름2 ' , '모임 타이틀2' , '모임 설명2' , 15 , 4 , null , 3 ,'OXDSAD-DNSKAN3');
-
-insert into party (party_name , party_title , party_description , party_host, party_maximum_people, party_manager , product_no ,admin_his_no)
-values ('모임 이름3 ' , '모임 타이틀3' , '모임 설명3' , 10 , 2 , null , 3 ,'OXDSAD-DNSKAN4');
-
-
-
-
-insert into parcipation_party (party_no, party_user_no)
-values (1, 30);
-insert into parcipation_party (party_no, party_user_no)
-values (2, 30);
-insert into parcipation_party (party_no, party_user_no)
-values (3, 30);
-insert into parcipation_party (party_no, party_user_no)
-values (4, 30);
-
-
-
-
-
-
-
-insert into party_announcement (party_no , party_announcement_title , party_announcement_description
-) values (1 , '모임 공지 타이틀1' , '모임 공지 설명1');
-
-insert into party_announcement (party_no , party_announcement_title , party_announcement_description
-) values (2 , '모임 공지 타이틀2' , '모임 공지 설명2');
-
-insert into party_announcement (party_no , party_announcement_title , party_announcement_description
-) values (3 , '모임 공지 타이틀3' , '모임 공지 설명3');
-
-insert into party_announcement (party_no , party_announcement_title , party_announcement_description
-) values (4 , '모임 공지 타이틀4' , '모임 공지 설명4');
-
-insert into party_announcement (party_no , party_announcement_title , party_announcement_description
-) values (5 , '모임 공지 타이틀5' , '모임 공지 설명5');
-
-
-
-
-
-insert into wish_list (prod_no , user_no) 
-values (1 , 30);
-insert into wish_list (prod_no , user_no) 
-values (2 , 30);
-insert into wish_list (prod_no , user_no) 
-values (3 , 30);
-insert into wish_list (prod_no , user_no) 
-values (4 , 30);
-insert into wish_list (prod_no , user_no) 
-values (5 , 30);
-insert into wish_list (prod_no , user_no) 
-values (6 , 30);
-insert into wish_list (prod_no , user_no) 
-values (7 , 30);
-insert into wish_list (prod_no , user_no) 
-values (8 , 30);
-insert into wish_list (prod_no , user_no) 
-values (1 , 30);
-insert into wish_list (prod_no , user_no) 
-values (2 , 30);
-insert into wish_list (prod_no , user_no) 
-values (3 , 30);
-insert into wish_list (prod_no , user_no) 
-values (4 , 30);
-insert into wish_list (prod_no , user_no) 
-values (5 , 30);
 
 insert into product_views values 
 (0,1),
