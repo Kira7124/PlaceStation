@@ -52,7 +52,7 @@ public class ProdWishListService {
     }
     
     // 유저 넘버로 찜목록 확인
-    public List<MemberWishListDto> findByUserNo(int userNo, Criteria cri)  {
-    	return prodWishListRepository.findByUserNo(userNo, cri);
+    public List<MemberWishListDto> findByUserNo(int userNo)  {
+    	return prodWishListRepository.findByUserNo(userNo);
     }
 }

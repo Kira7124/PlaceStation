@@ -21,7 +21,7 @@ public interface ProdWishListRepository {
 	public int findByProdNoAndUserNo(@Param("prodNo")Integer prodNo,@Param("userNo") Integer userNo);
 	
 	// 자신이 찜한 목록 확인
-	public List<MemberWishListDto> findByUserNo(@Param("userNo")int userNo,Criteria cri);
+	public List<MemberWishListDto> findByUserNo(int userNo);
 	
 	// (유저 페이징) 위시 리스트 카운트
 	public int 	countByUserWishList(int userno );

@@ -222,7 +222,7 @@ public class memberController {
 		
 		log.info("위시 리트스 페이지 브이오 객체 값 확인: " + pageVo.toString());
 		
-		List<MemberWishListDto> wishList = prodWishListService.findByUserNo(member.getUserno(), cri);
+		List<MemberWishListDto> wishList = prodWishListService.findByUserNo(member.getUserno());
 		
 		
 		
