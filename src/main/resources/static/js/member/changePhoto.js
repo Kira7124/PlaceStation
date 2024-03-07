@@ -23,7 +23,7 @@ $(document).ready(function() {
 		// AJAX 요청
 		$.ajax({
 
-			url: '/member/changePhoto',
+			url: '/user/changePhoto',
 			type: 'POST',
 			data: formData,
 			processData: false, //. 이 설정은 일반적으로 FormData나 Blob 등과 같이 직렬화할 필요가 없는 데이터를 전송할 때 사용

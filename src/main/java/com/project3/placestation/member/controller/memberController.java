@@ -15,25 +15,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project3.placestation.admin.dto.Criteria;
+import com.project3.placestation.admin.dto.PageVO;
 import com.project3.placestation.biz.handler.exception.CustomLoginRestfulException;
 import com.project3.placestation.biz.model.util.BizDefine;
-import com.project3.placestation.biz.model.util.PageReq;
-import com.project3.placestation.biz.model.util.PageRes;
 import com.project3.placestation.config.jwt.UserDetailsImpl;
 import com.project3.placestation.config.oauth2.SessionUser;
 import com.project3.placestation.filedb.service.FiledbService;
 import com.project3.placestation.member.dto.MemberParcipationDto;
 import com.project3.placestation.member.dto.MemberWishListDto;
-import com.project3.placestation.member.dto.MemberHistoryDto;
 import com.project3.placestation.member.dto.RequestJoinDTO;
 import com.project3.placestation.member.dto.UserUpdateDTO;
-import com.project3.placestation.party.dto.ResCreatePartySelectDto;
 import com.project3.placestation.repository.entity.BizJoin;
 import com.project3.placestation.repository.entity.Member;
-import com.project3.placestation.repository.entity.ParcipationParty;
 import com.project3.placestation.repository.entity.Party;
 import com.project3.placestation.repository.interfaces.MemberRepository;
 import com.project3.placestation.service.MemberService;
@@ -44,7 +40,7 @@ import com.project3.placestation.service.ProdWishListService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("/member")
+@RequestMapping("/user")
 @Controller
 @Slf4j
 public class memberController {
@@ -205,16 +201,38 @@ public class memberController {
 	}
 
 	@GetMapping("/mypage/wishlist")
-	public String myPageWishlist(Model model) {
+	public String myPageWishlist(Model model, Criteria cri) {
 
 		// 1. 유효성 검사
 		Member member = (Member) httpSession.getAttribute("member");
 //		if (member == null) {
 //			throw new CustomLoginRestfulException(BizDefine.ACCOUNT_IS_NONE, HttpStatus.INTERNAL_SERVER_ERROR);
 //		}
+		int total = service.countByUserWishList(member.getUserno());
+
+		// wishList 전체 개수
+		log.info("위시리트스 총 개수: "+total);
+		
+		PageVO pageVo = new PageVO();
+		pageVo.setCri(cri);
+		pageVo.setTotalCount(total);
+		
+		log.info("위시 리트스 페이지 브이오 객체 값 확인: " + pageVo.toString());
 		
 		List<MemberWishListDto> wishList = prodWishListService.findByUserNo(member.getUserno());
-		log.info("wishList : " + wishList);
+		
+		
+		
+		for(MemberWishListDto dto: wishList) {
+			
+			log.info("wishList11111111111111111111 : "  +  dto.toString());
+			log.info("포문도냐?");
+			
+		}
+		
+		model.addAttribute("pageVo", pageVo);
+		
+		log.info("wishList : " +  wishList);
 		model.addAttribute("wishList", wishList);
 		return "member/mypage_wishlist";
 
@@ -461,7 +479,7 @@ public class memberController {
 
 		httpSession.setAttribute("member", member);
 
-		return "redirect:/member/mypage/main";
+		return "redirect:/user/mypage/main";
 
 	}
 

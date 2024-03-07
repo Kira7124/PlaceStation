@@ -234,4 +234,4 @@ h2 {
         
         
         </script>
-    <%@ include file ="/WEB-INF/view/member/layout/footer.jsp" %>
+    <%@ include file ="/WEB-INF/view/layout/footer.jsp" %>

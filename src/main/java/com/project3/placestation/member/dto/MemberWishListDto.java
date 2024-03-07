@@ -1,5 +1,14 @@
 package com.project3.placestation.member.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberWishListDto {
 	private Integer prodNo;	// 게시물 번호
 	private Integer prodWriterNo; // 판매자 id 값

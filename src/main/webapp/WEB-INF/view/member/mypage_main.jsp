@@ -30,10 +30,9 @@
 								class="d-flex justify-content-between align-items-center mb-3">
 
 								<!-- 이 폼으로 유저 데이터 업데이트 가능 -->
-								<form action="/member/userUpdate" id="form" class="form" method="post">
+								<form action="/user/userUpdate" id="form" class="form" method="post">
 									<h4 class="text-center" style="font-size: xx-large;">Profile
 										Settings</h4>
-									<p>ssssss: ${User}</p>
 									<br> <br> <input type="hidden" value="${User.userno}"
 										name="userno" id="hiddenuserNo" />
 									<div class="row mt-2">
@@ -122,4 +121,4 @@
 </div>
 </div>
 
-<%@ include file="/WEB-INF/view/member/layout/footer.jsp"%>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

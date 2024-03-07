@@ -111,42 +111,42 @@ a {
 					<%@ include file="/WEB-INF/view/layout/myPageAside.jsp"%>
 				</div>
 				<!-- 메인 섹션 시작 -->
-					<div class="container">
-						<div class="post-columns">
-							<h2>여기서 모임을 볼 수 있습니다.</h2>
-							<ul>
-								<li>1. 자신이 만든 모임 내역</li>
-							</ul>
-							<c:forEach items="${partyList}" var="party">
-								<div class="col-sm-6 col-md-4 col-lg-4">
-									<div class="post">
-										<div class="post-thumbnail">
+				<div class="container">
+					<div class="post-columns">
+						<h2>여기서 모임을 볼 수 있습니다.</h2>
+						<ul>
+							<li>1. 자신이 만든 모임 내역</li>
+						</ul>
+						<c:forEach items="${partyList}" var="party">
+							<div class="col-sm-6 col-md-4 col-lg-4">
+								<div class="post">
+									<div class="post-thumbnail">
+										<a
+											href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.productNo}"><img
+											src="${party.filePath[0]}" alt="Blog-post Thumbnail" /></a>
+									</div>
+									<div class="post-header font-alt">
+										<h2 class="post-title">
 											<a
-												href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}"><img
-												src="${party.filePath[0]}" alt="Blog-post Thumbnail" /></a>
-										</div>
-										<div class="post-header font-alt">
-											<h2 class="post-title">
-												<a
-													href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.prodNo}">${party.prodTitle}</a>
-											</h2>
-											<div class="post-meta">
-												예약 일자&nbsp;<a href="#"></a>&nbsp;| ${party.purchaseDate}
-											</div>
-										</div>
-										<div class="post-entry">
-											<p>위치 : ${party.prodFullAddress}</p>
-											<p>모임 최대 인원 : ${party.peopleCount}</p>
-										</div>
-										<div class="post-more">
-											<a class="more-link" href="#">${party.mainCategory}</a> <a
-												class="more-link" href="#">${party.subcategory}</a>
+												href="/party/create?adminHisNo=${party.adminHisNo}&prodNo=${party.productNo}">${party.partyTitle}</a>
+										</h2>
+										<div class="post-meta">
+											예약 일자&nbsp;<a href="#"></a>&nbsp;| ${party.partyCreatedAt}
 										</div>
 									</div>
+									<div class="post-entry">
+										<p>위치 : ${party.partyDescription}</p>
+										<p>모임 최대 인원 : ${party.partyMaximumPeople}</p>
+									</div>
+									<div class="post-more">
+										<a class="more-link" href="#">${party.partyName}</a> <a
+											class="more-link" href="#">${party.partyName}</a>
+									</div>
 								</div>
-							</c:forEach>
-						</div>
+							</div>
+						</c:forEach>
 					</div>
+				</div>
 				<!-- 메인 섹션 종료 -->
 			</div>
 		</div>
@@ -155,4 +155,4 @@ a {
 <!--  프로필 content 끝 -->
 </div>
 </div>
-<%@ include file="/WEB-INF/view/member/layout/footer.jsp"%>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

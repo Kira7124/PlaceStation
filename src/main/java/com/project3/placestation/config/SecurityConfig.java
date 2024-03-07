@@ -78,9 +78,10 @@ public class SecurityConfig {
 		http
 				// SpringBoot 3.1버전 부터 람다식으로 작성 해야한다.
 				.authorizeHttpRequests((auth) -> auth
-
-						.requestMatchers("/biz/**").hasRole("BIZ").requestMatchers("/**").permitAll().anyRequest()
-						.permitAll() // 본인 requsetMapping
+						.requestMatchers("/user/**").hasAnyRole("USER","ADMIN","BIZ")
+						.requestMatchers("/biz/**").hasRole("BIZ")
+						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.anyRequest().permitAll() // 본인 requsetMapping
 				);
 
 		http
@@ -88,24 +89,23 @@ public class SecurityConfig {
 				.headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
 
 		// 적용
-		http.formLogin((auth) -> auth.loginPage("/member/login").loginProcessingUrl("/loginProc")
-				.defaultSuccessUrl("/member/session", true).failureUrl("/member/sregister").usernameParameter("RuserId")
+		http.formLogin((auth) -> auth.loginPage("/user/login").loginProcessingUrl("/loginProc")
+				.defaultSuccessUrl("/user/session", true).failureUrl("/user/sregister").usernameParameter("RuserId")
 				.passwordParameter("userPassword").permitAll());
 
-		http.logout((auth) -> auth.logoutUrl("/member/logout").invalidateHttpSession(true).clearAuthentication(true)
-				.logoutSuccessUrl("/member/login").permitAll());
+		http.logout((auth) -> auth.logoutUrl("/user/logout").invalidateHttpSession(true).clearAuthentication(true)
+				.logoutSuccessUrl("/user/login").permitAll());
 
 		// 자동 로그인 설정
 		http.rememberMe(remember -> remember.rememberMeParameter("remember").alwaysRemember(false)
 				.tokenValiditySeconds(60 * 60 * 24 * 30 * 3).key("rememberMe").userDetailsService(userDetailsService));
 
 		// 소셜 로그인 설정
-		http.oauth2Login((oauth2) -> oauth2.loginPage("/member/login")
-				// .userInfoEndpoint(userInfo -> userInfo.userService(oauth2Service)) // 데이터를 받을
-				// 수 있는 데이터를 받을 수 있는
+		http.oauth2Login((oauth2) -> oauth2.loginPage("/user/login")
+				//.userInfoEndpoint(userInfo -> userInfo.userService(oauth2Service))  // 데이터를 받을 수 있는 데이터를 받을 수 있는
 				.userInfoEndpoint((UserInfoEndpointConfig) -> UserInfoEndpointConfig.userService(oauth2Service))
-				.clientRegistrationRepository(clientRegistrationRepository())
-				.defaultSuccessUrl("/member/social/register", true).failureUrl("/login?success=403").permitAll());
+				.clientRegistrationRepository(clientRegistrationRepository()).defaultSuccessUrl("/user/social/register", true)
+				.failureUrl("/login?success=403").permitAll());
 
 		// 토큰 유지기간 1년
 		http.rememberMe(

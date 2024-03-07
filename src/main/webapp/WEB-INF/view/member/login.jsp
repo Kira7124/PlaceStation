@@ -9,11 +9,6 @@
             <div class="row">
               <div class="col-sm-5 col-sm-offset-1 mb-sm-40" id="login" style="margin-left: 33%;">
                 <h4 class="font-alt">Login</h4>
-                 <p>principal : <sec:authentication property="principal" /></p>
-         <%--         <p>principal : <sec:authentication property="principal.userName" /></p>
-                 <p>principal : <sec:authentication property="principal.authority" /></p> --%>
-                    <p>${id} </p>
-                    <p>${role} </p> 
                 <hr class="divider-w mb-10">
                 <form class="form" action="/loginProc" method="post">
                   <div class="form-group">
@@ -50,8 +45,8 @@
                   </div>
                   <div class="form-group" style="position: absolute; width: 93%;">
                     <a href="" style="font-weight: 600;">Forgot Password?</a> 
-                    <a href="/member/uregister" style="float: right; font-weight: 600; position: relative; padding-left: 5%;">User Register</a>
-                    <a href="/member/sregister" style="float: right; font-weight: 600; position: relative;">Seller Regist</a>
+                    <a href="/user/uterms" style="float: right; font-weight: 600; position: relative; padding-left: 5%;">User Register</a>
+                    <a href="/user/sterms" style="float: right; font-weight: 600; position: relative;">Seller Regist</a>
                     </div>
                   <div class="form-group"></div>
                 </form>
@@ -60,4 +55,4 @@
           </div>
         </section>
       <!--로그인 섹션 끝-->
-  <%@ include file ="/WEB-INF/view/member/layout/footer.jsp" %>
+  <%@ include file ="/WEB-INF/view/layout/footer.jsp" %>
