@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
-import org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer.UserInfoEndpointConfig;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
@@ -47,9 +45,6 @@ public class SecurityConfig {
 	@Value("${spring.security.oauth2.client.registration.kakao.redirect-uri}")
 	private String KakaoRedirectUri;
 
-
-
-
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		// db에서 가져온 정보와 리액트에서 전송한 유저 정보를 비교하는 객체
@@ -74,6 +69,7 @@ public class SecurityConfig {
 	public WebSecurityCustomizer webSecurityCustomizer() {
 		return (web) -> web.ignoring().requestMatchers("assets/**", "/js/**", "/images/**", "/css/**");
 	}
+	
 
 	@Bean
 	public SecurityFilterChain securityFilter(HttpSecurity http) throws Exception {
@@ -82,7 +78,6 @@ public class SecurityConfig {
 		http
 				// SpringBoot 3.1버전 부터 람다식으로 작성 해야한다.
 				.authorizeHttpRequests((auth) -> auth
-
 						.requestMatchers("/user/**").permitAll()
 						.requestMatchers("/user/mypage/**").hasAnyRole("USER","ADMIN","BIZ")
 						.requestMatchers("/biz/**").hasRole("BIZ")
@@ -93,7 +88,6 @@ public class SecurityConfig {
 		http
 				// X-Frame-Options 비활성화 h2를 열기 위해 설정
 				.headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
-
 
 		// 적용
 		http.formLogin((auth) -> auth.loginPage("/user/login").loginProcessingUrl("/loginProc")
@@ -113,11 +107,11 @@ public class SecurityConfig {
 				.userInfoEndpoint((UserInfoEndpointConfig) -> UserInfoEndpointConfig.userService(oauth2Service))
 				.clientRegistrationRepository(clientRegistrationRepository()).defaultSuccessUrl("/user/social/register", true)
 				.failureUrl("/login?success=403").permitAll());
-		
+
 		// 토큰 유지기간 1년
 		http.rememberMe(
-				(auth) -> auth.key("userId").rememberMeParameter("rememberMe").tokenValiditySeconds(3600 * 24 * 365) 
-				
+				(auth) -> auth.key("userId").rememberMeParameter("rememberMe").tokenValiditySeconds(3600 * 24 * 365)
+
 						.userDetailsService(userDetailsService));
 
 		// http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());

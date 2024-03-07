@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ page isErrorPage = "true" %>
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Dosis:300,400,700,800");

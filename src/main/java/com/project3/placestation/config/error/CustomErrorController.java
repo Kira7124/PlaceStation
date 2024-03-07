@@ -1,4 +1,4 @@
-package com.project3.placestation.main.controller;
+package com.project3.placestation.config.error;
 
 import java.util.Arrays;
 
@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
@@ -14,17 +15,18 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
+
 @Slf4j
+@Controller
 public class CustomErrorController implements ErrorController {
 
 	private static final String ERROR_PATH = "/error";
 	private static final String ERROR_PAGE_PATH = "error/error";
 
-	@RequestMapping(ERROR_PATH)
+	@GetMapping("/error")
+	
 	public String handleError(HttpServletRequest request, Model model) {
 
-		System.out.println("안녕하세요`");
 		// 에러 코드를 획득한다.
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
@@ -32,6 +34,7 @@ public class CustomErrorController implements ErrorController {
 		HttpStatus httpStatus = HttpStatus.valueOf(Integer.valueOf(status.toString()));
 
 		if (status != null) {
+		
 			// HttpStatus와 비교해 페이지 분기를 나누기 위한 변수
 			int statusCode = Integer.valueOf(status.toString());
 
