@@ -298,7 +298,7 @@ public class memberController {
 
 		service.uJoinProcess(dto);
 
-		return "redirect:/member/login";
+		return "redirect:/user/login";
 	}
 
 	// 판매자 회원가입 처리
@@ -329,7 +329,7 @@ public class memberController {
 		// 판매자 회원 가입 서비스 호출
 		service.sJoinProcess(dto, filepath);
 
-		return "redirect:/member/login";
+		return "redirect:/user/login";
 	}
 
 	// 소셜 로그인
@@ -461,7 +461,7 @@ public class memberController {
 
 	@PostMapping("/userUpdate")
 	public String myPageUpdateProc(UserUpdateDTO dto, Model model) {
-		log.info("dto : " + dto.toString());
+		log.info("update dto : " + dto.toString());
 		// 멤버 받기
 		Member member = (Member) httpSession.getAttribute("member");
 		if (member == null) {
@@ -524,6 +524,20 @@ public class memberController {
 
 	}
 
+	@PostMapping("/deleteWish")
+	public void deleteWish(int prodNo) {
+		
+		Member member = (Member) httpSession.getAttribute("member");
+		
+		int userno = member.getUserno();
+		
+		userno= 30;
+		prodNo = 1;
+		
+		service.deleteWish(userno,prodNo);
+		
+	}
+	
 	////////////////////////////////////////////////////////// biz
 	////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////
 	@Autowired
