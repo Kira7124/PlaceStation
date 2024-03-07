@@ -193,47 +193,48 @@
 	</section>
 
 	<!-- 2번째 상품 (리뷰가 많은 순서)  -->
-	<section class="module wow fadeIn">
+	<section class="module wow fadeIn" id="specialities">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3">
+				<div class="col-sm-2 col-sm-offset-5">
+					<div class="alt-module-subtitle">
+						<span class="holder-w"></span>
+						<h5 class="font-serif">Take a look at</h5>
+						<span class="holder-w"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
 					<h2 class="module-title font-alt">리뷰 많은 순</h2>
-					<div class="module-subtitle font-serif">The languages only
-						differ in their grammar, their pronunciation and their most common
-						words.</div>
 				</div>
 			</div>
 			<a class="btn btn-b btn-round" href="/product/search-page"
 				style="float: right; margin-bottom: 10px;">전체 조회</a>
-			<div class="row" style="clear: both;">
-				<div class="owl-carousel text-center" data-items="5"
-					data-pagination="false" data-navigation="false">
-					<c:forEach var="product" items="${productsRev}">
-						<div class="owl-item">
-							<div class="col-sm-12">
-								<div class="ex-product">
-									<div class="shop-item">
-										<div class="shop-item-image">
-											<img src="${fn:split(product.filePath, ',')[0]}"
-												alt="${product.prodTitle}" />
-											<div class="shop-item-detail">
-												<a class="btn btn-round btn-b"
-													href="/product/productDetail?prod_no=${product.prodNo}"><span
-													class="icon-basket">보러가기</span></a>
-											</div>
-										</div>
-										<div class="shop-item-title-wrapper">
-											<h4 class="shop-item-title font-alt">
-												<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
-											</h4>
-											${product.prodPrice} 원/시간
-										</div>
-									</div>
+			<div class="row multi-columns-row" style="clear: both;">
+
+				<c:forEach var="product" items="${productsRev}">
+					<div class="col-sm-6 col-md-3 col-lg-3">
+						<div class="shop-item">
+							<div class="shop-item-image">
+								<img src="${fn:split(product.filePath, ',')[0]}"
+									alt="${product.prodTitle}" />
+								<div class="shop-item-detail">
+									<a class="btn btn-round btn-b"
+										href="/product/productDetail?prod_no=${product.prodNo}"> <span
+										class="icon-basket">보러가기</span>
+									</a>
+								</div>
+								<div class="shop-item-title-wrapper">
+									<h4 class="shop-item-title font-alt">
+										<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+									</h4>
+									${product.prodPrice} 원/시간
 								</div>
 							</div>
 						</div>
-					</c:forEach>
-				</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</section>
@@ -286,48 +287,48 @@
 	</section>
 
 	<!-- owl carousel 2 번 -->
-	<section class="module wow fadeIn">
+	<section class="module wow fadeIn" id="specialities">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3">
+				<div class="col-sm-2 col-sm-offset-5">
+					<div class="alt-module-subtitle">
+						<span class="holder-w"></span>
+						<h5 class="font-serif">Take a look at</h5>
+						<span class="holder-w"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
 					<h2 class="module-title font-alt">평점 높은 순</h2>
-					<div class="module-subtitle font-serif">The languages only
-						differ in their grammar, their pronunciation and their most common
-						words.</div>
 				</div>
 			</div>
 			<a class="btn btn-b btn-round" href="/product/search-page"
 				style="float: right; margin-bottom: 10px;">전체 조회</a>
+			<div class="row multi-columns-row" style="clear: both;">
 
-			<div class="row" style="clear: both;">
-				<div class="owl-carousel text-center" data-items="5"
-					data-pagination="false" data-navigation="false">
-					<c:forEach var="product" items="${productsStar}">
-						<div class="owl-item">
-							<div class="col-sm-12">
-								<div class="ex-product">
-									<div class="shop-item">
-										<div class="shop-item-image">
-											<img src="${fn:split(product.filePath, ',')[0]}"
-												alt="${product.prodTitle}" />
-											<div class="shop-item-detail">
-												<a class="btn btn-round btn-b"
-													href="/product/productDetail?prod_no=${product.prodNo}"><span
-													class="icon-basket">보러가기</span></a>
-											</div>
-										</div>
-										<div class="shop-item-title-wrapper">
-											<h4 class="shop-item-title font-alt">
-												<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
-											</h4>
-											${product.prodPrice} 원/시간
-										</div>
-									</div>
+				<c:forEach var="product" items="${productsStar}">
+					<div class="col-sm-6 col-md-3 col-lg-3">
+						<div class="shop-item">
+							<div class="shop-item-image">
+								<img src="${fn:split(product.filePath, ',')[0]}"
+									alt="${product.prodTitle}" />
+								<div class="shop-item-detail">
+									<a class="btn btn-round btn-b"
+										href="/product/productDetail?prod_no=${product.prodNo}"> <span
+										class="icon-basket">보러가기</span>
+									</a>
+								</div>
+								<div class="shop-item-title-wrapper">
+									<h4 class="shop-item-title font-alt">
+										<a href="/product/productDetail?prod_no=${product.prodNo}">${product.prodTitle}</a>
+									</h4>
+									${product.prodPrice} 원/시간
 								</div>
 							</div>
 						</div>
-					</c:forEach>
-				</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</section>
