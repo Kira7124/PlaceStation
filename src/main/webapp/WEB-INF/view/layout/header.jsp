@@ -108,7 +108,7 @@
 				<!-- nav 바 시작 -->
 				<div class="collapse navbar-collapse" id="custom-collapse"
 					style="margin-bottom: 20px;">
-					<ul class="nav navbar-nav navbar-right" style="margin-bottom: -5px; ">
+					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown" style="font-size: 13px"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">장소 조회</a>
 							<ul class="dropdown-menu">

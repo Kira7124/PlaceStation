@@ -16,10 +16,9 @@
 	height: 80px;
 }
   
-  /**/
+/* 검색창 */
 .container-search { 
   width: 250px;
-
 }
 
 #header {
@@ -49,6 +48,10 @@ align-items : center;
 .nav>li>a {
   padding: 10px 25px;
 } 
+
+#custom-collapse > ul {
+	margin-bottom: -5px;
+}
 
 /* footer css 시작 */
 #footer {
