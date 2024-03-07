@@ -60,5 +60,6 @@ public class BizDefine {
 	public final static String PARTY_CREATE_ALREADY_DONE = "모임이 이미 있네요!!!";
 	public final static String NO_SEARCH_PARTY = "모임이 찾을수가 없어요! 모임이 변경되었거나 삭제되었나봐요 또는 서버 에러가 발생했을 수도 있으니 관리자에게 문의를 넣어주세요.";
 	public final static String NO_AUTHORITY = "권한이 없습니다.";
+	public final static String PLEASE_WRITE_STAR = "평점을 선택해 주세요.";
 	
 }

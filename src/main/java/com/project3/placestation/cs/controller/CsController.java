@@ -44,39 +44,25 @@ public class CsController {
 	private HttpSession httpSession;
 
 
-	// CS 공지사항 검색 페이지
-	@GetMapping("/notice/search")
-	public String noticeSearchlist(@RequestParam(value = "searchKeyword", defaultValue = "") String searchKeyword,
-			@RequestParam(value = "categoryId", defaultValue = "0") Integer categoryId,
-			@RequestParam(value = "page", defaultValue = "0") Integer page,
-			@RequestParam(value = "size", defaultValue = "4") Integer size,
+	// http://localhost/cs/notice
+	// CS 공지사항 페이지
+	@GetMapping("/notice")
+	public String noticeList(CsNoticeDTO csndto, Model model, Criteria cri) throws Exception {
+	
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
 
-			Model model) throws Exception {
+		pageVO.setTotalCount(csService.CsNoticeBoardCount());
+		model.addAttribute("pageVO", pageVO);
+		log.info("pageVO1: " + pageVO);
 
-		// 검색 결과에 따른 공지사항 수
-		int count = csService.countNoticeSearchlist(searchKeyword, categoryId);
-
-		PageReq pageReq = new PageReq(page, size);
-		// 검색 결과에 따른 공지사항 리스트 출력
-		List<CsNoticeBoard> result = csService.noticeSearchlist(searchKeyword, categoryId, pageReq);
-		
-		
-		PageRes<CsNoticeBoard> pageRes = new PageRes<>(result, page , count , size);
-		log.info("categoryId : "  + categoryId);
-		log.info("count : "  + count);
-		log.info(pageRes.toString());
-		
-		model.addAttribute("noticeList", result);
-		model.addAttribute("categoryId", categoryId);
-		model.addAttribute("searchKeyword", searchKeyword);
-        model.addAttribute("currentPage",pageRes.getNumber()); // 컨텐츠 배열
-        model.addAttribute("totalPages",pageRes.getTotalPages()); // 컨텐츠 배열
-        model.addAttribute("totalItems",pageRes.getTotalElements()); // 컨텐츠 배열
-        model.addAttribute("startPage",pageRes.getStartPage()); // 컨텐츠 배열
-        model.addAttribute("endPage",pageRes.getEndPage()); // 컨텐츠 배열
-
+		// 공지사항 리스트 출력
+		List<CsNoticeBoard> result1 = csService.CsNoticeBoardListAll(cri);
+		model.addAttribute("noticeList", result1);
+	
 		return "cs/cs_notice";
 	}
+	
 
 
 

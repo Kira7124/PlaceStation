@@ -457,7 +457,7 @@
         	console.log(response);
             console.log("포트원 결제 완료");
             alert("결제가 완료되었습니다.");
-            location.href = "/main/index";
+            location.href = "/user/mypage/history";
             
             // 저장 완료시 로직
           } else {

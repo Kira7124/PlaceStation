@@ -15,8 +15,7 @@
 			<div
 				style="display: flex; justify-content: space-between; align-items: baseline;">
 				<h3 id="h3-footer">PlaceStation</h3>
-				<a href="/cs/notice/search">고객센터
-					</h4>
+
 			</div>
 			<hr class="divider-d" id="footer">
 			<div class="col-sm-6">
@@ -28,7 +27,6 @@
 		</div>
 	</div>
 </footer>
-</div>
 <div class="scroll-up">
 	<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
 </div>
@@ -58,7 +56,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script>
-<!-- Swiper JS -->
+	<!-- Swiper JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- Wow.js 및 관련 CSS 불러오기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
