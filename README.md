@@ -16,8 +16,8 @@
 
  # 📚기술스택
 ---
-<details>
-<summary>## 🕵️‍♂️Front_End</summary>
+
+## <summary> 🕵️‍♂️Front_End</summary>
 <div markdown="1">
 
 - bootstrap : 4.6.2
@@ -31,8 +31,8 @@
 
 <br>
 <br>
-<details>
-## <h2>🕵️‍♂️Back_End</h2>
+
+## <summary> 🕵️‍♂️Back_End</summary>
 <div markdown="1">
  
 - springboot : 4.18.0
@@ -44,12 +44,11 @@
 - BCrypt HASH
 - Apache Tomcat : 9.0
 </div>
-</details>🕵️‍♂️🔎🔍 
 
 <br>
 <br>
-<details>
-## <summary>## 📡API</summary>
+
+## <summary> 📡API</summary>
 <div markdown="1">
  
 - 카카오/구글/네이버 소셜 로그인 API (OAuth 2.0 프로토콜)
@@ -58,7 +57,6 @@
 - 카카오 맵 API
 - DAUM 우편번호 찾기 API
 </div>
-</details>
 
 
 
