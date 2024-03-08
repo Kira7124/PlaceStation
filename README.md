@@ -60,7 +60,7 @@
 
 
 
-`
+⚙ 의존성
 
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
@@ -86,7 +86,7 @@
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:3.2.2'
 
-`
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% 여기서 부터 추가 진수씨 한테 받은 코드
 
