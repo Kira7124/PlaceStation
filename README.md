@@ -227,21 +227,16 @@
 
 # 3️⃣ 기능 구분 
 
-### 유저
+#### User
 
-### 관리자
+#### Biz/Party
 
-### 판매자
+#### Admin
 
-### 고객센터
+#### CS
 
-### 상품등록/관리
+#### Product
 
-<br>
-<br><br>
-<br><br>
-<br><br>
-<br>
 
 # 4️⃣ ERD & 테이블 명세서
 ![image](https://github.com/Kira7124/PlaceStation/assets/113073333/8ecb1e75-76db-4dbf-9a4c-dd85b999b6af)
@@ -270,12 +265,7 @@
 <p>
 <img src="https://github.com/Kira7124/PlaceStation/assets/89882482/8008563a-b47b-43e8-b81a-a658cb97dc39">
 </p>
-<p>
-<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/3aa74f74-f3ef-4c48-aa7c-443bf9175a33">
-</p>
-<p>
-<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/af9a5b55-d87a-4b42-a118-c4ba6d48eae1">
-</p>
+
 <p>
 <img src="https://github.com/Kira7124/PlaceStation/assets/89882482/d9a91885-eab8-4e57-b6ab-e954f5846e67">
 </p>
@@ -292,7 +282,80 @@
 
 
 
+### 유저
 
+#### 회원가입
+- 아이디/휴대폰/이메일 중복 확인
+- Validation 체크 처리
+- Daum 우편번호 찾기 API를 사용 하여 주소 입력
+- smtp 이메일 인증을 통한 이메일 정보 확인
+
+#### 로그인
+- 카카오/구글/네이버 소셜 로그인 (OAuth 2.0 프로토콜)
+- 일반 로그인
+- 아이디/비밀번호 찾기(smtp 이메일 인증)
+
+#### 회원정보
+- 회원 정보 변경
+- 비밀 번호 변경
+- 프로필 사진 변경
+
+#### 결제내역
+- 결제된 상품에 대한 내역 확인 가능
+- 결제된 상품에 대해 취소 및 환불 가능
+
+
+#### 문의내역
+- 본인이 작성한 문의 내역에 관해 확인 가능
+
+
+#### 모임내역 관리
+- 본인이 생성 또는 참여한 모임에 대해 확인 가능
+
+
+
+#### 찜목록
+- 찜을 한 상품에 대한 내역 확인 가능
+
+<br><br><br><br>
+
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/3aa74f74-f3ef-4c48-aa7c-443bf9175a33">
+</p>
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/af9a5b55-d87a-4b42-a118-c4ba6d48eae1">
+</p>
+
+
+
+
+---
+
+### 결제,예약  이산하
+
+
+### 사업자  이산하
+
+
+
+### 상품등록/관리  김병준
+
+
+
+### 관리자  김진수
+
+
+
+### 고객센터 조유빈
+
+
+
+
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br>
 
 
 
