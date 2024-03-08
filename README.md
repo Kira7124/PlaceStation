@@ -61,11 +61,12 @@
 
 
 `
+
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	implementation 'com.itextpdf:itext7-core:7.2.1'
-	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1' // JSONObject
+	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
@@ -84,7 +85,6 @@
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:3.2.2'
-
 
 `
 
