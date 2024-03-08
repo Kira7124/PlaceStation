@@ -143,26 +143,28 @@
    ┃   ┣ 📂assets
    ┃   ┣ 📂banner
    ┃   ┣ 📂css
-   ┃   ┗ 📂js
+   ┃   ┣ 📂js
    ┃   ┣ 📂img
    ┃   ┣ 📂logo
    ┃   ┣ 📂favicons
-   ┃   ┣ 📂policy
-   ┗ 📂src
-      ┗ 📂main
-         ┗ 📂webapp
-	   ┗ 📂WEB-INF
-	      ┗ 📂view
-		┣ 📂admin
-		┣ 📂biz
-		┣ 📂cs
-		┣ 📂error
-		┣ 📂layout
-		┣ 📂main
-		┣ 📂member
-		┣ 📂party
-		┣ 📂patment
-		┗ 📂product
+   ┃   ┗ 📂policy
+   ┗ 📂webapp
+     ┗ 📂WEB-INF
+       ┗ 📂view
+	 ┣ 📂admin
+	 ┣ 📂biz
+         ┃ ┣ 📂account
+         ┃ ┣ 📂common
+         ┃ ┣ 📂product
+         ┃ ┣ 📂reservation
+	 ┣ 📂cs
+	 ┣ 📂error
+	 ┣ 📂layout
+ 	 ┣ 📂main
+	 ┣ 📂member
+	 ┣ 📂party
+	 ┣ 📂patment
+	 ┗ 📂product
 
   
   
