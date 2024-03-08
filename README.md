@@ -60,8 +60,8 @@
 
 
 
-⚙ 의존성
-
+# ⚙ 의존성
+---
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
