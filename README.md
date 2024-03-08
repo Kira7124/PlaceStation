@@ -50,7 +50,7 @@
 - 카카오/구글/네이버 소셜 로그인 API (OAuth 2.0 프로토콜)
 - 카카오페이 API
 - 이메일 전송 API (네이버 SMTP 프로토콜)
-- 구글 맵 API
+- 카카오 맵 API
 - CoolSMS API
 - DAUM 우편번호 찾기 API
 - 국가 코드 OPEN API
