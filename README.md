@@ -178,7 +178,9 @@
 
 
 # 3️⃣ 기능 구분 
-
+<p>
+<img src="![Uploading 1.gif…]()">
+</p>
 
 # 4️⃣ ERD & 테이블 명세서
 ![image](https://github.com/Kira7124/PlaceStation/assets/113073333/8ecb1e75-76db-4dbf-9a4c-dd85b999b6af)
