@@ -17,7 +17,7 @@
  # 📚기술스택
 ---
 <details>
-## <submary>🕵️‍♂️Front_End</submary>
+## <summary>🕵️‍♂️Front_End</summary>
 <div markdown="1">
 
 - bootstrap : 4.6.2
@@ -32,7 +32,7 @@
 <br>
 <br>
 <details>
-<h2>## 🕵️‍♂️Back_End</h2>
+## <summary>🕵️‍♂️Back_End</summary>
 <div markdown="1">
  
 - springboot : 4.18.0
@@ -49,7 +49,7 @@
 <br>
 <br>
 <details>
-<h2>## 📡API</h2>
+## <summary>## 📡API</summary>
 <div markdown="1">
  
 - 카카오/구글/네이버 소셜 로그인 API (OAuth 2.0 프로토콜)
