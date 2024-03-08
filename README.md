@@ -116,6 +116,12 @@
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:3.2.2'
 
 
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br>
+
 # 1️⃣ 프로젝트 구조
 ```
 
@@ -199,23 +205,36 @@
   
 ```
 
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br>
+
 # 2️⃣ 프로젝트 개요
 세상의 모든 장소를 클라이언트 니즈에 맞게 공유하고 싶은 저희의 염원 / 목적을 반영
 
-
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br>
 # 3️⃣ 기능 구분 
 
-
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br>
 # 4️⃣ ERD & 테이블 명세서
 ![image](https://github.com/Kira7124/PlaceStation/assets/113073333/8ecb1e75-76db-4dbf-9a4c-dd85b999b6af)
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%% 여기서 부터 추가 진수씨 한테 받은 코드
-
-
-
-
-
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br>
 
 
 
