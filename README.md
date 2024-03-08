@@ -89,6 +89,9 @@
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:3.2.2'
 
+# ERD & 테이블 명세서
+--
+![image](https://github.com/Kira7124/PlaceStation/assets/113073333/8ecb1e75-76db-4dbf-9a4c-dd85b999b6af)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% 여기서 부터 추가 진수씨 한테 받은 코드
