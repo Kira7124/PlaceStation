@@ -17,7 +17,7 @@
  # 📚기술스택
 ---
 <details>
-<h2>🕵️‍♂️Front_End</h2>
+## <submary>🕵️‍♂️Front_End</submary>
 <div markdown="1">
 
 - bootstrap : 4.6.2
