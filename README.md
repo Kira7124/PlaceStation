@@ -99,89 +99,72 @@
    ┃   ┗ 📂project3
    ┃     ┗ 📂placestation
    ┃       ┣ 📂admin
-   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┗ 📂controller
    ┃       ┃ ┗ 📂dto
    ┃       ┣ 📂biz
-   ┃       ┃ ┣ 📂controller
-   ┃       ┃ ┣ 📂handler
+   ┃       ┃ ┗ 📂controller
+   ┃       ┃ ┗ 📂handlr
    ┃       ┃ ┗ 📂model
-   ┃       ┃   ┣ 📂dto
-   ┃       ┃   ┗ 📂util
    ┃       ┣ 📂config
-   ┃       ┃ ┣ 📂error
-   ┃       ┃ ┣ 📂jwt
+   ┃       ┃ ┗ 📂error
+   ┃       ┃ ┗ 📂jwt
    ┃       ┃ ┗ 📂oauth2
    ┃       ┣ 📂cs
-   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┗ 📂controller
    ┃       ┃ ┗ 📂dto
-   ┃       ┣ 📂filedb
-   ┃       ┃ ┣ 📂controller
-   ┃       ┃ ┣ 📂model
-   ┃       ┃ ┣ 📂repository
-   ┃       ┃ ┗ 📂service
-   ┃       ┣ 📂handler.exciption
-   ┃ 	   ┣ 📂member
-   ┃       ┃ ┣ 📂controller
+   ┃       ┣ 📂fieldb
+   ┃       ┃ ┗ 📂controller
+   ┃       ┃ ┗ 📂model
+   ┃       ┣ 📂member
+   ┃       ┃ ┗ 📂controller
    ┃       ┃ ┗ 📂dto
-   ┃ 	   ┣ 📂party
-   ┃       ┃ ┣ 📂controller
-   ┃       ┃ ┗ 📂dto
-   ┃ 	   ┣ 📂payment
+   ┃       ┃ ┗ 📂sequenceInterface
+   ┃       ┣ 📂handler
+   ┃       ┃ ┗ 📂exception
+   ┃       ┣ 📂party
    ┃       ┃ ┣ 📂controller
    ┃       ┃ ┗ 📂model
-   ┃       ┃   ┣ 📂common
-   ┃       ┃   ┗ 📂dto
-   ┃ 	   ┣ 📂product
-   ┃       ┃   ┣ 📂entity
-   ┃       ┃   ┗ 📂interface
-   ┃ 	   ┣ 📂service
-   ┃ 	   ┗ 📂utils
-   ┃ 	   
-   ┃
-   ┃
-   ┃
-   ┃
-   ┃
-   ┃
-   ┃
-   ┃
-   ┃
-   ┃
+   ┃       ┣ 📂payment
+   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┗ 📂dto
+   ┃       ┣ 📂product
+   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┗ 📂dto
+   ┃       ┣ 📂repository
+   ┃       ┃ ┣ 📂entity
+   ┃       ┃ ┗ 📂interfaces
+   ┃       ┣ 📂service
+   ┃       ┗ 📂utils
    ┣ 📂resources
    ┃ ┣ 📂db
    ┃ ┣ 📂mapper
    ┃ ┗ 📂static
+   ┃   ┣ 📂adimg
+   ┃   ┣ 📂assets
+   ┃   ┣ 📂banner
    ┃   ┣ 📂css
-   ┃   ┃ ┗ 📂summerNote
-   ┃   ┃   ┗ 📂font
-   ┃   ┣ 📂images
-   ┃   ┃ ┣ 📂airplane
-   ┃   ┃ ┣ 📂baggage
-   ┃   ┃ ┣ 📂board
-   ┃   ┃ ┣ 📂gifticon
-   ┃   ┃ ┣ 📂in_flight
-   ┃   ┃ ┣ 📂like
-   ┃   ┃ ┣ 📂product
-   ┃   ┃ ┗ 📂ticket
    ┃   ┗ 📂js
-   ┃     ┗ 📂summerNote
-   ┃       ┗ 📂lang
-   ┗ 📂webapp
-     ┗ 📂WEB-INF
-       ┗ 📂view
-         ┣ 📂baggage
-         ┣ 📂board
-         ┣ 📂faq
-         ┣ 📂in_flight
-         ┣ 📂layout
-         ┣ 📂manager
-         ┣ 📂mileage
-         ┣ 📂myPage
-         ┣ 📂notice
-         ┣ 📂ticket
-         ┣ 📂user
-         ┗ 📂voc
+   ┃   ┣ 📂img
+   ┃   ┣ 📂logo
+   ┃   ┣ 📂favicons
+   ┃   ┣ 📂policy
+   ┗ 📂src
+      ┗ 📂main
+         ┗ 📂webapp
+	   ┗ 📂WEB-INF
+	      ┗ 📂view
+		┣ 📂admin
+		┣ 📂biz
+		┣ 📂cs
+		┣ 📂error
+		┣ 📂layout
+		┣ 📂main
+		┣ 📂member
+		┣ 📂party
+		┣ 📂patment
+		┣ 📂product
 
+  
   
 ```
 
