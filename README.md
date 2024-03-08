@@ -17,7 +17,7 @@
  # 📚기술스택
 ---
 <details>
-## <summary>🕵️‍♂️Front_End</summary>
+<summary>## 🕵️‍♂️Front_End</summary>
 <div markdown="1">
 
 - bootstrap : 4.6.2
@@ -32,7 +32,7 @@
 <br>
 <br>
 <details>
-## <summary>🕵️‍♂️Back_End</summary>
+## <h2>🕵️‍♂️Back_End</h2>
 <div markdown="1">
  
 - springboot : 4.18.0
