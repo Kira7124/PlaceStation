@@ -96,23 +96,57 @@
  ┗ 📂main
    ┣ 📂java
    ┃ ┗ 📂com
-   ┃   ┗ 📂green
-   ┃     ┗ 📂airline
-   ┃       ┃ ┣ 📂config
-   ┃       ┃ ┗ 📂controller
-   ┃       ┣ 📂dto
-   ┃       ┃ ┣ 📂kakao
-   ┃       ┃ ┣ 📂nation
-   ┃       ┃ ┣ 📂request
-   ┃       ┃ ┗ 📂response
-   ┃       ┣ 📂enums
-   ┃       ┣ 📂handler
-   ┃       ┃ ┗ 📂exception
-   ┃       ┣ 📂repository
-   ┃       ┃ ┣ 📂interfaces
+   ┃   ┗ 📂project3
+   ┃     ┗ 📂placestation
+   ┃       ┣ 📂admin
+   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┗ 📂dto
+   ┃       ┣ 📂biz
+   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┣ 📂handler
    ┃       ┃ ┗ 📂model
-   ┃       ┣ 📂service
-   ┃       ┗ 📂utils
+   ┃       ┃   ┣ 📂dto
+   ┃       ┃   ┗ 📂util
+   ┃       ┣ 📂config
+   ┃       ┃ ┣ 📂error
+   ┃       ┃ ┣ 📂jwt
+   ┃       ┃ ┗ 📂oauth2
+   ┃       ┣ 📂cs
+   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┗ 📂dto
+   ┃       ┣ 📂filedb
+   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┣ 📂model
+   ┃       ┃ ┣ 📂repository
+   ┃       ┃ ┗ 📂service
+   ┃       ┣ 📂handler.exciption
+   ┃ 	   ┣ 📂member
+   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┗ 📂dto
+   ┃ 	   ┣ 📂party
+   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┗ 📂dto
+   ┃ 	   ┣ 📂payment
+   ┃       ┃ ┣ 📂controller
+   ┃       ┃ ┗ 📂model
+   ┃       ┃   ┣ 📂common
+   ┃       ┃   ┗ 📂dto
+   ┃ 	   ┣ 📂product
+   ┃       ┃   ┣ 📂entity
+   ┃       ┃   ┗ 📂interface
+   ┃ 	   ┣ 📂service
+   ┃ 	   ┗ 📂utils
+   ┃ 	   
+   ┃
+   ┃
+   ┃
+   ┃
+   ┃
+   ┃
+   ┃
+   ┃
+   ┃
+   ┃
    ┣ 📂resources
    ┃ ┣ 📂db
    ┃ ┣ 📂mapper
