@@ -65,7 +65,6 @@
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	implementation 'com.itextpdf:itext7-core:7.2.1'
-	
 	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1' // JSONObject
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
