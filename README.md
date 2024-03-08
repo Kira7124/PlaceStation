@@ -91,6 +91,66 @@
 
 
 # 1️⃣ 프로젝트 구조
+`
+📦src
+ ┗ 📂main
+   ┣ 📂java
+   ┃ ┗ 📂com
+   ┃   ┗ 📂green
+   ┃     ┗ 📂airline
+   ┃       ┃ ┣ 📂config
+   ┃       ┃ ┗ 📂controller
+   ┃       ┣ 📂dto
+   ┃       ┃ ┣ 📂kakao
+   ┃       ┃ ┣ 📂nation
+   ┃       ┃ ┣ 📂request
+   ┃       ┃ ┗ 📂response
+   ┃       ┣ 📂enums
+   ┃       ┣ 📂handler
+   ┃       ┃ ┗ 📂exception
+   ┃       ┣ 📂repository
+   ┃       ┃ ┣ 📂interfaces
+   ┃       ┃ ┗ 📂model
+   ┃       ┣ 📂service
+   ┃       ┗ 📂utils
+   ┣ 📂resources
+   ┃ ┣ 📂db
+   ┃ ┣ 📂mapper
+   ┃ ┗ 📂static
+   ┃   ┣ 📂css
+   ┃   ┃ ┗ 📂summerNote
+   ┃   ┃   ┗ 📂font
+   ┃   ┣ 📂images
+   ┃   ┃ ┣ 📂airplane
+   ┃   ┃ ┣ 📂baggage
+   ┃   ┃ ┣ 📂board
+   ┃   ┃ ┣ 📂gifticon
+   ┃   ┃ ┣ 📂in_flight
+   ┃   ┃ ┣ 📂like
+   ┃   ┃ ┣ 📂product
+   ┃   ┃ ┗ 📂ticket
+   ┃   ┗ 📂js
+   ┃     ┗ 📂summerNote
+   ┃       ┗ 📂lang
+   ┗ 📂webapp
+     ┗ 📂WEB-INF
+       ┗ 📂view
+         ┣ 📂baggage
+         ┣ 📂board
+         ┣ 📂faq
+         ┣ 📂in_flight
+         ┣ 📂layout
+         ┣ 📂manager
+         ┣ 📂mileage
+         ┣ 📂myPage
+         ┣ 📂notice
+         ┣ 📂ticket
+         ┣ 📂user
+         ┗ 📂voc
+
+
+`
+
 # 2️⃣ 프로젝트 개요
 # 3️⃣ 기능 구분 
 # 4️⃣ ERD & 테이블 명세서
@@ -109,12 +169,12 @@
 <img src="https://img.shields.io/badge/springboot-006400?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/springsecurity-008B8B?style=for-the-badge&logo=springsecurity&logoColor=white"><br>
 <img src="https://img.shields.io/badge/github-a9a9a9?style=for-the-badge&logo=github&logoColor=white">
-<img src="https://img.shields.io/badge/eclipseide-4b0082?style=for-the-badge&logo=eclipseide&logoColor=white">
+<img src="https://img.shields.io/badge/javascript-4b0082?style=for-the-badge&logo=eclipseide&logoColor=white">
 <img src="https://img.shields.io/badge/dbeaver-fffacd?style=for-the-badge&logo=dbeaver&logoColor=black">
 <img src="https://img.shields.io/badge/bootstrap-ba55d3?style=for-the-badge&logo=bootstrap&logoColor=black">
 <img src="https://img.shields.io/badge/html5-ffa07a?style=for-the-badge&logo=html5&logoColor=white">
 <img src="https://img.shields.io/badge/css3-afeeee?style=for-the-badge&logo=html5&logoColor=white"><br>
-<img src="https://img.shields.io/badge/amazonaws-ffa07a?style=for-the-badge&logo=amazonaws&logoColor=white">
+<img src="https://img.shields.io/badge/gradle-ffa07a?style=for-the-badge&logo=amazonaws&logoColor=white">
 <img src="https://img.shields.io/badge/jquery-4169e1?style=for-the-badge&logo=jquery&logoColor=white">
 
 
