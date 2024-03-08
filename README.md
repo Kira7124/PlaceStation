@@ -174,7 +174,12 @@
 ```
 
 # 2️⃣ 프로젝트 개요
+세상의 모든 장소를 클라이언트 니즈에 맞게 공유하고 싶은 저희의 염원 / 목적을 반영
+
+
 # 3️⃣ 기능 구분 
+
+
 # 4️⃣ ERD & 테이블 명세서
 ![image](https://github.com/Kira7124/PlaceStation/assets/113073333/8ecb1e75-76db-4dbf-9a4c-dd85b999b6af)
 
