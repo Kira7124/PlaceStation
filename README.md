@@ -89,8 +89,11 @@
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:3.2.2'
 
-# ERD & 테이블 명세서
---
+
+# 1️⃣ 프로젝트 구조
+# 2️⃣ 프로젝트 개요
+# 3️⃣ 기능 구분 
+# 4️⃣ ERD & 테이블 명세서
 ![image](https://github.com/Kira7124/PlaceStation/assets/113073333/8ecb1e75-76db-4dbf-9a4c-dd85b999b6af)
 
 
