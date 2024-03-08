@@ -178,9 +178,7 @@
 
 
 # 3️⃣ 기능 구분 
-<p>
-<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/a3b9ebb9-0b17-4b66-a857-4b0094a8f9d5">
-</p>
+
 
 # 4️⃣ ERD & 테이블 명세서
 ![image](https://github.com/Kira7124/PlaceStation/assets/113073333/8ecb1e75-76db-4dbf-9a4c-dd85b999b6af)
@@ -221,6 +219,55 @@
 <a href="https://github.com/ashutosh00710/github-readme-activity-graph">
     <img src="https://github-readme-activity-graph.vercel.app/graph?username=Kira7124&theme=react-dark&bg_color=20232a&hide_border=true&line=58A6FF&color=58A6FF" width=94%/>
 </a>
+
+
+
+6️⃣ 주요 기능
+
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/a3b9ebb9-0b17-4b66-a857-4b0094a8f9d5">
+</p>
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/8008563a-b47b-43e8-b81a-a658cb97dc39">
+</p>
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/3aa74f74-f3ef-4c48-aa7c-443bf9175a33">
+</p>
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/af9a5b55-d87a-4b42-a118-c4ba6d48eae1">
+</p>
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/d9a91885-eab8-4e57-b6ab-e954f5846e67">
+</p>
+
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/2b65ad6b-519e-4633-bfaf-056b58887cb4">
+</p>
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/0576fb6a-4eab-404d-86bb-237f84008ebb">
+</p>
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/d0cba144-287b-4495-bf3d-c495fada4123">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
