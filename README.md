@@ -278,7 +278,7 @@
 # 5️⃣ SiteMap
 
 
-<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/59cbcc5c-867a-44f3-a86f-e967c2e4329b">
+<img src="https://github.com/Kira7124/PlaceStation/assets/136421992/41233a00-a93a-40c8-893d-eedd33762208">
 
 <br>
 <br><br>
