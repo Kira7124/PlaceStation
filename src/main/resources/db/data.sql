@@ -107,14 +107,14 @@ insert into product (
     '주소' ,
     '상세 주소' ,
     50000 ,
-    null ,
+    '/assets/images/product/soccer.png' ,
     1,
     2,
     '전체 주소' ,
     125.026156153123,35.15165189498
 ),(
 	2, 
-    '[부산] 스포츠 센터 축구 농구' ,
+    '[부산] 스포츠 센터 축구' ,
 	1 ,
     24 ,
     '우리의 공간은 편안하고 모던한 분위기로 디자인되어 있습니다. 넓은 창문을 통해 햇살이 잘 들어오며, 아늑한 분위기가 특징입니다. 공간 내에는 편안한 소파와 의자, 작업 공간이 구비되어 있어 다양한 용도로 활용 가능합니다. 또한 무료 와이파이와 음료 서비스가 제공되어 있어 편안한 시간을 보내실 수 있습니다.',
@@ -124,14 +124,14 @@ insert into product (
     '부산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    null ,
+    '/assets/images/product/soccer.png' ,
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
     ,129.02526756 , 35.1112677103576
 ),(
 	3, 
-    '[부산] 스포츠 센터 축구 농구' ,
+    '[부산] 스포츠 센터 농구' ,
 	1 ,
     24 ,
     '우리의 공간은 편안하고 모던한 분위기로 디자인되어 있습니다. 넓은 창문을 통해 햇살이 잘 들어오며, 아늑한 분위기가 특징입니다. 공간 내에는 편안한 소파와 의자, 작업 공간이 구비되어 있어 다양한 용도로 활용 가능합니다. 또한 무료 와이파이와 음료 서비스가 제공되어 있어 편안한 시간을 보내실 수 있습니다.',
@@ -141,14 +141,14 @@ insert into product (
     '부산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    null ,
+    '/assets/images/product/basketball.webp' ,
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
     ,129.02526756 , 35.1112677103576
 ),(
 	4, 
-    '[부산] 스포츠 센터 축구 농구' ,
+    '[부산] 야외 캠핑',
 	1 ,
     24 ,
     '우리의 공간은 편안하고 모던한 분위기로 디자인되어 있습니다. 넓은 창문을 통해 햇살이 잘 들어오며, 아늑한 분위기가 특징입니다. 공간 내에는 편안한 소파와 의자, 작업 공간이 구비되어 있어 다양한 용도로 활용 가능합니다. 또한 무료 와이파이와 음료 서비스가 제공되어 있어 편안한 시간을 보내실 수 있습니다.',
@@ -158,31 +158,31 @@ insert into product (
     '부산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    null ,
+    '/assets/images/product/camp1.jpg' ,
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
     ,129.02526756 , 35.1112677103576
 ),(
 	5, 
-    '[부산] 스포츠 센터 축구 농구' ,
+    '[서울] 야외 캠핑' ,
 	1 ,
     24 ,
     '우리의 공간은 편안하고 모던한 분위기로 디자인되어 있습니다. 넓은 창문을 통해 햇살이 잘 들어오며, 아늑한 분위기가 특징입니다. 공간 내에는 편안한 소파와 의자, 작업 공간이 구비되어 있어 다양한 용도로 활용 가능합니다. 또한 무료 와이파이와 음료 서비스가 제공되어 있어 편안한 시간을 보내실 수 있습니다.',
     '우리는 다양한 물품을 대여해 드리고 있습니다. 회의용 의자와 테이블, 프로젝터 등이 준비되어 있어 비즈니스 모임이나 행사를 개최하기에 최적입니다. 또한 음향기기와 라이트 등의 장비도 대여 가능하며, 필요한 경우 특별한 요청에도 최대한 협조해 드립니다.' ,
     '예약을 하실 때 몇 가지 주의 사항이 있습니다. 먼저, 예약 시간을 정확히 지켜주셔야 합니다. 예약 시간을 지키지 않을 경우 추가 비용이 발생할 수 있습니다. 또한 공간 내에서는 흡연이 엄격히 금지되며, 반려동물의 출입이 허용되지 않습니다. 예약 전에 이러한 사항들을 반드시 확인해 주시기 바랍니다.' ,
     10 ,
-    '부산 서구 망양로213번길 2-1' ,
+    '서울 서초구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    null ,
+    '/assets/images/product/camp2.jpg' ,
     1,
     2,
-    '부산 서구 망양로213번길 2-1	상세주소' 
+    '부산 서초구 망양로213번길 2-1	상세주소' 
     ,129.02526756 , 35.1112677103576
 ),(
 	6, 
-    '[부산] 스포츠 센터 축구 농구' ,
+    '[부산] 북카페' ,
 	1 ,
     24 ,
     '우리의 공간은 편안하고 모던한 분위기로 디자인되어 있습니다. 넓은 창문을 통해 햇살이 잘 들어오며, 아늑한 분위기가 특징입니다. 공간 내에는 편안한 소파와 의자, 작업 공간이 구비되어 있어 다양한 용도로 활용 가능합니다. 또한 무료 와이파이와 음료 서비스가 제공되어 있어 편안한 시간을 보내실 수 있습니다.',
@@ -192,27 +192,27 @@ insert into product (
     '부산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    null ,
+    '/assets/images/product/bookcafe2.jpg' ,
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
     ,129.02526756 , 35.1112677103576
 ),(
 	7, 
-    '[부산] 스포츠 센터 축구 농구' ,
+    '[양산] 양산 북카페' ,
 	1 ,
     24 ,
     '우리의 공간은 편안하고 모던한 분위기로 디자인되어 있습니다. 넓은 창문을 통해 햇살이 잘 들어오며, 아늑한 분위기가 특징입니다. 공간 내에는 편안한 소파와 의자, 작업 공간이 구비되어 있어 다양한 용도로 활용 가능합니다. 또한 무료 와이파이와 음료 서비스가 제공되어 있어 편안한 시간을 보내실 수 있습니다.',
     '우리는 다양한 물품을 대여해 드리고 있습니다. 회의용 의자와 테이블, 프로젝터 등이 준비되어 있어 비즈니스 모임이나 행사를 개최하기에 최적입니다. 또한 음향기기와 라이트 등의 장비도 대여 가능하며, 필요한 경우 특별한 요청에도 최대한 협조해 드립니다.' ,
     '예약을 하실 때 몇 가지 주의 사항이 있습니다. 먼저, 예약 시간을 정확히 지켜주셔야 합니다. 예약 시간을 지키지 않을 경우 추가 비용이 발생할 수 있습니다. 또한 공간 내에서는 흡연이 엄격히 금지되며, 반려동물의 출입이 허용되지 않습니다. 예약 전에 이러한 사항들을 반드시 확인해 주시기 바랍니다.' ,
     10 ,
-    '부산 서구 망양로213번길 2-1' ,
+    '양산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    null ,
+    '/assets/images/product/bookcafe3.jpg' ,
     1,
     2,
-    '부산 서구 망양로213번길 2-1	상세주소' 
+    '양산 서구 망양로213번길 2-1	상세주소' 
     ,129.02526756 , 35.1112677103576
 ),(
 	8, 
@@ -226,14 +226,14 @@ insert into product (
     '부산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    null ,
+    '/assets/images/product/soccer.png' ,
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
     ,129.02526756 , 35.1112677103576
 ),(
 	9, 
-    '[부산] 스포츠 센터 축구 농구' ,
+    '[부산] 스포츠 센터 야구' ,
 	1 ,
     24 ,
     '우리의 공간은 편안하고 모던한 분위기로 디자인되어 있습니다. 넓은 창문을 통해 햇살이 잘 들어오며, 아늑한 분위기가 특징입니다. 공간 내에는 편안한 소파와 의자, 작업 공간이 구비되어 있어 다양한 용도로 활용 가능합니다. 또한 무료 와이파이와 음료 서비스가 제공되어 있어 편안한 시간을 보내실 수 있습니다.',
@@ -243,14 +243,14 @@ insert into product (
     '부산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    null ,
+    '/assets/images/product/baseball.png' ,
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
     ,129.02526756 , 35.1112677103576
 ),(
 	10, 
-    '[부산] 스포츠 센터 축구 농구' ,
+    '[부산] 캠핑장에 어서오세요' ,
 	1 ,
     24 ,
     '우리의 공간은 편안하고 모던한 분위기로 디자인되어 있습니다. 넓은 창문을 통해 햇살이 잘 들어오며, 아늑한 분위기가 특징입니다. 공간 내에는 편안한 소파와 의자, 작업 공간이 구비되어 있어 다양한 용도로 활용 가능합니다. 또한 무료 와이파이와 음료 서비스가 제공되어 있어 편안한 시간을 보내실 수 있습니다.',
@@ -260,7 +260,7 @@ insert into product (
     '부산 서구 망양로213번길 2-1' ,
     '상세 주소' ,
     50000 ,
-    null ,
+    '/assets/images/product/camp5.jpg' ,
     1,
     2,
     '부산 서구 망양로213번길 2-1	상세주소' 
@@ -477,81 +477,15 @@ insert into addition_explanation (file_path , name) values ('/assets/images/biz/
 ('/assets/images/biz/sliper.png','실내화'),
 ('/assets/images/biz/tripod.png','삼각대');
 
-insert into party (party_name , party_title , party_description , party_host, party_maximum_people, party_manager , product_no ,admin_his_no)
-values ('모임 이름 ' , '모임 타이틀' , '모임 설명' , 30 , 6 , null , 3 ,'OXDSAD-DNSKAN1');
-
-insert into party (party_name , party_title , party_description , party_host, party_maximum_people, party_manager , product_no ,admin_his_no)
-values ('모임 이름1 ' , '모임 타이틀1' , '모임 설명1' , 20 , 10 , null , 3 ,'OXDSAD-DNSKAN2');
-
-insert into party (party_name , party_title , party_description , party_host, party_maximum_people, party_manager , product_no ,admin_his_no)
-values ('모임 이름2 ' , '모임 타이틀2' , '모임 설명2' , 15 , 4 , null , 3 ,'OXDSAD-DNSKAN3');
-
-insert into party (party_name , party_title , party_description , party_host, party_maximum_people, party_manager , product_no ,admin_his_no)
-values ('모임 이름3 ' , '모임 타이틀3' , '모임 설명3' , 10 , 2 , null , 3 ,'OXDSAD-DNSKAN4');
 
 
-
-
-insert into parcipation_party (party_no, party_user_no)
-values (1, 30);
-insert into parcipation_party (party_no, party_user_no)
-values (2, 30);
-insert into parcipation_party (party_no, party_user_no)
-values (3, 30);
-insert into parcipation_party (party_no, party_user_no)
-values (4, 30);
-
-
-
-
-
-
-
-insert into party_announcement (party_no , party_announcement_title , party_announcement_description
-) values (1 , '모임 공지 타이틀1' , '모임 공지 설명1');
-
-insert into party_announcement (party_no , party_announcement_title , party_announcement_description
-) values (2 , '모임 공지 타이틀2' , '모임 공지 설명2');
-
-insert into party_announcement (party_no , party_announcement_title , party_announcement_description
-) values (3 , '모임 공지 타이틀3' , '모임 공지 설명3');
-
-insert into party_announcement (party_no , party_announcement_title , party_announcement_description
-) values (4 , '모임 공지 타이틀4' , '모임 공지 설명4');
-
-insert into party_announcement (party_no , party_announcement_title , party_announcement_description
-) values (5 , '모임 공지 타이틀5' , '모임 공지 설명5');
-
-
-
-
-
-insert into wish_list (prod_no , user_no) 
-values (1 , 30);
-insert into wish_list (prod_no , user_no) 
-values (2 , 30);
-insert into wish_list (prod_no , user_no) 
-values (3 , 30);
-insert into wish_list (prod_no , user_no) 
-values (4 , 30);
-insert into wish_list (prod_no , user_no) 
-values (5 , 30);
-insert into wish_list (prod_no , user_no) 
-values (6 , 30);
-insert into wish_list (prod_no , user_no) 
-values (7 , 30);
-insert into wish_list (prod_no , user_no) 
-values (8 , 30);
-insert into wish_list (prod_no , user_no) 
-values (1 , 30);
-insert into wish_list (prod_no , user_no) 
-values (2 , 30);
-insert into wish_list (prod_no , user_no) 
-values (3 , 30);
-insert into wish_list (prod_no , user_no) 
-values (4 , 30);
-insert into wish_list (prod_no , user_no) 
-values (5 , 30);
-
-
+insert into product_views values 
+(0,1),
+(0,2),
+(0,3),
+(0,4),
+(0,5),
+(0,6),
+(0,7),
+(0,8);
 

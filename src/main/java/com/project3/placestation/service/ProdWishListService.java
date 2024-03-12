@@ -6,6 +6,7 @@ import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project3.placestation.admin.dto.Criteria;
 import com.project3.placestation.member.dto.MemberWishListDto;
 import com.project3.placestation.product.dto.ProdWishListDto;
 import com.project3.placestation.repository.entity.ProdWishList;

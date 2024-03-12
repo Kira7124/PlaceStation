@@ -80,12 +80,12 @@
 		on p.prod_no = w.prod_no
 		where w.user_no = #{userNo}
 		and p.prod_delete_yn = 'N'
+		
 	</select>
 	
 	<select id="countByUserWishList" resultType="int">
 		
 		select count(*) from wish_list where user_no = #{userno}
-		
 		
 	</select>
 	

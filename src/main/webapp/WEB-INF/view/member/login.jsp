@@ -4,7 +4,8 @@
  <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
      <!-- login content 시작 -->
       <!--로그인 섹션 시작-->
-        <section class="module">
+        <section class="module" style="    padding: 20% 0;
+        ">
           <div class="container">
             <div class="row">
               <div class="col-sm-5 col-sm-offset-1 mb-sm-40" id="login" style="margin-left: 33%;">
@@ -44,7 +45,7 @@
                   </div>
                   </div>
                   <div class="form-group" style="position: absolute; width: 93%;">
-                    <a href="" style="font-weight: 600;">Forgot Password?</a> 
+                    <!-- <a href="" style="font-weight: 600;">Forgot Password?</a>  -->
                     <a href="/user/uterms" style="float: right; font-weight: 600; position: relative; padding-left: 5%;">User Register</a>
                     <a href="/user/sterms" style="float: right; font-weight: 600; position: relative;">Seller Regist</a>
                     </div>
