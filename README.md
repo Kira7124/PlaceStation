@@ -35,7 +35,7 @@
 ## <summary> 🕵️‍♂️Back_End</summary>
 <div markdown="1">
  
-- springboot : 4.18.0
+- springboot : 3.1.8
 - H2 Database → MySQL : 8.0.32
 - jdk : 11.0.17
 - lombok
