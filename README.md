@@ -393,6 +393,9 @@
 - 결제에 관한 내역 확인 
 - 결제된 내역에 대해 취소 및 전액 환불 기능
 
+#### 유저 정보 관리
+- 사업자의 유저 정보 관리
+
 <p>
 <img src="https://github.com/Kira7124/PlaceStation/assets/89882482/d0cba144-287b-4495-bf3d-c495fada4123">
 </p>
