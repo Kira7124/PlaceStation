@@ -300,9 +300,7 @@
 <p>
 <img src="https://github.com/Kira7124/PlaceStation/assets/89882482/2b65ad6b-519e-4633-bfaf-056b58887cb4">
 </p>
-<p>
-<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/0576fb6a-4eab-404d-86bb-237f84008ebb">
-</p>
+
 
 
 
@@ -389,6 +387,10 @@
 - 모임을 생성 , 관리 , 삭제
 - 모임 참여 기능
 - 해당 모임 공지사항 관리
+
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/0576fb6a-4eab-404d-86bb-237f84008ebb">
+</p>
 
 ### 상품등록/관리  김병준
 
