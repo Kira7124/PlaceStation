@@ -288,9 +288,7 @@
 
 # 6️⃣ 주요 기능
 
-<p>
-<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/a3b9ebb9-0b17-4b66-a857-4b0094a8f9d5">
-</p>
+
 <p>
 <img src="https://github.com/Kira7124/PlaceStation/assets/89882482/8008563a-b47b-43e8-b81a-a658cb97dc39">
 </p>
@@ -305,9 +303,7 @@
 <p>
 <img src="https://github.com/Kira7124/PlaceStation/assets/89882482/0576fb6a-4eab-404d-86bb-237f84008ebb">
 </p>
-<p>
-<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/d0cba144-287b-4495-bf3d-c495fada4123">
-</p>
+
 
 
 
@@ -368,6 +364,11 @@
 - 해당 날짜 , 기간 을 설정하여 예약 가능
 - 해당 예약 날짜와 기간을 검증
 
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/a3b9ebb9-0b17-4b66-a857-4b0094a8f9d5">
+</p>
+
+
 ### 사업자  이산하
 #### 통계 기능 - chart.js 
 - 수수료 통계
@@ -378,6 +379,16 @@
 
 #### 상품 관리
 - 예약 상품에 관련된 추가 , 변경 , 삭제
+
+<p>
+<img src="https://github.com/Kira7124/PlaceStation/assets/89882482/d0cba144-287b-4495-bf3d-c495fada4123">
+</p>
+
+### 모임 - 이산하
+#### 모임 주최
+- 모임을 생성 , 관리 , 삭제
+- 모임 참여 기능
+- 해당 모임 공지사항 관리
 
 ### 상품등록/관리  김병준
 
